@@ -1,0 +1,11 @@
+{
+  "name": "hello-gb",
+  "title": "HELLO GB",
+  "target": "gb",
+  "toolchain": "gbdk",
+  "output": "hello-gb.gb",
+  "sources": [
+    "src/main.c"
+  ],
+  "lccFlags": []
+}

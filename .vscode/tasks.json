@@ -1,0 +1,73 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Bootstrap",
+      "type": "process",
+      "command": "${workspaceFolder}/bootstrap.cmd",
+      "problemMatcher": []
+    },
+    {
+      "label": "Doctor",
+      "type": "process",
+      "command": "${workspaceFolder}/doctor.cmd",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build hello-gb Debug",
+      "type": "process",
+      "command": "${workspaceFolder}/build.cmd",
+      "args": ["hello-gb", "-Configuration", "Debug"],
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Build hello-gb Release",
+      "type": "process",
+      "command": "${workspaceFolder}/build.cmd",
+      "args": ["hello-gb", "-Configuration", "Release"],
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Build star-caravan Debug",
+      "type": "process",
+      "command": "${workspaceFolder}/build.cmd",
+      "args": ["star-caravan", "-Configuration", "Debug"],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Build star-caravan Release",
+      "type": "process",
+      "command": "${workspaceFolder}/build.cmd",
+      "args": ["star-caravan", "-Configuration", "Release"],
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Clean",
+      "type": "process",
+      "command": "${workspaceFolder}/clean.cmd",
+      "args": ["-AllBuilds"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "type": "process",
+      "command": "${workspaceFolder}/test.cmd",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run in BGB",
+      "type": "process",
+      "command": "${workspaceFolder}/run.cmd",
+      "args": ["star-caravan", "-Emulator", "BGB"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Run in Emulicious",
+      "type": "process",
+      "command": "${workspaceFolder}/run.cmd",
+      "args": ["star-caravan", "-Emulator", "Emulicious"],
+      "problemMatcher": []
+    }
+  ]
+}

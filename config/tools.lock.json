@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-09-04T17:23:29.9374107Z",
+  "host": "windows-x64",
+  "vscodeExtensions": [
+    {
+      "id": "ms-vscode.cpptools",
+      "version": "1.33.8",
+      "sourceUrl": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools"
+    },
+    {
+      "id": "emulicious.emulicious-debugger",
+      "version": "1.3.0",
+      "sourceUrl": "https://marketplace.visualstudio.com/items?itemName=emulicious.emulicious-debugger"
+    }
+  ],
+  "tools": {
+    "gbdk": {
+      "version": "4.5.0",
+      "url": "https://github.com/gbdk-2020/gbdk-2020/releases/download/4.5.0/gbdk-win64.zip",
+      "archive": "gbdk-win64.zip",
+      "sha256": "266854ce92e3064871c5b28cd3436cc2a6cb136af9e7cf617140108f8c1c5890",
+      "checksumSource": "official",
+      "installDir": ".tools/gbdk",
+      "expectedPaths": [
+        "bin/lcc.exe",
+        "bin/png2asset.exe",
+        "bin/romusage.exe"
+      ],
+      "source": {
+        "type": "github-release",
+        "apiUrl": "https://api.github.com/repos/gbdk-2020/gbdk-2020/releases/latest",
+        "assetRegex": "^gbdk-win64\\.zip$"
+      }
+    },
+    "rgbds": {
+      "version": "1.0.3",
+      "url": "https://github.com/gbdev/rgbds/releases/download/v1.0.3/rgbds-win64.zip",
+      "archive": "rgbds-win64.zip",
+      "sha256": "b66c23cb6d073dd3866ea30ef1ca5164549e0dae9ebe771957aff25e2658b0e3",
+      "checksumSource": "official",
+      "installDir": ".tools/rgbds",
+      "expectedPaths": [
+        "rgbasm.exe",
+        "rgblink.exe",
+        "rgbfix.exe",
+        "rgbgfx.exe"
+      ],
+      "source": {
+        "type": "github-release",
+        "apiUrl": "https://api.github.com/repos/gbdev/rgbds/releases/latest",
+        "assetRegex": "^rgbds-win64\\.zip$"
+      }
+    },
+    "bgb": {
+      "version": "1.6.6",
+      "url": "https://bgb.bircd.org/bgbw64.zip",
+      "archive": "bgbw64.zip",
+      "sha256": "38b97e4496ad85106f59c87a6b0386b7405fbebb3bccc90650279762bd10478c",
+      "checksumSource": "computed",
+      "installDir": ".tools/bgb",
+      "expectedPaths": [
+        "bgb64.exe"
+      ],
+      "source": {
+        "type": "bgb-page",
+        "pageUrl": "https://bgb.bircd.org/",
+        "downloadUrl": "https://bgb.bircd.org/bgbw64.zip"
+      }
+    },
+    "emulicious": {
+      "version": "2026-03-27",
+      "url": "https://emulicious.net/download/emulicious-with-64-bit-java-for-windows/?wpdmdl=989",
+      "archive": "emulicious-with-java-win64.zip",
+      "sha256": "0a6737b4c709fe54dd88fb507bdf9d491205f240d68e83593e24f8414e0378b5",
+      "checksumSource": "computed",
+      "installDir": ".tools/emulicious",
+      "bundledJava": true,
+      "expectedPaths": [
+        "Emulicious.exe",
+        "Emulicious.jar"
+      ],
+      "source": {
+        "type": "static-download",
+        "pageUrl": "https://emulicious.net/downloads/",
+        "downloadUrl": "https://emulicious.net/download/emulicious-with-64-bit-java-for-windows/?wpdmdl=989"
+      }
+    },
+    "vscode": {
+      "version": "1.136.1",
+      "url": "https://vscode.download.prss.microsoft.com/dbazure/download/stable/a44adf7f53e00964ab890f9f8758a334f1fc15bc/VSCode-win32-x64-1.136.1.zip",
+      "archive": "VSCode-win32-x64-1.136.1.zip",
+      "sha256": "deca16ea5c4d71ece23e50af57632bba3abd0e3577c3c8bfbcdd90b03f11e402",
+      "checksumSource": "official",
+      "installDir": ".tools/vscode",
+      "expectedPaths": [
+        "Code.exe"
+      ],
+      "source": {
+        "type": "vscode-update",
+        "pageUrl": "https://code.visualstudio.com/Download",
+        "apiUrl": "https://update.code.visualstudio.com/api/update/win32-x64-archive/stable/latest"
+      }
+    }
+  }
+}

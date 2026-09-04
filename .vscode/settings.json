@@ -1,0 +1,31 @@
+{
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}/.tools/gbdk/include",
+    "${workspaceFolder}/projects/**/include"
+  ],
+  "C_Cpp.default.compilerPath": "${workspaceFolder}/.tools/gbdk/bin/lcc.exe",
+  "files.associations": {
+    "*.c": "c",
+    "*.h": "c"
+  },
+  "files.encoding": "utf8",
+  "files.exclude": {
+    "**/.cache": true,
+    "**/.downloads": true,
+    "**/.tools": true,
+    "**/build": true
+  },
+  "files.watcherExclude": {
+    "**/.cache/**": true,
+    "**/.downloads/**": true,
+    "**/.tools/**": true,
+    "**/build/**": true
+  },
+  "search.exclude": {
+    "**/.cache/**": true,
+    "**/.downloads/**": true,
+    "**/.tools/**": true,
+    "**/build/**": true,
+    "**/generated/**": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "name": "star-caravan",
+  "title": "STAR CARAVAN",
+  "target": "gb",
+  "cgbCompatibility": "dual",
+  "toolchain": "gbdk",
+  "output": "star-caravan.gb",
+  "sources": [
+    "src/main.c"
+  ],
+  "lccFlags": [
+    "-Wm-yc"
+  ]
+}

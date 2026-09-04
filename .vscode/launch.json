@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "emulicious-debugger",
+      "request": "launch",
+      "name": "Debug star-caravan in Emulicious",
+      "program": "${workspaceFolder}/projects/star-caravan/build/Debug/star-caravan.gb",
+      "port": 58870,
+      "stopOnEntry": true,
+      "additionalSrcFolders": "${workspaceFolder}/projects/star-caravan/src",
+      "emuliciousPath": "${workspaceFolder}/.tools/emulicious/Emulicious.exe",
+      "preLaunchTask": "Build star-caravan Debug"
+    },
+    {
+      "type": "emulicious-debugger",
+      "request": "launch",
+      "name": "Debug hello-gb in Emulicious",
+      "program": "${workspaceFolder}/projects/hello-gb/build/Debug/hello-gb.gb",
+      "port": 58870,
+      "stopOnEntry": true,
+      "additionalSrcFolders": "${workspaceFolder}/projects/hello-gb/src",
+      "emuliciousPath": "${workspaceFolder}/.tools/emulicious/Emulicious.exe",
+      "preLaunchTask": "Build hello-gb Debug"
+    }
+  ]
+}

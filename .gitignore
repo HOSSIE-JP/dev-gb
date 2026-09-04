@@ -1,0 +1,65 @@
+# Downloaded and installed portable tools
+/.tools/
+/.downloads/
+/.cache/
+/tmp/
+/temp/
+
+# Build output
+**/build/
+**/dist/
+**/out/
+**/generated/*
+!**/generated/.gitkeep
+
+# Game Boy ROMs and linker/debug output
+*.gb
+*.gbc
+*.ihx
+*.lk
+*.lst
+*.map
+*.noi
+*.rel
+*.rst
+*.sym
+*.cdb
+*.adb
+*.mem
+*.o
+*.obj
+*.dep
+*.d
+
+# Emulator save/state/config output
+*.sav
+*.srm
+*.rtc
+*.state
+*.state*
+*.sn?
+*.sgm
+*.bess
+*.battery
+bgb.ini
+emulicious.ini
+
+# Temporary/editor files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and local-only settings
+*.log
+/logs/
+.env
+.env.*
+!.env.example
+*.local.json
+config/local.*

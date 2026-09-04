@@ -1,0 +1,25 @@
+* text=auto
+.editorconfig text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.gitkeep text eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.c text eol=lf
+*.h text eol=lf
+*.asm text eol=lf
+*.s text eol=lf
+*.inc text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.png binary
+*.gif binary
+*.jpg binary
+*.jpeg binary
+*.wav binary
+*.gb binary
+*.gbc binary
+*.zip binary
