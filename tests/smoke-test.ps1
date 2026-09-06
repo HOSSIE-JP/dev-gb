@@ -31,6 +31,18 @@ if ($ProjectJson) {
     if (($project.PSObject.Properties.Name -contains 'cgbCompatibility') -and $project.cgbCompatibility -eq 'dual') {
         if ($rom[0x143] -ne 0x80) { throw ("Expected dual DMG/CGB flag 0x80, found 0x{0:X2}" -f $rom[0x143]) }
     }
+    if ($project.PSObject.Properties.Name -contains 'cartridgeType') {
+        $expectedCartridgeType = [byte]$project.cartridgeType
+        if ($rom[0x147] -ne $expectedCartridgeType) {
+            throw ("Expected cartridge type 0x{0:X2}, found 0x{1:X2}" -f $expectedCartridgeType, $rom[0x147])
+        }
+    }
+    if ($project.PSObject.Properties.Name -contains 'externalRamSizeCode') {
+        $expectedRamSize = [byte]$project.externalRamSizeCode
+        if ($rom[0x149] -ne $expectedRamSize) {
+            throw ("Expected external RAM size code 0x{0:X2}, found 0x{1:X2}" -f $expectedRamSize, $rom[0x149])
+        }
+    }
 }
 
 Write-Host ("[OK] Valid Game Boy ROM: {0} ({1} bytes)" -f $RomPath, $rom.Length) -ForegroundColor Green

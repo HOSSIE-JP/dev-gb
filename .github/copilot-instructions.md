@@ -54,7 +54,7 @@ GBDK's SDCC/SDAS assembly path and RGBDS use different syntax and toolchain assu
 
 ## `star-caravan` contract
 
-`projects/star-caravan` is a single-stage, two-minute caravan shooter in one DMG/GBC-compatible ROM. Preserve title, gameplay, pause, game-over, clear, and top-five scoreboard scenes; directional movement; A/B fire; START pause; three lives; enemy waves; a late boss; scoring; and clear on timeout or boss defeat. Scores live only for the current run of the ROM; SRAM is intentionally unused.
+`projects/star-caravan` is a single-stage, two-minute caravan shooter in one DMG/GBC-compatible ROM. Preserve title, gameplay, pause, game-over, clear, and top-five scoreboard scenes; directional movement; A/B fire; START pause; three lives; enemy waves; a late boss; scoring; and clear on timeout or boss defeat. Top-five scores use MBC5 battery-backed SRAM with versioned, checksummed, power-loss-tolerant storage.
 
 Keep gameplay results identical in DMG and CGB modes. CGB-only code may set color palettes but must not alter rules or make the DMG display unreadable.
 

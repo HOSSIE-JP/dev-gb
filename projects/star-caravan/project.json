@@ -4,12 +4,17 @@
   "title": "STAR CARAVAN",
   "target": "gb",
   "cgbCompatibility": "dual",
+  "cartridgeType": 27,
+  "externalRamSizeCode": 2,
   "toolchain": "gbdk",
   "output": "star-caravan.gb",
   "sources": [
-    "src/main.c"
+    "src/main.c",
+    "src/high_scores_save.c"
   ],
   "lccFlags": [
-    "-Wm-yc"
+    "-Wm-yc",
+    "-Wl-yt0x1B",
+    "-Wm-ya1"
   ]
 }

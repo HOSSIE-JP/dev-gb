@@ -6,6 +6,7 @@
 
 ### Added
 
+- `star-caravan` の上位5スコアを保護する、MBC5バッテリーバックアップSRAMの2スロット＋CRC保存。
 - GBDK-2020を主系統、RGBDSを独立したアセンブリ系統とするWindows向けポータブル開発環境。
 - 公式配布物のURL、版、SHA-256、展開先を固定する `config/tools.lock.json` と、再実行可能なブートストラップ導線。
 - `bootstrap`、`doctor`、`build`、`run`、`clean`、`test`、`shell`、`vscode` の各コマンド。

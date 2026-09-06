@@ -2,6 +2,8 @@
 #include <gb/cgb.h>
 #include <stdint.h>
 
+#include "high_scores_save.h"
+
 /*
  * STAR CARAVAN
  * A small, original two-minute vertical score attack for GBDK-2020.
@@ -232,7 +234,7 @@ static EnemyShot enemy_shots[MAX_ENEMY_SHOTS];
 static Enemy enemies[MAX_ENEMIES];
 static Boss boss;
 
-static uint16_t high_scores[5];
+static uint16_t high_scores[HIGH_SCORE_COUNT];
 static uint16_t score;
 static uint8_t latest_rank;
 static uint8_t is_cgb;
@@ -386,7 +388,7 @@ static void uint16_to_tiles(uint16_t value, uint8_t *destination) {
     uint8_t index;
 
     divisor = 10000u;
-    for (index = 0u; index != 5u; ++index) {
+    for (index = 0u; index != HIGH_SCORE_COUNT; ++index) {
         digit = (uint8_t)(value / divisor);
         destination[index] = (uint8_t)(1u + digit);
         value = (uint16_t)(value - (uint16_t)((uint16_t)digit * divisor));
@@ -502,7 +504,7 @@ static uint8_t record_score(uint16_t value) {
 
     for (index = 0u; index != 5u; ++index) {
         if (value >= high_scores[index]) {
-            for (shift = 4u; shift > index; --shift) {
+            for (shift = (HIGH_SCORE_COUNT - 1u); shift > index; --shift) {
                 high_scores[shift] = high_scores[(uint8_t)(shift - 1u)];
             }
             high_scores[index] = value;
@@ -1394,11 +1396,7 @@ void main(void) {
     uint8_t result;
 
     initialize_hardware();
-    high_scores[0] = 0u;
-    high_scores[1] = 0u;
-    high_scores[2] = 0u;
-    high_scores[3] = 0u;
-    high_scores[4] = 0u;
+    high_scores_load(high_scores);
     latest_rank = 0u;
     scene = SCENE_TITLE;
 
@@ -1408,6 +1406,7 @@ void main(void) {
         } else if (scene == SCENE_GAME) {
             result = run_game();
             latest_rank = record_score(score);
+            if (latest_rank != 0u) high_scores_save(high_scores);
             scene = (result == RESULT_CLEAR) ? SCENE_CLEAR : SCENE_GAME_OVER;
         } else if (scene == SCENE_SCORES) {
             scene = run_scoreboard();
