@@ -2,6 +2,13 @@
 
 2026-09-08。既存のCaravan Editorで編集・ビルド・プレイできる、新作GB/GB Color縦STGの検証です。検証対象は `projects/nova-spear/assets-src/game.json` と元PNG、共通エンジンです。
 
+## エディターのテンプレート継承確認（2026-09-08）
+
+- コンパイラーは全作品で共通の runtime.c / render.c / music.c / save.c をビルドする。性能改善・OAM転送待機・SRAM保存・ボス命中音はNOVA SPEAR専用コードではない。既存ROMへは再ビルドが必要。
+- 新規作品画面にテンプレート選択を追加。NOVA SPEAR（既定）とSTAR CARAVANから選べる。以前はSTAR CARAVAN固定だった。
+- NOVA SPEARから新規作成／作品複製すれば、3面構成、時間制限OFF、TIMEなしHUD、90フレーム復帰、フェード、ボス撃破演出、楽曲・素材を引き継ぐ。STAR CARAVANの従来ルールは維持。既存作品ではゲーム設定の撃破演出や時間制限、プレイヤー設定の復帰待ちを編集できる。
+- 型チェック・全50件のテスト成功。Chromiumでテンプレート選択→新規作成→再読込を実操作し、設定継承を確認。作成した独立作品のRelease ROMビルド成功（131072 bytes、診断0件）。NOVA SPEARのDebug/Releaseと共通エンジンのDMG/CGBテストも成功。Windows Electron実操作・実機は未検証。
+
 ## v7：時間制限OFF・ボス撃破演出・中盤の再調査（2026-09-08）
 
 - NOVA SPEARの制限時間を無効化し、TIME表示を撤去。HUDは得点と残機だけ。旧作品の未指定設定は制限時間ありを維持。敵配置用の内部時刻は保持し、16bitの上限で飽和させて長時間プレイでイベントが再発しないようにした。

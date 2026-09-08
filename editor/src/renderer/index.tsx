@@ -87,6 +87,7 @@ function App() {
         [modal, setModal] = useState(""),
         [newId, setNewId] = useState(""),
         [newTitle, setNewTitle] = useState("NEW CARAVAN"),
+        [newTemplate, setNewTemplate] = useState("nova-spear"),
         [assetKind, setAssetKind] = useState("sprite"),
         [tab, setTab] = useState("preview"),
         [commandOpen, setCommandOpen] = useState(false),
@@ -1705,6 +1706,13 @@ function App() {
                             </>
                         ) : (
                             <>
+                                {modal === "new" && <Field label="テンプレート">
+                                    <select aria-label="新規作品テンプレート" value={newTemplate} disabled={busy} onChange={e => setNewTemplate(e.target.value)}>
+                                        <option value="nova-spear">NOVA SPEAR：3面・時間制限なし・撃破演出</option>
+                                        <option value="star-caravan">STAR CARAVAN：時間制キャラバン</option>
+                                    </select>
+                                    <p>選んだ作品の素材・ステージ・ゲーム設定を引き継ぎます。復帰待ち、時間制限、撃破演出は作成後も編集できます。</p>
+                                </Field>}
                                 <Field label="作品ID（英数字・ハイフン・_）">
                                     <input
                                         autoFocus
@@ -1759,7 +1767,7 @@ function App() {
                                                 modal === "new"
                                                     ? (
                                                           await window.caravan.open(
-                                                              "star-caravan",
+                                                              newTemplate,
                                                           )
                                                       ).game
                                                     : game;
