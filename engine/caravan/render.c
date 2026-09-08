@@ -54,14 +54,14 @@ void ce_load_screen(uint8_t screen) BANKED {
     screen_map(screen, 0); move_bkg(0, 0); ce_hud(); SHOW_BKG; DISPLAY_ON;
 }
 void ce_load_stage(void) BANKED {
-    uint8_t row; const CE_Stage *s = &ce_stages[ce_state.stage];
+    uint8_t row; uint16_t start = ce_state.camera >> 7; const CE_Stage *s = &ce_stages[ce_state.stage];
     DISPLAY_OFF; hide_all(); palettes(); ce_active_screen = 4;
     tiles(&ce_screens[4].tiles, 0, ce_screens[4].tile_count, 0);
     tiles(&s->tiles, ce_screens[4].tile_count, s->tile_count, 0);
     tiles(&ce_sprite_data, 128, ce_sprite_tiles, 1); SPRITES_8x8;
-    for (row = 0; row != 32u; ++row) map_row(row);
+    for (row = 0; row != 32u; ++row) map_row(start + row);
     screen_map(4, 1); move_win(7, ce_hud_bottom ? 128 : 0);
-    previous_row = 0; move_bkg(0, ce_hud_bottom ? 0 : 240);
+    previous_row = start; move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : 16u));
     ce_hud(); SHOW_BKG; SHOW_WIN; SHOW_SPRITES; DISPLAY_ON;
 }
 static void number(uint8_t x, uint8_t y, uint16_t value, uint8_t digits) {
@@ -101,7 +101,8 @@ static uint8_t sprite(uint8_t slot, uint8_t asset, int16_t x, int16_t y, uint16_
 }
 void ce_render(void) BANKED {
     uint8_t i, slot = 0; uint16_t row = ce_state.camera >> 7; CE_Entity *e = ce_entities;
-    if (row < previous_row) { DISPLAY_OFF; for (i = 0; i != 32u; ++i) map_row(row + i); DISPLAY_ON; }
+    if (row + 1u == previous_row) map_row(row);
+    else if (row != previous_row && row != previous_row + 1u) { DISPLAY_OFF; for (i = 0; i != 32u; ++i) map_row(row + i); DISPLAY_ON; }
     else if (row != previous_row) map_row(row + 31u);
     previous_row = row;
     move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : 16u));

@@ -33,7 +33,7 @@ typedef struct {
     uint16_t height, duration, event_count; uint8_t scroll, loop, clear_boss, has_walls;
     CE_Data tiles; uint8_t tile_count, palette;
     const CE_Data *map; const CE_Data *walls; CE_Data events;
-    uint8_t require_boss, music;
+    uint8_t require_boss, music, scroll_down;
 } CE_Stage;
 typedef struct { uint8_t kind, x, y; } CE_Binding;
 typedef struct {

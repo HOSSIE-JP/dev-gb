@@ -97,3 +97,41 @@ test("required bosses cannot be bypassed by waiting for the stage timer", () => 
     assert.equal(early.result, 1, "An end event cannot bypass a required boss either");
     assert.equal(early.score, 0);
 });
+
+test("downward scenery decreases camera, wraps cleanly and stops on non-loop maps", () => {
+    const game = emptyArena();
+    const stage = game.stages[0];
+    stage.scrollDown = true;
+    const sim = new lib.Simulation(game);
+    const initial = sim.camera;
+    sim.step(0);
+    assert.equal(sim.camera, initial - stage.scrollSpeed * 16);
+    sim.camera = 0;
+    sim.step(0);
+    assert.equal(sim.camera, stage.height * 128 - stage.scrollSpeed * 16);
+    stage.loopMap = false;
+    const stopped = new lib.Simulation(game);
+    stopped.camera = 0;
+    stopped.step(0);
+    assert.equal(stopped.camera, 0);
+});
+
+test("NOVA SPEAR has abundant one-hit, non-firing flights with a boss breathing space", () => {
+    const game = authored();
+    const spark = game.enemies.find(e => e.id === 'popcorn');
+    assert.equal(spark.hp, 1);
+    assert.equal(spark.pattern, '');
+    for (const stage of game.stages) {
+        assert.equal(stage.scrollDown, true);
+        const flights = stage.events.filter(e => e.ref === spark.id);
+        assert.ok(flights.reduce((n,e)=>n+e.count,0) >= 50);
+        const boss = stage.events.find(e=>e.kind==='boss');
+        assert.ok(flights.every(e=>e.frame+(e.count-1)*e.interval+100 < boss.frame));
+    }
+    const arena = emptyArena();
+    arena.stages[0].events = [{id:'one-hit',frame:0,kind:'enemy',ref:'popcorn',x:80,y:70,count:1,spacing:0,interval:0,value:0}];
+    const sim = new lib.Simulation(arena);
+    for(let i=0;i<25;i++) sim.step(16);
+    assert.equal(sim.score, spark.score, 'A shot destroys a weak enemy');
+    assert.ok(!sim.entities.some(e=>e.kind==='eshot'));
+});

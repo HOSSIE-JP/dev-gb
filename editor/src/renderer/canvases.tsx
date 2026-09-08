@@ -485,7 +485,7 @@ export function MapCanvas({
         }
         for (const e of s.events)
             if (e.kind === "enemy" || e.kind === "boss") {
-                const y = e.y + Math.floor(e.frame * s.scrollSpeed);
+                const y = e.y + (s.scrollDown ? s.height * 8 - 128 - Math.floor(e.frame * s.scrollSpeed) : Math.floor(e.frame * s.scrollSpeed));
                 if (y >= 0 && y < s.height * 8) {
                     c.strokeStyle = e.id === eventId ? "#ffbd66" : "#54d8c4";
                     c.lineWidth = 0.75;
@@ -503,7 +503,7 @@ export function MapCanvas({
                           ...event,
                           x: p.x,
                           y: clamp(
-                              p.y - Math.floor(event.frame * stage.scrollSpeed),
+                              p.y - (stage.scrollDown ? stage.height * 8 - 128 - Math.floor(event.frame * stage.scrollSpeed) : Math.floor(event.frame * stage.scrollSpeed)),
                               -32,
                               176,
                           ),

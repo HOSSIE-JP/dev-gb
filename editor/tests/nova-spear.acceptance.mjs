@@ -86,6 +86,10 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             press(gb, PadKey.Start);
             awaitTrace(gb, syms, (trace) => trace.scene === 1, "stage graphics to finish loading");
             assert.equal(readByte(gb, syms, "_ce_music_track"), game.stages[0].music);
+            const scyBefore = memory(gb).io[0x42];
+            frames(gb, 24);
+            const downwardPixels = (scyBefore - memory(gb).io[0x42] + 256) % 256;
+            assert.ok(downwardPixels > 0 && downwardPixels <= 24, "SCY decreases: scenery travels from top to bottom");
             assert.ok(audioCount(gb) > 0, "Stage BGM produces PCM without firing");
             press(gb, PadKey.Start);
             assert.equal(readByte(gb, syms, "_ce_pause"), 1);

@@ -93,6 +93,7 @@ export type Stage = {
     duration: number;
     clearOnBoss: boolean;
     requireBoss?: boolean;
+    scrollDown?: boolean;
     music?: number;
     events: StageEvent[];
 };
@@ -326,6 +327,7 @@ export function validateShape(
                 duration: "number",
                 clearOnBoss: "boolean",
                 "requireBoss?": "boolean",
+                "scrollDown?": "boolean",
                 "music?": "number",
                 events: [
                     {

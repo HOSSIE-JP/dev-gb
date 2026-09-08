@@ -13,6 +13,7 @@ const labels: Record<string, string> = {
     weapon: "自機の弾幕",
     focusWeapon: "Bボタンの集中ショット",
     focusSpeed: "集中ショット中の速度 px / frame",
+    scrollDown: "背景を上から下へ流す",
     requireBoss: "時間内のボス撃破を必須にする",
     dmgPalette: "DMG階調レジスター（0〜255）",
     speed: "速度 px / frame",
@@ -152,7 +153,7 @@ export function Form({
         <div className="form">
             {Object.entries(
                 context === "player" ? { focusWeapon: "", focusSpeed: value.speed, ...value }
-                : context === "stage" ? { requireBoss: false, music: 0, ...value }
+                : context === "stage" ? { requireBoss: false, scrollDown: false, music: 0, ...value }
                 : value.schemaVersion === 1 ? { music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )

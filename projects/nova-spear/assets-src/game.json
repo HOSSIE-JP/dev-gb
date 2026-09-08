@@ -1227,6 +1227,34 @@
         ]
       },
       "pattern": ""
+    },
+    {
+      "id": "popcorn",
+      "name": "SPARK / one-hit bonus flight",
+      "asset": "scout",
+      "hp": 1,
+      "score": 80,
+      "motion": {
+        "kind": "straight",
+        "vx": 0,
+        "vy": 1.75,
+        "amplitude": 0,
+        "period": 128,
+        "loop": false,
+        "points": [
+          {
+            "x": 0,
+            "y": 0,
+            "frame": 0
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "frame": 128
+          }
+        ]
+      },
+      "pattern": ""
     }
   ],
   "bosses": [
@@ -1678,6 +1706,30 @@
           "value": 0
         },
         {
+          "id": "orbital-spark-left-2.5",
+          "frame": 150,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "orbital-spark-right-2.5",
+          "frame": 240,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
           "id": "orbital-wide-formation",
           "frame": 270,
           "kind": "enemy",
@@ -1699,6 +1751,30 @@
           "count": 3,
           "spacing": 32,
           "interval": 20,
+          "value": 0
+        },
+        {
+          "id": "orbital-spark-left-9",
+          "frame": 540,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "orbital-spark-right-9",
+          "frame": 630,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
           "value": 0
         },
         {
@@ -1786,6 +1862,30 @@
           "value": 0
         },
         {
+          "id": "orbital-spark-left-22",
+          "frame": 1320,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "orbital-spark-right-22",
+          "frame": 1410,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
           "id": "orbital-first-dive",
           "frame": 1470,
           "kind": "enemy",
@@ -1822,6 +1922,30 @@
           "value": 0
         },
         {
+          "id": "orbital-spark-left-30",
+          "frame": 1800,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "orbital-spark-right-30",
+          "frame": 1890,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
           "id": "orbital-left-flight",
           "frame": 1920,
           "kind": "enemy",
@@ -1843,6 +1967,30 @@
           "count": 2,
           "spacing": 0,
           "interval": 48,
+          "value": 0
+        },
+        {
+          "id": "orbital-spark-left-37",
+          "frame": 2220,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "orbital-spark-right-37",
+          "frame": 2310,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
           "value": 0
         },
         {
@@ -12152,7 +12300,8 @@
         0,
         0
       ],
-      "music": 2
+      "music": 2,
+      "scrollDown": true
     },
     {
       "id": "iron-dreadnought",
@@ -12174,6 +12323,30 @@
           "count": 3,
           "spacing": 48,
           "interval": 16,
+          "value": 0
+        },
+        {
+          "id": "dreadnought-spark-left-2",
+          "frame": 120,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "dreadnought-spark-right-2",
+          "frame": 210,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
           "value": 0
         },
         {
@@ -12237,6 +12410,30 @@
           "value": 0
         },
         {
+          "id": "dreadnought-spark-left-10",
+          "frame": 600,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "dreadnought-spark-right-10",
+          "frame": 690,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
           "id": "dreadnought-deck-divers",
           "frame": 720,
           "kind": "enemy",
@@ -12285,6 +12482,30 @@
           "value": 0
         },
         {
+          "id": "dreadnought-spark-left-20",
+          "frame": 1200,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "dreadnought-spark-right-20",
+          "frame": 1290,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
           "id": "dreadnought-beacon-port",
           "frame": 1320,
           "kind": "enemy",
@@ -12321,6 +12542,30 @@
           "value": 0
         },
         {
+          "id": "dreadnought-spark-left-26",
+          "frame": 1560,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "dreadnought-spark-right-26",
+          "frame": 1650,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
           "id": "dreadnought-armored-pair",
           "frame": 1680,
           "kind": "enemy",
@@ -12342,6 +12587,30 @@
           "count": 3,
           "spacing": 40,
           "interval": 16,
+          "value": 0
+        },
+        {
+          "id": "dreadnought-spark-left-33",
+          "frame": 1980,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "dreadnought-spark-right-33",
+          "frame": 2070,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
           "value": 0
         },
         {
@@ -12405,6 +12674,30 @@
           "value": 0
         },
         {
+          "id": "dreadnought-spark-left-47",
+          "frame": 2820,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "dreadnought-spark-right-47",
+          "frame": 2910,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
           "id": "dreadnought-last-bulwark",
           "frame": 2970,
           "kind": "enemy",
@@ -12437,6 +12730,30 @@
           "y": -8,
           "count": 3,
           "spacing": 40,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "dreadnought-spark-left-54",
+          "frame": 3240,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "dreadnought-spark-right-54",
+          "frame": 3330,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
           "interval": 18,
           "value": 0
         },
@@ -22711,7 +23028,8 @@
         0,
         0
       ],
-      "music": 3
+      "music": 3,
+      "scrollDown": true
     },
     {
       "id": "nova-reactor",
@@ -22732,6 +23050,30 @@
           "y": -8,
           "count": 3,
           "spacing": 48,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-left-2",
+          "frame": 120,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-right-2",
+          "frame": 210,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
           "interval": 18,
           "value": 0
         },
@@ -22784,6 +23126,30 @@
           "value": 0
         },
         {
+          "id": "reactor-spark-left-10",
+          "frame": 600,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-right-10",
+          "frame": 690,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
           "id": "reactor-beacon-outer",
           "frame": 792,
           "kind": "enemy",
@@ -22817,6 +23183,30 @@
           "count": 1,
           "spacing": 0,
           "interval": 0,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-left-18",
+          "frame": 1080,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-right-18",
+          "frame": 1170,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
           "value": 0
         },
         {
@@ -22904,6 +23294,30 @@
           "value": 0
         },
         {
+          "id": "reactor-spark-left-28",
+          "frame": 1680,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-right-28",
+          "frame": 1770,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
           "id": "reactor-core-bulwarks",
           "frame": 1800,
           "kind": "enemy",
@@ -22925,6 +23339,30 @@
           "count": 1,
           "spacing": 0,
           "interval": 0,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-left-35",
+          "frame": 2100,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-right-35",
+          "frame": 2190,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
           "value": 0
         },
         {
@@ -22976,6 +23414,30 @@
           "value": 0
         },
         {
+          "id": "reactor-spark-left-45",
+          "frame": 2700,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-right-45",
+          "frame": 2790,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
           "id": "reactor-reactor-shield",
           "frame": 2868,
           "kind": "enemy",
@@ -23009,6 +23471,30 @@
           "count": 3,
           "spacing": 48,
           "interval": 16,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-left-52",
+          "frame": 3120,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 48,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
+          "value": 0
+        },
+        {
+          "id": "reactor-spark-right-52",
+          "frame": 3210,
+          "kind": "enemy",
+          "ref": "popcorn",
+          "x": 112,
+          "y": -8,
+          "count": 5,
+          "spacing": 0,
+          "interval": 18,
           "value": 0
         },
         {
@@ -33294,7 +33780,8 @@
         0,
         0
       ],
-      "music": 4
+      "music": 4,
+      "scrollDown": true
     }
   ],
   "screens": [

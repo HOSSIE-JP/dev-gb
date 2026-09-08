@@ -108,6 +108,7 @@ const enemy = (id, name, asset, hp, score, movement, attack = "") => ({
 });
 
 export const enemies = [
+    enemy("popcorn", "SPARK / one-hit bonus flight", "scout", 1, 80, motion({ vy: 1.75 })),
     enemy("dart", "DART / formation scout", "scout", 1, 100,
         motion({ vy: 1.5 }), "scout-lock"),
     enemy("weaver", "WEAVER / sine formation", "scout", 2, 140,
@@ -195,6 +196,10 @@ function choreography(id) {
 
 function orbitalEvents() {
     const c = choreography("orbital");
+    for (const t of [2.5, 9, 22, 30, 37]) {
+        c.wave(t, `spark-left-${t}`, "popcorn", 48, 5, 0, 18);
+        c.wave(t + 1.5, `spark-right-${t}`, "popcorn", 112, 5, 0, 18);
+    }
     c.wave(1.2, "first-contact", "dart", 80, 3, 0, 20);
     c.wave(4.5, "wide-formation", "dart", 40, 3, 40, 12);
     c.wave(7.8, "weavers", "weaver", 48, 3, 32, 20);
@@ -220,6 +225,10 @@ function orbitalEvents() {
 
 function dreadnoughtEvents() {
     const c = choreography("dreadnought");
+    for (const t of [2, 10, 20, 26, 33, 47, 54]) {
+        c.wave(t, `spark-left-${t}`, "popcorn", 48, 5, 0, 18);
+        c.wave(t + 1.5, `spark-right-${t}`, "popcorn", 112, 5, 0, 18);
+    }
     c.wave(1.5, "deck-patrol", "dart", 32, 3, 48, 16);
     c.wave(4.7, "forward-port-sentry", "gun-tower", 40);
     c.wave(4.7, "forward-starboard-sentry", "gun-tower", 120);
@@ -250,6 +259,10 @@ function dreadnoughtEvents() {
 
 function reactorEvents() {
     const c = choreography("reactor");
+    for (const t of [2, 10, 18, 28, 35, 45, 52]) {
+        c.wave(t, `spark-left-${t}`, "popcorn", 48, 5, 0, 18);
+        c.wave(t + 1.5, `spark-right-${t}`, "popcorn", 112, 5, 0, 18);
+    }
     c.wave(1, "reactor-guard", "weaver", 32, 3, 48, 18);
     c.wave(4, "inbound-ravens", "sweep-left", -8, 2, 0, 36, 24);
     c.wave(7, "outer-port-battery", "cross-tower", 32);
@@ -283,13 +296,13 @@ function reactorEvents() {
 // Supply width/height/tiles/walls from the map generator before validation.
 export const stageBlueprints = [
     { id: "orbital-front", name: "01 ORBITAL FRONT", tileset: "orbital-tiles",
-        scrollSpeed: 0.5, loopMap: true, duration: 75, clearOnBoss: true, requireBoss: true,
+        scrollSpeed: 0.5, loopMap: true, scrollDown: true, duration: 75, clearOnBoss: true, requireBoss: true,
         events: orbitalEvents() },
     { id: "iron-dreadnought", name: "02 IRON DREADNOUGHT", tileset: "carrier-tiles",
-        scrollSpeed: 0.5, loopMap: true, duration: 90, clearOnBoss: true, requireBoss: true,
+        scrollSpeed: 0.5, loopMap: true, scrollDown: true, duration: 90, clearOnBoss: true, requireBoss: true,
         events: dreadnoughtEvents() },
     { id: "nova-reactor", name: "03 NOVA REACTOR", tileset: "reactor-tiles",
-        scrollSpeed: 0.625, loopMap: true, duration: 90, clearOnBoss: true, requireBoss: true,
+        scrollSpeed: 0.625, loopMap: true, scrollDown: true, duration: 90, clearOnBoss: true, requireBoss: true,
         events: reactorEvents() },
 ];
 
@@ -300,9 +313,9 @@ export const balance = {
     clearBonus: 1500,
     // These values are descriptive targets, not extra scoring rules.
     scoreRoutes: [
-        { stage: "orbital-front", beacons: 3, targetScore: 11000 },
-        { stage: "iron-dreadnought", beacons: 4, targetScore: 27000 },
-        { stage: "nova-reactor", beacons: 5, targetScore: 45000 },
+        { stage: "orbital-front", beacons: 3, targetScore: 15000 },
+        { stage: "iron-dreadnought", beacons: 4, targetScore: 36000 },
+        { stage: "nova-reactor", beacons: 5, targetScore: 60000 },
     ],
     scoring: "Enemy destruction + 800 per beacon + boss score + 1500 per stage clear.",
     fairness: "Five lives for the full campaign; 150 invulnerable frames after damage. No contact damage from decorative backgrounds. Learnable entry gaps and silent boss approach.",

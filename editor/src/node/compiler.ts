@@ -477,7 +477,7 @@ export function generate(
             throw new Error(`${s.name}: 展開後のイベントは1024個までです`);
         const map = pages(s.tiles, `stage_${i}_map`),
             walls = pages(s.walls, `stage_${i}_walls`);
-        return `{${s.height},${s.duration * 60},${events.length},${q4(s.scrollSpeed)},${+s.loopMap},${+s.clearOnBoss},${+s.walls.some(Boolean)},${blob(tiles)},${tileCount},${tileAsset.palette},${map},${walls},${blob(eventData)},${+(s.requireBoss ?? false)},${s.music ?? 0}}`;
+        return `{${s.height},${s.duration * 60},${events.length},${q4(s.scrollSpeed)},${+s.loopMap},${+s.clearOnBoss},${+s.walls.some(Boolean)},${blob(tiles)},${tileCount},${tileAsset.palette},${map},${walls},${blob(eventData)},${+(s.requireBoss ?? false)},${s.music ?? 0},${+(s.scrollDown ?? false)}}`;
     });
     config.push(
         `const CE_Stage ce_stages[]={${stageRows}};`,

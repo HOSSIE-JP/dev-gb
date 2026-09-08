@@ -170,6 +170,7 @@ export class Simulation {
         this.playerX = q4(game.player.x);
         this.playerY = q4(game.player.y);
         this.invulnerable = game.player.invulnerability;
+        this.camera = this.stage.scrollDown ? (this.stage.height * 8 - 128) * 16 : 0;
         this.scroll = q4(this.stage.scrollSpeed);
         this.cooldown =
             game.patterns.find((p) => p.id === game.player.weapon)?.delay ?? 0;
@@ -351,7 +352,7 @@ export class Simulation {
                 (s) => s.id === this.game.stageOrder[this.stageIndex],
             )!;
             this.stageTick = 0;
-            this.camera = 0;
+            this.camera = this.stage.scrollDown ? (this.stage.height * 8 - 128) * 16 : 0;
             this.scroll = q4(this.stage.scrollSpeed);
             this.entities = [];
             this.bossDefeated = false;
@@ -431,12 +432,12 @@ export class Simulation {
             this.cooldown = weapon.interval - 1;
         }
         if (this.invulnerable) this.invulnerable--;
-        this.camera += this.scroll;
+        this.camera += this.stage.scrollDown ? -this.scroll : this.scroll;
         const mapEnd = this.stage.height * 8 * 16;
-        if (this.stage.loopMap) this.camera %= mapEnd;
+        if (this.stage.loopMap) this.camera = (this.camera + mapEnd) % mapEnd;
         else
             this.camera = Math.min(
-                this.camera,
+                Math.max(0, this.camera),
                 (this.stage.height * 8 - 128) * 16,
             );
         let finish = false;

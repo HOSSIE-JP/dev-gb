@@ -44,7 +44,7 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     if (new_game) { memset(&ce_state, 0, sizeof(ce_state)); ce_state.lives = ce_player_lives; }
     memset(ce_entities, 0, sizeof(ce_entities));
     ce_used = 0;
-    ce_state.stage = stage; ce_state.stage_tick = 0; ce_state.camera = 0;
+    ce_state.stage = stage; ce_state.stage_tick = 0; ce_state.camera = ce_stages[stage].scroll_down ? ce_stages[stage].height * 128u - 2048u : 0;
     ce_state.scroll = ce_stages[stage].scroll; ce_state.boss_defeated = 0;
     ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
     ce_state.invulnerable = ce_player_invulnerability; event_cursor = 0; read_event();
@@ -201,10 +201,16 @@ static void step_player(uint8_t input) {
 static uint8_t stage_events(void) {
     uint16_t end, before; uint8_t finish = 0;
     const CE_Stage *stage = &ce_stages[ce_state.stage];
-    before = ce_state.camera; ce_state.camera += ce_state.scroll;
+    before = ce_state.camera;
     end = stage->height * 128u;
-    if (stage->loop) { if (end && ce_state.camera >= end) ce_state.camera -= end; }
-    else { end -= 2048u; if (ce_state.camera < before || ce_state.camera > end) ce_state.camera = end; }
+    if (stage->scroll_down) {
+        if (before >= ce_state.scroll) ce_state.camera -= ce_state.scroll;
+        else ce_state.camera = stage->loop ? end - (ce_state.scroll - before) : 0;
+    } else {
+        ce_state.camera += ce_state.scroll;
+        if (stage->loop) { if (end && ce_state.camera >= end) ce_state.camera -= end; }
+        else { end -= 2048u; if (ce_state.camera < before || ce_state.camera > end) ce_state.camera = end; }
+    }
     while (event_cursor < stage->event_count && next_event.frame <= ce_state.stage_tick) {
         if (next_event.kind <= 2u) spawn_actor(next_event.kind, next_event.ref, next_event.x, next_event.y);
         else if (next_event.kind == 3u) ce_state.scroll = next_event.value;
