@@ -23,7 +23,7 @@ Use the actual editable project and C engine in `HOSSIE-JP/dev-gb`. Do not subst
 
 ## Deliver a playtest, then iterate
 
-Read `references/playtest.md`. Deliver a versioned ROM with SHA-256, controls, changes and known limits. Export the **same bytes** into a browser player using `scripts/export-playtest.cjs REPO ROM.gb OUTPUT.html [TITLE]`. Verify boot, input, pause, audio and save export/import in a browser. Return a downloadable file; use the available file-delivery/Library workflow when required.
+Read `references/playtest.md`. Deliver a versioned ROM with SHA-256, controls, changes and known limits. Check the checkout’s `docs/licensing.md` before exporting a player. The pinned WASM has a distribution blocker; do not bypass the check. When a rights-cleared emulator build is available, export the **same bytes** into a browser player using `scripts/export-playtest.cjs REPO ROM.gb OUTPUT.html [TITLE]`. Verify boot, input, pause, audio and save export/import in a browser. Return a downloadable file; use the available file-delivery/Library workflow when required.
 
 Conversation-embedded play is conditional: check the host's current HTML/WASM/audio/storage contract. If permitted, test the exact embedded artifact before presenting it. If not, deliver the standalone HTML, or use an available hosting workflow when the user authorizes hosting. Do not claim an ordinary Markdown link executes HTML inside ChatGPT. Do not bypass size/CSP/network restrictions. A preview simulator is not a replacement for the exported real-ROM test.
 

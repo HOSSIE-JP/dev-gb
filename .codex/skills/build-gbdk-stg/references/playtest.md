@@ -40,3 +40,7 @@ Each event replaces the held key set and times use display frames after warmup, 
 ## PCM normalization (Boytacean 0.13.2)
 
 The signed Int16Array container does not imply full-scale 16-bit PCM: the APU sums four 0–15 channel outputs and high-pass filters that small integer sum. The player divides by 64; capture multiplies by 512 to encode s16le, with clipping guards. Dividing these raw values by 32768 made a measured clip almost inaudible. See the pinned emulator's [APU source](https://github.com/joamag/boytacean/blob/0.13.2/src/apu.rs). Helpers reject an unreviewed emulator version; recheck source and an actual PCM level measurement before updating that guard. This correction belongs to the supplied standalone player/capture helper and is not a claim that the existing Electron audio path was changed.
+
+## Distribution prerequisite
+
+The pinned Boytacean 0.13.2 npm WASM includes original DMG bootstrap data. `export-playtest.cjs` runs the repository distribution check and stops before writing HTML when this data is present. Read the checkout’s `docs/licensing.md`. Until a rights-cleared emulator build is available, deliver the game ROM with local emulator instructions instead of an embedded WASM player. Passing a known-byte check alone is not license clearance for a replacement build. Preserve all runtime and boot-ROM notices.

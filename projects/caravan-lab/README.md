@@ -1,12 +1,10 @@
 # CARAVAN LAB
 
-Caravan EditorのGUIでSTAR CARAVANから独立複製した編集例です。元の`star-caravan`の画像・作品定義は変更していません。
+地形、敵HP、弾速、自機画像、かな文字の画面表示を試せるCaravan Editor用サンプルです。ゲームルールは1ステージ・2分制で、[STAR CARAVAN](../star-caravan/README.md)を基本とします。
 
 ```bat
 editor.cmd caravan-lab
 build.cmd caravan-lab -Configuration Debug
 ```
 
-GUIで自機画像の青い1ドット、敵HP、自機弾の速度、ボスHP、マップ左上の壁、かなタイトル「スター キャラバン」を変更し、保存・再起動・ROMビルドを確認しました。作品定義は`assets-src/game.json`、PNGは`assets-src/images`です。
-
-ゲームのルール・制約は[STAR CARAVAN](../star-caravan/README.md)、操作は[エディタガイド](../../docs/caravan-editor.md)を参照してください。
+作品定義は`assets-src/game.json`、画像は`assets-src/images`です。編集・ビルドは[操作ガイド](../../docs/caravan-editor.md)、素材の利用条件は[ライセンス案内](../../docs/licensing.md)を参照してください。

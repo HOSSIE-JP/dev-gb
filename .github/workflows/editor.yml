@@ -64,4 +64,9 @@ jobs:
           path: |
             projects/nova-spear/build/Release/nova-spear.gb
             projects/nova-spear/README.md
+            projects/nova-spear/assets-src/art/README.md
+            engine/caravan/MUSIC-LICENSE.txt
+            licenses/CC0-1.0.txt
+            THIRD_PARTY_NOTICES.md
+            docs/licensing.md
           if-no-files-found: error

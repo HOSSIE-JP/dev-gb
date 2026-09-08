@@ -21,7 +21,7 @@ Never manufacture approval from automatic test success or silence. Resolve an am
 
 Use image generation for original illustration when available. Typeset title, copy, controls and compatibility separately; build exact geometry with vector/PDF tools. Never rely on image generation to set millimeter dimensions, glue tabs or trim/fold registration. Read the available PDF/image generation skills when doing that phase.
 
-Use user-provided dimensions or a verified measured template. If absent, state proposed custom dimensions and allow adjustment: previously demonstrated box 100×125×22mm, label 42×37mm R2. These are NOT certified official box/shell dimensions. First print on plain paper at 100% and physically dry-fit. Account for paper thickness, tuck-tab clearance, glue, bleed (e.g. 2–3mm), printer margins and optional internal tray. Do not claim physical assembly was tested when only PDF dimensions were checked.
+Use user-provided dimensions or a verified measured template. If absent, state proposed custom dimensions and allow adjustment: example custom box 100×125×22mm, label 42×37mm R2. These are NOT certified official box/shell dimensions. First print on plain paper at 100% and physically dry-fit. Account for paper thickness, tuck-tab clearance, glue, bleed (e.g. 2–3mm), printer margins and optional internal tray. Do not claim physical assembly was tested when only PDF dimensions were checked.
 
 Deliver actual-size print PDFs, cut/fold guide, label sheet, a 50mm calibration mark, editable source and art. Render every PDF page to verify clipping, line registration, Japanese font embedding, copy accuracy and screenshots. If manufacturing requires CMYK/PDF-X, obtain the printer's requirements; a household RGB PDF is not automatically press-ready.
 

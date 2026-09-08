@@ -1,6 +1,6 @@
 # Repository integration
 
-Verified against HOSSIE-JP/dev-gb main `60bf5e0cad3735c447f298ab311d3d279370fa18` (2026-09-08). Recheck current source when APIs change; do not pin all future work to this revision.
+Use the current checkout of HOSSIE-JP/dev-gb and record its commit. The source APIs and lockfiles are authoritative.
 
 ## Setup and source ownership
 
@@ -16,10 +16,10 @@ Verified against HOSSIE-JP/dev-gb main `60bf5e0cad3735c447f298ab311d3d279370fa18
 Compiler always builds `engine/caravan/runtime.c`, `render.c`, `music.c`, `save.c` with generated project configuration. Fixed entity pools, the SM83 OAM inner loop, complete-pose VBlank synchronization, boss impact SFX and battery SRAM support are shared. Editing an old project and rebuilding uses those improvements; changing a template is not needed to propagate shared engine code.
 
 Game settings:
-- `game.timeLimit`: NOVA false; absent legacy default true. HUD is separate: remove the `binding: "time"` item for an untimed HUD. Keep stage/event scheduling even when timeout is disabled.
-- `game.bossCelebration`: NOVA true; absent legacy default false. Plays repeated explosions, removes wreck, waits for dedicated fanfare then stage exit.
+- `game.timeLimit`: NOVA false; default true. HUD is separate: remove the `binding: "time"` item for an untimed HUD. Keep stage/event scheduling even when timeout is disabled.
+- `game.bossCelebration`: NOVA true; default false. Plays repeated explosions, removes wreck, waits for dedicated fanfare then stage exit.
 - `game.stageFade`: absent defaults true; 24+24 display-frame fades.
-- `game.player.respawnDelay`: NOVA 90 updates; absent legacy default 0. Respawn invulnerability is separate.
+- `game.player.respawnDelay`: NOVA 90 updates; default 0. Respawn invulnerability is separate.
 - `stage.scrollDown`, `stage.requireBoss`, `stage.clearOnBoss`, `stage.events`, `stage.music`, `game.stageOrder` determine progression. Avoid timeout or end events bypassing required bosses.
 - Current built-in music IDs 0–8, victory ID 8. New compositions currently require a deliberate engine music-table extension; there is no arbitrary audio-file BGM import. Do not claim that selecting an ID composes a new soundtrack.
 - Each boss can have motion and attack phases; see model.ts and NOVA data for exact fields. Do not guess schema fields from another editor.
@@ -36,4 +36,8 @@ Dmg/Cgb CPU budget differs. Use the repository's `clockRomFrame` or its exact `7
 
 `npm --prefix editor run check` runs type checks and available regression tests; do not count skipped emulator tests as passed hardware coverage. Root policy also asks for STAR CARAVAN Debug/Release, BGB/Emulicious and hardware checks; say which could not run and why. `editor/tests/emulator.mjs` provides real Boytacean execution, BESS memory inspection and OAM reconstruction. Existing test fixtures demonstrate the technique but are not a generic autopilot for all future games.
 
-Measure at representative early/middle/late high-load sections and boss fights. Existing profile-build.cjs builds disposable instrumentation; never ship that ROM. Phase percentages include waits/interrupts. In v7 a periodic-motion table trial did not improve measured update gaps and was rejected: do not reintroduce it as a proven optimization.
+Measure at representative early/middle/late high-load sections and boss fights. Existing profile-build.cjs builds disposable instrumentation; never ship that ROM. Phase percentages include waits/interrupts. Keep only optimizations supported by measurements of the same game data, inputs and target mode.
+
+## Distribution
+
+Read `docs/licensing.md` in the checkout before distributing source, skills, ROM bundles or players. Repository-wide permissions are currently unspecified. The pinned Boytacean npm WASM contains original DMG bootstrap data; the HTML exporter rejects it. Local player settings do not remove embedded data. Do not bypass the guard or distribute the binary as cleared. ROM building and local playtesting can still be performed, subject to component usage terms.

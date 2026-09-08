@@ -1,3 +1,4 @@
+import { writeRuntimeNotices } from './scripts/third-party-notices.mjs';
 import { build } from "esbuild";
 import fs from "node:fs";
 import path from "node:path";
@@ -50,3 +51,5 @@ fs.copyFileSync(
     path.join(root, "node_modules/boytacean/boytacean_bg.wasm"),
     path.join(root, "build/boytacean_bg.wasm"),
 );
+
+writeRuntimeNotices();

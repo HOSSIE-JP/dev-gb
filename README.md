@@ -1,86 +1,69 @@
-# Portable Game Boy Development Kit
+# Game Boy Development Kit / Caravan Editor
 
-GB Studioを使わず、GBDK-2020のCでGame Boy／Game Boy Color向けHomebrewを作るWindows 10/11 x64用リポジトリです。SDK、エミュレータ、エディタはすべて`.tools`へポータブル配置され、システムPATH、レジストリ、管理者インストールを変更しません。低レベル検証用にRGBDSも同梱導線を用意しています。
+Game Boy／Game Boy Color向けのゲームを制作する、Windows 10/11 x64用のポータブル開発環境です。日本語GUIの **Caravan Editor** で縦スクロールSTGを編集し、GBDK-2020でROMをビルドして、内蔵エミュレーターでプレイできます。Cで直接開発するプロジェクトと、独立したRGBDSアセンブリプロジェクトにも対応します。
 
-## 収録プロジェクト
+ツールは公式配布元からリポジトリ内の`.tools`へ取得します。管理者インストール、恒久的なPATH変更、システムJavaは不要です。
 
-- `hello-gb`: ツールチェーン確認用の最小ROM。
-- `star-caravan`: オリジナルの2分キャラバン縦STG。タイトル、プレイ、ゲームオーバー、ステージクリア、上位5件スコアボードを備え、単一ROMでDMG/GBCに対応します。
-- [`nova-spear`](projects/nova-spear/README.md): 新作 **NOVA SPEAR**。宇宙遺跡・巨大戦艦・動力炉の3ステージ、専用グラフィック、7曲のBGM、広範囲／集中ショット、3体の多段階ボスを備えた縦STG。`editor.cmd nova-spear`で編集し、F5でビルドしてプレイできます。
+> **利用・配布条件:** リポジトリ全体の再利用ライセンスは未指定です。公開されていることだけで改変・再配布が一律に許可されるわけではありません。個別に許諾された素材と外部ツールの条件、HTML試遊版の配布上の制限は[ライセンスと配布](docs/licensing.md)を確認してください。標準セットアップには、商用利用に事前許諾が必要なEmuliciousも含まれます。
 
-## 初回セットアップ
+## はじめる
+
+Gitを用意し、Windowsのコマンドプロンプトから実行してください。
 
 ```bat
-git clone <repository-url> gb-dev
-cd gb-dev
+git clone https://github.com/HOSSIE-JP/dev-gb.git
+cd dev-gb
 bootstrap.cmd
 doctor.cmd
+editor.cmd nova-spear
 ```
 
-`bootstrap.cmd`は`config/tools.lock.json`の版とSHA-256だけを公式配布元から取得します。通常実行では版を更新しません。キャッシュ済みZIPから再構築する場合は`bootstrap.cmd -Offline`、同じ版を修復する場合は`bootstrap.cmd -Force`、公式の新しい安定版へ明示更新する場合だけ`bootstrap.cmd -UpdateLock`を使います。
+エディターの「新規作品」でテンプレートを選び、独立した作品を作成します。画像・敵・弾幕・ボス・ステージ・画面を編集し、**F5**で保存・ビルド・プレイできます。元作品を編集する場合は、先に「作品を複製」しておくと比較しやすくなります。
 
-## ビルドと実行
+[エディター操作ガイド](docs/caravan-editor.md) / [AIによるゲーム制作](docs/ai-authoring.md) / [セットアップ詳細](docs/toolchain.md)
 
-日本語デスクトップ版 **Caravan Editor** を追加しました。`editor.cmd star-caravan`で、画像・スプライト・敵・弾幕・ボス・マップ・各画面を編集し、即時プレビュー、ROMビルド、内蔵Boytaceanでのプレイができます。作品の新規作成・複製、通常モードの複数ステージにも対応します。
+## サンプル
 
-[操作ガイドと制約](docs/caravan-editor.md) / [設計](docs/caravan-editor-architecture.md) / [検証記録](docs/caravan-editor-validation.md)
+| プロジェクト | 内容 |
+| --- | --- |
+| [NOVA SPEAR](projects/nova-spear/README.md) | 3ステージ、2種類のショット、多段階ボス、撃破演出・ファンファーレ、SRAMランキング。時間制限のないSTGテンプレート。 |
+| [STAR CARAVAN](projects/star-caravan/README.md) | 1ステージ・2分制のキャラバンSTGテンプレート。SRAMランキングに対応。 |
+| [CARAVAN LAB](projects/caravan-lab/README.md) | 地形・敵・自機設定を試せる編集サンプル。 |
+| [hello-gb](projects/hello-gb/README.md) | Cプロジェクトの最小ビルドサンプル。 |
+
+## コマンド
+
+リポジトリのルートで実行します。
 
 ```bat
-build.cmd hello-gb -Configuration Debug
-build.cmd star-caravan -Configuration Release
 build.cmd nova-spear -Configuration Release
 run.cmd nova-spear -Emulator BGB
-run.cmd star-caravan -Emulator BGB
-run.cmd star-caravan -Emulator Emulicious
+build.cmd hello-gb -Configuration Debug
 test.cmd
-clean.cmd -AllBuilds
+shell.cmd
+vscode.cmd
 ```
 
-Debugは`lcc -debug`でCDBなどのシンボルを生成し、EmuliciousやBGBでの解析に使います。Releaseはそのデバッグ指定を付けません。BGBは高速な動作・互換確認、EmuliciousはCソースレベルデバッグ、VRAM/OAM/CPU解析に向きます。
+Debugはデバッグ用シンボルを生成します。Releaseは配布用のビルド構成です。ROMは`projects/<作品ID>/build/<構成>/`に出力します。`shell.cmd`は開いたシェル内だけのツール設定、`vscode.cmd`はポータブルVS Codeの起動です。
 
-`shell.cmd`はそのcmd.exeだけにGBDK/RGBDS等のPATHとローカルTEMPを設定します。`vscode.cmd`は`.tools/vscode/data`を使う完全ポータブルなVS Codeでリポジトリを開きます。
+`bootstrap.cmd -Offline`は取得済みキャッシュからの再展開、`-Force`は固定版の再取得・修復、`-UpdateLock`は公式安定版への更新です。通常のセットアップはロックを更新しません。
 
-### Caravan Editor のワークフロー
+## 対応範囲
 
-プロジェクト概要 → ステージ・素材を編集 → 診断を確認 → **F5でビルドしてプレイ**。全素材検索、Ctrl+Pのコマンドパレット、Undo/Redo、タイルパレット、直線・矩形描画、ROMの表示倍率・速度変更・書出に対応します。外部変更との保存競合、復旧コピー破損、古いROMの誤読込を検出します。
+- 標準セットアップとデスクトップアプリの対象はWindows 10/11 x64です。
+- 出力ROMはDMG/GBC共通。GB画面は160×144、ハードウェアのOAMは40個、1走査線は最大10スプライトです。
+- 混雑時はゲームの進行が遅くなります。ゲーム内タイマーと実時間の一致は保証しません。
+- スコア保存にはMBC5＋8KiB RAM＋バッテリー相当の保存機能が必要です。
+- 即時プレビューは論理シミュレーションです。描画・音・撃破演出・保存の確認にはビルドしたROMを使います。
+- 自動テストは実機動作の保証ではありません。公開するROMは対象の実機・エミュレーターでも確認してください。
 
-`editor`フォルダから`npm start -- star-caravan`でも起動できます。`npm run check`で型検査と利用可能な回帰テスト、`npm run build:release`で本番用アプリバンドルを生成します。Windowsのポータブル環境を対象とするGitHub Actionsも追加しています。
+## 開発・配布
 
-## 操作（star-caravan）
+人が編集するデータは`projects/<作品ID>/assets-src`、共通ランタイムは`engine/caravan`、エディターは`editor`です。ツールの版・URL・SHA-256は`config/tools.lock.json`、npm依存は`editor/package-lock.json`で固定します。ツール本体、キャッシュ、ROM、セーブ、生成CはGit管理しません。
 
-- 十字キー: 自機移動
-- A / B: ショット（押し続け可能）
-- START: 決定／開始
-
-2分間に敵編隊を倒して得点を稼ぎ、後半に現れるコアボスの撃破を狙います。ボス撃破、または残機を保って時間満了するとクリアです。上位5件のスコアは2スロット＋CRC付きSRAMへ保存し、再起動後に復元します。
-
-## ディレクトリ
-
-```text
-.tools/       取得・展開したポータブルツール（Git対象外）
-.downloads/   検証済み配布ZIPのキャッシュ（Git対象外）
-.cache/       一時領域とエミュレータ設定（Git対象外）
-config/       版・URL・SHA-256ロック
-scripts/      安全なPowerShell実装
-editor/       Electron・React・TypeScriptのCaravan Editor
-engine/       作品データを実行する共通GBDKランタイム
-projects/     ROMプロジェクト、元アセット、生成物、build
-tests/        ROMヘッダー等のスモークテスト
-docs/         設計、デバッグ、アセット、実装規約
-```
-
-ツールのバイナリやROMはGitへ含めません。`bootstrap.cmd`で同じロック版を再現できます。エディタ依存は`editor/package-lock.json`の版・integrityで固定します。完全オフラインで再展開するには`.downloads`と`.cache/npm`もコピーしてください。
-
-## Gitへ入れないもの
-
-`.tools`、`.downloads`、`.cache`、`build`、`generated`の生成物、`.gb/.gbc`、デバッグ中間物、エミュレータのセーブ・ステート・設定はコミットしません。元画像や元データだけを`assets-src`へ置き、出典とライセンスを記録します。
-
-## 既知の制限と次の段階
-
-- SRAM保存にはMBC5＋8KiB RAM＋バッテリー対応のエミュレーター／カートリッジが必要です。
-- GUIは手動確認、内蔵WASM ROMの論理と音声サンプルは自動検査します。実機DMG/CGBは未確認です。
-- エディタ共通ランタイムには処理落ちが残り、ゲーム内120秒と実時間120秒の一致は未達です。容量や同時出現数の境界は操作ガイドを参照してください。
-- VS Code拡張の導入失敗はブートストラップを止めません。推奨一覧から後で再試行できます。
-- 次の発展候補は処理速度最適化、外部音楽インポート、実機CIです。内蔵BGMの選択には対応しています。
-
-詳細は[ツールチェーン](docs/toolchain.md)、[構成](docs/architecture.md)、[デバッグ](docs/debugging.md)、[アセット](docs/asset-pipeline.md)、[GB実装規約](docs/gb-programming-rules.md)を参照してください。
+- [構成と設計](docs/architecture.md)
+- [アセット制作](docs/asset-pipeline.md)
+- [デバッグ](docs/debugging.md)・[自動検証と受入確認](docs/caravan-editor-validation.md)
+- [SRAM仕様](docs/caravan-sram.md)・[性能測定](docs/nova-spear-performance.md)
+- [コントリビューション](CONTRIBUTING.md)・[Game Boy実装規約](docs/gb-programming-rules.md)
+- [第三者ソフトウェア](THIRD_PARTY_NOTICES.md)・[利用と再配布の条件](docs/licensing.md)
