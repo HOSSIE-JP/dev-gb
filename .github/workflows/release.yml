@@ -37,6 +37,8 @@ jobs:
         run: |
           .tools\node\node.exe editor\build.mjs --production
           if errorlevel 1 exit /b %errorlevel%
+          .tools\node\node.exe editor\build\compiler.cjs "%CD%" nova-spear Release
+          if errorlevel 1 exit /b %errorlevel%
           .tools\node\node.exe editor\scripts\package-windows.mjs
           if errorlevel 1 exit /b %errorlevel%
       - name: Verify packaged application launch
@@ -64,14 +66,17 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           Remove-Item '.cache/release/Caravan-Editor/.cache' -Recurse -Force
-          $tag = 'editor-v1.1.0-' + $env:GITHUB_RUN_NUMBER
+          $tag = 'editor-v1.1.1-' + $env:GITHUB_RUN_NUMBER
           $zip = '.cache/release/Caravan-Editor-win-x64.zip'
           Compress-Archive -Path '.cache/release/Caravan-Editor' -DestinationPath $zip
           (Get-FileHash $zip -Algorithm SHA256).Hash.ToLowerInvariant() + '  Caravan-Editor-win-x64.zip' | Set-Content '.cache/release/SHA256SUMS.txt'
+          ((Get-FileHash 'projects/nova-spear/build/Release/nova-spear.gb' -Algorithm SHA256).Hash.ToLowerInvariant() + '  nova-spear.gb') | Add-Content '.cache/release/SHA256SUMS.txt'
           @'
+          Caravan Editor 1.1.1: readable 8x8 numeric font, resizable side columns, inspector overflow fixes, and a dedicated application icon. Includes a rebuilt NOVA SPEAR ROM.
+
           Windows x64 portable application. Download Caravan-Editor-win-x64.zip, extract the complete folder, and run Caravan-Editor.exe. First launch installs GBDK, Node.js, the font and the emulator locally. Git and Python are not required. Internet access and Windows PowerShell 5.1 are needed for setup. No administrator installation is required. This build is unsigned.
 
           Original code, documentation, skills and samples: MIT. External dependencies retain their own licenses; see the included notices. Downloaded emulator binaries are not bundled in this ZIP. HTML export displays a redistribution notice before first use; this does not grant rights or remove legal responsibilities.
           '@ | Set-Content '.cache/release/notes.md'
-          gh release create $tag $zip '.cache/release/SHA256SUMS.txt' --target $env:GITHUB_SHA --title "Caravan Editor $tag" --notes-file '.cache/release/notes.md'
+          gh release create $tag $zip '.cache/release/SHA256SUMS.txt' 'projects/nova-spear/build/Release/nova-spear.gb' --target $env:GITHUB_SHA --title "Caravan Editor $tag" --notes-file '.cache/release/notes.md'
           if ($LASTEXITCODE -ne 0) { throw 'Release publication failed' }

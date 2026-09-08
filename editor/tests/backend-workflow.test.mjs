@@ -57,6 +57,7 @@ async function desktop(temp) {
     const electron = {
         app: {
             setPath() {},
+            setAppUserModelId() {},
             commandLine: { appendSwitch() {} },
             requestSingleInstanceLock: () => true,
             on() {},

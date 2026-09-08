@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { numericGlyphs } from "../shared/numeric-font";
 import path from "node:path";
 import zlib from "node:zlib";
 import crypto from "node:crypto";
@@ -128,7 +129,7 @@ export function readFont(root: string) {
             }
         glyphs[String.fromCodePoint(code)] = pixels;
     }
-    return glyphs;
+    return { ...glyphs, ...numericGlyphs };
 }
 function run(
     exe: string,

@@ -59,3 +59,5 @@ await build({bundle:true, platform:"browser", format:"iife", minify:true,
     alias:{boytacean:path.join(root,"node_modules/boytacean/boytacean.js")},
     outfile:path.join(root,"build/player.js")});
 fs.copyFileSync(path.join(root,"scripts/html-export.cjs"),path.join(root,"build/html-export.cjs"));
+
+for (const file of ["caravan-editor.png", "caravan-editor.ico"]) fs.copyFileSync(path.join(root,"assets",file),path.join(root,"build",file));

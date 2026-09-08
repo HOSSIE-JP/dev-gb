@@ -30,6 +30,7 @@ const {
     protocol,
     Menu,
 } = require("electron");
+if (process.platform === "win32") app.setAppUserModelId("HOSSIE-JP.CaravanEditor");
 const root = app.isPackaged ? path.dirname(process.execPath) : path.resolve(__dirname, "../..");
 for (const name of ["userData", "sessionData", "crashDumps"]) {
     const dir = safePath(root, ".cache/editor", name);
@@ -461,10 +462,11 @@ app.whenReady().then(async () => {
                 "renderer.js",
                 "renderer.css",
                 "boytacean_bg.wasm",
+                "caravan-editor.png",
             ].includes(file)
         )
             return new Response("Not found", { status: 404 });
-        const mime = file.endsWith(".wasm")
+        const mime = file.endsWith(".png") ? "image/png" : file.endsWith(".wasm")
             ? "application/wasm"
             : file.endsWith(".js")
               ? "text/javascript"
@@ -489,6 +491,7 @@ app.whenReady().then(async () => {
         ] },
     ]));
     win = new BrowserWindow({
+        icon: path.join(__dirname, "caravan-editor.png"),
         width: 1540,
         height: 980,
         minWidth: 1150,

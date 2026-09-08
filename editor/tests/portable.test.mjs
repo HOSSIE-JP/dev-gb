@@ -24,3 +24,20 @@ test('first-launch emulator checksum matches the pinned upstream dependency',()=
  assert.equal(lock.editorEmulator.version,'0.13.2');
  assert.ok(lock.editorEmulator.url.startsWith('https://'));
 });
+
+test('ROM and editor numeric glyphs use all eight rows and retain a one-pixel gutter',()=>{
+ const lib=require('../build/library.cjs');
+ // fileURLToPath is required on Windows drive paths.
+ const font=lib.readFont(require('node:url').fileURLToPath(new URL('../../',import.meta.url)));
+ const shapes=new Set();
+ for(const digit of '0123456789') {
+   const glyph=font[digit]; assert.equal(glyph.length,64);
+   for(let row=0;row<8;row++) {
+     assert.ok(glyph.slice(row*8,row*8+8).some(v=>v===3));
+     assert.equal(glyph[row*8+7],0);
+   }
+   shapes.add(glyph.join(','));
+ }
+ assert.equal(shapes.size,10);
+ assert.ok(font['あ'].some(Boolean),'Japanese glyphs remain available');
+});

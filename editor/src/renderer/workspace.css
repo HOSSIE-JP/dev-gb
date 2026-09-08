@@ -896,3 +896,20 @@ footer > span:nth-child(2) {
         scroll-behavior: auto;
     }
 }
+
+/* Grid children and nested forms must be allowed to shrink below their
+   intrinsic select/text widths; overflow belongs to the vertical inspector. */
+.workspace > *, .inspector .form, .inspector .field,
+.inspector details, .inspector .array-item { min-width: 0; }
+.inspector { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable; }
+.inspector .form { grid-template-columns: minmax(0, 1fr); }
+.inspector input, .inspector select, .inspector textarea { max-width: 100%; min-width: 0; }
+.inspector .row { flex-wrap: wrap; }
+.inspector .row > span { overflow-wrap: anywhere; }
+.inspector summary, .inspector .field > span { overflow-wrap: anywhere; }
+.column-resizer { cursor: col-resize; touch-action: none; background: #1b2532; position: relative; z-index: 3; }
+.column-resizer:hover, .column-resizer:focus-visible { background: var(--mint); outline: none; }
+.column-resizer::after { content: ''; position: absolute; inset: 0 -2px; }
+
+.brand-mark.app-icon { object-fit: contain; background: transparent; border: 0; border-radius: 0; image-rendering: pixelated; }
+.inspector button { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }

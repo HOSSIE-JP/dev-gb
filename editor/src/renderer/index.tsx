@@ -1,3 +1,4 @@
+import { useColumns } from "./column-resize";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -104,6 +105,7 @@ function App() {
         [toolchain, setToolchain] = useState<Awaited<
             ReturnType<typeof window.caravan.toolchain>
         > | null>(null);
+    const columns = useColumns(inspectorVisible);
     const buildBusy = useRef(false),
         saveBusy = useRef(false),
         openBusy = useRef(false);
@@ -754,7 +756,7 @@ function App() {
         <div className="app">
             <header>
                 <div className="brand">
-                    <span className="brand-mark">C</span>
+                    <img className="brand-mark app-icon" src="caravan-editor.png" alt="" />
                     <div>
                         CARAVAN <b>EDITOR</b>
                         <small>GAME BOY / COLOR · DEVELOPMENT STUDIO</small>
@@ -855,6 +857,8 @@ function App() {
             </header>
             <div
                 className={`workspace ${inspectorVisible ? "" : "inspector-hidden"}`}
+                ref={columns.ref}
+                style={columns.style}
             >
                 <LibraryPanel
                     game={game}
@@ -871,6 +875,7 @@ function App() {
                         )
                     }
                 />
+                {columns.separator(0)}
                 <main>
                     <div className="document-toolbar">
                         <div>
@@ -1271,6 +1276,7 @@ function App() {
                         </div>
                     </section>
                 </main>
+                {inspectorVisible && columns.separator(1)}
                 <aside
                     className="inspector"
                     style={{ display: inspectorVisible ? undefined : "none" }}
