@@ -92,6 +92,8 @@ export type Stage = {
     loopMap: boolean;
     duration: number;
     clearOnBoss: boolean;
+    requireBoss?: boolean;
+    music?: number;
     events: StageEvent[];
 };
 export type TextItem = {
@@ -119,6 +121,8 @@ export type Game = {
     startStage: string;
     stageOrder: string[];
     palettes: Palette[];
+    /** Hardware BGP/OBP mapping. Omitted legacy projects retain 0xe4. */
+    dmgPalette?: number;
     assets: Asset[];
     patterns: Pattern[];
     enemies: Actor[];
@@ -131,10 +135,13 @@ export type Game = {
         lives: number;
         invulnerability: number;
         weapon: string;
+        focusWeapon?: string;
+        focusSpeed?: number;
         x: number;
         y: number;
     };
     clearBonus: number;
+    music?: { title: number; boss: number; clear: number; gameover: number };
     effects: { explosion: string; duration: number };
     provenance: { author: string; license: string; source: string };
 };
@@ -248,6 +255,7 @@ export function validateShape(
         startStage: "string",
         stageOrder: ["string"],
         palettes: [{ id: "string", name: "string", colors: ["string"] }],
+        "dmgPalette?": "number",
         assets: [
             {
                 id: "string",
@@ -317,6 +325,8 @@ export function validateShape(
                 loopMap: "boolean",
                 duration: "number",
                 clearOnBoss: "boolean",
+                "requireBoss?": "boolean",
+                "music?": "number",
                 events: [
                     {
                         id: "string",
@@ -358,10 +368,13 @@ export function validateShape(
             lives: "number",
             invulnerability: "number",
             weapon: "string",
+            "focusWeapon?": "string",
+            "focusSpeed?": "number",
             x: "number",
             y: "number",
         },
         clearBonus: "number",
+        "music?": { title: "number", boss: "number", clear: "number", gameover: "number" },
         effects: { explosion: "string", duration: "number" },
         provenance: { author: "string", license: "string", source: "string" },
     };
@@ -490,6 +503,8 @@ export function validate(value: unknown): Diagnostic[] {
     integer(game.bosses.length, 1, 8, "bosses");
     integer(game.stages.length, 1, 16, "stages");
     integer(game.seed, 1, 255, "seed");
+    if (game.dmgPalette !== undefined)
+        integer(game.dmgPalette, 0, 255, "dmgPalette");
     integer(game.clearBonus, 0, 65535, "clearBonus");
     if (game.effects?.explosion) assetRef(game.effects.explosion, "effects");
     if (!game.effects) err("effects", "爆発エフェクト設定がありません");
@@ -640,6 +655,9 @@ export function validate(value: unknown): Diagnostic[] {
     }
     assetRef(game.player.asset, "player");
     patternRef(game.player.weapon, "player");
+    if (game.player.focusWeapon) patternRef(game.player.focusWeapon, "player");
+    if (game.player.focusSpeed !== undefined) finite(game.player.focusSpeed, 0.0625, 8, "player");
+    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 7, "music");
     if (!game.player.weapon) err("player", "自機の武器を選択してください");
     finite(game.player.speed, 0.0625, 8, "player");
     integer(game.player.lives, 1, 9, "player");
@@ -652,6 +670,7 @@ export function validate(value: unknown): Diagnostic[] {
         integer(stage.width, 20, 20, stage.id);
         integer(stage.height, 18, 512, stage.id);
         integer(stage.duration, 1, 600, stage.id);
+        if (stage.music !== undefined) integer(stage.music, 0, 7, stage.id);
         finite(stage.scrollSpeed, 0, 4, stage.id);
         integer(stage.events.length, 0, 256, stage.id);
         const set = assets.get(stage.tileset),

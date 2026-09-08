@@ -69,6 +69,8 @@ export function createEntity(game: Game, kind: string) {
                 loopMap: true,
                 duration: 120,
                 clearOnBoss: false,
+                requireBoss: false,
+                music: 0,
                 events: [],
             };
         case "palettes":

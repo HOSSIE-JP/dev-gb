@@ -1,0 +1,99 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import path from "node:path";
+import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const lib = createRequire(import.meta.url)("../build/library.cjs");
+const authored = () => lib.readGame(root, "nova-spear");
+
+function emptyArena() {
+    const game = structuredClone(authored());
+    game.stages = [game.stages[0]];
+    game.stageOrder = [game.stages[0].id];
+    game.startStage = game.stages[0].id;
+    game.stages[0].events = [];
+    game.stages[0].walls.fill(0);
+    game.stages[0].duration = 20;
+    game.stages[0].requireBoss = false;
+    return game;
+}
+
+test("NOVA SPEAR campaign has three reachable, distinct boss encounters before their deadlines", () => {
+    const game = authored();
+    assert.deepEqual(lib.validate(game).filter((d) => d.severity === "error"), []);
+    assert.equal(game.mode, "campaign");
+    assert.equal(game.stageOrder.length, 3);
+    assert.deepEqual(new Set(game.stageOrder), new Set(game.stages.map((s) => s.id)));
+    assert.equal(new Set(game.stages.map((s) => s.tileset)).size, 3);
+    const encounters = [];
+    for (const id of game.stageOrder) {
+        const stage = game.stages.find((s) => s.id === id);
+        const bosses = stage.events.filter((e) => e.kind === "boss");
+        assert.equal(bosses.length, 1, `${id}: one authored boss encounter`);
+        assert.ok(bosses[0].frame < stage.duration * 60 - 600, `${id}: boss has a combat window`);
+        assert.ok(stage.clearOnBoss && stage.requireBoss, `${id}: boss defeat is required`);
+        assert.ok(stage.music > 0, `${id}: stage soundtrack selected`);
+        assert.ok(stage.events.some((e) => e.kind === "enemy"), `${id}: waves precede the boss`);
+        const boss = game.bosses.find((b) => b.id === bosses[0].ref);
+        assert.ok(boss.phases.length >= 3, `${id}: entrance and changing combat phases`);
+        encounters.push(boss.id);
+    }
+    assert.equal(new Set(encounters).size, 3);
+    assert.notEqual(game.player.weapon, game.player.focusWeapon);
+    assert.ok(game.player.focusSpeed < game.player.speed);
+});
+
+test("NOVA SPEAR A spreads shots; B focuses shots and slows movement", () => {
+    const game = emptyArena();
+    const wide = new lib.Simulation(game), focus = new lib.Simulation(game);
+    for (let tick = 0; tick < 12; tick++) {
+        wide.step(16 | 1);
+        focus.step(32 | 1);
+    }
+    const wideShots = wide.entities.filter((e) => e.kind === "pshot");
+    const focusShots = focus.entities.filter((e) => e.kind === "pshot");
+    assert.ok(wideShots.some((e) => e.vx < 0) && wideShots.some((e) => e.vx > 0));
+    assert.ok(focusShots.length > 0 && focusShots.every((e) => e.vx === 0));
+    assert.ok(focus.playerX > game.player.x * 16 && focus.playerX < wide.playerX);
+    // Switching while held must reset the old repeat/delay state and remain playable.
+    for (let tick = 0; tick < 24; tick++) wide.step(32);
+    assert.ok(wide.entities.some((e) => e.kind === "pshot" && e.vx === 0));
+});
+
+test("legacy projects keep identical A/B firing and movement without focus settings", () => {
+    const game = emptyArena();
+    delete game.player.focusWeapon;
+    delete game.player.focusSpeed;
+    const a = new lib.Simulation(game), b = new lib.Simulation(game);
+    for (let tick = 0; tick < 120; tick++) {
+        const direction = tick % 40 < 20 ? 1 : 2;
+        a.step(16 | direction);
+        b.step(32 | direction);
+        assert.deepEqual(a.trace, b.trace);
+        assert.deepEqual(a.entities, b.entities);
+    }
+});
+
+test("required bosses cannot be bypassed by waiting for the stage timer", () => {
+    const game = emptyArena();
+    game.stages[0].duration = 1;
+    game.stages[0].requireBoss = true;
+    const required = new lib.Simulation(game);
+    for (let tick = 0; tick < 60; tick++) required.step(0);
+    assert.equal(required.result, 1, "Missing required boss defeat is game over");
+    assert.equal(required.score, 0, "Timeout failure grants no clear bonus");
+    game.stages[0].requireBoss = false;
+    const timed = new lib.Simulation(game);
+    for (let tick = 0; tick < 60; tick++) timed.step(0);
+    assert.equal(timed.result, 2, "Legacy timed stages still clear");
+    assert.equal(timed.score, game.clearBonus);
+    game.stages[0].duration = 20;
+    game.stages[0].requireBoss = true;
+    game.stages[0].events = [{ id: "early-end", frame: 20, kind: "end", ref: "", x: 0, y: 0, count: 1, spacing: 0, interval: 0, value: 0 }];
+    const early = new lib.Simulation(game);
+    for (let tick = 0; tick < 21; tick++) early.step(0);
+    assert.equal(early.result, 1, "An end event cannot bypass a required boss either");
+    assert.equal(early.score, 0);
+});

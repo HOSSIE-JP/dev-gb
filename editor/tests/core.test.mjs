@@ -45,6 +45,39 @@ test("indexed PNG and 2bpp preserve all four indices and transparency", () => {
         (a.width * a.height) / 4,
     );
 });
+test("DMG drawing honors BGP bit pairs while sprite index zero stays transparent", () => {
+    const g = structuredClone(game),
+        asset = structuredClone(g.assets.find((a) => a.kind === "sprite")),
+        drawn = [],
+        ctx = {
+            fillStyle: "",
+            fillRect(x, y) { drawn.push({ x, y, color: this.fillStyle }); },
+        };
+    asset.width = asset.height = 8;
+    asset.frames = [{ id: "palette-probe", image: "images/probe.png", duration: 1,
+        pixels: [0, 1, 2, 3, ...Array(60).fill(0)] }];
+    for (const mapping of [undefined, 0xe4, 0x1b, 0x39]) {
+        g.dmgPalette = mapping;
+        const colors = [0, 1, 2, 3].map((index) =>
+            lib.DMG_COLORS[((mapping ?? 0xe4) >> (index * 2)) & 3]);
+        drawn.length = 0;
+        asset.kind = "sprite";
+        lib.drawAsset(ctx, g, asset, 0, 0, 0, true);
+        assert.deepEqual(drawn, colors.slice(1).map((color, n) => ({ x: n + 1, y: 0, color })));
+        drawn.length = 0;
+        asset.kind = "screen";
+        lib.drawAsset(ctx, g, asset, 0, 0, 0, true);
+        assert.deepEqual(drawn.slice(0, 4).map((pixel) => pixel.color), colors);
+    }
+    g.dmgPalette = 0x1b;
+    drawn.length = 0;
+    lib.drawSimulation(ctx, new lib.Simulation(g), true);
+    assert.equal(drawn[0].color, lib.DMG_COLORS[3], "empty playfield uses mapped background index zero");
+    drawn.length = 0;
+    lib.drawAsset(ctx, g, asset, 0, 0, 0, false);
+    assert.deepEqual(drawn.slice(0, 4).map((pixel) => pixel.color), g.palettes[asset.palette].colors,
+        "CGB palette colors are independent of the DMG register");
+});
 test("validation rejects missing reference, palette overflow, tile overflow and unsafe text", () => {
     let g = structuredClone(game);
     g.player.asset = "missing";

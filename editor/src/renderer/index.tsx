@@ -1291,7 +1291,9 @@ function App() {
                                           ? "stage"
                                           : selection.kind === "patterns"
                                             ? "pattern"
-                                            : ""
+                                            : selection.kind === "player"
+                                              ? "player"
+                                              : ""
                                 }
                                 omit={
                                     selection.kind === "project"

@@ -6,6 +6,7 @@ GB Studioを使わず、GBDK-2020のCでGame Boy／Game Boy Color向けHomebrew�
 
 - `hello-gb`: ツールチェーン確認用の最小ROM。
 - `star-caravan`: オリジナルの2分キャラバン縦STG。タイトル、プレイ、ゲームオーバー、ステージクリア、上位5件スコアボードを備え、単一ROMでDMG/GBCに対応します。
+- [`nova-spear`](projects/nova-spear/README.md): 新作 **NOVA SPEAR**。宇宙遺跡・巨大戦艦・動力炉の3ステージ、専用グラフィック、7曲のBGM、広範囲／集中ショット、3体の多段階ボスを備えた縦STG。`editor.cmd nova-spear`で編集し、F5でビルドしてプレイできます。
 
 ## 初回セットアップ
 
@@ -27,6 +28,8 @@ doctor.cmd
 ```bat
 build.cmd hello-gb -Configuration Debug
 build.cmd star-caravan -Configuration Release
+build.cmd nova-spear -Configuration Release
+run.cmd nova-spear -Emulator BGB
 run.cmd star-caravan -Emulator BGB
 run.cmd star-caravan -Emulator Emulicious
 test.cmd
@@ -78,6 +81,6 @@ docs/         設計、デバッグ、アセット、実装規約
 - GUIは手動確認、内蔵WASM ROMの論理と音声サンプルは自動検査します。実機DMG/CGBは未確認です。
 - エディタ共通ランタイムには処理落ちが残り、ゲーム内120秒と実時間120秒の一致は未達です。容量や同時出現数の境界は操作ガイドを参照してください。
 - VS Code拡張の導入失敗はブートストラップを止めません。推奨一覧から後で再試行できます。
-- 次の発展候補は処理速度最適化、SRAMスコア保存、音楽パイプライン、実機CIです。
+- 次の発展候補は処理速度最適化、SRAMスコア保存、外部音楽インポート、実機CIです。内蔵BGMの選択には対応しています。
 
 詳細は[ツールチェーン](docs/toolchain.md)、[構成](docs/architecture.md)、[デバッグ](docs/debugging.md)、[アセット](docs/asset-pipeline.md)、[GB実装規約](docs/gb-programming-rules.md)を参照してください。

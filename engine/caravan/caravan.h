@@ -33,6 +33,7 @@ typedef struct {
     uint16_t height, duration, event_count; uint8_t scroll, loop, clear_boss, has_walls;
     CE_Data tiles; uint8_t tile_count, palette;
     const CE_Data *map; const CE_Data *walls; CE_Data events;
+    uint8_t require_boss, music;
 } CE_Stage;
 typedef struct { uint8_t kind, x, y; } CE_Binding;
 typedef struct {
@@ -48,6 +49,7 @@ typedef struct { int8_t x, y; uint8_t w, h; } CE_Hitbox;
 typedef struct {
     uint16_t tick, stage_tick, camera, score, invulnerable, cooldown, dropped;
     int16_t player_x, player_y; uint8_t stage, lives, result, boss_defeated, scroll, player_sequence;
+    uint8_t weapon_mode;
 } CE_State;
 
 extern const uint8_t ce_asset_count, ce_pattern_count, ce_enemy_count, ce_boss_count, ce_stage_count;
@@ -59,8 +61,11 @@ extern const CE_Stage ce_stages[];
 extern const CE_Screen ce_screens[5];
 extern const CE_Data ce_sprite_data;
 extern const palette_color_t ce_palettes[];
+extern const uint8_t ce_dmg_palette;
 extern const uint8_t ce_palette_count, ce_sprite_tiles, ce_campaign, ce_start_stage, ce_hud_bottom;
 extern const uint8_t ce_player_asset, ce_player_weapon, ce_player_speed, ce_player_lives;
+extern const uint8_t ce_player_focus_weapon, ce_player_focus_speed;
+extern const uint8_t ce_music_title, ce_music_boss, ce_music_clear, ce_music_gameover;
 extern const uint16_t ce_player_invulnerability, ce_clear_bonus;
 extern const uint8_t ce_explosion_asset, ce_explosion_duration;
 extern const int16_t ce_player_start_x, ce_player_start_y;

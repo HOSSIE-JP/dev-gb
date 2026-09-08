@@ -54,6 +54,7 @@ export function Preview({
             s.events = [];
             s.duration = 600;
             s.clearOnBoss = false;
+            s.requireBoss = false;
             g.player.invulnerability = 65535;
             if (kind === "patterns") {
                 const actor = clone(g.enemies[0]);

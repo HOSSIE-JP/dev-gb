@@ -34,12 +34,14 @@ jobs:
       - name: Build and test all projects and editor workflows
         shell: cmd
         run: test.cmd
-      - name: Build both shipping editor projects in Release
+      - name: Build shipping editor projects in Release
         shell: cmd
         run: |
           call build.cmd star-caravan -Configuration Release
           if errorlevel 1 exit /b %errorlevel%
           call build.cmd caravan-lab -Configuration Release
+          if errorlevel 1 exit /b %errorlevel%
+          call build.cmd nova-spear -Configuration Release
           if errorlevel 1 exit /b %errorlevel%
       - name: Bundle production editor
         shell: cmd
@@ -51,6 +53,15 @@ jobs:
           name: caravan-editor-verification
           path: |
             .cache/editor-qa/
+            .cache/nova-spear-qa/
             projects/*/build/Debug/caravan-build.json
             projects/*/build/Release/caravan-build.json
           if-no-files-found: ignore
+      - name: Retain playable NOVA SPEAR ROM
+        uses: actions/upload-artifact@v4
+        with:
+          name: nova-spear-game-boy
+          path: |
+            projects/nova-spear/build/Release/nova-spear.gb
+            projects/nova-spear/README.md
+          if-no-files-found: error

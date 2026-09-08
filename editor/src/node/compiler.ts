@@ -195,40 +195,51 @@ export function generate(
     for (const asset of game.assets)
         for (const frame of asset.frames) {
             checkpoint();
-            const stem = `image_${converted.size}`,
-                input = path.join(target, `${stem}.png`),
-                output = path.join(target, `${stem}.bin`);
-            atomicWrite(
-                input,
-                indexedPng(
-                    asset.width,
-                    asset.height,
-                    frame.pixels,
-                    asset.kind === "sprite",
-                ),
-            );
-            run(
-                png2asset,
-                [
-                    path.basename(input),
-                    "-o",
-                    path.basename(output),
-                    "-map",
-                    "-bpp",
-                    "2",
-                    "-noflip",
-                    "-keep_duplicate_tiles",
-                    "-tiles_only",
-                    "-no_palettes",
-                    "-keep_palette_order",
-                    "-bin",
-                ],
-                target,
-                log,
-            );
-            const data = fs.readFileSync(
-                path.join(target, `${stem}_tiles.bin`),
-            );
+            const stem = `image_${converted.size}`;
+            // Full screens contain 360 raw tiles before our later deduplication.
+            // Keep png2asset's intermediate maps within its 256-tile limit by
+            // converting complete tile rows, then rejoin the row-major bytes.
+            const bandHeight = Math.floor(256 / (asset.width / 8)) * 8;
+            const bands: Buffer[] = [];
+            for (let y = 0; y < asset.height; y += bandHeight) {
+                checkpoint();
+                const height = Math.min(bandHeight, asset.height - y);
+                const band = asset.height > bandHeight
+                    ? `${stem}_part${y / bandHeight}`
+                    : stem;
+                const input = path.join(target, `${band}.png`);
+                const output = path.join(target, `${band}.bin`);
+                atomicWrite(
+                    input,
+                    indexedPng(
+                        asset.width,
+                        height,
+                        frame.pixels.slice(y * asset.width, (y + height) * asset.width),
+                        asset.kind === "sprite",
+                    ),
+                );
+                run(
+                    png2asset,
+                    [
+                        path.basename(input),
+                        "-o",
+                        path.basename(output),
+                        "-map",
+                        "-bpp",
+                        "2",
+                        "-noflip",
+                        "-keep_duplicate_tiles",
+                        "-tiles_only",
+                        "-no_palettes",
+                        "-keep_palette_order",
+                        "-bin",
+                    ],
+                    target,
+                    log,
+                );
+                bands.push(fs.readFileSync(path.join(target, `${band}_tiles.bin`)));
+            }
+            const data = Buffer.concat(bands);
             const expected = Buffer.from(
                 packTiles(asset.width, asset.height, frame.pixels),
             );
@@ -466,7 +477,7 @@ export function generate(
             throw new Error(`${s.name}: 展開後のイベントは1024個までです`);
         const map = pages(s.tiles, `stage_${i}_map`),
             walls = pages(s.walls, `stage_${i}_walls`);
-        return `{${s.height},${s.duration * 60},${events.length},${q4(s.scrollSpeed)},${+s.loopMap},${+s.clearOnBoss},${+s.walls.some(Boolean)},${blob(tiles)},${tileCount},${tileAsset.palette},${map},${walls},${blob(eventData)}}`;
+        return `{${s.height},${s.duration * 60},${events.length},${q4(s.scrollSpeed)},${+s.loopMap},${+s.clearOnBoss},${+s.walls.some(Boolean)},${blob(tiles)},${tileCount},${tileAsset.palette},${map},${walls},${blob(eventData)},${+(s.requireBoss ?? false)},${s.music ?? 0}}`;
     });
     config.push(
         `const CE_Stage ce_stages[]={${stageRows}};`,
@@ -483,6 +494,7 @@ export function generate(
     config.push(
         `const palette_color_t ce_palettes[]={${game.palettes.flatMap((p) => p.colors.map(color))}};`,
         `const uint8_t ce_palette_count=${game.palettes.length};`,
+        `const uint8_t ce_dmg_palette=${game.dmgPalette ?? 0xe4};`,
         `const int8_t ce_sin[16]={${SIN}},ce_cos[16]={${COS}};`,
     );
     config.push(
@@ -493,6 +505,8 @@ export function generate(
     );
     config.push(
         `const uint8_t ce_player_asset=${assetId(game.player.asset)},ce_player_weapon=${patternId(game.player.weapon)},ce_player_speed=${q4(game.player.speed)},ce_player_lives=${game.player.lives};`,
+        `const uint8_t ce_player_focus_weapon=${game.player.focusWeapon ? patternId(game.player.focusWeapon) : 255},ce_player_focus_speed=${q4(game.player.focusSpeed ?? game.player.speed)};`,
+        `const uint8_t ce_music_title=${game.music?.title ?? 0},ce_music_boss=${game.music?.boss ?? 0},ce_music_clear=${game.music?.clear ?? 0},ce_music_gameover=${game.music?.gameover ?? 0};`,
     );
     config.push(
         `const uint16_t ce_player_invulnerability=${game.player.invulnerability},ce_clear_bonus=${game.clearBonus};`,
@@ -587,7 +601,7 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "render.c"]
+        const inputs = ["runtime.c", "render.c", "music.c"]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [

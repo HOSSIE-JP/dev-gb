@@ -11,6 +11,7 @@ import {
     q4,
     clamp,
 } from "./model";
+import { dmgColors } from "./palette";
 
 // 0 = up, 4 = right, 8 = down. These integer tables are emitted into the ROM.
 export const SIN = [
@@ -142,6 +143,7 @@ export class Simulation {
     invulnerable = 0;
     cooldown = 0;
     playerSequence = 0;
+    weaponMode = 0;
     entities: Entity[] = [];
     dropped = 0;
     result = 0;
@@ -358,6 +360,7 @@ export class Simulation {
             )!.delay;
             this.playerSequence = 0;
             this.playerX = q4(this.game.player.x);
+            this.weaponMode = 0;
             this.playerY = q4(this.game.player.y);
             this.invulnerable = this.game.player.invulnerability;
         } else this.result = 2;
@@ -390,7 +393,15 @@ export class Simulation {
             a = assetById(g, p.asset),
             top =
                 g.screens.find((s) => s.id === "hud")?.dock === "top" ? 16 : 0;
-        const speed = q4(p.speed);
+        const mode = input & 32 && p.focusWeapon ? 1 : 0;
+        const pattern = mode ? p.focusWeapon! : p.weapon;
+        const weapon = g.patterns.find((x) => x.id === pattern)!;
+        const speed = q4(mode ? p.focusSpeed ?? p.speed : p.speed);
+        if (this.weaponMode !== mode) {
+            this.weaponMode = mode;
+            this.cooldown = weapon.delay;
+            this.playerSequence = 0;
+        }
         this.playerX += (input & 1 ? speed : 0) - (input & 2 ? speed : 0);
         this.playerY += (input & 8 ? speed : 0) - (input & 4 ? speed : 0);
         this.playerX = clamp(
@@ -403,14 +414,13 @@ export class Simulation {
             q4(top + a.origin.y),
             q4(top + 128 - a.height + a.origin.y),
         );
-        const weapon = g.patterns.find((x) => x.id === p.weapon)!;
         if (!(input & 48)) {
             this.cooldown = weapon.delay;
             this.playerSequence = 0;
         } else if (this.cooldown) this.cooldown--;
         else if (!weapon.repeats || this.playerSequence < weapon.repeats) {
             this.shoot(
-                p.weapon,
+                pattern,
                 p.asset,
                 this.playerX,
                 this.playerY,
@@ -559,6 +569,8 @@ export class Simulation {
             }
         this.tick++;
         this.stageTick++;
+        if (!this.result && this.stage.requireBoss && !this.bossDefeated && (finish || this.stageTick >= this.stage.duration * 60))
+            this.result = 1;
         if (
             !this.result &&
             (finish ||
@@ -583,7 +595,7 @@ export function drawAsset(
         colors =
             colorsOverride ??
             (dmg
-                ? ["#e7efd7", "#a4b88a", "#52664b", "#1b2923"]
+                ? dmgColors(game)
                 : game.palettes[asset.palette]?.colors);
     if (!frame || !colors) return;
     for (let py = 0; py < asset.height; py++)
@@ -603,12 +615,12 @@ export function drawSimulation(
     const g = sim.game,
         s = sim.stage,
         top = g.screens.find((s) => s.id === "hud")?.dock === "top" ? 16 : 0;
-    ctx.fillStyle = dmg ? "#e7efd7" : g.palettes[0].colors[0];
+    ctx.fillStyle = dmg ? dmgColors(g)[0] : g.palettes[0].colors[0];
     ctx.fillRect(0, 0, 160, 144);
     const tileset = assetById(g, s.tileset),
         frame = tileset?.frames[0],
         colors = dmg
-            ? ["#e7efd7", "#a4b88a", "#52664b", "#1b2923"]
+            ? dmgColors(g)
             : g.palettes[tileset.palette].colors;
     if (frame)
         for (let y = 0; y < 128; y++)

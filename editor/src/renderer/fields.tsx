@@ -1,5 +1,6 @@
 import React from "react";
 import { type Game, clone, uid } from "../shared/model";
+import { MusicField, SoundtrackFields } from "./music-field";
 
 const labels: Record<string, string> = {
     name: "名前",
@@ -10,6 +11,10 @@ const labels: Record<string, string> = {
     clearBonus: "クリア加点",
     asset: "スプライト",
     weapon: "自機の弾幕",
+    focusWeapon: "Bボタンの集中ショット",
+    focusSpeed: "集中ショット中の速度 px / frame",
+    requireBoss: "時間内のボス撃破を必須にする",
+    dmgPalette: "DMG階調レジスター（0〜255）",
     speed: "速度 px / frame",
     lives: "残機",
     invulnerability: "無敵時間（frame）",
@@ -145,7 +150,12 @@ export function Form({
         onChange({ ...value, [key]: next });
     return (
         <div className="form">
-            {Object.entries(value)
+            {Object.entries(
+                context === "player" ? { focusWeapon: "", focusSpeed: value.speed, ...value }
+                : context === "stage" ? { requireBoss: false, music: 0, ...value }
+                : value.schemaVersion === 1 ? { music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
+                : value
+            )
                 .filter(
                     ([key]) =>
                         ![
@@ -162,6 +172,9 @@ export function Form({
                         ].includes(key) && !omit.includes(key),
                 )
                 .map(([key, v]: [string, any]) => {
+                    if (key === "music") return typeof v === "number"
+                        ? <MusicField key={key} value={v} onChange={(n) => edit(key, n)} />
+                        : <SoundtrackFields key={key} value={v} onChange={(n) => edit(key, n)} />;
                     let choices:
                         { id: string | number; name: string }[] | undefined;
                     if (
@@ -169,6 +182,7 @@ export function Form({
                             "asset",
                             "explosion",
                             "weapon",
+                            "focusWeapon",
                             "pattern",
                             "tileset",
                             "background",
@@ -177,7 +191,7 @@ export function Form({
                         ].includes(key)
                     ) {
                         choices =
-                            key === "weapon" || key === "pattern"
+                            key === "weapon" || key === "focusWeapon" || key === "pattern"
                                 ? game.patterns
                                 : key === "startStage"
                                   ? game.stages
@@ -194,7 +208,7 @@ export function Form({
                                                     ? "screen"
                                                     : "sprite"),
                                       );
-                        if (["pattern", "background"].includes(key))
+                        if (["pattern", "background", "focusWeapon"].includes(key))
                             choices = [{ id: "", name: "なし" }, ...choices];
                     }
                     if (key === "palette")
@@ -284,6 +298,7 @@ export function Form({
                                     step={
                                         [
                                             "speed",
+                                            "focusSpeed",
                                             "vx",
                                             "vy",
                                             "scrollSpeed",

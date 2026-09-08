@@ -1,4 +1,5 @@
 #include "caravan.h"
+#include "music.h"
 #include <string.h>
 
 CE_Entity ce_entities[CE_MAX_ENTITIES];
@@ -48,6 +49,8 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
     ce_state.invulnerable = ce_player_invulnerability; event_cursor = 0; read_event();
     ce_state.cooldown = ce_patterns[ce_player_weapon].delay; ce_state.player_sequence = 0;
+    ce_state.weapon_mode = 0;
+    ce_music_play(ce_stages[stage].music);
 }
 static uint8_t allocate(uint8_t kind, uint8_t asset) {
     uint8_t i, count = 0, oam = ce_assets[ce_player_asset].tiles, slot = CE_NONE;
@@ -79,6 +82,7 @@ static void spawn_actor(uint8_t kind, uint8_t ref, int16_t x, int16_t y) {
     e = &ce_entities[slot]; e->ref = ref; e->hp = actor->hp; e->damage = 1;
     e->x = e->base_x = x * 16; e->y = e->base_y = y * 16;
     box(&boxes[slot], e->asset, e->x, e->y);
+    if (kind == CE_BOSS) ce_music_play(ce_music_boss);
 }
 static uint8_t aim(int16_t dx, int16_t dy) {
     uint8_t i, best = 0; int16_t score, maximum = -32767;
@@ -170,12 +174,18 @@ static void add_score(uint16_t value) {
 }
 static void step_player(uint8_t input) {
     uint8_t top = ce_hud_bottom ? 0u : 16u;
+    uint8_t mode = (input & J_B) && ce_player_focus_weapon != CE_NONE;
+    uint8_t pattern = mode ? ce_player_focus_weapon : ce_player_weapon;
+    uint8_t speed = mode ? ce_player_focus_speed : ce_player_speed;
     int16_t limit; const CE_Asset *player = &ce_assets[ce_player_asset];
-    const CE_Pattern *weapon = &ce_patterns[ce_player_weapon];
-    if (input & J_RIGHT) ce_state.player_x += ce_player_speed;
-    if (input & J_LEFT) ce_state.player_x -= ce_player_speed;
-    if (input & J_DOWN) ce_state.player_y += ce_player_speed;
-    if (input & J_UP) ce_state.player_y -= ce_player_speed;
+    const CE_Pattern *weapon = &ce_patterns[pattern];
+    if (ce_state.weapon_mode != mode) {
+        ce_state.weapon_mode = mode; ce_state.cooldown = weapon->delay; ce_state.player_sequence = 0;
+    }
+    if (input & J_RIGHT) ce_state.player_x += speed;
+    if (input & J_LEFT) ce_state.player_x -= speed;
+    if (input & J_DOWN) ce_state.player_y += speed;
+    if (input & J_UP) ce_state.player_y -= speed;
     limit = (int16_t)player->ox * 16; if (ce_state.player_x < limit) ce_state.player_x = limit;
     limit = (160 - player->width + player->ox) * 16; if (ce_state.player_x > limit) ce_state.player_x = limit;
     limit = (top + player->oy) * 16; if (ce_state.player_y < limit) ce_state.player_y = limit;
@@ -183,7 +193,7 @@ static void step_player(uint8_t input) {
     if (!(input & (J_A | J_B))) { ce_state.cooldown = weapon->delay; ce_state.player_sequence = 0; }
     else if (ce_state.cooldown) --ce_state.cooldown;
     else if (!weapon->repeats || ce_state.player_sequence < weapon->repeats) {
-        shoot(ce_player_weapon, ce_player_asset, ce_state.player_x, ce_state.player_y, 1, ce_state.player_sequence++);
+        shoot(pattern, ce_player_asset, ce_state.player_x, ce_state.player_y, 1, ce_state.player_sequence++);
         ce_state.cooldown = weapon->interval - 1u; ce_sound(0);
     }
     if (ce_state.invulnerable) --ce_state.invulnerable;
@@ -287,6 +297,8 @@ void ce_step(uint8_t input) NONBANKED {
     step_player(input); finish = stage_events(); step_entities(); collide_shots(); collide_player();
     while (ce_used && !ce_entities[ce_used - 1u].kind) --ce_used;
     ++ce_state.tick; ++ce_state.stage_tick;
+    if (!ce_state.result && stage->require_boss && !ce_state.boss_defeated && (finish || ce_state.stage_tick >= stage->duration))
+        ce_state.result = 1;
     if (!ce_state.result && (finish || (ce_state.boss_defeated && stage->clear_boss) || ce_state.stage_tick >= stage->duration)) {
         add_score(ce_clear_bonus);
         ce_sound(3);
@@ -324,16 +336,21 @@ static void record_score(void) {
 }
 void ce_run(void) NONBANKED {
     uint8_t input, pressed, previous = 0, updates, due;
+    uint16_t music_time, now, elapsed;
     ce_is_cgb = _cpu == CGB_TYPE; NR52_REG = 0x80; NR50_REG = 0x77; NR51_REG = 0xff;
     add_VBL(count_frame);
     add_LCD(hud_scanline); add_LCD(nowait_int_handler);
     LYC_REG = 16; STAT_REG = STATF_LYC;
     set_interrupts(VBL_IFLAG | LCD_IFLAG);
-    ce_scene = 0; ce_load_screen(0);
+    ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title);
+    CRITICAL { music_time = sys_time; }
     for (;;) {
         vsync(); input = joypad(); pressed = input & ~previous; previous = input;
+        CRITICAL { now = sys_time; }
+        elapsed = now - music_time; music_time = now;
+        ce_music_tick(elapsed > 255u ? 255u : (uint8_t)elapsed);
         if (ce_scene == 1u) {
-            if (pressed & J_START) ce_pause = !ce_pause;
+            if (pressed & J_START) { ce_pause = !ce_pause; ce_music_pause(ce_pause); }
             if (!ce_pause) {
                 for (updates = 0; updates != 4u && !ce_state.result; ++updates) {
                     CRITICAL { due = frame_due; if (due) --frame_due; }
@@ -344,11 +361,12 @@ void ce_run(void) NONBANKED {
             } else { CRITICAL { frame_due = 0; } }
             if (ce_state.result) {
                 record_score(); ce_scene = ce_state.result == 1u ? 2u : 3u; ce_load_screen(ce_scene - 1u);
+                ce_music_play(ce_state.result == 1u ? ce_music_gameover : ce_music_clear);
             }
         } else if (ce_scene == 0u) {
             if (pressed & (J_START | J_A)) { ce_reset(ce_campaign ? 0u : ce_start_stage, 1); ce_scene = 1; ce_pause = 0; ce_load_stage(); CRITICAL { frame_due = 0; } }
             else if (pressed & J_SELECT) { ce_scene = 4; ce_load_screen(3); }
-        } else if (pressed & (J_START | J_A | J_B | J_SELECT)) { ce_scene = 0; ce_load_screen(0); }
+        } else if (pressed & (J_START | J_A | J_B | J_SELECT)) { ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title); }
         ce_trace_write();
     }
 }

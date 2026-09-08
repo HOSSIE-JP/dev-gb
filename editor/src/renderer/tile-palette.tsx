@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { type Asset, type Game, DMG_COLORS } from "../shared/model";
+import { type Asset, type Game } from "../shared/model";
+import { dmgColors } from "../shared/palette";
 
 export function TilePalette({
     game,
@@ -20,7 +21,7 @@ export function TilePalette({
     useEffect(() => {
         const ctx = canvas.current?.getContext("2d");
         if (!ctx) return;
-        const colors = dmg ? DMG_COLORS : game.palettes[asset.palette].colors;
+        const colors = dmg ? dmgColors(game) : game.palettes[asset.palette].colors;
         asset.frames[0].pixels.forEach((pixel, index) => {
             ctx.fillStyle = colors[pixel];
             ctx.fillRect(

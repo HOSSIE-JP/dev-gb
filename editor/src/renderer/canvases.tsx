@@ -8,8 +8,8 @@ import {
     type Point,
     clone,
     clamp,
-    DMG_COLORS,
 } from "../shared/model";
+import { dmgColors } from "../shared/palette";
 import { drawAsset } from "../shared/simulation";
 import { TilePalette } from "./tile-palette";
 import { type ImportResult } from "../shared/bridge";
@@ -72,7 +72,7 @@ export function AssetCanvas({
         working = useRef<number[]>([]),
         clip = useRef<{ w: number; h: number; pixels: number[] } | null>(null);
     const f = asset.frames[Math.min(frame, asset.frames.length - 1)],
-        colors = dmg ? DMG_COLORS : game.palettes[asset.palette].colors;
+        colors = dmg ? dmgColors(game) : game.palettes[asset.palette].colors;
     useEffect(() => {
         ++importGeneration.current;
         drawing.current = false;
@@ -450,7 +450,7 @@ export function MapCanvas({
     useEffect(() => {
         const c = ref.current?.getContext("2d");
         if (!c || !a) return;
-        const colors = dmg ? DMG_COLORS : game.palettes[a.palette].colors,
+        const colors = dmg ? dmgColors(game) : game.palettes[a.palette].colors,
             p = a.frames[0].pixels;
         for (let row = 0; row < s.height; row++)
             for (let x = 0; x < 20; x++) {
@@ -745,13 +745,13 @@ export function drawScreen(
     dmg: boolean,
     values: Record<string, string> = {},
 ) {
-    const colors = dmg ? DMG_COLORS : g.palettes[s.palette].colors;
+    const colors = dmg ? dmgColors(g) : g.palettes[s.palette].colors;
     c.fillStyle = colors[0];
     c.fillRect(0, 0, 160, s.id === "hud" ? 16 : 144);
     const background = g.assets.find((a) => a.id === s.background);
     if (background) drawAsset(c, g, background, 0, 0, 0, dmg);
     for (const item of s.items) {
-        const palette = dmg ? DMG_COLORS : g.palettes[item.palette].colors,
+        const palette = dmg ? dmgColors(g) : g.palettes[item.palette].colors,
             text =
                 item.text +
                 (item.binding === "none"

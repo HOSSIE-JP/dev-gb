@@ -5,7 +5,7 @@ static uint8_t buffer[128];
 static uint16_t previous_row;
 
 static void palettes(void) {
-    BGP_REG = OBP0_REG = OBP1_REG = 0xe4;
+    BGP_REG = OBP0_REG = OBP1_REG = ce_dmg_palette;
     if (ce_is_cgb) { set_bkg_palette(0, ce_palette_count, ce_palettes); set_sprite_palette(0, ce_palette_count, ce_palettes); }
 }
 static void tiles(const CE_Data *data, uint8_t first, uint8_t count, uint8_t sprite) {
