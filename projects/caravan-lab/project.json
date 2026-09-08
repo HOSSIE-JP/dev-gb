@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "name": "star-caravan",
+  "name": "caravan-lab",
   "title": "STAR CARAVAN",
   "target": "gb",
   "cgbCompatibility": "dual",
   "toolchain": "gbdk",
-  "output": "star-caravan.gb",
+  "output": "caravan-lab.gb",
   "sources": [
     "generated/caravan_main.c"
   ],

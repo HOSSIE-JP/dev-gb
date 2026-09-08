@@ -146,7 +146,11 @@ function Download-LockedZip {
 function Resolve-LatestMetadata {
     param([string]$Name, $Tool)
     $sourceType = [string]$Tool.source.type
-    if ($sourceType -eq 'github-release') {
+    if ($sourceType -eq 'fixed-download') {
+        Write-Check INFO "Preserving explicitly pinned dependency: $Name $($Tool.version)"
+        $Tool.url = [string]$Tool.source.downloadUrl
+    }
+    elseif ($sourceType -eq 'github-release') {
         Write-Check INFO "Resolving latest stable release for $Name"
         $release = Invoke-RestMethod -Uri ([string]$Tool.source.apiUrl) -Headers @{ 'User-Agent' = 'gb-dev-portable-bootstrap'; 'Accept' = 'application/vnd.github+json' }
         if ($release.draft -or $release.prerelease) { throw "GitHub latest release for $Name is not stable." }
@@ -469,6 +473,8 @@ try {
             Write-Check OK 'Updated locked VS Code extension versions'
         }
     }
+
+    & (Join-Path $PSScriptRoot 'setup-editor.ps1') -Offline:$Offline -Force:$Force
 
     if (-not $SkipDoctor) {
         & (Join-Path $PSScriptRoot 'doctor.ps1')

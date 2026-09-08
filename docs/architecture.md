@@ -6,7 +6,7 @@
 
 環境はリポジトリのコピーだけで再構築できることを優先する。ツール、キャッシュ、ROM、セーブデータは追跡せず、再現に必要なスクリプト、ロック情報、ソース、元アセット、設定だけをGitで管理する。管理者権限、レジストリ変更、システムまたはユーザーの恒久的な環境変数変更は行わない。
 
-ツールの正確な版、配布元、アーカイブ名、ハッシュ、展開先は [`config/tools.lock.json`](../config/tools.lock.json) を唯一の基準とする。本文書に版番号を複製しない。
+ツールの正確な版とハッシュは [`config/tools.lock.json`](../config/tools.lock.json)、エディタnpm依存は`editor/package-lock.json`を基準とする。Caravan Editorと共通STGランタイムの実装は[エディタ設計](caravan-editor-architecture.md)を参照する。STAR CARAVANは単一Cソースから作品定義＋PNGへ移行済みである。
 
 ## リポジトリの責務
 

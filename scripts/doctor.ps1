@@ -141,6 +141,9 @@ try {
         Write-Check INFO 'hello-gb build check skipped by caller'
     }
 
+    foreach ($editorPath in @('.tools\node\node.exe','.tools\electron\electron.exe','.tools\misaki\misaki_gothic.bdf','editor\node_modules\boytacean\boytacean_bg.wasm','editor\build\main.cjs','editor\build\renderer.js','editor\package-lock.json')) {
+        Report-Test (Test-Path -LiteralPath (Join-Path $root $editorPath) -PathType Leaf) ("Editor component: {0}" -f $editorPath) ("Editor component is missing: {0}; run bootstrap.cmd" -f $editorPath)
+    }
     if ($failures -gt 0) {
         Write-Check FAIL ("Doctor found {0} required failure(s) and {1} warning(s)." -f $failures, $warnings)
         exit 1

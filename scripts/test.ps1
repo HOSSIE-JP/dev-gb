@@ -68,6 +68,14 @@ try {
             }
         }
     }
+    $editorNode = Join-Path $root '.tools\node\node.exe'
+    Invoke-CheckedCommand -FilePath $editorNode -ArgumentList @((Join-Path $root 'editor\node_modules\typescript\bin\tsc'),'--noEmit','-p',(Join-Path $root 'editor\tsconfig.json')) -WorkingDirectory $root
+    $editorTests = @('--test',(Join-Path $root 'editor\tests\core.test.mjs'))
+    if ($projects -contains 'star-caravan') {
+        $editorTests += (Join-Path $root 'editor\tests\rom.test.mjs')
+        $editorTests += (Join-Path $root 'editor\tests\bgb.test.mjs')
+    }
+    Invoke-CheckedCommand -FilePath $editorNode -ArgumentList $editorTests -WorkingDirectory $root
     Write-Check OK 'All tests passed'
     exit 0
 }

@@ -12,6 +12,13 @@ try {
     $lock = Read-ToolsLock -Root $root
     $projectInfo = Get-ProjectDefinition -Root $root -Project $Project
     $definition = $projectInfo.Definition
+    if (($definition.PSObject.Properties.Name -contains 'editor') -and $definition.editor.type -eq 'caravan') {
+        $node = Join-Path $root '.tools\node\node.exe'
+        if (-not (Test-Path -LiteralPath $node)) { throw 'Run bootstrap.cmd to install the editor toolchain.' }
+        Invoke-CheckedCommand -FilePath $node -ArgumentList @((Join-Path $root 'editor\build.mjs')) -WorkingDirectory $root
+        Invoke-CheckedCommand -FilePath $node -ArgumentList @((Join-Path $root 'editor\build\compiler.cjs'), $root, $Project, $Configuration) -WorkingDirectory $root
+        exit 0
+    }
     $gbdk = $lock.tools.gbdk
     if (-not $gbdk) { throw 'GBDK is not present in tools.lock.json.' }
     $gbdkRoot = Get-ToolInstallPath -Root $root -Tool $gbdk

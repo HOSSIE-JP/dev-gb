@@ -20,6 +20,10 @@ doctor.cmd
 
 ## ビルドと実行
 
+日本語デスクトップ版 **Caravan Editor** を追加しました。`editor.cmd star-caravan`で、画像・スプライト・敵・弾幕・ボス・マップ・各画面を編集し、即時プレビュー、ROMビルド、内蔵Boytaceanでのプレイができます。作品の新規作成・複製、通常モードの複数ステージにも対応します。
+
+[操作ガイドと初版の制約](docs/caravan-editor.md) / [設計](docs/caravan-editor-architecture.md) / [検証記録](docs/caravan-editor-validation.md)
+
 ```bat
 build.cmd hello-gb -Configuration Debug
 build.cmd star-caravan -Configuration Release
@@ -49,12 +53,14 @@ Debugは`lcc -debug`でCDBなどのシンボルを生成し、EmuliciousやBGB�
 .cache/       一時領域とエミュレータ設定（Git対象外）
 config/       版・URL・SHA-256ロック
 scripts/      安全なPowerShell実装
+editor/       Electron・React・TypeScriptのCaravan Editor
+engine/       作品データを実行する共通GBDKランタイム
 projects/     ROMプロジェクト、元アセット、生成物、build
 tests/        ROMヘッダー等のスモークテスト
 docs/         設計、デバッグ、アセット、実装規約
 ```
 
-ツールのバイナリやROMは大きく、利用条件も個別で、別PCではCPU/OSに合う配布物の検証が必要なためGitへ含めません。追跡ファイルだけをクローンまたはコピーし、`bootstrap.cmd`を実行すれば同じロック版を再現できます。完全オフラインで再構築するには、同じ`.downloads`も別途安全にコピーしてください。
+ツールのバイナリやROMはGitへ含めません。`bootstrap.cmd`で同じロック版を再現できます。エディタ依存は`editor/package-lock.json`の版・integrityで固定します。完全オフラインで再展開するには`.downloads`と`.cache/npm`もコピーしてください。
 
 ## Gitへ入れないもの
 
@@ -63,8 +69,9 @@ docs/         設計、デバッグ、アセット、実装規約
 ## 既知の制限と次の段階
 
 - スコアは現状RAM内のみで、カートリッジSRAMへは保存しません。
-- GUIの見た目と音声は自動テスト対象外です。BGBとEmuliciousに加え、配布前はDMG/CGB実機で確認してください。
+- GUIは手動確認、内蔵WASM ROMの論理と音声サンプルは自動検査します。実機DMG/CGBは未確認です。
+- エディタ共通ランタイムには処理落ちが残り、ゲーム内120秒と実時間120秒の一致は未達です。容量や同時出現数の境界は操作ガイドを参照してください。
 - VS Code拡張の導入失敗はブートストラップを止めません。推奨一覧から後で再試行できます。
-- 次の発展候補はSRAMスコア保存、hUGETracker等の再現可能な音楽パイプライン、複数ステージ、実機CIです。
+- 次の発展候補は処理速度最適化、SRAMスコア保存、音楽パイプライン、実機CIです。
 
 詳細は[ツールチェーン](docs/toolchain.md)、[構成](docs/architecture.md)、[デバッグ](docs/debugging.md)、[アセット](docs/asset-pipeline.md)、[GB実装規約](docs/gb-programming-rules.md)を参照してください。
