@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import init, { GameBoy, GameBoyMode, BootRom, PadKey } from "boytacean";
-import { clockRomFrame } from "../shared/emulation";
+import { clockRomFrame, playbackBudget } from "../shared/emulation";
 import type { BuildResult } from "../shared/model";
 
 const keys: Record<string, PadKey> = {
@@ -281,12 +281,12 @@ export function RomPreview({
                 try {
                     accumulated +=
                         Math.min(now - last, 100) * preferences.current.speed;
-                    let count = 0;
-                    while (accumulated >= 1000 / 59.7275 && count++ < 12) {
+                    const { frames: count, remainder } = playbackBudget(accumulated, preferences.current.speed);
+                    for (let i = 0; i < count; ++i) {
                         clock();
                         frames++;
-                        accumulated -= 1000 / 59.7275;
                     }
+                    accumulated = remainder;
                     if (count) paint();
                 } catch (e) {
                     setPlaying(false);

@@ -2,6 +2,16 @@
 
 2026-09-08。既存のCaravan Editorで編集・ビルド・プレイできる、新作GB/GB Color縦STGの検証です。検証対象は `projects/nova-spear/assets-src/game.json` と元PNG、共通エンジンです。
 
+## v6：描画転送の待機とSM83アセンブラ（2026-09-08）
+
+- 完成したshadow OAMをVBlankで実OAMへ転送してから次のゲーム更新へ進む。背景SCYも転送後のVBlankで確定。高負荷時は前の画面を保持して進行を遅くし、追いつき用のゲーム更新を行わない。
+- 内蔵プレイヤーの通常速度も最大1エミュレート表示フレーム／描画に制限。Chromiumで100 msの遅延を5回挿入し、まとめ実行が発生しないことを確認。
+- OAM組立ての内側を手書きSM83アセンブラ化。同じ待機方式のC版との比較で平均更新間隔はDMG約1.9％、CGB約3.0％短縮。v5より論理進行が遅くなる場面は意図した動作。
+- 既存48件の全テストと、新しい遅延コールバックのテストが成功（49件）。更新後の型チェック成功。実OAM・shadow OAM・アセットから再構成したタイル列を比較し、全ボスフェーズの短縮DMG/CGB検証も成功。
+- NOVA SPEARとSTAR CARAVANのDebug／Releaseビルド成功。SRAMの得点保存・ページ再読込後のスコア表示もChromiumで再確認。
+- Release ROM: 131072 bytes、静的WRAM＋shadow OAM 1956 bytes、SHA-256 `287292bba30b7149f487cc273a7c9a8dff1d89dee1e58d7ce2864dfc413876a6`。
+- Windowsラッパー、Windows Electron、BGB／Emulicious GUI、実機は未検証。更新ROMの無改造全編クリアは未実施。以下は旧版の履歴。
+
 ## v5：1.5秒復帰・追加最適化・SRAM・命中音（2026-09-08）
 
 - 復帰待ちは90ゲーム更新（60Hz基準で約1.5秒）。処理落ち中は実時間が延びる。

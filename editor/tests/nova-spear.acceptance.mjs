@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 import { PNG } from "../node_modules/pngjs/lib/png.js";
 import {
     boot, frames, memory, symbols, settledTrace, entityState,
-    simulatedEntities, GameBoyMode, PadKey,
+    simulatedEntities, GameBoyMode, PadKey, assertPublishedOam,
 } from "./emulator.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -109,6 +109,7 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
                 frames(gb, 1);
                 last = settledTrace(gb, syms._ce_trace);
                 if (!last || last.scene !== 1) continue;
+                assertPublishedOam(gb, syms, game, mode);
                 const shots = entityState(gb, syms._ce_entities, game).filter((e) => e.kind === "pshot");
                 if (shots.some((e) => e.vx < 0) && shots.some((e) => e.vx > 0)) wide = true;
                 if (last.score > 0) scored = true;
@@ -220,6 +221,7 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
                     const { scene, stageTick, bossPhase, ...actual } = last;
                     assert.deepEqual(actual, sim.trace, `${label} tick ${last.tick}`);
                     assert.deepEqual(entityState(gb, syms._ce_entities, stored), simulatedEntities(sim), `${label} entities tick ${last.tick}`);
+                    if (last.scene === 1) assertPublishedOam(gb, syms, stored, mode);
                     checked++;
                     if (!stages.has(last.stage)) capture(gb, `fixture-stage-${last.stage + 1}-${label}`);
                     stages.add(last.stage);

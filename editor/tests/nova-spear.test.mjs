@@ -187,3 +187,12 @@ test("title omits the stage/lives banner and stage fade defaults on", () => {
     assert.equal(game.stageFade??true,true);
     assert.equal(game.player.respawnDelay,90);
 });
+
+test("ordinary ROM playback slows after a late callback without invisible catch-up frames", () => {
+    const late=lib.playbackBudget(100,1);
+    assert.equal(late.frames,1);
+    assert.equal(lib.playbackBudget(late.remainder,1).frames,0,"no overdue frames remain queued");
+    assert.equal(lib.playbackBudget(100,0.5).frames,1);
+    assert.equal(lib.playbackBudget(100,2).frames,2,"explicit fast debug mode retains acceleration");
+    assert.equal(lib.playbackBudget(5,1).frames,0);
+});

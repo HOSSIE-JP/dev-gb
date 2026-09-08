@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import assert from "node:assert/strict";
 import { createRequire } from "node:module";
 const { clockRomFrame } = createRequire(import.meta.url)("../build/library.cjs");
 import path from "node:path";
@@ -40,6 +41,7 @@ export function memory(gb) {
                 length = state.readUInt32LE(p + 0x98);
             return {
                 ram: state.subarray(offset, offset + length),
+                oam: state.subarray(state.readUInt32LE(p + 0xb4), state.readUInt32LE(p + 0xb4) + state.readUInt32LE(p + 0xb0)),
                 io: state.subarray(p + 0x18, p + 0x98),
                 state,
                 core: p,
@@ -52,7 +54,7 @@ export function memory(gb) {
 export function symbols(file) {
     const data = fs.readFileSync(file, "utf8"),
         result = {};
-    for (const m of data.matchAll(/\b([\da-fA-F]{8})\s+(_ce_\w+)\b/g))
+    for (const m of data.matchAll(/\b([\da-fA-F]{8})\s+(_ce_\w+|_shadow_OAM)\b/g))
         result[m[2]] = parseInt(m[1], 16);
     return result;
 }
@@ -129,4 +131,30 @@ export function simulatedEntities(sim) {
             vy,
         }))
         .sort((a, b) => a.slot - b.slot);
+}
+
+// Check the actual DMA destination, not just that a render function was called.
+export function assertPublishedOam(gb, syms, game, mode) {
+    const {ram,oam,io}=memory(gb), state=syms._ce_state-0xc000;
+    assert.equal(oam.length,160);
+    assert.deepEqual(oam,ram.subarray(syms._shadow_OAM-0xc000,syms._shadow_OAM-0xc000+160),"completed shadow OAM reached hardware before publication");
+    const hud=game.screens.find(s=>s.id==='hud'),height=(hud.rows??2)*8,bottom=hud.dock==='bottom';
+    assert.equal(io[0x42],((ram.readUInt16LE(state+4)>>4)-(bottom?0:height))&255);
+    const assets=new Map();let first=128;
+    for(const a of game.assets.filter(a=>a.kind==='sprite')){assets.set(a.id,{...a,first});first+=a.width*a.height/64*a.frames.length;}
+    let slot=0;
+    const draw=(id,x,y,age)=>{
+        const a=assets.get(id);let time=age%a.frames.reduce((n,f)=>n+f.duration,0),frame=0;
+        while(frame+1<a.frames.length&&time>=a.frames[frame].duration){time-=a.frames[frame].duration;frame++;}
+        let tile=a.first+frame*a.width*a.height/64;
+        for(let row=0;row<a.height/8;row++)for(let col=0;col<a.width/8;col++){
+            const sx=(Math.trunc(x/16)-a.origin.x+8+col*8)&255,sy=(Math.trunc(y/16)-a.origin.y+16+row*8)&255;
+            const visible=((sx-1)&255)<167&&sy>=(bottom?9:height+9)&&sy<(bottom?160-height:160);
+            assert.deepEqual([...oam.subarray(slot*4,slot*4+4)],[visible?sy:0,sx,tile++&255,mode===GameBoyMode.Cgb?a.palette:0],`metasprite tile ${slot}`);slot++;
+        }
+    };
+    const immune=ram.readUInt16LE(state+8),wait=ram.readUInt16LE(syms._ce_respawn-0xc000);
+    if(!wait&&(!immune||!(immune&4)))draw(game.player.asset,ram.readInt16LE(state+14),ram.readInt16LE(state+16),ram.readUInt16LE(state));
+    for(const e of entityState(gb,syms._ce_entities,game))draw(e.asset,e.x,e.y,e.age);
+    for(;slot<40;slot++)assert.equal(oam[slot*4],0,'unused OAM tail stays hidden');
 }

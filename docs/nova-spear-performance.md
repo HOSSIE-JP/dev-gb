@@ -113,3 +113,33 @@ Weighted mean gaps: DMG 1.745→1.700 (about 2.5% shorter), CGB 1.064→1.048 (a
 v5 also halves the authored respawn delay to 90 updates, adds a short boss-impact noise-channel sound with a four-VBlank retrigger limit, and persists rankings to battery SRAM. Saving occurs after the run, so it does not add writes to the gameplay loop. BGM pulse/wave channels are preserved.
 
 To build a disposable instrumented copy of the current engine, run `node editor/tests/profile-build.cjs` after building the editor. Pass its printed ROM path to `node editor/tests/profile-runtime.mjs ROM_PATH profile.json`. The copy lives under `.cache/profile-fixture-*`; delete that copy after measurement. Instrumentation changes timings and must not be used as the distributed game.
+
+## v6: display every completed gameplay pose
+
+The game logic was C compiled by GBDK/SDCC to SM83 machine code, with the SDK's low-level routines handling DMA and interrupts. It did not previously contain a handwritten sprite emitter. v6 adds a small bank-local inline SM83 assembly routine for the per-tile OAM loop. It explicitly preserves BC/DE/HL, uses dedicated static scratch storage, and is never called from an interrupt. Tile order, clipping, animation selection and DMG/CGB attributes retain their previous behavior.
+
+A synchronization gap was more relevant to perceived skipping than the allocator: rendering disabled automatic OAM DMA while constructing a pose, then re-enabled it without waiting for transfer. Another update could reach the next construction pass before that pose was transferred. A published logic tick therefore did not guarantee a displayed pose. The ROM now waits for VBlank after completing HUD and shadow OAM work, then updates SCY in the same VBlank. The next gameplay update cannot overwrite that completed pose before DMA. CPU overload intentionally slows game progression and repeats the previous display; no backlog of gameplay steps is replayed. Title/stage fades and pause remain deliberate presentation states.
+
+`publication-probe.mjs` compares physical OAM with shadow OAM at coherent gameplay publications, during ordinary START+A play. This checks readiness at publication, not the percentage of visually skipped frames. Sampling skips busy snapshots and has different observation counts in each build.
+
+| Mode | v5 OAM not ready / observations | v6 OAM not ready / observations |
+| --- | ---: | ---: |
+| DMG | 982 / 1052 | 0 / 835 |
+| CGB | 908 / 990 | 0 / 821 |
+
+The regression suite now checks physical OAM against both shadow OAM and an independent tile-by-tile reconstruction from the authored assets and entity state, including clipping, hidden tails and palette attributes. It also checks the committed scroll register. Original gameplay and the shortened all-stage/all-boss-phase DMG/CGB fixtures pass these checks.
+
+The host player had an additional catch-up loop: a late animation callback could advance several emulated frames and paint only the last. At normal speed v6 permits only one emulated display frame per paint and discards overdue wall-clock time. Explicit fast debug playback may advance more. A Chromium test inserted five 100 ms main-thread stalls and observed at most one emulated frame in each normal-speed callback. The SRAM earn/save/reload/scoreboard regression also passed.
+
+### Assembly comparison with the same synchronization policy
+
+A disposable C-emitter build used the same VBlank wait and camera commit as v6. Both used the same authored game, normal START+A input, and logical ticks 120–1799. Each mode contributed 1680 single-update samples with zero multi-update exclusions.
+
+| Mode | C emitter + wait: mean display frames/update | ASM emitter + wait | Reduction |
+| --- | ---: | ---: | ---: |
+| DMG | 2.234 | 2.190 | 1.9% |
+| CGB | 1.226 | 1.189 | 3.0% |
+
+The ASM improvement is modest; synchronization is the main behavior change. Waiting for actual display lowers logical progression relative to v5's unacknowledged publications. A separate ordinary-play sampler observed approximately 26–29 updates/s on DMG and 46–55 on CGB across opening intervals. It is incorrect to present the new wait as a general FPS increase. Busy intervals still repeat frames, and the hardware ten-sprites-per-scanline limit can still hide sprite tiles.
+
+Release: 131072 bytes, static WRAM plus shadow OAM 1956 bytes; SHA-256 `287292bba30b7149f487cc273a7c9a8dff1d89dee1e58d7ce2864dfc413876a6`. No instrumented diagnostic ROM is distributed. Windows GUIs and physical hardware remain untested.

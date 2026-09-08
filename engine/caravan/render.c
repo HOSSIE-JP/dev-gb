@@ -123,37 +123,100 @@ void ce_hud(void) BANKED {
     }
     hud_valid = 1;
 }
+/* Non-reentrant, bank-local SM83 emitter. The ISR only copies completed OAM.
+ * Preserve registers explicitly; no C arguments or return-value ABI assumptions. */
+static volatile OAM_item_t *emit_out;
+static uint8_t emit_left, emit_y, emit_tile, emit_prop, emit_columns, emit_rows;
+static uint8_t emit_top, emit_bottom, emit_visible_y;
+static void emit_oam(void) __naked {
+    __asm
+        push bc
+        push de
+        push hl
+        ld a, (_emit_out)
+        ld l, a
+        ld a, (_emit_out + 1)
+        ld h, a
+        ld a, (_emit_y)
+        ld d, a
+        ld a, (_emit_rows)
+        ld b, a
+001$:
+        ld a, (_emit_left)
+        ld e, a
+        ld a, (_emit_columns)
+        ld c, a
+        ld a, (_emit_top)
+        cp d
+        jr c, 002$
+        jr nz, 003$
+002$:
+        ld a, (_emit_bottom)
+        cp d
+        jr c, 003$
+        jr z, 003$
+        ld a, d
+        jr 004$
+003$:
+        xor a
+004$:
+        ld (_emit_visible_y), a
+005$:
+        ld a, e
+        dec a
+        cp #167
+        jr nc, 006$
+        ld a, (_emit_visible_y)
+        jr 007$
+006$:
+        xor a
+007$:
+        ld (hl+), a
+        ld a, e
+        ld (hl+), a
+        ld a, (_emit_tile)
+        ld (hl+), a
+        inc a
+        ld (_emit_tile), a
+        ld a, (_emit_prop)
+        ld (hl+), a
+        ld a, e
+        add #8
+        ld e, a
+        dec c
+        jr nz, 005$
+        ld a, d
+        add #8
+        ld d, a
+        dec b
+        jr nz, 001$
+        pop hl
+        pop de
+        pop bc
+        ret
+    __endasm;
+}
 /* Non-reentrant: no interrupt calls the renderer. Static scratch avoids
  * repeated stack-relative loads in the per-tile inner loop on SM83. */
 static uint8_t sprite(uint8_t slot, uint8_t asset, int16_t x, int16_t y, uint16_t age) {
     static const CE_Asset *a; static uint16_t duration, time;
     a = &ce_assets[asset]; duration = 0;
-    static uint8_t i, frame, tx, ty, tile, prop, sx, sy, left, columns, rows, top, bottom;
+    static uint8_t i, frame;
     frame = 0;
-    static volatile OAM_item_t *out;
-    out = &shadow_OAM[slot];
+    emit_out = &shadow_OAM[slot];
     if (a->frames > 1u) {
         for (i = 0; i != a->frames; ++i) duration += a->durations[i];
         time = age % duration;
         while (frame + 1u < a->frames && time >= a->durations[frame]) { time -= a->durations[frame]; ++frame; }
     }
-    tile = a->first_tile + frame * a->tiles;
-    left = x / 16 - a->ox + 8; sy = y / 16 - a->oy + 16;
-    prop = ce_is_cgb ? a->palette : 0;
-    columns = a->width >> 3; rows = a->height >> 3;
-    top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
-    bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
-    /* OAM coordinates permit byte comparisons even for partly offscreen tiles:
-     * wrapped negative coordinates lie outside these short visible ranges. */
-    for (ty = rows; ty; --ty, sy += 8u) {
-        sx = left;
-        for (tx = columns; tx; --tx, sx += 8u) {
-            out->tile = tile++; out->prop = prop; out->x = sx;
-            out->y = (uint8_t)(sx - 1u) < 167u && sy >= top && sy < bottom ? sy : 0;
-            ++slot; ++out;
-        }
-    }
-    return slot;
+    emit_tile = a->first_tile + frame * a->tiles;
+    emit_left = x / 16 - a->ox + 8; emit_y = y / 16 - a->oy + 16;
+    emit_prop = ce_is_cgb ? a->palette : 0;
+    emit_columns = a->width >> 3; emit_rows = a->height >> 3;
+    emit_top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
+    emit_bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
+    emit_oam();
+    return slot + a->tiles;
 }
 void ce_render(void) BANKED {
     uint8_t i, slot = 0; uint16_t row = ce_state.camera >> 7; CE_Entity *e = ce_entities;
@@ -162,7 +225,6 @@ void ce_render(void) BANKED {
     else if (row != previous_row && row != previous_row + 1u) { DISPLAY_OFF; for (i = 0; i != 32u; ++i) map_row(row + i); DISPLAY_ON; }
     else if (row != previous_row) map_row(row + 31u);
     previous_row = row;
-    move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
     DISABLE_OAM_DMA;
     if (!ce_respawn && (!ce_state.invulnerable || !(ce_state.invulnerable & 4u))) slot = sprite(slot, ce_player_asset, ce_state.player_x, ce_state.player_y, ce_state.tick);
     for (i = ce_used; i; --i, ++e) if (e->kind) slot = sprite(slot, e->asset, e->x, e->y, e->age);
@@ -170,6 +232,10 @@ void ce_render(void) BANKED {
     i = slot;
     while (slot < previous_slots) shadow_OAM[slot++].y = 0;
     previous_slots = i;
-    ENABLE_OAM_DMA;
     if (!(ce_state.tick & 7u)) ce_hud();
+    ENABLE_OAM_DMA;
+    /* Publish every completed pose through VBlank DMA before another update
+     * can overwrite it. Repeated display frames under load are intentional. */
+    vsync();
+    move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
 }
