@@ -345,7 +345,7 @@ export function generate(
     let hudTileCount = 0;
     function compileScreen(s: Screen, index: number) {
         const width = 20,
-            height = s.id === "hud" ? 2 : 18,
+            height = s.id === "hud" ? (s.rows ?? 2) : 18,
             tileBytes = Array(16).fill(0),
             tileMap = Array(width * height).fill(0),
             attrs = tileMap.map(() => s.palette),
@@ -384,9 +384,9 @@ export function generate(
             });
             if (item.binding !== "none") {
                 bindings.push(
-                    `{${["none", "score", "lives", "time", "boss", "highscores"].indexOf(item.binding)},${item.x + labelLength},${item.y}}`,
+                    `{${["none", "score", "lives", "time", "boss", "highscores"].indexOf(item.binding)},${item.x + labelLength},${item.y},${item.digits ?? 5}}`,
                 );
-                const count = item.binding === "highscores" ? 9 : 5;
+                const count = item.binding === "highscores" ? 9 : (item.digits ?? 5);
                 for (let n = 0; n < count; n++)
                     if (item.x + labelLength + n < 20)
                         for (
@@ -414,7 +414,7 @@ export function generate(
         if (s.id === "hud") hudTileCount = count;
         config.push(
             `static const uint8_t screen_${index}_digits[]={${digits}};`,
-            `static const CE_Binding screen_${index}_bindings[]={${bindings.length ? bindings.join(",") : "{0,0,0}"}};`,
+            `static const CE_Binding screen_${index}_bindings[]={${bindings.length ? bindings.join(",") : "{0,0,0,5}"}};`,
         );
         screenRows.push(
             `{${blob(tileBytes)},${blob(tileMap)},${blob(attrs)},${count},${s.palette},${bindings.length},screen_${index}_bindings,screen_${index}_digits}`,
@@ -501,7 +501,7 @@ export function generate(
         `const uint8_t ce_campaign=${+(game.mode === "campaign")},ce_start_stage=${Math.max(
             0,
             ordered.findIndex((s) => s.id === game.startStage),
-        )},ce_hud_bottom=${+(game.screens.find((s) => s.id === "hud")!.dock === "bottom")};`,
+        )},ce_hud_bottom=${+(game.screens.find((s) => s.id === "hud")!.dock === "bottom")},ce_hud_height=${(game.screens.find((s) => s.id === "hud")!.rows ?? 2) * 8};`,
     );
     config.push(
         `const uint8_t ce_player_asset=${assetId(game.player.asset)},ce_player_weapon=${patternId(game.player.weapon)},ce_player_speed=${q4(game.player.speed)},ce_player_lives=${game.player.lives};`,

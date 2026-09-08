@@ -35,7 +35,7 @@ typedef struct {
     const CE_Data *map; const CE_Data *walls; CE_Data events;
     uint8_t require_boss, music, scroll_down;
 } CE_Stage;
-typedef struct { uint8_t kind, x, y; } CE_Binding;
+typedef struct { uint8_t kind, x, y, digits; } CE_Binding;
 typedef struct {
     CE_Data tiles, map, attrs; uint8_t tile_count, palette, bindings;
     const CE_Binding *binding; const uint8_t *digits;
@@ -62,7 +62,7 @@ extern const CE_Screen ce_screens[5];
 extern const CE_Data ce_sprite_data;
 extern const palette_color_t ce_palettes[];
 extern const uint8_t ce_dmg_palette;
-extern const uint8_t ce_palette_count, ce_sprite_tiles, ce_campaign, ce_start_stage, ce_hud_bottom;
+extern const uint8_t ce_palette_count, ce_sprite_tiles, ce_campaign, ce_start_stage, ce_hud_bottom, ce_hud_height;
 extern const uint8_t ce_player_asset, ce_player_weapon, ce_player_speed, ce_player_lives;
 extern const uint8_t ce_player_focus_weapon, ce_player_focus_speed;
 extern const uint8_t ce_music_title, ce_music_boss, ce_music_clear, ce_music_gameover;

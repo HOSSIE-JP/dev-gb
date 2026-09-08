@@ -7,6 +7,7 @@ import {
     type Pattern,
     type Stage,
     assetById,
+    hudHeight,
     frameAt,
     q4,
     clamp,
@@ -170,7 +171,7 @@ export class Simulation {
         this.playerX = q4(game.player.x);
         this.playerY = q4(game.player.y);
         this.invulnerable = game.player.invulnerability;
-        this.camera = this.stage.scrollDown ? (this.stage.height * 8 - 128) * 16 : 0;
+        this.camera = this.stage.scrollDown ? (this.stage.height * 8 - (144 - hudHeight(this.game))) * 16 : 0;
         this.scroll = q4(this.stage.scrollSpeed);
         this.cooldown =
             game.patterns.find((p) => p.id === game.player.weapon)?.delay ?? 0;
@@ -313,7 +314,7 @@ export class Simulation {
         const camera = Math.trunc(this.camera / 16),
             top =
                 this.game.screens.find((s) => s.id === "hud")?.dock === "top"
-                    ? 16
+                    ? hudHeight(this.game)
                     : 0;
         const right = box.x + box.w - 1,
             bottom = box.y + box.h - 1;
@@ -352,7 +353,7 @@ export class Simulation {
                 (s) => s.id === this.game.stageOrder[this.stageIndex],
             )!;
             this.stageTick = 0;
-            this.camera = this.stage.scrollDown ? (this.stage.height * 8 - 128) * 16 : 0;
+            this.camera = this.stage.scrollDown ? (this.stage.height * 8 - (144 - hudHeight(this.game))) * 16 : 0;
             this.scroll = q4(this.stage.scrollSpeed);
             this.entities = [];
             this.bossDefeated = false;
@@ -393,7 +394,7 @@ export class Simulation {
             p = g.player,
             a = assetById(g, p.asset),
             top =
-                g.screens.find((s) => s.id === "hud")?.dock === "top" ? 16 : 0;
+                g.screens.find((s) => s.id === "hud")?.dock === "top" ? hudHeight(g) : 0;
         const mode = input & 32 && p.focusWeapon ? 1 : 0;
         const pattern = mode ? p.focusWeapon! : p.weapon;
         const weapon = g.patterns.find((x) => x.id === pattern)!;
@@ -413,7 +414,7 @@ export class Simulation {
         this.playerY = clamp(
             this.playerY,
             q4(top + a.origin.y),
-            q4(top + 128 - a.height + a.origin.y),
+            q4(top + 144 - hudHeight(g) - a.height + a.origin.y),
         );
         if (!(input & 48)) {
             this.cooldown = weapon.delay;
@@ -438,7 +439,7 @@ export class Simulation {
         else
             this.camera = Math.min(
                 Math.max(0, this.camera),
-                (this.stage.height * 8 - 128) * 16,
+                (this.stage.height * 8 - (144 - hudHeight(this.game))) * 16,
             );
         let finish = false;
         for (const event of this.stage.events) {
@@ -615,7 +616,7 @@ export function drawSimulation(
 ) {
     const g = sim.game,
         s = sim.stage,
-        top = g.screens.find((s) => s.id === "hud")?.dock === "top" ? 16 : 0;
+        top = g.screens.find((s) => s.id === "hud")?.dock === "top" ? hudHeight(g) : 0;
     ctx.fillStyle = dmg ? dmgColors(g)[0] : g.palettes[0].colors[0];
     ctx.fillRect(0, 0, 160, 144);
     const tileset = assetById(g, s.tileset),
@@ -624,7 +625,7 @@ export function drawSimulation(
             ? dmgColors(g)
             : g.palettes[tileset.palette].colors;
     if (frame)
-        for (let y = 0; y < 128; y++)
+        for (let y = 0; y < 144 - hudHeight(g); y++)
             for (let x = 0; x < 160; x++) {
                 const wy = y + Math.trunc(sim.camera / 16);
                 let row = Math.trunc(wy / 8);

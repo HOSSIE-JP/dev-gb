@@ -33951,7 +33951,7 @@
     },
     {
       "id": "hud",
-      "name": "スコア・残機・制限時間・ボスHP",
+      "name": "スコア・残機・TIME（1行）",
       "background": "",
       "palette": 5,
       "dock": "top",
@@ -33962,41 +33962,29 @@
           "x": 0,
           "y": 0,
           "palette": 5,
-          "binding": "score"
+          "binding": "score",
+          "digits": 5
         },
         {
-          "id": "hud-mark",
-          "text": "NOVA",
-          "x": 6,
+          "id": "hud-lives",
+          "text": "P",
+          "x": 8,
           "y": 0,
           "palette": 5,
-          "binding": "none"
+          "binding": "lives",
+          "digits": 1
         },
         {
           "id": "hud-time",
           "text": "TIME",
-          "x": 11,
+          "x": 13,
           "y": 0,
           "palette": 5,
-          "binding": "time"
-        },
-        {
-          "id": "hud-lives",
-          "text": "LIFE ",
-          "x": 0,
-          "y": 1,
-          "palette": 5,
-          "binding": "lives"
-        },
-        {
-          "id": "hud-boss",
-          "text": "BOSS",
-          "x": 11,
-          "y": 1,
-          "palette": 5,
-          "binding": "boss"
+          "binding": "time",
+          "digits": 3
         }
-      ]
+      ],
+      "rows": 1
     }
   ],
   "player": {

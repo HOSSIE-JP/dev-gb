@@ -485,7 +485,7 @@ export function MapCanvas({
         }
         for (const e of s.events)
             if (e.kind === "enemy" || e.kind === "boss") {
-                const y = e.y + (s.scrollDown ? s.height * 8 - 128 - Math.floor(e.frame * s.scrollSpeed) : Math.floor(e.frame * s.scrollSpeed));
+                const y = e.y + (s.scrollDown ? s.height * 8 - (144 - (game.screens.find(s => s.id === "hud")?.rows ?? 2) * 8) - Math.floor(e.frame * s.scrollSpeed) : Math.floor(e.frame * s.scrollSpeed));
                 if (y >= 0 && y < s.height * 8) {
                     c.strokeStyle = e.id === eventId ? "#ffbd66" : "#54d8c4";
                     c.lineWidth = 0.75;
@@ -503,7 +503,7 @@ export function MapCanvas({
                           ...event,
                           x: p.x,
                           y: clamp(
-                              p.y - (stage.scrollDown ? stage.height * 8 - 128 - Math.floor(event.frame * stage.scrollSpeed) : Math.floor(event.frame * stage.scrollSpeed)),
+                              p.y - (stage.scrollDown ? stage.height * 8 - (144 - (game.screens.find(s => s.id === "hud")?.rows ?? 2) * 8) - Math.floor(event.frame * stage.scrollSpeed) : Math.floor(event.frame * stage.scrollSpeed)),
                               -32,
                               176,
                           ),
@@ -641,7 +641,7 @@ export function ScreenCanvas({
     onSelect: (id: string) => void;
 }) {
     const ref = useRef<HTMLCanvasElement>(null),
-        height = screen.id === "hud" ? 16 : 144;
+        height = screen.id === "hud" ? (screen.rows ?? 2) * 8 : 144;
     useEffect(() => {
         const c = ref.current?.getContext("2d");
         if (!c) return;
@@ -747,7 +747,7 @@ export function drawScreen(
 ) {
     const colors = dmg ? dmgColors(g) : g.palettes[s.palette].colors;
     c.fillStyle = colors[0];
-    c.fillRect(0, 0, 160, s.id === "hud" ? 16 : 144);
+    c.fillRect(0, 0, 160, s.id === "hud" ? (s.rows ?? 2) * 8 : 144);
     const background = g.assets.find((a) => a.id === s.background);
     if (background) drawAsset(c, g, background, 0, 0, 0, dmg);
     for (const item of s.items) {
@@ -757,7 +757,7 @@ export function drawScreen(
                 (item.binding === "none"
                     ? ""
                     : (values[item.binding] ??
-                      (item.binding === "highscores" ? "1  00000" : "00000")));
+                      (item.binding === "highscores" ? "1  00000" : "00000")).slice(item.binding === "highscores" ? 0 : -(item.digits ?? 5)).padStart(item.binding === "highscores" ? 0 : (item.digits ?? 5), "0"));
         const drawText = (text: string, tx: number, ty: number) =>
             [...text.normalize("NFC")].forEach((char, i) => {
                 const pixels = glyphs[char];

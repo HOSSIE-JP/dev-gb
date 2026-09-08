@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import init, { GameBoy, GameBoyMode, BootRom, PadKey } from "boytacean";
+import { clockRomFrame } from "../shared/emulation";
 import type { BuildResult } from "../shared/model";
 
 const keys: Record<string, PadKey> = {
@@ -91,7 +92,7 @@ export function RomPreview({
         releases.current.set(key, 3);
     };
     const clock = () => {
-        gb.current?.clocks_cycles(70224);
+        if (gb.current) clockRomFrame(gb.current);
         for (const [key, frames] of releases.current) {
             if (frames <= 1) {
                 gb.current?.key_lift(key);

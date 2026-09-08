@@ -1,4 +1,6 @@
 import fs from "node:fs";
+import { createRequire } from "node:module";
+const { clockRomFrame } = createRequire(import.meta.url)("../build/library.cjs");
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -75,7 +77,7 @@ export function trace(gb, address) {
     };
 }
 export function frames(gb, count) {
-    for (let i = 0; i < count; i++) gb.clocks_cycles(70224);
+    for (let i = 0; i < count; i++) clockRomFrame(gb);
 }
 export function settledTrace(gb, address) {
     // Rendering may span several VBlanks. Sample at sub-frame CPU boundaries

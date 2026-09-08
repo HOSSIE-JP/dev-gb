@@ -86,8 +86,12 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             press(gb, PadKey.Start);
             awaitTrace(gb, syms, (trace) => trace.scene === 1, "stage graphics to finish loading");
             assert.equal(readByte(gb, syms, "_ce_music_track"), game.stages[0].music);
+            assert.equal(memory(gb).io[0x45], 8, "top HUD ends at scanline 8");
+            if (mode === GameBoyMode.Cgb) assert.ok(memory(gb).io[0x4d] & 0x80, "CGB CPU runs in double-speed mode");
             const scyBefore = memory(gb).io[0x42];
+            const frameBefore = gb.ppu_frame();
             frames(gb, 24);
+            assert.ok(gb.ppu_frame() - frameBefore >= 24 && gb.ppu_frame() - frameBefore <= 25, "editor frame budget follows display rate at either CPU speed");
             const downwardPixels = (scyBefore - memory(gb).io[0x42] + 256) % 256;
             assert.ok(downwardPixels > 0 && downwardPixels <= 24, "SCY decreases: scenery travels from top to bottom");
             assert.ok(audioCount(gb) > 0, "Stage BGM produces PCM without firing");

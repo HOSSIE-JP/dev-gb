@@ -117,7 +117,7 @@ export function Preview({
             drawSimulation(c, s, dmg, hitbox);
             const hud = s.game.screens.find((s) => s.id === "hud")!;
             c.save();
-            c.translate(0, hud.dock === "top" ? 0 : 128);
+            c.translate(0, hud.dock === "top" ? 0 : 144 - (hud.rows ?? 2) * 8);
             drawScreen(c, s.game, hud, glyphs, dmg, {
                 score: String(s.score).padStart(5, "0"),
                 lives: String(s.lives).padStart(5, "0"),

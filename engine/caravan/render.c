@@ -3,6 +3,8 @@
 
 static uint8_t buffer[128];
 static uint16_t previous_row;
+static uint16_t hud_values[32];
+static uint8_t hud_valid, previous_slots;
 
 static void palettes(void) {
     BGP_REG = OBP0_REG = OBP1_REG = ce_dmg_palette;
@@ -16,9 +18,9 @@ static void tiles(const CE_Data *data, uint8_t first, uint8_t count, uint8_t spr
         first += n; count -= n; offset += (uint16_t)n * 16u;
     }
 }
-static void hide_all(void) { uint8_t i; for (i = 0; i != 40u; ++i) hide_sprite(i); }
+static void hide_all(void) { uint8_t i; previous_slots = 0; hud_valid = 0; for (i = 0; i != 40u; ++i) hide_sprite(i); }
 static void screen_map(uint8_t index, uint8_t window) {
-    const CE_Screen *s = &ce_screens[index]; uint8_t row, n, height = window ? 2u : 18u;
+    const CE_Screen *s = &ce_screens[index]; uint8_t row, n, height = window ? ce_hud_height >> 3 : 18u;
     for (row = 0; row != height; ++row) {
         ce_copy(buffer, &s->map, (uint16_t)row * 20u, 20u);
         if (window) set_win_tiles(0, row, 20, 1, buffer); else set_bkg_tiles(0, row, 20, 1, buffer);
@@ -60,8 +62,8 @@ void ce_load_stage(void) BANKED {
     tiles(&s->tiles, ce_screens[4].tile_count, s->tile_count, 0);
     tiles(&ce_sprite_data, 128, ce_sprite_tiles, 1); SPRITES_8x8;
     for (row = 0; row != 32u; ++row) map_row(start + row);
-    screen_map(4, 1); move_win(7, ce_hud_bottom ? 128 : 0);
-    previous_row = start; move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : 16u));
+    screen_map(4, 1); move_win(7, ce_hud_bottom ? 144u - ce_hud_height : 0);
+    previous_row = start; move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
     ce_hud(); SHOW_BKG; SHOW_WIN; SHOW_SPRITES; DISPLAY_ON;
 }
 static void number(uint8_t x, uint8_t y, uint16_t value, uint8_t digits) {
@@ -80,22 +82,38 @@ void ce_hud(void) BANKED {
         if (b->kind == 2u) value = ce_state.lives;
         if (b->kind == 3u) value = (ce_stages[ce_state.stage].duration - ce_state.stage_tick + 59u) / 60u;
         if (b->kind == 4u) value = ce_boss_hp();
-        number(b->x, b->y, value, 5);
+        if (ce_active_screen == 4u) {
+            if (hud_valid && hud_values[i] == value) continue;
+            hud_values[i] = value;
+        }
+        number(b->x, b->y, value, b->digits);
     }
+    hud_valid = 1;
 }
 static uint8_t sprite(uint8_t slot, uint8_t asset, int16_t x, int16_t y, uint16_t age) {
-    const CE_Asset *a = &ce_assets[asset]; uint16_t duration = 0, time; uint8_t i, frame = 0, tx, ty, tile;
+    const CE_Asset *a = &ce_assets[asset]; uint16_t duration = 0, time;
+    uint8_t i, frame = 0, tx, ty, tile, prop, sx, sy, left, columns, rows, top, bottom;
+    volatile OAM_item_t *out = &shadow_OAM[slot];
     if (a->frames > 1u) {
         for (i = 0; i != a->frames; ++i) duration += a->durations[i];
         time = age % duration;
         while (frame + 1u < a->frames && time >= a->durations[frame]) { time -= a->durations[frame]; ++frame; }
     }
-    tile = a->first_tile + frame * a->tiles; x = x / 16 - a->ox; y = y / 16 - a->oy;
-    for (ty = 0; ty < a->height; ty += 8u) for (tx = 0; tx < a->width; tx += 8u) {
-        set_sprite_tile(slot, tile++); set_sprite_prop(slot, ce_is_cgb ? a->palette : 0);
-        if (x + tx < -7 || x + tx >= 160 || y + ty < (ce_hud_bottom ? -7 : 9) || y + ty >= (ce_hud_bottom ? 128 : 144)) hide_sprite(slot);
-        else move_sprite(slot, x + tx + 8, y + ty + 16);
-        ++slot;
+    tile = a->first_tile + frame * a->tiles;
+    left = x / 16 - a->ox + 8; sy = y / 16 - a->oy + 16;
+    prop = ce_is_cgb ? a->palette : 0;
+    columns = a->width >> 3; rows = a->height >> 3;
+    top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
+    bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
+    /* OAM coordinates permit byte comparisons even for partly offscreen tiles:
+     * wrapped negative coordinates lie outside these short visible ranges. */
+    for (ty = rows; ty; --ty, sy += 8u) {
+        sx = left;
+        for (tx = columns; tx; --tx, sx += 8u) {
+            out->tile = tile++; out->prop = prop; out->x = sx;
+            out->y = (uint8_t)(sx - 1u) < 167u && sy >= top && sy < bottom ? sy : 0;
+            ++slot; ++out;
+        }
     }
     return slot;
 }
@@ -105,9 +123,14 @@ void ce_render(void) BANKED {
     else if (row != previous_row && row != previous_row + 1u) { DISPLAY_OFF; for (i = 0; i != 32u; ++i) map_row(row + i); DISPLAY_ON; }
     else if (row != previous_row) map_row(row + 31u);
     previous_row = row;
-    move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : 16u));
+    move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
+    DISABLE_OAM_DMA;
     if (!ce_state.invulnerable || !(ce_state.invulnerable & 4u)) slot = sprite(slot, ce_player_asset, ce_state.player_x, ce_state.player_y, ce_state.tick);
     for (i = ce_used; i; --i, ++e) if (e->kind) slot = sprite(slot, e->asset, e->x, e->y, e->age);
-    while (slot < 40u) hide_sprite(slot++);
+    /* Do not DMA a partially written metasprite list. */
+    i = slot;
+    while (slot < previous_slots) shadow_OAM[slot++].y = 0;
+    previous_slots = i;
+    ENABLE_OAM_DMA;
     if (!(ce_state.tick & 7u)) ce_hud();
 }

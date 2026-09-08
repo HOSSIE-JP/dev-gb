@@ -135,3 +135,23 @@ test("NOVA SPEAR has abundant one-hit, non-firing flights with a boss breathing 
     assert.equal(sim.score, spark.score, 'A shot destroys a weak enemy');
     assert.ok(!sim.entities.some(e=>e.kind==='eshot'));
 });
+
+test("compact HUD uses one row, bounded numeric fields and the full remaining playfield", () => {
+    const game = authored(), hud = game.screens.find(s => s.id === 'hud');
+    assert.equal(hud.rows, 1);
+    assert.deepEqual(hud.items.map(i=>i.binding), ['score','lives','time']);
+    assert.deepEqual(hud.items.map(i=>i.digits), [5,1,3]);
+    assert.ok(hud.items.every(i=>i.y===0 && i.x+i.text.length+i.digits<=20));
+    assert.deepEqual(lib.validate(game).filter(d=>d.severity==='error'), []);
+    const sim = new lib.Simulation(emptyArena());
+    for(let i=0;i<100;i++)sim.step(4);
+    const asset=game.assets.find(a=>a.id===game.player.asset);
+    assert.equal(sim.playerY, (8+asset.origin.y)*16, 'top bound is directly below the 8px HUD');
+    const invalid=structuredClone(game);
+    invalid.screens.find(s=>s.id==='hud').items[0].y=1;
+    assert.ok(lib.validate(invalid).some(d=>d.severity==='error'));
+    hud.rows=2;
+    const legacy=new lib.Simulation(game);
+    for(let i=0;i<100;i++)legacy.step(4);
+    assert.equal(legacy.playerY,(16+asset.origin.y)*16,'two-row HUD keeps legacy playfield bounds');
+});

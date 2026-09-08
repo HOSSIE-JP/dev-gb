@@ -17,12 +17,10 @@ static uint8_t target_count;
 static CE_Box boxes[CE_MAX_ENTITIES], player_box;
 static CE_Box *box_a, *box_b;
 static void box(CE_Box *b, uint8_t asset, int16_t x, int16_t y);
-static volatile uint8_t frame_due;
 static void count_frame(void) NONBANKED {
-    if (frame_due != 255u) ++frame_due;
     if (ce_scene == 1u) SHOW_WIN;
 }
-/* A top-docked Window otherwise covers the entire playfield. Split at line 16. */
+/* A top-docked Window otherwise covers the entire playfield. */
 static void hud_scanline(void) NONBANKED { if (ce_scene == 1u && !ce_hud_bottom) HIDE_WIN; }
 
 void ce_copy(uint8_t *dest, const CE_Data *source, uint16_t offset, uint16_t length) NONBANKED {
@@ -44,7 +42,7 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     if (new_game) { memset(&ce_state, 0, sizeof(ce_state)); ce_state.lives = ce_player_lives; }
     memset(ce_entities, 0, sizeof(ce_entities));
     ce_used = 0;
-    ce_state.stage = stage; ce_state.stage_tick = 0; ce_state.camera = ce_stages[stage].scroll_down ? ce_stages[stage].height * 128u - 2048u : 0;
+    ce_state.stage = stage; ce_state.stage_tick = 0; ce_state.camera = ce_stages[stage].scroll_down ? ce_stages[stage].height * 128u - (144u - ce_hud_height) * 16u : 0;
     ce_state.scroll = ce_stages[stage].scroll; ce_state.boss_defeated = 0;
     ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
     ce_state.invulnerable = ce_player_invulnerability; event_cursor = 0; read_event();
@@ -126,7 +124,7 @@ static uint8_t overlap(void) {
 static uint8_t wall(CE_Box *b) {
     const CE_Stage *s = &ce_stages[ce_state.stage];
     int16_t right = b->right - 129, bottom = b->bottom - 129, bx = b->left - 128, by = b->top - 128;
-    uint8_t top = ce_hud_bottom ? 0u : 16u, x, x1, x2;
+    uint8_t top = ce_hud_bottom ? 0u : ce_hud_height, x, x1, x2;
     uint16_t row, last, world, index, camera = ce_state.camera >> 4;
     if (!s->has_walls || right < 0 || bx >= 160 || bottom < top) return 0;
     x1 = bx < 0 ? 0u : (uint16_t)bx >> 3;
@@ -149,6 +147,12 @@ static void hit_player(void) {
 }
 static void move_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) {
     uint16_t t, quarter, part; uint8_t i, phase; int16_t span, offset = 0; const CE_Point *p;
+    if (!m->kind) {
+        /* Equivalent to base + velocity * age, including age wrap and phase entry. */
+        if (age) { e->x += m->vx; e->y += m->vy; }
+        else { e->x = e->base_x; e->y = e->base_y; }
+        return;
+    }
     if (m->kind == 3u) {
         t = m->points[m->count - 1u].frame;
         age = m->loop && t ? age % t : (age > t ? t : age);
@@ -173,7 +177,7 @@ static void add_score(uint16_t value) {
     ce_state.score = 65535u - ce_state.score < value ? 65535u : ce_state.score + value;
 }
 static void step_player(uint8_t input) {
-    uint8_t top = ce_hud_bottom ? 0u : 16u;
+    uint8_t top = ce_hud_bottom ? 0u : ce_hud_height;
     uint8_t mode = (input & J_B) && ce_player_focus_weapon != CE_NONE;
     uint8_t pattern = mode ? ce_player_focus_weapon : ce_player_weapon;
     uint8_t speed = mode ? ce_player_focus_speed : ce_player_speed;
@@ -189,7 +193,7 @@ static void step_player(uint8_t input) {
     limit = (int16_t)player->ox * 16; if (ce_state.player_x < limit) ce_state.player_x = limit;
     limit = (160 - player->width + player->ox) * 16; if (ce_state.player_x > limit) ce_state.player_x = limit;
     limit = (top + player->oy) * 16; if (ce_state.player_y < limit) ce_state.player_y = limit;
-    limit = (top + 128u - player->height + player->oy) * 16u; if (ce_state.player_y > limit) ce_state.player_y = limit;
+    limit = (top + 144u - ce_hud_height - player->height + player->oy) * 16u; if (ce_state.player_y > limit) ce_state.player_y = limit;
     if (!(input & (J_A | J_B))) { ce_state.cooldown = weapon->delay; ce_state.player_sequence = 0; }
     else if (ce_state.cooldown) --ce_state.cooldown;
     else if (!weapon->repeats || ce_state.player_sequence < weapon->repeats) {
@@ -209,7 +213,7 @@ static uint8_t stage_events(void) {
     } else {
         ce_state.camera += ce_state.scroll;
         if (stage->loop) { if (end && ce_state.camera >= end) ce_state.camera -= end; }
-        else { end -= 2048u; if (ce_state.camera < before || ce_state.camera > end) ce_state.camera = end; }
+        else { end -= (144u - ce_hud_height) * 16u; if (ce_state.camera < before || ce_state.camera > end) ce_state.camera = end; }
     }
     while (event_cursor < stage->event_count && next_event.frame <= ce_state.stage_tick) {
         if (next_event.kind <= 2u) spawn_actor(next_event.kind, next_event.ref, next_event.x, next_event.y);
@@ -341,36 +345,40 @@ static void record_score(void) {
     }
 }
 void ce_run(void) NONBANKED {
-    uint8_t input, pressed, previous = 0, updates, due;
+    uint8_t input, pressed, previous = 0;
     uint16_t music_time, now, elapsed;
-    ce_is_cgb = _cpu == CGB_TYPE; NR52_REG = 0x80; NR50_REG = 0x77; NR51_REG = 0xff;
+    ce_is_cgb = _cpu == CGB_TYPE;
+    if (ce_is_cgb) cpu_fast();
+    NR52_REG = 0x80; NR50_REG = 0x77; NR51_REG = 0xff;
     add_VBL(count_frame);
     add_LCD(hud_scanline); add_LCD(nowait_int_handler);
-    LYC_REG = 16; STAT_REG = STATF_LYC;
+    LYC_REG = ce_hud_height; STAT_REG = STATF_LYC;
     set_interrupts(VBL_IFLAG | LCD_IFLAG);
     ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title);
     CRITICAL { music_time = sys_time; }
     for (;;) {
-        vsync(); input = joypad(); pressed = input & ~previous; previous = input;
+        /* If work already crossed VBlank, do not throw away another frame.
+         * No queued catch-up steps: input and rendering accompany every tick. */
+        CRITICAL { now = sys_time; }
+        if (now == music_time) vsync();
+        input = joypad(); pressed = input & ~previous; previous = input;
         CRITICAL { now = sys_time; }
         elapsed = now - music_time; music_time = now;
         ce_music_tick(elapsed > 255u ? 255u : (uint8_t)elapsed);
         if (ce_scene == 1u) {
             if (pressed & J_START) { ce_pause = !ce_pause; ce_music_pause(ce_pause); }
             if (!ce_pause) {
-                for (updates = 0; updates != 4u && !ce_state.result; ++updates) {
-                    CRITICAL { due = frame_due; if (due) --frame_due; }
-                    if (!due) break;
-                    ce_step(input);
-                }
+                /* Drop overdue work instead of a four-update catch-up spiral.
+                 * Under load the game slows gracefully while every update is drawn. */
+                ce_step(input);
                 ce_render();
-            } else { CRITICAL { frame_due = 0; } }
+            }
             if (ce_state.result) {
                 record_score(); ce_scene = ce_state.result == 1u ? 2u : 3u; ce_load_screen(ce_scene - 1u);
                 ce_music_play(ce_state.result == 1u ? ce_music_gameover : ce_music_clear);
             }
         } else if (ce_scene == 0u) {
-            if (pressed & (J_START | J_A)) { ce_reset(ce_campaign ? 0u : ce_start_stage, 1); ce_scene = 1; ce_pause = 0; ce_load_stage(); CRITICAL { frame_due = 0; } }
+            if (pressed & (J_START | J_A)) { ce_reset(ce_campaign ? 0u : ce_start_stage, 1); ce_scene = 1; ce_pause = 0; ce_load_stage(); }
             else if (pressed & J_SELECT) { ce_scene = 4; ce_load_screen(3); }
         } else if (pressed & (J_START | J_A | J_B | J_SELECT)) { ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title); }
         ce_trace_write();

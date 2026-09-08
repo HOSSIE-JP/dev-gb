@@ -116,13 +116,11 @@ const screens = [
         item("scores-list", "", 5, 5, "highscores"),
         item("scores-back", "A : TITLE", 5, 16),
     ]),
-    screen("hud", "スコア・残機・制限時間・ボスHP", "", [
-        item("hud-score", "S", 0, 0, "score"),
-        item("hud-mark", "NOVA", 6, 0),
-        item("hud-time", "TIME", 11, 0, "time"),
-        item("hud-lives", "LIFE ", 0, 1, "lives"),
-        item("hud-boss", "BOSS", 11, 1, "boss"),
-    ]),
+    { ...screen("hud", "スコア・残機・TIME（1行）", "", [
+        { ...item("hud-score", "S", 0, 0, "score"), digits: 5 },
+        { ...item("hud-lives", "P", 8, 0, "lives"), digits: 1 },
+        { ...item("hud-time", "TIME", 13, 0, "time"), digits: 3 },
+    ]), rows: 1 },
 ];
 
 const game = {

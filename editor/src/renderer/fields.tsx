@@ -64,6 +64,8 @@ const labels: Record<string, string> = {
     dock: "HUD位置",
     text: "表示文字（英数字・かな）",
     binding: "動的表示",
+    digits: "数値の桁数",
+    rows: "HUD行数",
     ref: "出現キャラクター",
     spacing: "編隊間隔 X",
     value: "変更後スクロール速度",
@@ -154,6 +156,8 @@ export function Form({
             {Object.entries(
                 context === "player" ? { focusWeapon: "", focusSpeed: value.speed, ...value }
                 : context === "stage" ? { requireBoss: false, scrollDown: false, music: 0, ...value }
+                : value.id === "hud" ? { rows: 2, ...value }
+                : "binding" in value ? { digits: 5, ...value }
                 : value.schemaVersion === 1 ? { music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )

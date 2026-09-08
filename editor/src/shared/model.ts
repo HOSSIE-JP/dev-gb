@@ -103,6 +103,7 @@ export type TextItem = {
     x: number;
     y: number;
     palette: number;
+    digits?: number;
     binding: "none" | "score" | "lives" | "time" | "boss" | "highscores";
 };
 export type Screen = {
@@ -111,8 +112,11 @@ export type Screen = {
     background: string;
     palette: number;
     dock: "top" | "bottom";
+    rows?: number;
     items: TextItem[];
 };
+export const hudHeight = (game: Game) => (game.screens.find(s => s.id === "hud")?.rows ?? 2) * 8;
+
 export type Game = {
     schemaVersion: 1;
     name: string;
@@ -352,6 +356,7 @@ export function validateShape(
                 background: "string",
                 palette: "number",
                 dock: "string",
+                "rows?": "number",
                 items: [
                     {
                         id: "string",
@@ -360,6 +365,7 @@ export function validateShape(
                         y: "number",
                         palette: "number",
                         binding: "string",
+                        "digits?": "number",
                     },
                 ],
             },
@@ -744,9 +750,11 @@ export function validate(value: unknown): Diagnostic[] {
             warn(screen.id, "HUDの背景素材はROMに使用されません");
         integer(screen.palette, 0, game.palettes.length - 1, screen.id);
         integer(screen.items.length, 0, 32, screen.id);
+        if (screen.rows !== undefined) integer(screen.rows, 1, 2, screen.id);
         for (const text of screen.items) {
             integer(text.x, 0, 19, screen.id);
-            integer(text.y, 0, screen.id === "hud" ? 1 : 17, screen.id);
+            integer(text.y, 0, screen.id === "hud" ? (screen.rows ?? 2) - 1 : 17, screen.id);
+            if (text.digits !== undefined) integer(text.digits, 1, 5, text.id);
             integer(text.palette, 0, game.palettes.length - 1, screen.id);
             if (!supportedText(text.text))
                 err(text.id, "英数字・ひらがな・カタカナのみ使用できます");
@@ -756,7 +764,7 @@ export function validate(value: unknown): Diagnostic[] {
                     ? 9
                     : text.binding === "none"
                       ? 0
-                      : 5);
+                      : (text.digits ?? 5));
             if (
                 ![
                     "none",
