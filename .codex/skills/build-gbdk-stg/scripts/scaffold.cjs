@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+const fs=require('node:fs'),path=require('node:path');
+const [repoArg,briefArg]=process.argv.slice(2);
+if(!repoArg||!briefArg)throw Error('Usage: node scaffold.cjs REPO BRIEF.json');
+const root=path.resolve(repoArg),brief=JSON.parse(fs.readFileSync(briefArg,'utf8'));
+const caravan=brief.mode==='caravan';
+const b={template:caravan?'star-caravan':'nova-spear',stageCount:caravan?1:3,mode:'campaign',timeLimit:caravan,lives:5,respawnFrames:90,bossCelebration:true,stageFade:true,...brief};
+if(!/^[A-Za-z0-9][A-Za-z0-9_-]{0,47}$/.test(b.id??''))throw Error('Invalid or missing project id');
+if(typeof b.title!=='string'||!b.title.trim())throw Error('Missing title');
+for(const [k,min,max] of [['stageCount',1,16],['lives',1,9],['respawnFrames',0,600]])if(!Number.isInteger(b[k])||b[k]<min||b[k]>max)throw Error(`Invalid ${k}`);
+for(const k of ['timeLimit','bossCelebration','stageFade'])if(typeof b[k]!=='boolean')throw Error(`Invalid ${k}`);
+if(!['campaign','caravan'].includes(b.mode))throw Error('Invalid mode');
+if(b.mode==='caravan'&&b.stageCount!==1)throw Error('Caravan mode plays one selected stage; use campaign for sequential stages');
+const lib=require(path.join(root,'editor/build/library.cjs'));
+const g=lib.readGame(root,b.template),source=structuredClone(g.stages);
+g.stages=Array.from({length:b.stageCount},(_,i)=>{const s=structuredClone(source[i%source.length]);s.id=`stage-${i+1}`;s.name=`STAGE ${i+1}`;s.events.forEach((e,j)=>e.id=`stage-${i+1}-event-${j+1}`);return s;});
+g.stageOrder=g.stages.map(s=>s.id);g.startStage=g.stageOrder[0];
+g.mode=b.mode;g.timeLimit=b.timeLimit;g.stageFade=b.stageFade;g.bossCelebration=b.bossCelebration;g.player.lives=b.lives;g.player.respawnDelay=b.respawnFrames;
+const h=g.screens.find(s=>s.id==='hud');
+if(!b.timeLimit)h.items=h.items.filter(i=>i.binding!=='time');
+else if(!h.items.some(i=>i.binding==='time'))h.items.push({id:'hud-time',text:'TIME',x:13,y:0,palette:h.palette,binding:'time',digits:3});
+const created=lib.createProject(root,b.id,b.title,g),dir=path.join(root,'projects',b.id);
+fs.writeFileSync(path.join(dir,'brief.json'),JSON.stringify(b,null,2)+'\n');
+fs.writeFileSync(path.join(dir,'workflow.json'),JSON.stringify({phase:'scaffold',projectId:b.id,approval:null,feedback:[],pending:['Author distinct stages and bosses','Replace template artwork, baked-in title and music as needed','Build and test actual ROM','Deliver playtest and wait for user completion decision']},null,2)+'\n');
+console.log(JSON.stringify({project:dir,stages:created.stages.length,status:'scaffold only; creative authoring and ROM validation still required'},null,2));
