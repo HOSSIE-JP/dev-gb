@@ -201,7 +201,7 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
             const gb = boot(fs.readFileSync(report.romPath), mode);
             const sim = new lib.Simulation(stored);
             const stages = new Set(), phases = new Set(), music = new Set(), fadeLevels = new Set();
-            let checked = 0, last;
+            let checked = 0, last, hitSound = false;
             try {
                 frames(gb, 240);
                 gb.key_press(PadKey.Start);
@@ -210,6 +210,7 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
                 gb.key_lift(PadKey.Start);
                 for (let frame = 0; frame < 6000; frame++) {
                     frames(gb, 1);
+                    if (memory(gb).io[0x21] === 0xa1 && memory(gb).io[0x22] === 0x19) hitSound = true;
                     fadeLevels.add(readByte(gb, syms, "_ce_fade_level"));
                     if (readByte(gb, syms, "_ce_fade_level") === 4)
                         assert.ok(memory(gb).io[0x40] & 0x80, "black stage loading keeps LCD enabled to avoid a white flash");
@@ -233,6 +234,7 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
                 assert.equal(last?.result, 2);
                 assert.equal(last?.scene, 3);
                 assert.equal(stages.size, 3);
+                assert.ok(hitSound, "boss impacts trigger the dedicated noise-channel hit sound");
                 assert.deepEqual([...fadeLevels].sort(), [0,1,2,3,4], "stage transitions traverse every fade level");
                 for (let index = 0; index < stored.stageOrder.length; index++) {
                     const stage = stored.stages.find((s) => s.id === stored.stageOrder[index]);

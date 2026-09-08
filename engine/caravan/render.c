@@ -123,10 +123,15 @@ void ce_hud(void) BANKED {
     }
     hud_valid = 1;
 }
+/* Non-reentrant: no interrupt calls the renderer. Static scratch avoids
+ * repeated stack-relative loads in the per-tile inner loop on SM83. */
 static uint8_t sprite(uint8_t slot, uint8_t asset, int16_t x, int16_t y, uint16_t age) {
-    const CE_Asset *a = &ce_assets[asset]; uint16_t duration = 0, time;
-    uint8_t i, frame = 0, tx, ty, tile, prop, sx, sy, left, columns, rows, top, bottom;
-    volatile OAM_item_t *out = &shadow_OAM[slot];
+    static const CE_Asset *a; static uint16_t duration, time;
+    a = &ce_assets[asset]; duration = 0;
+    static uint8_t i, frame, tx, ty, tile, prop, sx, sy, left, columns, rows, top, bottom;
+    frame = 0;
+    static volatile OAM_item_t *out;
+    out = &shadow_OAM[slot];
     if (a->frames > 1u) {
         for (i = 0; i != a->frames; ++i) duration += a->durations[i];
         time = age % duration;
@@ -152,7 +157,8 @@ static uint8_t sprite(uint8_t slot, uint8_t asset, int16_t x, int16_t y, uint16_
 }
 void ce_render(void) BANKED {
     uint8_t i, slot = 0; uint16_t row = ce_state.camera >> 7; CE_Entity *e = ce_entities;
-    if (row + 1u == previous_row) map_row(row);
+    if (row + 1u == previous_row || (ce_stages[ce_state.stage].loop && !(ce_stages[ce_state.stage].height & 31u) && previous_row == 0u && row + 1u == ce_stages[ce_state.stage].height)) map_row(row);
+    else if (ce_stages[ce_state.stage].loop && !(ce_stages[ce_state.stage].height & 31u) && row == 0u && previous_row + 1u == ce_stages[ce_state.stage].height) map_row(31u);
     else if (row != previous_row && row != previous_row + 1u) { DISPLAY_OFF; for (i = 0; i != 32u; ++i) map_row(row + i); DISPLAY_ON; }
     else if (row != previous_row) map_row(row + 31u);
     previous_row = row;

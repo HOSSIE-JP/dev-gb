@@ -10,11 +10,11 @@ run.cmd star-caravan -Configuration Release -Emulator BGB
 run.cmd star-caravan -Configuration Release -Emulator Emulicious
 ```
 
-十字キーで移動、A/B押し続けで連射、STARTで開始／ポーズ、タイトルのSELECTでスコアボード。全滅でゲームオーバー、ボス撃破または時間満了でクリア。敵100／150／250点、ボス5000点、クリア2000点。65535で飽和し、上位5件は電源を切るまで保持します。BGM・SRAM保存はありません。
+十字キーで移動、A/B押し続けで連射、STARTで開始／ポーズ、タイトルのSELECTでスコアボード。全滅でゲームオーバー、ボス撃破または時間満了でクリア。敵100／150／250点、ボス5000点、クリア2000点。65535で飽和し、上位5件は2スロット＋CRC付きSRAMに保存し、再起動後に復元します。
 
 元の単一`src/main.c`を、`assets-src/game.json`・PNGと共通`engine/caravan`へ分離しました。移行前ソースはGit履歴に残ります。`png2asset`と美咲ゴシックの文字抽出から生成したCをビルドします。
 
-出力は`build/Debug/star-caravan.gb`または`build/Release/star-caravan.gb`。初期作品は32KiB・MBCなし、CGBフラグ0x80。拡張時はMBC5へ自動変更します。
+出力は`build/Debug/star-caravan.gb`または`build/Release/star-caravan.gb`。32KiBでもスコア保存用にMBC5＋8KiB RAM＋バッテリーを使用します。CGBフラグは0x80です。
 
 **未達**：DMGで処理落ちが残り、ゲーム内120秒と実時間120秒の一致は保証できません。OAM40以内でも走査線10超過で欠けます。実機確認は未実施です。
 

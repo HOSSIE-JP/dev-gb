@@ -10,10 +10,10 @@ const stats=a=>{a.sort((x,y)=>x-y);return {samples:a.length,mean:+(a.reduce((s,x
 for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]){
  const gb=boot(fs.readFileSync(romPath),mode), sim=new Simulation(game), groups={plain:[],create:[],destroy:[],both:[]};
  try{
-  for(let n=0;n<240;n++)gb.next_frame();gb.key_press(PadKey.Start);for(let n=0;n<10;n++)gb.next_frame();gb.key_lift(PadKey.Start);
+  for(let n=0;n<240;n++)gb.next_frame();gb.key_press(PadKey.A);gb.key_press(PadKey.Start);for(let n=0;n<10;n++)gb.next_frame();gb.key_lift(PadKey.Start);
   for(let n=0;n<300;n++){gb.next_frame();if(memory(gb).ram[syms._ce_trace-0xc000+17]===1)break;}
   gb.key_press(PadKey.A);let previous=memory(gb).ram.readUInt16LE(syms._ce_trace-0xc000+2),lastFrame=0,count=0,excluded=0;
-  while(sim.tick<previous)sim.step(0);
+  while(sim.tick<previous)sim.step(16);
   for(let frame=0;frame<20000&&previous<1800;frame++){
    gb.next_frame();const m=memory(gb).ram,p=syms._ce_trace-0xc000,t=m.readUInt16LE(p+2);
    if(t<=previous||t>previous+4)continue;

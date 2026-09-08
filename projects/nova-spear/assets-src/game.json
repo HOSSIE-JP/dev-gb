@@ -33989,7 +33989,7 @@
     "asset": "player-ship",
     "x": 80,
     "y": 124,
-    "respawnDelay": 180
+    "respawnDelay": 90
   },
   "clearBonus": 1500,
   "effects": {

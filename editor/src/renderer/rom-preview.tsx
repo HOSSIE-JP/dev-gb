@@ -52,6 +52,8 @@ export function RomPreview({
     const held = useRef(new Set<PadKey>());
     const releases = useRef(new Map<PadKey, number>());
     const requested = useRef(0);
+    const battery = useRef({ key: "", snapshot: "", clocks: 0 });
+    const pixels = useRef<ImageData | null>(null);
     const [loaded, setLoaded] = useState(false);
     const [loading, setLoading] = useState(false);
     const [playing, setPlaying] = useState(false);
@@ -63,6 +65,18 @@ export function RomPreview({
     const preferences = useRef({ enabled, speed });
     preferences.current = { enabled, speed };
 
+    const saveBattery = () => {
+        if (!gb.current || !battery.current.key) return;
+        try {
+            const bytes = gb.current.ram_data_eager();
+            if (!bytes.length) return;
+            const value = Array.from(bytes, b => b.toString(16).padStart(2, "0")).join("");
+            if (value !== battery.current.snapshot) {
+                localStorage.setItem(battery.current.key, value);
+                battery.current.snapshot = value;
+            }
+        } catch (e) { error(`SRAM保存失敗: ${(e as Error).message}`); }
+    };
     const clearAudio = () => {
         for (const source of sources.current) {
             try {
@@ -92,7 +106,10 @@ export function RomPreview({
         releases.current.set(key, 3);
     };
     const clock = () => {
-        if (gb.current) clockRomFrame(gb.current);
+        if (gb.current) {
+            clockRomFrame(gb.current);
+            if (++battery.current.clocks >= 60) { battery.current.clocks = 0; saveBattery(); }
+        }
         for (const [key, frames] of releases.current) {
             if (frames <= 1) {
                 gb.current?.key_lift(key);
@@ -105,15 +122,16 @@ export function RomPreview({
             context = canvas.current?.getContext("2d");
         if (!boy || !context) return;
         const rgb = boy.frame_buffer_eager();
-        const pixels = context.createImageData(160, 144);
+        pixels.current ??= context.createImageData(160, 144);
+        const framePixels = pixels.current;
         const stride = rgb.length / (160 * 144);
         for (let i = 0; i < 160 * 144; i++) {
-            pixels.data[i * 4] = rgb[i * stride];
-            pixels.data[i * 4 + 1] = rgb[i * stride + 1];
-            pixels.data[i * 4 + 2] = rgb[i * stride + 2];
-            pixels.data[i * 4 + 3] = 255;
+            framePixels.data[i * 4] = rgb[i * stride];
+            framePixels.data[i * 4 + 1] = rgb[i * stride + 1];
+            framePixels.data[i * 4 + 2] = rgb[i * stride + 2];
+            framePixels.data[i * 4 + 3] = 255;
         }
-        context.putImageData(pixels, 0, 0);
+        context.putImageData(framePixels, 0, 0);
         const samples = boy.audio_buffer_eager(true),
             ctx = audio.current;
         // Slow/fast debug playback is silent so queued audio cannot drift.
@@ -160,6 +178,7 @@ export function RomPreview({
         setLoaded(false);
         releaseAll();
         clearAudio();
+        saveBattery();
         gb.current?.free();
         gb.current = null;
         setStatus("ROMを読み込み中…");
@@ -192,6 +211,14 @@ export function RomPreview({
                 );
                 boy.load_unsafe(true);
                 boy.load_rom_wa(bytes).free();
+                const key = `caravan.sram.v1.${name}`;
+                const saved = localStorage.getItem(key);
+                if (saved !== null) {
+                    if (saved.length !== boy.ram_data_eager().length * 2 || !/^[0-9a-f]+$/.test(saved))
+                        throw new Error("SRAM保存データの形式が不正です。保存内容を保護するため読込を停止しました");
+                    boy.set_ram_data(Uint8Array.from(saved.match(/../g)!, b => parseInt(b, 16)));
+                }
+                battery.current = { key, snapshot: saved ?? "", clocks: 0 };
             } catch (e) {
                 boy.free();
                 throw e;
@@ -216,6 +243,7 @@ export function RomPreview({
         ++generation.current;
         releaseAll();
         clearAudio();
+        saveBattery();
         gb.current?.free();
         gb.current = null;
         setLoaded(false);
@@ -285,17 +313,21 @@ export function RomPreview({
     }, [enabled, speed]);
     useEffect(() => {
         const blur = () => {
+            saveBattery();
             releaseAll();
             clearAudio();
         };
         window.addEventListener("blur", blur);
+        window.addEventListener("pagehide", blur);
         document.addEventListener("visibilitychange", blur);
         return () => {
             ++generation.current;
             window.removeEventListener("blur", blur);
+            window.removeEventListener("pagehide", blur);
             document.removeEventListener("visibilitychange", blur);
             releaseAll();
             clearAudio();
+            saveBattery();
             gb.current?.free();
             gb.current = null;
             void audio.current?.close().catch(() => undefined);

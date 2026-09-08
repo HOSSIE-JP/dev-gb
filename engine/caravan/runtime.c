@@ -10,10 +10,12 @@ uint8_t ce_pool_counts[6], ce_pool_oam;
 static uint8_t free_slots[4];
 uint16_t ce_scores[5], ce_respawn;
 static uint16_t music_time;
+static uint8_t hit_sound_wait;
 volatile uint8_t ce_trace[24];
 static uint16_t event_cursor;
 static CE_Event next_event;
 static uint8_t active[CE_MAX_ENTITIES];
+static uint16_t next_attack[CE_MAX_ENTITIES * 4u];
 static CE_Entity *targets[9];
 static CE_Box *target_boxes[9];
 static uint8_t target_count, target_slots[9];
@@ -258,7 +260,8 @@ static uint8_t stage_events(void) {
     }
     return finish;
 }
-static void step_actor(CE_Entity *e) {
+static void step_actor(CE_Entity *e, uint8_t slot) {
+    uint16_t *schedule = &next_attack[(uint16_t)slot << 2];
     uint8_t k, pattern, primary, layer_count;
     uint16_t age, sequence; const uint8_t *layers;
     const CE_Actor *actor; const CE_Phase *phase; const CE_Motion *motion; const CE_Pattern *shot;
@@ -279,7 +282,11 @@ static void step_actor(CE_Entity *e) {
                 pattern = k ? layers[k - 1u] : primary;
                 if (pattern == CE_NONE) continue;
                 shot = &ce_patterns[pattern];
-                if (age >= shot->delay && (age - shot->delay) % shot->interval == 0u) {
+                /* Phase entry and 16-bit age wrap restart the same authored schedule.
+                 * Overflowed deadlines stay below age until that reset. */
+                if (!age) schedule[k] = shot->delay;
+                if (age >= shot->delay && age == schedule[k]) {
+                    schedule[k] += shot->interval;
                     sequence = (age - shot->delay) / shot->interval;
                     if (!shot->repeats || sequence < shot->repeats) shoot(pattern, e->asset, e->x, e->y, 0, sequence);
                 }
@@ -298,7 +305,7 @@ static void step_entities(void) {
             box(&boxes[i], e->asset, e->x, e->y);
             if (e->age >= e->lifetime || (stage->has_walls && wall(&boxes[i]))) release(i);
         } else {
-            step_actor(e);
+            step_actor(e, i);
             box(&boxes[i], e->asset, e->x, e->y);
         }
         if ((uint16_t)(e->x + 512) > 3584u || (uint16_t)(e->y + 512) > 3328u) release(i);
@@ -320,7 +327,7 @@ static void collide_shots(void) {
                 add_score(actor->score); if (target->kind == CE_BOSS) ce_state.boss_defeated = 1;
                 release(target_slots[j]); ce_sound(1);
                 explode(target->x, target->y);
-            } else target->hp -= e->damage;
+            } else { target->hp -= e->damage; if (target->kind == CE_BOSS) ce_sound(4); }
             break;
         }
     }
@@ -371,19 +378,24 @@ void ce_trace_write(void) NONBANKED {
     ce_trace[22] = 0;
 }
 void ce_sound(uint8_t effect) NONBANKED {
-    if (!effect) { NR10_REG = 0; NR11_REG = 0x80; NR12_REG = 0x42; NR13_REG = 0xc0; NR14_REG = 0x87; }
+    if (effect == 4u) {
+        if (hit_sound_wait) return;
+        hit_sound_wait = 4;
+        NR41_REG = 0x38; NR42_REG = 0xa1; NR43_REG = 0x19; NR44_REG = 0xc0;
+    } else if (!effect) { NR10_REG = 0; NR11_REG = 0x80; NR12_REG = 0x42; NR13_REG = 0xc0; NR14_REG = 0x87; }
     else if (effect == 3u) { NR10_REG = 0x16; NR11_REG = 0x40; NR12_REG = 0xf3; NR13_REG = 0x70; NR14_REG = 0x87; }
     else { NR41_REG = effect == 1u ? 0x08 : 0x00; NR42_REG = effect == 1u ? 0x73 : 0xf4; NR43_REG = effect == 1u ? 0x35 : 0x65; NR44_REG = 0x80; }
 }
 static void record_score(void) {
     uint8_t i, j; for (i = 0; i != 5u; ++i) if (ce_state.score > ce_scores[i]) {
-        for (j = 4; j > i; --j) ce_scores[j] = ce_scores[j - 1u]; ce_scores[i] = ce_state.score; break;
+        for (j = 4; j > i; --j) ce_scores[j] = ce_scores[j - 1u]; ce_scores[i] = ce_state.score; ce_save_scores(); break;
     }
 }
 void ce_audio_sync(void) NONBANKED {
     uint16_t now, elapsed;
     CRITICAL { now = sys_time; }
     elapsed = now - music_time; music_time = now;
+    hit_sound_wait = elapsed >= hit_sound_wait ? 0 : hit_sound_wait - elapsed;
     ce_music_tick(elapsed > 255u ? 255u : (uint8_t)elapsed);
 }
 void ce_run(void) NONBANKED {
@@ -396,6 +408,7 @@ void ce_run(void) NONBANKED {
     add_LCD(hud_scanline); add_LCD(nowait_int_handler);
     LYC_REG = ce_hud_height; STAT_REG = STATF_LYC;
     set_interrupts(VBL_IFLAG | LCD_IFLAG);
+    ce_save_load();
     ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title);
     CRITICAL { music_time = sys_time; }
     for (;;) {

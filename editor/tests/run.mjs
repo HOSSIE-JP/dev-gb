@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(directory, "../..");
 const suite = process.argv[2] ?? "auto";
-const romSuites = ["rom.test.mjs", "integration.test.mjs", "music-runtime.acceptance.mjs", "nova-spear.acceptance.mjs"];
+const romSuites = ["rom.test.mjs", "integration.test.mjs", "music-runtime.acceptance.mjs", "nova-spear.acceptance.mjs", "save.acceptance.mjs"];
 const specialized = new Set([...romSuites, "bgb.test.mjs"]);
 
 try {

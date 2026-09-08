@@ -512,6 +512,7 @@ export function generate(
     );
     config.push(
         `const uint16_t ce_player_invulnerability=${game.player.invulnerability},ce_clear_bonus=${game.clearBonus},ce_player_respawn_delay=${game.player.respawnDelay ?? 0};`,
+        `const uint8_t ce_save_id[]={${Array.from(Buffer.from(game.name)).reduce((h, b) => Math.imul(h ^ b, 16777619) >>> 0, 2166136261).toString(16).padStart(8,"0").match(/../g)!.map(b => parseInt(b,16))}};`,
         `const uint8_t ce_stage_fade=${+(game.stageFade ?? true)};`,
         `const int16_t ce_player_start_x=${q4(game.player.x)},ce_player_start_y=${q4(game.player.y)};`,
         `const uint8_t ce_explosion_asset=${game.effects.explosion ? assetId(game.effects.explosion) : 255},ce_explosion_duration=${game.effects.duration};`,
@@ -604,13 +605,14 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "render.c", "music.c"]
+        const inputs = ["runtime.c", "render.c", "music.c", "save.c"]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [
             "-Wm-yc",
             "-Wf--opt-code-speed",
-            "-Wl-yt0x19",
+            "-Wl-yt0x1B",
+            "-Wl-ya1",
             "-Wm-yoA",
             "-autobank",
             "-Wb-ext=.rel",
@@ -629,21 +631,7 @@ export function compile(
         const romPath = path.join(work, `${name}.gb`),
             rom = fs.readFileSync(romPath);
         verifyRom(rom);
-        if (rom.length <= 32768) {
-            // BankPack requires an MBC during placement. With only physical banks 0/1,
-            // bank writes are harmless on ROM-only hardware; finalize the cartridge header.
-            rom[0x147] = 0;
-            let header = 0,
-                sum = 0;
-            for (let i = 0x134; i <= 0x14c; i++)
-                header = (header - rom[i] - 1) & 255;
-            rom[0x14d] = header;
-            for (let i = 0; i < rom.length; i++)
-                if (i !== 0x14e && i !== 0x14f) sum = (sum + rom[i]) & 65535;
-            rom.writeUInt16BE(sum, 0x14e);
-            atomicWrite(romPath, rom);
-            verifyRom(rom);
-        }
+        // Battery-backed rankings require MBC5 + RAM even for a 32 KiB ROM.
         run(gbdkExecutable(root, "romusage"), [romPath], work, log);
         const mapText = fs.readFileSync(path.join(work, `${name}.map`), "utf8");
         // Release uses compact symbol columns. Area rows are stable in both modes.

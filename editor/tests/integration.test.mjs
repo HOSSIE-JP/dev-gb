@@ -151,7 +151,7 @@ test(
                 ),
                 rom = fs.readFileSync(base + ".gb"),
                 syms = symbols(base + ".map");
-            assert.equal(rom[0x147], 0x19);
+            assert.equal(rom[0x147], 0x1b);
             const qa = path.join(root, ".cache/editor-qa");
             fs.mkdirSync(qa, { recursive: true });
             fs.copyFileSync(base + ".gb", path.join(qa, "fixture.gb"));

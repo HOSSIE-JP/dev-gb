@@ -185,5 +185,5 @@ test("respawn wait keeps the world moving and prevents firing or repeat deaths",
 test("title omits the stage/lives banner and stage fade defaults on", () => {
     const game=authored();assert.ok(!game.screens.find(s=>s.id==='title').items.some(i=>i.text.includes('3 STAGES')));
     assert.equal(game.stageFade??true,true);
-    assert.equal(game.player.respawnDelay,180);
+    assert.equal(game.player.respawnDelay,90);
 });

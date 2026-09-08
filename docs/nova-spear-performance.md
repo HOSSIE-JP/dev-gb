@@ -71,3 +71,45 @@ Final same-rule fixture (Release, respawn=0, fades=false):
 Units are display frames (lower is better). Sample-weighted mean gaps change only from 1.771 to 1.758 on DMG and 1.071 to 1.066 on CGB, below 1%. Worst-case spikes are not improved; some categories are worse at this quantized resolution. This is a small reduction in bookkeeping, not a demonstrated cure for spawn stutter. DMG samples: 1678 before / 1680 after, multi-update exclusions 1 / 0. CGB samples: 1536 / 1592, exclusions 72 / 44. These differences also limit direct percentile comparisons. Further substantial improvement would require cycle-level profiling of collision/render/map/HUD work, rather than assuming a heap or buffer allocation problem.
 
 The shipping ROM includes delayed respawn and fades, so its workload is deliberately different from this controlled fixture. NOVA SPEAR and STAR CARAVAN Debug/Release builds succeed. The shipping 128 KiB ROM uses 1665 bytes of static WRAM plus shadow OAM combined, with the compiler stack reserve intact. SHA-256: `4afc2f9dbcbe6f9d21fad4ab71de3cafd7d0cb3936283370f000275a53e7522d`.
+
+## v5: profiling and additional trials
+
+A disposable v4-engine ROM was instrumented with phase IDs and sampled every 4096 CPU cycles over logical ticks 120–719, using ordinary START/A input. IDs cover idle, player, events, entities, collisions, sprites, map, HUD, trace and audio. Instrumentation and sampling can perturb timings; interrupts are charged to the active phase. The instrumented ROM is not shipped. `editor/tests/profile-runtime.mjs` consumes this diagnostic symbol.
+
+| Phase | DMG samples | CGB samples |
+| --- | ---: | ---: |
+| Sprite preparation / OAM | 40.65% | 36.15% |
+| Entity updates | 35.02% | 29.23% |
+| Collisions | 13.70% | 11.47% |
+| Player / shooting | 3.09% | 2.81% |
+| Stage events | 1.09% | 0.99% |
+| Map updates | 0.75% | 1.07% |
+| HUD | 1.85% | 1.71% |
+| Trace | 1.64% | 1.34% |
+| Audio | 0.74% | 0.63% |
+| Idle / remainder | 1.48% | 14.60% |
+
+20,046 DMG and 21,458 CGB samples show that sprite construction and entity updates dominate; allocation is not the sole cause. Enemy attack schedules now cache the next firing age for each of up to four layers, avoiding per-update 16-bit remainder calculations. Phase entry and 16-bit age wrap restart the same schedule. Sprite scratch variables use static storage to reduce stack-relative access; interrupts never call this non-reentrant routine. A signed-coordinate shift rewrite was tried and discarded because it did not improve the comparison.
+
+A separate discontinuity existed at looping map boundaries: camera wrap entered the full 32-row reload path and disabled the LCD. Maps whose heights are multiples of the 32-row hardware ring now wrap with a one-row update. Other map sizes retain the safe reload path. This is a boundary fix, not an explanation of every ordinary spawn hitch; the normal opening benchmark does not cross this boundary. The editor also reuses ImageData instead of allocating a new 160×144 buffer each paint. This host allocation reduction is not included in ROM-cycle measurements.
+
+### Controlled v4 / v5 comparison
+
+The sampler now holds A together with START, so title/fade duration cannot change the initial shooting phase. Both simulations use the same 180-update respawn for this comparison; v5's shipping 90-update wait is disabled in the fixture. Ticks 120–1799, ordinary emulator speed, unchanged waves and patterns. This protocol differs from the historical v4 experiment above. Units are PPU display frames per published update, lower is better.
+
+| Mode / lifecycle | v4 mean gap | v5 mean gap |
+| --- | ---: | ---: |
+| DMG / none | 1.699 | 1.658 |
+| DMG / create | 2.072 | 2.026 |
+| DMG / destroy | 1.617 | 1.551 |
+| DMG / both | 2.276 | 2.224 |
+| CGB / none | 1.043 | 1.030 |
+| CGB / create | 1.195 | 1.179 |
+| CGB / destroy | 1.056 | 1.037 |
+| CGB / both | 1.208 | 1.163 |
+
+Weighted mean gaps: DMG 1.745→1.700 (about 2.5% shorter), CGB 1.064→1.048 (about 1.4% shorter). DMG uses 1680 samples on both sides with no multi-update exclusions. CGB uses 1583/1593 samples with 48/43 exclusions. Worst observed gaps still reach four display frames on DMG and two on CGB. These are limited opening-section observations, not guaranteed full-game FPS or complete elimination of stutter.
+
+v5 also halves the authored respawn delay to 90 updates, adds a short boss-impact noise-channel sound with a four-VBlank retrigger limit, and persists rankings to battery SRAM. Saving occurs after the run, so it does not add writes to the gameplay loop. BGM pulse/wave channels are preserved.
+
+To build a disposable instrumented copy of the current engine, run `node editor/tests/profile-build.cjs` after building the editor. Pass its printed ROM path to `node editor/tests/profile-runtime.mjs ROM_PATH profile.json`. The copy lives under `.cache/profile-fixture-*`; delete that copy after measurement. Instrumentation changes timings and must not be used as the distributed game.

@@ -78,6 +78,9 @@ extern CE_State ce_state;
 extern uint8_t ce_is_cgb, ce_scene, ce_pause, ce_active_screen;
 extern uint8_t ce_used;
 extern uint16_t ce_scores[5];
+extern const uint8_t ce_save_id[4];
+void ce_save_load(void) BANKED;
+void ce_save_scores(void) BANKED;
 extern volatile uint8_t ce_trace[24];
 
 void ce_copy(uint8_t *dest, const CE_Data *source, uint16_t offset, uint16_t length) NONBANKED;
