@@ -115,15 +115,14 @@ const screens = [
         item("scores-list", "", 5, 5, "highscores"),
         item("scores-back", "A : TITLE", 5, 16),
     ]),
-    { ...screen("hud", "スコア・残機・TIME（1行）", "", [
+    { ...screen("hud", "スコア・残機（1行）", "", [
         { ...item("hud-score", "S", 0, 0, "score"), digits: 5 },
         { ...item("hud-lives", "P", 8, 0, "lives"), digits: 1 },
-        { ...item("hud-time", "TIME", 13, 0, "time"), digits: 3 },
     ]), rows: 1 },
 ];
 
 const game = {
-    schemaVersion: 1, name: "nova-spear", title: "NOVA SPEAR", mode: "campaign",
+    schemaVersion: 1, name: "nova-spear", title: "NOVA SPEAR", mode: "campaign", timeLimit: false, bossCelebration: true,
     seed: 73, dmgPalette: 27,
     startStage: stageBlueprints[0].id, stageOrder: stageBlueprints.map((s) => s.id),
     palettes, assets, patterns, enemies, bosses,

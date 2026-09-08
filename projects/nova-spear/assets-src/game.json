@@ -33943,7 +33943,7 @@
     },
     {
       "id": "hud",
-      "name": "スコア・残機・TIME（1行）",
+      "name": "スコア・残機（1行）",
       "background": "",
       "palette": 5,
       "dock": "top",
@@ -33965,15 +33965,6 @@
           "palette": 5,
           "binding": "lives",
           "digits": 1
-        },
-        {
-          "id": "hud-time",
-          "text": "TIME",
-          "x": 13,
-          "y": 0,
-          "palette": 5,
-          "binding": "time",
-          "digits": 3
         }
       ],
       "rows": 1
@@ -34006,5 +33997,7 @@
     "author": "HOSSIE-JP / NOVA SPEAR project",
     "license": "Original project design and music; native pixel artwork CC0-1.0",
     "source": "Original vertical shooting game; authored sprites, maps, choreography and score routes. No third-party game assets."
-  }
+  },
+  "timeLimit": false,
+  "bossCelebration": true
 }

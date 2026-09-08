@@ -143,3 +143,32 @@ A disposable C-emitter build used the same VBlank wait and camera commit as v6. 
 The ASM improvement is modest; synchronization is the main behavior change. Waiting for actual display lowers logical progression relative to v5's unacknowledged publications. A separate ordinary-play sampler observed approximately 26–29 updates/s on DMG and 46–55 on CGB across opening intervals. It is incorrect to present the new wait as a general FPS increase. Busy intervals still repeat frames, and the hardware ten-sprites-per-scanline limit can still hide sprite tiles.
 
 Release: 131072 bytes, static WRAM plus shadow OAM 1956 bytes; SHA-256 `287292bba30b7149f487cc273a7c9a8dff1d89dee1e58d7ce2864dfc413876a6`. No instrumented diagnostic ROM is distributed. Windows GUIs and physical hardware remain untested.
+
+## v7: middle-stage investigation and rejected optimization
+
+The v6 engine was sampled over logical ticks 1200–1799 using a disposable instrumented ROM and ordinary START/A input. The profiler now labels the mandatory VBlank wait as idle instead of accidentally charging it to HUD work. Phase sampling is approximate, includes interrupts, and perturbs timing; these percentages are not frame rates or precise exclusive CPU times.
+
+| Phase | DMG | CGB |
+| --- | ---: | ---: |
+| Sprite preparation / OAM | 27.78% | 26.25% |
+| Entity updates | 26.62% | 25.60% |
+| Collision | 10.20% | 9.43% |
+| Stage events | 1.05% | 0.92% |
+| Map | 1.20% | 1.55% |
+| HUD | 1.36% | 1.35% |
+| Idle / display wait / remainder | 26.70% | 30.26% |
+
+21,384 DMG and 22,379 CGB samples locate the largest active costs in sprite construction and actor updates. The entity pool remains fixed; no gameplay heap allocation, free, or SRAM write was introduced. VBlank synchronization quantizes completed updates into whole display intervals: a small CPU reduction may still miss the same display boundary. These observations do not rule out every rare spike or describe stages 2–3.
+
+A trial replaced wave/bounce modulo and division with deduplicated fixed-point offset tables in banked ROM and a per-entity cursor. It preserved integer motion semantics, but added 62 bytes of cursor RAM and extra ROM/table access. Identical v6 HUD, timer, waves, input and disabled victory presentation were used for the controlled comparison at ticks 1200–2399. Each mode/build supplied 1200 single-update observations, with no multi-update exclusions.
+
+| Mode | v6 mean display frames/update | Table trial | Maximum before / after |
+| --- | ---: | ---: | ---: |
+| DMG | 2.247 | 2.248 | 4 / 4 |
+| CGB | 1.240 | 1.240 | 2 / 2 |
+
+The trial did not produce a useful observed improvement and was removed before release. It is not included in v7. We do not claim a frame-rate increase or that mid-stage stutter is solved. v7 removes the unused TIME field and its display work, keeps v6's no-catch-up display policy and handwritten SM83 OAM emitter, and adds presentation outside the combat loop. Boss victory clears combat entities, uses the existing bounded effect pool, and does not run actor AI or collisions during the sequence.
+
+To reproduce a selected range, `spawn-performance.mjs ROM.gb game.json result.json FROM_TICK TO_TICK` and `profile-runtime.mjs ROM.gb result.json FROM_TICK TO_TICK` accept optional bounds. The latter requires a disposable instrumented ROM. The diagnostic ROM and rejected trial are not distributed.
+
+Shipping v7 Release: 131072 bytes, static WRAM plus shadow OAM 1962 bytes; SHA-256 `9bc31873d687ab29f6a074cb67c2764f97e2579e56ec67006a69eb0801c99eaf`. Music resides in bank 2 to leave room for the bank-1 renderer. The table trial's 2024-byte RAM footprint is not shipped.

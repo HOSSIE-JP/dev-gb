@@ -12,6 +12,7 @@
 #define CE_MUSIC_BOSS 5u
 #define CE_MUSIC_CLEAR 6u
 #define CE_MUSIC_GAMEOVER 7u
+#define CE_MUSIC_VICTORY 8u
 
 extern uint8_t ce_music_track;
 void ce_music_play(uint8_t track) BANKED;

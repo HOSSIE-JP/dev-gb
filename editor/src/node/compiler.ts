@@ -513,7 +513,7 @@ export function generate(
     config.push(
         `const uint16_t ce_player_invulnerability=${game.player.invulnerability},ce_clear_bonus=${game.clearBonus},ce_player_respawn_delay=${game.player.respawnDelay ?? 0};`,
         `const uint8_t ce_save_id[]={${Array.from(Buffer.from(game.name)).reduce((h, b) => Math.imul(h ^ b, 16777619) >>> 0, 2166136261).toString(16).padStart(8,"0").match(/../g)!.map(b => parseInt(b,16))}};`,
-        `const uint8_t ce_stage_fade=${+(game.stageFade ?? true)};`,
+        `const uint8_t ce_stage_fade=${+(game.stageFade ?? true)},ce_time_limit=${+(game.timeLimit ?? true)},ce_boss_celebration=${+(game.bossCelebration ?? false)};`,
         `const int16_t ce_player_start_x=${q4(game.player.x)},ce_player_start_y=${q4(game.player.y)};`,
         `const uint8_t ce_explosion_asset=${game.effects.explosion ? assetId(game.effects.explosion) : 255},ce_explosion_duration=${game.effects.duration};`,
     );

@@ -113,7 +113,7 @@ void ce_hud(void) BANKED {
         if (b->kind == 5u) { for (j = 0; j != 5u; ++j) { number(b->x, b->y + j * 2u, j + 1u, 1); number(b->x + 3u, b->y + j * 2u, ce_scores[j], 5); } continue; }
         if (b->kind == 1u) value = ce_state.score;
         if (b->kind == 2u) value = ce_state.lives;
-        if (b->kind == 3u) value = (ce_stages[ce_state.stage].duration - ce_state.stage_tick + 59u) / 60u;
+        if (b->kind == 3u && ce_time_limit && ce_state.stage_tick < ce_stages[ce_state.stage].duration) value = (ce_stages[ce_state.stage].duration - ce_state.stage_tick + 59u) / 60u;
         if (b->kind == 4u) value = ce_boss_hp();
         if (ce_active_screen == 4u) {
             if (hud_valid && hud_values[i] == value) continue;

@@ -19,6 +19,8 @@ const labels: Record<string, string> = {
     speed: "速度 px / frame",
     lives: "残機",
     respawnDelay: "復帰待ち（ゲームフレーム）",
+    timeLimit: "制限時間を有効にする",
+    bossCelebration: "ボス撃破の連続爆発とファンファーレ",
     stageFade: "ステージ切替をフェード",
     invulnerability: "無敵時間（frame）",
     x: "X",
@@ -160,7 +162,7 @@ export function Form({
                 : context === "stage" ? { requireBoss: false, scrollDown: false, music: 0, ...value }
                 : value.id === "hud" ? { rows: 2, ...value }
                 : "binding" in value ? { digits: 5, ...value }
-                : value.schemaVersion === 1 ? { stageFade: true, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
+                : value.schemaVersion === 1 ? { stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )
                 .filter(

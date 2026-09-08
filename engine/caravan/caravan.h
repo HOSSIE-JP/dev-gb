@@ -67,7 +67,8 @@ extern const uint8_t ce_player_asset, ce_player_weapon, ce_player_speed, ce_play
 extern const uint8_t ce_player_focus_weapon, ce_player_focus_speed;
 extern const uint8_t ce_music_title, ce_music_boss, ce_music_clear, ce_music_gameover;
 extern const uint16_t ce_player_invulnerability, ce_clear_bonus, ce_player_respawn_delay;
-extern const uint8_t ce_stage_fade;
+extern const uint8_t ce_stage_fade, ce_time_limit, ce_boss_celebration;
+extern uint8_t ce_victory_frame;
 extern uint16_t ce_respawn;
 extern uint8_t ce_fade_level;
 extern const uint8_t ce_explosion_asset, ce_explosion_duration;

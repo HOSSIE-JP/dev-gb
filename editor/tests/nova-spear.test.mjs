@@ -78,6 +78,7 @@ test("legacy projects keep identical A/B firing and movement without focus setti
 
 test("required bosses cannot be bypassed by waiting for the stage timer", () => {
     const game = emptyArena();
+    game.timeLimit = true;
     game.stages[0].duration = 1;
     game.stages[0].requireBoss = true;
     const required = new lib.Simulation(game);
@@ -139,8 +140,8 @@ test("NOVA SPEAR has abundant one-hit, non-firing flights with a boss breathing 
 test("compact HUD uses one row, bounded numeric fields and the full remaining playfield", () => {
     const game = authored(), hud = game.screens.find(s => s.id === 'hud');
     assert.equal(hud.rows, 1);
-    assert.deepEqual(hud.items.map(i=>i.binding), ['score','lives','time']);
-    assert.deepEqual(hud.items.map(i=>i.digits), [5,1,3]);
+    assert.deepEqual(hud.items.map(i=>i.binding), ['score','lives']);
+    assert.deepEqual(hud.items.map(i=>i.digits), [5,1]);
     assert.ok(hud.items.every(i=>i.y===0 && i.x+i.text.length+i.digits<=20));
     assert.deepEqual(lib.validate(game).filter(d=>d.severity==='error'), []);
     const sim = new lib.Simulation(emptyArena());
@@ -195,4 +196,13 @@ test("ordinary ROM playback slows after a late callback without invisible catch-
     assert.equal(lib.playbackBudget(100,0.5).frames,1);
     assert.equal(lib.playbackBudget(100,2).frames,2,"explicit fast debug mode retains acceleration");
     assert.equal(lib.playbackBudget(5,1).frames,0);
+});
+
+test("untimed NOVA SPEAR waits for boss defeat, without timeout or TIME HUD", () => {
+    const g=emptyArena();g.stages[0].duration=1;g.stages[0].requireBoss=true;
+    assert.equal(g.timeLimit,false);assert.equal(g.bossCelebration,true);
+    const sim=new lib.Simulation(g);for(let i=0;i<1200;i++)sim.step(0);
+    assert.equal(sim.result,0);assert.equal(sim.score,0);assert.equal(sim.stageTick,1200);
+    sim.bossDefeated=true;sim.step(0);assert.equal(sim.result,2);
+    assert.ok(!g.screens.find(s=>s.id==='hud').items.some(i=>i.binding==='time'));
 });

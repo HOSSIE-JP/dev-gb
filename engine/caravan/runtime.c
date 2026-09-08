@@ -16,6 +16,9 @@ static uint16_t event_cursor;
 static CE_Event next_event;
 static uint8_t active[CE_MAX_ENTITIES];
 static uint16_t next_attack[CE_MAX_ENTITIES * 4u];
+uint8_t ce_victory_frame;
+static uint8_t defeated_asset;
+static int16_t defeated_x, defeated_y;
 static CE_Entity *targets[9];
 static CE_Box *target_boxes[9];
 static uint8_t target_count, target_slots[9];
@@ -324,7 +327,7 @@ static void collide_shots(void) {
             release(i);
             if (target->hp <= e->damage) {
                 actor = target->kind == CE_BOSS ? &ce_bosses[target->ref] : &ce_enemies[target->ref];
-                add_score(actor->score); if (target->kind == CE_BOSS) ce_state.boss_defeated = 1;
+                add_score(actor->score); if (target->kind == CE_BOSS) { ce_state.boss_defeated = 1; defeated_asset = target->asset; defeated_x = target->x; defeated_y = target->y; }
                 release(target_slots[j]); ce_sound(1);
                 explode(target->x, target->y);
             } else { target->hp -= e->damage; if (target->kind == CE_BOSS) ce_sound(4); }
@@ -343,18 +346,54 @@ static void collide_player(void) {
         if (overlap()) { hit_player(); if (e->kind == CE_ESHOT) release(i); }
     }
 }
+static void victory_effects(void) {
+    uint8_t i;
+    for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_FX) {
+        if (++ce_entities[i].age >= ce_entities[i].lifetime) release(i);
+    }
+    while (ce_used && !ce_entities[ce_used - 1u].kind) --ce_used;
+    ce_render(); ce_audio_sync();
+}
+static void celebrate_boss(void) {
+    static const int8_t bursts[24] = {-16,-8, 12,6, -8,14, 18,-12, 0,-18, -18,6, 8,16, 16,0, -10,-16, 0,8, 20,12, -20,-2};
+    uint8_t i, wreck, burst = 0;
+    uint16_t dropped = ce_state.dropped;
+    for (i = 0; i != ce_used; ++i) release(i);
+    ce_used = 0;
+    wreck = allocate(CE_BOSS, defeated_asset);
+    if (wreck != CE_NONE) { ce_entities[wreck].x = defeated_x; ce_entities[wreck].y = defeated_y; }
+    ce_music_play(CE_MUSIC_VICTORY); ce_hud();
+    for (ce_victory_frame = 1; ce_victory_frame <= 144u; ++ce_victory_frame) {
+        if ((ce_victory_frame & 7u) == 1u) {
+            explode(defeated_x + (int16_t)bursts[burst] * 16, defeated_y + (int16_t)bursts[burst + 1u] * 16);
+            burst += 2u; if (burst == 24u) burst = 0;
+            ce_sound(1);
+        }
+        if (ce_victory_frame == 64u) {
+            if (wreck != CE_NONE) release(wreck);
+            explode(defeated_x, defeated_y); explode(defeated_x - 128, defeated_y + 64); explode(defeated_x + 128, defeated_y - 64);
+            ce_sound(2);
+        }
+        victory_effects();
+    }
+    /* Let the final fanfare cadence resolve before starting the scene fade. */
+    while (ce_music_track == CE_MUSIC_VICTORY) victory_effects();
+    for (i = 0; i != ce_used; ++i) release(i);
+    ce_used = 0; ce_victory_frame = 0; ce_state.dropped = dropped;
+}
 void ce_step(uint8_t input) NONBANKED {
     uint8_t finish; const CE_Stage *stage = &ce_stages[ce_state.stage];
     if (ce_state.result) return;
     ce_trace[22] = 1; /* Keep entity RAM and the public trace in the same snapshot. */
     step_player(input); finish = stage_events(); step_entities(); collide_shots(); collide_player();
     while (ce_used && !ce_entities[ce_used - 1u].kind) --ce_used;
-    ++ce_state.tick; ++ce_state.stage_tick;
-    if (!ce_state.result && stage->require_boss && !ce_state.boss_defeated && (finish || ce_state.stage_tick >= stage->duration))
+    ++ce_state.tick; if (ce_state.stage_tick != 65535u) ++ce_state.stage_tick;
+    if (!ce_state.result && stage->require_boss && !ce_state.boss_defeated && (finish || (ce_time_limit && ce_state.stage_tick >= stage->duration)))
         ce_state.result = 1;
-    if (!ce_state.result && (finish || (ce_state.boss_defeated && stage->clear_boss) || ce_state.stage_tick >= stage->duration)) {
+    if (!ce_state.result && (finish || (ce_state.boss_defeated && stage->clear_boss) || (ce_time_limit && ce_state.stage_tick >= stage->duration))) {
         add_score(ce_clear_bonus);
-        ce_sound(3);
+        if (ce_state.boss_defeated && ce_boss_celebration) celebrate_boss();
+        else ce_sound(3);
         if (ce_campaign && ce_state.stage + 1u < ce_stage_count) { ce_fade(1); ce_reset(ce_state.stage + 1u, 0); ce_load_stage(); ce_fade(0); }
         else ce_state.result = 2;
     }

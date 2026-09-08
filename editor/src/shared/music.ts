@@ -8,6 +8,7 @@ export const MUSIC_TRACKS = [
     { id: 5, label: "Last Vector · ボス戦" },
     { id: 6, label: "Homeward Signal · クリア" },
     { id: 7, label: "Lost Contact · ゲームオーバー" },
+    { id: 8, label: "Victory Flare · ボス撃破ファンファーレ" },
 ] as const;
 
 export type MusicTrack = (typeof MUSIC_TRACKS)[number]["id"];

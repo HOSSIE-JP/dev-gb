@@ -130,8 +130,8 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             assert.ok(focus, "B replaces wide volleys with focused shots");
             gb.key_lift(PadKey.B);
 
-            // With no further input the actual, unmodified game must reach a
-            // result, including its required-boss deadline if collisions miss.
+            // Without firing, the untimed original either loses all lives or
+            // continues past the old deadline. Both are legitimate outcomes.
             let waitingTick, waitingCamera, observedWait = false, observedWorld = false, observedReturn = false;
             for (let frame = 0; frame < 36000; frame += 4) {
                 frames(gb, 4);
@@ -145,9 +145,11 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
                         if (last.tick > waitingTick + 30 && memory(gb).ram.readUInt16LE(syms._ce_state - 0xc000 + 4) !== waitingCamera) observedWorld = true;
                     } else if (observedWait) observedReturn = true;
                 }
-                if (last?.result) break;
+                if (last?.result || (game.timeLimit === false && last?.stageTick > game.stages[0].duration * 60 + 60)) break;
             }
             assert.ok(observedWait && observedWorld && observedReturn, `respawn wait=${observedWait}, world=${observedWorld}, return=${observedReturn}`);
+            if (last?.result) {
+                assert.equal(last.result,1);assert.equal(last.lives,0,"untimed failure only comes from losing all lives");
             assert.equal(last?.result, 1);
             assert.equal(last?.scene, 2);
             assert.equal(readByte(gb, syms, "_ce_music_track"), game.music.gameover);
@@ -162,6 +164,11 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             assert.ok(memory(gb).ram.readUInt16LE(syms._ce_scores - 0xc000) >= last.score);
             frames(gb, 4);
             capture(gb, `original-scores-${label}`);
+            } else {
+                assert.ok(last.stageTick > game.stages[0].duration * 60);
+                assert.equal(last.scene,1);
+                capture(gb, `original-no-timeout-${label}`);
+            }
             evidence.original.push(checked);
             saveEvidence();
         } finally { gb.free(); }
@@ -180,7 +187,8 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
         fixture.player.y = 120;
         for (const stage of fixture.stages) {
             stage.walls.fill(0);
-            stage.duration = 10;
+            // The old deadline expires while the boss is alive: untimed ROMs must continue.
+            stage.duration = 1;
             const originalBoss = stage.events.find((e) => e.kind === "boss");
             stage.events = [{ ...originalBoss, frame: 20, x: 80, y: 48, count: 1, interval: 0, spacing: 0 }];
         }
@@ -203,6 +211,7 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
             const sim = new lib.Simulation(stored);
             const stages = new Set(), phases = new Set(), music = new Set(), fadeLevels = new Set();
             let checked = 0, last, hitSound = false;
+            const celebrations=new Map();
             try {
                 frames(gb, 240);
                 gb.key_press(PadKey.Start);
@@ -211,6 +220,20 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
                 gb.key_lift(PadKey.Start);
                 for (let frame = 0; frame < 6000; frame++) {
                     frames(gb, 1);
+                    const victory=readByte(gb,syms,"_ce_victory_frame");
+                    if (victory) {
+                        const raw=memory(gb).ram,state=syms._ce_state-0xc000,stage=raw[state+18];
+                        const c=celebrations.get(stage)??{frames:new Set(),positions:new Set(),wreck:false,gone:false,music:false,pcm:false,tick:raw.readUInt16LE(state+2)};
+                        assert.equal(raw.readUInt16LE(state+2),c.tick,"stage time freezes during the victory scene");
+                        const entities=entityState(gb,syms._ce_entities,stored);
+                        c.pcm ||= [...gb.audio_buffer_eager(true)].some(sample=>sample!==0);
+                        c.frames.add(victory);c.music ||= readByte(gb,syms,"_ce_music_track")===8;
+                        if(victory<60)c.wreck ||= entities.some(e=>e.kind==='boss');
+                        if(victory>70)c.gone ||= !entities.some(e=>e.kind==='boss');
+                        for(const e of entities.filter(e=>e.kind==='fx'))c.positions.add(`${e.x},${e.y}`);
+                        if(victory>=24&&victory<28)capture(gb,`victory-${stage+1}-${label}`);
+                        celebrations.set(stage,c);
+                    }
                     if (memory(gb).io[0x21] === 0xa1 && memory(gb).io[0x22] === 0x19) hitSound = true;
                     fadeLevels.add(readByte(gb, syms, "_ce_fade_level"));
                     if (readByte(gb, syms, "_ce_fade_level") === 4)
@@ -236,6 +259,8 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
                 assert.equal(last?.result, 2);
                 assert.equal(last?.scene, 3);
                 assert.equal(stages.size, 3);
+                assert.equal(celebrations.size,3);
+                for(const c of celebrations.values())assert.ok(c.frames.size>10&&c.positions.size>=6&&c.wreck&&c.gone&&c.music&&c.pcm&&c.tick>60,"multi-position explosions, wreck disappearance and audible fanfare follow the disabled deadline and precede every stage exit");
                 assert.ok(hitSound, "boss impacts trigger the dedicated noise-channel hit sound");
                 assert.deepEqual([...fadeLevels].sort(), [0,1,2,3,4], "stage transitions traverse every fade level");
                 for (let index = 0; index < stored.stageOrder.length; index++) {

@@ -347,6 +347,7 @@ export class Simulation {
         }
     }
     finishStage() {
+        if (this.game.bossCelebration && this.bossDefeated) this.entities = [];
         this.score = Math.min(65535, this.score + this.game.clearBonus);
         if (
             this.game.mode === "campaign" &&
@@ -580,14 +581,14 @@ export class Simulation {
             }
         }
         this.tick++;
-        this.stageTick++;
-        if (!this.result && this.stage.requireBoss && !this.bossDefeated && (finish || this.stageTick >= this.stage.duration * 60))
+        this.stageTick = Math.min(65535, this.stageTick + 1);
+        if (!this.result && this.stage.requireBoss && !this.bossDefeated && (finish || (this.game.timeLimit !== false && this.stageTick >= this.stage.duration * 60)))
             this.result = 1;
         if (
             !this.result &&
             (finish ||
                 (this.bossDefeated && this.stage.clearOnBoss) ||
-                this.stageTick >= this.stage.duration * 60)
+                (this.game.timeLimit !== false && this.stageTick >= this.stage.duration * 60))
         )
             this.finishStage();
     }

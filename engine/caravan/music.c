@@ -1,4 +1,4 @@
-#pragma bank 1
+#pragma bank 2
 #include "music.h"
 
 /* Original NOVA SPEAR score, composed for this repository (MIT).
@@ -162,6 +162,20 @@ static const uint8_t gameover_bass[]={
     E2, H, D2, H, C2, H, B2, E2,
 };
 
+/* Original ascending brass-like victory cadence, separate from final clear. */
+static const uint8_t victory_lead[]={
+    E5,G5,B5,E6, REST,E6,REST,E6,
+    D6,B5,G5,D6, C6,E6,G6,H,
+    FS6,D6,B5,FS6, E6,B5,G5,E5,
+    C6,D6,DS6,B5, E6,H,H,H
+};
+static const uint8_t victory_bass[]={
+    E2,B2,E3,B2, D2,A2,D3,A2,
+    C2,G2,C3,G2, B2,FS3,E3,H,
+    E2,B2,E3,B2, D2,A2,D3,A2,
+    C2,G2,C3,G2, B2,FS3,E3,H
+};
+
 typedef struct {
     uint8_t rows, speed, duty, envelope, loop;
     const uint8_t *lead, *bass;
@@ -173,7 +187,8 @@ static const CE_Song songs[]={
     {128,8,0x80,0x72,1,reactor_lead,reactor_bass},
     {64,8,0x40,0x82,1,boss_lead,boss_bass},
     {32,12,0x80,0x82,0,clear_lead,clear_bass},
-    {16,15,0x80,0x72,0,gameover_lead,gameover_bass}
+    {16,15,0x80,0x72,0,gameover_lead,gameover_bass},
+    {32,5,0x40,0xa2,0,victory_lead,victory_bass}
 };
 
 uint8_t ce_music_track;
@@ -214,7 +229,7 @@ static void play_row(void) {
 }
 void ce_music_play(uint8_t track) BANKED {
     uint8_t i;
-    if (track > CE_MUSIC_GAMEOVER) track = CE_MUSIC_OFF;
+    if (track > CE_MUSIC_VICTORY) track = CE_MUSIC_OFF;
     if (track == ce_music_track) return;
     mute(); ce_music_track = track;
     row = 0; remaining = 0; paused = 0; lead_note = 0; bass_note = 0;

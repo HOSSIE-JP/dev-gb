@@ -148,6 +148,8 @@ export type Game = {
     };
     clearBonus: number;
     stageFade?: boolean;
+    timeLimit?: boolean;
+    bossCelebration?: boolean;
     music?: { title: number; boss: number; clear: number; gameover: number };
     effects: { explosion: string; duration: number };
     provenance: { author: string; license: string; source: string };
@@ -386,6 +388,8 @@ export function validateShape(
         },
         clearBonus: "number",
         "stageFade?": "boolean",
+        "timeLimit?": "boolean",
+        "bossCelebration?": "boolean",
         "music?": { title: "number", boss: "number", clear: "number", gameover: "number" },
         effects: { explosion: "string", duration: "number" },
         provenance: { author: "string", license: "string", source: "string" },
@@ -669,7 +673,7 @@ export function validate(value: unknown): Diagnostic[] {
     patternRef(game.player.weapon, "player");
     if (game.player.focusWeapon) patternRef(game.player.focusWeapon, "player");
     if (game.player.focusSpeed !== undefined) finite(game.player.focusSpeed, 0.0625, 8, "player");
-    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 7, "music");
+    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 8, "music");
     if (!game.player.weapon) err("player", "自機の武器を選択してください");
     finite(game.player.speed, 0.0625, 8, "player");
     integer(game.player.lives, 1, 9, "player");
@@ -683,7 +687,7 @@ export function validate(value: unknown): Diagnostic[] {
         integer(stage.width, 20, 20, stage.id);
         integer(stage.height, 18, 512, stage.id);
         integer(stage.duration, 1, 600, stage.id);
-        if (stage.music !== undefined) integer(stage.music, 0, 7, stage.id);
+        if (stage.music !== undefined) integer(stage.music, 0, 8, stage.id);
         finite(stage.scrollSpeed, 0, 4, stage.id);
         integer(stage.events.length, 0, 256, stage.id);
         const set = assets.get(stage.tileset),
@@ -704,7 +708,7 @@ export function validate(value: unknown): Diagnostic[] {
         let expandedEvents = 0;
         for (const e of stage.events) {
             // Tick zero is playable; tick duration * 60 has already finished.
-            integer(e.frame, 0, stage.duration * 60 - 1, e.id);
+            integer(e.frame, 0, game.timeLimit === false ? 65534 : stage.duration * 60 - 1, e.id);
             integer(e.x, -32, 192, stage.id);
             integer(e.y, -32, 176, stage.id);
             integer(e.count, 1, 8, stage.id);
@@ -721,7 +725,7 @@ export function validate(value: unknown): Diagnostic[] {
             expandedEvents += spawn ? e.count : 1;
             if (
                 spawn &&
-                e.frame + (e.count - 1) * e.interval >= stage.duration * 60
+                e.frame + (e.count - 1) * e.interval >= (game.timeLimit === false ? 65535 : stage.duration * 60)
             )
                 err(e.id, "編隊の出現がステージ終了時刻以降になっています");
         }
