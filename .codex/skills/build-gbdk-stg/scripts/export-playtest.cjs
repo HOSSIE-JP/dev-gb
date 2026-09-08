@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
-const [repoArg,romArg,outArg,titleArg]=process.argv.slice(2);
+const [repoArg,romArg,outArg,titleArg]=process.argv.slice(2).filter(a=>a!=='--acknowledge-redistribution');
 if(!outArg)throw Error('Usage: node export-playtest.cjs REPO ROM.gb OUTPUT.html [TITLE]');
 const repo=path.resolve(repoArg),rom=fs.readFileSync(romArg),out=path.resolve(outArg),pkg=path.join(repo,'editor/node_modules/boytacean');
 const wasm=fs.readFileSync(path.join(pkg,'boytacean_bg.wasm'));
-require(path.join(repo,'editor/scripts/distribution-audit.cjs')).assertNoKnownBootRoms(wasm);
+if (!process.argv.includes('--acknowledge-redistribution')) throw Error('HTML includes ROM and emulator data. The pinned Boytacean WASM contains original DMG bootstrap data. Review rights and redistribution conditions; a notice does not grant permission or remove responsibility. After review, pass --acknowledge-redistribution to export.');
+const firmwareFindings=require(path.join(repo,'editor/scripts/distribution-audit.cjs')).findKnownBootRoms(wasm);
+if(firmwareFindings.length)console.warn('NOTICE: original DMG bootstrap detected in embedded emulator. Redistribution rights require review.');
 if(JSON.parse(fs.readFileSync(path.join(pkg,'package.json'))).version!=='0.13.2')throw Error('Revalidate the Boytacean PCM range and API before using another version');
 if(rom.length<32768||rom.length%16384)throw Error('Invalid ROM size');
 const sha=crypto.createHash('sha256').update(rom).digest('hex'),title=titleArg||path.basename(romArg),escape=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

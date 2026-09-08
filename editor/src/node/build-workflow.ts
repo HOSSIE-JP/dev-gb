@@ -61,7 +61,7 @@ export function toolchainStatus(root: string): ToolchainStatus {
         tools,
         hint: ready
             ? "ビルドに必要なツールを確認しました"
-            : "不足しているツールは bootstrap.cmd でセットアップしてください",
+            : "「ツール → セットアップ・修復」で不足ツールを取得してください",
     };
 }
 

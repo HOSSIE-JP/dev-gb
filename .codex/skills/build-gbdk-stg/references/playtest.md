@@ -2,7 +2,7 @@
 
 The canonical artifact is the compiled `.gb`. The web player executes those same bytes with the repository-pinned Boytacean WASM, not Simulation.ts. Emulator source/license: [Boytacean](https://github.com/joamag/boytacean). Preserve its supplied notices and the game's/font/toolchain notices in distribution.
 
-`node scripts/export-playtest.cjs REPO ROM.gb OUTPUT.html "DISPLAY TITLE"`
+`node scripts/export-playtest.cjs REPO ROM.gb OUTPUT.html "DISPLAY TITLE" --acknowledge-redistribution`
 
 The exporter bundles installed JavaScript, WASM and ROM into one standalone HTML; no CDN or ROM fetch is needed. It includes keyboard/touch controls, DMG/GBC selection, pause, audio opt-in, ROM download and SRAM import/export. ROM and HTML SHA-256 are written to the adjacent `.html.json` manifest. `tested:false` means export alone does not prove playback: add actual QA evidence separately.
 
@@ -43,4 +43,4 @@ The signed Int16Array container does not imply full-scale 16-bit PCM: the APU su
 
 ## Distribution prerequisite
 
-The pinned Boytacean 0.13.2 npm WASM includes original DMG bootstrap data. `export-playtest.cjs` runs the repository distribution check and stops before writing HTML when this data is present. Read the checkout’s `docs/licensing.md`. Until a rights-cleared emulator build is available, deliver the game ROM with local emulator instructions instead of an embedded WASM player. Passing a known-byte check alone is not license clearance for a replacement build. Preserve all runtime and boot-ROM notices.
+The pinned Boytacean 0.13.2 npm WASM includes original DMG bootstrap data. `export-playtest.cjs` requires explicit acknowledgement via `--acknowledge-redistribution` and reports known firmware findings. Read the checkout’s `docs/licensing.md` and explain the redistribution implications before using this option; existing explicit session acknowledgement applies. Acknowledgement grants no rights and does not remove responsibility. Passing a known-byte check alone is not license clearance for a replacement build. Preserve all runtime and boot-ROM notices.

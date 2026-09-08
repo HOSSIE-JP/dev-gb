@@ -24,7 +24,7 @@ for (const [name, source] of [
         ...options,
         entryPoints: [path.join(root, source)],
         outfile: path.join(root, `build/${name}.cjs`),
-        external: name === "main" || name === "preload" ? ["electron"] : [],
+        external: name === "main" || name === "preload" ? ["electron", "./html-export.cjs"] : [],
     });
 }
 await build({
@@ -53,3 +53,9 @@ fs.copyFileSync(
 );
 
 writeRuntimeNotices();
+
+await build({bundle:true, platform:"browser", format:"iife", minify:true,
+    entryPoints:[path.join(root,"../.codex/skills/build-gbdk-stg/assets/player.js")],
+    alias:{boytacean:path.join(root,"node_modules/boytacean/boytacean.js")},
+    outfile:path.join(root,"build/player.js")});
+fs.copyFileSync(path.join(root,"scripts/html-export.cjs"),path.join(root,"build/html-export.cjs"));

@@ -30,7 +30,7 @@ const {
     protocol,
     Menu,
 } = require("electron");
-const root = path.resolve(__dirname, "../..");
+const root = app.isPackaged ? path.dirname(process.execPath) : path.resolve(__dirname, "../..");
 for (const name of ["userData", "sessionData", "crashDumps"]) {
     const dir = safePath(root, ".cache/editor", name);
     fs.mkdirSync(dir, { recursive: true });
@@ -125,7 +125,7 @@ handle("init", () => {
         glyphs = readFont(root);
     } catch (error) {
         data.warnings.push(
-            `日本語フォントを読み込めません。bootstrap.cmd でセットアップしてください: ${(error as Error).message}`,
+            `日本語フォントを読み込めません。「ツール → セットアップ・修復」で取得してください: ${(error as Error).message}`,
         );
     }
     return { projects, name, ...data, glyphs };
@@ -367,7 +367,86 @@ ipcMain.on(
         }
     },
 );
-app.whenReady().then(() => {
+function emulatorPath() {
+    return app.isPackaged ? safePath(root, ".tools/boytacean/boytacean_bg.wasm") : path.join(__dirname, "boytacean_bg.wasm");
+}
+let settingUp = false;
+async function runSetup(optional = "") {
+    if (settingUp || building) return;
+    const answer = await dialog.showMessageBox({
+        type: "info", buttons: ["ダウンロードしてセットアップ", "後で"], defaultId: 0, cancelId: 1,
+        message: "GBゲーム制作環境をセットアップします",
+        detail: `保存先: ${root}\nGBDK、Node.js、日本語フォント、Boytaceanを公式配布元から取得します。Git・Python・管理者権限は不要です。各ツールの利用条件は docs/licensing.md を参照してください。${optional ? `\n追加: ${optional}` : ""}${optional === "emulicious" ? "\nEmuliciousは個人・非商用向けです。商用利用は作者の事前許可が必要です。https://emulicious.net/License.txt" : ""}`,
+    });
+    if (answer.response !== 0) return;
+    settingUp = true;
+    const progress = new BrowserWindow({ width: 820, height: 540, title: "セットアップ", webPreferences: { sandbox: true, contextIsolation: true, nodeIntegration: false } });
+    progress.on("close", (e: any) => { if (settingUp) e.preventDefault(); });
+    await progress.loadURL("data:text/html;charset=utf-8," + encodeURIComponent('<!doctype html><meta charset="utf-8"><style>body{background:#10161e;color:#ddeafa;font:15px system-ui;padding:24px}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style><h1>制作環境をセットアップ中</h1><p>完了までお待ちください。失敗した場合は再実行できます。</p><pre id="log"></pre>'));
+    const append = (s: string) => {
+        log(s);
+        if (!progress.isDestroyed()) void progress.webContents.executeJavaScript(`document.getElementById('log').textContent = (document.getElementById('log').textContent + ${JSON.stringify(s)}).slice(-24000); window.scrollTo(0,document.body.scrollHeight)`).catch(() => {});
+    };
+    try {
+        if (process.platform !== "win32") throw new Error("自動セットアップはWindows x64用です。");
+        const ps = path.join(process.env.SystemRoot || "C:\\Windows", "System32/WindowsPowerShell/v1.0/powershell.exe");
+        const args = ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", safePath(root, "scripts/bootstrap.ps1"), "-SkipDoctor", "-SkipExtensions"];
+        if (app.isPackaged) args.push("-Packaged");
+        if (optional) args.push("-OptionalTools", optional);
+        await new Promise<void>((resolve, reject) => {
+            const child = spawn(ps, args, { cwd: root, windowsHide: true, env: { ...process.env } });
+            child.stdout.on("data", (s) => append(String(s)));
+            child.stderr.on("data", (s) => append(String(s)));
+            child.once("error", reject);
+            child.once("close", code => code === 0 ? resolve() : reject(new Error(`セットアップに失敗しました (${code})。ログを確認して再実行してください。`)));
+        });
+        if (app.isPackaged) {
+            const entry = JSON.parse(fs.readFileSync(safePath(root, "config/tools.lock.json"), "utf8")).editorEmulator;
+            const destination = emulatorPath();
+            const valid = fs.existsSync(destination) && crypto.createHash("sha256").update(fs.readFileSync(destination)).digest("hex") === entry.sha256;
+            if (!valid) {
+                append("\n内蔵エミュレーターを取得しています…\n");
+                const response = await fetch(entry.url, { signal: AbortSignal.timeout(180000) });
+                if (!response.ok || !response.url.startsWith("https://")) throw new Error("エミュレーターのダウンロードに失敗しました");
+                const bytes = Buffer.from(await response.arrayBuffer());
+                if (crypto.createHash("sha256").update(bytes).digest("hex") !== entry.sha256) throw new Error("エミュレーターのSHA-256が一致しません");
+                fs.mkdirSync(path.dirname(destination), { recursive: true });
+                atomicWrite(destination, bytes);
+            }
+        }
+        if (!toolchainStatus(root).ready) throw new Error("必要なツールが不足しています。セットアップを再実行してください。");
+        await dialog.showMessageBox(progress, { message: "セットアップが完了しました。編集画面を開き直します。" });
+        if (win && !win.isDestroyed()) win.webContents.reload();
+    } catch (error) {
+        append(`\n${(error as Error).message}`);
+        await dialog.showMessageBox(progress, { type: "error", message: "セットアップを完了できませんでした", detail: (error as Error).message });
+    } finally {
+        settingUp = false;
+        progress.destroy();
+    }
+}
+async function exportHtml() {
+    try {
+        const consent = safePath(root, ".cache/editor/html-export-consent-v1.json");
+        if (!fs.existsSync(consent)) {
+            const result = await dialog.showMessageBox(win, { type: "warning", buttons: ["確認して出力を続ける", "キャンセル"], defaultId: 1, cancelId: 1,
+                message: "試遊HTMLにはROMとエミュレーターが埋め込まれます",
+                detail: "HTMLの公開・譲渡は同梱データの再配布です。ROM・素材・エミュレーター・ブートROMの権利と利用条件を確認してください。現在のBoytaceanには純正DMGブートROMのデータが含まれています。権利者からの許諾が必要となる可能性があります。確認は利用者が行いますが、この表示により開発者や利用者の法的責任が免除されるものではありません。ライセンス表示は出力に保持されます。" });
+            if (result.response !== 0) return;
+            atomicWrite(consent, JSON.stringify({ version: 1, acceptedAt: new Date().toISOString() }));
+        }
+        const source = await dialog.showOpenDialog(win, { title: "出力するROMを選択", properties: ["openFile"], filters: [{ name: "Game Boy ROM", extensions: ["gb", "gbc"] }] });
+        if (source.canceled) return;
+        const destination = await dialog.showSaveDialog(win, { title: "試遊HTMLを書き出す", defaultPath: source.filePaths[0].replace(/\.(gb|gbc)$/i, ".html"), filters: [{ name: "HTML", extensions: ["html"] }] });
+        if (destination.canceled || !destination.filePath) return;
+        const { makePlaytestHtml } = require("./html-export.cjs");
+        const html = makePlaytestHtml(fs.readFileSync(source.filePaths[0]), fs.readFileSync(emulatorPath()), path.basename(source.filePaths[0]), fs.readFileSync(path.join(__dirname, "player.js"), "utf8"), fs.readFileSync(path.join(__dirname, "THIRD-PARTY-LICENSES.txt"), "utf8"));
+        atomicWrite(destination.filePath, html);
+        await dialog.showMessageBox(win, { message: "試遊HTMLを書き出しました", detail: destination.filePath });
+    } catch (error) { await dialog.showMessageBox(win, { type: "error", message: "HTMLを書き出せませんでした", detail: (error as Error).message }); }
+}
+
+app.whenReady().then(async () => {
     protocol.handle("caravan", (request: Request) => {
         const url = new URL(request.url),
             file = url.pathname.slice(1) || "index.html";
@@ -388,7 +467,7 @@ app.whenReady().then(() => {
               : file.endsWith(".css")
                 ? "text/css"
                 : "text/html";
-        return new Response(fs.readFileSync(path.join(__dirname, file)), {
+        return new Response(fs.readFileSync(file === "boytacean_bg.wasm" ? emulatorPath() : path.join(__dirname, file)), {
             headers: {
                 "Content-Type": mime,
                 "Content-Security-Policy":
@@ -396,7 +475,15 @@ app.whenReady().then(() => {
             },
         });
     });
-    Menu.setApplicationMenu(null);
+    Menu.setApplicationMenu(Menu.buildFromTemplate([
+        { label: "ツール", submenu: [
+            { label: "セットアップ・修復", click: () => runSetup() },
+            { label: "BGBを追加", click: () => runSetup("bgb") },
+            { label: "Emuliciousを追加", click: () => runSetup("emulicious") },
+            { type: "separator" },
+            { label: "ROMから試遊HTMLを書き出す", click: () => exportHtml() },
+        ] },
+    ]));
     win = new BrowserWindow({
         width: 1540,
         height: 980,
@@ -445,6 +532,18 @@ app.whenReady().then(() => {
             }
         }
     });
+    if (app.isPackaged && process.env.CARAVAN_PACKAGE_SMOKE !== "1" && (!toolchainStatus(root).ready || !fs.existsSync(emulatorPath()))) await runSetup();
+    if (app.isPackaged && process.env.CARAVAN_PACKAGE_SMOKE === "1") {
+        const timeout = setTimeout(() => app.exit(1), 30000);
+        win.webContents.once("did-finish-load", async () => {
+            try {
+                const ready = await win.webContents.executeJavaScript("typeof window.caravan?.init === 'function'");
+                if (!ready || listProjects(root).length < 3) throw new Error("Packaged resources missing");
+                atomicWrite(safePath(root, ".cache/package-smoke.json"), JSON.stringify({ ready, projects: listProjects(root).length }));
+                clearTimeout(timeout); app.exit(0);
+            } catch { app.exit(1); }
+        });
+    }
     win.loadURL("caravan://app/index.html");
 });
 app.on("window-all-closed", () => app.quit());

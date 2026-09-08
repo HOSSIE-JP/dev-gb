@@ -1,6 +1,7 @@
 param(
     [string]$OptionalTools = '',
     [switch]$List,
+    [switch]$Packaged,
     [switch]$Force,
     [switch]$Offline,
     [switch]$UpdateLock,
@@ -386,6 +387,7 @@ try {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $root = Get-RepoRoot
     $selectedTools = @(Get-SetupSelection -OptionalTools $OptionalTools)
+    if ($Packaged) { $selectedTools = @($selectedTools | Where-Object { $_ -ne 'electron' }) }
     $lock = Read-ToolsLock -Root $root
     foreach ($name in $selectedTools) {
         if (-not $lock.tools.PSObject.Properties[$name]) { throw "Missing lock entry: $name" }
@@ -493,7 +495,7 @@ try {
         }
     }
 
-    & (Join-Path $PSScriptRoot 'setup-editor.ps1') -Offline:$Offline -Force:$Force
+    if (-not $Packaged) { & (Join-Path $PSScriptRoot 'setup-editor.ps1') -Offline:$Offline -Force:$Force }
 
     if (-not $SkipDoctor) {
         & (Join-Path $PSScriptRoot 'doctor.ps1')

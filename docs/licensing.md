@@ -20,9 +20,9 @@
 
 固定依存Boytacean 0.13.2の`boytacean_bg.wasm`には、上流[`src/data.rs`](https://github.com/joamag/boytacean/blob/0.13.2/src/data.rs)の`DMG_BOOT`と一致する256バイトが含まれます。該当データのSHA-256は`cf053eccb4ccafff9e67339d4e78e98dce7d1ed59be819d2a1ba2232c6fce1c7`です。これは実機DMGの起動コードです。npmパッケージにApache-2.0と記載されていることだけでは、このデータの再配布権限まで確認できません。
 
-アプリがBootix／Boytaceanの代替起動ROMを選択していても、WASMに含まれる別の起動コードは除去されません。GitにはWASMを含めていませんが、WASMを埋め込むHTML試遊版やエディター実行バンドルはこの確認対象です。
+アプリがBootix／Boytaceanの代替起動ROMを選択していても、WASMに含まれる別の起動コードは除去されません。GitとWindows配布ZIPにはWASMを含めません。利用者が初回起動時に固定版を取得し、SHA-256を照合します。取得後のWASMを埋め込むHTML試遊版は再配布の確認対象です。
 
-`editor/scripts/distribution-audit.cjs`は既知のDMG起動コードを検出します。スキルのHTML書出しは検出時に停止します。既存のHTML試遊ファイルも、WASMの権利確認または差替えが済むまで一般公開を控えてください。この検査は既知の1種類を検出するもので、未知の起動ROM・他の権利問題がないことを証明するものではありません。
+`editor/scripts/distribution-audit.cjs`は既知のDMG起動コードを検出します。HTML書出しではこの既知の内容と再配布条件を表示し、利用者の確認後に出力できます。確認操作は権利の許諾や免責を意味しません。公開・譲渡前の権利確認は引き続き必要です。この検査は既知の1種類を検出するもので、未知の起動ROM・他の権利問題がないことを証明するものではありません。
 
 配布可能な構成にするには、権利確認済み起動ROMだけを含むソースビルド、または同条件を満たすエミュレーターへの変更が必要です。その際はWASM内の第三者依存、BootixのCC0、[SameBoy由来のCGB起動コード](https://github.com/joamag/boytacean/blob/0.13.2/src/boot/README.md)の[Expat表示](../licenses/SameBoy-LICENSE.txt)も確認し、DMG/CGB・入力・音・SRAMを再検証します。
 
@@ -34,6 +34,8 @@ Emuliciousの[公式ライセンス](https://emulicious.net/License.txt)は個�
 
 外部ツールをリポジトリや配布ZIPに含めず、利用者が公式配布元から直接取得する方式では、本プロジェクトがその実行ファイルを再配布することを避けられます。ただし商用利用制限、必要な許諾、取得元の条件は引き続き適用されます。
 
-ローカル取得したWASMを後でHTMLへ埋め込んで配る、外部ライブラリをアプリへ束ねて配る、`.tools`をZIPに含めて配る場合は、改めて再配布です。取得方法だけで権利確認が不要になるわけではありません。現在のHTML書出しに対する起動ROM検査は維持します。
+ローカル取得したWASMを後でHTMLへ埋め込んで配る、外部ライブラリをアプリへ束ねて配る、`.tools`をZIPに含めて配る場合は、改めて再配布です。取得方法だけで権利確認が不要になるわけではありません。エディターでは初回のHTML書出し時に注意表示を確認し、スキルのCLIでは `--acknowledge-redistribution` を明示します。
 
 標準セットアップはホストのSDK・Node・Electron・Javaを使わず、リポジトリ配下のツールを呼び出します。Windows、PowerShell、ネットワーク／証明書などOS機能は必要です。手順と保存場所は[セットアップ](toolchain.md)を参照してください。
+
+Windows配布版にはElectronの公式バイナリとLICENSE・Chromiumの第三者表示を保持します。GBDK、外部エミュレーター、WASMを取得済みのフォルダー全体は公開用配布物に含めません。

@@ -70,7 +70,7 @@ async function desktop(temp) {
             on: events.on.bind(events),
         },
         protocol: { registerSchemesAsPrivileged() {}, handle() {} },
-        Menu: { setApplicationMenu() {} },
+        Menu: { buildFromTemplate: (items) => items, setApplicationMenu() {} },
         dialog: {
             showMessageBoxSync: (_window, options) => {
                 dialogs.push(options);
@@ -397,7 +397,7 @@ test("toolchain diagnosis identifies missing required components using pinned ve
                 .length,
             process.platform === "win32" ? 5 : 4,
         );
-        assert.match(missing.hint, /bootstrap.cmd/);
+        assert.match(missing.hint, /セットアップ/);
         for (const tool of missing.tools.filter((tool) => tool.required))
             lib.atomicWrite(tool.path, "fixture");
         const present = lib.toolchainStatus(temp);
@@ -419,7 +419,7 @@ test("desktop opens without font tools and protects external edits through IPC s
         assert.equal(Object.keys(initial.glyphs).length, 0);
         assert.ok(
             initial.warnings.some((message) =>
-                message.includes("bootstrap.cmd"),
+                message.includes("セットアップ"),
             ),
         );
         const external = structuredClone(game);

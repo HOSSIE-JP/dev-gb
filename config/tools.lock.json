@@ -22,8 +22,14 @@
       "sha256": "6cac9ffbca8f6a47091e4b5c772e0606049c3871cb67d900c0cedde630e545ba",
       "checksumSource": "official",
       "installDir": ".tools/node",
-      "expectedPaths": ["node.exe", "npm.cmd"],
-      "source": {"type": "fixed-download", "downloadUrl": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-win-x64.zip"}
+      "expectedPaths": [
+        "node.exe",
+        "npm.cmd"
+      ],
+      "source": {
+        "type": "fixed-download",
+        "downloadUrl": "https://nodejs.org/dist/v24.20.0/node-v24.20.0-win-x64.zip"
+      }
     },
     "electron": {
       "version": "44.2.0",
@@ -32,8 +38,13 @@
       "sha256": "4021363e3090d67a144ebedb90765cf193b0e61f300c519c83f0174502a481da",
       "checksumSource": "official",
       "installDir": ".tools/electron",
-      "expectedPaths": ["electron.exe"],
-      "source": {"type": "fixed-download", "downloadUrl": "https://github.com/electron/electron/releases/download/v44.2.0/electron-v44.2.0-win32-x64.zip"}
+      "expectedPaths": [
+        "electron.exe"
+      ],
+      "source": {
+        "type": "fixed-download",
+        "downloadUrl": "https://github.com/electron/electron/releases/download/v44.2.0/electron-v44.2.0-win32-x64.zip"
+      }
     },
     "misaki": {
       "version": "2021-05-05",
@@ -42,8 +53,14 @@
       "sha256": "a275f173cf5935890f84d3e65d05b1bf73028e4d4bf41cb3de0ef3b5ebe8e217",
       "checksumSource": "computed",
       "installDir": ".tools/misaki",
-      "expectedPaths": ["misaki_gothic.bdf", "misaki.txt"],
-      "source": {"type": "fixed-download", "downloadUrl": "https://littlelimit.net/arc/misaki/misaki_bdf_2021-05-05.zip"}
+      "expectedPaths": [
+        "misaki_gothic.bdf",
+        "misaki.txt"
+      ],
+      "source": {
+        "type": "fixed-download",
+        "downloadUrl": "https://littlelimit.net/arc/misaki/misaki_bdf_2021-05-05.zip"
+      }
     },
     "gbdk": {
       "version": "4.5.0",
@@ -132,5 +149,10 @@
         "apiUrl": "https://update.code.visualstudio.com/api/update/win32-x64-archive/stable/latest"
       }
     }
+  },
+  "editorEmulator": {
+    "version": "0.13.2",
+    "url": "https://unpkg.com/boytacean@0.13.2/boytacean_bg.wasm",
+    "sha256": "a1abc3f2f53bae2b02e504910ae352f79f584e3a00b5b0fd60d630c93a2f0b7b"
   }
 }
