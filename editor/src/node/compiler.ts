@@ -18,7 +18,14 @@ import {
     readGame,
     atomicWrite,
     revision,
+    hash,
 } from "./project-store";
+import {
+    cancellationFile,
+    gbdkExecutable,
+    promoteBuild,
+    recoverBuild,
+} from "./build-workflow";
 
 const bytes = (data: number[] | Uint8Array) => Array.from(data).join(",");
 function crc32(data: Buffer) {
@@ -152,6 +159,7 @@ export function generate(
     game: Game,
     target: string,
     log: (s: string) => void = console.log,
+    checkpoint: () => void = () => {},
 ) {
     const diagnostics = validate(game);
     if (diagnostics.some((d) => d.severity === "error"))
@@ -162,7 +170,7 @@ export function generate(
     const sources: string[] = [],
         decls: string[] = [],
         config: string[] = ['#include "caravan.h"'];
-    const png2asset = safePath(root, ".tools/gbdk/bin/png2asset.exe");
+    const png2asset = gbdkExecutable(root, "png2asset");
     let serial = 0;
     function blob(data: number[] | Uint8Array) {
         const name = `ce_blob_${serial++}`,
@@ -186,6 +194,7 @@ export function generate(
     const converted = new Map<string, number[]>();
     for (const asset of game.assets)
         for (const frame of asset.frames) {
+            checkpoint();
             const stem = `image_${converted.size}`,
                 input = path.join(target, `${stem}.png`),
                 output = path.join(target, `${stem}.bin`);
@@ -530,12 +539,28 @@ export function compile(
     name: string,
     configuration = "Debug",
     log: (s: string) => void = console.log,
+    options: { expectedRevision?: string; cancellationToken?: string } = {},
 ) {
     if (!["Debug", "Release"].includes(configuration))
         throw new Error("構成はDebugまたはReleaseです");
+    const started = Date.now();
+    const checkpoint = () => {
+        if (
+            options.cancellationToken &&
+            fs.existsSync(cancellationFile(root, options.cancellationToken))
+        )
+            throw new Error(
+                "ビルドを中止しました。最後の正常なROMは保持されています。",
+            );
+    };
+    checkpoint();
     const dir = projectDir(root, name),
         game = readGame(root, name),
         lockfile = safePath(dir, "build/.caravan-build.lock");
+    if (options.expectedRevision && revision(game) !== options.expectedRevision)
+        throw new Error(
+            "ビルド開始前に作品が変更されました。保存状態を確認して再実行してください",
+        );
     fs.mkdirSync(path.dirname(lockfile), { recursive: true });
     if (fs.existsSync(lockfile)) {
         const pid = Number(fs.readFileSync(lockfile, "utf8").trim());
@@ -551,14 +576,15 @@ export function compile(
         fs.unlinkSync(lockfile);
     }
     const fd = fs.openSync(lockfile, "wx");
-    fs.writeSync(fd, `${process.pid}\n`);
     const work = safePath(dir, "build", `work-${crypto.randomUUID()}`);
-    fs.mkdirSync(work);
     try {
+        fs.writeSync(fd, `${process.pid}\n`);
+        fs.mkdirSync(work);
+        recoverBuild(root, name, configuration);
         const generated = path.join(work, "generated"),
-            report = generate(root, game, generated, log);
+            report = generate(root, game, generated, log, checkpoint);
         const engine = safePath(root, "engine/caravan"),
-            lcc = safePath(root, ".tools/gbdk/bin/lcc.exe");
+            lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
         const inputs = ["runtime.c", "render.c"]
@@ -580,7 +606,9 @@ export function compile(
             ...inputs.map(relative),
         ];
         log(`[INFO] Building ${name} (${configuration})\n`);
+        checkpoint();
         run(lcc, args, work, log);
+        checkpoint();
         const romPath = path.join(work, `${name}.gb`),
             rom = fs.readFileSync(romPath);
         verifyRom(rom);
@@ -599,12 +627,7 @@ export function compile(
             atomicWrite(romPath, rom);
             verifyRom(rom);
         }
-        run(
-            safePath(root, ".tools/gbdk/bin/romusage.exe"),
-            [romPath],
-            work,
-            log,
-        );
+        run(gbdkExecutable(root, "romusage"), [romPath], work, log);
         const mapText = fs.readFileSync(path.join(work, `${name}.map`), "utf8");
         // Release uses compact symbol columns. Area rows are stable in both modes.
         const areas = [
@@ -652,45 +675,38 @@ export function compile(
             ramBytes: ram + 160,
             spriteTiles: report.spriteTiles,
             diagnostics: report.diagnostics,
+            romHash: hash(rom),
+            builtAt: new Date().toISOString(),
+            durationMs: Date.now() - started,
         };
         outputs.set(
             path.join(out, "caravan-build.json"),
             Buffer.from(JSON.stringify(result, null, 2) + "\n"),
         );
-        // Treat ROM, symbols and their revision manifest as one promotion. If a
-        // write fails (disk full / permission), restore every previous output.
-        const backups = new Map(
-            [...outputs].map(([file]) => [
-                file,
-                fs.existsSync(file) ? fs.readFileSync(file) : null,
-            ]),
-        );
-        const written: string[] = [];
-        try {
-            for (const [file, bytes] of outputs) {
-                atomicWrite(file, bytes);
-                written.push(file);
-            }
-        } catch (error) {
-            for (const file of written.reverse()) {
-                const old = backups.get(file);
-                if (old) atomicWrite(file, old);
-                else fs.unlinkSync(file);
-            }
-            throw error;
-        }
+        checkpoint();
+        promoteBuild(root, name, configuration, outputs);
         log(`[OK] Build succeeded: ${finalPath} (${size} bytes)\n`);
         return result;
     } finally {
-        fs.closeSync(fd);
-        fs.unlinkSync(lockfile);
-        fs.rmSync(work, { recursive: true, force: true });
+        try {
+            fs.closeSync(fd);
+        } finally {
+            try {
+                if (fs.existsSync(lockfile)) fs.unlinkSync(lockfile);
+            } finally {
+                fs.rmSync(work, { recursive: true, force: true });
+            }
+        }
     }
 }
 if (require.main === module) {
-    const [root, name, config] = process.argv.slice(2);
+    const [root, name, config, expectedRevision, cancellationToken] =
+        process.argv.slice(2);
     try {
-        compile(path.resolve(root), name, config);
+        compile(path.resolve(root), name, config, console.log, {
+            expectedRevision,
+            cancellationToken,
+        });
     } catch (error) {
         console.error("[FAIL]", (error as Error).message);
         process.exitCode = 1;

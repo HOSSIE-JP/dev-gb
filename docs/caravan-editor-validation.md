@@ -1,5 +1,28 @@
 # Caravan Editor 検証記録
 
+## 2026-09-08 ワークスペース刷新
+
+今回の検証ホストはLinux x64、Node 24.19.0、GBDK 4.5.0、Boytacean 0.13.2です。Windows用ツールのロックは変更していません。npm依存は既存のpackage-lock.jsonから導入しました。**最終の型検査と全31件の自動テストが成功**しました。BGBはLinuxのため明示的に省略しています。
+
+| 検査 | 結果 |
+| --- | --- |
+| TypeScript・アプリバンドル | 型検査、開発用ビルド、本番用ビルド成功。本番レンダラーは圧縮され、開発版はソースマップを出力。 |
+| 保存・復旧・IPC | 外部PNG変更の競合、旧形式の正規化、壊れた復旧コピーの隔離、ジャーナルの全件事前検査、終了直前のドラフト保存、書込失敗時の終了抑止を自動確認。IPC検査はElectronイベントを代替したハーネスで実施。 |
+| ビルド・ROM保護 | スナップショット不一致、中止要求、不完全な成果物昇格、ROM改変、リビジョン不一致を拒否。失敗後にROM・シンボル・マニフェストが元へ戻ることとビルドロック解除を確認。 |
+| 入力データ・描画 | 不正JSON、空・重複ID、PNG名競合、イベント時刻・編隊上限、連続画素線、逆方向矩形描画、キャンバス範囲外のクリップを検査。 |
+| STAR CARAVAN / CARAVAN LAB Release | 実GBDKで双方32,768 bytes。静的WRAM＋shadow OAM 1,494 bytes、スプライト12タイル、診断0。 |
+| hello-gb Debug / Release | LinuxネイティブGBDKで双方のビルドとROMヘッダチェックサム確認に成功。 |
+| DMG / CGB実ROM | 実GBDKのDebug／Release ROMをBoytaceanで実行。タイトル・入力・非ゼロ音声、固定小数点ロジック、バンク、かな、画面遷移、HUDを既存のROM／統合テストで検査。 |
+| エディター通し操作 | Headless Chromiumで実レンダラーを起動し、編集→Undo/Redo→保存、検索、Ctrl+P、ステージ編集、実GBDKビルド→実WASM ROM自動読込→仮想START初回クリック→停止・1f送り・再開を確認。複数回の再生後に別プロジェクトへ切り替えて初回自動読込する回帰も成功。JavaScriptエラー0。 |
+
+最終の一括検証は共有作業領域のファイル同期を避けた独立した一時コピーで実施し、対象ソース・設定・テスト73ファイルのSHA-256一致を確認しました。共有領域で削除済みビルドロックが外部から復元される現象を追跡したためで、製品コードにロックを無視する回避策は入れていません。
+
+画面検査では実際の作品・フォント・project-store・compiler・WASMを使いました。ElectronのIPC配送のみローカルHTTPで代替し、検証用プロジェクトは`.cache`内に隔離しました。検査画像は`.cache/editor-qa/editor-overview.png`、`editor-stage.png`、`editor-rom.png`に生成しています。UI全操作の自動回帰を網羅したものではありません。
+
+**今回のホストでは`doctor.cmd`、`build.cmd`、`test.cmd`自体、Windows版Electron、BGB／Emulicious、およびDMG/CGB実機は実行できていません。** Windows標準コマンドを実行するGitHub Actionsを追加していますが、これをローカルで実行済みとは扱いません。Windowsでのネイティブ操作確認と実機検証は必要です。既存ランタイムのDMG処理落ち・SRAM未対応は今回のUI／ワークフロー改修では解消していません。
+
+## 2026-09-06 初版の検証履歴
+
 検証日: 2026-09-06。Windows x64、GBDK 4.5.0、Node 24.20.0、Electron 44.2.0、Boytacean 0.13.2。
 
 ## 実施済み

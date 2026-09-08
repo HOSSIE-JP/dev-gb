@@ -5,9 +5,20 @@
   "description": "Portable GB/GBC shooting game authoring tool",
   "main": "build/main.cjs",
   "scripts": {
+    "prestart": "npm run build",
+    "start": "node launch.mjs",
     "build": "node build.mjs",
+    "build:release": "node build.mjs --production",
     "typecheck": "tsc --noEmit",
-    "test": "node --test tests/*.test.mjs"
+    "pretest": "npm run build",
+    "test": "node tests/run.mjs auto",
+    "pretest:core": "npm run build",
+    "test:core": "node tests/run.mjs core",
+    "pretest:rom": "npm run build",
+    "test:rom": "node tests/run.mjs rom",
+    "pretest:bgb": "npm run build",
+    "test:bgb": "node tests/run.mjs bgb",
+    "check": "npm run typecheck && npm test"
   },
   "dependencies": {
     "boytacean": "0.13.2",

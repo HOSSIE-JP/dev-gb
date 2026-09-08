@@ -8,6 +8,7 @@ import {
     type Frame,
     type ProjectInfo,
     validate,
+    validateShape,
 } from "../shared/model";
 
 export function safePath(root: string, ...parts: string[]) {
@@ -33,7 +34,24 @@ export function projectDir(root: string, name: string) {
 }
 export const hash = (data: string | Buffer) =>
     crypto.createHash("sha256").update(data).digest("hex");
-export const revision = (game: Game) => hash(JSON.stringify(game));
+export function revision(game: Game) {
+    const normalized = structuredClone(game);
+    for (const actor of [...normalized.enemies, ...normalized.bosses])
+        actor.attacks ??= [];
+    for (const boss of normalized.bosses)
+        for (const phase of boss.phases) phase.attacks ??= [];
+    const canonical = (value: unknown): unknown => {
+        if (Array.isArray(value)) return value.map(canonical);
+        if (value && typeof value === "object")
+            return Object.fromEntries(
+                Object.entries(value)
+                    .sort(([a], [b]) => a.localeCompare(b, "en"))
+                    .map(([key, child]) => [key, canonical(child)]),
+            );
+        return value;
+    };
+    return hash(JSON.stringify(canonical(normalized)));
+}
 export function encodePng(
     width: number,
     height: number,
@@ -86,7 +104,13 @@ export function atomicWrite(target: string, data: string | Buffer) {
     fs.mkdirSync(path.dirname(target), { recursive: true });
     const temp = `${target}.${crypto.randomUUID()}.tmp`;
     try {
-        fs.writeFileSync(temp, data);
+        const fd = fs.openSync(temp, "wx");
+        try {
+            fs.writeFileSync(fd, data);
+            fs.fsyncSync(fd);
+        } finally {
+            fs.closeSync(fd);
+        }
         fs.renameSync(temp, target);
     } finally {
         if (fs.existsSync(temp)) fs.unlinkSync(temp);
@@ -96,16 +120,33 @@ export function rollbackInterruptedSave(root: string, name: string) {
     const dir = projectDir(root, name),
         journal = safePath(root, ".cache/editor/transactions", `${name}.json`);
     if (!fs.existsSync(journal)) return;
-    const entries: [string, string | null][] = JSON.parse(
-        fs.readFileSync(journal, "utf8"),
-    );
-    for (const [relative, old] of entries.reverse()) {
+    const entries: unknown = JSON.parse(fs.readFileSync(journal, "utf8"));
+    if (!Array.isArray(entries))
+        throw new Error("保存復旧ジャーナルが不正です");
+    const seen = new Set<string>();
+    // Validate the complete journal before restoring anything. A malformed later
+    // entry must not leave an earlier file rolled back on its own.
+    for (const entry of entries) {
         if (
+            !Array.isArray(entry) ||
+            entry.length !== 2 ||
+            typeof entry[0] !== "string" ||
             !/^assets-src\/(game\.json|images\/[A-Za-z0-9._-]+\.png)$/.test(
-                relative,
-            )
+                entry[0],
+            ) ||
+            seen.has(entry[0]) ||
+            (entry[1] !== null &&
+                (typeof entry[1] !== "string" ||
+                    Buffer.from(entry[1], "base64").toString("base64") !==
+                        entry[1]))
         )
             throw new Error("保存復旧ジャーナルのパスが不正です");
+        seen.add(entry[0]);
+        safePath(dir, entry[0]);
+    }
+    for (const [relative, old] of (
+        entries as [string, string | null][]
+    ).reverse()) {
         const target = safePath(dir, relative);
         if (old !== null) atomicWrite(target, Buffer.from(old, "base64"));
         else if (fs.existsSync(target)) fs.unlinkSync(target);
@@ -126,6 +167,11 @@ export function readGame(root: string, name: string): Game {
     const game: Game = JSON.parse(
         fs.readFileSync(safePath(dir, "assets-src/game.json"), "utf8"),
     );
+    const malformed = validateShape(game, { requirePixels: false });
+    if (malformed.length)
+        throw new Error(
+            malformed.map((d) => `${d.target}: ${d.message}`).join("\n"),
+        );
     for (const actor of [...game.enemies, ...game.bosses]) actor.attacks ??= [];
     for (const boss of game.bosses)
         for (const phase of boss.phases) phase.attacks ??= [];
@@ -140,10 +186,30 @@ export function readGame(root: string, name: string): Game {
                 asset.height,
             );
         }
+    const errors = validate(game).filter(
+        (diagnostic) => diagnostic.severity === "error",
+    );
+    if (errors.length)
+        throw new Error(
+            errors.map((d) => `${d.target}: ${d.message}`).join("\n"),
+        );
     return game;
 }
-export function saveGame(root: string, name: string, game: Game) {
+export function saveGame(
+    root: string,
+    name: string,
+    game: Game,
+    expectedRevision?: string,
+) {
     rollbackInterruptedSave(root, name);
+    if (game.name !== name) throw new Error("保存先と作品IDが一致しません");
+    if (
+        expectedRevision !== undefined &&
+        revision(readGame(root, name)) !== expectedRevision
+    )
+        throw new Error(
+            "作品が外部で変更されています。未保存の変更を別作品として保存するか、作品を開き直してください。",
+        );
     const dir = projectDir(root, name),
         errors = validate(game).filter((d) => d.severity === "error");
     if (errors.length)
@@ -217,16 +283,68 @@ export function saveGame(root: string, name: string, game: Game) {
     if (fs.existsSync(recovery)) fs.unlinkSync(recovery);
     return revision(game);
 }
-export function recoverGame(root: string, name: string, game?: Game) {
+export function recoverGame(
+    root: string,
+    name: string,
+    game?: Game,
+    warn?: (message: string) => void,
+): Game | null {
     projectDir(root, name);
     const target = safePath(root, ".cache/editor/recovery", `${name}.json`);
     if (game) {
-        atomicWrite(target, JSON.stringify(game));
+        if (game.name !== name)
+            throw new Error("復旧コピーの作品IDが一致しません");
+        atomicWrite(
+            target,
+            JSON.stringify({
+                format: 1,
+                project: name,
+                savedAt: new Date().toISOString(),
+                checksum: revision(game),
+                game,
+            }),
+        );
         return null;
     }
-    return fs.existsSync(target)
-        ? (JSON.parse(fs.readFileSync(target, "utf8")) as Game)
-        : null;
+    if (!fs.existsSync(target)) return null;
+    try {
+        const stored = JSON.parse(fs.readFileSync(target, "utf8"));
+        const candidate: Game = stored.format === 1 ? stored.game : stored;
+        if (
+            stored.format === 1 &&
+            (stored.project !== name || stored.checksum !== revision(candidate))
+        )
+            throw new Error("チェックサムが一致しません");
+        if (
+            candidate?.schemaVersion !== 1 ||
+            candidate.name !== name ||
+            !candidate.player ||
+            !candidate.effects ||
+            !Array.isArray(candidate.stageOrder) ||
+            ![
+                candidate.assets,
+                candidate.patterns,
+                candidate.enemies,
+                candidate.bosses,
+                candidate.stages,
+                candidate.screens,
+                candidate.palettes,
+            ].every(Array.isArray)
+        )
+            throw new Error("作品形式が不正です");
+        // Semantic errors are allowed in a draft, but malformed object structure is not.
+        const malformed = validateShape(candidate);
+        if (malformed.length)
+            throw new Error(malformed.map((d) => d.message).join("\n"));
+        return candidate;
+    } catch (error) {
+        const quarantine = `${target}.${crypto.randomUUID()}.corrupt`;
+        fs.renameSync(target, quarantine);
+        warn?.(
+            `破損した復旧コピーを退避しました。保存済みの作品を開きます: ${quarantine} (${(error as Error).message})`,
+        );
+        return null;
+    }
 }
 export function listProjects(root: string): ProjectInfo[] {
     const result: ProjectInfo[] = [];

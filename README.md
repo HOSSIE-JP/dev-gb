@@ -22,7 +22,7 @@ doctor.cmd
 
 日本語デスクトップ版 **Caravan Editor** を追加しました。`editor.cmd star-caravan`で、画像・スプライト・敵・弾幕・ボス・マップ・各画面を編集し、即時プレビュー、ROMビルド、内蔵Boytaceanでのプレイができます。作品の新規作成・複製、通常モードの複数ステージにも対応します。
 
-[操作ガイドと初版の制約](docs/caravan-editor.md) / [設計](docs/caravan-editor-architecture.md) / [検証記録](docs/caravan-editor-validation.md)
+[操作ガイドと制約](docs/caravan-editor.md) / [設計](docs/caravan-editor-architecture.md) / [検証記録](docs/caravan-editor-validation.md)
 
 ```bat
 build.cmd hello-gb -Configuration Debug
@@ -36,6 +36,12 @@ clean.cmd -AllBuilds
 Debugは`lcc -debug`でCDBなどのシンボルを生成し、EmuliciousやBGBでの解析に使います。Releaseはそのデバッグ指定を付けません。BGBは高速な動作・互換確認、EmuliciousはCソースレベルデバッグ、VRAM/OAM/CPU解析に向きます。
 
 `shell.cmd`はそのcmd.exeだけにGBDK/RGBDS等のPATHとローカルTEMPを設定します。`vscode.cmd`は`.tools/vscode/data`を使う完全ポータブルなVS Codeでリポジトリを開きます。
+
+### Caravan Editor のワークフロー
+
+プロジェクト概要 → ステージ・素材を編集 → 診断を確認 → **F5でビルドしてプレイ**。全素材検索、Ctrl+Pのコマンドパレット、Undo/Redo、タイルパレット、直線・矩形描画、ROMの表示倍率・速度変更・書出に対応します。外部変更との保存競合、復旧コピー破損、古いROMの誤読込を検出します。
+
+`editor`フォルダから`npm start -- star-caravan`でも起動できます。`npm run check`で型検査と利用可能な回帰テスト、`npm run build:release`で本番用アプリバンドルを生成します。Windowsのポータブル環境を対象とするGitHub Actionsも追加しています。
 
 ## 操作（star-caravan）
 

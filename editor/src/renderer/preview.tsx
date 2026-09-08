@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import init, { GameBoy, GameBoyMode, BootRom, PadKey } from "boytacean";
-import { type Game, type BuildResult, clone, assetById } from "../shared/model";
+import { type Game, clone, assetById } from "../shared/model";
 import { Simulation, drawSimulation, drawAsset } from "../shared/simulation";
 import { drawScreen } from "./canvases";
 const inputKey: Record<string, number> = {
@@ -15,18 +14,7 @@ const inputKey: Record<string, number> = {
     Shift: 64,
     Enter: 128,
 };
-const padKey: Record<string, PadKey> = {
-    ArrowRight: PadKey.Right,
-    ArrowLeft: PadKey.Left,
-    ArrowUp: PadKey.Up,
-    ArrowDown: PadKey.Down,
-    z: PadKey.A,
-    Z: PadKey.A,
-    x: PadKey.B,
-    X: PadKey.B,
-    Shift: PadKey.Select,
-    Enter: PadKey.Start,
-};
+export { RomPreview } from "./rom-preview";
 export function Preview({
     active,
     game,
@@ -198,7 +186,19 @@ export function Preview({
         };
         request = requestAnimationFrame(frame);
         return () => cancelAnimationFrame(request);
-    }, [running, speed, dmg, hitbox, game, scope, kind, active]);
+    }, [running, speed, dmg, hitbox, game, scope, kind, id, glyphs, active]);
+    useEffect(() => {
+        if (!active) keys.current = 0;
+        const release = () => {
+            keys.current = 0;
+        };
+        window.addEventListener("blur", release);
+        document.addEventListener("visibilitychange", release);
+        return () => {
+            window.removeEventListener("blur", release);
+            document.removeEventListener("visibilitychange", release);
+        };
+    }, [active]);
     const scrub = (frame: number) => {
         sim.current = create();
         for (let i = 0; i < frame; i++) sim.current.step(0);
@@ -263,9 +263,15 @@ export function Preview({
                     tabIndex={0}
                     aria-label="即時プレビュー"
                     onKeyDown={(e) => {
-                        if (inputKey[e.key]) {
+                        if (
+                            inputKey[e.key] &&
+                            !e.ctrlKey &&
+                            !e.metaKey &&
+                            !e.altKey
+                        ) {
                             keys.current |= inputKey[e.key];
                             e.preventDefault();
+                            e.stopPropagation();
                         }
                     }}
                     onKeyUp={(e) => {
@@ -362,260 +368,6 @@ export function Preview({
             <small className="hint">
                 シークは入力なしで先頭から再計算。整数ロジックの確認用です。実機描画・音はROMプレビューで確認。
             </small>
-        </div>
-    );
-}
-let wasmReady: Promise<unknown> | undefined;
-export function RomPreview({
-    active,
-    name,
-    build,
-    dmg,
-    error,
-}: {
-    name: string;
-    build: BuildResult | null;
-    dmg: boolean;
-    error: (s: string) => void;
-    active: boolean;
-}) {
-    const canvas = useRef<HTMLCanvasElement>(null),
-        gb = useRef<GameBoy | null>(null),
-        audio = useRef<AudioContext | null>(null),
-        nextAudio = useRef(0),
-        [playing, setPlaying] = useState(false),
-        [enabled, setEnabled] = useState(true),
-        [status, setStatus] = useState("ビルドしたROMを読み込めます");
-    const audioFlag = useRef(true);
-    const releases = useRef(new Map<PadKey, number>());
-    const press = (key: PadKey) => {
-        releases.current.delete(key);
-        gb.current?.key_press(key);
-    };
-    const release = (key: PadKey) => {
-        releases.current.set(key, 3);
-    };
-    const clockFrame = () => {
-        gb.current?.clocks_cycles(70224);
-        for (const [key, left] of releases.current) {
-            if (left <= 1) {
-                gb.current?.key_lift(key);
-                releases.current.delete(key);
-            } else releases.current.set(key, left - 1);
-        }
-    };
-    audioFlag.current = enabled;
-    const paint = () => {
-        const boy = gb.current,
-            c = canvas.current?.getContext("2d");
-        if (!boy || !c) return;
-        const rgb = boy.frame_buffer_eager(),
-            im = c.createImageData(160, 144),
-            stride = rgb.length / (160 * 144);
-        for (let i = 0; i < 160 * 144; i++) {
-            im.data[i * 4] = rgb[i * stride];
-            im.data[i * 4 + 1] = rgb[i * stride + 1];
-            im.data[i * 4 + 2] = rgb[i * stride + 2];
-            im.data[i * 4 + 3] = 255;
-        }
-        c.putImageData(im, 0, 0);
-        const samples = boy.audio_buffer_eager(true),
-            ctx = audio.current,
-            channels = boy.audio_channels();
-        if (ctx && audioFlag.current && samples.length) {
-            const count = Math.floor(samples.length / channels),
-                buffer = ctx.createBuffer(
-                    channels,
-                    count,
-                    boy.audio_sampling_rate(),
-                );
-            for (let ch = 0; ch < channels; ch++) {
-                const out = buffer.getChannelData(ch);
-                for (let i = 0; i < count; i++)
-                    out[i] = samples[i * channels + ch] / 32768;
-            }
-            const source = ctx.createBufferSource();
-            source.buffer = buffer;
-            source.connect(ctx.destination);
-            nextAudio.current = Math.max(ctx.currentTime, nextAudio.current);
-            if (nextAudio.current - ctx.currentTime > 0.15)
-                nextAudio.current = ctx.currentTime;
-            source.start(nextAudio.current);
-            nextAudio.current += count / boy.audio_sampling_rate();
-        }
-    };
-    const load = async () => {
-        if (!build?.ok) return;
-        try {
-            setStatus("ROMを読み込み中…");
-            wasmReady ??= init({
-                module_or_path: new URL("boytacean_bg.wasm", location.href),
-            });
-            await wasmReady;
-            const data = await window.caravan.rom(name, build.configuration);
-            gb.current?.free();
-            const boy = new GameBoy(dmg ? GameBoyMode.Dmg : GameBoyMode.Cgb);
-            boy.set_boot_rom(dmg ? BootRom.DmgBootix : BootRom.CgbBoytacean);
-            boy.load_unsafe(true);
-            boy.load_rom_wa(data).free();
-            gb.current = boy;
-            audio.current ??= new AudioContext();
-            await audio.current.resume();
-            nextAudio.current = 0;
-            setPlaying(true);
-            setStatus(`${dmg ? "DMG" : "CGB"} · Boytacean 0.13.2`);
-            canvas.current?.focus();
-        } catch (e) {
-            error((e as Error).message);
-            setStatus("読込失敗");
-        }
-    };
-    useEffect(() => {
-        setPlaying(false);
-        gb.current?.free();
-        gb.current = null;
-        setStatus("「ROM読込」で新しい結果を実行");
-    }, [build, dmg, name]);
-    useEffect(() => {
-        let id = 0,
-            last = performance.now(),
-            acc = 0;
-        const loop = (now: number) => {
-            if (playing && active && gb.current) {
-                acc += Math.min(now - last, 100);
-                let n = 0;
-                while (acc >= 1000 / 59.7275 && n++ < 6) {
-                    clockFrame();
-                    acc -= 1000 / 59.7275;
-                }
-                paint();
-            }
-            last = now;
-            id = requestAnimationFrame(loop);
-        };
-        id = requestAnimationFrame(loop);
-        return () => cancelAnimationFrame(id);
-    }, [playing, active]);
-    useEffect(
-        () => () => {
-            gb.current?.free();
-            audio.current?.close();
-        },
-        [],
-    );
-    return (
-        <div className="preview rom">
-            <div className="toolbar">
-                <span className="eyebrow">ROM PLAYER</span>
-                <button className="accent" disabled={!build?.ok} onClick={load}>
-                    ROM読込 / 再起動
-                </button>
-                <button
-                    disabled={!gb.current}
-                    onClick={() => setPlaying(!playing)}
-                >
-                    {playing ? "Ⅱ" : "▶"}
-                </button>
-                <button
-                    disabled={!gb.current}
-                    onClick={() => {
-                        setPlaying(false);
-                        clockFrame();
-                        paint();
-                    }}
-                >
-                    1f
-                </button>
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={enabled}
-                        onChange={(e) => setEnabled(e.target.checked)}
-                    />
-                    音
-                </label>
-            </div>
-            <div className="preview-body">
-                <canvas
-                    ref={canvas}
-                    width={160}
-                    height={144}
-                    tabIndex={0}
-                    aria-label="ROMプレビュー"
-                    onKeyDown={(e) => {
-                        const key = padKey[e.key];
-                        if (key !== undefined) {
-                            press(key);
-                            e.preventDefault();
-                        }
-                    }}
-                    onKeyUp={(e) => {
-                        const key = padKey[e.key];
-                        if (key !== undefined) release(key);
-                    }}
-                    onBlur={() =>
-                        Object.values(padKey).forEach((key) =>
-                            gb.current?.key_lift(key),
-                        )
-                    }
-                />
-                <div className="preview-metrics">
-                    <span className="chip">{status}</span>
-                    <div className="virtual-pad">
-                        {(
-                            [
-                                ["↑", PadKey.Up],
-                                ["←", PadKey.Left],
-                                ["↓", PadKey.Down],
-                                ["→", PadKey.Right],
-                                ["A", PadKey.A],
-                                ["B", PadKey.B],
-                                ["START", PadKey.Start],
-                                ["SELECT", PadKey.Select],
-                            ] as const
-                        ).map(([label, key]) => (
-                            <button
-                                key={key}
-                                disabled={!gb.current}
-                                onClick={() => {
-                                    press(key);
-                                    release(key);
-                                }}
-                                onPointerDown={(e) => {
-                                    e.currentTarget.setPointerCapture(
-                                        e.pointerId,
-                                    );
-                                    press(key);
-                                }}
-                                onPointerUp={() => release(key)}
-                                onPointerCancel={() => release(key)}
-                            >
-                                {label}
-                            </button>
-                        ))}
-                    </div>
-                    <p className="hint">
-                        方向キー：移動
-                        <br />Z / X：A / B<br />
-                        Enter：START / 一時停止
-                        <br />
-                        Shift：SELECT
-                    </p>
-                    {["bgb", "emulicious"].map((e) => (
-                        <button
-                            key={e}
-                            disabled={!build?.ok}
-                            onClick={() =>
-                                window.caravan
-                                    .external(name, build!.configuration, e)
-                                    .catch((e) => error(e.message))
-                            }
-                        >
-                            {e === "bgb" ? "BGB" : "Emulicious"}で開く ↗
-                        </button>
-                    ))}
-                </div>
-            </div>
         </div>
     );
 }

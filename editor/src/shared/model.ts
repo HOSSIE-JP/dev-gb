@@ -152,6 +152,9 @@ export type BuildResult = {
     size?: number;
     ramBytes?: number;
     spriteTiles?: number;
+    romHash?: string;
+    builtAt?: string;
+    durationMs?: number;
     error?: string;
     diagnostics?: Diagnostic[];
 };
@@ -204,10 +207,224 @@ export function frameAt(asset: Asset, tick: number): Frame {
     }
     return asset.frames[0];
 }
-export function validate(game: Game): Diagnostic[] {
+
+type Shape =
+    "string" | "number" | "boolean" | { [key: string]: Shape } | [Shape];
+
+/** Check imported JSON before dereferencing it. Optional fields remain optional
+ * so schema version 1 projects written before attack layers still load. */
+export function validateShape(
+    value: unknown,
+    { requirePixels = true }: { requirePixels?: boolean } = {},
+): Diagnostic[] {
+    const diagnostics: Diagnostic[] = [];
+    const point: Shape = { x: "number", y: "number" };
+    const motion: Shape = {
+        kind: "string",
+        vx: "number",
+        vy: "number",
+        amplitude: "number",
+        period: "number",
+        loop: "boolean",
+        points: [{ x: "number", y: "number", frame: "number" }],
+    };
+    const attacks: Shape = [{ id: "string", pattern: "string" }];
+    const actor = {
+        id: "string",
+        name: "string",
+        asset: "string",
+        hp: "number",
+        score: "number",
+        motion,
+        pattern: "string",
+        "attacks?": attacks,
+    } satisfies Record<string, Shape>;
+    const schema: Shape = {
+        schemaVersion: "number",
+        name: "string",
+        title: "string",
+        mode: "string",
+        seed: "number",
+        startStage: "string",
+        stageOrder: ["string"],
+        palettes: [{ id: "string", name: "string", colors: ["string"] }],
+        assets: [
+            {
+                id: "string",
+                name: "string",
+                kind: "string",
+                width: "number",
+                height: "number",
+                palette: "number",
+                origin: point,
+                hitbox: { x: "number", y: "number", w: "number", h: "number" },
+                emitters: [point],
+                frames: [
+                    {
+                        id: "string",
+                        image: "string",
+                        duration: "number",
+                        [requirePixels ? "pixels" : "pixels?"]: ["number"],
+                    },
+                ],
+            },
+        ],
+        patterns: [
+            {
+                id: "string",
+                name: "string",
+                asset: "string",
+                kind: "string",
+                speed: "number",
+                angle: "number",
+                count: "number",
+                spread: "number",
+                interval: "number",
+                rotation: "number",
+                repeats: "number",
+                delay: "number",
+                lifetime: "number",
+                damage: "number",
+            },
+        ],
+        enemies: [actor],
+        bosses: [
+            {
+                ...actor,
+                phases: [
+                    {
+                        id: "string",
+                        name: "string",
+                        until: "string",
+                        threshold: "number",
+                        pattern: "string",
+                        "attacks?": attacks,
+                        motion,
+                    },
+                ],
+            },
+        ],
+        stages: [
+            {
+                id: "string",
+                name: "string",
+                tileset: "string",
+                width: "number",
+                height: "number",
+                tiles: ["number"],
+                walls: ["number"],
+                scrollSpeed: "number",
+                loopMap: "boolean",
+                duration: "number",
+                clearOnBoss: "boolean",
+                events: [
+                    {
+                        id: "string",
+                        frame: "number",
+                        kind: "string",
+                        ref: "string",
+                        x: "number",
+                        y: "number",
+                        count: "number",
+                        spacing: "number",
+                        interval: "number",
+                        value: "number",
+                    },
+                ],
+            },
+        ],
+        screens: [
+            {
+                id: "string",
+                name: "string",
+                background: "string",
+                palette: "number",
+                dock: "string",
+                items: [
+                    {
+                        id: "string",
+                        text: "string",
+                        x: "number",
+                        y: "number",
+                        palette: "number",
+                        binding: "string",
+                    },
+                ],
+            },
+        ],
+        player: {
+            asset: "string",
+            speed: "number",
+            lives: "number",
+            invulnerability: "number",
+            weapon: "string",
+            x: "number",
+            y: "number",
+        },
+        clearBonus: "number",
+        effects: { explosion: "string", duration: "number" },
+        provenance: { author: "string", license: "string", source: "string" },
+    };
+    const check = (data: unknown, expected: Shape, target: string) => {
+        const error = (message: string) =>
+            diagnostics.push({
+                severity: "error",
+                target,
+                message,
+            });
+        if (typeof expected === "string") {
+            if (typeof data !== expected)
+                error(
+                    `${expected === "string" ? "文字列" : expected === "number" ? "数値" : "真偽値"}が必要です`,
+                );
+        } else if (Array.isArray(expected)) {
+            if (!Array.isArray(data)) error("配列が必要です");
+            else
+                for (let i = 0; i < data.length; i++)
+                    check(data[i], expected[0], `${target}[${i}]`);
+        } else if (!data || typeof data !== "object" || Array.isArray(data)) {
+            error("設定オブジェクトが必要です");
+        } else {
+            const record = data as Record<string, unknown>;
+            for (const [field, child] of Object.entries(expected)) {
+                const optional = field.endsWith("?"),
+                    key = optional ? field.slice(0, -1) : field;
+                if (optional && record[key] === undefined) continue;
+                check(
+                    record[key],
+                    child,
+                    target === "project" ? key : `${target}.${key}`,
+                );
+            }
+        }
+    };
+    check(value, schema, "project");
+    if (!diagnostics.length && (value as Game).schemaVersion !== 1)
+        diagnostics.push({
+            severity: "error",
+            target: "project",
+            message: "未対応の作品形式です",
+        });
+    return diagnostics;
+}
+
+export function validate(value: unknown): Diagnostic[] {
+    const shapeErrors = validateShape(value);
+    if (shapeErrors.length) return shapeErrors;
+    const game = value as Game;
     const d: Diagnostic[] = [];
     const err = (target: string, message: string) =>
         d.push({ severity: "error", target, message });
+    const warn = (target: string, message: string) =>
+        d.push({ severity: "warning", target, message });
+    const uniqueIds = (items: { id: string }[], owner: string) => {
+        const seen = new Set<string>();
+        for (const item of items) {
+            if (!item.id.trim() || seen.has(item.id))
+                err(owner, "IDが空、または重複しています");
+            seen.add(item.id);
+        }
+    };
     const integer = (
         value: number,
         min: number,
@@ -234,31 +451,16 @@ export function validate(game: Game): Diagnostic[] {
                 message: "未対応の作品形式です",
             },
         ];
-    const collections = [
-        game.assets,
-        game.patterns,
-        game.enemies,
-        game.bosses,
-        game.stages,
-        game.screens,
-        game.palettes,
-    ];
-    if (collections.some((c) => !Array.isArray(c)))
-        return [
-            {
-                severity: "error",
-                target: "project",
-                message: "作品データに必須の配列がありません",
-            },
-        ];
-    for (const collection of collections) {
-        const seen = new Set();
-        for (const x of collection) {
-            if (!x.id || seen.has(x.id))
-                err(x.id || "project", "IDが空、または重複しています");
-            seen.add(x.id);
-        }
-    }
+    for (const name of [
+        "assets",
+        "patterns",
+        "enemies",
+        "bosses",
+        "stages",
+        "screens",
+        "palettes",
+    ] as const)
+        uniqueIds(game[name], name);
     const assets = new Map(game.assets.map((a) => [a.id, a]));
     const patterns = new Set(game.patterns.map((p) => p.id));
     const assetRef = (id: string, owner: string, kind = "sprite") => {
@@ -275,11 +477,8 @@ export function validate(game: Game): Diagnostic[] {
             err(owner, "追加弾幕レイヤーは3個までです");
             return;
         }
-        const seen = new Set<string>();
+        uniqueIds(items, owner);
         for (const layer of items) {
-            if (!layer.id || seen.has(layer.id))
-                err(owner, "弾幕レイヤーIDが重複しています");
-            seen.add(layer.id);
             patternRef(layer.pattern, owner);
             if (!layer.pattern) err(owner, "弾幕レイヤーを選択してください");
         }
@@ -303,7 +502,9 @@ export function validate(game: Game): Diagnostic[] {
             pal.colors.some((c) => !/^#[0-9a-f]{6}$/i.test(c))
         )
             err(pal.id, "4色のRGBパレットが必要です");
+    const images = new Map<string, { asset: Asset; frame: Frame }>();
     for (const a of game.assets) {
+        uniqueIds(a.frames, a.id);
         if (!["sprite", "tileset", "screen"].includes(a.kind))
             err(a.id, "素材種別が不正です");
         integer(
@@ -324,6 +525,8 @@ export function validate(game: Game): Diagnostic[] {
             err(a.id, "画面背景は160×144です");
         integer(a.palette, 0, game.palettes.length - 1, a.id);
         integer(a.frames.length, 1, 16, a.id);
+        if (a.kind !== "sprite" && a.frames.length > 1)
+            warn(a.id, "背景素材は最初のフレームだけをROMに使用します");
         integer(a.origin.x, 0, a.width, a.id);
         integer(a.origin.y, 0, a.height, a.id);
         integer(a.hitbox.x, 0, a.width - 1, a.id);
@@ -353,6 +556,26 @@ export function validate(game: Game): Diagnostic[] {
                     a.id,
                     "画像は寸法と一致する4色インデックスデータが必要です",
                 );
+            // Windows project paths are case-insensitive. Two frame buffers may
+            // share a source PNG only when saving either writes identical data.
+            const imageKey = f.image.toLowerCase(),
+                previous = images.get(imageKey);
+            if (
+                previous &&
+                (previous.asset.width !== a.width ||
+                    previous.asset.height !== a.height ||
+                    (previous.asset.kind === "sprite") !==
+                        (a.kind === "sprite") ||
+                    previous.frame.pixels.length !== f.pixels.length ||
+                    previous.frame.pixels.some(
+                        (pixel, index) => pixel !== f.pixels[index],
+                    ))
+            )
+                err(
+                    a.id,
+                    `画像パス「${f.image}」が異なる画像データで重複しています`,
+                );
+            else images.set(imageKey, { asset: a, frame: f });
         }
     }
     const motion = (m: Motion, owner: string) => {
@@ -399,6 +622,7 @@ export function validate(game: Game): Diagnostic[] {
         motion(a.motion, a.id);
     }
     for (const b of game.bosses) {
+        uniqueIds(b.phases, b.id);
         integer(b.phases.length, 1, 8, b.id);
         for (const p of b.phases) {
             attacks(p.attacks, b.id);
@@ -423,6 +647,7 @@ export function validate(game: Game): Diagnostic[] {
     integer(game.player.x, 0, 159, "player");
     integer(game.player.y, 16, 135, "player");
     for (const stage of game.stages) {
+        uniqueIds(stage.events, stage.id);
         assetRef(stage.tileset, stage.id, "tileset");
         integer(stage.width, 20, 20, stage.id);
         integer(stage.height, 18, 512, stage.id);
@@ -444,11 +669,10 @@ export function validate(game: Game): Diagnostic[] {
             err(stage.id, "タイルセットに存在しないタイルがあります");
         if (stage.walls.some((t) => t !== 0 && t !== 1))
             err(stage.id, "地形は0または1で指定してください");
-        const seen = new Set();
+        let expandedEvents = 0;
         for (const e of stage.events) {
-            if (seen.has(e.id)) err(stage.id, "イベントIDが重複しています");
-            seen.add(e.id);
-            integer(e.frame, 0, stage.duration * 60, stage.id);
+            // Tick zero is playable; tick duration * 60 has already finished.
+            integer(e.frame, 0, stage.duration * 60 - 1, e.id);
             integer(e.x, -32, 192, stage.id);
             integer(e.y, -32, 176, stage.id);
             integer(e.count, 1, 8, stage.id);
@@ -461,9 +685,19 @@ export function validate(game: Game): Diagnostic[] {
                 err(e.id, "参照先のボスがありません");
             if (!["enemy", "boss", "scroll", "end"].includes(e.kind))
                 err(e.id, "イベント種別が不正です");
-            if (e.frame + (e.count - 1) * e.interval > stage.duration * 60)
-                err(e.id, "編隊の出現がステージ時間を超えます");
+            const spawn = e.kind === "enemy" || e.kind === "boss";
+            expandedEvents += spawn ? e.count : 1;
+            if (
+                spawn &&
+                e.frame + (e.count - 1) * e.interval >= stage.duration * 60
+            )
+                err(e.id, "編隊の出現がステージ終了時刻以降になっています");
         }
+        if (expandedEvents > 1024)
+            err(
+                stage.id,
+                `編隊を展開したイベントは1024個までです（現在${expandedEvents}）`,
+            );
     }
     if (!game.stages.some((s) => s.id === game.startStage))
         err("startStage", "開始ステージがありません");
@@ -477,7 +711,16 @@ export function validate(game: Game): Diagnostic[] {
         if (!game.screens.some((s) => s.id === name))
             err(name, "必須画面がありません");
     for (const screen of game.screens) {
+        uniqueIds(screen.items, screen.id);
+        if (
+            !["title", "gameover", "clear", "scores", "hud"].includes(screen.id)
+        )
+            err(screen.id, "画面種別が不正です");
+        if (!["top", "bottom"].includes(screen.dock))
+            err(screen.id, "HUDの配置は上または下にしてください");
         if (screen.background) assetRef(screen.background, screen.id, "screen");
+        if (screen.id === "hud" && screen.background)
+            warn(screen.id, "HUDの背景素材はROMに使用されません");
         integer(screen.palette, 0, game.palettes.length - 1, screen.id);
         integer(screen.items.length, 0, 32, screen.id);
         for (const text of screen.items) {

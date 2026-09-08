@@ -11,7 +11,9 @@ import {
     DMG_COLORS,
 } from "../shared/model";
 import { drawAsset } from "../shared/simulation";
+import { TilePalette } from "./tile-palette";
 import { type ImportResult } from "../shared/bridge";
+import { linePoints, paintStroke } from "../shared/pixel-tools";
 
 const pos = (
     event: React.PointerEvent<HTMLCanvasElement>,
@@ -64,15 +66,22 @@ export function AssetCanvas({
         [imported, setImported] = useState<ImportResult | null>(null),
         [transparent, setTransparent] = useState("");
     const drawing = useRef(false),
+        importGeneration = useRef(0),
         start = useRef<Point>({ x: 0, y: 0 }),
+        previous = useRef<Point>({ x: 0, y: 0 }),
         working = useRef<number[]>([]),
         clip = useRef<{ w: number; h: number; pixels: number[] } | null>(null);
     const f = asset.frames[Math.min(frame, asset.frames.length - 1)],
         colors = dmg ? DMG_COLORS : game.palettes[asset.palette].colors;
     useEffect(() => {
+        ++importGeneration.current;
+        drawing.current = false;
         setDraft(null);
+        setImported(null);
+    }, [asset, frame]);
+    useEffect(() => {
         setSelection(null);
-    }, [asset.id, frame]);
+    }, [asset.id, asset.width, asset.height, frame]);
     useEffect(() => {
         const c = ref.current?.getContext("2d");
         if (!c) return;
@@ -151,11 +160,23 @@ export function AssetCanvas({
             ),
         });
     const paint = (p: Point) => {
-        working.current[p.y * asset.width + p.x] = tool === "erase" ? 0 : color;
+        const shape = tool === "line" || tool === "rectangle";
+        working.current = paintStroke(
+            shape ? f.pixels : working.current,
+            asset.width,
+            asset.height,
+            shape ? start.current : previous.current,
+            p,
+            tool === "erase" ? 0 : color,
+            tool === "rectangle" ? "rectangle" : "line",
+        );
+        previous.current = p;
         setDraft([...working.current]);
     };
     const down = (e: React.PointerEvent<HTMLCanvasElement>) => {
+        if (e.button !== 0 || imported) return;
         const p = pos(e, asset.width, asset.height);
+        previous.current = p;
         start.current = p;
         e.currentTarget.setPointerCapture(e.pointerId);
         working.current = [...f.pixels];
@@ -233,6 +254,8 @@ export function AssetCanvas({
                 {[
                     ["pencil", "鉛筆"],
                     ["erase", "消しゴム"],
+                    ["line", "直線"],
+                    ["rectangle", "矩形"],
                     ["fill", "塗りつぶし"],
                     ["select", "矩形選択"],
                     ["pick", "スポイト"],
@@ -242,6 +265,7 @@ export function AssetCanvas({
                 ].map(([id, label]) => (
                     <button
                         className={tool === id ? "active" : ""}
+                        aria-pressed={tool === id}
                         key={id}
                         onClick={() => setTool(id)}
                     >
@@ -264,6 +288,7 @@ export function AssetCanvas({
             <div className="canvas-well">
                 <canvas
                     ref={ref}
+                    aria-label="ピクセル編集キャンバス"
                     width={asset.width}
                     height={asset.height}
                     style={{
@@ -273,7 +298,10 @@ export function AssetCanvas({
                     onPointerDown={down}
                     onPointerMove={move}
                     onPointerUp={up}
-                    onPointerCancel={up}
+                    onPointerCancel={() => {
+                        drawing.current = false;
+                        setDraft(null);
+                    }}
                 />
             </div>
             <div className="toolbar wrap">
@@ -330,8 +358,9 @@ export function AssetCanvas({
                     PNG書出
                 </button>
                 <button
-                    onClick={() =>
-                        window.caravan
+                    onClick={() => {
+                        const generation = ++importGeneration.current;
+                        void window.caravan
                             .importPng(
                                 asset,
                                 game.palettes[asset.palette].colors,
@@ -339,9 +368,12 @@ export function AssetCanvas({
                                     ? parseInt(transparent.replace("#", ""), 16)
                                     : -1,
                             )
-                            .then(setImported)
-                            .catch((e) => error(e.message))
-                    }
+                            .then((result) => {
+                                if (generation === importGeneration.current)
+                                    setImported(result);
+                            })
+                            .catch((e) => error(e.message));
+                    }}
                 >
                     PNG取込
                 </button>
@@ -376,7 +408,7 @@ export function AssetCanvas({
                 </div>
             )}
             <p className="hint">
-                色0はスプライトでは透明。線を引いて編集し、矩形選択でコピー／反転できます。原点・発射位置はクリックで配置します。
+                色0はスプライトでは透明。鉛筆・直線・矩形はドラッグで描画します。1回の描画は1回の元に戻す操作で取り消せます。矩形選択でコピー／反転、原点・発射位置はクリックで配置します。
             </p>
         </>
     );
@@ -403,9 +435,18 @@ export function MapCanvas({
         [wall, setWall] = useState(false),
         [tool, setTool] = useState("tile");
     const draft = useRef<Stage | null>(null),
+        lastTile = useRef<Point | null>(null),
         [view, setView] = useState<Stage | null>(null);
     const s = view ?? stage,
         a = game.assets.find((a) => a.id === s.tileset)!;
+    useEffect(() => {
+        draft.current = null;
+        lastTile.current = null;
+        setView(null);
+    }, [stage]);
+    useEffect(() => {
+        setTile(0);
+    }, [stage.id, stage.tileset]);
     useEffect(() => {
         const c = ref.current?.getContext("2d");
         if (!c || !a) return;
@@ -454,34 +495,34 @@ export function MapCanvas({
     }, [s, a, dmg, grid, eventId]);
     const paint = (e: React.PointerEvent<HTMLCanvasElement>) => {
         const p = pos(e, 160, stage.height * 8);
-        if (tool === "event") {
-            const selected = stage.events.find((e) => e.id === eventId);
-            if (selected)
-                onChange({
-                    ...stage,
-                    events: stage.events.map((v) =>
-                        v.id === eventId
-                            ? {
-                                  ...v,
-                                  x: p.x,
-                                  y: clamp(
-                                      p.y -
-                                          Math.floor(
-                                              v.frame * stage.scrollSpeed,
-                                          ),
-                                      -32,
-                                      176,
-                                  ),
-                              }
-                            : v,
-                    ),
-                });
-            return;
-        }
         if (!draft.current) return;
-        const i = Math.floor(p.y / 8) * 20 + Math.floor(p.x / 8);
-        if (tool === "wall") draft.current.walls[i] = wall ? 1 : 0;
-        else draft.current.tiles[i] = tile;
+        if (tool === "event") {
+            draft.current.events = draft.current.events.map((event) =>
+                event.id === eventId
+                    ? {
+                          ...event,
+                          x: p.x,
+                          y: clamp(
+                              p.y - Math.floor(event.frame * stage.scrollSpeed),
+                              -32,
+                              176,
+                          ),
+                      }
+                    : event,
+            );
+        } else {
+            const cell = { x: Math.floor(p.x / 8), y: Math.floor(p.y / 8) };
+            for (const point of linePoints(lastTile.current ?? cell, cell)) {
+                const index = point.y * 20 + point.x;
+                if (tool === "wall") draft.current.walls[index] = wall ? 1 : 0;
+                else
+                    draft.current.tiles[index] = Math.min(
+                        tile,
+                        (a.width * a.height) / 64 - 1,
+                    );
+            }
+            lastTile.current = cell;
+        }
         setView(clone(draft.current));
     };
     return (
@@ -537,14 +578,26 @@ export function MapCanvas({
                     <span>タイムラインで敵を選択 → マップをクリック</span>
                 )}
             </div>
+            {tool === "tile" && (
+                <TilePalette
+                    game={game}
+                    asset={a}
+                    dmg={dmg}
+                    selected={Math.min(tile, (a.width * a.height) / 64 - 1)}
+                    onSelect={setTile}
+                />
+            )}
             <div className="canvas-well map">
                 <canvas
                     ref={ref}
                     width={160}
                     height={stage.height * 8}
+                    aria-label="ステージマップ編集キャンバス"
                     style={{ width: 480, height: stage.height * 24 }}
                     onPointerDown={(e) => {
+                        if (e.button !== 0) return;
                         e.currentTarget.setPointerCapture(e.pointerId);
+                        lastTile.current = null;
                         draft.current = clone(stage);
                         paint(e);
                     }}
@@ -552,9 +605,14 @@ export function MapCanvas({
                         if (e.buttons && draft.current) paint(e);
                     }}
                     onPointerUp={() => {
-                        if (draft.current && tool !== "event")
-                            onChange(draft.current);
+                        if (draft.current) onChange(draft.current);
                         draft.current = null;
+                        lastTile.current = null;
+                        setView(null);
+                    }}
+                    onPointerCancel={() => {
+                        draft.current = null;
+                        lastTile.current = null;
                         setView(null);
                     }}
                 />

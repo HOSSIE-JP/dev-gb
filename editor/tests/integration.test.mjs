@@ -136,6 +136,11 @@ test(
             created.screens[0].items[0].text = "スター きゃらばん";
             lib.saveGame(temp, "fixture", created);
             let report = lib.compile(temp, "fixture", "Debug", () => {});
+            assert.equal(
+                fs.existsSync(path.join(temp, "projects/fixture/build/.caravan-build.lock")),
+                false,
+                "A successful build must release the project lock",
+            );
             assert.ok(
                 report.size > 32768,
                 "Expanded maps must exercise banked data",
@@ -245,10 +250,21 @@ test(
             lib.saveGame(temp, "fixture", broken);
             const font = path.join(temp, ".tools/misaki/misaki_gothic.bdf");
             fs.renameSync(font, font + ".missing");
-            assert.throws(() =>
-                lib.compile(temp, "fixture", "Debug", () => {}),
+            assert.throws(
+                () => lib.compile(temp, "fixture", "Debug", () => {}),
+                /misaki_gothic|ENOENT/,
             );
             assert.deepEqual(fs.readFileSync(base + ".gb"), baseline);
+            assert.equal(
+                fs.existsSync(
+                    path.join(
+                        temp,
+                        "projects/fixture/build/.caravan-build.lock",
+                    ),
+                ),
+                false,
+                "A failed asset conversion must release the build lock",
+            );
             fs.renameSync(font + ".missing", font);
             created.screens.find((s) => s.id === "hud").dock = "bottom";
             const burst = created.patterns.find(
