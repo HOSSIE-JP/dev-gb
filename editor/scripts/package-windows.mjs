@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const out = path.join(root, '.cache/release/Caravan-Editor');
@@ -21,9 +22,12 @@ for (const p of ['LICENSE','THIRD_PARTY_NOTICES.md']) fs.copyFileSync(path.join(
 for (const name of ['star-caravan','caravan-lab','nova-spear']) {
  const src=path.join(root,'projects',name), dest=path.join(out,'projects',name);
  fs.mkdirSync(dest,{recursive:true});
+ fs.cpSync(path.join(src,'assets-src/images'),path.join(dest,'assets-src/images'),{recursive:true});
  for (const p of ['assets-src/game.json','project.json','README.md']) if(fs.existsSync(path.join(src,p))){fs.mkdirSync(path.dirname(path.join(dest,p)),{recursive:true});fs.copyFileSync(path.join(src,p),path.join(dest,p));}
 }
 fs.writeFileSync(path.join(out,'START-HERE.txt'),'Caravan Editor for Windows x64\r\n\r\nExtract the complete ZIP into a writable folder, then run Caravan-Editor.exe.\r\nFirst launch downloads the locked build tools into .tools. No Git, Python, npm or administrator installation is needed.\r\nUse Tools > Setup to retry or add an external emulator.\r\nKeep the entire folder together. Projects and saves remain in this folder.\r\nWindows PowerShell 5.1 and an Internet connection are required for first setup.\r\n');
+const library = createRequire(import.meta.url)(path.join(app,'build/library.cjs'));
+for (const name of ['star-caravan','caravan-lab','nova-spear']) library.readGame(out,name);
 const files=[];
 function visit(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())visit(p);else{if(p.endsWith('.wasm'))throw Error('Downloaded emulator must not be bundled');files.push({path:path.relative(out,p).replaceAll('\\','/'),sha256:crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex')});}}}
 visit(out);

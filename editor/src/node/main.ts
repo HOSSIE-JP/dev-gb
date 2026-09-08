@@ -373,6 +373,10 @@ function emulatorPath() {
 let settingUp = false;
 async function runSetup(optional = "") {
     if (settingUp || building) return;
+    if (dirty) {
+        await dialog.showMessageBox(win, { message: "セットアップの前に作品を保存してください。完了後に画面を再読込みします。" });
+        return;
+    }
     const answer = await dialog.showMessageBox({
         type: "info", buttons: ["ダウンロードしてセットアップ", "後で"], defaultId: 0, cancelId: 1,
         message: "GBゲーム制作環境をセットアップします",
@@ -502,6 +506,7 @@ app.whenReady().then(async () => {
     win.webContents.setWindowOpenHandler(() => ({ action: "deny" }));
     win.webContents.on("will-navigate", (e: any) => e.preventDefault());
     win.on("close", (event: any) => {
+        if (settingUp) { event.preventDefault(); return; }
         if (
             (dirty || building) &&
             dialog.showMessageBoxSync(win, {
@@ -537,7 +542,7 @@ app.whenReady().then(async () => {
         const timeout = setTimeout(() => app.exit(1), 30000);
         win.webContents.once("did-finish-load", async () => {
             try {
-                const ready = await win.webContents.executeJavaScript("typeof window.caravan?.init === 'function'");
+                const ready = await win.webContents.executeJavaScript("window.caravan.init().then(data => Boolean(data.game && data.projects.length >= 3))");
                 if (!ready || listProjects(root).length < 3) throw new Error("Packaged resources missing");
                 atomicWrite(safePath(root, ".cache/package-smoke.json"), JSON.stringify({ ready, projects: listProjects(root).length }));
                 clearTimeout(timeout); app.exit(0);
