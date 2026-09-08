@@ -6,9 +6,39 @@ static uint16_t previous_row;
 static uint16_t hud_values[32];
 static uint8_t hud_valid, previous_slots;
 
+uint8_t ce_fade_level;
+static palette_color_t fade_colors[32];
 static void palettes(void) {
-    BGP_REG = OBP0_REG = OBP1_REG = ce_dmg_palette;
-    if (ce_is_cgb) { set_bkg_palette(0, ce_palette_count, ce_palettes); set_sprite_palette(0, ce_palette_count, ce_palettes); }
+    uint8_t i, shade, reg = 0, factor = 4u - ce_fade_level;
+    uint16_t rgb;
+    for (i = 0; i != 4u; ++i) {
+        shade = ((ce_dmg_palette >> (i * 2u)) & 3u) + ce_fade_level;
+        if (shade > 3u) shade = 3u;
+        reg |= shade << (i * 2u);
+    }
+    BGP_REG = OBP0_REG = OBP1_REG = reg;
+    if (ce_is_cgb) {
+        for (i = 0; i != ce_palette_count * 4u; ++i) {
+            rgb = ce_palettes[i];
+            fade_colors[i] = (((rgb & 31u) * factor) >> 2) |
+                (((((rgb >> 5) & 31u) * factor) >> 2) << 5) |
+                (((((rgb >> 10) & 31u) * factor) >> 2) << 10);
+        }
+        set_bkg_palette(0, ce_palette_count, fade_colors);
+        set_sprite_palette(0, ce_palette_count, fade_colors);
+    }
+}
+void ce_fade(uint8_t out) BANKED {
+    uint8_t frame;
+    if (!ce_stage_fade) return;
+    for (frame = 0; frame != 24u; ++frame) {
+        vsync();
+        if (!(frame % 6u)) {
+            ce_fade_level = out ? 1u + frame / 6u : 3u - frame / 6u;
+            palettes();
+        }
+        ce_audio_sync();
+    }
 }
 static void tiles(const CE_Data *data, uint8_t first, uint8_t count, uint8_t sprite) {
     uint8_t n; uint16_t offset = 0;
@@ -51,13 +81,16 @@ static void map_row(uint16_t row) {
     }
 }
 void ce_load_screen(uint8_t screen) BANKED {
-    DISPLAY_OFF; HIDE_WIN; HIDE_SPRITES; hide_all(); ce_active_screen = screen;
+    DISPLAY_OFF; HIDE_WIN; HIDE_SPRITES; hide_all(); ce_active_screen = screen; ce_fade_level = 0;
     palettes(); tiles(&ce_screens[screen].tiles, 0, ce_screens[screen].tile_count, 0);
     screen_map(screen, 0); move_bkg(0, 0); ce_hud(); SHOW_BKG; DISPLAY_ON;
 }
 void ce_load_stage(void) BANKED {
     uint8_t row; uint16_t start = ce_state.camera >> 7; const CE_Stage *s = &ce_stages[ce_state.stage];
-    DISPLAY_OFF; hide_all(); palettes(); ce_active_screen = 4;
+    /* Preserve an enabled, black LCD during transition loading. Turning it off
+     * would flash white on DMG. GBDK VRAM APIs wait for safe access windows. */
+    if (ce_fade_level != 4u) DISPLAY_OFF;
+    hide_all(); palettes(); ce_active_screen = 4;
     tiles(&ce_screens[4].tiles, 0, ce_screens[4].tile_count, 0);
     tiles(&s->tiles, ce_screens[4].tile_count, s->tile_count, 0);
     tiles(&ce_sprite_data, 128, ce_sprite_tiles, 1); SPRITES_8x8;
@@ -125,7 +158,7 @@ void ce_render(void) BANKED {
     previous_row = row;
     move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
     DISABLE_OAM_DMA;
-    if (!ce_state.invulnerable || !(ce_state.invulnerable & 4u)) slot = sprite(slot, ce_player_asset, ce_state.player_x, ce_state.player_y, ce_state.tick);
+    if (!ce_respawn && (!ce_state.invulnerable || !(ce_state.invulnerable & 4u))) slot = sprite(slot, ce_player_asset, ce_state.player_x, ce_state.player_y, ce_state.tick);
     for (i = ce_used; i; --i, ++e) if (e->kind) slot = sprite(slot, e->asset, e->x, e->y, e->age);
     /* Do not DMA a partially written metasprite list. */
     i = slot;

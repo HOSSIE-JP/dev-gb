@@ -24,14 +24,12 @@ export const COS = [
 export const angleStep = (degrees: number) =>
     ((Math.round(degrees / 22.5) % 16) + 16) % 16;
 export function aimStep(dx: number, dy: number) {
-    let best = -32768,
-        result = 0;
-    for (let n = 0; n < 16; n++) {
-        const score = dx * SIN[n] - dy * COS[n];
-        if (score > best) {
-            best = score;
-            result = n;
-        }
+    const ax = Math.abs(dx), ay = Math.abs(dy);
+    const scores = [ay * 16, ax * 6 + ay * 15, (ax + ay) * 11, ax * 15 + ay * 6, ax * 16];
+    let best = -1, result = 0;
+    for (let i = 0; i < 5; i++) {
+        const angle = dx < 0 ? (dy > 0 ? 8 + i : (16 - i) & 15) : (dy > 0 ? 8 - i : i);
+        if (scores[i] > best || (scores[i] === best && angle < result)) { best = scores[i]; result = angle; }
     }
     return result;
 }
@@ -142,6 +140,7 @@ export class Simulation {
     playerX = 0;
     playerY = 0;
     invulnerable = 0;
+    respawn = 0;
     cooldown = 0;
     playerSequence = 0;
     weaponMode = 0;
@@ -332,12 +331,17 @@ export class Simulation {
         return false;
     }
     hitPlayer() {
-        if (this.invulnerable || this.result) return;
+        if (this.respawn || this.invulnerable || this.result) return;
         this.explode(this.playerX, this.playerY);
         this.lives--;
         if (!this.lives) this.result = 1;
         else {
-            this.invulnerable = this.game.player.invulnerability;
+            this.respawn = this.game.player.respawnDelay ?? 0;
+            this.invulnerable = this.respawn ? 0 : this.game.player.invulnerability;
+            if (this.respawn) {
+                this.entities = this.entities.filter(e => e.kind !== "pshot");
+                this.cooldown = 0; this.playerSequence = 0;
+            }
             this.playerX = q4(this.game.player.x);
             this.playerY = q4(this.game.player.y);
         }
@@ -364,7 +368,7 @@ export class Simulation {
             this.playerX = q4(this.game.player.x);
             this.weaponMode = 0;
             this.playerY = q4(this.game.player.y);
-            this.invulnerable = this.game.player.invulnerability;
+            this.invulnerable = this.respawn ? 0 : this.game.player.invulnerability;
         } else this.result = 2;
     }
     explode(x: number, y: number) {
@@ -399,6 +403,9 @@ export class Simulation {
         const pattern = mode ? p.focusWeapon! : p.weapon;
         const weapon = g.patterns.find((x) => x.id === pattern)!;
         const speed = q4(mode ? p.focusSpeed ?? p.speed : p.speed);
+        if (this.respawn) {
+            if (!--this.respawn) this.invulnerable = p.invulnerability;
+        } else {
         if (this.weaponMode !== mode) {
             this.weaponMode = mode;
             this.cooldown = weapon.delay;
@@ -433,6 +440,7 @@ export class Simulation {
             this.cooldown = weapon.interval - 1;
         }
         if (this.invulnerable) this.invulnerable--;
+        }
         this.camera += this.stage.scrollDown ? -this.scroll : this.scroll;
         const mapEnd = this.stage.height * 8 * 16;
         if (this.stage.loopMap) this.camera = (this.camera + mapEnd) % mapEnd;
@@ -557,6 +565,7 @@ export class Simulation {
                 this.explode(enemy.x, enemy.y);
             }
         }
+        if (!this.respawn) {
         const playerBox = this.box(p.asset, this.playerX, this.playerY);
         if (this.wall(playerBox)) this.hitPlayer();
         for (const e of this.entities)
@@ -569,6 +578,7 @@ export class Simulation {
                 if (e.kind === "eshot")
                     this.entities = this.entities.filter((a) => a !== e);
             }
+        }
         this.tick++;
         this.stageTick++;
         if (!this.result && this.stage.requireBoss && !this.bossDefeated && (finish || this.stageTick >= this.stage.duration * 60))
@@ -669,7 +679,7 @@ export function drawSimulation(
             ctx.strokeRect(b.x, b.y, b.w, b.h);
         }
     };
-    if (!sim.invulnerable || (sim.invulnerable & 4) === 0)
+    if (!sim.respawn && (!sim.invulnerable || (sim.invulnerable & 4) === 0))
         draw(g.player.asset, sim.playerX, sim.playerY);
     for (const e of sim.entities) draw(e.asset, e.x, e.y, e.age);
 }

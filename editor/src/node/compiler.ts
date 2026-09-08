@@ -284,6 +284,8 @@ export function generate(
         `const uint8_t ce_asset_count=${spriteAssets.length}, ce_sprite_tiles=${spriteTiles};`,
         `const CE_Data ce_sprite_data=${blob(spriteData)};`,
     );
+    const speeds = [...new Set(game.patterns.map(p => q4(p.speed)))];
+    for (const speed of speeds) config.push(`static const int16_t velocity_${speed}[]={${SIN.flatMap((s, i) => [Math.trunc(s * speed / 16), Math.trunc(-COS[i] * speed / 16)])}};`);
     const patternRows = game.patterns.map((p, i) => {
         const offsets = shotAngles(
             { ...p, angle: 0, kind: p.kind === "spiral" ? "fan" : p.kind },
@@ -294,7 +296,7 @@ export function generate(
         config.push(
             `static const int8_t pattern_${i}_angles[] = {${offsets}};`,
         );
-        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles}`;
+        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)}}`;
     });
     config.push(
         `const CE_Pattern ce_patterns[]={${patternRows}};`,
@@ -509,7 +511,8 @@ export function generate(
         `const uint8_t ce_music_title=${game.music?.title ?? 0},ce_music_boss=${game.music?.boss ?? 0},ce_music_clear=${game.music?.clear ?? 0},ce_music_gameover=${game.music?.gameover ?? 0};`,
     );
     config.push(
-        `const uint16_t ce_player_invulnerability=${game.player.invulnerability},ce_clear_bonus=${game.clearBonus};`,
+        `const uint16_t ce_player_invulnerability=${game.player.invulnerability},ce_clear_bonus=${game.clearBonus},ce_player_respawn_delay=${game.player.respawnDelay ?? 0};`,
+        `const uint8_t ce_stage_fade=${+(game.stageFade ?? true)};`,
         `const int16_t ce_player_start_x=${q4(game.player.x)},ce_player_start_y=${q4(game.player.y)};`,
         `const uint8_t ce_explosion_asset=${game.effects.explosion ? assetId(game.effects.explosion) : 255},ce_explosion_duration=${game.effects.duration};`,
     );
@@ -651,7 +654,9 @@ export function compile(
         ];
         if (!areas.some((m) => m[1] === "_DATA"))
             throw new Error("リンクマップからWRAM容量を取得できません");
-        const ram = areas.reduce((n, m) => n + parseInt(m[2], 16), 0);
+        // Long debug symbol tables repeat area headers on subsequent map pages.
+        const uniqueAreas = [...new Map(areas.map(m => [m[0].replace(/\s+/g, " "), m])).values()];
+        const ram = uniqueAreas.reduce((n, m) => n + parseInt(m[2], 16), 0);
         if (ram + 160 > 7168)
             throw new Error(
                 `WRAM予算超過: ${ram + 160} bytes / 7168（スタック用1024 bytesを確保）`,

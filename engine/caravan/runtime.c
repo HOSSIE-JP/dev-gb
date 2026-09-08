@@ -6,14 +6,17 @@ CE_Entity ce_entities[CE_MAX_ENTITIES];
 CE_State ce_state;
 uint8_t ce_is_cgb, ce_scene, ce_pause, ce_active_screen;
 uint8_t ce_used;
-uint16_t ce_scores[5];
+uint8_t ce_pool_counts[6], ce_pool_oam;
+static uint8_t free_slots[4];
+uint16_t ce_scores[5], ce_respawn;
+static uint16_t music_time;
 volatile uint8_t ce_trace[24];
 static uint16_t event_cursor;
 static CE_Event next_event;
 static uint8_t active[CE_MAX_ENTITIES];
 static CE_Entity *targets[9];
 static CE_Box *target_boxes[9];
-static uint8_t target_count;
+static uint8_t target_count, target_slots[9];
 static CE_Box boxes[CE_MAX_ENTITIES], player_box;
 static CE_Box *box_a, *box_b;
 static void box(CE_Box *b, uint8_t asset, int16_t x, int16_t y);
@@ -39,33 +42,42 @@ static void read_event(void) {
         ce_copy((uint8_t *)&next_event, &ce_stages[ce_state.stage].events, event_cursor * 9u, 9u);
 }
 void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
-    if (new_game) { memset(&ce_state, 0, sizeof(ce_state)); ce_state.lives = ce_player_lives; }
+    if (new_game) { ce_respawn = 0; memset(&ce_state, 0, sizeof(ce_state)); ce_state.lives = ce_player_lives; }
     memset(ce_entities, 0, sizeof(ce_entities));
-    ce_used = 0;
+    ce_used = 0; memset(ce_pool_counts, 0, sizeof(ce_pool_counts));
+    memset(free_slots, 255, sizeof(free_slots)); free_slots[3] = 127;
+    ce_pool_oam = ce_assets[ce_player_asset].tiles;
     ce_state.stage = stage; ce_state.stage_tick = 0; ce_state.camera = ce_stages[stage].scroll_down ? ce_stages[stage].height * 128u - (144u - ce_hud_height) * 16u : 0;
     ce_state.scroll = ce_stages[stage].scroll; ce_state.boss_defeated = 0;
     ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
-    ce_state.invulnerable = ce_player_invulnerability; event_cursor = 0; read_event();
+    ce_state.invulnerable = ce_respawn ? 0 : ce_player_invulnerability; event_cursor = 0; read_event();
     ce_state.cooldown = ce_patterns[ce_player_weapon].delay; ce_state.player_sequence = 0;
     ce_state.weapon_mode = 0;
     ce_music_play(ce_stages[stage].music);
 }
 static uint8_t allocate(uint8_t kind, uint8_t asset) {
-    uint8_t i, count = 0, oam = ce_assets[ce_player_asset].tiles, slot = CE_NONE;
-    CE_Entity *e = ce_entities;
-    for (i = 0; i != ce_used; ++i, ++e) {
-        if (!e->kind) { if (slot == CE_NONE) slot = i; }
-        else { oam += ce_assets[e->asset].tiles; if (e->kind == kind) ++count; }
-    }
-    if (slot == CE_NONE && ce_used < CE_MAX_ENTITIES) slot = ce_used;
-    if (slot == CE_NONE || oam + ce_assets[asset].tiles > 40u ||
-        count >= (kind == CE_ENEMY ? 8u : kind == CE_BOSS ? 1u : kind == CE_PSHOT ? 6u : kind == CE_FX ? 4u : 16u)) {
+    static const uint8_t limits[6] = {0, 8, 1, 6, 16, 4};
+    uint8_t group, bit = 1u, slot; CE_Entity *e;
+    if (ce_pool_oam + ce_assets[asset].tiles > 40u || ce_pool_counts[kind] >= limits[kind]) {
         ++ce_state.dropped; return CE_NONE;
     }
-    memset(&ce_entities[slot], 0, sizeof(CE_Entity));
-    ce_entities[slot].kind = kind; ce_entities[slot].asset = asset;
-    if (slot == ce_used) ++ce_used;
+    for (group = 0; group != 4u && !free_slots[group]; ++group) {}
+    if (group == 4u) { ++ce_state.dropped; return CE_NONE; }
+    slot = group << 3;
+    while (!(free_slots[group] & bit)) { bit <<= 1; ++slot; }
+    free_slots[group] &= ~bit;
+    e = &ce_entities[slot]; memset(e, 0, sizeof(CE_Entity));
+    e->kind = kind; e->asset = asset;
+    ++ce_pool_counts[kind]; ce_pool_oam += ce_assets[asset].tiles;
+    if (slot >= ce_used) ce_used = slot + 1u;
     return slot;
+}
+static void release(uint8_t slot) {
+    CE_Entity *e = &ce_entities[slot];
+    if (!e->kind) return;
+    --ce_pool_counts[e->kind]; ce_pool_oam -= ce_assets[e->asset].tiles;
+    e->kind = 0;
+    free_slots[slot >> 3] |= 1u << (slot & 7u);
 }
 static void explode(int16_t x, int16_t y) {
     uint8_t slot; CE_Entity *e;
@@ -79,14 +91,24 @@ static void spawn_actor(uint8_t kind, uint8_t ref, int16_t x, int16_t y) {
     if (slot == CE_NONE) return;
     e = &ce_entities[slot]; e->ref = ref; e->hp = actor->hp; e->damage = 1;
     e->x = e->base_x = x * 16; e->y = e->base_y = y * 16;
-    box(&boxes[slot], e->asset, e->x, e->y);
+    /* Actors are updated (and boxed) immediately after stage events. */
     if (kind == CE_BOSS) ce_music_play(ce_music_boss);
 }
 static uint8_t aim(int16_t dx, int16_t dy) {
-    uint8_t i, best = 0; int16_t score, maximum = -32767;
-    for (i = 0; i != 16u; ++i) {
-        score = dx * ce_sin[i] - dy * ce_cos[i];
-        if (score > maximum) { maximum = score; best = i; }
+    uint8_t i, angle, best = 0;
+    int16_t ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+    int16_t maximum = -1;
+    static int16_t score[5];
+    /* The 16 directions are four mirrored copies of these five candidates.
+     * Shift/add coefficients preserve the exact old integer dot products. */
+    score[0] = ay << 4;
+    score[1] = (ax << 2) + (ax << 1) + (ay << 4) - ay;
+    score[2] = ((ax + ay) << 3) + ((ax + ay) << 1) + ax + ay;
+    score[3] = (ax << 4) - ax + (ay << 2) + (ay << 1);
+    score[4] = ax << 4;
+    for (i = 0; i != 5u; ++i) {
+        angle = dx < 0 ? (dy > 0 ? 8u + i : (16u - i) & 15u) : (dy > 0 ? 8u - i : i);
+        if (score[i] > maximum || (score[i] == maximum && angle < best)) { maximum = score[i]; best = angle; }
     }
     return best;
 }
@@ -105,10 +127,10 @@ static void shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t
             slot = allocate(friendly ? CE_PSHOT : CE_ESHOT, p->asset); if (slot == CE_NONE) continue;
             angle = (base + p->angles[n]) & 15u;
             e = &ce_entities[slot]; e->ref = pattern; e->x = e->base_x = px; e->y = e->base_y = py;
-            e->vx = ((int16_t)ce_sin[angle] * p->speed) / 16;
-            e->vy = (-(int16_t)ce_cos[angle] * p->speed) / 16;
+            angle <<= 1;
+            e->vx = p->velocity[angle]; e->vy = p->velocity[angle + 1u];
             e->hp = 1; e->lifetime = p->lifetime; e->damage = p->damage;
-            box(&boxes[slot], e->asset, e->x, e->y);
+            if (!friendly) box(&boxes[slot], e->asset, e->x, e->y);
         }
     }
 }
@@ -139,11 +161,20 @@ static uint8_t wall(CE_Box *b) {
     return 0;
 }
 static void hit_player(void) {
-    if (ce_state.invulnerable || ce_state.result) return;
+    uint8_t i;
+    if (ce_respawn || ce_state.invulnerable || ce_state.result) return;
     explode(ce_state.player_x, ce_state.player_y);
     ce_sound(2); --ce_state.lives;
     if (!ce_state.lives) ce_state.result = 1;
-    else { ce_state.invulnerable = ce_player_invulnerability; ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y; }
+    else {
+        ce_respawn = ce_player_respawn_delay;
+        ce_state.invulnerable = ce_respawn ? 0 : ce_player_invulnerability;
+        ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
+        if (ce_respawn) {
+            ce_state.cooldown = 0; ce_state.player_sequence = 0;
+            for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_PSHOT) release(i);
+        }
+    }
 }
 static void move_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) {
     uint16_t t, quarter, part; uint8_t i, phase; int16_t span, offset = 0; const CE_Point *p;
@@ -183,6 +214,10 @@ static void step_player(uint8_t input) {
     uint8_t speed = mode ? ce_player_focus_speed : ce_player_speed;
     int16_t limit; const CE_Asset *player = &ce_assets[ce_player_asset];
     const CE_Pattern *weapon = &ce_patterns[pattern];
+    if (ce_respawn) {
+        if (!--ce_respawn) ce_state.invulnerable = ce_player_invulnerability;
+        return;
+    }
     if (ce_state.weapon_mode != mode) {
         ce_state.weapon_mode = mode; ce_state.cooldown = weapon->delay; ce_state.player_sequence = 0;
     }
@@ -257,33 +292,33 @@ static void step_entities(void) {
     for (i = 0, e = ce_entities; i != active_count; ++i, ++e) active[i] = e->kind;
     for (i = 0, e = ce_entities; i != active_count; ++i, ++e) {
         if (!active[i]) continue;
-        if (e->kind == CE_FX) { ++e->age; if (e->age >= e->lifetime) e->kind = 0; }
+        if (e->kind == CE_FX) { ++e->age; if (e->age >= e->lifetime) release(i); }
         else if (e->kind >= CE_PSHOT) {
             e->x += e->vx; e->y += e->vy; ++e->age;
             box(&boxes[i], e->asset, e->x, e->y);
-            if (e->age >= e->lifetime || (stage->has_walls && wall(&boxes[i]))) e->kind = 0;
+            if (e->age >= e->lifetime || (stage->has_walls && wall(&boxes[i]))) release(i);
         } else {
             step_actor(e);
             box(&boxes[i], e->asset, e->x, e->y);
         }
-        if ((uint16_t)(e->x + 512) > 3584u || (uint16_t)(e->y + 512) > 3328u) e->kind = 0;
+        if ((uint16_t)(e->x + 512) > 3584u || (uint16_t)(e->y + 512) > 3328u) release(i);
     }
 }
 static void collide_shots(void) {
     uint8_t i, j; CE_Entity *e, *target; const CE_Actor *actor;
     target_count = 0;
-    for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) if (e->kind == CE_ENEMY || e->kind == CE_BOSS) { targets[target_count] = e; target_boxes[target_count++] = &boxes[i]; }
+    for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) if (e->kind == CE_ENEMY || e->kind == CE_BOSS) { targets[target_count] = e; target_slots[target_count] = i; target_boxes[target_count++] = &boxes[i]; }
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) {
         if (e->kind != CE_PSHOT) continue;
         box_a = &boxes[i];
         for (j = 0; j != target_count; ++j) {
             target = targets[j]; if (target->kind != CE_ENEMY && target->kind != CE_BOSS) continue;
             box_b = target_boxes[j]; if (!overlap()) continue;
-            e->kind = 0;
+            release(i);
             if (target->hp <= e->damage) {
                 actor = target->kind == CE_BOSS ? &ce_bosses[target->ref] : &ce_enemies[target->ref];
                 add_score(actor->score); if (target->kind == CE_BOSS) ce_state.boss_defeated = 1;
-                target->kind = 0; ce_sound(1);
+                release(target_slots[j]); ce_sound(1);
                 explode(target->x, target->y);
             } else target->hp -= e->damage;
             break;
@@ -292,12 +327,13 @@ static void collide_shots(void) {
 }
 static void collide_player(void) {
     uint8_t i; CE_Entity *e;
+    if (ce_respawn) return;
     box(&player_box, ce_player_asset, ce_state.player_x, ce_state.player_y); box_a = &player_box;
     if (ce_stages[ce_state.stage].has_walls && wall(box_a)) hit_player();
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) {
         if (!e->kind || e->kind == CE_PSHOT || e->kind == CE_FX) continue;
         box_b = &boxes[i];
-        if (overlap()) { hit_player(); if (e->kind == CE_ESHOT) e->kind = 0; }
+        if (overlap()) { hit_player(); if (e->kind == CE_ESHOT) release(i); }
     }
 }
 void ce_step(uint8_t input) NONBANKED {
@@ -312,7 +348,7 @@ void ce_step(uint8_t input) NONBANKED {
     if (!ce_state.result && (finish || (ce_state.boss_defeated && stage->clear_boss) || ce_state.stage_tick >= stage->duration)) {
         add_score(ce_clear_bonus);
         ce_sound(3);
-        if (ce_campaign && ce_state.stage + 1u < ce_stage_count) { ce_reset(ce_state.stage + 1u, 0); ce_load_stage(); }
+        if (ce_campaign && ce_state.stage + 1u < ce_stage_count) { ce_fade(1); ce_reset(ce_state.stage + 1u, 0); ce_load_stage(); ce_fade(0); }
         else ce_state.result = 2;
     }
 }
@@ -344,9 +380,15 @@ static void record_score(void) {
         for (j = 4; j > i; --j) ce_scores[j] = ce_scores[j - 1u]; ce_scores[i] = ce_state.score; break;
     }
 }
+void ce_audio_sync(void) NONBANKED {
+    uint16_t now, elapsed;
+    CRITICAL { now = sys_time; }
+    elapsed = now - music_time; music_time = now;
+    ce_music_tick(elapsed > 255u ? 255u : (uint8_t)elapsed);
+}
 void ce_run(void) NONBANKED {
     uint8_t input, pressed, previous = 0;
-    uint16_t music_time, now, elapsed;
+    uint16_t now;
     ce_is_cgb = _cpu == CGB_TYPE;
     if (ce_is_cgb) cpu_fast();
     NR52_REG = 0x80; NR50_REG = 0x77; NR51_REG = 0xff;
@@ -362,9 +404,7 @@ void ce_run(void) NONBANKED {
         CRITICAL { now = sys_time; }
         if (now == music_time) vsync();
         input = joypad(); pressed = input & ~previous; previous = input;
-        CRITICAL { now = sys_time; }
-        elapsed = now - music_time; music_time = now;
-        ce_music_tick(elapsed > 255u ? 255u : (uint8_t)elapsed);
+        ce_audio_sync();
         if (ce_scene == 1u) {
             if (pressed & J_START) { ce_pause = !ce_pause; ce_music_pause(ce_pause); }
             if (!ce_pause) {
@@ -378,7 +418,7 @@ void ce_run(void) NONBANKED {
                 ce_music_play(ce_state.result == 1u ? ce_music_gameover : ce_music_clear);
             }
         } else if (ce_scene == 0u) {
-            if (pressed & (J_START | J_A)) { ce_reset(ce_campaign ? 0u : ce_start_stage, 1); ce_scene = 1; ce_pause = 0; ce_load_stage(); }
+            if (pressed & (J_START | J_A)) { ce_fade(1); ce_reset(ce_campaign ? 0u : ce_start_stage, 1); ce_scene = 1; ce_pause = 0; ce_load_stage(); ce_fade(0); }
             else if (pressed & J_SELECT) { ce_scene = 4; ce_load_screen(3); }
         } else if (pressed & (J_START | J_A | J_B | J_SELECT)) { ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title); }
         ce_trace_write();

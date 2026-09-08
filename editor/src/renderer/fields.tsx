@@ -18,6 +18,8 @@ const labels: Record<string, string> = {
     dmgPalette: "DMG階調レジスター（0〜255）",
     speed: "速度 px / frame",
     lives: "残機",
+    respawnDelay: "復帰待ち（ゲームフレーム）",
+    stageFade: "ステージ切替をフェード",
     invulnerability: "無敵時間（frame）",
     x: "X",
     y: "Y",
@@ -154,11 +156,11 @@ export function Form({
     return (
         <div className="form">
             {Object.entries(
-                context === "player" ? { focusWeapon: "", focusSpeed: value.speed, ...value }
+                context === "player" ? { focusWeapon: "", focusSpeed: value.speed, respawnDelay: 0, ...value }
                 : context === "stage" ? { requireBoss: false, scrollDown: false, music: 0, ...value }
                 : value.id === "hud" ? { rows: 2, ...value }
                 : "binding" in value ? { digits: 5, ...value }
-                : value.schemaVersion === 1 ? { music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
+                : value.schemaVersion === 1 ? { stageFade: true, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )
                 .filter(

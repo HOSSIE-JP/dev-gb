@@ -93,7 +93,6 @@ const item = (id, text, x, y, binding = "none", palette = 5) => ({ id, text, x, 
 const screen = (id, name, background, items) => ({ id, name, background, palette: 5, dock: "top", items });
 const screens = [
     screen("title", "タイトル / NOVA SPEAR", "title-art", [
-        item("title-mode", "3 STAGES / 5 LIVES", 1, 7),
         item("title-start", "START MISSION", 3, 13),
         item("title-controls", "A WIDE / B FOCUS", 2, 15),
         item("title-scores", "SELECT SCORES", 3, 17),

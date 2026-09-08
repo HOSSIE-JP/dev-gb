@@ -24,7 +24,7 @@ typedef struct {
 } CE_Asset;
 typedef struct {
     uint8_t asset, kind, speed, angle, count, rotation, repeats;
-    uint16_t interval, delay, lifetime; uint8_t damage; const int8_t *angles;
+    uint16_t interval, delay, lifetime; uint8_t damage; const int8_t *angles; const int16_t *velocity;
 } CE_Pattern;
 typedef struct { uint8_t until; uint16_t threshold; uint8_t pattern; const CE_Motion *motion; uint8_t layers; const uint8_t *layer; } CE_Phase;
 typedef struct { uint8_t asset, hp; uint16_t score; uint8_t pattern; const CE_Motion *motion; uint8_t phases; const CE_Phase *phase; uint8_t layers; const uint8_t *layer; } CE_Actor;
@@ -66,7 +66,10 @@ extern const uint8_t ce_palette_count, ce_sprite_tiles, ce_campaign, ce_start_st
 extern const uint8_t ce_player_asset, ce_player_weapon, ce_player_speed, ce_player_lives;
 extern const uint8_t ce_player_focus_weapon, ce_player_focus_speed;
 extern const uint8_t ce_music_title, ce_music_boss, ce_music_clear, ce_music_gameover;
-extern const uint16_t ce_player_invulnerability, ce_clear_bonus;
+extern const uint16_t ce_player_invulnerability, ce_clear_bonus, ce_player_respawn_delay;
+extern const uint8_t ce_stage_fade;
+extern uint16_t ce_respawn;
+extern uint8_t ce_fade_level;
 extern const uint8_t ce_explosion_asset, ce_explosion_duration;
 extern const int16_t ce_player_start_x, ce_player_start_y;
 extern const int8_t ce_sin[16], ce_cos[16];
@@ -86,6 +89,8 @@ uint8_t ce_boss_hp(void) NONBANKED;
 void ce_load_stage(void) BANKED;
 void ce_load_screen(uint8_t screen) BANKED;
 void ce_render(void) BANKED;
+void ce_fade(uint8_t out) BANKED;
+void ce_audio_sync(void) NONBANKED;
 void ce_hud(void) BANKED;
 void ce_sound(uint8_t effect) NONBANKED;
 void ce_run(void) NONBANKED;

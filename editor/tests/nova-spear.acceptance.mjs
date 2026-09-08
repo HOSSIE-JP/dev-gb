@@ -131,11 +131,22 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
 
             // With no further input the actual, unmodified game must reach a
             // result, including its required-boss deadline if collisions miss.
+            let waitingTick, waitingCamera, observedWait = false, observedWorld = false, observedReturn = false;
             for (let frame = 0; frame < 36000; frame += 4) {
                 frames(gb, 4);
                 last = settledTrace(gb, syms._ce_trace);
+                if (last && last.scene === 1) {
+                    const wait = memory(gb).ram.readUInt16LE(syms._ce_respawn - 0xc000);
+                    if (wait) {
+                        observedWait = true;
+                        assert.equal(entityState(gb, syms._ce_entities, game).filter(e => e.kind === "pshot").length, 0);
+                        if (waitingTick === undefined) { waitingTick = last.tick; waitingCamera = memory(gb).ram.readUInt16LE(syms._ce_state - 0xc000 + 4); }
+                        if (last.tick > waitingTick + 30 && memory(gb).ram.readUInt16LE(syms._ce_state - 0xc000 + 4) !== waitingCamera) observedWorld = true;
+                    } else if (observedWait) observedReturn = true;
+                }
                 if (last?.result) break;
             }
+            assert.ok(observedWait && observedWorld && observedReturn, `respawn wait=${observedWait}, world=${observedWorld}, return=${observedReturn}`);
             assert.equal(last?.result, 1);
             assert.equal(last?.scene, 2);
             assert.equal(readByte(gb, syms, "_ce_music_track"), game.music.gameover);
@@ -189,7 +200,7 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
             const label = mode === GameBoyMode.Dmg ? "dmg" : "cgb";
             const gb = boot(fs.readFileSync(report.romPath), mode);
             const sim = new lib.Simulation(stored);
-            const stages = new Set(), phases = new Set(), music = new Set();
+            const stages = new Set(), phases = new Set(), music = new Set(), fadeLevels = new Set();
             let checked = 0, last;
             try {
                 frames(gb, 240);
@@ -199,6 +210,9 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
                 gb.key_lift(PadKey.Start);
                 for (let frame = 0; frame < 6000; frame++) {
                     frames(gb, 1);
+                    fadeLevels.add(readByte(gb, syms, "_ce_fade_level"));
+                    if (readByte(gb, syms, "_ce_fade_level") === 4)
+                        assert.ok(memory(gb).io[0x40] & 0x80, "black stage loading keeps LCD enabled to avoid a white flash");
                     last = settledTrace(gb, syms._ce_trace);
                     if (!last || !last.tick) continue;
                     while (sim.tick < last.tick && !sim.result) sim.step(32);
@@ -219,6 +233,7 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
                 assert.equal(last?.result, 2);
                 assert.equal(last?.scene, 3);
                 assert.equal(stages.size, 3);
+                assert.deepEqual([...fadeLevels].sort(), [0,1,2,3,4], "stage transitions traverse every fade level");
                 for (let index = 0; index < stored.stageOrder.length; index++) {
                     const stage = stored.stages.find((s) => s.id === stored.stageOrder[index]);
                     const boss = stored.bosses.find((b) => b.id === stage.events[0].ref);

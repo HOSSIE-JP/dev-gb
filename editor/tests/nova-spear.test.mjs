@@ -155,3 +155,35 @@ test("compact HUD uses one row, bounded numeric fields and the full remaining pl
     for(let i=0;i<100;i++)legacy.step(4);
     assert.equal(legacy.playerY,(16+asset.origin.y)*16,'two-row HUD keeps legacy playfield bounds');
 });
+
+test("quadrant aim matches all 16 original dot products, including tie directions", () => {
+    for(let dx=-256;dx<=256;dx++)for(let dy=-256;dy<=256;dy++){
+        let best=-32768,result=0;
+        for(let i=0;i<16;i++){const v=dx*lib.SIN[i]-dy*lib.COS[i];if(v>best){best=v;result=i;}}
+        assert.equal(lib.aimStep(dx,dy),result,`${dx},${dy}`);
+    }
+});
+
+test("respawn wait keeps the world moving and prevents firing or repeat deaths", () => {
+    const g=emptyArena();g.player.respawnDelay=180;
+    const sim=new lib.Simulation(g);sim.invulnerable=0;
+    sim.step(16);assert.ok(sim.entities.some(e=>e.kind==='pshot'));
+    sim.hitPlayer();assert.equal(sim.respawn,180);assert.equal(sim.lives,g.player.lives-1);
+    assert.ok(!sim.entities.some(e=>e.kind==='pshot'));
+    const camera=sim.camera, tick=sim.stageTick,score=sim.score;
+    for(let i=0;i<179;i++){sim.hitPlayer();sim.step(16|1);}
+    assert.equal(sim.respawn,1);assert.equal(sim.lives,g.player.lives-1);
+    assert.equal(sim.stageTick,tick+179);assert.notEqual(sim.camera,camera);
+    assert.equal(sim.playerX,g.player.x*16);assert.equal(sim.score,score);
+    assert.ok(!sim.entities.some(e=>e.kind==='pshot'));
+    sim.step(16);assert.equal(sim.respawn,0);assert.equal(sim.invulnerable,g.player.invulnerability);
+    sim.step(16);assert.ok(sim.entities.some(e=>e.kind==='pshot'));
+    const legacy=new lib.Simulation({...g,player:{...g.player,respawnDelay:0}});
+    legacy.invulnerable=0;legacy.hitPlayer();assert.equal(legacy.respawn,0);assert.equal(legacy.invulnerable,g.player.invulnerability);
+});
+
+test("title omits the stage/lives banner and stage fade defaults on", () => {
+    const game=authored();assert.ok(!game.screens.find(s=>s.id==='title').items.some(i=>i.text.includes('3 STAGES')));
+    assert.equal(game.stageFade??true,true);
+    assert.equal(game.player.respawnDelay,180);
+});

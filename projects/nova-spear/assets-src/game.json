@@ -33793,14 +33793,6 @@
       "dock": "top",
       "items": [
         {
-          "id": "title-mode",
-          "text": "3 STAGES / 5 LIVES",
-          "x": 1,
-          "y": 7,
-          "palette": 5,
-          "binding": "none"
-        },
-        {
           "id": "title-start",
           "text": "START MISSION",
           "x": 3,
@@ -33996,7 +33988,8 @@
     "focusWeapon": "focus-lance",
     "asset": "player-ship",
     "x": 80,
-    "y": 124
+    "y": 124,
+    "respawnDelay": 180
   },
   "clearBonus": 1500,
   "effects": {

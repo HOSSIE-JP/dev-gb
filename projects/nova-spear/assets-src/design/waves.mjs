@@ -308,7 +308,7 @@ export const stageBlueprints = [
 
 export const balance = {
     recommendedPlayer: { speed: 2.5, focusSpeed: 1.5, lives: 5,
-        invulnerability: 150, weapon: "tri-pulse", focusWeapon: "focus-lance",
+        invulnerability: 150, respawnDelay: 180, weapon: "tri-pulse", focusWeapon: "focus-lance",
         asset: "player-ship", x: 80, y: 124 },
     clearBonus: 1500,
     // These values are descriptive targets, not extra scoring rules.

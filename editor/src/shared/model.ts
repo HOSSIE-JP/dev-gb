@@ -139,6 +139,7 @@ export type Game = {
         speed: number;
         lives: number;
         invulnerability: number;
+        respawnDelay?: number;
         weapon: string;
         focusWeapon?: string;
         focusSpeed?: number;
@@ -146,6 +147,7 @@ export type Game = {
         y: number;
     };
     clearBonus: number;
+    stageFade?: boolean;
     music?: { title: number; boss: number; clear: number; gameover: number };
     effects: { explosion: string; duration: number };
     provenance: { author: string; license: string; source: string };
@@ -375,6 +377,7 @@ export function validateShape(
             speed: "number",
             lives: "number",
             invulnerability: "number",
+            "respawnDelay?": "number",
             weapon: "string",
             "focusWeapon?": "string",
             "focusSpeed?": "number",
@@ -382,6 +385,7 @@ export function validateShape(
             y: "number",
         },
         clearBonus: "number",
+        "stageFade?": "boolean",
         "music?": { title: "number", boss: "number", clear: "number", gameover: "number" },
         effects: { explosion: "string", duration: "number" },
         provenance: { author: "string", license: "string", source: "string" },
@@ -670,6 +674,7 @@ export function validate(value: unknown): Diagnostic[] {
     finite(game.player.speed, 0.0625, 8, "player");
     integer(game.player.lives, 1, 9, "player");
     integer(game.player.invulnerability, 0, 1024, "player");
+    if (game.player.respawnDelay !== undefined) integer(game.player.respawnDelay, 0, 600, "player");
     integer(game.player.x, 0, 159, "player");
     integer(game.player.y, 16, 135, "player");
     for (const stage of game.stages) {
