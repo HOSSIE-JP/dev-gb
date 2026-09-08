@@ -5,6 +5,8 @@ description: Create and revise original Game Boy/Game Boy Color shooting games w
 
 # GBDK STG production workflow
 
+The original skill and repository components are MIT; retain LICENSE when distributing them. Third-party tools have separate conditions.
+
 Use the actual editable project and C engine in `HOSSIE-JP/dev-gb`. Do not substitute a JavaScript remake for the ROM or claim GB Studio compatibility. Respond in the user's language; examples below are Japanese.
 
 ## Start or resume

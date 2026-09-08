@@ -18,9 +18,12 @@ if (!fs.existsSync(executable)) {
     );
     process.exitCode = 1;
 } else {
+    const temp = path.join(root, ".cache/editor/tmp");
+    fs.mkdirSync(temp, { recursive: true });
     const child = spawn(executable, [editor, ...process.argv.slice(2)], {
         cwd: root,
         stdio: "inherit",
+        env: { ...process.env, TEMP: temp, TMP: temp },
     });
     child.on("error", (error) => {
         console.error(`Could not start Caravan Editor: ${error.message}`);

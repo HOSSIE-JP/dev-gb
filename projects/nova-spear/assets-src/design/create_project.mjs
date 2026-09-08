@@ -132,7 +132,7 @@ const game = {
     music: { title: 1, boss: 5, clear: 6, gameover: 7 },
     provenance: {
         author: "HOSSIE-JP / NOVA SPEAR project",
-        license: "Original project design and music; native pixel artwork CC0-1.0",
+        license: "MIT",
         source: "Original vertical shooting game; authored sprites, maps, choreography and score routes. No third-party game assets.",
     },
 };

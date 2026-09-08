@@ -323,7 +323,7 @@ handle(
         );
         if (!fs.existsSync(executable))
             throw new Error(
-                `${emulator} がありません。bootstrap.cmd でセットアップしてください`,
+                `${emulator} がありません。setup.cmd で ${emulator} を選択するか、bootstrap.cmd -OptionalTools ${emulator} を実行してください`,
             );
         const cwd = safePath(root, ".cache/emulator", emulator);
         fs.mkdirSync(cwd, { recursive: true });

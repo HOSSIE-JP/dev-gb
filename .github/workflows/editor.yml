@@ -18,6 +18,9 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      - name: Validate setup selection and script syntax
+        shell: powershell
+        run: ./tests/setup-policy.test.ps1
       - name: Restore locked download caches
         uses: actions/cache@v4
         with:
@@ -27,7 +30,7 @@ jobs:
           key: portable-windows-${{ hashFiles('config/tools.lock.json', 'editor/package-lock.json') }}
       - name: Bootstrap the locked portable environment
         shell: cmd
-        run: bootstrap.cmd -SkipExtensions -SkipDoctor
+        run: bootstrap.cmd -OptionalTools bgb -SkipExtensions -SkipDoctor
       - name: Validate tools
         shell: cmd
         run: doctor.cmd
@@ -66,7 +69,7 @@ jobs:
             projects/nova-spear/README.md
             projects/nova-spear/assets-src/art/README.md
             engine/caravan/MUSIC-LICENSE.txt
-            licenses/CC0-1.0.txt
+            LICENSE
             THIRD_PARTY_NOTICES.md
             docs/licensing.md
           if-no-files-found: error

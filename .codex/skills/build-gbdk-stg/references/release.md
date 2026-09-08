@@ -17,6 +17,8 @@ Maintain `workflow.json` beside the project. A useful approval record is:
 
 Never manufacture approval from automatic test success or silence. Resolve an ambiguous approval only if the accepted revision cannot be identified from context. `scripts/check-approval.cjs WORKFLOW.json ROM.gb` checks matching bytes and a recorded decision; it cannot authenticate conversation intent, which the agent must verify. If approved ROM bytes change, return to playtest rather than reuse approval. Packaging-only edits do not invalidate the gameplay approval.
 
+Keep the skill/project MIT LICENSE and existing music notices in source and ROM distributions. Tool downloads remain separate and keep their own license terms.
+
 ## Original box and cartridge label
 
 Use image generation for original illustration when available. Typeset title, copy, controls and compatibility separately; build exact geometry with vector/PDF tools. Never rely on image generation to set millimeter dimensions, glue tabs or trim/fold registration. Read the available PDF/image generation skills when doing that phase.

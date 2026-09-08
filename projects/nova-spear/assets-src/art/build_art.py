@@ -566,7 +566,7 @@ assert sprite_tiles <= 100, sprite_tiles
 assert all(n <= 80 for n in screen_counts.values()), screen_counts
 manifest = {
     "format": "NOVA SPEAR authored-art manifest 1",
-    "provenance": {"author": "NOVA SPEAR project / OpenAI Codex", "license": "CC0-1.0", "source": "Original native pixel geometry and bitmap patterns in art/build_art.py; no third-party game art"},
+    "provenance": {"author": "NOVA SPEAR project / OpenAI Codex", "license": "MIT", "source": "Original native pixel geometry and bitmap patterns in art/build_art.py; no third-party game art"},
     "pixelEncoding": {"mode": "P", "grayscale": GRAY, "indexZero": "transparent for sprites, darkest color for backgrounds", "indexOne": "dark outline / dim structure", "indexTwo": "midtone body", "indexThree": "bright highlight", "dmgBGP": "0x1b", "dmgOBP": "0x1b", "antialiasing": False},
     "assets": ASSETS, "tilesetRoles": ROLES,
     "budgets": {"spriteTiles": sprite_tiles, "spriteTileLimit": 128, "screenUniqueTiles": screen_counts, "screenTileLimitIncludingFont": 128},

@@ -22,4 +22,5 @@ export function runtimeNotices() {
 export function writeRuntimeNotices() {
     fs.mkdirSync(path.join(root, 'build'), { recursive: true });
     fs.writeFileSync(path.join(root, 'build/THIRD-PARTY-LICENSES.txt'), runtimeNotices());
+    fs.copyFileSync(path.join(root, '../LICENSE'), path.join(root, 'build/LICENSE'));
 }

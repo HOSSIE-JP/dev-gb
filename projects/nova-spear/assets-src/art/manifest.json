@@ -2,7 +2,7 @@
   "format": "NOVA SPEAR authored-art manifest 1",
   "provenance": {
     "author": "NOVA SPEAR project / OpenAI Codex",
-    "license": "CC0-1.0",
+    "license": "MIT",
     "source": "Original native pixel geometry and bitmap patterns in art/build_art.py; no third-party game art"
   },
   "pixelEncoding": {

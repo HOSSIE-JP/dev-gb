@@ -2,6 +2,7 @@
   "name": "caravan-editor",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "description": "Portable GB/GBC shooting game authoring tool",
   "main": "build/main.cjs",
   "scripts": {

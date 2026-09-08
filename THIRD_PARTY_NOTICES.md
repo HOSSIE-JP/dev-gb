@@ -7,4 +7,4 @@
 - [エディターの第三者表示](editor/THIRD-PARTY-NOTICES.md)
 - [オリジナル音楽のMIT License](engine/caravan/MUSIC-LICENSE.txt)
 
-Emuliciousの商用利用、ツール一式の再配布、Boytacean WASMを含むHTML／アプリの配布には個別の確認事項があります。本リポジトリ全体のライセンスは未指定です。第三者表示を同梱することだけで、未指定部分や権利未確認データの配布が許可されるわけではありません。
+Emuliciousの商用利用、ツール一式の再配布、Boytacean WASMを含むHTML／アプリの配布には個別の確認事項があります。本リポジトリのオリジナル部分は[MIT License](LICENSE)です。第三者表示を同梱することだけで、権利未確認データの配布が許可されるわけではありません。

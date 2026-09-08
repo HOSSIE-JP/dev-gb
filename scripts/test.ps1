@@ -7,6 +7,8 @@ $ErrorActionPreference = 'Stop'
 
 try {
     $root = Get-RepoRoot
+    & (Join-Path $root 'tests\setup-policy.test.ps1')
+    if (-not $?) { throw 'Setup policy validation failed.' }
     & (Join-Path $PSScriptRoot 'doctor.ps1') -SkipBuildCheck
     if ($LASTEXITCODE -ne 0) { throw 'doctor failed.' }
 

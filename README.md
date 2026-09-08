@@ -4,7 +4,7 @@ Game Boy／Game Boy Color向けのゲームを制作する、Windows 10/11 x64�
 
 ツールは公式配布元からリポジトリ内の`.tools`へ取得します。管理者インストール、恒久的なPATH変更、システムJavaは不要です。
 
-> **利用・配布条件:** リポジトリ全体の再利用ライセンスは未指定です。公開されていることだけで改変・再配布が一律に許可されるわけではありません。個別に許諾された素材と外部ツールの条件、HTML試遊版の配布上の制限は[ライセンスと配布](docs/licensing.md)を確認してください。標準セットアップには、商用利用に事前許諾が必要なEmuliciousも含まれます。
+> **ライセンス:** オリジナルのコード・文書・スキル・サンプルは[MIT](LICENSE)です。外部ツールは利用者がセットアップで公式配布元から取得し、各ツールの利用条件に従います。[ライセンスと配布](docs/licensing.md)も参照してください。
 
 ## はじめる
 
@@ -13,7 +13,7 @@ Gitを用意し、Windowsのコマンドプロンプトから実行してくだ�
 ```bat
 git clone https://github.com/HOSSIE-JP/dev-gb.git
 cd dev-gb
-bootstrap.cmd
+setup.cmd
 doctor.cmd
 editor.cmd nova-spear
 ```
@@ -45,6 +45,8 @@ vscode.cmd
 ```
 
 Debugはデバッグ用シンボルを生成します。Releaseは配布用のビルド構成です。ROMは`projects/<作品ID>/build/<構成>/`に出力します。`shell.cmd`は開いたシェル内だけのツール設定、`vscode.cmd`はポータブルVS Codeの起動です。
+
+`setup.cmd`は任意ツールを選べる対話セットアップです。`bootstrap.cmd`は基本ツールのみを無人導入します。BGBを追加する場合は`bootstrap.cmd -OptionalTools bgb`、複数なら`bootstrap.cmd -OptionalTools "bgb,rgbds,vscode"`を使用します。Emuliciousは明示選択時だけ取得します。
 
 `bootstrap.cmd -Offline`は取得済みキャッシュからの再展開、`-Force`は固定版の再取得・修復、`-UpdateLock`は公式安定版への更新です。通常のセットアップはロックを更新しません。
 

@@ -11,10 +11,20 @@ $stamp = Join-Path $root '.cache\editor-deps.sha256'
 $digest = Get-Sha256 -Path $lockfile
 $current = (Test-Path -LiteralPath $stamp) -and ((Get-Content -LiteralPath $stamp -Raw).Trim() -eq $digest) -and (Test-Path -LiteralPath (Join-Path $root 'editor\node_modules\boytacean\boytacean_bg.wasm'))
 $oldPath = $env:PATH
+$oldTemp = $env:TEMP
+$oldTmp = $env:TMP
 try {
+    $temp = Join-Path $root '.cache\tmp'
+    Ensure-Directory -Path $temp
+    $env:TEMP = $env:TMP = $temp
+    $userConfig = Join-Path $root '.cache\npm-user.npmrc'
+    $globalConfig = Join-Path $root '.cache\npm-global.npmrc'
+    foreach ($config in @($userConfig, $globalConfig)) {
+        if (-not (Test-Path -LiteralPath $config)) { [IO.File]::WriteAllText($config, '') }
+    }
     $env:PATH = $nodeRoot + ';' + $env:PATH
     if (-not $current -or $Force) {
-        $arguments = @('ci','--prefix',(Join-Path $root 'editor'),'--cache',(Join-Path $root '.cache\npm'),'--ignore-scripts','--no-audit','--no-fund')
+        $arguments = @('ci','--prefix',(Join-Path $root 'editor'),'--cache',(Join-Path $root '.cache\npm'),'--ignore-scripts','--no-audit','--no-fund','--userconfig',$userConfig,'--globalconfig',$globalConfig,'--registry=https://registry.npmjs.org/')
         if ($Offline) { $arguments += '--offline' }
         & $npm @arguments
         if ($LASTEXITCODE -ne 0) { throw 'Editor dependencies could not be restored from package-lock.json.' }
@@ -22,4 +32,4 @@ try {
     }
     Invoke-CheckedCommand -FilePath $node -ArgumentList @((Join-Path $root 'editor\build.mjs')) -WorkingDirectory $root
     Write-Check OK 'Caravan Editor dependencies and application are ready'
-} finally { $env:PATH = $oldPath }
+} finally { $env:PATH = $oldPath; $env:TEMP = $oldTemp; $env:TMP = $oldTmp }

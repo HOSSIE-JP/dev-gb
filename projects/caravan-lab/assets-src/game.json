@@ -15,8 +15,8 @@
   },
   "provenance": {
     "author": "gb-dev original sample",
-    "license": "Original project artwork; no third-party game assets",
-    "source": "Migrated from the original STAR CARAVAN C tiles"
+    "license": "MIT",
+    "source": "Original STAR CARAVAN sample artwork"
   },
   "palettes": [
     {

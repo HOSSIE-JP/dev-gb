@@ -4,7 +4,7 @@
 
 ## 導入
 
-スキル本体は[`.codex/skills/build-gbdk-stg`](../.codex/skills/build-gbdk-stg)です。対応するAIクライアントで、このディレクトリをスキルとして読み込んでください。ZIPを扱うクライアントでは、`SKILL.md`と`agents`・`assets`・`references`・`scripts`を含むフォルダーをまとめます。
+スキル本体は[`.codex/skills/build-gbdk-stg`](../.codex/skills/build-gbdk-stg)です。対応するAIクライアントで、このディレクトリをスキルとして読み込んでください。ZIPを扱うクライアントでは、`SKILL.md`・`LICENSE`と`agents`・`assets`・`references`・`scripts`を含むフォルダーをまとめます。
 
 スキルにSDKやエディター本体は含まれません。実行環境でこのリポジトリを取得し、ロックされた依存ツールを準備する必要があります。AIクライアント側にもファイル編集・コマンド実行の機能が必要です。[利用・再配布条件](licensing.md)も適用されます。
 

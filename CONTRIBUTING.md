@@ -4,12 +4,14 @@
 
 作業を始める前に `AGENTS.md` と関連する `docs` を読むこと。ツールの正確な版と取得元は [`config/tools.lock.json`](config/tools.lock.json) が基準であり、文書やソースへ重複して固定しない。
 
+オリジナルのコード・文書・サンプルは[MIT License](LICENSE)です。貢献物も適用可能な許諾と出典を明示してください。
+
 ## セットアップ
 
 Windows 10/11 x64の `cmd.exe` から、次を実行する。
 
 ```bat
-bootstrap.cmd
+setup.cmd
 doctor.cmd
 ```
 
