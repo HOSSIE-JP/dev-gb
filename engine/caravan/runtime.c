@@ -23,8 +23,9 @@ static CE_Entity *targets[9];
 static CE_Box *target_boxes[9];
 static uint8_t target_count, target_slots[9];
 static CE_Box boxes[CE_MAX_ENTITIES], player_box;
+static CE_Entity player_collision_pose;
 static CE_Box *box_a, *box_b;
-static void box(CE_Box *b, uint8_t asset, int16_t x, int16_t y);
+static void box(CE_Box *b, const CE_Entity *e);
 static void count_frame(void) NONBANKED {
     if (ce_scene == 1u) SHOW_WIN;
 }
@@ -61,7 +62,7 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     ce_music_play(ce_stages[stage].music);
 }
 static uint8_t allocate(uint8_t kind, uint8_t asset) {
-    static const uint8_t limits[6] = {0, 8, 1, 6, 16, 4};
+    static const uint8_t limits[6] = {0, 8, 1, 6, 24, 4};
     uint8_t group, bit = 1u, slot; CE_Entity *e;
     if (ce_pool_oam + ce_assets[asset].tiles > 40u || ce_pool_counts[kind] >= limits[kind]) {
         ++ce_state.dropped; return CE_NONE;
@@ -135,18 +136,18 @@ static void shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t
             angle <<= 1;
             e->vx = p->velocity[angle]; e->vy = p->velocity[angle + 1u];
             e->hp = 1; e->lifetime = p->lifetime; e->damage = p->damage;
-            if (!friendly) box(&boxes[slot], e->asset, e->x, e->y);
+            if (!friendly) box(&boxes[slot], e);
         }
     }
 }
-static void box(CE_Box *b, uint8_t asset, int16_t x, int16_t y) {
-    const CE_Hitbox *a = &ce_hitboxes[asset];
-    b->left = x / 16 + 128 + a->x; b->top = y / 16 + 128 + a->y;
+static void box(CE_Box *b, const CE_Entity *e) {
+    const CE_Hitbox *a = &ce_hitboxes[e->asset];
+    b->left = e->x / 16 + 128 + a->x; b->top = e->y / 16 + 128 + a->y;
     b->right = b->left + a->w; b->bottom = b->top + a->h;
 }
 static uint8_t overlap(void) {
-    return box_a->left < box_b->right && box_a->right > box_b->left &&
-        box_a->top < box_b->bottom && box_a->bottom > box_b->top;
+    return box_a->top < box_b->bottom && box_a->bottom > box_b->top &&
+        box_a->left < box_b->right && box_a->right > box_b->left;
 }
 static uint8_t wall(CE_Box *b) {
     const CE_Stage *s = &ce_stages[ce_state.stage];
@@ -182,7 +183,10 @@ static void hit_player(void) {
     }
 }
 static void move_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) {
-    uint16_t t, quarter, part; uint8_t i, phase; int16_t span, offset = 0; const CE_Point *p;
+    /* Main-loop only; no ISR enters actor update. Avoid SM83 stack spills. */
+    static uint16_t t, quarter, part; static uint8_t i, phase;
+    static int16_t span, offset; static const CE_Point *p;
+    offset = 0;
     if (!m->kind) {
         /* Equivalent to base + velocity * age, including age wrap and phase entry. */
         if (age) { e->x += m->vx; e->y += m->vy; }
@@ -264,10 +268,11 @@ static uint8_t stage_events(void) {
     return finish;
 }
 static void step_actor(CE_Entity *e, uint8_t slot) {
-    uint16_t *schedule = &next_attack[(uint16_t)slot << 2];
-    uint8_t k, pattern, primary, layer_count;
-    uint16_t age, sequence; const uint8_t *layers;
-    const CE_Actor *actor; const CE_Phase *phase; const CE_Motion *motion; const CE_Pattern *shot;
+    static uint16_t *schedule;
+    static uint8_t k, pattern, primary, layer_count;
+    static uint16_t age, sequence; static const uint8_t *layers;
+    static const CE_Actor *actor; static const CE_Phase *phase; static const CE_Motion *motion; static const CE_Pattern *shot;
+    schedule = &next_attack[(uint16_t)slot << 2];
             actor = e->kind == CE_BOSS ? &ce_bosses[e->ref] : &ce_enemies[e->ref];
             motion = actor->motion; pattern = actor->pattern; age = e->age;
             layers = actor->layer; layer_count = actor->layers;
@@ -305,17 +310,18 @@ static void step_entities(void) {
         if (e->kind == CE_FX) { ++e->age; if (e->age >= e->lifetime) release(i); }
         else if (e->kind >= CE_PSHOT) {
             e->x += e->vx; e->y += e->vy; ++e->age;
-            box(&boxes[i], e->asset, e->x, e->y);
+            box(&boxes[i], e);
             if (e->age >= e->lifetime || (stage->has_walls && wall(&boxes[i]))) release(i);
         } else {
             step_actor(e, i);
-            box(&boxes[i], e->asset, e->x, e->y);
+            box(&boxes[i], e);
         }
         if ((uint16_t)(e->x + 512) > 3584u || (uint16_t)(e->y + 512) > 3328u) release(i);
     }
 }
 static void collide_shots(void) {
     uint8_t i, j; CE_Entity *e, *target; const CE_Actor *actor;
+    if (!ce_pool_counts[CE_PSHOT] || !(ce_pool_counts[CE_ENEMY] | ce_pool_counts[CE_BOSS])) return;
     target_count = 0;
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) if (e->kind == CE_ENEMY || e->kind == CE_BOSS) { targets[target_count] = e; target_slots[target_count] = i; target_boxes[target_count++] = &boxes[i]; }
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) {
@@ -338,7 +344,8 @@ static void collide_shots(void) {
 static void collide_player(void) {
     uint8_t i; CE_Entity *e;
     if (ce_respawn) return;
-    box(&player_box, ce_player_asset, ce_state.player_x, ce_state.player_y); box_a = &player_box;
+    player_collision_pose.asset = ce_player_asset; player_collision_pose.x = ce_state.player_x; player_collision_pose.y = ce_state.player_y;
+    box(&player_box, &player_collision_pose); box_a = &player_box;
     if (ce_stages[ce_state.stage].has_walls && wall(box_a)) hit_player();
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) {
         if (!e->kind || e->kind == CE_PSHOT || e->kind == CE_FX) continue;

@@ -224,13 +224,13 @@ test(
                 const death = boot(rom, mode);
                 frames(death, 240);
                 death.key_press(PadKey.Start);
-                frames(death, 1);
+                frames(death, 5);
                 death.key_lift(PadKey.Start);
                 death.key_press(PadKey.Left);
                 let outcome;
                 for (let i = 0; i < 500; i++) {
                     frames(death, 1);
-                    outcome = trace(death, syms._ce_trace);
+                    outcome = settledTrace(death, syms._ce_trace);
                     if (outcome?.result) break;
                 }
                 assert.equal(

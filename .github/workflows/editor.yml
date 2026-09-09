@@ -49,6 +49,13 @@ jobs:
       - name: Bundle production editor
         shell: cmd
         run: .tools\node\node.exe editor\build.mjs --production
+      - name: Verify dense bullets, animation and all boss phases in DMG and CGB
+        shell: powershell
+        run: |
+          foreach ($case in @('stress', 'animation', 'boss-0', 'boss-1', 'boss-2')) {
+            & .tools\node\node.exe editor\tests\stg-benchmark.mjs . .cache/stg-performance $case --expect24
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
       - name: Retain build and emulator evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -57,6 +64,7 @@ jobs:
           path: |
             .cache/editor-qa/
             .cache/nova-spear-qa/
+            .cache/stg-performance/*.json
             projects/*/build/Debug/caravan-build.json
             projects/*/build/Release/caravan-build.json
           if-no-files-found: ignore
