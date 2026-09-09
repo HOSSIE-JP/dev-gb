@@ -77,3 +77,4 @@ Debugはデバッグ用シンボルを生成します。Releaseは配布用の�
 - [SRAM仕様](docs/caravan-sram.md)・[性能測定](docs/nova-spear-performance.md)
 - [コントリビューション](CONTRIBUTING.md)・[Game Boy実装規約](docs/gb-programming-rules.md)
 - [第三者ソフトウェア](THIRD_PARTY_NOTICES.md)・[利用と再配布の条件](docs/licensing.md)
+- [開発日記：弾を増やしたいだけなのに](docs/development-diary.md) — 試行錯誤、効かなかった施策、検証で苦労したことの記録。
