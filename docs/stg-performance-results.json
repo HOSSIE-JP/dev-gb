@@ -1,0 +1,1073 @@
+{
+  "baselineCommit": "625c3a04c3fe7be5d2d78288649ea997bf07c5b2",
+  "compiler": "GBDK 4.5.0 / SM83",
+  "emulator": "Boytacean 0.13.2",
+  "ordinary": {
+    "baseline": {
+      "romSha256": "c4dec493899e7a4c8d1e2ec5ef36195170783fa97a3dec17d58d69fa53c6b36c",
+      "modes": [
+        {
+          "mode": "DMG",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 1078,
+              "presentations": 480,
+              "updates": 480,
+              "updatesPerSecond": 26.59,
+              "presentationsPerSecond": 26.59
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 1314,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 27.27,
+              "presentationsPerSecond": 27.27
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 1241,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 28.88,
+              "presentationsPerSecond": 28.88
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 614,
+              "presentations": 479,
+              "updates": 480,
+              "updatesPerSecond": 46.69,
+              "presentationsPerSecond": 46.6
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 724,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 49.5,
+              "presentationsPerSecond": 49.58
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 643,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 55.73,
+              "presentationsPerSecond": 55.73
+            }
+          ]
+        }
+      ]
+    },
+    "alloc50000": {
+      "romSha256": "32e16d9a3d12ee1335f25d12c54f01369a3ced1aea08be86bab8ee6c671994d1",
+      "modes": [
+        {
+          "mode": "DMG",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 1012,
+              "presentations": 480,
+              "updates": 480,
+              "updatesPerSecond": 28.33,
+              "presentationsPerSecond": 28.33
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 1267,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 28.28,
+              "presentationsPerSecond": 28.28
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 1207,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 29.69,
+              "presentationsPerSecond": 29.74
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 585,
+              "presentations": 479,
+              "updates": 480,
+              "updatesPerSecond": 49.01,
+              "presentationsPerSecond": 48.91
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 681,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 52.62,
+              "presentationsPerSecond": 52.71
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 622,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 57.61,
+              "presentationsPerSecond": 57.61
+            }
+          ]
+        }
+      ]
+    },
+    "asset16": {
+      "romSha256": "e81a4fc8e2cf828e313c93d8f39243267cdef91a627ba9998f7467937fe7d931",
+      "modes": [
+        {
+          "mode": "DMG",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 1006,
+              "presentations": 480,
+              "updates": 480,
+              "updatesPerSecond": 28.5,
+              "presentationsPerSecond": 28.5
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 1246,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 28.76,
+              "presentationsPerSecond": 28.76
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 1204,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 29.76,
+              "presentationsPerSecond": 29.81
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 578,
+              "presentations": 479,
+              "updates": 480,
+              "updatesPerSecond": 49.6,
+              "presentationsPerSecond": 49.5
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 676,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 53.01,
+              "presentationsPerSecond": 53.1
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 621,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 57.71,
+              "presentationsPerSecond": 57.71
+            }
+          ]
+        }
+      ]
+    },
+    "render": {
+      "romSha256": "04d7597e6f64e12136a49bac15ac96a177e39da801f7048fa1ed831642f59347",
+      "modes": [
+        {
+          "mode": "DMG",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 899,
+              "presentations": 480,
+              "updates": 480,
+              "updatesPerSecond": 31.89,
+              "presentationsPerSecond": 31.89
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 1161,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 30.87,
+              "presentationsPerSecond": 30.87
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 1092,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 32.82,
+              "presentationsPerSecond": 32.87
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 555,
+              "presentations": 479,
+              "updates": 480,
+              "updatesPerSecond": 51.66,
+              "presentationsPerSecond": 51.55
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 666,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 53.81,
+              "presentationsPerSecond": 53.9
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 610,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 58.75,
+              "presentationsPerSecond": 58.75
+            }
+          ]
+        }
+      ]
+    },
+    "runtime": {
+      "romSha256": "6b54288ad91b5841b17daebc74f8a15a2cb43546848d2e1044c2223dda7c09c4",
+      "modes": [
+        {
+          "mode": "DMG",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 838,
+              "presentations": 480,
+              "updates": 480,
+              "updatesPerSecond": 34.21,
+              "presentationsPerSecond": 34.21
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 1088,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 32.94,
+              "presentationsPerSecond": 32.99
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 1029,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 34.83,
+              "presentationsPerSecond": 34.83
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 553,
+              "presentations": 479,
+              "updates": 480,
+              "updatesPerSecond": 51.84,
+              "presentationsPerSecond": 51.74
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 657,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 54.55,
+              "presentationsPerSecond": 54.64
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 606,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 59.14,
+              "presentationsPerSecond": 59.14
+            }
+          ]
+        }
+      ]
+    },
+    "final": {
+      "romSha256": "a39cff251643ee7daa921ecd49861bf4d0d3ed3dfb00090bb7ba5e861e70188f",
+      "modes": [
+        {
+          "mode": "DMG",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 838,
+              "presentations": 480,
+              "updates": 480,
+              "updatesPerSecond": 34.21,
+              "presentationsPerSecond": 34.21
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 1088,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 32.94,
+              "presentationsPerSecond": 32.99
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 1029,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 34.83,
+              "presentationsPerSecond": 34.83
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "bins": [
+            {
+              "from": 120,
+              "to": 600,
+              "frames": 553,
+              "presentations": 479,
+              "updates": 480,
+              "updatesPerSecond": 51.84,
+              "presentationsPerSecond": 51.74
+            },
+            {
+              "from": 600,
+              "to": 1200,
+              "frames": 657,
+              "presentations": 601,
+              "updates": 600,
+              "updatesPerSecond": 54.55,
+              "presentationsPerSecond": 54.64
+            },
+            {
+              "from": 1200,
+              "to": 1800,
+              "frames": 606,
+              "presentations": 600,
+              "updates": 600,
+              "updatesPerSecond": 59.14,
+              "presentationsPerSecond": 59.14
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "fixtures": {
+    "bench-baseline": {
+      "stress": {
+        "case": "stress",
+        "romSha256": "90f437de095f252ef55f77225ce1df028ec4dacff5e6ca460bc3f6f29728195f",
+        "fixture": true,
+        "ramBytes": 1962,
+        "romBytes": 65536,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 3.835,
+              "p95": 4,
+              "max": 4,
+              "updatesPerSecond": 15.574315514993481
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 3.8353417634996565,
+              "p95": 4.000341763499658,
+              "max": 4.001480975165186,
+              "updatesPerSecond": 15.572927703188595
+            },
+            "peakShots": 16,
+            "peakOam": 21,
+            "peakScanline": 16,
+            "phases": [],
+            "dropped": 231,
+            "checked": 720,
+            "parity": true
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 2,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 29.86375
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.0001708817498307,
+              "p95": 2.000170881749829,
+              "max": 2.000740487582593,
+              "updatesPerSecond": 29.86119863306277
+            },
+            "peakShots": 16,
+            "peakOam": 21,
+            "peakScanline": 16,
+            "phases": [],
+            "dropped": 231,
+            "checked": 720,
+            "parity": true
+          }
+        ]
+      }
+    },
+    "bench-legacy24": {
+      "boss-0": {
+        "case": "boss-0",
+        "romSha256": "21f222e85f79da271cc6efb56d64dc0fea4a72149966fd5cee803f54c4ef94fc",
+        "fixture": true,
+        "ramBytes": 1962,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 2.006666666666667,
+              "p95": 2,
+              "max": 3,
+              "updatesPerSecond": 29.764534883720927
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.006994190020506,
+              "p95": 2.021701982228298,
+              "max": 3.005639097744361,
+              "updatesPerSecond": 29.759677580028143
+            },
+            "peakShots": 7,
+            "peakOam": 25,
+            "peakScanline": 7,
+            "phases": [
+              0,
+              1,
+              2
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": false,
+            "stateSha256": "0facd118240e88a4da519ff9aa7a48985f1f2309638bc1871ae899f6f9713e5b"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.005,
+              "p95": 1,
+              "max": 2,
+              "updatesPerSecond": 59.43034825870647
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0051637616769213,
+              "p95": 1.010850991114149,
+              "max": 2.011733880154933,
+              "updatesPerSecond": 59.42066584290327
+            },
+            "peakShots": 7,
+            "peakOam": 25,
+            "peakScanline": 7,
+            "phases": [
+              0,
+              1,
+              2
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": false,
+            "stateSha256": "655c86c8deb455f8d9e4ebe885f653c2ac47f159fd61ca93e80e5ad111788799"
+          }
+        ]
+      },
+      "boss-1": {
+        "case": "boss-1",
+        "romSha256": "22e45af1139da75125ee528849ba1e9c8e353a7b1f5d5541552f3a459c9c66a9",
+        "fixture": true,
+        "ramBytes": 1962,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.96,
+              "p95": 2,
+              "max": 3,
+              "updatesPerSecond": 30.473214285714285
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.9603346434267508,
+              "p95": 2.021701982228298,
+              "max": 3.0225563909774436,
+              "updatesPerSecond": 30.468012285695117
+            },
+            "peakShots": 7,
+            "peakOam": 26,
+            "peakScanline": 9,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": false,
+            "stateSha256": "a47354f4d581f87e45516f3a3c349f323bd985fb60d7e71ea5f1ab10a0e62525"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.0066666666666666,
+              "p95": 1,
+              "max": 2,
+              "updatesPerSecond": 59.33195364238411
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0068262512341477,
+              "p95": 1.010850991114149,
+              "max": 2.011278195488722,
+              "updatesPerSecond": 59.32254937412211
+            },
+            "peakShots": 7,
+            "peakOam": 26,
+            "peakScanline": 9,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": false,
+            "stateSha256": "54aba3b4960cf1affdf048491c7f5dc858cf4484cfd9f57f8aefdc41287c0fbc"
+          }
+        ]
+      },
+      "boss-2": {
+        "case": "boss-2",
+        "romSha256": "229fe3d9e00cdb1edcf0e75e4e143d6584f3267b28791c5194354d54b9f54796",
+        "fixture": true,
+        "ramBytes": 1962,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.875,
+              "p95": 2,
+              "max": 3,
+              "updatesPerSecond": 31.854666666666667
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.8753638831928334,
+              "p95": 2.021701982228298,
+              "max": 3.0242082478924583,
+              "updatesPerSecond": 31.84848579802715
+            },
+            "peakShots": 8,
+            "peakOam": 28,
+            "peakScanline": 12,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": false,
+            "stateSha256": "f70d9f67c91d17bac5d3118d55ea253d5cb3375b4251a0a3d12950dd367e649c"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.03,
+              "p95": 1,
+              "max": 2,
+              "updatesPerSecond": 57.9878640776699
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0301691729323317,
+              "p95": 1.010850991114149,
+              "max": 2.010850991114149,
+              "updatesPerSecond": 57.97834139220869
+            },
+            "peakShots": 8,
+            "peakOam": 28,
+            "peakScanline": 12,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": false,
+            "stateSha256": "5a2f5cdecac3ff042de09a26f9019f1742153d2e7d582979e073fd974d4fa262"
+          }
+        ]
+      },
+      "stress": {
+        "case": "stress",
+        "romSha256": "7d0e2ced5066ad1301bd4b0954c20acfa5bb2616f16c8d28885531fecc974222",
+        "fixture": true,
+        "ramBytes": 1962,
+        "romBytes": 65536,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 4.831666666666667,
+              "p95": 5,
+              "max": 5,
+              "updatesPerSecond": 12.361676440151776
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 4.832008430166352,
+              "p95": 5.000341763499658,
+              "max": 5.004158122579176,
+              "updatesPerSecond": 12.360802110178385
+            },
+            "peakShots": 24,
+            "peakOam": 29,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 206,
+            "checked": 720,
+            "parity": false,
+            "stateSha256": "137dc3ae960b88531a704f9157d1b9daa2b7cfd87a3213a00a8f0edb45e251f1"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 2.8316666666666666,
+              "p95": 3,
+              "max": 3,
+              "updatesPerSecond": 21.0927015891701
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.8318375484165177,
+              "p95": 3.000170881749829,
+              "max": 3.002079061289588,
+              "updatesPerSecond": 21.091428790962215
+            },
+            "peakShots": 24,
+            "peakOam": 29,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 206,
+            "checked": 720,
+            "parity": false,
+            "stateSha256": "5ebb49413e6ad498f79a75a6da0bbbea4369c07e6882ceca4a3584a2092b0d15"
+          }
+        ]
+      }
+    },
+    "bench-current": {
+      "animation": {
+        "case": "animation",
+        "romSha256": "2073743b0b4d7e2299caca2a8aa2e62ef54f9d968ccb8e460fedf74ed1199401",
+        "fixture": true,
+        "ramBytes": 2046,
+        "romBytes": 65536,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 4.906666666666666,
+              "p95": 5,
+              "max": 6,
+              "updatesPerSecond": 12.17272418478261
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 4.907008430166357,
+              "p95": 5.000341763499658,
+              "max": 6.000341763499658,
+              "updatesPerSecond": 12.171876378450632
+            },
+            "peakShots": 24,
+            "peakOam": 29,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 206,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "ea9213b9e9d93143c28fbec56edfc8bbf6b5fdae972b324fec11c163848995f7"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 2.8833333333333333,
+              "p95": 3,
+              "max": 3,
+              "updatesPerSecond": 20.714739884393065
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.8835042150831875,
+              "p95": 3.000170881749829,
+              "max": 3.001651856915015,
+              "updatesPerSecond": 20.713512290904312
+            },
+            "peakShots": 24,
+            "peakOam": 29,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 206,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "4efec7c7367dbc2d0e9eb9558325b2f6ea30e5ba5a3ef150a70f90c21bf8b9c5"
+          }
+        ]
+      },
+      "boss-0": {
+        "case": "boss-0",
+        "romSha256": "f6c5acd21b2fa4f5b5dfa43a3da45f5c3c3ba5026ee8a6401e585aab4fe68f34",
+        "fixture": true,
+        "ramBytes": 2046,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.8233333333333333,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 32.7573126142596
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.8237105073289357,
+              "p95": 2.0216450216450217,
+              "max": 2.024606971975393,
+              "updatesPerSecond": 32.75053785125074
+            },
+            "peakShots": 7,
+            "peakOam": 25,
+            "peakScanline": 7,
+            "phases": [
+              0,
+              1,
+              2
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "0facd118240e88a4da519ff9aa7a48985f1f2309638bc1871ae899f6f9713e5b"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.000180802384753,
+              "p95": 1.0108225108225108,
+              "max": 1.0111073137388926,
+              "updatesPerSecond": 59.71670307767398
+            },
+            "peakShots": 7,
+            "peakOam": 25,
+            "peakScanline": 7,
+            "phases": [
+              0,
+              1,
+              2
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "655c86c8deb455f8d9e4ebe885f653c2ac47f159fd61ca93e80e5ad111788799"
+          }
+        ]
+      },
+      "boss-1": {
+        "case": "boss-1",
+        "romSha256": "d8ae30d45e886c95b32091861cb0210db2e81a2f0428e1ed031cf697461668e9",
+        "fixture": true,
+        "ramBytes": 2046,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.8433333333333333,
+              "p95": 2,
+              "max": 3,
+              "updatesPerSecond": 32.401898734177216
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.8436420596946985,
+              "p95": 2.0216450216450217,
+              "max": 2.0222146274777852,
+              "updatesPerSecond": 32.396472886874086
+            },
+            "peakShots": 7,
+            "peakOam": 26,
+            "peakScanline": 9,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "a47354f4d581f87e45516f3a3c349f323bd985fb60d7e71ea5f1ab10a0e62525"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0001770999468398,
+              "p95": 1.0108225108225108,
+              "max": 1.0111073137388926,
+              "updatesPerSecond": 59.71692413591009
+            },
+            "peakShots": 7,
+            "peakOam": 26,
+            "peakScanline": 9,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "54aba3b4960cf1affdf048491c7f5dc858cf4484cfd9f57f8aefdc41287c0fbc"
+          }
+        ]
+      },
+      "boss-2": {
+        "case": "boss-2",
+        "romSha256": "99d3a19de2362a85b818e61be98039cb337c87203e580a35840fa2e0f2b6afb3",
+        "fixture": true,
+        "ramBytes": 2046,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.7633333333333334,
+              "p95": 2,
+              "max": 3,
+              "updatesPerSecond": 33.8719281663516
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.763637123110814,
+              "p95": 2.0216450216450217,
+              "max": 2.0222146274777852,
+              "updatesPerSecond": 33.86609366367208
+            },
+            "peakShots": 8,
+            "peakOam": 28,
+            "peakScanline": 12,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "f70d9f67c91d17bac5d3118d55ea253d5cb3375b4251a0a3d12950dd367e649c"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.000169647603861,
+              "p95": 1.0108225108225108,
+              "max": 1.0111073137388926,
+              "updatesPerSecond": 59.71736909142475
+            },
+            "peakShots": 8,
+            "peakOam": 28,
+            "peakScanline": 12,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "5a2f5cdecac3ff042de09a26f9019f1742153d2e7d582979e073fd974d4fa262"
+          }
+        ]
+      },
+      "stress": {
+        "case": "stress",
+        "romSha256": "a249f8593b14c8455b153f1d10404fc77b2739869db6a7ce9cd730ac98516ac0",
+        "fixture": true,
+        "ramBytes": 2046,
+        "romBytes": 65536,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 3.79,
+              "p95": 4,
+              "max": 4,
+              "updatesPerSecond": 15.759234828496043
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 3.790341763499657,
+              "p95": 4.000341763499658,
+              "max": 4.00330371383003,
+              "updatesPerSecond": 15.757813866592615
+            },
+            "peakShots": 24,
+            "peakOam": 29,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 206,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "137dc3ae960b88531a704f9157d1b9daa2b7cfd87a3213a00a8f0edb45e251f1"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 2,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 29.86375
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.0001708817498307,
+              "p95": 2.000170881749829,
+              "max": 2.001651856915015,
+              "updatesPerSecond": 29.86119863306277
+            },
+            "peakShots": 24,
+            "peakOam": 29,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 206,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "5ebb49413e6ad498f79a75a6da0bbbea4369c07e6882ceca4a3584a2092b0d15"
+          }
+        ]
+      }
+    }
+  }
+}

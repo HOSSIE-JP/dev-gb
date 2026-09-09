@@ -5,6 +5,9 @@ static uint8_t buffer[128];
 static uint16_t previous_row;
 static uint16_t hud_values[32];
 static uint8_t hud_valid, previous_slots;
+static CE_Entity player_pose;
+static CE_Entity *pose;
+static uint8_t pose_slot;
 
 uint8_t ce_fade_level;
 static palette_color_t fade_colors[32];
@@ -198,39 +201,52 @@ static void emit_oam(void) __naked {
 }
 /* Non-reentrant: no interrupt calls the renderer. Static scratch avoids
  * repeated stack-relative loads in the per-tile inner loop on SM83. */
-static uint8_t sprite(uint8_t slot, uint8_t asset, int16_t x, int16_t y, uint16_t age) {
-    static const CE_Asset *a; static uint16_t duration, time;
-    a = &ce_assets[asset]; duration = 0;
-    static uint8_t i, frame;
+static void sprite(void) {
+    static const CE_Asset *a; static uint16_t time;
+    a = &ce_assets[pose->asset];
+    static uint8_t frame;
     frame = 0;
-    emit_out = &shadow_OAM[slot];
+    emit_out = &shadow_OAM[pose_slot];
     if (a->frames > 1u) {
-        for (i = 0; i != a->frames; ++i) duration += a->durations[i];
-        time = age % duration;
-        while (frame + 1u < a->frames && time >= a->durations[frame]) { time -= a->durations[frame]; ++frame; }
+        if (a->animation_shift != 255u) frame = (pose->age >> a->animation_shift) & (a->frames - 1u);
+        else {
+            time = pose->age % a->duration;
+            while (frame + 1u < a->frames && time >= a->durations[frame]) { time -= a->durations[frame]; ++frame; }
+        }
     }
     emit_tile = a->first_tile + frame * a->tiles;
-    emit_left = x / 16 - a->ox + 8; emit_y = y / 16 - a->oy + 16;
+    emit_left = pose->x / 16 - a->ox + 8; emit_y = pose->y / 16 - a->oy + 16;
     emit_prop = ce_is_cgb ? a->palette : 0;
+    if (a->tiles == 1u) {
+        /* Bullets need one OAM entry, without metasprite row/column setup. */
+        emit_out->y = (uint8_t)(emit_left - 1u) < 167u && emit_y >= emit_top && emit_y < emit_bottom ? emit_y : 0;
+        emit_out->x = emit_left; emit_out->tile = emit_tile; emit_out->prop = emit_prop;
+        ++pose_slot; return;
+    }
     emit_columns = a->width >> 3; emit_rows = a->height >> 3;
-    emit_top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
-    emit_bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
     emit_oam();
-    return slot + a->tiles;
+    pose_slot += a->tiles;
 }
 void ce_render(void) BANKED {
-    uint8_t i, slot = 0; uint16_t row = ce_state.camera >> 7; CE_Entity *e = ce_entities;
+    uint8_t i; uint16_t row = ce_state.camera >> 7;
     if (row + 1u == previous_row || (ce_stages[ce_state.stage].loop && !(ce_stages[ce_state.stage].height & 31u) && previous_row == 0u && row + 1u == ce_stages[ce_state.stage].height)) map_row(row);
     else if (ce_stages[ce_state.stage].loop && !(ce_stages[ce_state.stage].height & 31u) && row == 0u && previous_row + 1u == ce_stages[ce_state.stage].height) map_row(31u);
     else if (row != previous_row && row != previous_row + 1u) { DISPLAY_OFF; for (i = 0; i != 32u; ++i) map_row(row + i); DISPLAY_ON; }
     else if (row != previous_row) map_row(row + 31u);
     previous_row = row;
+    pose_slot = 0;
+    emit_top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
+    emit_bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
     DISABLE_OAM_DMA;
-    if (!ce_respawn && (!ce_state.invulnerable || !(ce_state.invulnerable & 4u))) slot = sprite(slot, ce_player_asset, ce_state.player_x, ce_state.player_y, ce_state.tick);
-    for (i = ce_used; i; --i, ++e) if (e->kind) slot = sprite(slot, e->asset, e->x, e->y, e->age);
+    if (!ce_respawn && (!ce_state.invulnerable || !(ce_state.invulnerable & 4u))) {
+        player_pose.asset = ce_player_asset; player_pose.x = ce_state.player_x;
+        player_pose.y = ce_state.player_y; player_pose.age = ce_state.tick;
+        pose = &player_pose; sprite();
+    }
+    for (i = ce_used, pose = ce_entities; i; --i, ++pose) if (pose->kind) sprite();
     /* Do not DMA a partially written metasprite list. */
-    i = slot;
-    while (slot < previous_slots) shadow_OAM[slot++].y = 0;
+    i = pose_slot;
+    while (pose_slot < previous_slots) shadow_OAM[pose_slot++].y = 0;
     previous_slots = i;
     if (!(ce_state.tick & 7u)) ce_hud();
     ENABLE_OAM_DMA;

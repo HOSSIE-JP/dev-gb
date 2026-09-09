@@ -268,11 +268,16 @@ export function generate(
             `static const uint8_t asset_${i}_durations[] = {${a.frames.map((f) => f.duration)}};`,
         );
         const emitters = a.emitters.length ? a.emitters : [a.origin];
+        const duration = a.frames.reduce((sum, f) => sum + f.duration, 0);
+        const frameTime = a.frames[0].duration;
+        const powerOfTwo = (n: number) => n > 0 && (n & (n - 1)) === 0;
+        const animationShift = powerOfTwo(a.frames.length) && powerOfTwo(frameTime) &&
+            a.frames.every(f => f.duration === frameTime) ? Math.log2(frameTime) : 255;
         config.push(
             `static const int8_t asset_${i}_emitters[] = {${emitters.flatMap((e) => [e.x - a.origin.x, e.y - a.origin.y])}};`,
         );
         assetRows.push(
-            `{${[a.width, a.height, a.origin.x, a.origin.y, a.hitbox.x, a.hitbox.y, a.hitbox.w, a.hitbox.h, a.palette, first, tileCount, a.frames.length]},asset_${i}_durations,${emitters.length},asset_${i}_emitters}`,
+            `{${[a.width, a.height, a.origin.x, a.origin.y, a.palette, first, tileCount, a.frames.length, duration, animationShift]},asset_${i}_durations,${emitters.length},asset_${i}_emitters}`,
         );
         for (const f of a.frames) {
             spriteData.push(...converted.get(f.image)!);
@@ -612,6 +617,7 @@ export function compile(
         const args = [
             "-Wm-yc",
             "-Wf--opt-code-speed",
+            "-Wf--max-allocs-per-node50000",
             "-Wl-yt0x1B",
             "-Wl-ya1",
             "-Wm-yoA",

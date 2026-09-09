@@ -19,7 +19,10 @@ typedef struct {
     uint8_t loop, count; const CE_Point *points;
 } CE_Motion;
 typedef struct {
-    uint8_t width, height, ox, oy, hx, hy, hw, hh, palette, first_tile, tiles, frames;
+    /* 16 bytes on SM83: cheap indexed lookup, no duplicate hitbox fields.
+     * animation_shift is 255 unless equal power-of-two frames can use a mask. */
+    uint8_t width, height, ox, oy, palette, first_tile, tiles, frames;
+    uint16_t duration; uint8_t animation_shift;
     const uint8_t *durations; uint8_t emitters; const int8_t *emitter_xy;
 } CE_Asset;
 typedef struct {

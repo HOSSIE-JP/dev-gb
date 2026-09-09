@@ -203,7 +203,7 @@ export class Simulation {
         };
     }
     add(entity: Omit<Entity, "slot">) {
-        const limits = { enemy: 8, boss: 1, pshot: 6, eshot: 16, fx: 4 };
+        const limits = { enemy: 8, boss: 1, pshot: 6, eshot: 24, fx: 4 };
         if (
             this.entities.length >= 31 ||
             this.entities.filter((e) => e.kind === entity.kind).length >=
