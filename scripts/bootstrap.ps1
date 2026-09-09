@@ -1,4 +1,7 @@
 param(
+    [string]$OptionalTools = '',
+    [switch]$List,
+    [switch]$Packaged,
     [switch]$Force,
     [switch]$Offline,
     [switch]$UpdateLock,
@@ -9,6 +12,10 @@ param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version 2.0
 . (Join-Path $PSScriptRoot 'common.ps1')
+. (Join-Path $PSScriptRoot 'setup-policy.ps1')
+$previousTemp = $env:TEMP
+$previousTmp = $env:TMP
+$previousCodePortable = $env:VSCODE_PORTABLE
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
@@ -146,7 +153,11 @@ function Download-LockedZip {
 function Resolve-LatestMetadata {
     param([string]$Name, $Tool)
     $sourceType = [string]$Tool.source.type
-    if ($sourceType -eq 'github-release') {
+    if ($sourceType -eq 'fixed-download') {
+        Write-Check INFO "Preserving explicitly pinned dependency: $Name $($Tool.version)"
+        $Tool.url = [string]$Tool.source.downloadUrl
+    }
+    elseif ($sourceType -eq 'github-release') {
         Write-Check INFO "Resolving latest stable release for $Name"
         $release = Invoke-RestMethod -Uri ([string]$Tool.source.apiUrl) -Headers @{ 'User-Agent' = 'gb-dev-portable-bootstrap'; 'Accept' = 'application/vnd.github+json' }
         if ($release.draft -or $release.prerelease) { throw "GitHub latest release for $Name is not stable." }
@@ -375,17 +386,29 @@ try {
     if ($Offline -and $UpdateLock) { throw '-Offline and -UpdateLock cannot be combined.' }
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $root = Get-RepoRoot
+    $selectedTools = @(Get-SetupSelection -OptionalTools $OptionalTools)
+    if ($Packaged) { $selectedTools = @($selectedTools | Where-Object { $_ -ne 'electron' }) }
+    $lock = Read-ToolsLock -Root $root
+    foreach ($name in $selectedTools) {
+        if (-not $lock.tools.PSObject.Properties[$name]) { throw "Missing lock entry: $name" }
+        $entry = $lock.tools.$name
+        Write-Host (Get-SetupDescription $name)
+        Write-Host ("  {0} -> {1}" -f $entry.url, $entry.installDir)
+    }
+    if ($List) { exit 0 }
     $downloads = Join-Path $root '.downloads'
     $bootstrapCache = Join-Path $root '.cache\bootstrap'
     foreach ($workspacePath in @($downloads, $bootstrapCache, (Join-Path $root '.tools'), (Join-Path $root 'config'))) {
         Assert-NoReparsePointsBelowRoot -Path $workspacePath -Root $root
     }
     foreach ($directory in @($downloads, $bootstrapCache, (Join-Path $root '.tools'), (Join-Path $root '.cache\tmp'))) { Ensure-Directory -Path $directory }
+    $env:TEMP = $env:TMP = Join-Path $root '.cache\tmp'
+    $env:VSCODE_PORTABLE = Join-Path $root '.tools\vscode\data'
     $lockPath = Join-Path $root 'config\tools.lock.json'
     $lock = Read-ToolsLock -Root $root
     if ($lock.host -ne 'windows-x64') { throw "Unsupported lock host: $($lock.host)" }
 
-    $incomplete = @($lock.tools.PSObject.Properties | Where-Object {
+    $incomplete = @($lock.tools.PSObject.Properties | Where-Object { $selectedTools -contains $_.Name } | Where-Object {
         ([string]$_.Value.version -eq 'unresolved') -or (([string]$_.Value.sha256) -notmatch '^[0-9a-fA-F]{64}$') -or -not ([string]$_.Value.url)
     }).Count -gt 0
     $refreshLock = [bool]$UpdateLock -or $incomplete
@@ -394,6 +417,7 @@ try {
 
     if ($refreshLock) {
         foreach ($property in $lock.tools.PSObject.Properties) {
+            if ($selectedTools -notcontains $property.Name) { continue }
             $entryIncomplete = ([string]$property.Value.version -eq 'unresolved') -or (([string]$property.Value.sha256) -notmatch '^[0-9a-fA-F]{64}$') -or -not ([string]$property.Value.url)
             if ($UpdateLock -or $entryIncomplete) {
                 Resolve-LatestMetadata -Name $property.Name -Tool $property.Value
@@ -402,6 +426,7 @@ try {
     }
 
     foreach ($property in $lock.tools.PSObject.Properties) {
+        if ($selectedTools -notcontains $property.Name) { continue }
         $name = $property.Name
         $tool = $property.Value
         if ((-not $refreshLock) -and (-not $Force) -and (Test-InstalledTool -Tool $tool)) {
@@ -439,7 +464,7 @@ try {
 
     $code = Join-Path $root '.tools\vscode\Code.exe'
     $codeCli = Join-Path $root '.tools\vscode\bin\code.cmd'
-    if ((-not $Offline) -and (-not $SkipExtensions) -and (Test-Path -LiteralPath $codeCli) -and ($lock.PSObject.Properties.Name -contains 'vscodeExtensions')) {
+    if (($selectedTools -contains 'vscode') -and (-not $Offline) -and (-not $SkipExtensions) -and (Test-Path -LiteralPath $codeCli) -and ($lock.PSObject.Properties.Name -contains 'vscodeExtensions')) {
         $installedExtensionInventory = @(& $codeCli --list-extensions --show-versions)
         foreach ($extension in $lock.vscodeExtensions) {
             $extensionId = [string]$extension.id
@@ -470,6 +495,8 @@ try {
         }
     }
 
+    if (-not $Packaged) { & (Join-Path $PSScriptRoot 'setup-editor.ps1') -Offline:$Offline -Force:$Force }
+
     if (-not $SkipDoctor) {
         & (Join-Path $PSScriptRoot 'doctor.ps1')
         if ($LASTEXITCODE -ne 0) { throw 'Bootstrap completed downloads, but doctor reported a required failure.' }
@@ -480,4 +507,10 @@ try {
 catch {
     Write-Check FAIL $_.Exception.Message
     exit 1
+}
+
+finally {
+    $env:TEMP = $previousTemp
+    $env:TMP = $previousTmp
+    $env:VSCODE_PORTABLE = $previousCodePortable
 }

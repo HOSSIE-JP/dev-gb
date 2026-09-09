@@ -72,6 +72,10 @@ try {
             }
             $tool = $property.Value
             $installRoot = Get-ToolInstallPath -Root $root -Tool $tool
+            if (-not $item.Required -and -not (Test-Path -LiteralPath $installRoot)) {
+                Write-Check INFO ("Optional tool not installed: {0}; use setup.cmd to add it." -f $item.Tool)
+                continue
+            }
             $path = Join-Path $installRoot $item.Path
             Report-Test (Test-Path -LiteralPath $path -PathType Leaf) ("{0} {1}: {2}" -f $item.Label, $tool.version, $path) ("{0} is missing: {1}" -f $item.Label, $path) $item.Required
         }
@@ -84,7 +88,7 @@ try {
         }
 
         $emuliciousProperty = $lock.tools.PSObject.Properties['emulicious']
-        if ($emuliciousProperty -and $emuliciousProperty.Value.bundledJava) {
+        if ($emuliciousProperty -and $emuliciousProperty.Value.bundledJava -and (Test-Path -LiteralPath (Get-ToolInstallPath -Root $root -Tool $emuliciousProperty.Value))) {
             $emuliciousRoot = Get-ToolInstallPath -Root $root -Tool $emuliciousProperty.Value
             $java = Get-ChildItem -LiteralPath $emuliciousRoot -Filter java.exe -File -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
             Report-Test ($null -ne $java) ("Bundled Java runtime: {0}" -f $java.FullName) 'Emulicious is locked with bundled Java, but java.exe is missing.' $false
@@ -93,7 +97,9 @@ try {
 
     $portableData = Join-Path $root '.tools\vscode\data'
     $portableTmp = Join-Path $portableData 'tmp'
+    if (Test-Path -LiteralPath (Join-Path $root '.tools\vscode')) {
     Report-Test ((Test-Path -LiteralPath $portableData -PathType Container) -and (Test-Path -LiteralPath $portableTmp -PathType Container)) 'VS Code portable data directories exist' 'VS Code portable data directories are missing.' $false
+    }
     $codeCli = Join-Path $root '.tools\vscode\bin\code.cmd'
     if ($lock -and (Test-Path -LiteralPath $codeCli) -and ($lock.PSObject.Properties.Name -contains 'vscodeExtensions')) {
         $global:LASTEXITCODE = 0
@@ -141,6 +147,9 @@ try {
         Write-Check INFO 'hello-gb build check skipped by caller'
     }
 
+    foreach ($editorPath in @('.tools\node\node.exe','.tools\electron\electron.exe','.tools\misaki\misaki_gothic.bdf','editor\node_modules\boytacean\boytacean_bg.wasm','editor\build\main.cjs','editor\build\renderer.js','editor\package-lock.json')) {
+        Report-Test (Test-Path -LiteralPath (Join-Path $root $editorPath) -PathType Leaf) ("Editor component: {0}" -f $editorPath) ("Editor component is missing: {0}; run bootstrap.cmd" -f $editorPath)
+    }
     if ($failures -gt 0) {
         Write-Check FAIL ("Doctor found {0} required failure(s) and {1} warning(s)." -f $failures, $warnings)
         exit 1

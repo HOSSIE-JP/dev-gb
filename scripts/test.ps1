@@ -7,6 +7,8 @@ $ErrorActionPreference = 'Stop'
 
 try {
     $root = Get-RepoRoot
+    & (Join-Path $root 'tests\setup-policy.test.ps1')
+    if (-not $?) { throw 'Setup policy validation failed.' }
     & (Join-Path $PSScriptRoot 'doctor.ps1') -SkipBuildCheck
     if ($LASTEXITCODE -ne 0) { throw 'doctor failed.' }
 
@@ -68,6 +70,18 @@ try {
             }
         }
     }
+    $editorNode = Join-Path $root '.tools\node\node.exe'
+    Invoke-CheckedCommand -FilePath $editorNode -ArgumentList @((Join-Path $root 'editor\node_modules\typescript\bin\tsc'),'--noEmit','-p',(Join-Path $root 'editor\tsconfig.json')) -WorkingDirectory $root
+    $editorTests = @('--test')
+    $editorTests += @(Get-ChildItem -LiteralPath (Join-Path $root 'editor\tests') -Filter '*.test.mjs' -File | Where-Object {
+        $_.Name -notin @('rom.test.mjs','integration.test.mjs','bgb.test.mjs')
+    } | Sort-Object Name | ForEach-Object FullName)
+    if ($projects -contains 'star-caravan') {
+        $editorTests += (Join-Path $root 'editor\tests\rom.test.mjs')
+        $editorTests += (Join-Path $root 'editor\tests\integration.test.mjs')
+        $editorTests += (Join-Path $root 'editor\tests\bgb.test.mjs')
+    }
+    Invoke-CheckedCommand -FilePath $editorNode -ArgumentList $editorTests -WorkingDirectory $root
     Write-Check OK 'All tests passed'
     exit 0
 }

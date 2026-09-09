@@ -1,0 +1,4 @@
+interface:
+  display_name: "GB STG制作・試遊・パッケージ"
+  short_description: "GBDKエディターで企画からROM試遊、完成承認後の箱・ラベル・宣伝動画まで制作"
+  default_prompt: "$build-gbdk-stg を使って、指定したタイトル・面数・テーマのGB/GBC用STGを制作し、まずROMと試遊版を渡してください。"

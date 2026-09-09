@@ -1,0 +1,41 @@
+{
+  "name": "caravan-editor",
+  "version": "1.1.1",
+  "private": true,
+  "license": "MIT",
+  "description": "Portable GB/GBC shooting game authoring tool",
+  "main": "build/main.cjs",
+  "scripts": {
+    "prestart": "npm run build",
+    "start": "node launch.mjs",
+    "build": "node build.mjs",
+    "build:release": "node build.mjs --production",
+    "typecheck": "tsc --noEmit",
+    "pretest": "npm run build",
+    "test": "node tests/run.mjs auto",
+    "pretest:core": "npm run build",
+    "test:core": "node tests/run.mjs core",
+    "pretest:rom": "npm run build",
+    "test:rom": "node tests/run.mjs rom",
+    "pretest:bgb": "npm run build",
+    "test:bgb": "node tests/run.mjs bgb",
+    "check": "npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "boytacean": "0.13.2",
+    "pngjs": "7.0.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "26.4.1",
+    "@types/pngjs": "6.0.5",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "esbuild": "0.28.2",
+    "pe-library": "2.0.1",
+    "prettier": "3.9.6",
+    "resedit": "3.1.0",
+    "typescript": "7.0.2"
+  }
+}

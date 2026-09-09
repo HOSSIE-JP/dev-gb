@@ -38,7 +38,7 @@ try {
         $arguments = @($romPath)
     }
     if (-not (Test-Path -LiteralPath $executable -PathType Leaf)) {
-        throw "$Emulator is not bootstrapped. Missing: $executable`nRun bootstrap.cmd first."
+        throw "$Emulator is not bootstrapped. Missing: $executable`nRun setup.cmd and select the required emulator."
     }
 
     Write-Host ("Executable: {0}" -f $executable)

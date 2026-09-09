@@ -2,6 +2,7 @@
 /.tools/
 /.downloads/
 /.cache/
+**/node_modules/
 /tmp/
 /temp/
 
