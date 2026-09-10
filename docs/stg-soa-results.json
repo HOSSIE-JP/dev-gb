@@ -1,0 +1,3963 @@
+{
+  "date": "2026-09-10",
+  "baselineCommit": "f116781126f7e0485f91b3c59c91a722e20eb056",
+  "toolchain": "GBDK 4.5.0 Windows",
+  "emulator": "Boytacean 0.13.2",
+  "toolLockSha256": "f75e7cced361bcdf1494fb393734a146f5ce3668c0a43844b9307dabad934d44",
+  "sourceSha256": {
+    "engine/caravan/caravan.h": "6c50e68cb15f0257aa59abeb2ac5c1f513add9a6a3d2af9082215dca3673df0a",
+    "engine/caravan/runtime.c": "ce180778922e1b0df9418926edb3c028a9e7db1c43844c012187cf4d8de1144e",
+    "engine/caravan/shot-kernels.h": "1bb0e9c880ec287579862b7ded78006b1057a1cb197da090ed199e5bcd636f7d",
+    "engine/caravan/render.c": "a1b65513d391126b246a0ffaf28ea3fee0b118246f2bf68ca290e2260f9f06d7",
+    "engine/caravan/mainloop.c": "5d197b3730101646ca6469f23ac141e7c1b880c61dbf5980a2db3d1fe56d04bc",
+    "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+    "engine/caravan/music.c": "9dec9f029947c11b94dafebedf0853030e8de9296cf0ca0f3d3acf6e66b522a8",
+    "engine/caravan/save.c": "90a38d56ff4d765ef767742b6d922a97037860f3775e69e99e1880413fcf5cc3",
+    "editor/src/node/compiler.ts": "fe6466cdffa183595561cd95317e73d0538d0892f7dea71f3dde18322e1bd679",
+    "editor/tests/emulator.mjs": "55d2b4b72813a49d1f5eb38380e0e442e616e55121474cd363ca38e62e430005",
+    "editor/tests/stg-benchmark.mjs": "47a11d15deb3f7020b27be2e13a24777ae3f9545fb46e6899abca5862b48812f",
+    "editor/tests/kernel-runtime.mjs": "d25579a9ec5a067d26657ec0348181d4f1c68ddb9f934f847e5afb0d62b1e25b",
+    "editor/tests/fixtures/kernel_harness.c": "ce078dd8d6bb5f1871c06dee07874ca79239b2bbd63b12ad33290c386d485852",
+    "editor/tests/fixtures/render_harness.c": "15841713397f9b2a0c659770d579652b8d9387c09ed3375e3cdd9331dbf379b0"
+  },
+  "games": {
+    "star-caravan": {
+      "files": [
+        {
+          "path": ".gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "game.json",
+          "sha256": "eba6c35089c5c070c2cf1decf8765a8dca6392c018ede99b20be8425990344c7"
+        },
+        {
+          "path": "images/boss-ship-f0.png",
+          "sha256": "be37dcb7dd1d58680cecb87fdc0c112debf294b705b56804c4d82dd4ea022b0a"
+        },
+        {
+          "path": "images/enemy-bullet-f0.png",
+          "sha256": "7a86378c547440c54ee0ad1b8e68de5c06aa17d0b5be0b05922fb6f24eb448d2"
+        },
+        {
+          "path": "images/explosion-f0.png",
+          "sha256": "8ac2b47e9d50839c8307aca0d84fc50c3be7ea92d4fb147834e1c02db72ce939"
+        },
+        {
+          "path": "images/explosion-f1.png",
+          "sha256": "d0b32f74fc38183d1525f00a58bc6c94fdb4a86262d73a2e32c53452250666b1"
+        },
+        {
+          "path": "images/player-bullet-f0.png",
+          "sha256": "d2ec221504f9a1ad7f00e471a05c9b081995b8422b54b55cff37672e10c6683f"
+        },
+        {
+          "path": "images/player-ship-f0.png",
+          "sha256": "185031301e51e517ca747fbe1542a2c971fe804733c082bb66140b6850766399"
+        },
+        {
+          "path": "images/scout-f0.png",
+          "sha256": "1351fa7fcdee62520f5d88561ef9986b81557d4c05f280bcee2109a24b3f507b"
+        },
+        {
+          "path": "images/stars-f0.png",
+          "sha256": "ac2d27feb6ce9468e7d5c29f487e28a989b42a5b358985749e5c23c2b13ba125"
+        },
+        {
+          "path": "images/wing-f0.png",
+          "sha256": "f6a6ee104eb1f96d14507c6de6d7df24446823e44f93feb811e9537c1f1acf68"
+        },
+        {
+          "path": "README.md",
+          "sha256": "e890adb390d3338a6b0ea235f2d98bd73964489670545737c8acb8676704ffe0"
+        }
+      ],
+      "manifestSha256": "33d3313f149961d3ed204930ad8515f38ac43f021f9ccf10598baa9d1a3f5158",
+      "projectJsonSha256": "5c6fb0be28b855fe8dfc2a32d3179c68d5ab23191b33eea91b54ad241c977adb"
+    },
+    "nova-spear": {
+      "files": [
+        {
+          "path": "art/build_art.py",
+          "sha256": "a307f836969468ff34fbd4ad99b22475aa2bb9896f9d68fcab8bec3d59d7d8b0"
+        },
+        {
+          "path": "art/manifest.json",
+          "sha256": "7705378637379177b8d4187743d517ee76568420423666a8f7272530a0a11bf4"
+        },
+        {
+          "path": "art/nova-spear-key-art.png",
+          "sha256": "801c2e7c4c1a68fcfd6d55d7d9f78afca262e90dfa743c9e9580d83477e9a9c7"
+        },
+        {
+          "path": "art/README.md",
+          "sha256": "05655ceac81775de8d818b2517b50952a8a7364af08ceeae85a9f49244ab3589"
+        },
+        {
+          "path": "design/create_project.mjs",
+          "sha256": "c15a13ee99cba5feb23cbbd114b1b0dba89fff45ecf37dc9b6fd3fa02dc0c44b"
+        },
+        {
+          "path": "design/waves.mjs",
+          "sha256": "7ad2b37512af6d6aec7a4658d6ee1e3511a508e9f41eae907d70722dd2902d39"
+        },
+        {
+          "path": "game.json",
+          "sha256": "cbcaf50d6cd87daeccd599a59719adc0b9c76cd7ddaab44b3169f93fc51075e0"
+        },
+        {
+          "path": "images/armored-f0.png",
+          "sha256": "637e321aa53f3b07521a8fd291b1667b04b0ac2adbf9ad1e407e51bc8832880a"
+        },
+        {
+          "path": "images/boss-bastion-f0.png",
+          "sha256": "fcb1d08f0cbe1fe8c5f47cde3ade0da05afda5e83d9fbd5cacbfbe6d3a81a9fb"
+        },
+        {
+          "path": "images/boss-helix-f0.png",
+          "sha256": "d39acbcd5468d7b560361dcd7f490c20ffab5f6977f8e9a34ad0a506304c64fc"
+        },
+        {
+          "path": "images/boss-trident-f0.png",
+          "sha256": "28e8ba3d44f7678d528a7bf73be7ed4586e02f36d1fb118bb3aee35bba23beac"
+        },
+        {
+          "path": "images/carrier-tiles-f0.png",
+          "sha256": "3499c55392852cf24a73a7b900bfe11902b5c2bb012a808d60087854140c67fe"
+        },
+        {
+          "path": "images/clear-art-f0.png",
+          "sha256": "ce1c42bb077bdb39309dd47a0cf338dbfcb00f1466b0f9394de425fec059be58"
+        },
+        {
+          "path": "images/enemy-bullet-f0.png",
+          "sha256": "aef67c596287ba92d6d915f99e7a349f00422ba6633871b8494a4f173aac080d"
+        },
+        {
+          "path": "images/explosion-f0.png",
+          "sha256": "e3ca3700442b7b14a54550096351c93a640307986f65c01cc80208b0830cb56a"
+        },
+        {
+          "path": "images/explosion-f1.png",
+          "sha256": "68565f64ae47713fbe160c90356aa9e0652d1b4703201eef324b82634f88a4a8"
+        },
+        {
+          "path": "images/explosion-f2.png",
+          "sha256": "6bb8bafa134c6cefaa31d223b5a7a44661dddda5f644f753eb42b252547dd59b"
+        },
+        {
+          "path": "images/gameover-art-f0.png",
+          "sha256": "6da527a9f638b5dbcb7521346329afc4d85011cbff9635d14455b625c93cdd0f"
+        },
+        {
+          "path": "images/interceptor-f0.png",
+          "sha256": "79b6c96bfed724820a19a675a6027dcb53c9ab8a0f851d60378f3eb25cebe5f4"
+        },
+        {
+          "path": "images/orbital-tiles-f0.png",
+          "sha256": "0d57f0e56046d6473ed3617ce907af5212abf54ed8031f74da6fe683c624911d"
+        },
+        {
+          "path": "images/player-bullet-f0.png",
+          "sha256": "ea7bbd1c2b4b89b7210efe81c15cd6d2012cfd8345aa10fb73caf72b02a52e0b"
+        },
+        {
+          "path": "images/player-lance-f0.png",
+          "sha256": "9fb95528470b36fd09f76625ea9b9b4a2c29136ceb899822fc177fbc657bc236"
+        },
+        {
+          "path": "images/player-ship-f0.png",
+          "sha256": "980c9a26abcbd358865e66616d3055ddcd98b6625e0cc7bc76be6fd36c704864"
+        },
+        {
+          "path": "images/player-ship-f1.png",
+          "sha256": "b1ad6473aa4bbf18cb7487f389f5087635a58be7ac498ffecb081c23356b8ea6"
+        },
+        {
+          "path": "images/reactor-tiles-f0.png",
+          "sha256": "c99a90e3e76c872152c49e9d560312956dde3e333b9dcc673c7cff204bd778dc"
+        },
+        {
+          "path": "images/score-beacon-f0.png",
+          "sha256": "2ab5897a6db202b21b189415c5de6e1539182f148cccf37263bedc8b09b546c2"
+        },
+        {
+          "path": "images/scout-f0.png",
+          "sha256": "4c25fbb14d166f648629001615eb087ba9527e42f7e8715af9a65e3268860191"
+        },
+        {
+          "path": "images/scout-f1.png",
+          "sha256": "a3587ad62d607489fd92306df8ced481d217cc3b515bea26dcb15a5923a3649e"
+        },
+        {
+          "path": "images/title-art-f0.png",
+          "sha256": "bb04004c19e75bcf8cc063e127416e93a71c01ab3935d6e6f0d5671d0ec4c88a"
+        },
+        {
+          "path": "images/turret-f0.png",
+          "sha256": "3e81f24adcf6d550b572c70363a4088ae7fea6d0ec037c70e9b12e54ae681458"
+        }
+      ],
+      "manifestSha256": "87b003211279e0c50f114751dbec77cd6a515e04add6741db51843f5ff365e59",
+      "projectJsonSha256": "507327e2b84e227eb1dc03d29376ac48cfb462b46f221525f6b3936029fa00bc"
+    }
+  },
+  "comparisons": [
+    {
+      "case": "stress",
+      "before": {
+        "case": "stress",
+        "romSha256": "48e8d3af3e2825f3f1e83029ee1705e505631d7d82b35a5761aab1a10180e82f",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\before\\fixture-uze3x8\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 2891,
+        "romBytes": 65536,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 3,
+              "p95": 3,
+              "max": 3,
+              "updatesPerSecond": 19.909166666666668
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 3.000341763499641,
+              "p95": 3.0003417634996583,
+              "max": 3.0018227386648437,
+              "updatesPerSecond": 19.906898849527394
+            },
+            "peakShots": 32,
+            "peakEnemies": 3,
+            "peakEntities": 35,
+            "peakOam": 37,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 184,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "c579d95b9a46be3a002a8b531937ea915612415f96db56d1975f2fd70cb84f18"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 2,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 29.86375
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.0001708817498307,
+              "p95": 2.000170881749829,
+              "max": 2.000911369332422,
+              "updatesPerSecond": 29.86119863306277
+            },
+            "peakShots": 32,
+            "peakEnemies": 3,
+            "peakEntities": 35,
+            "peakOam": 37,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 184,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "aa4e276752d90a278ca0e27bc7fe49c844b05a7a713e8ce49bbd39973a059fe0"
+          }
+        ]
+      },
+      "after": {
+        "case": "stress",
+        "romSha256": "27b2bcc0ef15ebc9155c06b5f318ae7695db9bf63311bc8521a2f9fedfbc0641",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\final\\fixture-MfKk0j\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 3982,
+        "romBytes": 65536,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 2.8133333333333335,
+              "p95": 3,
+              "max": 3,
+              "updatesPerSecond": 21.23015402843602
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.813675096832978,
+              "p95": 3.0003417634996583,
+              "max": 3.0018227386648437,
+              "updatesPerSecond": 21.22757530435131
+            },
+            "peakShots": 32,
+            "peakEnemies": 3,
+            "peakEntities": 35,
+            "peakOam": 37,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 184,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "c579d95b9a46be3a002a8b531937ea915612415f96db56d1975f2fd70cb84f18"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.7483333333333333,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 34.16253574833174
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.7485042150831536,
+              "p95": 2.000170881749829,
+              "max": 2.000911369332422,
+              "updatesPerSecond": 34.15919703525538
+            },
+            "peakShots": 32,
+            "peakEnemies": 3,
+            "peakEntities": 35,
+            "peakOam": 37,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 184,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "aa4e276752d90a278ca0e27bc7fe49c844b05a7a713e8ce49bbd39973a059fe0"
+          }
+        ]
+      },
+      "allStatesAndOamIdentical": true,
+      "improvementPercent": [
+        {
+          "mode": "DMG",
+          "percent": 6.634265160066688
+        },
+        {
+          "mode": "CGB",
+          "percent": 14.393254788619924
+        }
+      ]
+    },
+    {
+      "case": "animation",
+      "before": {
+        "case": "animation",
+        "romSha256": "0c22020497c7be889672b45cb3250b4113a64292e674138bf3346da1d9623be0",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\before\\fixture-PlgbiI\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 2891,
+        "romBytes": 65536,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 3.775,
+              "p95": 4,
+              "max": 4,
+              "updatesPerSecond": 15.821854304635762
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 3.7753417634996556,
+              "p95": 4.000341763499658,
+              "max": 4.001822738664844,
+              "updatesPerSecond": 15.820422028397761
+            },
+            "peakShots": 32,
+            "peakEnemies": 3,
+            "peakEntities": 35,
+            "peakOam": 37,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 184,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "8324705aac137c8dc719a92de0d5de089d908c3d1c1580ec9bdb522faa18e1af"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 2,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 29.86375
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.0001708817498307,
+              "p95": 2.000170881749829,
+              "max": 2.000911369332422,
+              "updatesPerSecond": 29.86119863306277
+            },
+            "peakShots": 32,
+            "peakEnemies": 3,
+            "peakEntities": 35,
+            "peakOam": 37,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 184,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "adb77c7421fdeb9039ed454e989a6baec9081f88c88528a1a1a4446b0bf6e7e5"
+          }
+        ]
+      },
+      "after": {
+        "case": "animation",
+        "romSha256": "dd12ec5b99806a1e6e3fa02c868346010b7caaee1ddc3f3b5328567d5c63cd41",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\final\\fixture-cqjeCt\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 3982,
+        "romBytes": 65536,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 3.0016666666666665,
+              "p95": 3,
+              "max": 4,
+              "updatesPerSecond": 19.89811215991116
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 3.0020084301663075,
+              "p95": 3.0003417634996583,
+              "max": 4.000341763499658,
+              "updatesPerSecond": 19.89584686032716
+            },
+            "peakShots": 32,
+            "peakEnemies": 3,
+            "peakEntities": 35,
+            "peakOam": 37,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 184,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "8324705aac137c8dc719a92de0d5de089d908c3d1c1580ec9bdb522faa18e1af"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.995,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 29.93859649122807
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.9951708817498306,
+              "p95": 2.000170881749829,
+              "max": 2.000911369332422,
+              "updatesPerSecond": 29.936032320007104
+            },
+            "peakShots": 32,
+            "peakEnemies": 3,
+            "peakEntities": 35,
+            "peakOam": 37,
+            "peakScanline": 22,
+            "phases": [],
+            "dropped": 184,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "adb77c7421fdeb9039ed454e989a6baec9081f88c88528a1a1a4446b0bf6e7e5"
+          }
+        ]
+      },
+      "allStatesAndOamIdentical": true,
+      "improvementPercent": [
+        {
+          "mode": "DMG",
+          "percent": 25.760531701455157
+        },
+        {
+          "mode": "CGB",
+          "percent": 0.25060510083301235
+        }
+      ]
+    },
+    {
+      "case": "enemies",
+      "before": {
+        "case": "enemies",
+        "romSha256": "ba6a5114657e79eae97af3c0ff76b1073e010727375057a1cae80d01fe966a32",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\before\\fixture-qsXUrl\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 2891,
+        "romBytes": 65536,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 2,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 29.86375
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.000341763499665,
+              "p95": 2.0003417634996583,
+              "max": 2.0005696058327636,
+              "updatesPerSecond": 29.858647702033043
+            },
+            "peakShots": 0,
+            "peakEnemies": 12,
+            "peakEntities": 12,
+            "peakOam": 14,
+            "peakScanline": 6,
+            "phases": [],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "c5aabbcc66aadc9111b190eb0896e1e0a2a10f551c29a3479a39ad2cdf36054b"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0001708817498325,
+              "p95": 1.0001708817498292,
+              "max": 1.0002848029163818,
+              "updatesPerSecond": 59.717295404066085
+            },
+            "peakShots": 0,
+            "peakEnemies": 12,
+            "peakEntities": 12,
+            "peakOam": 14,
+            "peakScanline": 6,
+            "phases": [],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "68e468174087358f2b4f4ef728865f0d5e39d6cf15d84f58ca0a6918f778d7c2"
+          }
+        ]
+      },
+      "after": {
+        "case": "enemies",
+        "romSha256": "e355e044031e375732ae3a12c343c4e7a87652435c903a8d0e10ac1a1dc6c891",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\final\\fixture-K0u14V\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 3982,
+        "romBytes": 65536,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 2,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 29.86375
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.000341763499665,
+              "p95": 2.0003417634996583,
+              "max": 2.0005696058327636,
+              "updatesPerSecond": 29.858647702033043
+            },
+            "peakShots": 0,
+            "peakEnemies": 12,
+            "peakEntities": 12,
+            "peakOam": 14,
+            "peakScanline": 6,
+            "phases": [],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "c5aabbcc66aadc9111b190eb0896e1e0a2a10f551c29a3479a39ad2cdf36054b"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0001708817498325,
+              "p95": 1.0001708817498292,
+              "max": 1.0002848029163818,
+              "updatesPerSecond": 59.717295404066085
+            },
+            "peakShots": 0,
+            "peakEnemies": 12,
+            "peakEntities": 12,
+            "peakOam": 14,
+            "peakScanline": 6,
+            "phases": [],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "68e468174087358f2b4f4ef728865f0d5e39d6cf15d84f58ca0a6918f778d7c2"
+          }
+        ]
+      },
+      "allStatesAndOamIdentical": true,
+      "improvementPercent": [
+        {
+          "mode": "DMG",
+          "percent": 0
+        },
+        {
+          "mode": "CGB",
+          "percent": 0
+        }
+      ]
+    },
+    {
+      "case": "boss-0",
+      "before": {
+        "case": "boss-0",
+        "romSha256": "9e6324622606ad0fa8826dfb0decdc57291a9c1479142b294fda77f2357db6b7",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\before\\fixture-o4xHjx\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 2891,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.1416666666666666,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 52.316058394160585
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.141992766005928,
+              "p95": 2.0003417634996583,
+              "max": 2.0222146274777852,
+              "updatesPerSecond": 52.301119392283404
+            },
+            "peakShots": 7,
+            "peakEnemies": 0,
+            "peakEntities": 8,
+            "peakOam": 25,
+            "peakScanline": 7,
+            "phases": [
+              0,
+              1,
+              2
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "0facd118240e88a4da519ff9aa7a48985f1f2309638bc1871ae899f6f9713e5b"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.000180802384753,
+              "p95": 1.0108225108225108,
+              "max": 1.0111073137388926,
+              "updatesPerSecond": 59.71670307767398
+            },
+            "peakShots": 7,
+            "peakEnemies": 0,
+            "peakEntities": 8,
+            "peakOam": 25,
+            "peakScanline": 7,
+            "phases": [
+              0,
+              1,
+              2
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "655c86c8deb455f8d9e4ebe885f653c2ac47f159fd61ca93e80e5ad111788799"
+          }
+        ]
+      },
+      "after": {
+        "case": "boss-0",
+        "romSha256": "00a6868f7741d83d817b725fe430d85f1ff0be77ae56a41a4f492752d38baf9c",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\final\\fixture-Mlbaw1\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 3982,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.0633333333333332,
+              "p95": 2,
+              "max": 2,
+              "updatesPerSecond": 56.17006269592477
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0636849700007616,
+              "p95": 2.0003417634996583,
+              "max": 2.024606971975393,
+              "updatesPerSecond": 56.15149380173835
+            },
+            "peakShots": 7,
+            "peakEnemies": 0,
+            "peakEntities": 8,
+            "peakOam": 25,
+            "peakScanline": 7,
+            "phases": [
+              0,
+              1,
+              2
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "0facd118240e88a4da519ff9aa7a48985f1f2309638bc1871ae899f6f9713e5b"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.000180802384753,
+              "p95": 1.0108225108225108,
+              "max": 1.0111073137388926,
+              "updatesPerSecond": 59.71670307767398
+            },
+            "peakShots": 7,
+            "peakEnemies": 0,
+            "peakEntities": 8,
+            "peakOam": 25,
+            "peakScanline": 7,
+            "phases": [
+              0,
+              1,
+              2
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "655c86c8deb455f8d9e4ebe885f653c2ac47f159fd61ca93e80e5ad111788799"
+          }
+        ]
+      },
+      "allStatesAndOamIdentical": true,
+      "improvementPercent": [
+        {
+          "mode": "DMG",
+          "percent": 7.361934991439267
+        },
+        {
+          "mode": "CGB",
+          "percent": 0
+        }
+      ]
+    },
+    {
+      "case": "boss-1",
+      "before": {
+        "case": "boss-1",
+        "romSha256": "6ec2541ae69fa757ba444dd9bda7bbf525ee8451019067b20d671ac3a69d5427",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\before\\fixture-sLyr6A\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 2891,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.2116666666666667,
+              "p95": 2,
+              "max": 3,
+              "updatesPerSecond": 49.29367262723521
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.2120464038885133,
+              "p95": 2.0156641604010024,
+              "max": 2.02904989747095,
+              "updatesPerSecond": 49.27822879419546
+            },
+            "peakShots": 7,
+            "peakEnemies": 0,
+            "peakEntities": 8,
+            "peakOam": 26,
+            "peakScanline": 9,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "a47354f4d581f87e45516f3a3c349f323bd985fb60d7e71ea5f1ab10a0e62525"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0001770999468398,
+              "p95": 1.0108225108225108,
+              "max": 1.0111073137388926,
+              "updatesPerSecond": 59.71692413591009
+            },
+            "peakShots": 7,
+            "peakEnemies": 0,
+            "peakEntities": 8,
+            "peakOam": 26,
+            "peakScanline": 9,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "54aba3b4960cf1affdf048491c7f5dc858cf4484cfd9f57f8aefdc41287c0fbc"
+          }
+        ]
+      },
+      "after": {
+        "case": "boss-1",
+        "romSha256": "baff4a7333d1e6a7e997d7d8752bad2bf3a5cfa7dd1cb52a55038d55513e69e4",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\final\\fixture-FtHzAi\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 3982,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.1,
+              "p95": 2,
+              "max": 3,
+              "updatesPerSecond": 54.297727272727265
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.1003442317916028,
+              "p95": 2.0003417634996583,
+              "max": 2.02904989747095,
+              "updatesPerSecond": 54.28074076668759
+            },
+            "peakShots": 7,
+            "peakEnemies": 0,
+            "peakEntities": 8,
+            "peakOam": 26,
+            "peakScanline": 9,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "a47354f4d581f87e45516f3a3c349f323bd985fb60d7e71ea5f1ab10a0e62525"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0001770999468398,
+              "p95": 1.0108225108225108,
+              "max": 1.0111073137388926,
+              "updatesPerSecond": 59.71692413591009
+            },
+            "peakShots": 7,
+            "peakEnemies": 0,
+            "peakEntities": 8,
+            "peakOam": 26,
+            "peakScanline": 9,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "54aba3b4960cf1affdf048491c7f5dc858cf4484cfd9f57f8aefdc41287c0fbc"
+          }
+        ]
+      },
+      "allStatesAndOamIdentical": true,
+      "improvementPercent": [
+        {
+          "mode": "DMG",
+          "percent": 10.151566107183996
+        },
+        {
+          "mode": "CGB",
+          "percent": 0
+        }
+      ]
+    },
+    {
+      "case": "boss-2",
+      "before": {
+        "case": "boss-2",
+        "romSha256": "e4e3c84fbaa2f5f88a073bb786e4d2c8433af47e3c1df65d0a4ad137f5f57c5d",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\before\\fixture-sAIh0I\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 2891,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.3433333333333333,
+              "p95": 2,
+              "max": 3,
+              "updatesPerSecond": 44.462158808933005
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.3436371231108135,
+              "p95": 2.0156641604010024,
+              "max": 2.026087947140579,
+              "updatesPerSecond": 44.45210613243387
+            },
+            "peakShots": 8,
+            "peakEnemies": 0,
+            "peakEntities": 9,
+            "peakOam": 28,
+            "peakScanline": 12,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "f70d9f67c91d17bac5d3118d55ea253d5cb3375b4251a0a3d12950dd367e649c"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0001746316548978,
+              "p95": 1.0108225108225108,
+              "max": 1.0111073137388926,
+              "updatesPerSecond": 59.71707150897674
+            },
+            "peakShots": 8,
+            "peakEnemies": 0,
+            "peakEntities": 9,
+            "peakOam": 28,
+            "peakScanline": 12,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "5a2f5cdecac3ff042de09a26f9019f1742153d2e7d582979e073fd974d4fa262"
+          }
+        ]
+      },
+      "after": {
+        "case": "boss-2",
+        "romSha256": "a9580a0270bb1bc269a3f22cc955d34c5293c0fc7bcee33d0f3ba639f2c7dff5",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\final\\fixture-8C0Ejy\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+        "ramBytes": 3982,
+        "romBytes": 131072,
+        "modes": [
+          {
+            "mode": "DMG",
+            "gaps": {
+              "samples": 600,
+              "mean": 1.1666666666666667,
+              "p95": 2,
+              "max": 3,
+              "updatesPerSecond": 51.19499999999999
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.1670314992025568,
+              "p95": 2.0003417634996583,
+              "max": 2.026087947140579,
+              "updatesPerSecond": 51.1789956319194
+            },
+            "peakShots": 8,
+            "peakEnemies": 0,
+            "peakEntities": 9,
+            "peakOam": 28,
+            "peakScanline": 12,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "f70d9f67c91d17bac5d3118d55ea253d5cb3375b4251a0a3d12950dd367e649c"
+          },
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 1,
+              "p95": 1,
+              "max": 1,
+              "updatesPerSecond": 59.7275
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 1.0001746316548978,
+              "p95": 1.0108225108225108,
+              "max": 1.0111073137388926,
+              "updatesPerSecond": 59.71707150897674
+            },
+            "peakShots": 8,
+            "peakEnemies": 0,
+            "peakEntities": 9,
+            "peakOam": 28,
+            "peakScanline": 12,
+            "phases": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dropped": 0,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "5a2f5cdecac3ff042de09a26f9019f1742153d2e7d582979e073fd974d4fa262"
+          }
+        ]
+      },
+      "allStatesAndOamIdentical": true,
+      "improvementPercent": [
+        {
+          "mode": "DMG",
+          "percent": 15.132892645051399
+        },
+        {
+          "mode": "CGB",
+          "percent": 0
+        }
+      ]
+    }
+  ],
+  "normalNova": {
+    "before": [
+      {
+        "mode": "DMG",
+        "rom": ".cache/stg-soa/before-root/projects/nova-spear/build/Debug/nova-spear.gb",
+        "bins": [
+          {
+            "from": 120,
+            "to": 600,
+            "frames": 712,
+            "presentations": 480,
+            "updates": 480,
+            "updatesPerSecond": 40.27,
+            "presentationsPerSecond": 40.27
+          },
+          {
+            "from": 600,
+            "to": 1200,
+            "frames": 912,
+            "presentations": 601,
+            "updates": 600,
+            "updatesPerSecond": 39.29,
+            "presentationsPerSecond": 39.36
+          },
+          {
+            "from": 1200,
+            "to": 1800,
+            "frames": 860,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 41.67,
+            "presentationsPerSecond": 41.67
+          }
+        ]
+      },
+      {
+        "mode": "CGB",
+        "rom": ".cache/stg-soa/before-root/projects/nova-spear/build/Debug/nova-spear.gb",
+        "bins": [
+          {
+            "from": 120,
+            "to": 600,
+            "frames": 485,
+            "presentations": 480,
+            "updates": 480,
+            "updatesPerSecond": 59.11,
+            "presentationsPerSecond": 59.11
+          },
+          {
+            "from": 600,
+            "to": 1200,
+            "frames": 605,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 59.23,
+            "presentationsPerSecond": 59.23
+          },
+          {
+            "from": 1200,
+            "to": 1800,
+            "frames": 601,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 59.63,
+            "presentationsPerSecond": 59.63
+          }
+        ]
+      }
+    ],
+    "after": [
+      {
+        "mode": "DMG",
+        "rom": "projects/nova-spear/build/Debug/nova-spear.gb",
+        "bins": [
+          {
+            "from": 120,
+            "to": 600,
+            "frames": 691,
+            "presentations": 480,
+            "updates": 480,
+            "updatesPerSecond": 41.49,
+            "presentationsPerSecond": 41.49
+          },
+          {
+            "from": 600,
+            "to": 1200,
+            "frames": 887,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 40.4,
+            "presentationsPerSecond": 40.4
+          },
+          {
+            "from": 1200,
+            "to": 1800,
+            "frames": 837,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 42.82,
+            "presentationsPerSecond": 42.82
+          }
+        ]
+      },
+      {
+        "mode": "CGB",
+        "rom": "projects/nova-spear/build/Debug/nova-spear.gb",
+        "bins": [
+          {
+            "from": 120,
+            "to": 600,
+            "frames": 484,
+            "presentations": 480,
+            "updates": 480,
+            "updatesPerSecond": 59.23,
+            "presentationsPerSecond": 59.23
+          },
+          {
+            "from": 600,
+            "to": 1200,
+            "frames": 604,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 59.33,
+            "presentationsPerSecond": 59.33
+          },
+          {
+            "from": 1200,
+            "to": 1800,
+            "frames": 600,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 59.73,
+            "presentationsPerSecond": 59.73
+          }
+        ]
+      }
+    ]
+  },
+  "cpuProfile": {
+    "before": {
+      "rom": ".cache/stg-soa/before-root/projects/nova-spear/build/Debug/nova-spear.gb",
+      "romSha256": "47ca9e3940387d23d26d2d2fe7b29d699b5891a096bfce65f74756585fbf7fa4",
+      "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+      "emulator": "Boytacean 0.13.2",
+      "fromTick": 120,
+      "toTick": 360,
+      "input": "fire",
+      "modes": [
+        {
+          "mode": "DMG",
+          "samples": 61051,
+          "totalTCycles": 23645184,
+          "functions": [
+            {
+              "name": "_wait_vbl_done",
+              "estimatedTCycles": 6851232,
+              "percent": 28.975
+            },
+            {
+              "name": "sprite",
+              "estimatedTCycles": 2547160,
+              "percent": 10.772
+            },
+            {
+              "name": "step_entities",
+              "estimatedTCycles": 1889140,
+              "percent": 7.99
+            },
+            {
+              "name": "box",
+              "estimatedTCycles": 1710280,
+              "percent": 7.233
+            },
+            {
+              "name": "collide_shots",
+              "estimatedTCycles": 1357820,
+              "percent": 5.742
+            },
+            {
+              "name": "sprite_animation",
+              "estimatedTCycles": 1073760,
+              "percent": 4.541
+            },
+            {
+              "name": "ce_render",
+              "estimatedTCycles": 941532,
+              "percent": 3.982
+            },
+            {
+              "name": "emit_oam",
+              "estimatedTCycles": 732944,
+              "percent": 3.1
+            },
+            {
+              "name": "step_bullet",
+              "estimatedTCycles": 731892,
+              "percent": 3.095
+            },
+            {
+              "name": "collide_player",
+              "estimatedTCycles": 678680,
+              "percent": 2.87
+            },
+            {
+              "name": "step_player",
+              "estimatedTCycles": 641172,
+              "percent": 2.712
+            },
+            {
+              "name": "overlap",
+              "estimatedTCycles": 483868,
+              "percent": 2.046
+            },
+            {
+              "name": "step_actor",
+              "estimatedTCycles": 449328,
+              "percent": 1.9
+            },
+            {
+              "name": "__moduint",
+              "estimatedTCycles": 434932,
+              "percent": 1.839
+            },
+            {
+              "name": "ce_trace_write",
+              "estimatedTCycles": 404988,
+              "percent": 1.713
+            },
+            {
+              "name": "stage_events",
+              "estimatedTCycles": 281956,
+              "percent": 1.192
+            },
+            {
+              "name": "ce_step",
+              "estimatedTCycles": 259608,
+              "percent": 1.098
+            },
+            {
+              "name": "__muluchar",
+              "estimatedTCycles": 236788,
+              "percent": 1.001
+            },
+            {
+              "name": "move_actor",
+              "estimatedTCycles": 183848,
+              "percent": 0.778
+            },
+            {
+              "name": "HRAM / DMA",
+              "estimatedTCycles": 170176,
+              "percent": 0.72
+            },
+            {
+              "name": "___sdcc_bcall_ehl",
+              "estimatedTCycles": 161848,
+              "percent": 0.684
+            },
+            {
+              "name": "shoot",
+              "estimatedTCycles": 153376,
+              "percent": 0.649
+            },
+            {
+              "name": "allocate",
+              "estimatedTCycles": 145664,
+              "percent": 0.616
+            },
+            {
+              "name": "ce_run",
+              "estimatedTCycles": 124248,
+              "percent": 0.525
+            },
+            {
+              "name": "ce_music_tick",
+              "estimatedTCycles": 94740,
+              "percent": 0.401
+            },
+            {
+              "name": "_set_bkg_tiles",
+              "estimatedTCycles": 89752,
+              "percent": 0.38
+            },
+            {
+              "name": "ce_audio_sync",
+              "estimatedTCycles": 81916,
+              "percent": 0.346
+            },
+            {
+              "name": "ce_hud",
+              "estimatedTCycles": 76752,
+              "percent": 0.325
+            },
+            {
+              "name": "map_row",
+              "estimatedTCycles": 71956,
+              "percent": 0.304
+            },
+            {
+              "name": "release",
+              "estimatedTCycles": 54716,
+              "percent": 0.231
+            },
+            {
+              "name": "_joypad",
+              "estimatedTCycles": 52392,
+              "percent": 0.222
+            },
+            {
+              "name": "number",
+              "estimatedTCycles": 44616,
+              "percent": 0.189
+            },
+            {
+              "name": "_memset",
+              "estimatedTCycles": 43540,
+              "percent": 0.184
+            },
+            {
+              "name": "unmapped 20",
+              "estimatedTCycles": 32060,
+              "percent": 0.136
+            },
+            {
+              "name": "hud_scanline",
+              "estimatedTCycles": 29688,
+              "percent": 0.126
+            },
+            {
+              "name": "_nowait_int_handler",
+              "estimatedTCycles": 22512,
+              "percent": 0.095
+            },
+            {
+              "name": "spawn_actor",
+              "estimatedTCycles": 19256,
+              "percent": 0.081
+            },
+            {
+              "name": "count_frame",
+              "estimatedTCycles": 18496,
+              "percent": 0.078
+            },
+            {
+              "name": "_memcpy",
+              "estimatedTCycles": 16492,
+              "percent": 0.07
+            },
+            {
+              "name": "play_row",
+              "estimatedTCycles": 16084,
+              "percent": 0.068
+            },
+            {
+              "name": "ce_copy",
+              "estimatedTCycles": 15568,
+              "percent": 0.066
+            },
+            {
+              "name": "unmapped 82",
+              "estimatedTCycles": 13680,
+              "percent": 0.058
+            },
+            {
+              "name": "unmapped 87",
+              "estimatedTCycles": 10788,
+              "percent": 0.046
+            },
+            {
+              "name": "lead",
+              "estimatedTCycles": 10700,
+              "percent": 0.045
+            },
+            {
+              "name": "unmapped 84",
+              "estimatedTCycles": 9568,
+              "percent": 0.04
+            },
+            {
+              "name": "unmapped 9f",
+              "estimatedTCycles": 9224,
+              "percent": 0.039
+            },
+            {
+              "name": "unmapped 88",
+              "estimatedTCycles": 9188,
+              "percent": 0.039
+            },
+            {
+              "name": "unmapped 83",
+              "estimatedTCycles": 8632,
+              "percent": 0.037
+            },
+            {
+              "name": "unmapped 8c",
+              "estimatedTCycles": 8336,
+              "percent": 0.035
+            },
+            {
+              "name": "unmapped 8b",
+              "estimatedTCycles": 7840,
+              "percent": 0.033
+            },
+            {
+              "name": "read_event",
+              "estimatedTCycles": 7404,
+              "percent": 0.031
+            },
+            {
+              "name": "unmapped 80",
+              "estimatedTCycles": 7244,
+              "percent": 0.031
+            },
+            {
+              "name": "unmapped 92",
+              "estimatedTCycles": 6860,
+              "percent": 0.029
+            },
+            {
+              "name": "unmapped 41",
+              "estimatedTCycles": 6792,
+              "percent": 0.029
+            },
+            {
+              "name": "unmapped 40",
+              "estimatedTCycles": 6616,
+              "percent": 0.028
+            },
+            {
+              "name": "explode",
+              "estimatedTCycles": 6232,
+              "percent": 0.026
+            },
+            {
+              "name": "unmapped 81",
+              "estimatedTCycles": 6096,
+              "percent": 0.026
+            },
+            {
+              "name": "unmapped a8",
+              "estimatedTCycles": 6020,
+              "percent": 0.025
+            },
+            {
+              "name": "unmapped 48",
+              "estimatedTCycles": 6020,
+              "percent": 0.025
+            },
+            {
+              "name": "ce_sound",
+              "estimatedTCycles": 5924,
+              "percent": 0.025
+            },
+            {
+              "name": "bass",
+              "estimatedTCycles": 5672,
+              "percent": 0.024
+            },
+            {
+              "name": "unmapped 93",
+              "estimatedTCycles": 4648,
+              "percent": 0.02
+            },
+            {
+              "name": "unmapped a0",
+              "estimatedTCycles": 4568,
+              "percent": 0.019
+            },
+            {
+              "name": "unmapped 89",
+              "estimatedTCycles": 4068,
+              "percent": 0.017
+            },
+            {
+              "name": "unmapped 9b",
+              "estimatedTCycles": 4024,
+              "percent": 0.017
+            },
+            {
+              "name": "unmapped 8d",
+              "estimatedTCycles": 3908,
+              "percent": 0.017
+            },
+            {
+              "name": "__divuint",
+              "estimatedTCycles": 3900,
+              "percent": 0.016
+            },
+            {
+              "name": "unmapped a4",
+              "estimatedTCycles": 3832,
+              "percent": 0.016
+            },
+            {
+              "name": "unmapped 86",
+              "estimatedTCycles": 3640,
+              "percent": 0.015
+            },
+            {
+              "name": "unmapped 9a",
+              "estimatedTCycles": 3340,
+              "percent": 0.014
+            },
+            {
+              "name": "unmapped 96",
+              "estimatedTCycles": 3028,
+              "percent": 0.013
+            },
+            {
+              "name": "unmapped 8a",
+              "estimatedTCycles": 2948,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 94",
+              "estimatedTCycles": 2828,
+              "percent": 0.012
+            },
+            {
+              "name": "_set_win_tiles",
+              "estimatedTCycles": 2812,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 91",
+              "estimatedTCycles": 2724,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 45",
+              "estimatedTCycles": 2168,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped 42",
+              "estimatedTCycles": 1888,
+              "percent": 0.008
+            },
+            {
+              "name": "add_score",
+              "estimatedTCycles": 1764,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped a6",
+              "estimatedTCycles": 1680,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped 98",
+              "estimatedTCycles": 1384,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped 9c",
+              "estimatedTCycles": 420,
+              "percent": 0.002
+            }
+          ],
+          "hotPCs": [
+            {
+              "address": "1c6",
+              "name": "_wait_vbl_done",
+              "percent": 28.855
+            },
+            {
+              "address": "ff88",
+              "percent": 0.487
+            },
+            {
+              "address": "c01",
+              "name": "box",
+              "percent": 0.401
+            },
+            {
+              "address": "14d31",
+              "name": "sprite",
+              "percent": 0.381
+            },
+            {
+              "address": "344f",
+              "name": "__muluchar",
+              "percent": 0.243
+            },
+            {
+              "address": "344a",
+              "name": "__muluchar",
+              "percent": 0.227
+            },
+            {
+              "address": "14c54",
+              "name": "sprite",
+              "percent": 0.218
+            },
+            {
+              "address": "33a2",
+              "name": "__moduint",
+              "percent": 0.206
+            },
+            {
+              "address": "14d41",
+              "name": "sprite",
+              "percent": 0.205
+            },
+            {
+              "address": "149ad",
+              "name": "emit_oam",
+              "percent": 0.182
+            },
+            {
+              "address": "149b0",
+              "name": "emit_oam",
+              "percent": 0.167
+            },
+            {
+              "address": "14996",
+              "name": "emit_oam",
+              "percent": 0.167
+            },
+            {
+              "address": "3399",
+              "name": "__moduint",
+              "percent": 0.163
+            },
+            {
+              "address": "2022",
+              "name": "step_entities",
+              "percent": 0.156
+            },
+            {
+              "address": "ff89",
+              "percent": 0.156
+            },
+            {
+              "address": "14d2d",
+              "name": "sprite",
+              "percent": 0.155
+            },
+            {
+              "address": "344b",
+              "name": "__muluchar",
+              "percent": 0.154
+            },
+            {
+              "address": "33ac",
+              "name": "__moduint",
+              "percent": 0.153
+            },
+            {
+              "address": "b9a",
+              "name": "box",
+              "percent": 0.153
+            },
+            {
+              "address": "2064",
+              "name": "step_entities",
+              "percent": 0.153
+            },
+            {
+              "address": "14cd9",
+              "name": "sprite",
+              "percent": 0.153
+            },
+            {
+              "address": "149a8",
+              "name": "emit_oam",
+              "percent": 0.153
+            },
+            {
+              "address": "14c74",
+              "name": "sprite",
+              "percent": 0.151
+            },
+            {
+              "address": "2284",
+              "name": "collide_shots",
+              "percent": 0.15
+            },
+            {
+              "address": "2281",
+              "name": "collide_shots",
+              "percent": 0.149
+            },
+            {
+              "address": "14c98",
+              "name": "sprite",
+              "percent": 0.149
+            },
+            {
+              "address": "14ce6",
+              "name": "sprite",
+              "percent": 0.148
+            },
+            {
+              "address": "c11",
+              "name": "box",
+              "percent": 0.147
+            },
+            {
+              "address": "b99",
+              "name": "box",
+              "percent": 0.146
+            },
+            {
+              "address": "24a5",
+              "name": "collide_player",
+              "percent": 0.144
+            },
+            {
+              "address": "14c88",
+              "name": "sprite",
+              "percent": 0.144
+            },
+            {
+              "address": "14cbb",
+              "name": "sprite",
+              "percent": 0.141
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "samples": 87063,
+          "totalTCycles": 33687156,
+          "functions": [
+            {
+              "name": "_wait_vbl_done",
+              "estimatedTCycles": 16904452,
+              "percent": 50.181
+            },
+            {
+              "name": "sprite",
+              "estimatedTCycles": 2561980,
+              "percent": 7.605
+            },
+            {
+              "name": "step_entities",
+              "estimatedTCycles": 1891496,
+              "percent": 5.615
+            },
+            {
+              "name": "box",
+              "estimatedTCycles": 1726352,
+              "percent": 5.125
+            },
+            {
+              "name": "collide_shots",
+              "estimatedTCycles": 1350432,
+              "percent": 4.009
+            },
+            {
+              "name": "sprite_animation",
+              "estimatedTCycles": 1070952,
+              "percent": 3.179
+            },
+            {
+              "name": "ce_render",
+              "estimatedTCycles": 942596,
+              "percent": 2.798
+            },
+            {
+              "name": "emit_oam",
+              "estimatedTCycles": 727556,
+              "percent": 2.16
+            },
+            {
+              "name": "step_bullet",
+              "estimatedTCycles": 725996,
+              "percent": 2.155
+            },
+            {
+              "name": "collide_player",
+              "estimatedTCycles": 668356,
+              "percent": 1.984
+            },
+            {
+              "name": "step_player",
+              "estimatedTCycles": 636860,
+              "percent": 1.891
+            },
+            {
+              "name": "overlap",
+              "estimatedTCycles": 489096,
+              "percent": 1.452
+            },
+            {
+              "name": "step_actor",
+              "estimatedTCycles": 450396,
+              "percent": 1.337
+            },
+            {
+              "name": "__moduint",
+              "estimatedTCycles": 432772,
+              "percent": 1.285
+            },
+            {
+              "name": "ce_trace_write",
+              "estimatedTCycles": 408272,
+              "percent": 1.212
+            },
+            {
+              "name": "stage_events",
+              "estimatedTCycles": 283988,
+              "percent": 0.843
+            },
+            {
+              "name": "ce_step",
+              "estimatedTCycles": 264904,
+              "percent": 0.786
+            },
+            {
+              "name": "__muluchar",
+              "estimatedTCycles": 225872,
+              "percent": 0.67
+            },
+            {
+              "name": "move_actor",
+              "estimatedTCycles": 183332,
+              "percent": 0.544
+            },
+            {
+              "name": "_set_bkg_tiles",
+              "estimatedTCycles": 181904,
+              "percent": 0.54
+            },
+            {
+              "name": "HRAM / DMA",
+              "estimatedTCycles": 168360,
+              "percent": 0.5
+            },
+            {
+              "name": "shoot",
+              "estimatedTCycles": 156208,
+              "percent": 0.464
+            },
+            {
+              "name": "allocate",
+              "estimatedTCycles": 142784,
+              "percent": 0.424
+            },
+            {
+              "name": "___sdcc_bcall_ehl",
+              "estimatedTCycles": 140104,
+              "percent": 0.416
+            },
+            {
+              "name": "ce_run",
+              "estimatedTCycles": 120736,
+              "percent": 0.358
+            },
+            {
+              "name": "map_row",
+              "estimatedTCycles": 95788,
+              "percent": 0.284
+            },
+            {
+              "name": "ce_music_tick",
+              "estimatedTCycles": 89064,
+              "percent": 0.264
+            },
+            {
+              "name": "ce_audio_sync",
+              "estimatedTCycles": 78752,
+              "percent": 0.234
+            },
+            {
+              "name": "ce_hud",
+              "estimatedTCycles": 77196,
+              "percent": 0.229
+            },
+            {
+              "name": "release",
+              "estimatedTCycles": 55272,
+              "percent": 0.164
+            },
+            {
+              "name": "_joypad",
+              "estimatedTCycles": 52560,
+              "percent": 0.156
+            },
+            {
+              "name": "_memset",
+              "estimatedTCycles": 45468,
+              "percent": 0.135
+            },
+            {
+              "name": "number",
+              "estimatedTCycles": 43896,
+              "percent": 0.13
+            },
+            {
+              "name": "unmapped 20",
+              "estimatedTCycles": 24904,
+              "percent": 0.074
+            },
+            {
+              "name": "spawn_actor",
+              "estimatedTCycles": 19568,
+              "percent": 0.058
+            },
+            {
+              "name": "_memcpy",
+              "estimatedTCycles": 18284,
+              "percent": 0.054
+            },
+            {
+              "name": "count_frame",
+              "estimatedTCycles": 17608,
+              "percent": 0.052
+            },
+            {
+              "name": "hud_scanline",
+              "estimatedTCycles": 16892,
+              "percent": 0.05
+            },
+            {
+              "name": "_nowait_int_handler",
+              "estimatedTCycles": 15796,
+              "percent": 0.047
+            },
+            {
+              "name": "ce_copy",
+              "estimatedTCycles": 12876,
+              "percent": 0.038
+            },
+            {
+              "name": "play_row",
+              "estimatedTCycles": 11300,
+              "percent": 0.034
+            },
+            {
+              "name": "unmapped 8b",
+              "estimatedTCycles": 9440,
+              "percent": 0.028
+            },
+            {
+              "name": "unmapped 82",
+              "estimatedTCycles": 8660,
+              "percent": 0.026
+            },
+            {
+              "name": "unmapped 84",
+              "estimatedTCycles": 8172,
+              "percent": 0.024
+            },
+            {
+              "name": "lead",
+              "estimatedTCycles": 7972,
+              "percent": 0.024
+            },
+            {
+              "name": "unmapped 87",
+              "estimatedTCycles": 7792,
+              "percent": 0.023
+            },
+            {
+              "name": "read_event",
+              "estimatedTCycles": 7196,
+              "percent": 0.021
+            },
+            {
+              "name": "explode",
+              "estimatedTCycles": 6520,
+              "percent": 0.019
+            },
+            {
+              "name": "unmapped 40",
+              "estimatedTCycles": 6364,
+              "percent": 0.019
+            },
+            {
+              "name": "unmapped 8c",
+              "estimatedTCycles": 6312,
+              "percent": 0.019
+            },
+            {
+              "name": "unmapped 48",
+              "estimatedTCycles": 5724,
+              "percent": 0.017
+            },
+            {
+              "name": "ce_sound",
+              "estimatedTCycles": 4948,
+              "percent": 0.015
+            },
+            {
+              "name": "unmapped 89",
+              "estimatedTCycles": 4604,
+              "percent": 0.014
+            },
+            {
+              "name": "unmapped a4",
+              "estimatedTCycles": 4276,
+              "percent": 0.013
+            },
+            {
+              "name": "unmapped 83",
+              "estimatedTCycles": 4204,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 45",
+              "estimatedTCycles": 4184,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 81",
+              "estimatedTCycles": 4116,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 91",
+              "estimatedTCycles": 3804,
+              "percent": 0.011
+            },
+            {
+              "name": "bass",
+              "estimatedTCycles": 3620,
+              "percent": 0.011
+            },
+            {
+              "name": "unmapped 86",
+              "estimatedTCycles": 3576,
+              "percent": 0.011
+            },
+            {
+              "name": "unmapped 80",
+              "estimatedTCycles": 3504,
+              "percent": 0.01
+            },
+            {
+              "name": "unmapped 88",
+              "estimatedTCycles": 3336,
+              "percent": 0.01
+            },
+            {
+              "name": "unmapped 9b",
+              "estimatedTCycles": 3052,
+              "percent": 0.009
+            },
+            {
+              "name": "__divuint",
+              "estimatedTCycles": 3024,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped a0",
+              "estimatedTCycles": 2920,
+              "percent": 0.009
+            },
+            {
+              "name": "add_score",
+              "estimatedTCycles": 2616,
+              "percent": 0.008
+            },
+            {
+              "name": "unmapped a6",
+              "estimatedTCycles": 2516,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped 98",
+              "estimatedTCycles": 2368,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped 93",
+              "estimatedTCycles": 2328,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped 41",
+              "estimatedTCycles": 2264,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped 92",
+              "estimatedTCycles": 2124,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped 9a",
+              "estimatedTCycles": 2064,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped 9f",
+              "estimatedTCycles": 1932,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped 94",
+              "estimatedTCycles": 1876,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped a8",
+              "estimatedTCycles": 1680,
+              "percent": 0.005
+            },
+            {
+              "name": "unmapped 8a",
+              "estimatedTCycles": 1540,
+              "percent": 0.005
+            },
+            {
+              "name": "unmapped 96",
+              "estimatedTCycles": 1460,
+              "percent": 0.004
+            },
+            {
+              "name": "unmapped 42",
+              "estimatedTCycles": 1272,
+              "percent": 0.004
+            },
+            {
+              "name": "_set_win_tiles",
+              "estimatedTCycles": 1080,
+              "percent": 0.003
+            },
+            {
+              "name": "unmapped 8d",
+              "estimatedTCycles": 1056,
+              "percent": 0.003
+            },
+            {
+              "name": "unmapped 9c",
+              "estimatedTCycles": 680,
+              "percent": 0.002
+            }
+          ],
+          "hotPCs": [
+            {
+              "address": "1c6",
+              "name": "_wait_vbl_done",
+              "percent": 50.116
+            },
+            {
+              "address": "ff88",
+              "percent": 0.347
+            },
+            {
+              "address": "14d31",
+              "name": "sprite",
+              "percent": 0.277
+            },
+            {
+              "address": "c01",
+              "name": "box",
+              "percent": 0.266
+            },
+            {
+              "address": "344a",
+              "name": "__muluchar",
+              "percent": 0.17
+            },
+            {
+              "address": "344f",
+              "name": "__muluchar",
+              "percent": 0.161
+            },
+            {
+              "address": "3399",
+              "name": "__moduint",
+              "percent": 0.147
+            },
+            {
+              "address": "b99",
+              "name": "box",
+              "percent": 0.142
+            },
+            {
+              "address": "14d41",
+              "name": "sprite",
+              "percent": 0.13
+            },
+            {
+              "address": "33a2",
+              "name": "__moduint",
+              "percent": 0.129
+            },
+            {
+              "address": "344b",
+              "name": "__muluchar",
+              "percent": 0.128
+            },
+            {
+              "address": "14c54",
+              "name": "sprite",
+              "percent": 0.128
+            },
+            {
+              "address": "149a8",
+              "name": "emit_oam",
+              "percent": 0.127
+            },
+            {
+              "address": "ff89",
+              "percent": 0.114
+            },
+            {
+              "address": "1499f",
+              "name": "emit_oam",
+              "percent": 0.112
+            },
+            {
+              "address": "149b0",
+              "name": "emit_oam",
+              "percent": 0.112
+            },
+            {
+              "address": "2281",
+              "name": "collide_shots",
+              "percent": 0.111
+            },
+            {
+              "address": "149a2",
+              "name": "emit_oam",
+              "percent": 0.11
+            },
+            {
+              "address": "c11",
+              "name": "box",
+              "percent": 0.109
+            },
+            {
+              "address": "24a5",
+              "name": "collide_player",
+              "percent": 0.107
+            },
+            {
+              "address": "14ca6",
+              "name": "sprite",
+              "percent": 0.106
+            },
+            {
+              "address": "149ad",
+              "name": "emit_oam",
+              "percent": 0.104
+            },
+            {
+              "address": "c1b",
+              "name": "box",
+              "percent": 0.103
+            },
+            {
+              "address": "14cd9",
+              "name": "sprite",
+              "percent": 0.103
+            },
+            {
+              "address": "14c5a",
+              "name": "sprite",
+              "percent": 0.102
+            },
+            {
+              "address": "14c5e",
+              "name": "sprite",
+              "percent": 0.102
+            },
+            {
+              "address": "14ccb",
+              "name": "sprite",
+              "percent": 0.102
+            },
+            {
+              "address": "b9c",
+              "name": "box",
+              "percent": 0.101
+            },
+            {
+              "address": "14d25",
+              "name": "sprite",
+              "percent": 0.1
+            },
+            {
+              "address": "14cce",
+              "name": "sprite",
+              "percent": 0.1
+            },
+            {
+              "address": "14cea",
+              "name": "sprite",
+              "percent": 0.1
+            },
+            {
+              "address": "2022",
+              "name": "step_entities",
+              "percent": 0.099
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "rom": "projects/nova-spear/build/Debug/nova-spear.gb",
+      "romSha256": "993892a281c2c6357d9935ef41cf20f3d10a03da2174e7ea01d6bc98a7eb07ce",
+      "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+      "emulator": "Boytacean 0.13.2",
+      "fromTick": 120,
+      "toTick": 360,
+      "input": "fire",
+      "modes": [
+        {
+          "mode": "DMG",
+          "samples": 59397,
+          "totalTCycles": 23012836,
+          "functions": [
+            {
+              "name": "_wait_vbl_done",
+              "estimatedTCycles": 6553676,
+              "percent": 28.478
+            },
+            {
+              "name": "collide_shots",
+              "estimatedTCycles": 1349460,
+              "percent": 5.864
+            },
+            {
+              "name": "prepare_shot",
+              "estimatedTCycles": 1067608,
+              "percent": 4.639
+            },
+            {
+              "name": "sprite_animation",
+              "estimatedTCycles": 1066988,
+              "percent": 4.636
+            },
+            {
+              "name": "box",
+              "estimatedTCycles": 1023056,
+              "percent": 4.446
+            },
+            {
+              "name": "ce_render",
+              "estimatedTCycles": 948476,
+              "percent": 4.122
+            },
+            {
+              "name": "step_entities",
+              "estimatedTCycles": 924676,
+              "percent": 4.018
+            },
+            {
+              "name": "step_bullet",
+              "estimatedTCycles": 775948,
+              "percent": 3.372
+            },
+            {
+              "name": "emit_oam",
+              "estimatedTCycles": 739308,
+              "percent": 3.213
+            },
+            {
+              "name": "actor_sprite",
+              "estimatedTCycles": 712460,
+              "percent": 3.096
+            },
+            {
+              "name": "collide_player",
+              "estimatedTCycles": 677020,
+              "percent": 2.942
+            },
+            {
+              "name": "step_player",
+              "estimatedTCycles": 641024,
+              "percent": 2.786
+            },
+            {
+              "name": "shot_box",
+              "estimatedTCycles": 552380,
+              "percent": 2.4
+            },
+            {
+              "name": "overlap",
+              "estimatedTCycles": 487616,
+              "percent": 2.119
+            },
+            {
+              "name": "step_actor",
+              "estimatedTCycles": 449640,
+              "percent": 1.954
+            },
+            {
+              "name": "__moduint",
+              "estimatedTCycles": 438372,
+              "percent": 1.905
+            },
+            {
+              "name": "ce_trace_write",
+              "estimatedTCycles": 409716,
+              "percent": 1.78
+            },
+            {
+              "name": "shot_sprite",
+              "estimatedTCycles": 387840,
+              "percent": 1.685
+            },
+            {
+              "name": "sprite",
+              "estimatedTCycles": 361472,
+              "percent": 1.571
+            },
+            {
+              "name": "step_shot_box",
+              "estimatedTCycles": 328768,
+              "percent": 1.429
+            },
+            {
+              "name": "step_nonbullet",
+              "estimatedTCycles": 300172,
+              "percent": 1.304
+            },
+            {
+              "name": "stage_events",
+              "estimatedTCycles": 284952,
+              "percent": 1.238
+            },
+            {
+              "name": "ce_step",
+              "estimatedTCycles": 282968,
+              "percent": 1.23
+            },
+            {
+              "name": "__muluchar",
+              "estimatedTCycles": 236168,
+              "percent": 1.026
+            },
+            {
+              "name": "HRAM / DMA",
+              "estimatedTCycles": 186024,
+              "percent": 0.808
+            },
+            {
+              "name": "move_actor",
+              "estimatedTCycles": 181708,
+              "percent": 0.79
+            },
+            {
+              "name": "shoot",
+              "estimatedTCycles": 152840,
+              "percent": 0.664
+            },
+            {
+              "name": "allocate",
+              "estimatedTCycles": 146660,
+              "percent": 0.637
+            },
+            {
+              "name": "___sdcc_bcall_ehl",
+              "estimatedTCycles": 136308,
+              "percent": 0.592
+            },
+            {
+              "name": "ce_mainloop",
+              "estimatedTCycles": 122004,
+              "percent": 0.53
+            },
+            {
+              "name": "ce_music_tick",
+              "estimatedTCycles": 96592,
+              "percent": 0.42
+            },
+            {
+              "name": "init_shot_visual",
+              "estimatedTCycles": 95544,
+              "percent": 0.415
+            },
+            {
+              "name": "_set_bkg_tiles",
+              "estimatedTCycles": 87348,
+              "percent": 0.38
+            },
+            {
+              "name": "ce_audio_sync",
+              "estimatedTCycles": 83760,
+              "percent": 0.364
+            },
+            {
+              "name": "ce_hud",
+              "estimatedTCycles": 77900,
+              "percent": 0.339
+            },
+            {
+              "name": "map_row",
+              "estimatedTCycles": 71196,
+              "percent": 0.309
+            },
+            {
+              "name": "_joypad",
+              "estimatedTCycles": 54944,
+              "percent": 0.239
+            },
+            {
+              "name": "release",
+              "estimatedTCycles": 53484,
+              "percent": 0.232
+            },
+            {
+              "name": "_memset",
+              "estimatedTCycles": 44240,
+              "percent": 0.192
+            },
+            {
+              "name": "number",
+              "estimatedTCycles": 43756,
+              "percent": 0.19
+            },
+            {
+              "name": "unmapped 20",
+              "estimatedTCycles": 33532,
+              "percent": 0.146
+            },
+            {
+              "name": "ce_hud_scanline",
+              "estimatedTCycles": 30700,
+              "percent": 0.133
+            },
+            {
+              "name": "_nowait_int_handler",
+              "estimatedTCycles": 24256,
+              "percent": 0.105
+            },
+            {
+              "name": "ce_count_frame",
+              "estimatedTCycles": 19244,
+              "percent": 0.084
+            },
+            {
+              "name": "spawn_actor",
+              "estimatedTCycles": 18620,
+              "percent": 0.081
+            },
+            {
+              "name": "_memcpy",
+              "estimatedTCycles": 17412,
+              "percent": 0.076
+            },
+            {
+              "name": "play_row",
+              "estimatedTCycles": 15128,
+              "percent": 0.066
+            },
+            {
+              "name": "ce_copy",
+              "estimatedTCycles": 13728,
+              "percent": 0.06
+            },
+            {
+              "name": "unmapped 82",
+              "estimatedTCycles": 13156,
+              "percent": 0.057
+            },
+            {
+              "name": "lead",
+              "estimatedTCycles": 12144,
+              "percent": 0.053
+            },
+            {
+              "name": "unmapped 8c",
+              "estimatedTCycles": 10492,
+              "percent": 0.046
+            },
+            {
+              "name": "unmapped 83",
+              "estimatedTCycles": 9668,
+              "percent": 0.042
+            },
+            {
+              "name": "unmapped 87",
+              "estimatedTCycles": 9392,
+              "percent": 0.041
+            },
+            {
+              "name": "unmapped 8b",
+              "estimatedTCycles": 8452,
+              "percent": 0.037
+            },
+            {
+              "name": "unmapped 84",
+              "estimatedTCycles": 7504,
+              "percent": 0.033
+            },
+            {
+              "name": "read_event",
+              "estimatedTCycles": 7028,
+              "percent": 0.031
+            },
+            {
+              "name": "ce_sound",
+              "estimatedTCycles": 6744,
+              "percent": 0.029
+            },
+            {
+              "name": "unmapped 48",
+              "estimatedTCycles": 6320,
+              "percent": 0.027
+            },
+            {
+              "name": "unmapped 86",
+              "estimatedTCycles": 5896,
+              "percent": 0.026
+            },
+            {
+              "name": "unmapped 41",
+              "estimatedTCycles": 5756,
+              "percent": 0.025
+            },
+            {
+              "name": "explode",
+              "estimatedTCycles": 5568,
+              "percent": 0.024
+            },
+            {
+              "name": "unmapped 42",
+              "estimatedTCycles": 5500,
+              "percent": 0.024
+            },
+            {
+              "name": "unmapped 93",
+              "estimatedTCycles": 5440,
+              "percent": 0.024
+            },
+            {
+              "name": "unmapped 40",
+              "estimatedTCycles": 5424,
+              "percent": 0.024
+            },
+            {
+              "name": "unmapped 92",
+              "estimatedTCycles": 4976,
+              "percent": 0.022
+            },
+            {
+              "name": "unmapped 88",
+              "estimatedTCycles": 4960,
+              "percent": 0.022
+            },
+            {
+              "name": "unmapped 9f",
+              "estimatedTCycles": 4660,
+              "percent": 0.02
+            },
+            {
+              "name": "unmapped 89",
+              "estimatedTCycles": 4500,
+              "percent": 0.02
+            },
+            {
+              "name": "unmapped 96",
+              "estimatedTCycles": 4460,
+              "percent": 0.019
+            },
+            {
+              "name": "unmapped 9a",
+              "estimatedTCycles": 4092,
+              "percent": 0.018
+            },
+            {
+              "name": "unmapped 81",
+              "estimatedTCycles": 4024,
+              "percent": 0.017
+            },
+            {
+              "name": "unmapped 45",
+              "estimatedTCycles": 3928,
+              "percent": 0.017
+            },
+            {
+              "name": "unmapped a0",
+              "estimatedTCycles": 3852,
+              "percent": 0.017
+            },
+            {
+              "name": "unmapped a4",
+              "estimatedTCycles": 3564,
+              "percent": 0.015
+            },
+            {
+              "name": "bass",
+              "estimatedTCycles": 3556,
+              "percent": 0.015
+            },
+            {
+              "name": "unmapped 80",
+              "estimatedTCycles": 3476,
+              "percent": 0.015
+            },
+            {
+              "name": "unmapped 94",
+              "estimatedTCycles": 3364,
+              "percent": 0.015
+            },
+            {
+              "name": "unmapped 98",
+              "estimatedTCycles": 3300,
+              "percent": 0.014
+            },
+            {
+              "name": "unmapped 8d",
+              "estimatedTCycles": 3284,
+              "percent": 0.014
+            },
+            {
+              "name": "unmapped 91",
+              "estimatedTCycles": 3136,
+              "percent": 0.014
+            },
+            {
+              "name": "unmapped 9b",
+              "estimatedTCycles": 3116,
+              "percent": 0.014
+            },
+            {
+              "name": "unmapped a6",
+              "estimatedTCycles": 2944,
+              "percent": 0.013
+            },
+            {
+              "name": "unmapped a8",
+              "estimatedTCycles": 2248,
+              "percent": 0.01
+            },
+            {
+              "name": "add_score",
+              "estimatedTCycles": 2160,
+              "percent": 0.009
+            },
+            {
+              "name": "_set_win_tiles",
+              "estimatedTCycles": 2088,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped 8a",
+              "estimatedTCycles": 2072,
+              "percent": 0.009
+            },
+            {
+              "name": "__divuint",
+              "estimatedTCycles": 2008,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped 9c",
+              "estimatedTCycles": 1892,
+              "percent": 0.008
+            }
+          ],
+          "hotPCs": [
+            {
+              "address": "1c6",
+              "name": "_wait_vbl_done",
+              "percent": 28.381
+            },
+            {
+              "address": "ff88",
+              "percent": 0.533
+            },
+            {
+              "address": "e2e",
+              "name": "box",
+              "percent": 0.33
+            },
+            {
+              "address": "36b1",
+              "name": "__muluchar",
+              "percent": 0.273
+            },
+            {
+              "address": "36ac",
+              "name": "__muluchar",
+              "percent": 0.271
+            },
+            {
+              "address": "f5a",
+              "name": "prepare_shot",
+              "percent": 0.266
+            },
+            {
+              "address": "35fb",
+              "name": "__moduint",
+              "percent": 0.221
+            },
+            {
+              "address": "3604",
+              "name": "__moduint",
+              "percent": 0.212
+            },
+            {
+              "address": "ff89",
+              "percent": 0.211
+            },
+            {
+              "address": "149b0",
+              "name": "emit_oam",
+              "percent": 0.207
+            },
+            {
+              "address": "149a8",
+              "name": "emit_oam",
+              "percent": 0.189
+            },
+            {
+              "address": "14df0",
+              "name": "sprite",
+              "percent": 0.185
+            },
+            {
+              "address": "1499f",
+              "name": "emit_oam",
+              "percent": 0.168
+            },
+            {
+              "address": "f84",
+              "name": "step_bullet",
+              "percent": 0.159
+            },
+            {
+              "address": "2787",
+              "name": "collide_player",
+              "percent": 0.159
+            },
+            {
+              "address": "36ad",
+              "name": "__muluchar",
+              "percent": 0.157
+            },
+            {
+              "address": "149ad",
+              "name": "emit_oam",
+              "percent": 0.149
+            },
+            {
+              "address": "2566",
+              "name": "collide_shots",
+              "percent": 0.147
+            },
+            {
+              "address": "20",
+              "percent": 0.146
+            },
+            {
+              "address": "e86",
+              "name": "overlap",
+              "percent": 0.146
+            },
+            {
+              "address": "14ffd",
+              "name": "ce_render",
+              "percent": 0.145
+            },
+            {
+              "address": "f69",
+              "name": "prepare_shot",
+              "percent": 0.144
+            },
+            {
+              "address": "248e",
+              "name": "step_entities",
+              "percent": 0.142
+            },
+            {
+              "address": "2479",
+              "name": "step_entities",
+              "percent": 0.142
+            },
+            {
+              "address": "14df2",
+              "name": "sprite",
+              "percent": 0.14
+            },
+            {
+              "address": "14996",
+              "name": "emit_oam",
+              "percent": 0.139
+            },
+            {
+              "address": "14dfa",
+              "name": "sprite",
+              "percent": 0.138
+            },
+            {
+              "address": "14df1",
+              "name": "sprite",
+              "percent": 0.138
+            },
+            {
+              "address": "242b",
+              "name": "step_entities",
+              "percent": 0.138
+            },
+            {
+              "address": "243d",
+              "name": "step_entities",
+              "percent": 0.136
+            },
+            {
+              "address": "360e",
+              "name": "__moduint",
+              "percent": 0.136
+            },
+            {
+              "address": "e39",
+              "name": "overlap",
+              "percent": 0.135
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "samples": 87068,
+          "totalTCycles": 33686884,
+          "functions": [
+            {
+              "name": "_wait_vbl_done",
+              "estimatedTCycles": 17237180,
+              "percent": 51.169
+            },
+            {
+              "name": "collide_shots",
+              "estimatedTCycles": 1351904,
+              "percent": 4.013
+            },
+            {
+              "name": "sprite_animation",
+              "estimatedTCycles": 1071924,
+              "percent": 3.182
+            },
+            {
+              "name": "prepare_shot",
+              "estimatedTCycles": 1066936,
+              "percent": 3.167
+            },
+            {
+              "name": "box",
+              "estimatedTCycles": 1010740,
+              "percent": 3
+            },
+            {
+              "name": "ce_render",
+              "estimatedTCycles": 940380,
+              "percent": 2.792
+            },
+            {
+              "name": "step_entities",
+              "estimatedTCycles": 924112,
+              "percent": 2.743
+            },
+            {
+              "name": "step_bullet",
+              "estimatedTCycles": 778348,
+              "percent": 2.311
+            },
+            {
+              "name": "emit_oam",
+              "estimatedTCycles": 743508,
+              "percent": 2.207
+            },
+            {
+              "name": "actor_sprite",
+              "estimatedTCycles": 700392,
+              "percent": 2.079
+            },
+            {
+              "name": "collide_player",
+              "estimatedTCycles": 674436,
+              "percent": 2.002
+            },
+            {
+              "name": "step_player",
+              "estimatedTCycles": 642424,
+              "percent": 1.907
+            },
+            {
+              "name": "shot_box",
+              "estimatedTCycles": 566584,
+              "percent": 1.682
+            },
+            {
+              "name": "overlap",
+              "estimatedTCycles": 480344,
+              "percent": 1.426
+            },
+            {
+              "name": "step_actor",
+              "estimatedTCycles": 451096,
+              "percent": 1.339
+            },
+            {
+              "name": "__moduint",
+              "estimatedTCycles": 431056,
+              "percent": 1.28
+            },
+            {
+              "name": "ce_trace_write",
+              "estimatedTCycles": 407624,
+              "percent": 1.21
+            },
+            {
+              "name": "shot_sprite",
+              "estimatedTCycles": 391448,
+              "percent": 1.162
+            },
+            {
+              "name": "sprite",
+              "estimatedTCycles": 359272,
+              "percent": 1.067
+            },
+            {
+              "name": "step_shot_box",
+              "estimatedTCycles": 325132,
+              "percent": 0.965
+            },
+            {
+              "name": "step_nonbullet",
+              "estimatedTCycles": 310360,
+              "percent": 0.921
+            },
+            {
+              "name": "ce_step",
+              "estimatedTCycles": 290164,
+              "percent": 0.861
+            },
+            {
+              "name": "stage_events",
+              "estimatedTCycles": 282040,
+              "percent": 0.837
+            },
+            {
+              "name": "__muluchar",
+              "estimatedTCycles": 240376,
+              "percent": 0.714
+            },
+            {
+              "name": "move_actor",
+              "estimatedTCycles": 179004,
+              "percent": 0.531
+            },
+            {
+              "name": "_set_bkg_tiles",
+              "estimatedTCycles": 175216,
+              "percent": 0.52
+            },
+            {
+              "name": "HRAM / DMA",
+              "estimatedTCycles": 166444,
+              "percent": 0.494
+            },
+            {
+              "name": "shoot",
+              "estimatedTCycles": 154948,
+              "percent": 0.46
+            },
+            {
+              "name": "allocate",
+              "estimatedTCycles": 145808,
+              "percent": 0.433
+            },
+            {
+              "name": "___sdcc_bcall_ehl",
+              "estimatedTCycles": 132556,
+              "percent": 0.393
+            },
+            {
+              "name": "ce_mainloop",
+              "estimatedTCycles": 120064,
+              "percent": 0.356
+            },
+            {
+              "name": "init_shot_visual",
+              "estimatedTCycles": 100352,
+              "percent": 0.298
+            },
+            {
+              "name": "map_row",
+              "estimatedTCycles": 94920,
+              "percent": 0.282
+            },
+            {
+              "name": "ce_music_tick",
+              "estimatedTCycles": 93216,
+              "percent": 0.277
+            },
+            {
+              "name": "ce_audio_sync",
+              "estimatedTCycles": 78256,
+              "percent": 0.232
+            },
+            {
+              "name": "ce_hud",
+              "estimatedTCycles": 75900,
+              "percent": 0.225
+            },
+            {
+              "name": "release",
+              "estimatedTCycles": 54408,
+              "percent": 0.162
+            },
+            {
+              "name": "_joypad",
+              "estimatedTCycles": 52576,
+              "percent": 0.156
+            },
+            {
+              "name": "number",
+              "estimatedTCycles": 48688,
+              "percent": 0.145
+            },
+            {
+              "name": "_memset",
+              "estimatedTCycles": 41776,
+              "percent": 0.124
+            },
+            {
+              "name": "ce_hud_scanline",
+              "estimatedTCycles": 23316,
+              "percent": 0.069
+            },
+            {
+              "name": "unmapped 20",
+              "estimatedTCycles": 22420,
+              "percent": 0.067
+            },
+            {
+              "name": "spawn_actor",
+              "estimatedTCycles": 18904,
+              "percent": 0.056
+            },
+            {
+              "name": "_memcpy",
+              "estimatedTCycles": 17832,
+              "percent": 0.053
+            },
+            {
+              "name": "ce_count_frame",
+              "estimatedTCycles": 17124,
+              "percent": 0.051
+            },
+            {
+              "name": "_nowait_int_handler",
+              "estimatedTCycles": 16180,
+              "percent": 0.048
+            },
+            {
+              "name": "ce_copy",
+              "estimatedTCycles": 12664,
+              "percent": 0.038
+            },
+            {
+              "name": "play_row",
+              "estimatedTCycles": 11924,
+              "percent": 0.035
+            },
+            {
+              "name": "unmapped 82",
+              "estimatedTCycles": 9568,
+              "percent": 0.028
+            },
+            {
+              "name": "unmapped 87",
+              "estimatedTCycles": 9200,
+              "percent": 0.027
+            },
+            {
+              "name": "read_event",
+              "estimatedTCycles": 6796,
+              "percent": 0.02
+            },
+            {
+              "name": "lead",
+              "estimatedTCycles": 6508,
+              "percent": 0.019
+            },
+            {
+              "name": "explode",
+              "estimatedTCycles": 6328,
+              "percent": 0.019
+            },
+            {
+              "name": "unmapped 83",
+              "estimatedTCycles": 5608,
+              "percent": 0.017
+            },
+            {
+              "name": "ce_sound",
+              "estimatedTCycles": 5368,
+              "percent": 0.016
+            },
+            {
+              "name": "unmapped 84",
+              "estimatedTCycles": 5164,
+              "percent": 0.015
+            },
+            {
+              "name": "unmapped 8c",
+              "estimatedTCycles": 5108,
+              "percent": 0.015
+            },
+            {
+              "name": "unmapped 86",
+              "estimatedTCycles": 4600,
+              "percent": 0.014
+            },
+            {
+              "name": "unmapped 40",
+              "estimatedTCycles": 4372,
+              "percent": 0.013
+            },
+            {
+              "name": "unmapped 8b",
+              "estimatedTCycles": 4272,
+              "percent": 0.013
+            },
+            {
+              "name": "unmapped 42",
+              "estimatedTCycles": 4092,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped a0",
+              "estimatedTCycles": 4080,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 41",
+              "estimatedTCycles": 4056,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 93",
+              "estimatedTCycles": 3996,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 88",
+              "estimatedTCycles": 3988,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 9f",
+              "estimatedTCycles": 3976,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 48",
+              "estimatedTCycles": 3792,
+              "percent": 0.011
+            },
+            {
+              "name": "unmapped a4",
+              "estimatedTCycles": 3524,
+              "percent": 0.01
+            },
+            {
+              "name": "unmapped 80",
+              "estimatedTCycles": 3476,
+              "percent": 0.01
+            },
+            {
+              "name": "unmapped 81",
+              "estimatedTCycles": 3452,
+              "percent": 0.01
+            },
+            {
+              "name": "unmapped 9b",
+              "estimatedTCycles": 3440,
+              "percent": 0.01
+            },
+            {
+              "name": "add_score",
+              "estimatedTCycles": 3256,
+              "percent": 0.01
+            },
+            {
+              "name": "bass",
+              "estimatedTCycles": 3220,
+              "percent": 0.01
+            },
+            {
+              "name": "unmapped 8d",
+              "estimatedTCycles": 3120,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped 45",
+              "estimatedTCycles": 3036,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped a6",
+              "estimatedTCycles": 2976,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped a8",
+              "estimatedTCycles": 2968,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped 91",
+              "estimatedTCycles": 2716,
+              "percent": 0.008
+            },
+            {
+              "name": "_set_win_tiles",
+              "estimatedTCycles": 2472,
+              "percent": 0.007
+            },
+            {
+              "name": "__divuint",
+              "estimatedTCycles": 2404,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped 92",
+              "estimatedTCycles": 2380,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped 8a",
+              "estimatedTCycles": 2048,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped 94",
+              "estimatedTCycles": 2012,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped 96",
+              "estimatedTCycles": 1920,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped 89",
+              "estimatedTCycles": 1652,
+              "percent": 0.005
+            },
+            {
+              "name": "unmapped 9c",
+              "estimatedTCycles": 1408,
+              "percent": 0.004
+            },
+            {
+              "name": "unmapped 9a",
+              "estimatedTCycles": 1324,
+              "percent": 0.004
+            },
+            {
+              "name": "unmapped 98",
+              "estimatedTCycles": 932,
+              "percent": 0.003
+            }
+          ],
+          "hotPCs": [
+            {
+              "address": "1c6",
+              "name": "_wait_vbl_done",
+              "percent": 51.098
+            },
+            {
+              "address": "ff88",
+              "percent": 0.335
+            },
+            {
+              "address": "e2e",
+              "name": "box",
+              "percent": 0.2
+            },
+            {
+              "address": "f5a",
+              "name": "prepare_shot",
+              "percent": 0.174
+            },
+            {
+              "address": "36b1",
+              "name": "__muluchar",
+              "percent": 0.169
+            },
+            {
+              "address": "14df0",
+              "name": "sprite",
+              "percent": 0.148
+            },
+            {
+              "address": "36ac",
+              "name": "__muluchar",
+              "percent": 0.147
+            },
+            {
+              "address": "35fb",
+              "name": "__moduint",
+              "percent": 0.141
+            },
+            {
+              "address": "149a8",
+              "name": "emit_oam",
+              "percent": 0.127
+            },
+            {
+              "address": "3604",
+              "name": "__moduint",
+              "percent": 0.127
+            },
+            {
+              "address": "ff89",
+              "percent": 0.12
+            },
+            {
+              "address": "f69",
+              "name": "prepare_shot",
+              "percent": 0.12
+            },
+            {
+              "address": "149ad",
+              "name": "emit_oam",
+              "percent": 0.116
+            },
+            {
+              "address": "2563",
+              "name": "collide_shots",
+              "percent": 0.111
+            },
+            {
+              "address": "149b0",
+              "name": "emit_oam",
+              "percent": 0.11
+            },
+            {
+              "address": "14996",
+              "name": "emit_oam",
+              "percent": 0.109
+            },
+            {
+              "address": "36ad",
+              "name": "__muluchar",
+              "percent": 0.109
+            },
+            {
+              "address": "14df3",
+              "name": "sprite",
+              "percent": 0.108
+            },
+            {
+              "address": "1499f",
+              "name": "emit_oam",
+              "percent": 0.104
+            },
+            {
+              "address": "360f",
+              "name": "__moduint",
+              "percent": 0.102
+            },
+            {
+              "address": "2566",
+              "name": "collide_shots",
+              "percent": 0.101
+            },
+            {
+              "address": "3ddf",
+              "name": "_set_bkg_tiles",
+              "percent": 0.1
+            },
+            {
+              "address": "248e",
+              "name": "step_entities",
+              "percent": 0.1
+            },
+            {
+              "address": "e39",
+              "name": "overlap",
+              "percent": 0.098
+            },
+            {
+              "address": "3ddd",
+              "name": "_set_bkg_tiles",
+              "percent": 0.098
+            },
+            {
+              "address": "de6",
+              "name": "box",
+              "percent": 0.096
+            },
+            {
+              "address": "de2",
+              "name": "box",
+              "percent": 0.096
+            },
+            {
+              "address": "2787",
+              "name": "collide_player",
+              "percent": 0.092
+            },
+            {
+              "address": "35fa",
+              "name": "__moduint",
+              "percent": 0.091
+            },
+            {
+              "address": "2569",
+              "name": "collide_shots",
+              "percent": 0.091
+            },
+            {
+              "address": "e9c",
+              "name": "shot_box",
+              "percent": 0.09
+            },
+            {
+              "address": "ee4",
+              "name": "shot_box",
+              "percent": 0.09
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "rejectedPrototypes": {
+    "plainC": {
+      "case": "stress",
+      "romSha256": "d3533aaa0436ceb66ed5be31ab0a97bd3596e3e05c080317d2c175c91b356d21",
+      "fixture": true,
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\first\\fixture-hrSW4k\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+      "ramBytes": 3829,
+      "romBytes": 65536,
+      "modes": [
+        {
+          "mode": "DMG",
+          "gaps": {
+            "samples": 600,
+            "mean": 3.68,
+            "p95": 4,
+            "max": 4,
+            "updatesPerSecond": 16.230298913043477
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 3.680341763499651,
+            "p95": 4.000341763499658,
+            "max": 4.001822738664844,
+            "updatesPerSecond": 16.228791736777428
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 35,
+          "peakOam": 37,
+          "peakScanline": 22,
+          "phases": [],
+          "dropped": 184,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "c579d95b9a46be3a002a8b531937ea915612415f96db56d1975f2fd70cb84f18"
+        },
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 2,
+            "p95": 2,
+            "max": 2,
+            "updatesPerSecond": 29.86375
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 2.0001708817498307,
+            "p95": 2.000170881749829,
+            "max": 2.000911369332422,
+            "updatesPerSecond": 29.86119863306277
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 35,
+          "peakOam": 37,
+          "peakScanline": 22,
+          "phases": [],
+          "dropped": 184,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "aa4e276752d90a278ca0e27bc7fe49c844b05a7a713e8ce49bbd39973a059fe0"
+        }
+      ]
+    },
+    "cShotBoxNormal": [
+      {
+        "mode": "DMG",
+        "rom": "projects/nova-spear/build/Debug/nova-spear.gb",
+        "bins": [
+          {
+            "from": 120,
+            "to": 600,
+            "frames": 735,
+            "presentations": 481,
+            "updates": 480,
+            "updatesPerSecond": 39.01,
+            "presentationsPerSecond": 39.09
+          },
+          {
+            "from": 600,
+            "to": 1200,
+            "frames": 934,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 38.37,
+            "presentationsPerSecond": 38.37
+          },
+          {
+            "from": 1200,
+            "to": 1800,
+            "frames": 888,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 40.36,
+            "presentationsPerSecond": 40.36
+          }
+        ]
+      },
+      {
+        "mode": "CGB",
+        "rom": "projects/nova-spear/build/Debug/nova-spear.gb",
+        "bins": [
+          {
+            "from": 120,
+            "to": 600,
+            "frames": 486,
+            "presentations": 480,
+            "updates": 480,
+            "updatesPerSecond": 58.99,
+            "presentationsPerSecond": 58.99
+          },
+          {
+            "from": 600,
+            "to": 1200,
+            "frames": 606,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 59.14,
+            "presentationsPerSecond": 59.14
+          },
+          {
+            "from": 1200,
+            "to": 1800,
+            "frames": 601,
+            "presentations": 600,
+            "updates": 600,
+            "updatesPerSecond": 59.63,
+            "presentationsPerSecond": 59.63
+          }
+        ]
+      }
+    ]
+  },
+  "ramBytes": {
+    "before": 2891,
+    "after": 3982,
+    "increase": 1091,
+    "hardware": 8192,
+    "minimumStackReserve": 1024
+  },
+  "novaFixedBankFreeBytes": {
+    "before": 748,
+    "after": 574
+  },
+  "limits": {
+    "enemyShots": 32,
+    "enemies": 12,
+    "entitySlots": 39,
+    "oam": 40,
+    "scanlineSprites": 10
+  },
+  "builds": {
+    "star-caravan": {
+      "Debug": {
+        "ok": true,
+        "revision": "07bd41dc8c3e83c9570d68d4f31d5424ad19e0286f5587d2406bd9531d443309",
+        "configuration": "Debug",
+        "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\star-caravan\\build\\Debug\\star-caravan.gb",
+        "size": 65536,
+        "ramBytes": 3982,
+        "spriteTiles": 12,
+        "diagnostics": [],
+        "romHash": "f556feea0426ac2d15feeafd8859b410a2d82b6cae311079a3b6355191900189",
+        "builtAt": "2026-09-10T11:23:34.201Z",
+        "durationMs": 71318
+      },
+      "Release": {
+        "ok": true,
+        "revision": "07bd41dc8c3e83c9570d68d4f31d5424ad19e0286f5587d2406bd9531d443309",
+        "configuration": "Release",
+        "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\star-caravan\\build\\Release\\star-caravan.gb",
+        "size": 65536,
+        "ramBytes": 3982,
+        "spriteTiles": 12,
+        "diagnostics": [],
+        "romHash": "f556feea0426ac2d15feeafd8859b410a2d82b6cae311079a3b6355191900189",
+        "builtAt": "2026-09-10T11:28:05.489Z",
+        "durationMs": 37333
+      }
+    },
+    "nova-spear": {
+      "Debug": {
+        "ok": true,
+        "revision": "394b2ab9e1a31591e7e4680b0863e9385d42291235d71bb7a670de19aab08b76",
+        "configuration": "Debug",
+        "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\nova-spear\\build\\Debug\\nova-spear.gb",
+        "size": 131072,
+        "ramBytes": 3982,
+        "spriteTiles": 97,
+        "diagnostics": [],
+        "romHash": "993892a281c2c6357d9935ef41cf20f3d10a03da2174e7ea01d6bc98a7eb07ce",
+        "builtAt": "2026-09-10T11:28:18.504Z",
+        "durationMs": 41335
+      },
+      "Release": {
+        "ok": true,
+        "revision": "394b2ab9e1a31591e7e4680b0863e9385d42291235d71bb7a670de19aab08b76",
+        "configuration": "Release",
+        "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\nova-spear\\build\\Release\\nova-spear.gb",
+        "size": 131072,
+        "ramBytes": 3982,
+        "spriteTiles": 97,
+        "diagnostics": [],
+        "romHash": "993892a281c2c6357d9935ef41cf20f3d10a03da2174e7ea01d6bc98a7eb07ce",
+        "builtAt": "2026-09-10T11:28:55.298Z",
+        "durationMs": 36749
+      }
+    }
+  },
+  "qa": {
+    "doctor": true,
+    "helloCleanAndDebugBuild": true,
+    "testCmd": {
+      "passed": true,
+      "tests": 52,
+      "log": ".cache/stg-soa/test.log"
+    },
+    "audioAndSave": {
+      "passed": true,
+      "tests": 3,
+      "log": ".cache/stg-soa/audio-save.log"
+    },
+    "novaAcceptance": {
+      "passed": true,
+      "tests": 3,
+      "log": ".cache/stg-soa/nova-acceptance.log"
+    },
+    "kernel": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\kernel-final3\\fixture-lhBgw2\\projects\\kernel-test\\build\\Debug\\kernel-test.gb",
+      "results": [
+        {
+          "mode": "DMG",
+          "status": 165,
+          "casesModulo65536": 46464,
+          "boxCases": 11200,
+          "movementCases": 100800,
+          "bulletAnimation": "all single-tile assets; all 65536 ages and wrap; slot reuse",
+          "renderer": "all sprite assets; continuous, skipped, repeated and wrapped ages; slot reuse; negative clipping"
+        },
+        {
+          "mode": "CGB",
+          "status": 165,
+          "casesModulo65536": 46464,
+          "boxCases": 11200,
+          "movementCases": 100800,
+          "bulletAnimation": "all single-tile assets; all 65536 ages and wrap; slot reuse",
+          "renderer": "all sprite assets; continuous, skipped, repeated and wrapped ages; slot reuse; negative clipping"
+        }
+      ],
+      "romSha256": "3268e63dc379c4835f200c10c86fe5dfb15842ccea2806c071ed67c2c16555d7"
+    },
+    "bgb": {
+      "run": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\kernel-final3\\fixture-lhBgw2\\projects\\kernel-test\\build\\Debug\\kernel-test.gb",
+        "romSha256": "3268e63dc379c4835f200c10c86fe5dfb15842ccea2806c071ed67c2c16555d7",
+        "emulator": "BGB 1.6.6",
+        "args": [
+          "-hf",
+          "-nobatt",
+          "-nowriteini",
+          "-ini",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\bgb-kernel-verified\\bgb.ini",
+          "-set",
+          "DebugMsgFile=1",
+          "-set",
+          "DebugMsgFileTS=0",
+          "-rom",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\kernel-final3\\fixture-lhBgw2\\projects\\kernel-test\\build\\Debug\\kernel-test.gb",
+          "-demoplay",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\bgb-kernel-verified\\input.dem",
+          "-screenonexit",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\bgb-kernel-verified\\screen.bmp",
+          "-br",
+          "3578",
+          "-wp",
+          "cfa8//w/STATUS %VALUE% %TOTALCLKS%"
+        ],
+        "demoBytes": 120000,
+        "recipe": "idle",
+        "exitCode": 0
+      },
+      "statusLog": [
+        "STATUS 00 0064811C",
+        "STATUS 01 0064922A",
+        "STATUS A5 53AF9D40"
+      ],
+      "novaRelease": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\nova-spear\\build\\Release\\nova-spear.gb",
+        "romSha256": "993892a281c2c6357d9935ef41cf20f3d10a03da2174e7ea01d6bc98a7eb07ce",
+        "emulator": "BGB 1.6.6",
+        "args": [
+          "-hf",
+          "-nobatt",
+          "-nowriteini",
+          "-ini",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\bgb-nova\\bgb.ini",
+          "-set",
+          "DebugMsgFile=1",
+          "-set",
+          "DebugMsgFileTS=0",
+          "-rom",
+          "C:\\homebrew\\projects\\dev-gb\\projects\\nova-spear\\build\\Release\\nova-spear.gb",
+          "-demoplay",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\bgb-nova\\input.dem",
+          "-screenonexit",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\stg-soa\\bgb-nova\\screen.bmp"
+        ],
+        "demoBytes": 2408,
+        "recipe": "direct",
+        "exitCode": 0
+      },
+      "novaScreenshotSha256": "557857ce05125a8e71688ebc711e3353d596a050c4b8c3d998b7ff5c0bee08aa",
+      "novaScreenshotReviewed": true
+    },
+    "emulicious": {
+      "passed": false,
+      "reason": "Pinned remote debugger initialize succeeded; ROM launch timed out again. Not a gameplay acceptance.",
+      "log": ".cache/stg-soa/emulicious-probe.log"
+    },
+    "unexecuted": [
+      "Physical DMG/CGB",
+      "Human listening",
+      "Native controller acceptance"
+    ],
+    "environmentWarnings": [
+      "git could not read the external global ignore file; tests and repository ignore probes still passed."
+    ]
+  }
+}

@@ -56,7 +56,7 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb])
             );
             assert.deepEqual(actual, sim.trace, `tick ${next.tick}`);
             assert.deepEqual(
-                entityState(gb, syms._ce_entities, game),
+                entityState(gb, syms, game),
                 simulatedEntities(sim),
                 `entity positions tick ${next.tick}`,
             );

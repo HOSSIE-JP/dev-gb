@@ -15,11 +15,17 @@ void ce_render_kernel_test(void) BANKED {
     emit_top=9; emit_bottom=144;
     for (pass=0; pass!=2u; ++pass) for (a=0; a!=ce_asset_count; ++a) {
         asset=&ce_assets[a]; candidate.asset=a; pose=&candidate;
+        candidate.kind=pass?CE_ESHOT:0;
+        /* Force the generic bullet path too: it must read canonical SoA
+         * position/age, including multi-tile assets and nonsequential ages. */
+        ce_shot_simple[0]=0;
         /* Reusing one slot for different assets also exercises cache reset. */
         animation_slot=1;
         for (n=0; n!=550u; ++n) {
             candidate.age=n<512u?n:ages[(n-512u)%18u];
             candidate.x=positions[n%13u]; candidate.y=positions[(n/13u)%13u];
+            ce_shot_x[0]=candidate.x;ce_shot_y[0]=candidate.y;ce_shot_age[0]=candidate.age;
+            ce_entities[0].asset=a;
             pose_slot=0; sprite();
             frame=0; time=candidate.age%asset->duration;
             while (time>=asset->durations[frame]) {time-=asset->durations[frame]; ++frame;}

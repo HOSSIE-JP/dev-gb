@@ -110,7 +110,7 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
                 last = settledTrace(gb, syms._ce_trace);
                 if (!last || last.scene !== 1) continue;
                 assertPublishedOam(gb, syms, game, mode);
-                const shots = entityState(gb, syms._ce_entities, game).filter((e) => e.kind === "pshot");
+                const shots = entityState(gb, syms, game).filter((e) => e.kind === "pshot");
                 if (shots.some((e) => e.vx < 0) && shots.some((e) => e.vx > 0)) wide = true;
                 if (last.score > 0) scored = true;
                 if (wide && scored && last.stageTick > 200) break;
@@ -124,7 +124,7 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             for (let frame = 0; frame < 100; frame++) {
                 frames(gb, 1);
                 settledTrace(gb, syms._ce_trace);
-                const shots = entityState(gb, syms._ce_entities, game).filter((e) => e.kind === "pshot");
+                const shots = entityState(gb, syms, game).filter((e) => e.kind === "pshot");
                 if (shots.length && shots.every((e) => e.vx === 0)) { focus = true; break; }
             }
             assert.ok(focus, "B replaces wide volleys with focused shots");
@@ -140,7 +140,7 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
                     const wait = memory(gb).ram.readUInt16LE(syms._ce_respawn - 0xc000);
                     if (wait) {
                         observedWait = true;
-                        assert.equal(entityState(gb, syms._ce_entities, game).filter(e => e.kind === "pshot").length, 0);
+                        assert.equal(entityState(gb, syms, game).filter(e => e.kind === "pshot").length, 0);
                         if (waitingTick === undefined) { waitingTick = last.tick; waitingCamera = memory(gb).ram.readUInt16LE(syms._ce_state - 0xc000 + 4); }
                         if (last.tick > waitingTick + 30 && memory(gb).ram.readUInt16LE(syms._ce_state - 0xc000 + 4) !== waitingCamera) observedWorld = true;
                     } else if (observedWait) observedReturn = true;
@@ -225,7 +225,7 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
                         const raw=memory(gb).ram,state=syms._ce_state-0xc000,stage=raw[state+18];
                         const c=celebrations.get(stage)??{frames:new Set(),positions:new Set(),wreck:false,gone:false,music:false,pcm:false,tick:raw.readUInt16LE(state+2)};
                         assert.equal(raw.readUInt16LE(state+2),c.tick,"stage time freezes during the victory scene");
-                        const entities=entityState(gb,syms._ce_entities,stored);
+                        const entities=entityState(gb,syms,stored);
                         c.pcm ||= [...gb.audio_buffer_eager(true)].some(sample=>sample!==0);
                         c.frames.add(victory);c.music ||= readByte(gb,syms,"_ce_music_track")===8;
                         if(victory<60)c.wreck ||= entities.some(e=>e.kind==='boss');
@@ -243,7 +243,7 @@ test("NOVA SPEAR isolated campaign fixture: all stages and boss phases agree wit
                     while (sim.tick < last.tick && !sim.result) sim.step(32);
                     const { scene, stageTick, bossPhase, ...actual } = last;
                     assert.deepEqual(actual, sim.trace, `${label} tick ${last.tick}`);
-                    assert.deepEqual(entityState(gb, syms._ce_entities, stored), simulatedEntities(sim), `${label} entities tick ${last.tick}`);
+                    assert.deepEqual(entityState(gb, syms, stored), simulatedEntities(sim), `${label} entities tick ${last.tick}`);
                     if (last.scene === 1) assertPublishedOam(gb, syms, stored, mode);
                     checked++;
                     if (!stages.has(last.stage)) capture(gb, `fixture-stage-${last.stage + 1}-${label}`);

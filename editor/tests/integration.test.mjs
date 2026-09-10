@@ -184,7 +184,7 @@ test(
                         `mode ${mode}, tick ${t.tick}`,
                     );
                     assert.deepEqual(
-                        entityState(gb, syms._ce_entities, created),
+                        entityState(gb, syms, created),
                         simulatedEntities(sim),
                         `entity phase/path positions tick ${t.tick}`,
                     );
@@ -295,7 +295,7 @@ test(
                     if (!t || t.tick < 40 || t.scene !== 1) continue;
                     while (sim.tick < t.tick) sim.step(16);
                     assert.deepEqual(
-                        entityState(gb, syms._ce_entities, created),
+                        entityState(gb, syms, created),
                         simulatedEntities(sim),
                     );
                     assert.equal(

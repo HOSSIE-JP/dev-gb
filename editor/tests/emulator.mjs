@@ -93,7 +93,9 @@ export function settledTrace(gb, address) {
 }
 // SDCC/SM83 CE_Entity layout (25 bytes, no padding). Compare live positions,
 // velocities and phases only while the diagnostic seqlock is stable.
-export function entityState(gb, address, game, capacity = 39) {
+export function entityState(gb, symbolsOrAddress, game, capacity = 39) {
+    const syms = typeof symbolsOrAddress === 'object' ? symbolsOrAddress : null;
+    const address = syms ? syms._ce_entities : symbolsOrAddress;
     const { ram } = memory(gb),
         assets = game.assets.filter((a) => a.kind === "sprite"),
         result = [];
@@ -101,17 +103,19 @@ export function entityState(gb, address, game, capacity = 39) {
         const p = address - 0xc000 + slot * 25,
             kind = ram[p];
         if (!kind) continue;
+        const shot = (kind === 3 || kind === 4) && syms?._ce_shot_x;
+        const coordinate = (field, offset) => ram.readInt16LE(shot ? syms['_ce_shot_' + field] - 0xc000 + slot * 2 : p + offset);
         result.push({
             slot,
             kind: ["", "enemy", "boss", "pshot", "eshot", "fx"][kind],
             asset: assets[ram[p + 2]].id,
             hp: kind === 5 ? 0 : ram[p + 3],
             phase: ram[p + 4],
-            age: ram.readUInt16LE(p + 6),
-            x: ram.readInt16LE(p + 12),
-            y: ram.readInt16LE(p + 14),
-            vx: ram.readInt16LE(p + 20),
-            vy: ram.readInt16LE(p + 22),
+            age: ram.readUInt16LE(shot ? syms._ce_shot_age - 0xc000 + slot * 2 : p + 6),
+            x: coordinate('x', 12),
+            y: coordinate('y', 14),
+            vx: coordinate('vx', 20),
+            vy: coordinate('vy', 22),
         });
     }
     return result;
@@ -157,6 +161,6 @@ export function assertPublishedOam(gb, syms, game, mode) {
     if(!wait&&(!immune||!(immune&4)))draw(game.player.asset,ram.readInt16LE(state+14),ram.readInt16LE(state+16),ram.readUInt16LE(state));
     const capacity=(syms._ce_state-syms._ce_entities)/25;
     assert.ok(Number.isInteger(capacity)&&capacity>0&&capacity<=39,'linked entity pool layout');
-    for(const e of entityState(gb,syms._ce_entities,game,capacity))draw(e.asset,e.x,e.y,e.age);
+    for(const e of entityState(gb,syms,game,capacity))draw(e.asset,e.x,e.y,e.age);
     for(;slot<40;slot++)assert.equal(oam[slot*4],0,'unused OAM tail stays hidden');
 }

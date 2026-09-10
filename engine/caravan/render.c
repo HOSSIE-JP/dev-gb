@@ -9,6 +9,8 @@ static uint16_t previous_row;
 static uint16_t hud_values[32];
 static uint8_t hud_valid, previous_slots;
 static CE_Entity player_pose;
+static CE_Entity shot_pose;
+static CE_Entity *entity_pose;
 static CE_Entity *pose;
 static uint8_t pose_slot;
 /* Indexed by stable entity slot, never by the changing OAM draw slot. */
@@ -246,13 +248,14 @@ static void sprite_animation(void) {
     animation_frame[animation_slot] = frame;
     emit_tile = sprite_asset->first_tile + (sprite_tiles == 1u ? frame : frame * sprite_tiles);
 }
-/* All poses, especially one-tile bullets, share this bounded SM83 setup.
- * Preserve caller registers. No ISR enters these static rendering contexts. */
-static void sprite(void) __naked {
+/* Generic actor and multi-tile bullet setup. Preserve caller registers.
+ * No ISR enters these static rendering contexts. */
+static void actor_sprite(void) __naked {
     __asm
         push bc
         push de
         push hl
+_ce_actor_sprite_inner::
         ld a, (_pose)
         ld l, a
         ld a, (_pose + 1)
@@ -399,6 +402,88 @@ static void sprite(void) __naked {
         and #0x0f
         or b
         ret
+    __endasm;
+}
+/* Scatter/gather preserves global entity ordering and only gathers live
+ * bullets. Collision removal or slot reuse never publishes an old entry. */
+static void shot_sprite(uint8_t slot) __naked {
+    slot;
+    __asm
+        push bc
+        push de
+        push hl
+_ce_shot_sprite_inner::
+        ld l, a
+        ld h, #0
+        add hl, hl
+        add hl, hl
+        ld de, #_ce_shot_oam
+        add hl, de
+        ld d, h
+        ld e, l
+        ld a, (_pose_slot)
+        ld l, a
+        ld h, #0
+        add hl, hl
+        add hl, hl
+        ld bc, #_shadow_OAM
+        add hl, bc
+        ld a, (de)
+        inc de
+        ld (hl+), a
+        ld a, (de)
+        inc de
+        ld (hl+), a
+        ld a, (de)
+        inc de
+        ld (hl+), a
+        ld a, (de)
+        ld (hl), a
+        ld a, (_pose_slot)
+        inc a
+        ld (_pose_slot), a
+        pop hl
+        pop de
+        pop bc
+        ret
+    __endasm;
+}
+static void complex_shot_sprite(uint8_t slot) {
+    entity_pose = pose; shot_pose.asset = pose->asset;
+    shot_pose.x = ce_shot_x[slot]; shot_pose.y = ce_shot_y[slot]; shot_pose.age = ce_shot_age[slot];
+    pose = &shot_pose; actor_sprite(); pose = entity_pose;
+}
+static void sprite(void) __naked {
+    __asm
+        push bc
+        push de
+        push hl
+        ld a, (_pose)
+        ld l, a
+        ld a, (_pose + 1)
+        ld h, a
+        ld a, (hl)
+        cp #3
+        jr c, 050$
+        cp #5
+        jr nc, 050$
+        ld a, (_animation_slot)
+        dec a
+        ld c, a
+        ld b, #0
+        ld hl, #_ce_shot_simple
+        add hl, bc
+        ld a, (hl)
+        or a
+        ld a, c
+        jp nz, _ce_shot_sprite_inner
+        call _complex_shot_sprite
+        pop hl
+        pop de
+        pop bc
+        ret
+050$:
+        jp _ce_actor_sprite_inner
     __endasm;
 }
 void ce_render(void) BANKED {

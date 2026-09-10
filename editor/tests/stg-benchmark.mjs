@@ -100,7 +100,7 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
             assert.equal(t.result,0,'fixture must remain in gameplay');
             const frame=gb.ppu_frame();
             if(previous>=120) {assert.equal(t.tick,previous+1,'must observe every measured publication');gaps.push(frame-lastFrame);cycleGaps.push((cycles-lastCycles)/(70224*gb.multiplier()));}
-            const entities=entityState(gb,syms._ce_entities,game,(syms._ce_state-syms._ce_entities)/25);
+            const entities=entityState(gb,syms,game,(syms._ce_state-syms._ce_entities)/25);
             if(!isStress) {
                 const boss=entities.find(e=>e.kind==='boss');
                 assert.ok(boss,'boss must remain alive throughout the fixture');
@@ -135,7 +135,7 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
         if(flags.includes('--check-budget')) {
             // Pinned Windows GBDK/Boytacean fixtures, with margin over the measured
             // means. These are regression gates, not a claim of constant 60 Hz.
-            const budgets={stress:[3.1,2.1],animation:[4.1,2.1],enemies:[2.1,1.05],
+            const budgets={stress:[2.9,1.85],animation:[3.1,2.1],enemies:[2.1,1.05],
                 'boss-0':[1.25,1.05],'boss-1':[1.35,1.05],'boss-2':[1.5,1.05]};
             const budget=budgets[caseName][mode===GameBoyMode.Dmg?0:1];
             assert.ok(elapsed.mean<=budget,`${caseName} mean frame budgets ${elapsed.mean} exceeds ${budget}`);

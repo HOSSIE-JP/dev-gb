@@ -1,20 +1,32 @@
 #include "caravan.h"
 #include "music.h"
+#include "mainloop.h"
 #include <string.h>
 #include <stddef.h>
 
 /* The SM83 kernels below consume these byte offsets (GBDK/SDCC, no padding). */
 typedef char ce_entity_layout_check[(sizeof(CE_Entity) == 25u && offsetof(CE_Entity, x) == 12u && offsetof(CE_Entity, vx) == 20u) ? 1 : -1];
 typedef char ce_hitbox_layout_check[(sizeof(CE_Hitbox) == 4u && sizeof(CE_Box) == 8u) ? 1 : -1];
+typedef char ce_shot_layout_check[(CE_MAX_ENTITIES <= 64u && sizeof(OAM_item_t) == 4u) ? 1 : -1];
 
 CE_Entity ce_entities[CE_MAX_ENTITIES];
 CE_State ce_state;
+int16_t ce_shot_x[CE_MAX_ENTITIES], ce_shot_y[CE_MAX_ENTITIES];
+int16_t ce_shot_vx[CE_MAX_ENTITIES], ce_shot_vy[CE_MAX_ENTITIES];
+uint16_t ce_shot_age[CE_MAX_ENTITIES], ce_shot_lifetime[CE_MAX_ENTITIES];
+int16_t ce_shot_px[CE_MAX_ENTITIES], ce_shot_py[CE_MAX_ENTITIES];
+OAM_item_t ce_shot_oam[CE_MAX_ENTITIES];
+uint8_t ce_shot_simple[CE_MAX_ENTITIES];
+static uint8_t shot_ox[CE_MAX_ENTITIES], shot_oy[CE_MAX_ENTITIES];
+static uint8_t shot_range_index[CE_MAX_ENTITIES];
+static uint8_t shot_frames[CE_MAX_ENTITIES], shot_frame[CE_MAX_ENTITIES], shot_left[CE_MAX_ENTITIES];
+static uint8_t shot_top, shot_bottom;
 uint8_t ce_is_cgb, ce_scene, ce_pause, ce_active_screen;
 uint8_t ce_used;
 uint8_t ce_pool_counts[6], ce_pool_oam;
 static uint8_t free_slots[CE_FREE_GROUPS];
 uint16_t ce_scores[5], ce_respawn;
-static uint16_t music_time;
+uint16_t ce_music_time;
 static uint8_t hit_sound_wait;
 volatile uint8_t ce_trace[24];
 static uint16_t event_cursor;
@@ -46,11 +58,36 @@ static void prepare_player_ranges(void) {
     }
 }
 static void box(CE_Box *b, const CE_Entity *e);
-static void count_frame(void) NONBANKED {
+static void prepare_shot(uint8_t slot);
+static void init_shot_visual(uint8_t slot) {
+    const CE_Asset *a = &ce_assets[ce_entities[slot].asset];
+    shot_ox[slot] = 8u - a->ox; shot_oy[slot] = 16u - a->oy;
+    ce_shot_oam[slot].tile = a->first_tile;
+    ce_shot_oam[slot].prop = ce_is_cgb ? a->palette : 0u;
+    ce_shot_simple[slot] = a->tiles == 1u;
+    shot_range_index[slot] = ce_entities[slot].asset * 4u;
+    shot_frames[slot] = a->tiles == 1u ? a->frames : 1u;
+    shot_frame[slot] = 0; shot_left[slot] = a->durations[0];
+    prepare_shot(slot);
+}
+/* Bullet ages advance exactly once; unlike player blink there are no skipped
+ * renders to decode. The 16-bit wrap must explicitly restart at frame zero. */
+static void advance_shot_animation(uint8_t slot) {
+    static uint8_t frame; static const CE_Asset *a;
+    if (ce_shot_age[slot]) {
+        if (--shot_left[slot]) return;
+        frame = shot_frame[slot] + 1u;
+        if (frame == shot_frames[slot]) frame = 0;
+    } else frame = 0;
+    a = &ce_assets[ce_entities[slot].asset];
+    shot_frame[slot] = frame; shot_left[slot] = a->durations[frame];
+    ce_shot_oam[slot].tile = a->first_tile + frame;
+}
+void ce_count_frame(void) NONBANKED {
     if (ce_scene == 1u) SHOW_WIN;
 }
 /* A top-docked Window otherwise covers the entire playfield. */
-static void hud_scanline(void) NONBANKED { if (ce_scene == 1u && !ce_hud_bottom) HIDE_WIN; }
+void ce_hud_scanline(void) NONBANKED { if (ce_scene == 1u && !ce_hud_bottom) HIDE_WIN; }
 
 void ce_copy(uint8_t *dest, const CE_Data *source, uint16_t offset, uint16_t length) NONBANKED {
     uint8_t bank = CURRENT_BANK;
@@ -74,6 +111,8 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     memset(free_slots, 255, sizeof(free_slots));
     free_slots[CE_FREE_GROUPS - 1u] = (CE_MAX_ENTITIES & 7u) ? (1u << (CE_MAX_ENTITIES & 7u)) - 1u : 255u;
     ce_pool_oam = ce_assets[ce_player_asset].tiles;
+    shot_top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
+    shot_bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
     ce_state.stage = stage; ce_state.stage_tick = 0; ce_state.camera = ce_stages[stage].scroll_down ? ce_stages[stage].height * 128u - (144u - ce_hud_height) * 16u : 0;
     ce_state.scroll = ce_stages[stage].scroll; ce_state.boss_defeated = 0;
     ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
@@ -154,10 +193,12 @@ static void shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t
         for (n = 0; n != p->count; ++n) {
             slot = allocate(friendly ? CE_PSHOT : CE_ESHOT, p->asset); if (slot == CE_NONE) continue;
             angle = (base + p->angles[n]) & 15u;
-            e = &ce_entities[slot]; e->ref = pattern; e->x = e->base_x = px; e->y = e->base_y = py;
+            e = &ce_entities[slot]; e->ref = pattern;
+            ce_shot_x[slot] = px; ce_shot_y[slot] = py; ce_shot_age[slot] = 0;
             angle <<= 1;
-            e->vx = p->velocity[angle]; e->vy = p->velocity[angle + 1u];
-            e->hp = 1; e->lifetime = p->lifetime; e->damage = p->damage;
+            ce_shot_vx[slot] = p->velocity[angle]; ce_shot_vy[slot] = p->velocity[angle + 1u];
+            e->hp = 1; ce_shot_lifetime[slot] = p->lifetime; e->damage = p->damage;
+            init_shot_visual(slot);
             /* Enemy shots collide against cached center intervals, including
              * newly spawned shots that will not move until the next update. */
         }
@@ -194,16 +235,17 @@ static void box(CE_Box *b, const CE_Entity *e) __naked {
         ld e, l
         ld hl, #12
         add hl, bc
-        call 010$
+        call _ce_box_coordinate
         ld a, c
         ld (_box_left), a
         ld a, b
         ld (_box_left + 1), a
-        call 010$
+        call _ce_box_coordinate
         ld a, c
         ld (_box_top), a
         ld a, b
         ld (_box_top + 1), a
+_ce_box_write::
         ld a, (_box_out)
         ld l, a
         ld a, (_box_out + 1)
@@ -237,7 +279,7 @@ static void box(CE_Box *b, const CE_Entity *e) __naked {
         pop de
         pop bc
         ret
-010$:
+_ce_box_coordinate::
         ld a, (hl+)
         ld c, a
         ld a, (hl+)
@@ -259,6 +301,7 @@ static void box(CE_Box *b, const CE_Entity *e) __naked {
         rr c
         sra b
         rr c
+_ce_box_offset::
         ld a, (de)
         inc de
         add #128
@@ -348,95 +391,7 @@ static uint8_t overlap(void) __naked {
         ret
     __endasm;
 }
-static uint8_t bullet_overlaps(CE_Entity *e) __naked {
-    e;
-    __asm
-        push bc
-        push de
-        push hl
-        ld h, d
-        ld l, e
-        inc hl
-        inc hl
-        ld a, (hl)
-        ld b, d
-        ld c, e
-        ld l, a
-        ld h, #0
-        add hl, hl
-        add hl, hl
-        ld de, #_player_ranges
-        add hl, de
-        ld d, h
-        ld e, l
-        ld hl, #12
-        add hl, bc
-        call 060$
-        ld a, (_player_delta_x)
-        add c
-        ld c, a
-        ld a, (_player_delta_x + 1)
-        adc b
-        or a
-        jr nz, 063$
-        call 062$
-        jr c, 063$
-        call 060$
-        ld a, (_player_delta_y)
-        add c
-        ld c, a
-        ld a, (_player_delta_y + 1)
-        adc b
-        or a
-        jr nz, 063$
-        call 062$
-        ld a, #0
-        rla
-        xor #1
-        jr 064$
-063$:
-        xor a
-064$:
-        pop hl
-        pop de
-        pop bc
-        ret
-060$:
-        ld a, (hl+)
-        ld c, a
-        ld a, (hl+)
-        ld b, a
-        bit 7, b
-        jr z, 061$
-        ld a, c
-        add #15
-        ld c, a
-        ld a, b
-        adc #0
-        ld b, a
-061$:
-        sra b
-        rr c
-        sra b
-        rr c
-        sra b
-        rr c
-        sra b
-        rr c
-        ret
-062$:
-        ld a, (de)
-        inc de
-        ld b, a
-        ld a, c
-        sub b
-        ret c
-        ld a, (de)
-        inc de
-        sub c
-        ret
-    __endasm;
-}
+#include "shot-kernels.h"
 static uint8_t wall(CE_Box *b) {
     const CE_Stage *s = &ce_stages[ce_state.stage];
     int16_t right = b->right - 129, bottom = b->bottom - 129, bx = b->left - 128, by = b->top - 128;
@@ -589,115 +544,116 @@ static void step_actor(CE_Entity *e, uint8_t slot) {
             }
             ++e->age; ++e->phase_age;
 }
-/* Linear bullets dominate dense scenes. Update adjacent position/velocity
- * words directly, then test age and the same inclusive offscreen bounds.
- * Return A=1 when expired. No change to spawn order or update eligibility. */
-static uint8_t step_bullet(CE_Entity *e) __naked {
-    e;
+static uint8_t step_slot, step_count, step_walls;
+static CE_Entity *step_entity;
+static void step_nonbullet(uint8_t slot) {
+    static CE_Entity *e;
+    e = &ce_entities[slot];
+    if (e->kind == CE_FX) { ++e->age; if (e->age >= e->lifetime) release(slot); }
+    else { step_actor(e, slot); box(&boxes[slot], e); }
+    if ((uint16_t)(e->x + 512) > 3584u || (uint16_t)(e->y + 512) > 3328u) release(slot);
+}
+static void step_shot_box(uint8_t slot) {
+    static CE_Box *b;
+    b = &boxes[slot]; box_out = b; shot_box(slot);
+    if (step_walls && wall(b)) release(slot);
+}
+/* Snapshot eligibility, visit the original global slots in order, then call
+ * the actor path only for actors. Register save/restore is once per traversal,
+ * not repeated for every bullet and its prepared sprite. */
+static void step_entities(void) __naked {
     __asm
         push bc
         push de
         push hl
-        ld hl, #20
-        add hl, de
-        ld a, (hl+)
-        ld c, a
-        ld b, (hl)
-        ld hl, #12
-        add hl, de
-        ld a, (hl)
-        add c
-        ld (hl+), a
-        ld a, (hl)
-        adc b
-        ld (hl), a
-        ld hl, #22
-        add hl, de
-        ld a, (hl+)
-        ld c, a
-        ld b, (hl)
-        ld hl, #14
-        add hl, de
-        ld a, (hl)
-        add c
-        ld (hl+), a
-        ld a, (hl)
-        adc b
-        ld (hl), a
-        ld hl, #6
-        add hl, de
-        inc (hl)
-        ld a, (hl+)
-        ld c, a
-        jr nz, 050$
-        inc (hl)
-050$:
-        ld b, (hl)
-        ld hl, #10
-        add hl, de
-        ld a, c
-        sub (hl)
-        inc hl
-        ld a, b
-        sbc (hl)
-        jr nc, 053$
-        inc hl
-        ld a, (hl+)
-        ld c, a
-        ld a, (hl+)
-        add #2
-        cp #14
-        jr c, 051$
-        jr nz, 053$
-        ld a, c
+        ld a, (_ce_used)
+        ld (_step_count), a
         or a
-        jr nz, 053$
-051$:
-        ld a, (hl+)
-        ld c, a
+        jp z, 106$
+        ld b, a
+        ld de, #_active
+        ld hl, #_ce_entities
+100$:
         ld a, (hl)
-        add #2
-        cp #13
-        jr c, 052$
-        jr nz, 053$
-        ld a, c
-        or a
-        jr nz, 053$
-052$:
+        ld (de), a
+        inc de
+        ld a, l
+        add #25
+        ld l, a
+        jr nc, 101$
+        inc h
+101$:
+        dec b
+        jr nz, 100$
+        ld hl, #_ce_entities
+        ld a, l
+        ld (_step_entity), a
+        ld a, h
+        ld (_step_entity + 1), a
         xor a
-        jr 054$
-053$:
-        ld a, #1
-054$:
+        ld (_step_slot), a
+102$:
+        ld a, (_step_slot)
+        ld e, a
+        ld d, #0
+        ld hl, #_active
+        add hl, de
+        ld a, (hl)
+        or a
+        jr z, 105$
+        ld a, (_step_entity)
+        ld l, a
+        ld a, (_step_entity + 1)
+        ld h, a
+        ld a, (hl)
+        cp #3
+        jr c, 104$
+        cp #5
+        jr z, 104$
+        ld a, (_step_slot)
+        call _ce_step_bullet_body
+        or a
+        jr z, 103$
+        ld a, (_step_slot)
+        call _release
+        jr 105$
+103$:
+        ld a, (_step_walls)
+        or a
+        jr nz, 107$
+        ld a, (_step_entity)
+        ld l, a
+        ld a, (_step_entity + 1)
+        ld h, a
+        ld a, (hl)
+        cp #3
+        jr nz, 105$
+107$:
+        ld a, (_step_slot)
+        call _step_shot_box
+        jr 105$
+104$:
+        ld a, (_step_slot)
+        call _step_nonbullet
+105$:
+        ld a, (_step_entity)
+        add #25
+        ld (_step_entity), a
+        jr nc, 108$
+        ld hl, #_step_entity + 1
+        inc (hl)
+108$:
+        ld hl, #_step_slot
+        inc (hl)
+        ld a, (_step_count)
+        cp (hl)
+        jp nz, 102$
+106$:
         pop hl
         pop de
         pop bc
         ret
     __endasm;
-}
-static void step_entities(void) {
-    /* No ISR enters this loop. Keep pointers out of the SM83 stack, and walk
-     * boxes alongside entities instead of multiplying the slot each time. */
-    static uint8_t i, active_count;
-    static CE_Entity *e; static CE_Box *b; static const CE_Stage *stage;
-    active_count = ce_used; stage = &ce_stages[ce_state.stage];
-    for (i = 0, e = ce_entities; i != active_count; ++i, ++e) active[i] = e->kind;
-    for (i = 0, e = ce_entities, b = boxes; i != active_count; ++i, ++e, ++b) {
-        if (!active[i]) continue;
-        if (e->kind == CE_FX) { ++e->age; if (e->age >= e->lifetime) release(i); }
-        else if (e->kind >= CE_PSHOT) {
-            if (step_bullet(e)) { release(i); continue; }
-            if (e->kind == CE_PSHOT || stage->has_walls) {
-                box(b, e);
-                if (stage->has_walls && wall(b)) release(i);
-            }
-            continue;
-        } else {
-            step_actor(e, i);
-            box(b, e);
-        }
-        if ((uint16_t)(e->x + 512) > 3584u || (uint16_t)(e->y + 512) > 3328u) release(i);
-    }
 }
 static void collide_shots(void) {
     static uint8_t i, j; static CE_Entity *e, *target; static const CE_Actor *actor;
@@ -731,7 +687,7 @@ static void collide_player(void) {
     if (ce_stages[ce_state.stage].has_walls && wall(box_a)) hit_player();
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) {
         if (!e->kind || e->kind == CE_PSHOT || e->kind == CE_FX) continue;
-        if (e->kind == CE_ESHOT) hit = bullet_overlaps(e);
+        if (e->kind == CE_ESHOT) hit = bullet_overlaps(i);
         else { box_b = &boxes[i]; hit = overlap(); }
         if (hit) { hit_player(); if (e->kind == CE_ESHOT) release(i); }
     }
@@ -775,6 +731,7 @@ void ce_step(uint8_t input) NONBANKED {
     uint8_t finish; const CE_Stage *stage = &ce_stages[ce_state.stage];
     if (ce_state.result) return;
     ce_trace[22] = 1; /* Keep entity RAM and the public trace in the same snapshot. */
+    step_walls = stage->has_walls;
     step_player(input); finish = stage_events(); step_entities(); collide_shots(); collide_player();
     while (ce_used && !ce_entities[ce_used - 1u].kind) --ce_used;
     ++ce_state.tick; if (ce_state.stage_tick != 65535u) ++ce_state.stage_tick;
@@ -815,54 +772,13 @@ void ce_sound(uint8_t effect) NONBANKED {
     else if (effect == 3u) { NR10_REG = 0x16; NR11_REG = 0x40; NR12_REG = 0xf3; NR13_REG = 0x70; NR14_REG = 0x87; }
     else { NR41_REG = effect == 1u ? 0x08 : 0x00; NR42_REG = effect == 1u ? 0x73 : 0xf4; NR43_REG = effect == 1u ? 0x35 : 0x65; NR44_REG = 0x80; }
 }
-static void record_score(void) {
-    uint8_t i, j; for (i = 0; i != 5u; ++i) if (ce_state.score > ce_scores[i]) {
-        for (j = 4; j > i; --j) ce_scores[j] = ce_scores[j - 1u]; ce_scores[i] = ce_state.score; ce_save_scores(); break;
-    }
-}
 void ce_audio_sync(void) NONBANKED {
     uint16_t now, elapsed;
     CRITICAL { now = sys_time; }
-    elapsed = now - music_time; music_time = now;
+    elapsed = now - ce_music_time; ce_music_time = now;
     hit_sound_wait = elapsed >= hit_sound_wait ? 0 : hit_sound_wait - elapsed;
     ce_music_tick(elapsed > 255u ? 255u : (uint8_t)elapsed);
 }
 void ce_run(void) NONBANKED {
-    uint8_t input, pressed, previous = 0;
-    uint16_t now;
-    ce_is_cgb = _cpu == CGB_TYPE;
-    if (ce_is_cgb) cpu_fast();
-    NR52_REG = 0x80; NR50_REG = 0x77; NR51_REG = 0xff;
-    add_VBL(count_frame);
-    add_LCD(hud_scanline); add_LCD(nowait_int_handler);
-    LYC_REG = ce_hud_height; STAT_REG = STATF_LYC;
-    set_interrupts(VBL_IFLAG | LCD_IFLAG);
-    ce_save_load();
-    ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title);
-    CRITICAL { music_time = sys_time; }
-    for (;;) {
-        /* If work already crossed VBlank, do not throw away another frame.
-         * No queued catch-up steps: input and rendering accompany every tick. */
-        CRITICAL { now = sys_time; }
-        if (now == music_time) vsync();
-        input = joypad(); pressed = input & ~previous; previous = input;
-        ce_audio_sync();
-        if (ce_scene == 1u) {
-            if (pressed & J_START) { ce_pause = !ce_pause; ce_music_pause(ce_pause); }
-            if (!ce_pause) {
-                /* Drop overdue work instead of a four-update catch-up spiral.
-                 * Under load the game slows gracefully while every update is drawn. */
-                ce_step(input);
-                ce_render();
-            }
-            if (ce_state.result) {
-                record_score(); ce_scene = ce_state.result == 1u ? 2u : 3u; ce_load_screen(ce_scene - 1u);
-                ce_music_play(ce_state.result == 1u ? ce_music_gameover : ce_music_clear);
-            }
-        } else if (ce_scene == 0u) {
-            if (pressed & (J_START | J_A)) { ce_fade(1); ce_reset(ce_campaign ? 0u : ce_start_stage, 1); ce_scene = 1; ce_pause = 0; ce_load_stage(); ce_fade(0); }
-            else if (pressed & J_SELECT) { ce_scene = 4; ce_load_screen(3); }
-        } else if (pressed & (J_START | J_A | J_B | J_SELECT)) { ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title); }
-        ce_trace_write();
-    }
+    ce_mainloop();
 }

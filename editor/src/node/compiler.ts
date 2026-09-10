@@ -131,6 +131,12 @@ export function readFont(root: string) {
     }
     return { ...glyphs, ...numericGlyphs };
 }
+// makebin can report a destructive bank overlap and still return success.
+// Reject its specific diagnostics before a ROM can replace the last good build.
+export function verifyGbdkOutput(output: string) {
+    if (/Warning:\s*(Multiple write|Possible overflow from Bank)/i.test(output))
+        throw new Error(`GBDKのROMバンク重複・容量超過を検出しました。\n${output}`);
+}
 function run(
     exe: string,
     args: string[],
@@ -148,6 +154,7 @@ function run(
     });
     if (result.stdout) log(result.stdout);
     if (result.stderr) log(result.stderr);
+    verifyGbdkOutput(`${result.stdout ?? ''}\n${result.stderr ?? ''}`);
     if (result.error || result.status !== 0)
         throw new Error(
             result.error?.message ??
@@ -611,7 +618,7 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "render.c", "music.c", "save.c"]
+        const inputs = ["runtime.c", "mainloop.c", "render.c", "music.c", "save.c"]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [

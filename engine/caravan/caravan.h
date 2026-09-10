@@ -82,6 +82,14 @@ extern const int16_t ce_player_start_x, ce_player_start_y;
 extern const int8_t ce_sin[16], ce_cos[16];
 extern CE_Entity ce_entities[CE_MAX_ENTITIES];
 extern CE_State ce_state;
+/* Bullet motion is canonical in these planes; entity records keep common
+ * kind/asset/damage metadata and the stable allocation/draw order. */
+extern int16_t ce_shot_x[CE_MAX_ENTITIES], ce_shot_y[CE_MAX_ENTITIES];
+extern int16_t ce_shot_vx[CE_MAX_ENTITIES], ce_shot_vy[CE_MAX_ENTITIES];
+extern uint16_t ce_shot_age[CE_MAX_ENTITIES], ce_shot_lifetime[CE_MAX_ENTITIES];
+extern int16_t ce_shot_px[CE_MAX_ENTITIES], ce_shot_py[CE_MAX_ENTITIES];
+extern OAM_item_t ce_shot_oam[CE_MAX_ENTITIES];
+extern uint8_t ce_shot_simple[CE_MAX_ENTITIES];
 extern uint8_t ce_is_cgb, ce_scene, ce_pause, ce_active_screen;
 extern uint8_t ce_used;
 extern uint16_t ce_scores[5];
