@@ -63,6 +63,8 @@ const labels: Record<string, string> = {
     lifetime: "弾の寿命（frame）",
     damage: "ダメージ",
     phases: "攻撃フェーズ",
+    battle: "ボス戦の表示", maxBullets: "BG敵弾の上限（1〜128）",
+    intro: "フェーズ開始カットイン", spellName: "弾幕名（36文字まで）", clearWaitSeconds: "集計完了後の待ち時間（秒）",
     until: "次フェーズへの条件",
     threshold: "条件値（frame / HP）",
     tileset: "タイルセット",
@@ -165,6 +167,9 @@ export function Form({
             {Object.entries(
                 context === "player" ? { focusWeapon: "", focusSpeed: value.speed, respawnDelay: 0, ...value }
                 : context === "stage" ? { requireBoss: false, scrollDown: false, music: 0, bossMusic: 0, presentation: { enabled: false, dialogueBackground: "", clearBackground: "", rightPalette: 0, dialogue: [], clearEnabled: false, baseBonus: game.clearBonus, lifeBonus: 200, noMissBonus: 1000 }, parallax: { enabled: false, firstTile: 0, width: 4, height: 2, divisor: 2 }, ...value }
+                : "phases" in value ? {battle: {background: "stage", maxBullets: 128}, ...value}
+                : context === "phase" ? {intro: {enabled: false, background: "", spellName: value.name, seconds: 3}, ...value}
+                : context === "presentation" ? {clearWaitSeconds: 2, ...value}
                 : value.id === "hud" ? { rows: 2, ...value }
                 : "binding" in value ? { digits: 5, ...value }
                 : value.schemaVersion === 1 ? { ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
@@ -228,6 +233,9 @@ export function Form({
                         if (["pattern", "background", "dialogueBackground", "clearBackground", "focusWeapon"].includes(key))
                             choices = [{ id: "", name: "なし" }, ...choices];
                     }
+                    if (key === "background" && context === "battle") choices = [
+                        {id: "stage", name: "ステージ背景を継続"}, {id: "blank", name: "背景なし・スプライト弾"}, {id: "bg-bullets", name: "背景なし・BG弾幕（単色2×2・2ドット刻み）"}
+                    ];
                     if (key === "palette" || key === "rightPalette")
                         choices = game.palettes.map((p, i) => ({
                             id: i,
@@ -267,6 +275,8 @@ export function Form({
                             name: names[id] ?? id,
                         }));
                     const label =
+                        key === "seconds" && context === "intro" ? "表示時間（秒）" :
+                        key === "background" && context === "battle" ? "描画方式" :
                         key === "duration" && context === "stage"
                             ? "制限時間（秒）"
                             : context === "stage" && key === "width"

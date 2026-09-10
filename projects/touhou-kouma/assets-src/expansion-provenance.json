@@ -1,0 +1,94 @@
+{
+  "date": "2026-09-11",
+  "source": "Original AI-assisted Touhou fan illustrations created for this project. Character concepts belong to Team Shanghai Alice. No reference-ROM assets or code copied.",
+  "conversion": {
+    "grayscaleThresholds": [
+      48,
+      130,
+      212
+    ],
+    "filter": "nearest",
+    "screen": [
+      160,
+      144
+    ],
+    "cutinContent": [
+      144,
+      128
+    ],
+    "dialogueContent": [
+      128,
+      112
+    ],
+    "sprite": [
+      24,
+      24
+    ],
+    "tileset": [
+      64,
+      32
+    ]
+  },
+  "music": [
+    {
+      "id": 32,
+      "name": "宵闇の散歩道",
+      "source": "Original lead and bass composition in engine/caravan/music.c"
+    },
+    {
+      "id": 33,
+      "name": "月を隠すリボン",
+      "source": "Original lead and bass composition in engine/caravan/music.c"
+    }
+  ],
+  "assets": [
+    {
+      "file": "originals/cirno.png",
+      "sha256": "b16985e5bb8fbaffab53ed409461177df69b2e453f15e9664bff899bcaf7d182"
+    },
+    {
+      "file": "originals/flandre.png",
+      "sha256": "9007686b127a9d19b62e4a9ba0c157daad87924ac8ae79adfdd93f88c88a5018"
+    },
+    {
+      "file": "originals/forest.png",
+      "sha256": "fa373f8df60c580fe2021c0521d8977f0193ca2d08792edd10163fa0b7cdb35d"
+    },
+    {
+      "file": "originals/meiling.png",
+      "sha256": "bc676e36c513d94923943edd4aa044f0eb13cbe6c4185085be74fc47d5db2fda"
+    },
+    {
+      "file": "originals/patchouli.png",
+      "sha256": "4a5cf3adbfb695a265b3738ca81139457a3affa95ad61a0f1e731b4020a7236f"
+    },
+    {
+      "file": "originals/remilia.png",
+      "sha256": "4d9b80b9426d152ff32422cab318d0732b4a3d0413cd006fd4315f4f4a75af4e"
+    },
+    {
+      "file": "originals/rumia-dialogue.png",
+      "sha256": "ba91f054bc181b971218154aaddc1d8132b97345f15d27f157f1d46edb136c3d"
+    },
+    {
+      "file": "originals/rumia-ending.png",
+      "sha256": "b3c160fae7c3e5a264c8eccdf0e5059b913b9b16b9603381e39fb93e47effde0"
+    },
+    {
+      "file": "originals/rumia-result.png",
+      "sha256": "599d71411928b040e1c1b5893d65d709835b4ecfee22bebcba728dca84538324"
+    },
+    {
+      "file": "originals/rumia-sprite.png",
+      "sha256": "4d8f4bfe9511f595df89537286edafbe3efce468761736807647a5c131426eb6"
+    },
+    {
+      "file": "originals/rumia_cutin.png",
+      "sha256": "78636eb44246b960295d5814ecc10e04dc1b2c7e925615ac0de2ea452c9be094"
+    },
+    {
+      "file": "originals/sakuya.png",
+      "sha256": "f0ae84abd629d01354c31fcc8c3dc996aa7436c96945e57f2fa6080b40a4e752"
+    }
+  ]
+}

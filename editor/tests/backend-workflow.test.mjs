@@ -31,7 +31,7 @@ async function fixture(run) {
     }
 }
 
-async function desktop(temp) {
+async function desktop(temp, options = {}) {
     const handlers = new Map(),
         events = new EventEmitter(),
         dialogs = [];
@@ -73,11 +73,17 @@ async function desktop(temp) {
         protocol: { registerSchemesAsPrivileged() {}, handle() {} },
         Menu: { buildFromTemplate: (items) => items, setApplicationMenu() {} },
         dialog: {
+            showOpenDialog: async () => options.selection ?? { canceled: true, filePaths: [] },
+            showMessageBox: async () => ({ response: options.response ?? 0 }),
             showMessageBoxSync: (_window, options) => {
                 dialogs.push(options);
                 return 1;
             },
         },
+        shell: { openPath: async (folder) => {
+            options.opened?.push(folder);
+            return options.shellError ?? "";
+        } },
     };
     const context = {
         require: (name) => (name === "electron" ? electron : require(name)),
@@ -107,6 +113,29 @@ async function desktop(temp) {
         invoke: (name, ...args) => handlers.get(`ce:${name}`)(sender, ...args),
     };
 }
+
+test("project navigation supports late additions, cancellation, safe folders and shell errors", () =>
+    fixture(async (temp, game) => {
+        const options = { opened: [] };
+        const app = await desktop(temp, options);
+        assert.equal(await app.invoke("choose-project"), null);
+        lib.createProject(temp, "added", "ADDED", game);
+        options.selection = { canceled: false, filePaths: [path.join(temp, "projects/added")] };
+        const selected = await app.invoke("choose-project");
+        assert.equal(selected.name, "added");
+        assert.ok(selected.projects.some(p => p.name === "added"));
+        assert.equal((await app.invoke("open", selected.name)).game.name, "added");
+        options.selection.filePaths = [path.join(temp, "elsewhere/added")];
+        await assert.rejects(app.invoke("choose-project"), /projects/);
+        await app.invoke("show-project-folder", "fixture");
+        assert.deepEqual(options.opened, [path.join(temp, "projects/fixture")]);
+        await assert.rejects(app.invoke("show-project-folder", "../outside"));
+        options.shellError = "Explorer failed";
+        await assert.rejects(app.invoke("show-project-folder", "fixture"), /Explorer failed/);
+        assert.equal(await app.invoke("confirm", "Continue?"), false);
+        options.response = 1;
+        assert.equal(await app.invoke("confirm", "Continue?"), true);
+    }));
 
 function artifact(temp, revision = "snapshot-a", fill = 1) {
     const out = path.join(temp, "projects/fixture/build/Debug");

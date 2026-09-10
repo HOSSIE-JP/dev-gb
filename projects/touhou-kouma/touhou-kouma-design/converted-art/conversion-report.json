@@ -1,0 +1,62 @@
+[
+  {
+    "id": "title",
+    "inputUniqueTiles": 288,
+    "outputTiles": 248,
+    "meanSquaredIndexError": 0.01032986111111111,
+    "dimensions": [
+      160,
+      144
+    ]
+  },
+  {
+    "id": "stage-1",
+    "inputUniqueTiles": 310,
+    "outputTiles": 104,
+    "meanSquaredIndexError": 0.05791015625,
+    "dimensions": [
+      160,
+      256
+    ]
+  },
+  {
+    "id": "stage-2",
+    "inputUniqueTiles": 360,
+    "outputTiles": 104,
+    "meanSquaredIndexError": 0.076708984375,
+    "dimensions": [
+      160,
+      256
+    ]
+  },
+  {
+    "id": "stage-3",
+    "inputUniqueTiles": 396,
+    "outputTiles": 104,
+    "meanSquaredIndexError": 0.077099609375,
+    "dimensions": [
+      160,
+      256
+    ]
+  },
+  {
+    "id": "stage-4",
+    "inputUniqueTiles": 282,
+    "outputTiles": 104,
+    "meanSquaredIndexError": 0.064794921875,
+    "dimensions": [
+      160,
+      256
+    ]
+  },
+  {
+    "id": "stage-5",
+    "inputUniqueTiles": 388,
+    "outputTiles": 104,
+    "meanSquaredIndexError": 0.0929443359375,
+    "dimensions": [
+      160,
+      256
+    ]
+  }
+]

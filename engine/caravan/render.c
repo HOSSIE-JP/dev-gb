@@ -41,6 +41,7 @@ static void palettes(void) {
         set_bkg_palette(0, ce_palette_count, fade_colors);
         set_sprite_palette(0, ce_palette_count, fade_colors);
     }
+    if (ce_active_screen == 4u && ce_battle_mode == 2u) ce_bg_palette();
 }
 void ce_fade(uint8_t out) BANKED {
     uint8_t frame;
@@ -101,6 +102,7 @@ static void map_row(uint16_t row) {
 void ce_load_screen(uint8_t screen) BANKED {
     ce_trace[22] = 1;
     /* Keep the LCD enabled: LCD-off is visibly white on DMG. Load behind black. */
+    ce_active_screen = screen; LCDC_REG &= ~8u;
     ce_fade_level = 4; palettes();
     HIDE_WIN; HIDE_SPRITES; hide_all(); ce_active_screen = screen;
     tiles(&ce_screens[screen].tiles, 0, ce_screens[screen].tile_count, 0);
@@ -126,20 +128,22 @@ void ce_load_stage(void) BANKED {
     uint8_t row; uint16_t start = ce_state.camera >> 7; const CE_Stage *s = &ce_stages[ce_state.stage];
     /* Preserve an enabled, black LCD during transition loading. Turning it off
      * would flash white on DMG. GBDK VRAM APIs wait for safe access windows. */
-    if (ce_fade_level != 4u) DISPLAY_OFF;
-    hide_all(); palettes(); ce_active_screen = 4;
+    if (!ce_battle_mode && ce_fade_level != 4u) DISPLAY_OFF;
+    LCDC_REG &= ~8u; hide_all(); palettes(); ce_active_screen = 4;
     tiles(&ce_screens[4].tiles, 0, ce_screens[4].tile_count, 0);
     tiles(&s->tiles, ce_screens[4].tile_count, s->tile_count, 0);
     tiles(&ce_sprite_data, 128, ce_sprite_tiles, 1); SPRITES_8x8;
     for (row = 0; row != 32u; ++row) map_row(start + row);
     screen_map(4, 1); move_win(7, ce_hud_bottom ? 144u - ce_hud_height : 0);
     parallax_phase = 255u; previous_row = start; move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
-    ce_hud(); SHOW_BKG; SHOW_WIN; SHOW_SPRITES; DISPLAY_ON;
+    if (ce_battle_mode) ce_battle_setup(); else if (ce_battle_asset != CE_NONE) ce_load_boss(ce_battle_asset);
+    ce_hud(); SHOW_BKG; if (ce_battle_mode != 2u) SHOW_WIN; SHOW_SPRITES; DISPLAY_ON;
 }
 static void number(uint8_t x, uint8_t y, uint16_t value, uint8_t digits) {
     uint8_t i = digits; const CE_Screen *s = &ce_screens[ce_active_screen];
     while (i) { --i; buffer[i] = s->digits[value % 10u]; value /= 10u; }
-    if (ce_active_screen == 4u) set_win_tiles(x, y, digits, 1, buffer);
+    if (ce_active_screen == 4u && ce_battle_mode == 2u) ce_bg_hud(x, y, digits, buffer);
+    else if (ce_active_screen == 4u) set_win_tiles(x, y, digits, 1, buffer);
     else set_bkg_tiles(x, y, digits, 1, buffer);
 }
 void ce_hud(void) BANKED {
@@ -521,11 +525,13 @@ static void parallax(void) {
 }
 void ce_render(void) BANKED {
     uint8_t i; uint16_t row = ce_state.camera >> 7;
+    if (!ce_battle_mode) {
     if (row + 1u == previous_row || (ce_stages[ce_state.stage].loop && !(ce_stages[ce_state.stage].height & 31u) && previous_row == 0u && row + 1u == ce_stages[ce_state.stage].height)) map_row(row);
     else if (ce_stages[ce_state.stage].loop && !(ce_stages[ce_state.stage].height & 31u) && row == 0u && previous_row + 1u == ce_stages[ce_state.stage].height) map_row(31u);
     else if (row != previous_row && row != previous_row + 1u) { DISPLAY_OFF; for (i = 0; i != 32u; ++i) map_row(row + i); DISPLAY_ON; }
     else if (row != previous_row) map_row(row + 31u);
     previous_row = row;
+    }
     pose_slot = 0;
     emit_top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
     emit_bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
@@ -540,13 +546,34 @@ void ce_render(void) BANKED {
     i = pose_slot;
     while (pose_slot < previous_slots) shadow_OAM[pose_slot++].y = 0;
     previous_slots = i;
+    if (ce_battle_mode == 2u) for (i = 0; i != previous_slots; ++i) shadow_OAM[i].tile -= 128u;
     if (!(ce_state.tick & 7u)) ce_hud();
+    if (ce_battle_mode == 2u) ce_bg_flush();
     ENABLE_OAM_DMA;
     /* Publish every completed pose through VBlank DMA before another update
      * can overwrite it. Repeated display frames under load are intentional. */
     vsync();
-    move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
-    parallax();
+    if (ce_battle_mode == 2u) ce_bg_publish();
+    else if (!ce_battle_mode) { move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height)); parallax(); }
 }
 
 void ce_get_presentation(CE_Presentation *dest, uint8_t stage) BANKED { *dest = ce_presentations[stage]; }
+
+void ce_get_screen(CE_Screen *dest, uint8_t index) BANKED { *dest = ce_screens[index]; }
+void ce_load_boss(uint8_t asset) BANKED {
+    if (asset == CE_NONE || !ce_boss_graphics[asset].length) return;
+    tiles(&ce_boss_graphics[asset], ce_assets[asset].first_tile - (ce_battle_mode == 2u ? 128u : 0u), ce_boss_graphics[asset].length / 16u, 1);
+}
+void ce_battle_setup(void) BANKED {
+    uint8_t i;
+    HIDE_SPRITES; HIDE_WIN; ce_fade_level = 4; palettes();
+    if (ce_battle_mode == 2u) {
+        tiles(&ce_sprite_data, 0, ce_sprite_tiles, 1); ce_bg_setup();
+    } else {
+        for (i = 0; i != 32u; ++i) buffer[i] = 0;
+        for (i = 0; i != 32u; ++i) set_bkg_tiles(0,i,32,1,buffer);
+        move_bkg(0,0); SHOW_WIN;
+    }
+    ce_load_boss(ce_battle_asset); hud_valid = 0; ce_hud();
+    vsync(); ce_fade_level = 0; palettes(); SHOW_SPRITES;
+}

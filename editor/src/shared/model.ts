@@ -66,8 +66,12 @@ export type BossPhase = {
     pattern: string;
     attacks?: { id: string; pattern: string }[];
     motion: Motion;
+    intro?: { enabled: boolean; background: string; spellName: string; seconds: number };
 };
-export type Boss = Actor & { phases: BossPhase[] };
+export type Boss = Actor & {
+    phases: BossPhase[];
+    battle?: { background: "stage" | "blank" | "bg-bullets"; maxBullets: number };
+};
 export type StageEvent = {
     id: string;
     frame: number;
@@ -90,6 +94,7 @@ export type Presentation = {
     baseBonus: number;
     lifeBonus: number;
     noMissBonus: number;
+    clearWaitSeconds?: number;
 };
 export type Parallax = { enabled: boolean; firstTile: number; width: number; height: number; divisor: number };
 export type Stage = {
@@ -327,6 +332,7 @@ export function validateShape(
         bosses: [
             {
                 ...actor,
+                "battle?": {background: "string", maxBullets: "number"},
                 phases: [
                     {
                         id: "string",
@@ -336,6 +342,7 @@ export function validateShape(
                         pattern: "string",
                         "attacks?": attacks,
                         motion,
+                        "intro?": {enabled: "boolean", background: "string", spellName: "string", seconds: "number"},
                     },
                 ],
             },
@@ -360,7 +367,7 @@ export function validateShape(
                 "presentation?": {
                     enabled: "boolean", dialogueBackground: "string", clearBackground: "string", rightPalette: "number",
                     dialogue: [{id: "string", speaker: "string", line1: "string", line2: "string"}],
-                    clearEnabled: "boolean", baseBonus: "number", lifeBonus: "number", noMissBonus: "number"
+                    clearEnabled: "boolean", baseBonus: "number", lifeBonus: "number", noMissBonus: "number", "clearWaitSeconds?": "number"
                 },
                 "parallax?": {enabled: "boolean", firstTile: "number", width: "number", height: "number", divisor: "number"},
                 events: [
@@ -681,9 +688,20 @@ export function validate(value: unknown): Diagnostic[] {
         motion(a.motion, a.id);
     }
     for (const b of game.bosses) {
+        if (b.battle) {
+            if (!["stage", "blank", "bg-bullets"].includes(b.battle.background)) err(b.id, "ボス背景モードが不正です");
+            integer(b.battle.maxBullets, 1, 128, b.id);
+        }
         uniqueIds(b.phases, b.id);
         integer(b.phases.length, 1, 8, b.id);
         for (const p of b.phases) {
+            if (p.intro) {
+                integer(p.intro.seconds, 1, 10, b.id);
+                if (p.intro.enabled) {
+                    if (!game.assets.some(a => a.id === p.intro!.background && a.kind === "screen" && a.width === 160 && a.height === 144)) err(b.id, "カットインは160x144の画面画像を指定してください");
+                    if (!p.intro.spellName.trim() || [...p.intro.spellName.normalize("NFC")].length > 36 || /[\r\n]/.test(p.intro.spellName)) err(b.id, "弾幕名は1〜36文字で指定してください");
+                }
+            }
             attacks(p.attacks, b.id);
             if (!["time", "hp"].includes(p.until))
                 err(b.id, "フェーズ条件が不正です");
@@ -706,7 +724,7 @@ export function validate(value: unknown): Diagnostic[] {
         if (game.ending.slides.length > 20) d.push({severity: "error", target: "ending", message: "スライドは20枚までです"});
         for (const slide of game.ending.slides) if (!game.assets.some(a => a.id === slide.background && a.kind === "screen" && a.width === 160 && a.height === 144)) d.push({severity: "error", target: "ending", message: "160x144の画面画像を指定してください"});
     }
-    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 31, "music");
+    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 33, "music");
     if (game.bossCelebration && game.music?.victory !== undefined && ![0, 6, 7, 8, 14, 15, 27, 28, 29].includes(game.music.victory))
         err("music", "撃破ファンファーレはループしない曲または無音を選択してください");
     if (game.performance) {
@@ -728,11 +746,12 @@ export function validate(value: unknown): Diagnostic[] {
         integer(stage.width, 20, 20, stage.id);
         integer(stage.height, 18, 512, stage.id);
         integer(stage.duration, 1, 600, stage.id);
-        if (stage.music !== undefined) integer(stage.music, 0, 31, stage.id);
-        if (stage.bossMusic !== undefined) integer(stage.bossMusic, 0, 31, stage.id);
+        if (stage.music !== undefined) integer(stage.music, 0, 33, stage.id);
+        if (stage.bossMusic !== undefined) integer(stage.bossMusic, 0, 33, stage.id);
         finite(stage.scrollSpeed, 0, 4, stage.id);
         const presentation = stage.presentation;
         if (presentation) {
+            if (presentation.clearWaitSeconds !== undefined) integer(presentation.clearWaitSeconds, 1, 10, stage.id);
             for (const key of ["dialogueBackground", "clearBackground"] as const)
                 if (presentation[key]) assetRef(presentation[key], stage.id, "screen");
             if (presentation.enabled && !presentation.dialogueBackground) err(stage.id, "会話の背景画像が必要です");
@@ -858,13 +877,27 @@ export function validate(value: unknown): Diagnostic[] {
                 err(text.id, "スコア一覧の表示領域が足りません");
         }
     }
-    const spriteTiles = game.assets
-        .filter((a) => a.kind === "sprite")
-        .reduce((n, a) => n + ((a.width * a.height) / 64) * a.frames.length, 0);
+    const spriteTiles = spriteLayout(game).tiles;
     if (spriteTiles > 128)
         err(
             "assets",
             `スプライトは合計128タイルまでです（現在${spriteTiles}）`,
         );
     return d;
+}
+
+/** One boss can exist at a time. Exclusive boss art shares a reloadable VRAM slot. */
+export function spriteLayout(game: Game) {
+    const resident = new Set([game.player.asset, ...game.enemies.map(a => a.asset), ...game.patterns.map(p => p.asset), game.effects.explosion]);
+    const overlay = new Set(game.bosses.map(b => b.asset).filter(id => !resident.has(id)));
+    const assets = game.assets.filter(a => a.kind === "sprite");
+    let base = 0, size = 0;
+    const offsets = new Map<string, number>();
+    for (const a of assets) {
+        const n = a.width * a.height / 64 * a.frames.length;
+        if (overlay.has(a.id)) size = Math.max(size, n);
+        else { offsets.set(a.id, base); base += n; }
+    }
+    for (const id of overlay) offsets.set(id, base);
+    return {overlay, offsets, tiles: base + size, base};
 }

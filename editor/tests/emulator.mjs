@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
-const { clockRomFrame } = createRequire(import.meta.url)("../build/library.cjs");
+const { clockRomFrame, spriteLayout } = createRequire(import.meta.url)("../build/library.cjs");
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -143,9 +143,10 @@ export function assertPublishedOam(gb, syms, game, mode) {
     assert.equal(oam.length,160);
     assert.deepEqual(oam,ram.subarray(syms._shadow_OAM-0xc000,syms._shadow_OAM-0xc000+160),"completed shadow OAM reached hardware before publication");
     const hud=game.screens.find(s=>s.id==='hud'),height=(hud.rows??2)*8,bottom=hud.dock==='bottom';
-    assert.equal(io[0x42],((ram.readUInt16LE(state+4)>>4)-(bottom?0:height))&255);
-    const assets=new Map();let first=128;
-    for(const a of game.assets.filter(a=>a.kind==='sprite')){assets.set(a.id,{...a,first});first+=a.width*a.height/64*a.frames.length;}
+    const battle=syms._ce_battle_mode?ram[syms._ce_battle_mode-0xc000]:0;
+    assert.equal(io[0x42],battle?0:((ram.readUInt16LE(state+4)>>4)-(bottom?0:height))&255);
+    const assets=new Map(),layout=spriteLayout(game);
+    for(const a of game.assets.filter(a=>a.kind==='sprite'))assets.set(a.id,{...a,first:(battle===2?0:128)+layout.offsets.get(a.id)});
     let slot=0;
     const draw=(id,x,y,age)=>{
         const a=assets.get(id);let time=age%a.frames.reduce((n,f)=>n+f.duration,0),frame=0;

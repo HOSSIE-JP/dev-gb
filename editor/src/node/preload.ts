@@ -1,6 +1,9 @@
 import type { Bridge } from "../shared/bridge";
 const { contextBridge, ipcRenderer } = require("electron");
 const api: Bridge = {
+    confirm: (message) => ipcRenderer.invoke("ce:confirm", message),
+    chooseProject: () => ipcRenderer.invoke("ce:choose-project"),
+    showProjectFolder: (name) => ipcRenderer.invoke("ce:show-project-folder", name),
     init: () => ipcRenderer.invoke("ce:init"),
     open: (name) => ipcRenderer.invoke("ce:open", name),
     save: (name, game, revision) =>

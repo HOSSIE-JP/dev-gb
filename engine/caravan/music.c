@@ -233,6 +233,11 @@ static const uint8_t kouma_lake_lead[]={A4,E5,A5,B5,A5,E5,CS5,B4,A4,CS5,E5,GS5,F
 static const uint8_t kouma_lake_bass[]={A2,E3,A3,E3,C3,E3,A3,E3,F2,C3,F3,C3,A2,C3,F3,C3,G2,D3,G3,D3,B2,D3,G3,D3,E2,B2,E3,B2,GS2,B2,E3,B2};
 static const uint8_t kouma_cirno_lead[]={A5,E5,A4,E5,B5,A5,FS5,CS5,GS5,E5,B4,E5,CS6,B5,A5,REST,F5,C5,F4,C5,G5,F5,D5,A4,E5,C5,G4,C5,A5,G5,F5,REST,G5,D5,G4,D5,A5,G5,E5,B4,FS5,D5,A4,D5,B5,A5,G5,REST,E5,B4,E4,B4,FS5,E5,CS5,GS4,DS5,B4,FS4,B4,GS5,FS5,E5,REST,A4,E5,B5,B5,FS5,CS5,GS5,FS5,B4,E5,CS6,CS6,A5,REST,A5,E5,F4,C5,G5,G5,D5,A4,E5,D5,G4,C5,A5,A5,F5,REST,F5,C5,G4,D5,A5,A5,E5,B4,FS5,E5,A4,D5,B5,B5,G5,REST,G5,D5,E4,B4,FS5,F5,CS5,GS4,DS5,C5,FS4,B4,GS5,G5,E5,REST,E5,B4,B6,A5,FS5,CS5,GS6,E5,B4,E5,CS6,B5,A5,REST,A6,E5,A4,E5,G6,F5,D5,A4,E6,C5,G4,C5,A6,G5,F5,REST,F6,C5,F4,C5,A6,G5,E5,B4,FS6,D5,A4,D5,B6,A5,G5,REST,G6,D5,G4,D5,FS6,E5,CS5,GS4,DS6,B4,FS4,B4,GS6,FS5,E5,REST,E6,B4,E4,B4};
 static const uint8_t kouma_cirno_bass[]={A2,E3,A3,E3,C3,E3,A3,E3,F2,C3,F3,C3,A2,C3,F3,C3,G2,D3,G3,D3,B2,D3,G3,D3,E2,B2,E3,B2,GS2,B2,E3,B2};
+/* Original Rumia cues, 2026-09. Four harmonic sections, two lead variations. */
+static const uint8_t kouma_forest_lead[]={D4,H,A4,F4,E4,H,D4,REST,F4,A4,C5,H,A4,F4,E4,H,AS3,H,F4,D4,C4,H,AS3,REST,D4,F4,A4,H,F4,E4,D4,H,C4,H,G4,E4,D4,H,C4,REST,E4,G4,AS4,H,G4,E4,F4,H,A3,H,E4,CS4,D4,H,E4,REST,A4,G4,E4,CS4,D4,H,H,REST,F5,E5,D5,H,A4,H,F4,A4,C5,AS4,A4,H,G4,E4,D4,H,D5,C5,AS4,H,F4,H,D4,F4,A4,G4,F4,H,E4,D4,C4,H,E5,D5,C5,H,G4,H,E4,G4,AS4,A4,G4,E4,F4,G4,A4,H,CS5,H,A4,G4,E4,H,CS4,E4,D4,A4,F4,E4,D4,H,H,REST};
+static const uint8_t kouma_forest_bass[]={D2,A2,D3,A2,F2,A2,D3,A2,AS2,F3,AS3,F3,D3,F3,AS3,F3,C3,G3,C4,G3,E3,G3,C4,G3,A2,E3,A3,E3,CS3,E3,A3,E3};
+static const uint8_t kouma_rumia_lead[]={C5,G4,REST,DS5,D5,G4,C5,REST,G5,F5,DS5,D5,C5,G4,AS4,H,GS4,DS4,REST,C5,AS4,DS4,GS4,REST,DS5,D5,C5,AS4,GS4,DS4,G4,H,AS4,F4,REST,D5,C5,F4,AS4,REST,F5,DS5,D5,C5,AS4,F4,A4,H,G4,D4,REST,B4,A4,D4,G4,REST,D5,C5,B4,A4,G4,B4,D5,REST,G5,C5,DS5,REST,G5,F5,DS5,D5,C5,DS5,G5,AS5,G5,F5,DS5,H,DS5,GS4,C5,REST,DS5,D5,C5,AS4,GS4,C5,DS5,G5,DS5,D5,C5,H,F5,AS4,D5,REST,F5,DS5,D5,C5,AS4,D5,F5,GS5,F5,DS5,D5,H,D5,G4,B4,REST,D5,C5,B4,A4,G4,B4,D5,F5,DS5,D5,C5,REST};
+static const uint8_t kouma_rumia_bass[]={C2,G2,C3,G2,DS2,G2,C3,G2,GS2,DS3,GS3,DS3,C3,DS3,GS3,DS3,AS2,F3,AS3,F3,D3,F3,AS3,F3,G2,D3,G3,D3,B2,D3,G3,D3};
 static const CE_Song songs[]={
     {64,15,0x80,0x72,1,title_lead,title_bass},
     {128,10,0x80,0x72,1,orbit_lead,orbit_bass},
@@ -264,7 +269,9 @@ static const CE_Song songs[]={
     {16,13,0x80,0x82,0,kouma_over_lead,kouma_over_bass},
     {32,5,0x80,0x82,0,kouma_victory_lead,kouma_victory_bass},
 {192,8,0x80,0x82,1,kouma_lake_lead,kouma_lake_bass},
-{192,6,0x40,0x72,1,kouma_cirno_lead,kouma_cirno_bass}
+{192,6,0x40,0x72,1,kouma_cirno_lead,kouma_cirno_bass},
+{128,10,0x80,0x72,1,kouma_forest_lead,kouma_forest_bass},
+{128,7,0x40,0x82,1,kouma_rumia_lead,kouma_rumia_bass}
 };
 
 uint8_t ce_music_track;

@@ -10,6 +10,7 @@ import {
     type Screen,
     type Diagnostic,
     validate,
+    spriteLayout,
     q4,
 } from "../shared/model";
 import { angleStep, shotAngles, SIN, COS } from "../shared/simulation";
@@ -265,11 +266,12 @@ export function generate(
         };
     const patternId = (id: string) =>
         id ? game.patterns.findIndex((p) => p.id === id) : 255;
-    let spriteTiles = 0;
-    const spriteData: number[] = [],
+    const layout = spriteLayout(game);
+    const spriteTiles = layout.tiles;
+    const spriteData: number[] = Array(spriteTiles * 16).fill(0), bossGraphics: string[] = [],
         assetRows: string[] = [];
     spriteAssets.forEach((a, i) => {
-        const first = 128 + spriteTiles,
+        const first = 128 + layout.offsets.get(a.id)!,
             tileCount = (a.width * a.height) / 64;
         config.push(
             `static const uint8_t asset_${i}_durations[] = {${a.frames.map((f) => f.duration)}};`,
@@ -286,16 +288,16 @@ export function generate(
         assetRows.push(
             `{${[a.width, a.height, a.origin.x, a.origin.y, a.palette, first, tileCount, a.frames.length, duration, animationShift]},asset_${i}_durations,${emitters.length},asset_${i}_emitters}`,
         );
-        for (const f of a.frames) {
-            spriteData.push(...converted.get(f.image)!);
-            spriteTiles += tileCount;
-        }
+        const data = a.frames.flatMap(f => converted.get(f.image)!);
+        if (layout.overlay.has(a.id)) bossGraphics.push(blob(data));
+        else { spriteData.splice((first - 128) * 16, data.length, ...data); bossGraphics.push("{0,0,0}"); }
     });
     config.push(
         `const CE_Asset ce_assets[] = {${assetRows}};`,
         `const CE_Hitbox ce_hitboxes[]={${spriteAssets.map((a) => `{${a.hitbox.x - a.origin.x},${a.hitbox.y - a.origin.y},${a.hitbox.w},${a.hitbox.h}}`)}};`,
         `const uint8_t ce_asset_count=${spriteAssets.length}, ce_sprite_tiles=${spriteTiles};`,
         `const CE_Data ce_sprite_data=${blob(spriteData)};`,
+        `const CE_Data ce_boss_graphics[]={${bossGraphics}};`,
     );
     const speeds = [...new Set(game.patterns.map(p => q4(p.speed)))];
     for (const speed of speeds) config.push(`static const int16_t velocity_${speed}[]={${SIN.flatMap((s, i) => [Math.trunc(s * speed / 16), Math.trunc(-COS[i] * speed / 16)])}};`);
@@ -344,17 +346,19 @@ export function generate(
         );
         return `${items.length},${name}`;
     };
+    const intros = game.bosses.flatMap(b => b.phases.filter(p => p.intro?.enabled));
+    const introFirst = 5 + game.stages.reduce((n,stage) => { const p = stage.presentation; return n + (p?.enabled ? p.dialogue.length : 0) + (p?.clearEnabled ? 1 : 0); }, 0) + (game.ending?.slides.length ?? 0);
     const enemies = game.enemies.map(
         (a) =>
-            `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},0,0,${attackList(a.attacks)}}`,
+            `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},0,0,${attackList(a.attacks)},0,0}`,
     );
     const bosses = game.bosses.map((a, i) => {
         const phases = a.phases.map(
             (p) =>
-                `{${p.until === "hp" ? 1 : 0},${p.threshold},${patternId(p.pattern)},${motion(p.motion)},${attackList(p.attacks)}}`,
+                `{${p.until === "hp" ? 1 : 0},${p.threshold},${patternId(p.pattern)},${motion(p.motion)},${attackList(p.attacks)},${p.intro?.enabled ? introFirst + intros.indexOf(p) : 255},${p.intro?.enabled ? p.intro.seconds * 60 : 0}}`,
         );
         config.push(`static const CE_Phase boss_${i}_phases[]={${phases}};`);
-        return `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},${phases.length},boss_${i}_phases,${attackList(a.attacks)}}`;
+        return `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},${phases.length},boss_${i}_phases,${attackList(a.attacks)},${["stage", "blank", "bg-bullets"].indexOf(a.battle?.background ?? "stage")},${a.battle?.maxBullets ?? 128}}`;
     });
     config.push(
         `const CE_Actor ce_enemies[]={${enemies}};`,
@@ -481,7 +485,7 @@ export function generate(
             {id: "total", text: "ごうけい     ", x: 1, y: 15, palette: 0, binding: "score"},
             {id: "next", text: "A:つぎへ", x: 10, y: 17, palette: 0, binding: "none"}
         ]}, screenRows.length, p.rightPalette);
-        presentationRows.push(`{${first},${p?.enabled ? p.dialogue.length : 0},${p?.clearEnabled ? clear : 255},${p?.baseBonus ?? game.clearBonus},${p?.lifeBonus ?? 0},${p?.noMissBonus ?? 0}}`);
+        presentationRows.push(`{${first},${p?.enabled ? p.dialogue.length : 0},${p?.clearEnabled ? clear : 255},${p?.baseBonus ?? game.clearBonus},${p?.lifeBonus ?? 0},${p?.noMissBonus ?? 0},${(p?.clearWaitSeconds ?? 2) * 60}}`);
         const par = stage.parallax;
         if (par?.enabled) {
             const asset = game.assets.find(a => a.id === stage.tileset)!;
@@ -503,6 +507,14 @@ export function generate(
     const endingFirst = screenRows.length;
     for (const slide of game.ending?.slides ?? []) compileScreen({id: "clear", name: "Ending", background: slide.background, palette: 0, dock: "top", items: []}, screenRows.length);
     config.push(`const uint8_t ce_ending_first=${endingFirst},ce_ending_count=${game.ending?.slides.length ?? 0};`, `const uint16_t ce_ending_frames=${(game.ending?.seconds ?? 6) * 60};`);
+    if (screenRows.length !== introFirst) throw new Error("Cut-in screen index mismatch");
+    for (const phase of intros) {
+        const intro = phase.intro!, name = [...intro.spellName.normalize("NFC")];
+        compileScreen({id: "clear", name: phase.name, background: intro.background, palette: 0, dock: "top", items: [
+            {id: "spell-1", text: name.slice(0,18).join(""), x: 1, y: 14, palette: 0, binding: "none"},
+            {id: "spell-2", text: name.slice(18).join(""), x: 1, y: 16, palette: 0, binding: "none"},
+        ]}, screenRows.length);
+    }
     if (screenRows.length > 255) throw new Error("会話を含む画面は255枚までです");
     sceneConfig.push(`const CE_Screen ce_screens[]={${screenRows}};`,
         `const CE_Presentation ce_presentations[]={${presentationRows}};`,
@@ -681,7 +693,7 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "mainloop.c", "flow.c", "render.c", "music.c", "save.c"]
+        const inputs = ["runtime.c", "mainloop.c", "flow.c", "bg-bullets.c", "render.c", "music.c", "save.c"]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import type { BuildResult, Diagnostic, Game } from "../shared/model";
+import { spriteLayout } from "../shared/model";
 
 export const categories = [
     ["project", "プロジェクト", "◈"],
@@ -68,9 +69,7 @@ export function LibraryPanel({
     canDuplicate: boolean;
 }) {
     const query = search.trim().toLowerCase();
-    const spriteTiles = game.assets
-        .filter((a) => a.kind === "sprite")
-        .reduce((n, a) => n + ((a.width * a.height) / 64) * a.frames.length, 0);
+    const spriteTiles = spriteLayout(game).tiles;
     const groups = categories
         .map(([kind, label, icon]) => ({
             kind,

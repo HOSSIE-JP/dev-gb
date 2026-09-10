@@ -1,0 +1,35 @@
+{
+  "mode": "built-in image_gen",
+  "images": [
+    {
+      "id": "title",
+      "prompt": "A finished title-screen background for a Game Boy Touhou fan shooting game, 10:9 aspect ratio. Premium hand-pixeled early 1990s Japanese game key art, bold clean pixel clusters, strictly four grayscale values white light gray dark gray black. Reimu Hakurei with large hair ribbon and shrine maiden detached sleeves, waist-up dynamic portrait in the right half, looking toward viewer, holding an ofuda. Gothic Scarlet Devil Mansion silhouette and large moon on left background. In upper left and center prominent meticulously legible pixel lettering on two lines: 'SCARLET' then 'PILGRIMAGE'. Small 'TOUHOU GB' beneath. Balanced dramatic composition, not a screenshot of hardware. Bottom 22 percent is a quiet dark band left empty for in-game start prompt. No borders, no UI, no watermarks. Authored at apparent 160x144 low resolution and enlarged with hard edges. Beautiful bold anime face, restrained detail that survives tiny resolution.",
+      "path": "title.png"
+    },
+    {
+      "id": "stage-1",
+      "prompt": "Use case: stylized-concept. Asset type: vertically scrolling Game Boy shooter background. Stage 1: Scarlet Devil Mansion flower gate. Dark cobblestone garden walkway leading vertically through wrought iron gate posts, rose bushes and ornamental stone walls confined to the outer left and right quarters. Gate pillars and flowering hedges, gothic moonlit garden atmosphere. Single complete background image, 5:8 portrait ratio, orthographic overhead top-down view. Beautiful cohesive 1990s Japanese pixel art, strictly four grayscale values black, dark gray, light gray, white. Mostly black and dark gray. Bold simple tile-friendly shapes, repeated architectural motifs. Center 55 percent across full height is nearly solid dark gray, calm clear space so bright small enemy bullets remain very readable. Details and light accents concentrated near edges. Consistent width and scale top to bottom, no horizon, no vanishing point. Seamlessly repeatable at top and bottom, similar edge rows. Apparent 160x256 resolution enlarged with crisp pixel edges. No characters, enemies, bullets, lettering, logos, border, HUD, or game console.",
+      "path": "stage-1.png"
+    },
+    {
+      "id": "stage-2",
+      "prompt": "Use case: stylized-concept. Asset type: vertically scrolling Game Boy shooter background. Stage 2: underground great magic library. Rows of antique bookcases and large books along the outer left and right quarters, gothic carved wooden shelves, subtle arcane architecture, dim mysterious library atmosphere. Broad empty dark library aisle in center. Single complete background image, 5:8 portrait ratio, orthographic overhead top-down view. Beautiful cohesive 1990s Japanese pixel art, strictly four grayscale values black, dark gray, light gray, white. Mostly black and dark gray. Bold simple tile-friendly shapes, repeated architectural motifs. Center 55 percent across full height is nearly solid dark gray, calm clear space so bright small enemy bullets remain very readable. Details and light accents concentrated near edges. Consistent width and scale top to bottom, no horizon, no vanishing point. Seamlessly repeatable at top and bottom, similar edge rows. Apparent 160x256 resolution enlarged with crisp pixel edges. No characters, enemies, bullets, lettering, logos, border, HUD, or game console.",
+      "path": "stage-2.png"
+    },
+    {
+      "id": "stage-3",
+      "prompt": "Use case: stylized-concept. Asset type: vertically scrolling Game Boy shooter background. Stage 3: lunar clock corridor. Gothic mansion hallway, clockwork gears and large clock faces mounted along the outer left and right quarters, elegant arched windows and pillars, dark polished floor down the center. Timekeeper atmosphere. Single complete background image, 5:8 portrait ratio, orthographic overhead top-down view. Beautiful cohesive 1990s Japanese pixel art, strictly four grayscale values black, dark gray, light gray, white. Mostly black and dark gray. Bold simple tile-friendly shapes, repeated architectural motifs. Center 55 percent across full height is nearly solid dark gray, calm clear space so bright small enemy bullets remain very readable. Details and light accents concentrated near edges. Consistent width and scale top to bottom, no horizon, no vanishing point. Seamlessly repeatable at top and bottom, similar edge rows. Apparent 160x256 resolution enlarged with crisp pixel edges. No characters, enemies, bullets, lettering, logos, border, HUD, or game console.",
+      "path": "stage-3.png"
+    },
+    {
+      "id": "stage-4",
+      "prompt": "Use case: stylized-concept. Asset type: vertically scrolling Game Boy shooter background. Stage 4: crimson moon rooftop. Overhead gothic mansion rooftops and balustrades confined to left and right outer quarters, small spires and bats carved in stone, dark cloud-filled sky through the broad center, lunar vampire castle atmosphere. Keep central dark clouds very sparse and subdued. Single complete background image, 5:8 portrait ratio, orthographic overhead top-down view. Beautiful cohesive 1990s Japanese pixel art, strictly four grayscale values black, dark gray, light gray, white. Mostly black and dark gray. Bold simple tile-friendly shapes, repeated architectural motifs. Center 55 percent across full height is nearly solid dark gray, calm clear space so bright small enemy bullets remain very readable. Details and light accents concentrated near edges. Consistent width and scale top to bottom, no horizon, no vanishing point. Seamlessly repeatable at top and bottom, similar edge rows. Apparent 160x256 resolution enlarged with crisp pixel edges. No characters, enemies, bullets, lettering, logos, border, HUD, or game console.",
+      "path": "stage-4.png"
+    },
+    {
+      "id": "stage-5",
+      "prompt": "Use case: stylized-concept. Asset type: vertically scrolling Game Boy shooter background. Stage 5: sealed vampire basement. Ancient stone walls and crystal candle sconces confined to left and right outer quarters, broken magic seals and chains, ominous gothic basement. Broad empty dark floor in center. Occasional angular crystal shapes at the edges recall Flandre's wings. Single complete background image, 5:8 portrait ratio, orthographic overhead top-down view. Beautiful cohesive 1990s Japanese pixel art, strictly four grayscale values black, dark gray, light gray, white. Mostly black and dark gray. Bold simple tile-friendly shapes, repeated architectural motifs. Center 55 percent across full height is nearly solid dark gray, calm clear space so bright small enemy bullets remain very readable. Details and light accents concentrated near edges. Consistent width and scale top to bottom, no horizon, no vanishing point. Seamlessly repeatable at top and bottom, similar edge rows. Apparent 160x256 resolution enlarged with crisp pixel edges. No characters, enemies, bullets, lettering, logos, border, HUD, or game console.",
+      "path": "stage-5.png"
+    }
+  ]
+}

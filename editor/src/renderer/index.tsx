@@ -226,7 +226,7 @@ function App() {
     useEffect(() => {
         window.caravan
             .init()
-            .then((data) => {
+            .then(async (data) => {
                 setProjects(data.projects);
                 setName(data.name);
                 setGlyphs(data.glyphs);
@@ -234,7 +234,7 @@ function App() {
                 if (data.warnings?.length) setError(data.warnings.join("\n"));
                 if (
                     data.recovery &&
-                    confirm(
+                    await window.caravan.confirm(
                         "自動復旧コピーがあります。未保存の編集を復元しますか？",
                     )
                 ) {
@@ -574,7 +574,7 @@ function App() {
     };
     const activeEvent = stage?.events.find((e) => e.id === eventId),
         activeText = screen?.items.find((t: any) => t.id === textId);
-    const openProject = async (next: string) => {
+    const openProject = async (next?: string) => {
         if (
             buildBusy.current ||
             saveBusy.current ||
@@ -582,16 +582,17 @@ function App() {
             next === name
         )
             return;
-        if (
-            dirty &&
-            !confirm(
-                "未保存の変更があります。復旧コピーを残して作品を切り替えますか？",
-            )
-        )
-            return;
         openBusy.current = true;
         setOpening(true);
         try {
+            if (!next) {
+                const selected = await window.caravan.chooseProject();
+                if (!selected) return;
+                setProjects(selected.projects);
+                next = selected.name;
+                if (next === name) return;
+            }
+            if (dirty && !await window.caravan.confirm("未保存の変更があります。復旧コピーを残して作品を切り替えますか？")) return;
             if (dirty) await window.caravan.recover(name, game);
             const data = await window.caravan.open(next);
             setName(next);
@@ -599,7 +600,7 @@ function App() {
             if (data.warnings?.length) setError(data.warnings.join("\n"));
             if (
                 data.recovery &&
-                confirm("この作品の復旧コピーを読み込みますか？")
+                await window.caravan.confirm("この作品の復旧コピーを読み込みますか？")
             ) {
                 setGame(data.recovery);
                 gameRef.current = data.recovery;
@@ -763,6 +764,7 @@ function App() {
                     </div>
                 </div>
                 <div className="project-picker">
+                    <button disabled={busy} onClick={() => openProject()}>プロジェクトを開く</button>
                     <select
                         aria-label="作品"
                         value={name}
@@ -775,6 +777,16 @@ function App() {
                             </option>
                         ))}
                     </select>
+                    <button
+                        disabled={opening}
+                        title="現在のプロジェクトフォルダをエクスプローラーで開く"
+                        aria-label="現在のプロジェクトフォルダをエクスプローラーで開く"
+                        onClick={() => window.caravan.showProjectFolder(name).catch((e) => setError((e as Error).message))}
+                    >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                            <path d="M3 7V5h6l2 2h10v13H3V7Z" /><path d="M3 10h18" />
+                        </svg>
+                    </button>
                     <span className={`status-dot ${dirty ? "unsaved" : ""}`} />
                     <span role="status">
                         {saving
@@ -1093,6 +1105,7 @@ function App() {
                               ) && object ? (
                                 selection.kind === "bosses" ? (
                                     <BossCanvas
+                                        game={game} glyphs={glyphs} dmg={dmg}
                                         boss={object}
                                         onChange={replace}
                                     />

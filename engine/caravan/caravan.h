@@ -32,8 +32,8 @@ typedef struct {
     uint8_t asset, kind, speed, angle, count, rotation, repeats;
     uint16_t interval, delay, lifetime; uint8_t damage; const int8_t *angles; const int16_t *velocity;
 } CE_Pattern;
-typedef struct { uint8_t until; uint16_t threshold; uint8_t pattern; const CE_Motion *motion; uint8_t layers; const uint8_t *layer; } CE_Phase;
-typedef struct { uint8_t asset, hp; uint16_t score; uint8_t pattern; const CE_Motion *motion; uint8_t phases; const CE_Phase *phase; uint8_t layers; const uint8_t *layer; } CE_Actor;
+typedef struct { uint8_t until; uint16_t threshold; uint8_t pattern; const CE_Motion *motion; uint8_t layers; const uint8_t *layer; uint8_t intro_screen; uint16_t intro_frames; } CE_Phase;
+typedef struct { uint8_t asset, hp; uint16_t score; uint8_t pattern; const CE_Motion *motion; uint8_t phases; const CE_Phase *phase; uint8_t layers; const uint8_t *layer; uint8_t background, bg_limit; } CE_Actor;
 typedef struct { uint16_t frame; uint8_t kind, ref; int16_t x, y; uint8_t value; } CE_Event;
 typedef struct {
     uint16_t height, duration, event_count; uint8_t scroll, loop, clear_boss, has_walls;
@@ -65,7 +65,7 @@ extern const CE_Pattern ce_patterns[];
 extern const CE_Actor ce_enemies[], ce_bosses[];
 extern const CE_Stage ce_stages[];
 /* Screen metadata is bank 1, consumed only by bank-1 render/scene routines. */
-typedef struct { uint8_t first, count, clear; uint16_t base, life, no_miss; } CE_Presentation;
+typedef struct { uint8_t first, count, clear; uint16_t base, life, no_miss, clear_wait; } CE_Presentation;
 typedef struct { uint8_t first, count, phases, divisor; CE_Data frames; } CE_Parallax;
 extern const CE_Screen ce_screens[];
 extern const CE_Presentation ce_presentations[];
@@ -74,7 +74,7 @@ extern uint8_t ce_stage_misses, ce_dialogue_page;
 extern uint16_t ce_bonus_values[4];
 void ce_dialogue(void) BANKED;
 void ce_stage_complete(void) BANKED;
-extern const CE_Data ce_sprite_data;
+extern const CE_Data ce_sprite_data, ce_boss_graphics[];
 extern const palette_color_t ce_palettes[];
 extern const uint8_t ce_dmg_palette;
 extern const uint8_t ce_palette_count, ce_sprite_tiles, ce_campaign, ce_start_stage, ce_hud_bottom, ce_hud_height;
@@ -126,4 +126,27 @@ void ce_audio_sync(void) NONBANKED;
 void ce_hud(void) BANKED;
 void ce_sound(uint8_t effect) NONBANKED;
 void ce_run(void) NONBANKED;
+/* Boss presentation and monochrome BG shot renderer. */
+typedef struct { int16_t x,y,vx,vy; uint16_t life; uint8_t damage; } CE_BGSpawn;
+extern CE_BGSpawn ce_bg_request;
+extern uint8_t ce_battle_mode, ce_battle_asset, ce_bg_limit, ce_bg_count, ce_bg_hit;
+extern uint8_t ce_bg_plane, ce_bg_back, ce_bg_map_front, ce_boss_invulnerable;
+extern uint16_t ce_bg_tile_drops, ce_bg_peak_tiles, ce_intro_left, ce_clear_wait_left;
+void ce_bg_clear(void) BANKED;
+void ce_bg_setup(void) BANKED;
+void ce_bg_begin(void) BANKED;
+void ce_bg_update(void) BANKED;
+void ce_bg_spawn(void) BANKED;
+void ce_bg_flush(void) BANKED;
+void ce_bg_publish(void) BANKED;
+void ce_bg_palette(void) BANKED;
+void ce_bg_hud(uint8_t x, uint8_t y, uint8_t count, const uint8_t *data) BANKED;
+void ce_get_screen(CE_Screen *dest, uint8_t index) BANKED;
+void ce_load_boss(uint8_t asset) BANKED;
+void ce_battle_setup(void) BANKED;
+void ce_clear_combat(uint8_t all) NONBANKED;
+void ce_celebrate_boss(void) BANKED;
+void ce_read_event(void) BANKED;
+uint8_t ce_stage_events(void) BANKED;
+void ce_phase_intro(const CE_Phase *phase) BANKED;
 #endif

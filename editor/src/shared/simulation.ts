@@ -4,6 +4,7 @@ import {
     type Motion,
     type Actor,
     type Boss,
+    type BossPhase,
     type Pattern,
     type Stage,
     assetById,
@@ -148,6 +149,17 @@ export class Simulation {
     playerSequence = 0;
     weaponMode = 0;
     entities: Entity[] = [];
+    bgShots: {x: number; y: number; vx: number; vy: number; life: number; damage: number}[] = [];
+    battleMode = "stage";
+    bgLimit = 128;
+    intro: BossPhase["intro"] | undefined;
+    introLeft = 0;
+    phaseLocked = false;
+    startIntro(phase: BossPhase) {
+        if (!phase.intro?.enabled) return;
+        this.entities = this.entities.filter(e => e.kind !== "pshot" && e.kind !== "eshot");
+        this.bgShots = []; this.intro = phase.intro; this.introLeft = phase.intro.seconds * 60;
+    }
     dropped = 0;
     result = 0;
     bossDefeated = false;
@@ -226,7 +238,8 @@ export class Simulation {
         const actor = (
             kind === "boss" ? this.game.bosses : this.game.enemies
         ).find((a) => a.id === ref);
-        if (!actor) return;
+        if (!actor || (kind === "enemy" && this.battleMode !== "stage") || (kind === "boss" && this.entities.some(e => e.kind === "boss"))) return;
+        if (kind === "boss") { const b = actor as Boss; this.battleMode = b.battle?.background ?? "stage"; this.bgLimit = b.battle?.maxBullets ?? 128; if (this.battleMode !== "stage") {this.entities = []; this.bgShots = []; this.scroll = 0;} this.startIntro(b.phases[0]); }
         this.add({
             kind,
             ref,
@@ -272,6 +285,11 @@ export class Simulation {
                 Math.trunc((targetY - py) / 16),
             )) {
                 const speed = q4(p.speed);
+                if (!friendly && this.battleMode === "bg-bullets") {
+                    if (this.bgShots.length < this.bgLimit) this.bgShots.push({x: px, y: py, vx: Math.trunc(SIN[angle] * speed / 16), vy: Math.trunc(-COS[angle] * speed / 16), life: p.lifetime, damage: p.damage});
+                    else this.dropped++;
+                    continue;
+                }
                 this.add({
                     kind: friendly ? "pshot" : "eshot",
                     ref,
@@ -314,6 +332,7 @@ export class Simulation {
         );
     }
     wall(box: ReturnType<Simulation["box"]>) {
+        if (this.battleMode !== "stage") return false;
         const camera = Math.trunc(this.camera / 16),
             top =
                 this.game.screens.find((s) => s.id === "hud")?.dock === "top"
@@ -351,6 +370,7 @@ export class Simulation {
         }
     }
     finishStage() {
+        this.battleMode = "stage"; this.bgShots = []; this.intro = undefined; this.introLeft = 0; this.phaseLocked = false;
         if (this.game.bossCelebration && this.bossDefeated) this.entities = [];
         this.score = Math.min(65535, this.score + this.game.clearBonus);
         if (
@@ -399,6 +419,7 @@ export class Simulation {
     }
     step(input = this.input) {
         if (this.result) return;
+        if (this.introLeft) { --this.introLeft; if (!this.introLeft) {this.intro = undefined; this.phaseLocked = false;} return; }
         const g = this.game,
             p = g.player,
             a = assetById(g, p.asset),
@@ -446,6 +467,8 @@ export class Simulation {
         }
         if (this.invulnerable) this.invulnerable--;
         }
+        for (const b of this.bgShots) { b.x += b.vx; b.y += b.vy; --b.life; }
+        this.bgShots = this.bgShots.filter(b => b.life > 0);
         this.camera += this.stage.scrollDown ? -this.scroll : this.scroll;
         const mapEnd = this.stage.height * 8 * 16;
         if (this.stage.loopMap) this.camera = (this.camera + mapEnd) % mapEnd;
@@ -466,13 +489,15 @@ export class Simulation {
                             event.y,
                         );
             } else if (this.stageTick === event.frame) {
-                if (event.kind === "scroll") this.scroll = q4(event.value);
+                if (event.kind === "scroll") { if (this.battleMode === "stage") this.scroll = q4(event.value); }
                 else finish = true;
             }
         }
+        if (this.introLeft) return;
         // Stable slot order, like the fixed C entity pool. New shots move next tick.
         const active = [...this.entities];
         for (const e of active) {
+            if (!this.entities.includes(e)) continue;
             if (e.kind === "fx") {
                 e.age++;
                 if (e.age >= e.lifetime)
@@ -507,6 +532,7 @@ export class Simulation {
                         e.sequence = 0;
                         e.baseX = e.x;
                         e.baseY = e.y;
+                        this.startIntro(phases[e.phase]); if (this.introLeft) return;
                     }
                     motion = phases[e.phase].motion;
                     pattern = phases[e.phase].pattern;
@@ -551,7 +577,7 @@ export class Simulation {
         )) {
             const enemy = this.entities.find(
                 (e) =>
-                    (e.kind === "enemy" || e.kind === "boss") &&
+                    (e.kind === "enemy" || e.kind === "boss") && !(e.kind === "boss" && this.phaseLocked) &&
                     this.overlap(
                         this.box(e.asset, e.x, e.y),
                         this.box(shot.asset, shot.x, shot.y),
@@ -559,6 +585,12 @@ export class Simulation {
             );
             if (!enemy) continue;
             this.entities = this.entities.filter((e) => e !== shot);
+            if (enemy.kind === "boss") {
+                const b = g.bosses.find(b => b.id === enemy.ref)!, phase = b.phases[enemy.phase];
+                if (phase.until === "hp" && b.phases[enemy.phase + 1]?.intro?.enabled && enemy.hp - shot.damage <= phase.threshold) {
+                    enemy.hp = phase.threshold; this.phaseLocked = true; continue;
+                }
+            }
             enemy.hp -= shot.damage;
             if (enemy.hp <= 0) {
                 const def = (enemy.kind === "boss" ? g.bosses : g.enemies).find(
@@ -584,6 +616,14 @@ export class Simulation {
                     this.entities = this.entities.filter((a) => a !== e);
             }
         }
+        const pb = this.box(p.asset, this.playerX, this.playerY);
+        this.bgShots = this.bgShots.filter(b => {
+            const x = Math.trunc(b.x / 16) & ~1, y = Math.trunc(b.y / 16) & ~1;
+            if (b.x < 0 || b.y < 0 || x > 158 || y < top || y >= top + 143 - hudHeight(g)) return false;
+            if (!this.respawn && this.overlap(pb, {x, y, w:2, h:2})) {this.hitPlayer(); return false;}
+            return true;
+        });
+        if (this.bossDefeated && !this.stage.clearOnBoss) {this.battleMode = "stage"; this.bgShots = []; this.scroll = q4(this.stage.scrollSpeed);}
         this.tick++;
         this.stageTick = Math.min(65535, this.stageTick + 1);
         if (!this.result && this.stage.requireBoss && !this.bossDefeated && (finish || (this.game.timeLimit !== false && this.stageTick >= this.stage.duration * 60)))
@@ -639,7 +679,7 @@ export function drawSimulation(
         colors = dmg
             ? dmgColors(g)
             : g.palettes[tileset.palette].colors;
-    if (frame)
+    if (frame && sim.battleMode === "stage")
         for (let y = 0; y < 144 - hudHeight(g); y++)
             for (let x = 0; x < 160; x++) {
                 const wy = y + Math.trunc(sim.camera / 16);
@@ -666,6 +706,10 @@ export function drawSimulation(
                     ctx.fillRect(x, y + top, 1, 1);
                 }
             }
+    if (sim.battleMode === "bg-bullets") {
+        ctx.fillStyle = "#000"; ctx.fillRect(0,top,160,144-hudHeight(g)); ctx.fillStyle = "#fff";
+        for (const b of sim.bgShots) { const x = Math.trunc(b.x/16) & ~1, y = Math.trunc(b.y/16) & ~1; ctx.fillRect(x,y,2,2); }
+    }
     const draw = (assetId: string, x: number, y: number, age = sim.tick) => {
         const a = assetById(g, assetId);
         drawAsset(

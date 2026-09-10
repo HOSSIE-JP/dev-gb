@@ -20,6 +20,9 @@ export type ToolchainStatus = {
     hint: string;
 };
 export interface Bridge {
+    confirm(message: string): Promise<boolean>;
+    chooseProject(): Promise<{ name: string; projects: ProjectInfo[] } | null>;
+    showProjectFolder(name: string): Promise<void>;
     init(): Promise<{
         projects: ProjectInfo[];
         name: string;

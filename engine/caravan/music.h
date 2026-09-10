@@ -36,7 +36,9 @@
 #define CE_MUSIC_KOUMA_VICTORY 29u
 #define CE_MUSIC_KOUMA_LAKE 30u
 #define CE_MUSIC_KOUMA_CIRNO 31u
-#define CE_MUSIC_MAX 31u
+#define CE_MUSIC_KOUMA_FOREST 32u
+#define CE_MUSIC_KOUMA_RUMIA 33u
+#define CE_MUSIC_MAX 33u
 
 extern uint8_t ce_music_track;
 void ce_music_play(uint8_t track) BANKED;

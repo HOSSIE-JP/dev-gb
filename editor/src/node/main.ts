@@ -29,6 +29,7 @@ const {
     dialog,
     protocol,
     Menu,
+    shell,
 } = require("electron");
 if (process.platform === "win32") app.setAppUserModelId("HOSSIE-JP.CaravanEditor");
 const root = app.isPackaged ? path.dirname(process.execPath) : path.resolve(__dirname, "../..");
@@ -132,6 +133,36 @@ handle("init", () => {
     return { projects, name, ...data, glyphs };
 });
 handle("open", read);
+handle("confirm", async (message: string) => {
+    if (typeof message !== "string" || message.length > 2000)
+        throw new Error("確認メッセージが不正です");
+    const result = await dialog.showMessageBox(win, {
+        type: "question", message,
+        buttons: ["キャンセル", "続行"], defaultId: 0, cancelId: 0,
+    });
+    return result.response === 1;
+});
+handle("choose-project", async () => {
+    if (building) throw new Error("ビルド中です");
+    const result = await dialog.showOpenDialog(win, {
+        title: "プロジェクトを開く（projects内の作品フォルダ）",
+        defaultPath: safePath(root, "projects"),
+        properties: ["openDirectory"],
+    });
+    if (result.canceled || !result.filePaths[0]) return null;
+    const selected = path.resolve(result.filePaths[0]);
+    const name = path.basename(selected);
+    if (path.relative(projectDir(root, name), selected) !== "")
+        throw new Error("このエディタのprojects内にある作品フォルダを選択してください");
+    readGame(root, name);
+    return { name, projects: listProjects(root) };
+});
+handle("show-project-folder", async (name: string) => {
+    const folder = projectDir(root, name);
+    if (!fs.statSync(folder).isDirectory()) throw new Error("作品フォルダがありません");
+    const error = await shell.openPath(folder);
+    if (error) throw new Error(error);
+});
 handle("save", (name: string, game: Game, expectedRevision?: string) => {
     if (building)
         throw new Error("ビルドの保存処理中です。終了後に保存してください");

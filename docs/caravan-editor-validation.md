@@ -2,6 +2,8 @@
 
 ## テストの実行
 
+`editor` で `npm run test:ui` を実行すると、隔離した作品コピーと実際のElectron renderer/preload/IPCで、作品選択・BGM選択・フォルダ選択のキャンセル・未保存編集の復旧・フォルダアイコンの参照先を検査します。ネイティブダイアログの応答とExplorer起動だけはテスト用に置換します。結果は `.cache/project-ui-result.json`、画面キャプチャと作品コピーはその中の `temp` パスに残します。
+
 標準のWindows環境では、リポジトリのルートで実行します。
 
 ```bat

@@ -1,0 +1,27 @@
+{
+  "version": "0.6-boss-arena-prototype",
+  "updatedAt": "2026-09-11",
+  "status": "playtest-ready",
+  "approved": false,
+  "projectRevision": "e3df1038693e7e2fbd81a88450ffee0646832913fba689d5ef8138c4f2454162",
+  "rom": {
+    "bytes": 524288,
+    "sha256": "ee0fdca4234f69729f6b26c6f702d73d45f0919735bdbb277357349294f60a3d",
+    "path": "build/Release/touhou-kouma.gb"
+  },
+  "checks": {
+    "standardTests": 63,
+    "bgBullets": 128,
+    "editorUi": true,
+    "bgb": true,
+    "musicRuntime": true,
+    "dmgAndCgbCutins": 21
+  },
+  "pending": [
+    "Human full campaign playtest and difficulty tuning",
+    "Human audio listening",
+    "DMG/CGB hardware and native controller",
+    "Emulicious launch times out"
+  ],
+  "evidence": "../../docs/touhou-kouma-boss-arena.md"
+}

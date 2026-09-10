@@ -113,6 +113,12 @@ export function Preview({
                 s.tick,
                 dmg,
             );
+        } else if (s.intro) {
+            const name = [...s.intro.spellName];
+            drawScreen(c,s.game,{id: "clear", name: "Cut-in", background: s.intro.background, palette:0, dock:"top", items:[
+                {id:"spell1",text:name.slice(0,18).join(""),x:1,y:14,palette:0,binding:"none"},
+                {id:"spell2",text:name.slice(18).join(""),x:1,y:16,palette:0,binding:"none"}
+            ]},glyphs,dmg);
         } else {
             drawSimulation(c, s, dmg, hitbox);
             const hud = s.game.screens.find((s) => s.id === "hud")!;

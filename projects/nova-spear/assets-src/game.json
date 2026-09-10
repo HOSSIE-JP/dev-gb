@@ -982,7 +982,8 @@
           }
         ]
       },
-      "pattern": "scout-lock"
+      "pattern": "scout-lock",
+      "attacks": []
     },
     {
       "id": "weaver",
@@ -1010,7 +1011,8 @@
           }
         ]
       },
-      "pattern": "scout-drop"
+      "pattern": "scout-drop",
+      "attacks": []
     },
     {
       "id": "diver",
@@ -1038,7 +1040,8 @@
           }
         ]
       },
-      "pattern": "scout-lock"
+      "pattern": "scout-lock",
+      "attacks": []
     },
     {
       "id": "sweep-left",
@@ -1076,7 +1079,8 @@
           }
         ]
       },
-      "pattern": "interceptor-lock"
+      "pattern": "interceptor-lock",
+      "attacks": []
     },
     {
       "id": "sweep-right",
@@ -1114,7 +1118,8 @@
           }
         ]
       },
-      "pattern": "interceptor-lock"
+      "pattern": "interceptor-lock",
+      "attacks": []
     },
     {
       "id": "gun-tower",
@@ -1142,7 +1147,8 @@
           }
         ]
       },
-      "pattern": "turret-lock"
+      "pattern": "turret-lock",
+      "attacks": []
     },
     {
       "id": "cross-tower",
@@ -1170,7 +1176,8 @@
           }
         ]
       },
-      "pattern": "turret-spread"
+      "pattern": "turret-spread",
+      "attacks": []
     },
     {
       "id": "bulwark",
@@ -1198,7 +1205,8 @@
           }
         ]
       },
-      "pattern": "armor-split"
+      "pattern": "armor-split",
+      "attacks": []
     },
     {
       "id": "beacon",
@@ -1226,7 +1234,8 @@
           }
         ]
       },
-      "pattern": ""
+      "pattern": "",
+      "attacks": []
     },
     {
       "id": "popcorn",
@@ -1254,7 +1263,8 @@
           }
         ]
       },
-      "pattern": ""
+      "pattern": "",
+      "attacks": []
     }
   ],
   "bosses": [
@@ -1311,7 +1321,8 @@
                 "frame": 128
               }
             ]
-          }
+          },
+          "attacks": []
         },
         {
           "id": "trident-open",
@@ -1379,7 +1390,8 @@
             }
           ]
         }
-      ]
+      ],
+      "attacks": []
     },
     {
       "id": "bastion",
@@ -1434,7 +1446,8 @@
                 "frame": 128
               }
             ]
-          }
+          },
+          "attacks": []
         },
         {
           "id": "bastion-battery",
@@ -1461,7 +1474,8 @@
                 "frame": 128
               }
             ]
-          }
+          },
+          "attacks": []
         },
         {
           "id": "bastion-crossfire",
@@ -1529,7 +1543,8 @@
             }
           ]
         }
-      ]
+      ],
+      "attacks": []
     },
     {
       "id": "helix",
@@ -1584,7 +1599,8 @@
                 "frame": 128
               }
             ]
-          }
+          },
+          "attacks": []
         },
         {
           "id": "helix-corona",
@@ -1611,7 +1627,8 @@
                 "frame": 128
               }
             ]
-          }
+          },
+          "attacks": []
         },
         {
           "id": "helix-rotation",
@@ -1679,7 +1696,8 @@
             }
           ]
         }
-      ]
+      ],
+      "attacks": []
     }
   ],
   "stages": [
