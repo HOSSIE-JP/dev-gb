@@ -316,7 +316,11 @@ export function generate(
         `const uint8_t ce_pattern_count=${game.patterns.length};`,
     );
     let motionSerial = 0;
+    const motionCache = new Map<string, string>();
     function motion(m: Motion) {
+        const key = JSON.stringify(m);
+        const cached = motionCache.get(key);
+        if (cached) return cached;
         const name = `motion_${motionSerial++}`;
         const points = m.points.map((p, i) => {
             const next = m.points[i + 1] ?? p,
@@ -327,7 +331,9 @@ export function generate(
             `static const CE_Point ${name}_points[]={${points}};`,
             `static const CE_Motion ${name}={${["straight", "bounce", "wave", "path"].indexOf(m.kind)},${q4(m.vx)},${q4(m.vy)},${m.amplitude},${m.period},${+m.loop},${points.length},${name}_points};`,
         );
-        return `&${name}`;
+        const pointer = `&${name}`;
+        motionCache.set(key, pointer);
+        return pointer;
     }
     let attackSerial = 0;
     const attackList = (items: { pattern: string }[] = []) => {
@@ -356,9 +362,9 @@ export function generate(
         `const uint8_t ce_enemy_count=${enemies.length},ce_boss_count=${bosses.length};`,
     );
     const glyphs = readFont(root),
-        screenRows: string[] = [];
+        screenRows: string[] = [], sceneConfig: string[] = [];
     let hudTileCount = 0;
-    function compileScreen(s: Screen, index: number) {
+    function compileScreen(s: Screen, index: number, rightPalette?: number, sharedChars = "") {
         const width = 20,
             height = s.id === "hud" ? (s.rows ?? 2) : 18,
             tileBytes = Array(16).fill(0),
@@ -380,7 +386,7 @@ export function generate(
                 data = converted.get(a.frames[0].image)!;
             for (let i = 0; i < tileMap.length; i++) {
                 tileMap[i] = addTile(data.slice(i * 16, i * 16 + 16));
-                attrs[i] = a.palette;
+                attrs[i] = rightPalette !== undefined && i % 20 >= 10 ? rightPalette : a.palette;
             }
         }
         const chars: Record<string, number> = {};
@@ -390,6 +396,7 @@ export function generate(
             if (!pixels) throw new Error(`${s.name}: 未対応文字「${char}」`);
             return (chars[char] = addTile(packTiles(8, 8, pixels)));
         };
+        for (const char of sharedChars) charTile(char);
         const bindings: string[] = [];
         for (const item of s.items) {
             const labelLength = item.text.normalize("NFC").length;
@@ -422,12 +429,16 @@ export function generate(
             : Array(10).fill(0);
         if (bindings.length) charTile(" ");
         const count = tileBytes.length / 16;
-        if (count > 128)
+        // Full-screen scenes hide sprites and reload their tiles on stage entry.
+        // They may use both halves of the BG tile area; gameplay/HUD still share
+        // the original 128-tile budget with sprites. 255 fits CE_Screen.tile_count.
+        const tileLimit = s.id === "hud" ? 128 : 255;
+        if (count > tileLimit)
             throw new Error(
-                `${s.name}: 背景と文字が${count}タイルあります（上限128）`,
+                `${s.name}: 背景と文字が${count}タイルあります（上限${tileLimit}）`,
             );
         if (s.id === "hud") hudTileCount = count;
-        config.push(
+        sceneConfig.push(
             `static const uint8_t screen_${index}_digits[]={${digits}};`,
             `static const CE_Binding screen_${index}_bindings[]={${bindings.length ? bindings.join(",") : "{0,0,0,5}"}};`,
         );
@@ -441,13 +452,61 @@ export function generate(
             i,
         ),
     );
-    config.push(`const CE_Screen ce_screens[5]={${screenRows}};`);
+
     const ordered = game.stageOrder.map((id) =>
         game.stages.find((s) => s.id === id)!,
     );
     // Unordered stages remain selectable in caravan mode and by the preview.
     for (const stage of game.stages)
         if (!ordered.includes(stage)) ordered.push(stage);
+    const presentationRows: string[] = [], parallaxRows: string[] = [];
+    for (const stage of ordered) {
+        const p = stage.presentation;
+        const first = screenRows.length;
+        const dialogueChars = p?.enabled ? [...new Set(p.dialogue.map(page => page.speaker + page.line1 + page.line2).join("") + "A:つぎ START:スキップ")].join("") : "";
+        if (p?.enabled) for (const page of p.dialogue) {
+            compileScreen({id: "clear", name: `${stage.name} ${page.speaker}`, background: p.dialogueBackground, palette: 0, dock: "top", items: [
+                {id: "name", text: page.speaker, x: 1, y: 12, palette: 0, binding: "none"},
+                {id: "line1", text: page.line1, x: 1, y: 14, palette: 0, binding: "none"},
+                {id: "line2", text: page.line2, x: 1, y: 15, palette: 0, binding: "none"},
+                {id: "next", text: "A:つぎ START:スキップ", x: 1, y: 17, palette: 0, binding: "none"}
+            ]}, screenRows.length, p.rightPalette, dialogueChars);
+        }
+        const clear = screenRows.length;
+        if (p?.clearEnabled) compileScreen({id: "clear", name: `${stage.name} BONUS`, background: p.clearBackground, palette: 0, dock: "top", items: [
+            {id: "heading", text: "STAGE CLEAR", x: 4, y: 0, palette: 0, binding: "none"},
+            {id: "base", text: "ステージ     ", x: 1, y: 12, palette: 0, binding: "score"},
+            {id: "lives", text: "のこり      ", x: 1, y: 13, palette: 0, binding: "score"},
+            {id: "miss", text: "ノーミス     ", x: 1, y: 14, palette: 0, binding: "score"},
+            {id: "total", text: "ごうけい     ", x: 1, y: 15, palette: 0, binding: "score"},
+            {id: "next", text: "A:つぎへ", x: 10, y: 17, palette: 0, binding: "none"}
+        ]}, screenRows.length, p.rightPalette);
+        presentationRows.push(`{${first},${p?.enabled ? p.dialogue.length : 0},${p?.clearEnabled ? clear : 255},${p?.baseBonus ?? game.clearBonus},${p?.lifeBonus ?? 0},${p?.noMissBonus ?? 0}}`);
+        const par = stage.parallax;
+        if (par?.enabled) {
+            const asset = game.assets.find(a => a.id === stage.tileset)!;
+            const tileData = converted.get(asset.frames[0].image)!;
+            const source = tileData.slice(par.firstTile * 16, (par.firstTile + par.width * par.height) * 16);
+            const phases: number[] = [];
+            for (let shift = 0; shift < par.height * 8; shift++) {
+                for (let tile = 0; tile < par.width * par.height; tile++) {
+                    for (let line = 0; line < 8; line++) {
+                        const y = (Math.floor(tile / par.width) * 8 + line + shift) % (par.height * 8);
+                        const src = (Math.floor(y / 8) * par.width + tile % par.width) * 16 + (y % 8) * 2;
+                        phases.push(source[src], source[src + 1]);
+                    }
+                }
+            }
+            parallaxRows.push(`{${par.firstTile},${par.width * par.height},${par.height * 8},${par.divisor},${blob(phases)}}`);
+        } else parallaxRows.push("{0,0,1,2,{0,0,0}}");
+    }
+    const endingFirst = screenRows.length;
+    for (const slide of game.ending?.slides ?? []) compileScreen({id: "clear", name: "Ending", background: slide.background, palette: 0, dock: "top", items: []}, screenRows.length);
+    config.push(`const uint8_t ce_ending_first=${endingFirst},ce_ending_count=${game.ending?.slides.length ?? 0};`, `const uint16_t ce_ending_frames=${(game.ending?.seconds ?? 6) * 60};`);
+    if (screenRows.length > 255) throw new Error("会話を含む画面は255枚までです");
+    sceneConfig.push(`const CE_Screen ce_screens[]={${screenRows}};`,
+        `const CE_Presentation ce_presentations[]={${presentationRows}};`,
+        `const CE_Parallax ce_parallaxes[]={${parallaxRows}};`);
     const stageRows = ordered.map((s, i) => {
         const tileAsset = game.assets.find((a) => a.id === s.tileset)!,
             tiles = converted.get(tileAsset.frames[0].image)!,
@@ -492,7 +551,7 @@ export function generate(
             throw new Error(`${s.name}: 展開後のイベントは1024個までです`);
         const map = pages(s.tiles, `stage_${i}_map`),
             walls = pages(s.walls, `stage_${i}_walls`);
-        return `{${s.height},${s.duration * 60},${events.length},${q4(s.scrollSpeed)},${+s.loopMap},${+s.clearOnBoss},${+s.walls.some(Boolean)},${blob(tiles)},${tileCount},${tileAsset.palette},${map},${walls},${blob(eventData)},${+(s.requireBoss ?? false)},${s.music ?? 0},${+(s.scrollDown ?? false)}}`;
+        return `{${s.height},${s.duration * 60},${events.length},${q4(s.scrollSpeed)},${+s.loopMap},${+s.clearOnBoss},${+s.walls.some(Boolean)},${blob(tiles)},${tileCount},${tileAsset.palette},${map},${walls},${blob(eventData)},${+(s.requireBoss ?? false)},${s.music ?? 0},${+(s.scrollDown ?? false)},${s.bossMusic ?? 0}}`;
     });
     config.push(
         `const CE_Stage ce_stages[]={${stageRows}};`,
@@ -521,7 +580,8 @@ export function generate(
     config.push(
         `const uint8_t ce_player_asset=${assetId(game.player.asset)},ce_player_weapon=${patternId(game.player.weapon)},ce_player_speed=${q4(game.player.speed)},ce_player_lives=${game.player.lives};`,
         `const uint8_t ce_player_focus_weapon=${game.player.focusWeapon ? patternId(game.player.focusWeapon) : 255},ce_player_focus_speed=${q4(game.player.focusSpeed ?? game.player.speed)};`,
-        `const uint8_t ce_music_title=${game.music?.title ?? 0},ce_music_boss=${game.music?.boss ?? 0},ce_music_clear=${game.music?.clear ?? 0},ce_music_gameover=${game.music?.gameover ?? 0};`,
+        `const uint8_t ce_music_title=${game.music?.title ?? 0},ce_music_boss=${game.music?.boss ?? 0},ce_music_clear=${game.music?.clear ?? 0},ce_music_gameover=${game.music?.gameover ?? 0},ce_music_victory=${game.music?.victory ?? 8};`,
+        `const uint8_t ce_entity_limits[6]={0,${game.performance?.enemies ?? 12},1,${game.performance?.playerShots ?? 6},${game.performance?.enemyShots ?? 32},${game.performance?.effects ?? 4}};`,
     );
     config.push(
         `const uint16_t ce_player_invulnerability=${game.player.invulnerability},ce_clear_bonus=${game.clearBonus},ce_player_respawn_delay=${game.player.respawnDelay ?? 0};`,
@@ -530,6 +590,9 @@ export function generate(
         `const int16_t ce_player_start_x=${q4(game.player.x)},ce_player_start_y=${q4(game.player.y)};`,
         `const uint8_t ce_explosion_asset=${game.effects.explosion ? assetId(game.effects.explosion) : 255},ce_explosion_duration=${game.effects.duration};`,
     );
+    atomicWrite(path.join(target, "caravan_scenes.c"),
+        ['#pragma bank 1', '#include "caravan.h"', ...decls, ...sceneConfig].join("\n") + "\n");
+    sources.push("caravan_scenes.c");
     atomicWrite(
         path.join(target, "caravan_data.c"),
         [config[0], ...decls, ...config.slice(1)].join("\n") + "\n",
@@ -618,7 +681,7 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "mainloop.c", "render.c", "music.c", "save.c"]
+        const inputs = ["runtime.c", "mainloop.c", "flow.c", "render.c", "music.c", "save.c"]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [

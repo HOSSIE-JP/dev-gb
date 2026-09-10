@@ -80,6 +80,18 @@ export type StageEvent = {
     interval: number;
     value: number;
 };
+export type Presentation = {
+    enabled: boolean;
+    dialogueBackground: string;
+    clearBackground: string;
+    rightPalette: number;
+    dialogue: { id: string; speaker: string; line1: string; line2: string }[];
+    clearEnabled: boolean;
+    baseBonus: number;
+    lifeBonus: number;
+    noMissBonus: number;
+};
+export type Parallax = { enabled: boolean; firstTile: number; width: number; height: number; divisor: number };
 export type Stage = {
     id: string;
     name: string;
@@ -95,6 +107,10 @@ export type Stage = {
     requireBoss?: boolean;
     scrollDown?: boolean;
     music?: number;
+    /** Zero or omitted: use game.music.boss. */
+    bossMusic?: number;
+    presentation?: Presentation;
+    parallax?: Parallax;
     events: StageEvent[];
 };
 export type TextItem = {
@@ -146,11 +162,14 @@ export type Game = {
         x: number;
         y: number;
     };
+    ending?: { seconds: number; slides: { id: string; background: string }[] };
     clearBonus: number;
     stageFade?: boolean;
     timeLimit?: boolean;
     bossCelebration?: boolean;
-    music?: { title: number; boss: number; clear: number; gameover: number };
+    music?: { title: number; boss: number; clear: number; gameover: number; victory?: number };
+    /** Optional admission caps. OAM 40 and the fixed pool remain hard limits. */
+    performance?: { enemies: number; playerShots: number; enemyShots: number; effects: number };
     effects: { explosion: string; duration: number };
     provenance: { author: string; license: string; source: string };
 };
@@ -337,6 +356,13 @@ export function validateShape(
                 "requireBoss?": "boolean",
                 "scrollDown?": "boolean",
                 "music?": "number",
+                "bossMusic?": "number",
+                "presentation?": {
+                    enabled: "boolean", dialogueBackground: "string", clearBackground: "string", rightPalette: "number",
+                    dialogue: [{id: "string", speaker: "string", line1: "string", line2: "string"}],
+                    clearEnabled: "boolean", baseBonus: "number", lifeBonus: "number", noMissBonus: "number"
+                },
+                "parallax?": {enabled: "boolean", firstTile: "number", width: "number", height: "number", divisor: "number"},
                 events: [
                     {
                         id: "string",
@@ -386,11 +412,13 @@ export function validateShape(
             x: "number",
             y: "number",
         },
+        "ending?": { seconds: "number", slides: [{id: "string", background: "string"}] },
         clearBonus: "number",
         "stageFade?": "boolean",
         "timeLimit?": "boolean",
         "bossCelebration?": "boolean",
-        "music?": { title: "number", boss: "number", clear: "number", gameover: "number" },
+        "music?": { title: "number", boss: "number", clear: "number", gameover: "number", "victory?": "number" },
+        "performance?": { enemies: "number", playerShots: "number", enemyShots: "number", effects: "number" },
         effects: { explosion: "string", duration: "number" },
         provenance: { author: "string", license: "string", source: "string" },
     };
@@ -673,7 +701,20 @@ export function validate(value: unknown): Diagnostic[] {
     patternRef(game.player.weapon, "player");
     if (game.player.focusWeapon) patternRef(game.player.focusWeapon, "player");
     if (game.player.focusSpeed !== undefined) finite(game.player.focusSpeed, 0.0625, 8, "player");
-    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 8, "music");
+    if (game.ending) {
+        integer(game.ending.seconds, 1, 60, "ending");
+        if (game.ending.slides.length > 20) d.push({severity: "error", target: "ending", message: "スライドは20枚までです"});
+        for (const slide of game.ending.slides) if (!game.assets.some(a => a.id === slide.background && a.kind === "screen" && a.width === 160 && a.height === 144)) d.push({severity: "error", target: "ending", message: "160x144の画面画像を指定してください"});
+    }
+    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 31, "music");
+    if (game.bossCelebration && game.music?.victory !== undefined && ![0, 6, 7, 8, 14, 15, 27, 28, 29].includes(game.music.victory))
+        err("music", "撃破ファンファーレはループしない曲または無音を選択してください");
+    if (game.performance) {
+        integer(game.performance.enemies, 1, 12, "performance");
+        integer(game.performance.playerShots, 1, 6, "performance");
+        integer(game.performance.enemyShots, 1, 32, "performance");
+        integer(game.performance.effects, 1, 4, "performance");
+    }
     if (!game.player.weapon) err("player", "自機の武器を選択してください");
     finite(game.player.speed, 0.0625, 8, "player");
     integer(game.player.lives, 1, 9, "player");
@@ -687,8 +728,32 @@ export function validate(value: unknown): Diagnostic[] {
         integer(stage.width, 20, 20, stage.id);
         integer(stage.height, 18, 512, stage.id);
         integer(stage.duration, 1, 600, stage.id);
-        if (stage.music !== undefined) integer(stage.music, 0, 8, stage.id);
+        if (stage.music !== undefined) integer(stage.music, 0, 31, stage.id);
+        if (stage.bossMusic !== undefined) integer(stage.bossMusic, 0, 31, stage.id);
         finite(stage.scrollSpeed, 0, 4, stage.id);
+        const presentation = stage.presentation;
+        if (presentation) {
+            for (const key of ["dialogueBackground", "clearBackground"] as const)
+                if (presentation[key]) assetRef(presentation[key], stage.id, "screen");
+            if (presentation.enabled && !presentation.dialogueBackground) err(stage.id, "会話の背景画像が必要です");
+            if (presentation.clearEnabled && !presentation.clearBackground) err(stage.id, "クリア計算の背景画像が必要です");
+            integer(presentation.rightPalette, 0, game.palettes.length - 1, stage.id);
+            uniqueIds(presentation.dialogue, stage.id);
+            integer(presentation.dialogue.length, presentation.enabled ? 1 : 0, 8, stage.id);
+            for (const page of presentation.dialogue) for (const key of ["speaker", "line1", "line2"] as const) {
+                if (!supportedText(page[key]) || page[key].normalize("NFC").length > 18)
+                    err(stage.id, "会話は対応文字で各行18文字以内です");
+            }
+            for (const value of [presentation.baseBonus, presentation.lifeBonus, presentation.noMissBonus]) integer(value, 0, 6000, stage.id);
+        }
+        if (stage.parallax) {
+            const p = stage.parallax;
+            integer(p.firstTile, 0, 127, stage.id); integer(p.width, 1, 4, stage.id);
+            integer(p.height, 1, 2, stage.id); integer(p.divisor, 2, 8, stage.id);
+            const a = assets.get(stage.tileset);
+            if (p.enabled && a && p.firstTile + p.width * p.height > a.width * a.height / 64)
+                err(stage.id, "視差タイル範囲がタイルセットを超えます");
+        }
         integer(stage.events.length, 0, 256, stage.id);
         const set = assets.get(stage.tileset),
             tileCount = set ? (set.width / 8) * (set.height / 8) : 0;

@@ -7,7 +7,7 @@ typedef char ce_sprite_layout_check[(sizeof(CE_Asset) == 16u && offsetof(CE_Asse
 static uint8_t buffer[128];
 static uint16_t previous_row;
 static uint16_t hud_values[32];
-static uint8_t hud_valid, previous_slots;
+static uint8_t hud_valid, previous_slots, parallax_phase;
 static CE_Entity player_pose;
 static CE_Entity shot_pose;
 static CE_Entity *entity_pose;
@@ -99,9 +99,28 @@ static void map_row(uint16_t row) {
     }
 }
 void ce_load_screen(uint8_t screen) BANKED {
-    DISPLAY_OFF; HIDE_WIN; HIDE_SPRITES; hide_all(); ce_active_screen = screen; ce_fade_level = 0;
-    palettes(); tiles(&ce_screens[screen].tiles, 0, ce_screens[screen].tile_count, 0);
+    ce_trace[22] = 1;
+    /* Keep the LCD enabled: LCD-off is visibly white on DMG. Load behind black. */
+    ce_fade_level = 4; palettes();
+    HIDE_WIN; HIDE_SPRITES; hide_all(); ce_active_screen = screen;
+    tiles(&ce_screens[screen].tiles, 0, ce_screens[screen].tile_count, 0);
     screen_map(screen, 0); move_bkg(0, 0); ce_hud(); SHOW_BKG; DISPLAY_ON;
+    vsync(); ce_fade_level = 0; palettes();
+}
+void ce_dialogue_update(uint8_t screen) BANKED {
+    uint8_t row;
+    /* Compiler shares the complete glyph atlas across this conversation.
+     * Portrait tiles and their map never change; only the six text rows do. */
+    ce_trace[22] = 1; ce_active_screen = screen;
+    for (row = 12; row != 18; ++row) {
+        ce_copy(buffer, &ce_screens[screen].map, (uint16_t)row * 20u, 20u);
+        vsync(); set_bkg_tiles(0, row, 20, 1, buffer);
+        if (ce_is_cgb) {
+            ce_copy(buffer, &ce_screens[screen].attrs, (uint16_t)row * 20u, 20u);
+            VBK_REG = 1; set_bkg_tiles(0, row, 20, 1, buffer); VBK_REG = 0;
+        }
+        ce_audio_sync();
+    }
 }
 void ce_load_stage(void) BANKED {
     uint8_t row; uint16_t start = ce_state.camera >> 7; const CE_Stage *s = &ce_stages[ce_state.stage];
@@ -114,7 +133,7 @@ void ce_load_stage(void) BANKED {
     tiles(&ce_sprite_data, 128, ce_sprite_tiles, 1); SPRITES_8x8;
     for (row = 0; row != 32u; ++row) map_row(start + row);
     screen_map(4, 1); move_win(7, ce_hud_bottom ? 144u - ce_hud_height : 0);
-    previous_row = start; move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
+    parallax_phase = 255u; previous_row = start; move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
     ce_hud(); SHOW_BKG; SHOW_WIN; SHOW_SPRITES; DISPLAY_ON;
 }
 static void number(uint8_t x, uint8_t y, uint16_t value, uint8_t digits) {
@@ -129,7 +148,7 @@ void ce_hud(void) BANKED {
     for (i = 0; i != s->bindings; ++i) {
         b = &s->binding[i]; value = 0;
         if (b->kind == 5u) { for (j = 0; j != 5u; ++j) { number(b->x, b->y + j * 2u, j + 1u, 1); number(b->x + 3u, b->y + j * 2u, ce_scores[j], 5); } continue; }
-        if (b->kind == 1u) value = ce_state.score;
+        if (b->kind == 1u) value = ce_scene == 6u && i < 4u ? ce_bonus_values[i] : ce_state.score;
         if (b->kind == 2u) value = ce_state.lives;
         if (b->kind == 3u && ce_time_limit && ce_state.stage_tick < ce_stages[ce_state.stage].duration) value = (ce_stages[ce_state.stage].duration - ce_state.stage_tick + 59u) / 60u;
         if (b->kind == 4u) value = ce_boss_hp();
@@ -486,6 +505,20 @@ static void sprite(void) __naked {
         jp _ce_actor_sprite_inner
     __endasm;
 }
+/* Tile-space parallax: compensate the main camera with a cyclic texture offset.
+ * At divisor 2 the central motif moves at half the world speed, on DMG and CGB.
+ * Tile bytes are prepared in ROM; only up to 128 bytes change at a phase edge. */
+static void parallax(void) {
+    const CE_Parallax *p = &ce_parallaxes[ce_state.stage];
+    uint16_t camera = ce_state.camera >> 4;
+    uint8_t phase;
+    if (!p->count) return;
+    phase = ((p->divisor == 2u ? camera >> 1 : camera / p->divisor) - camera) & (p->phases - 1u);
+    if (phase == parallax_phase) return;
+    ce_copy(buffer, &p->frames, (uint16_t)phase * p->count * 16u, (uint16_t)p->count * 16u);
+    set_bkg_data(ce_screens[4].tile_count + p->first, p->count, buffer);
+    parallax_phase = phase;
+}
 void ce_render(void) BANKED {
     uint8_t i; uint16_t row = ce_state.camera >> 7;
     if (row + 1u == previous_row || (ce_stages[ce_state.stage].loop && !(ce_stages[ce_state.stage].height & 31u) && previous_row == 0u && row + 1u == ce_stages[ce_state.stage].height)) map_row(row);
@@ -513,4 +546,7 @@ void ce_render(void) BANKED {
      * can overwrite it. Repeated display frames under load are intentional. */
     vsync();
     move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
+    parallax();
 }
+
+void ce_get_presentation(CE_Presentation *dest, uint8_t stage) BANKED { *dest = ce_presentations[stage]; }

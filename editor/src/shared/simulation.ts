@@ -206,10 +206,12 @@ export class Simulation {
         };
     }
     add(entity: Omit<Entity, "slot">) {
+        const caps = this.game.performance;
+        const limits = { ...POOL_LIMITS, enemy: caps?.enemies ?? POOL_LIMITS.enemy, pshot: caps?.playerShots ?? POOL_LIMITS.pshot, eshot: caps?.enemyShots ?? POOL_LIMITS.eshot, fx: caps?.effects ?? POOL_LIMITS.fx };
         if (
             this.entities.length >= ENTITY_LIMIT ||
             this.entities.filter((e) => e.kind === entity.kind).length >=
-                POOL_LIMITS[entity.kind] ||
+                limits[entity.kind] ||
             this.oam + this.slots(entity.asset) > 40
         ) {
             this.dropped++;
