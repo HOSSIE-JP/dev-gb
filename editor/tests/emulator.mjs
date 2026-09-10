@@ -93,11 +93,11 @@ export function settledTrace(gb, address) {
 }
 // SDCC/SM83 CE_Entity layout (25 bytes, no padding). Compare live positions,
 // velocities and phases only while the diagnostic seqlock is stable.
-export function entityState(gb, address, game) {
+export function entityState(gb, address, game, capacity = 39) {
     const { ram } = memory(gb),
         assets = game.assets.filter((a) => a.kind === "sprite"),
         result = [];
-    for (let slot = 0; slot < 31; slot++) {
+    for (let slot = 0; slot < capacity; slot++) {
         const p = address - 0xc000 + slot * 25,
             kind = ram[p];
         if (!kind) continue;
@@ -155,6 +155,8 @@ export function assertPublishedOam(gb, syms, game, mode) {
     };
     const immune=ram.readUInt16LE(state+8),wait=ram.readUInt16LE(syms._ce_respawn-0xc000);
     if(!wait&&(!immune||!(immune&4)))draw(game.player.asset,ram.readInt16LE(state+14),ram.readInt16LE(state+16),ram.readUInt16LE(state));
-    for(const e of entityState(gb,syms._ce_entities,game))draw(e.asset,e.x,e.y,e.age);
+    const capacity=(syms._ce_state-syms._ce_entities)/25;
+    assert.ok(Number.isInteger(capacity)&&capacity>0&&capacity<=39,'linked entity pool layout');
+    for(const e of entityState(gb,syms._ce_entities,game,capacity))draw(e.asset,e.x,e.y,e.age);
     for(;slot<40;slot++)assert.equal(oam[slot*4],0,'unused OAM tail stays hidden');
 }

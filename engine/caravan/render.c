@@ -1,5 +1,8 @@
 #pragma bank 1
 #include "caravan.h"
+#include <stddef.h>
+
+typedef char ce_sprite_layout_check[(sizeof(CE_Asset) == 16u && offsetof(CE_Asset, first_tile) == 5u && offsetof(CE_Asset, frames) == 7u && offsetof(CE_Entity, age) == 6u && offsetof(CE_Entity, x) == 12u) ? 1 : -1];
 
 static uint8_t buffer[128];
 static uint16_t previous_row;
@@ -8,6 +11,12 @@ static uint8_t hud_valid, previous_slots;
 static CE_Entity player_pose;
 static CE_Entity *pose;
 static uint8_t pose_slot;
+/* Indexed by stable entity slot, never by the changing OAM draw slot. */
+static uint8_t animation_slot;
+static uint16_t animation_age[CE_MAX_ENTITIES + 1u];
+static uint8_t animation_asset[CE_MAX_ENTITIES + 1u];
+static uint8_t animation_frame[CE_MAX_ENTITIES + 1u];
+static uint8_t animation_left[CE_MAX_ENTITIES + 1u];
 
 uint8_t ce_fade_level;
 static palette_color_t fade_colors[32];
@@ -51,7 +60,11 @@ static void tiles(const CE_Data *data, uint8_t first, uint8_t count, uint8_t spr
         first += n; count -= n; offset += (uint16_t)n * 16u;
     }
 }
-static void hide_all(void) { uint8_t i; previous_slots = 0; hud_valid = 0; for (i = 0; i != 40u; ++i) hide_sprite(i); }
+static void hide_all(void) {
+    uint8_t i; previous_slots = 0; hud_valid = 0;
+    for (i = 0; i != 40u; ++i) hide_sprite(i);
+    for (i = 0; i != CE_MAX_ENTITIES + 1u; ++i) animation_asset[i] = CE_NONE;
+}
 static void screen_map(uint8_t index, uint8_t window) {
     const CE_Screen *s = &ce_screens[index]; uint8_t row, n, height = window ? ce_hud_height >> 3 : 18u;
     for (row = 0; row != height; ++row) {
@@ -201,31 +214,192 @@ static void emit_oam(void) __naked {
 }
 /* Non-reentrant: no interrupt calls the renderer. Static scratch avoids
  * repeated stack-relative loads in the per-tile inner loop on SM83. */
-static void sprite(void) {
-    static const CE_Asset *a; static uint16_t time;
-    a = &ce_assets[pose->asset];
-    static uint8_t frame;
-    frame = 0;
-    emit_out = &shadow_OAM[pose_slot];
-    if (a->frames > 1u) {
-        if (a->animation_shift != 255u) frame = (pose->age >> a->animation_shift) & (a->frames - 1u);
-        else {
-            time = pose->age % a->duration;
-            while (frame + 1u < a->frames && time >= a->durations[frame]) { time -= a->durations[frame]; ++frame; }
+static const CE_Asset *sprite_asset;
+static uint8_t sprite_tiles;
+/* Only animated assets pay for animation decoding. Keep the general authored
+ * duration semantics, including nonuniform frames, in C. */
+static void sprite_animation(void) {
+    static uint16_t time; static uint8_t frame;
+    if (sprite_asset->animation_shift != 255u) {
+        frame = (pose->age >> sprite_asset->animation_shift) & (sprite_asset->frames - 1u);
+        emit_tile = sprite_asset->first_tile + (sprite_tiles == 1u ? frame : frame * sprite_tiles);
+        return;
+    }
+    if (animation_asset[animation_slot] == pose->asset && animation_age[animation_slot] == pose->age) {
+        frame = animation_frame[animation_slot];
+    } else if (pose->age && animation_asset[animation_slot] == pose->asset && animation_age[animation_slot] + 1u == pose->age) {
+        frame = animation_frame[animation_slot];
+        if (!--animation_left[animation_slot]) {
+            if (++frame == sprite_asset->frames) frame = 0;
+            animation_left[animation_slot] = sprite_asset->durations[frame];
         }
+    } else {
+        /* Cold start, slot reuse, skipped player blink, and 16-bit age wrap.
+         * This keeps arbitrary authored durations exact without division per
+         * bullet per update. Age 0 must restart even after 65535. */
+        frame = 0; time = pose->age % sprite_asset->duration;
+        while (frame + 1u < sprite_asset->frames && time >= sprite_asset->durations[frame]) { time -= sprite_asset->durations[frame]; ++frame; }
+        animation_left[animation_slot] = sprite_asset->durations[frame] - time;
     }
-    emit_tile = a->first_tile + frame * a->tiles;
-    emit_left = pose->x / 16 - a->ox + 8; emit_y = pose->y / 16 - a->oy + 16;
-    emit_prop = ce_is_cgb ? a->palette : 0;
-    if (a->tiles == 1u) {
-        /* Bullets need one OAM entry, without metasprite row/column setup. */
-        emit_out->y = (uint8_t)(emit_left - 1u) < 167u && emit_y >= emit_top && emit_y < emit_bottom ? emit_y : 0;
-        emit_out->x = emit_left; emit_out->tile = emit_tile; emit_out->prop = emit_prop;
-        ++pose_slot; return;
-    }
-    emit_columns = a->width >> 3; emit_rows = a->height >> 3;
-    emit_oam();
-    pose_slot += a->tiles;
+    animation_asset[animation_slot] = pose->asset;
+    animation_age[animation_slot] = pose->age;
+    animation_frame[animation_slot] = frame;
+    emit_tile = sprite_asset->first_tile + (sprite_tiles == 1u ? frame : frame * sprite_tiles);
+}
+/* All poses, especially one-tile bullets, share this bounded SM83 setup.
+ * Preserve caller registers. No ISR enters these static rendering contexts. */
+static void sprite(void) __naked {
+    __asm
+        push bc
+        push de
+        push hl
+        ld a, (_pose)
+        ld l, a
+        ld a, (_pose + 1)
+        ld h, a
+        inc hl
+        inc hl
+        ld l, (hl)
+        ld h, #0
+        add hl, hl
+        add hl, hl
+        add hl, hl
+        add hl, hl
+        ld de, #_ce_assets
+        add hl, de
+        ld a, l
+        ld (_sprite_asset), a
+        ld a, h
+        ld (_sprite_asset + 1), a
+        ld a, (hl+)
+        srl a
+        srl a
+        srl a
+        ld (_emit_columns), a
+        ld a, (hl+)
+        srl a
+        srl a
+        srl a
+        ld (_emit_rows), a
+        ld a, (hl+)
+        ld b, a
+        ld a, #8
+        sub b
+        ld (_emit_left), a
+        ld a, (hl+)
+        ld b, a
+        ld a, #16
+        sub b
+        ld (_emit_y), a
+        ld a, (hl+)
+        ld b, a
+        ld a, (_ce_is_cgb)
+        or a
+        jr nz, 020$
+        ld b, #0
+020$:
+        ld a, b
+        ld (_emit_prop), a
+        ld a, (hl+)
+        ld (_emit_tile), a
+        ld a, (hl+)
+        ld (_sprite_tiles), a
+        ld a, (hl)
+        cp #2
+        call nc, _sprite_animation
+        ld a, (_pose)
+        ld l, a
+        ld a, (_pose + 1)
+        ld h, a
+        ld de, #12
+        add hl, de
+        call 030$
+        ld b, a
+        ld a, (_emit_left)
+        add b
+        ld (_emit_left), a
+        call 030$
+        ld b, a
+        ld a, (_emit_y)
+        add b
+        ld (_emit_y), a
+        ld a, (_pose_slot)
+        add a
+        add a
+        ld l, a
+        ld h, #0
+        ld de, #_shadow_OAM
+        add hl, de
+        ld a, l
+        ld (_emit_out), a
+        ld a, h
+        ld (_emit_out + 1), a
+        ld a, (_sprite_tiles)
+        cp #1
+        jr nz, 025$
+        ld a, (_emit_left)
+        dec a
+        cp #167
+        jr nc, 023$
+        ld a, (_emit_top)
+        ld b, a
+        ld a, (_emit_y)
+        cp b
+        jr c, 023$
+        ld b, a
+        ld a, (_emit_bottom)
+        cp b
+        jr c, 023$
+        jr z, 023$
+        ld a, b
+        jr 024$
+023$:
+        xor a
+024$:
+        ld (hl+), a
+        ld a, (_emit_left)
+        ld (hl+), a
+        ld a, (_emit_tile)
+        ld (hl+), a
+        ld a, (_emit_prop)
+        ld (hl), a
+        jr 026$
+025$:
+        call _emit_oam
+026$:
+        ld a, (_pose_slot)
+        ld b, a
+        ld a, (_sprite_tiles)
+        add b
+        ld (_pose_slot), a
+        pop hl
+        pop de
+        pop bc
+        ret
+030$:
+        ld a, (hl+)
+        ld e, a
+        ld a, (hl+)
+        ld d, a
+        bit 7, d
+        jr z, 031$
+        ld a, e
+        add #15
+        ld e, a
+        ld a, d
+        adc #0
+        ld d, a
+031$:
+        ld a, d
+        swap a
+        and #0xf0
+        ld b, a
+        ld a, e
+        swap a
+        and #0x0f
+        or b
+        ret
+    __endasm;
 }
 void ce_render(void) BANKED {
     uint8_t i; uint16_t row = ce_state.camera >> 7;
@@ -241,9 +415,9 @@ void ce_render(void) BANKED {
     if (!ce_respawn && (!ce_state.invulnerable || !(ce_state.invulnerable & 4u))) {
         player_pose.asset = ce_player_asset; player_pose.x = ce_state.player_x;
         player_pose.y = ce_state.player_y; player_pose.age = ce_state.tick;
-        pose = &player_pose; sprite();
+        animation_slot = 0; pose = &player_pose; sprite();
     }
-    for (i = ce_used, pose = ce_entities; i; --i, ++pose) if (pose->kind) sprite();
+    for (i = ce_used, animation_slot = 1, pose = ce_entities; i; --i, ++pose, ++animation_slot) if (pose->kind) sprite();
     /* Do not DMA a partially written metasprite list. */
     i = pose_slot;
     while (pose_slot < previous_slots) shadow_OAM[pose_slot++].y = 0;

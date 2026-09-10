@@ -304,7 +304,7 @@ test("caravan time limit, campaign transitions, collision, boss defeat, and OAM 
     sim = new lib.Simulation(g);
     for (let i = 0; i < 100; i++)
         sim.spawnActor(g.enemies[0].id, "enemy", 20, 20);
-    assert.equal(sim.entities.length, 8);
-    assert.equal(sim.dropped, 92);
+    assert.equal(sim.entities.length, 12);
+    assert.equal(sim.dropped, 88);
     assert.ok(sim.oam <= 40);
 });

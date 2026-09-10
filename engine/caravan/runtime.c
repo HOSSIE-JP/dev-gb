@@ -1,13 +1,18 @@
 #include "caravan.h"
 #include "music.h"
 #include <string.h>
+#include <stddef.h>
+
+/* The SM83 kernels below consume these byte offsets (GBDK/SDCC, no padding). */
+typedef char ce_entity_layout_check[(sizeof(CE_Entity) == 25u && offsetof(CE_Entity, x) == 12u && offsetof(CE_Entity, vx) == 20u) ? 1 : -1];
+typedef char ce_hitbox_layout_check[(sizeof(CE_Hitbox) == 4u && sizeof(CE_Box) == 8u) ? 1 : -1];
 
 CE_Entity ce_entities[CE_MAX_ENTITIES];
 CE_State ce_state;
 uint8_t ce_is_cgb, ce_scene, ce_pause, ce_active_screen;
 uint8_t ce_used;
 uint8_t ce_pool_counts[6], ce_pool_oam;
-static uint8_t free_slots[4];
+static uint8_t free_slots[CE_FREE_GROUPS];
 uint16_t ce_scores[5], ce_respawn;
 static uint16_t music_time;
 static uint8_t hit_sound_wait;
@@ -19,12 +24,27 @@ static uint16_t next_attack[CE_MAX_ENTITIES * 4u];
 uint8_t ce_victory_frame;
 static uint8_t defeated_asset;
 static int16_t defeated_x, defeated_y;
-static CE_Entity *targets[9];
-static CE_Box *target_boxes[9];
-static uint8_t target_count, target_slots[9];
+static CE_Entity *targets[CE_MAX_ENEMIES + 1u];
+static CE_Box *target_boxes[CE_MAX_ENEMIES + 1u];
+static uint8_t target_count, target_slots[CE_MAX_ENEMIES + 1u];
 static CE_Box boxes[CE_MAX_ENTITIES], player_box;
 static CE_Entity player_collision_pose;
 static CE_Box *box_a, *box_b;
+/* Up to 64 source assets; the compiler emits only sprite assets here.
+ * A bullet/player test needs only its center and these precomputed intervals,
+ * not four freshly constructed 16-bit edges for every moving bullet. */
+static uint8_t player_ranges[64u * 4u];
+static int16_t player_delta_x, player_delta_y;
+static void prepare_player_ranges(void) {
+    uint8_t i; uint8_t *out = player_ranges;
+    const CE_Hitbox *p = &ce_hitboxes[ce_player_asset], *b = ce_hitboxes;
+    for (i = 0; i != ce_asset_count; ++i, ++b) {
+        *out++ = 129 + p->x - b->x - b->w;
+        *out++ = 127 + p->x + p->w - b->x;
+        *out++ = 129 + p->y - b->y - b->h;
+        *out++ = 127 + p->y + p->h - b->y;
+    }
+}
 static void box(CE_Box *b, const CE_Entity *e);
 static void count_frame(void) NONBANKED {
     if (ce_scene == 1u) SHOW_WIN;
@@ -51,7 +71,8 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     if (new_game) { ce_respawn = 0; memset(&ce_state, 0, sizeof(ce_state)); ce_state.lives = ce_player_lives; }
     memset(ce_entities, 0, sizeof(ce_entities));
     ce_used = 0; memset(ce_pool_counts, 0, sizeof(ce_pool_counts));
-    memset(free_slots, 255, sizeof(free_slots)); free_slots[3] = 127;
+    memset(free_slots, 255, sizeof(free_slots));
+    free_slots[CE_FREE_GROUPS - 1u] = (CE_MAX_ENTITIES & 7u) ? (1u << (CE_MAX_ENTITIES & 7u)) - 1u : 255u;
     ce_pool_oam = ce_assets[ce_player_asset].tiles;
     ce_state.stage = stage; ce_state.stage_tick = 0; ce_state.camera = ce_stages[stage].scroll_down ? ce_stages[stage].height * 128u - (144u - ce_hud_height) * 16u : 0;
     ce_state.scroll = ce_stages[stage].scroll; ce_state.boss_defeated = 0;
@@ -59,16 +80,17 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     ce_state.invulnerable = ce_respawn ? 0 : ce_player_invulnerability; event_cursor = 0; read_event();
     ce_state.cooldown = ce_patterns[ce_player_weapon].delay; ce_state.player_sequence = 0;
     ce_state.weapon_mode = 0;
+    prepare_player_ranges();
     ce_music_play(ce_stages[stage].music);
 }
 static uint8_t allocate(uint8_t kind, uint8_t asset) {
-    static const uint8_t limits[6] = {0, 8, 1, 6, 24, 4};
+    static const uint8_t limits[6] = {0, CE_MAX_ENEMIES, 1, 6, CE_MAX_ESHOTS, 4};
     uint8_t group, bit = 1u, slot; CE_Entity *e;
     if (ce_pool_oam + ce_assets[asset].tiles > 40u || ce_pool_counts[kind] >= limits[kind]) {
         ++ce_state.dropped; return CE_NONE;
     }
-    for (group = 0; group != 4u && !free_slots[group]; ++group) {}
-    if (group == 4u) { ++ce_state.dropped; return CE_NONE; }
+    for (group = 0; group != CE_FREE_GROUPS && !free_slots[group]; ++group) {}
+    if (group == CE_FREE_GROUPS) { ++ce_state.dropped; return CE_NONE; }
     slot = group << 3;
     while (!(free_slots[group] & bit)) { bit <<= 1; ++slot; }
     free_slots[group] &= ~bit;
@@ -136,18 +158,284 @@ static void shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t
             angle <<= 1;
             e->vx = p->velocity[angle]; e->vy = p->velocity[angle + 1u];
             e->hp = 1; e->lifetime = p->lifetime; e->damage = p->damage;
-            if (!friendly) box(&boxes[slot], e);
+            /* Enemy shots collide against cached center intervals, including
+             * newly spawned shots that will not move until the next update. */
         }
     }
 }
-static void box(CE_Box *b, const CE_Entity *e) {
-    const CE_Hitbox *a = &ce_hitboxes[e->asset];
-    b->left = e->x / 16 + 128 + a->x; b->top = e->y / 16 + 128 + a->y;
-    b->right = b->left + a->w; b->bottom = b->top + a->h;
+/* Main-loop only. SDCC SM83 call(1): destination DE, entity BC. The signed
+ * divide must round towards zero, including negative fractional coordinates.
+ * x/y offsets are signed bytes: adding 128 first converts them to 0..255.
+ * Keep full 16-bit boxes; 8-bit wrapping would break offscreen collisions. */
+static CE_Box *box_out;
+static uint16_t box_left, box_top;
+static void box(CE_Box *b, const CE_Entity *e) __naked {
+    b; e;
+    __asm
+        push bc
+        push de
+        push hl
+        ld a, e
+        ld (_box_out), a
+        ld a, d
+        ld (_box_out + 1), a
+        ld h, b
+        ld l, c
+        inc hl
+        inc hl
+        ld a, (hl)
+        ld l, a
+        ld h, #0
+        add hl, hl
+        add hl, hl
+        ld de, #_ce_hitboxes
+        add hl, de
+        ld d, h
+        ld e, l
+        ld hl, #12
+        add hl, bc
+        call 010$
+        ld a, c
+        ld (_box_left), a
+        ld a, b
+        ld (_box_left + 1), a
+        call 010$
+        ld a, c
+        ld (_box_top), a
+        ld a, b
+        ld (_box_top + 1), a
+        ld a, (_box_out)
+        ld l, a
+        ld a, (_box_out + 1)
+        ld h, a
+        ld a, (_box_left)
+        ld (hl+), a
+        ld a, (_box_left + 1)
+        ld (hl+), a
+        ld a, c
+        ld (hl+), a
+        ld a, b
+        ld (hl+), a
+        ld a, (de)
+        inc de
+        ld b, a
+        ld a, (_box_left)
+        add b
+        ld (hl+), a
+        ld a, (_box_left + 1)
+        adc #0
+        ld (hl+), a
+        ld a, (de)
+        ld b, a
+        ld a, (_box_top)
+        add b
+        ld (hl+), a
+        ld a, (_box_top + 1)
+        adc #0
+        ld (hl), a
+        pop hl
+        pop de
+        pop bc
+        ret
+010$:
+        ld a, (hl+)
+        ld c, a
+        ld a, (hl+)
+        ld b, a
+        bit 7, b
+        jr z, 011$
+        ld a, c
+        add #15
+        ld c, a
+        ld a, b
+        adc #0
+        ld b, a
+011$:
+        sra b
+        rr c
+        sra b
+        rr c
+        sra b
+        rr c
+        sra b
+        rr c
+        ld a, (de)
+        inc de
+        add #128
+        add c
+        ld c, a
+        ld a, b
+        adc #0
+        ld b, a
+        ret
+    __endasm;
 }
-static uint8_t overlap(void) {
-    return box_a->top < box_b->bottom && box_a->bottom > box_b->top &&
-        box_a->left < box_b->right && box_a->right > box_b->left;
+static uint8_t overlap(void) __naked {
+    __asm
+        push bc
+        push de
+        push hl
+        ld a, (_box_b)
+        ld l, a
+        ld a, (_box_b + 1)
+        ld h, a
+        ld bc, #6
+        add hl, bc
+        ld d, h
+        ld e, l
+        ld a, (_box_a)
+        ld l, a
+        ld a, (_box_a + 1)
+        ld h, a
+        inc hl
+        inc hl
+        call 040$
+        jr nc, 043$
+        ld bc, #4
+        add hl, bc
+        dec de
+        dec de
+        dec de
+        dec de
+        call 041$
+        jr nc, 043$
+        ld bc, #-6
+        add hl, bc
+        inc de
+        inc de
+        call 040$
+        jr nc, 043$
+        ld bc, #4
+        add hl, bc
+        dec de
+        dec de
+        dec de
+        dec de
+        call 041$
+        ld a, #0
+        rla
+        jr 044$
+043$:
+        xor a
+044$:
+        pop hl
+        pop de
+        pop bc
+        ret
+040$:
+        ld a, (de)
+        inc de
+        ld c, a
+        ld a, (de)
+        dec de
+        ld b, a
+        ld a, (hl+)
+        sub c
+        ld a, (hl-)
+        sbc b
+        ret
+041$:
+        ld a, (hl+)
+        ld c, a
+        ld a, (hl-)
+        ld b, a
+        ld a, (de)
+        inc de
+        sub c
+        ld a, (de)
+        dec de
+        sbc b
+        ret
+    __endasm;
+}
+static uint8_t bullet_overlaps(CE_Entity *e) __naked {
+    e;
+    __asm
+        push bc
+        push de
+        push hl
+        ld h, d
+        ld l, e
+        inc hl
+        inc hl
+        ld a, (hl)
+        ld b, d
+        ld c, e
+        ld l, a
+        ld h, #0
+        add hl, hl
+        add hl, hl
+        ld de, #_player_ranges
+        add hl, de
+        ld d, h
+        ld e, l
+        ld hl, #12
+        add hl, bc
+        call 060$
+        ld a, (_player_delta_x)
+        add c
+        ld c, a
+        ld a, (_player_delta_x + 1)
+        adc b
+        or a
+        jr nz, 063$
+        call 062$
+        jr c, 063$
+        call 060$
+        ld a, (_player_delta_y)
+        add c
+        ld c, a
+        ld a, (_player_delta_y + 1)
+        adc b
+        or a
+        jr nz, 063$
+        call 062$
+        ld a, #0
+        rla
+        xor #1
+        jr 064$
+063$:
+        xor a
+064$:
+        pop hl
+        pop de
+        pop bc
+        ret
+060$:
+        ld a, (hl+)
+        ld c, a
+        ld a, (hl+)
+        ld b, a
+        bit 7, b
+        jr z, 061$
+        ld a, c
+        add #15
+        ld c, a
+        ld a, b
+        adc #0
+        ld b, a
+061$:
+        sra b
+        rr c
+        sra b
+        rr c
+        sra b
+        rr c
+        sra b
+        rr c
+        ret
+062$:
+        ld a, (de)
+        inc de
+        ld b, a
+        ld a, c
+        sub b
+        ret c
+        ld a, (de)
+        inc de
+        sub c
+        ret
+    __endasm;
 }
 static uint8_t wall(CE_Box *b) {
     const CE_Stage *s = &ce_stages[ce_state.stage];
@@ -301,26 +589,118 @@ static void step_actor(CE_Entity *e, uint8_t slot) {
             }
             ++e->age; ++e->phase_age;
 }
+/* Linear bullets dominate dense scenes. Update adjacent position/velocity
+ * words directly, then test age and the same inclusive offscreen bounds.
+ * Return A=1 when expired. No change to spawn order or update eligibility. */
+static uint8_t step_bullet(CE_Entity *e) __naked {
+    e;
+    __asm
+        push bc
+        push de
+        push hl
+        ld hl, #20
+        add hl, de
+        ld a, (hl+)
+        ld c, a
+        ld b, (hl)
+        ld hl, #12
+        add hl, de
+        ld a, (hl)
+        add c
+        ld (hl+), a
+        ld a, (hl)
+        adc b
+        ld (hl), a
+        ld hl, #22
+        add hl, de
+        ld a, (hl+)
+        ld c, a
+        ld b, (hl)
+        ld hl, #14
+        add hl, de
+        ld a, (hl)
+        add c
+        ld (hl+), a
+        ld a, (hl)
+        adc b
+        ld (hl), a
+        ld hl, #6
+        add hl, de
+        inc (hl)
+        ld a, (hl+)
+        ld c, a
+        jr nz, 050$
+        inc (hl)
+050$:
+        ld b, (hl)
+        ld hl, #10
+        add hl, de
+        ld a, c
+        sub (hl)
+        inc hl
+        ld a, b
+        sbc (hl)
+        jr nc, 053$
+        inc hl
+        ld a, (hl+)
+        ld c, a
+        ld a, (hl+)
+        add #2
+        cp #14
+        jr c, 051$
+        jr nz, 053$
+        ld a, c
+        or a
+        jr nz, 053$
+051$:
+        ld a, (hl+)
+        ld c, a
+        ld a, (hl)
+        add #2
+        cp #13
+        jr c, 052$
+        jr nz, 053$
+        ld a, c
+        or a
+        jr nz, 053$
+052$:
+        xor a
+        jr 054$
+053$:
+        ld a, #1
+054$:
+        pop hl
+        pop de
+        pop bc
+        ret
+    __endasm;
+}
 static void step_entities(void) {
-    uint8_t i, active_count = ce_used;
-    CE_Entity *e; const CE_Stage *stage = &ce_stages[ce_state.stage];
+    /* No ISR enters this loop. Keep pointers out of the SM83 stack, and walk
+     * boxes alongside entities instead of multiplying the slot each time. */
+    static uint8_t i, active_count;
+    static CE_Entity *e; static CE_Box *b; static const CE_Stage *stage;
+    active_count = ce_used; stage = &ce_stages[ce_state.stage];
     for (i = 0, e = ce_entities; i != active_count; ++i, ++e) active[i] = e->kind;
-    for (i = 0, e = ce_entities; i != active_count; ++i, ++e) {
+    for (i = 0, e = ce_entities, b = boxes; i != active_count; ++i, ++e, ++b) {
         if (!active[i]) continue;
         if (e->kind == CE_FX) { ++e->age; if (e->age >= e->lifetime) release(i); }
         else if (e->kind >= CE_PSHOT) {
-            e->x += e->vx; e->y += e->vy; ++e->age;
-            box(&boxes[i], e);
-            if (e->age >= e->lifetime || (stage->has_walls && wall(&boxes[i]))) release(i);
+            if (step_bullet(e)) { release(i); continue; }
+            if (e->kind == CE_PSHOT || stage->has_walls) {
+                box(b, e);
+                if (stage->has_walls && wall(b)) release(i);
+            }
+            continue;
         } else {
             step_actor(e, i);
-            box(&boxes[i], e);
+            box(b, e);
         }
         if ((uint16_t)(e->x + 512) > 3584u || (uint16_t)(e->y + 512) > 3328u) release(i);
     }
 }
 static void collide_shots(void) {
-    uint8_t i, j; CE_Entity *e, *target; const CE_Actor *actor;
+    static uint8_t i, j; static CE_Entity *e, *target; static const CE_Actor *actor;
     if (!ce_pool_counts[CE_PSHOT] || !(ce_pool_counts[CE_ENEMY] | ce_pool_counts[CE_BOSS])) return;
     target_count = 0;
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) if (e->kind == CE_ENEMY || e->kind == CE_BOSS) { targets[target_count] = e; target_slots[target_count] = i; target_boxes[target_count++] = &boxes[i]; }
@@ -342,15 +722,18 @@ static void collide_shots(void) {
     }
 }
 static void collide_player(void) {
-    uint8_t i; CE_Entity *e;
+    static uint8_t i, hit; static CE_Entity *e;
     if (ce_respawn) return;
     player_collision_pose.asset = ce_player_asset; player_collision_pose.x = ce_state.player_x; player_collision_pose.y = ce_state.player_y;
     box(&player_box, &player_collision_pose); box_a = &player_box;
+    player_delta_x = 128 - ce_state.player_x / 16;
+    player_delta_y = 128 - ce_state.player_y / 16;
     if (ce_stages[ce_state.stage].has_walls && wall(box_a)) hit_player();
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) {
         if (!e->kind || e->kind == CE_PSHOT || e->kind == CE_FX) continue;
-        box_b = &boxes[i];
-        if (overlap()) { hit_player(); if (e->kind == CE_ESHOT) release(i); }
+        if (e->kind == CE_ESHOT) hit = bullet_overlaps(e);
+        else { box_b = &boxes[i]; hit = overlap(); }
+        if (hit) { hit_player(); if (e->kind == CE_ESHOT) release(i); }
     }
 }
 static void victory_effects(void) {

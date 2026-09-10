@@ -1,6 +1,6 @@
 # Caravanランタイムの性能と測定
 
-共通エンジンの最適化内容、24発の高負荷比較、再現手順は[STGエンジンの最適化と検証](stg-performance.md)を参照してください。
+最新の共通エンジン、32発の高負荷比較、ROM解析と再現手順は[STG性能調査](stg-performance-investigation.md)を参照してください。このページと[前回の24発版](stg-performance.md)は過去の測定記録です。
 
 ## 更新と描画
 

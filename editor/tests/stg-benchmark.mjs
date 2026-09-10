@@ -1,6 +1,7 @@
 // Disposable fixtures, real ROMs and PPU-frame gaps. No gameplay RAM writes.
-// node editor/tests/stg-benchmark.mjs ROOT OUTPUT [stress|animation|boss-0|boss-1|boss-2]
+// node editor/tests/stg-benchmark.mjs ROOT OUTPUT [stress|animation|enemies|boss-0|boss-1|boss-2]
 // Optional --dense-baseline changes ONLY the copied legacy enemy-shot cap to 24.
+// --cap24 makes a same-load control; --check-budget enforces measured regression ceilings.
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -28,7 +29,14 @@ if(flags.includes('--dense-baseline')) {
     assert.ok(text.includes('{0, 8, 1, 6, 16, 4}'), 'requires legacy 16-shot runtime');
     fs.writeFileSync(file,text.replace('{0, 8, 1, 6, 16, 4}','{0, 8, 1, 6, 24, 4}'));
 }
-const isStress=caseName==='stress'||caseName==='animation';
+if(flags.includes('--cap24')) {
+    const file=path.join(fixture,'engine/caravan/caravan.h');
+    const text=fs.readFileSync(file,'utf8');
+    assert.ok(text.includes('#define CE_MAX_ESHOTS 32u'),'requires 32-shot engine');
+    fs.writeFileSync(file,text.replace('#define CE_MAX_ESHOTS 32u','#define CE_MAX_ESHOTS 24u'));
+    lib.POOL_LIMITS.eshot=24;
+}
+const isStress=['stress','animation','enemies'].includes(caseName);
 const game=lib.readGame(root,isStress?'star-caravan':'nova-spear');
 game.stageFade=false;game.timeLimit=false;game.bossCelebration=false;
 game.player.invulnerability=1024;game.player.lives=9;
@@ -40,6 +48,10 @@ if(isStress) {
     Object.assign(enemy.motion,{kind:'straight',vx:0,vy:0});
     Object.assign(pattern,{kind:'fan',count:8,angle:180,spread:90,speed:.5,interval:64,delay:0,lifetime:384});
     stage.events=[{id:'load',kind:'enemy',ref:enemy.id,frame:0,x:32,y:28,count:3,spacing:48,interval:8,value:0}];
+    if(caseName==='enemies') {
+        enemy.pattern='';
+        stage.events=Array.from({length:12},(_,i)=>({id:`load-${i}`,kind:'enemy',ref:enemy.id,frame:i*8,x:16+(i%6)*24,y:24+Math.floor(i/6)*48,count:1,spacing:0,interval:0,value:0}));
+    }
     if(caseName==='animation') {
         for(const [id,durations] of [[enemy.asset,[8,8]],[pattern.asset,[3,7,11]],[game.player.asset,[128,128]]]) {
             const asset=game.assets.find(a=>a.id===id),original=asset.frames[0];
@@ -71,7 +83,7 @@ const results={case:caseName,romSha256:crypto.createHash('sha256').update(rom).d
 if(flags.includes('--reuse')) assert.equal(results.romSha256,report.romSha256,'reused ROM hash');
 for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
     const gb=boot(rom,mode),gaps=[],cycleGaps=[],phases=new Set(),stateHash=crypto.createHash('sha256');
-    let previous=0,lastFrame=0,cycles=0,lastCycles=0,peakShots=0,peakOam=0,peakScanline=0,checked=0,last;
+    let previous=0,lastFrame=0,cycles=0,lastCycles=0,peakShots=0,peakEnemies=0,peakEntities=0,peakOam=0,peakScanline=0,checked=0,last;
     const sim=new lib.Simulation(game);
     const parity=!flags.includes('--dense-baseline');
     try {
@@ -88,7 +100,7 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
             assert.equal(t.result,0,'fixture must remain in gameplay');
             const frame=gb.ppu_frame();
             if(previous>=120) {assert.equal(t.tick,previous+1,'must observe every measured publication');gaps.push(frame-lastFrame);cycleGaps.push((cycles-lastCycles)/(70224*gb.multiplier()));}
-            const entities=entityState(gb,syms._ce_entities,game);
+            const entities=entityState(gb,syms._ce_entities,game,(syms._ce_state-syms._ce_entities)/25);
             if(!isStress) {
                 const boss=entities.find(e=>e.kind==='boss');
                 assert.ok(boss,'boss must remain alive throughout the fixture');
@@ -106,6 +118,8 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
             for(let i=0;i<40;i++) {const y=oam[i*4]-16;if(y<=-8||y>=144)continue;used++;
                 for(let row=Math.max(0,y);row<Math.min(144,y+8);row++)lines[row]++;}
             peakShots=Math.max(peakShots,entities.filter(e=>e.kind==='eshot').length);
+            peakEnemies=Math.max(peakEnemies,entities.filter(e=>e.kind==='enemy').length);
+            peakEntities=Math.max(peakEntities,entities.length);
             peakOam=Math.max(peakOam,used);peakScanline=Math.max(peakScanline,...lines);
             previous=t.tick;lastFrame=frame;lastCycles=cycles;last=t;
             if(t.tick>=720)break;
@@ -113,10 +127,21 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
         assert.equal(previous,720,'fixture must complete the measurement range');
         assert.equal(gaps.length,600);
         if(!isStress) assert.equal(phases.size,game.bosses[Number(caseName.at(-1))].phases.length,'all authored phases exercised');
-        if(isStress && flags.includes('--expect24'))
+        if(caseName!=='enemies' && isStress && flags.includes('--expect24'))
             assert.equal(peakShots,24,'dense fixture must exercise the 24-shot cap');
-        results.modes.push({mode:mode===GameBoyMode.Dmg?'DMG':'CGB',gaps:stats(gaps),elapsedFrameBudgets:stats(cycleGaps),
-            peakShots,peakOam,peakScanline,phases:[...phases],dropped:last.dropped,checked,parity,stateSha256:stateHash.digest('hex')});
+        if(caseName!=='enemies' && isStress && flags.includes('--expect32'))assert.equal(peakShots,32,'dense fixture must exercise the 32-shot cap');
+        if(caseName==='enemies')assert.equal(peakEnemies,12,'must exercise 12 enemies');
+        const elapsed=stats(cycleGaps);
+        if(flags.includes('--check-budget')) {
+            // Pinned Windows GBDK/Boytacean fixtures, with margin over the measured
+            // means. These are regression gates, not a claim of constant 60 Hz.
+            const budgets={stress:[3.1,2.1],animation:[4.1,2.1],enemies:[2.1,1.05],
+                'boss-0':[1.25,1.05],'boss-1':[1.35,1.05],'boss-2':[1.5,1.05]};
+            const budget=budgets[caseName][mode===GameBoyMode.Dmg?0:1];
+            assert.ok(elapsed.mean<=budget,`${caseName} mean frame budgets ${elapsed.mean} exceeds ${budget}`);
+        }
+        results.modes.push({mode:mode===GameBoyMode.Dmg?'DMG':'CGB',gaps:stats(gaps),elapsedFrameBudgets:elapsed,
+            peakShots,peakEnemies,peakEntities,peakOam,peakScanline,phases:[...phases],dropped:last.dropped,checked,parity,stateSha256:stateHash.digest('hex')});
     }finally{gb.free();}
 }
 fs.writeFileSync(path.join(output,`${caseName}.json`),JSON.stringify(results,null,2)+'\n');

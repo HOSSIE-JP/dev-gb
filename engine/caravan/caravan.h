@@ -4,7 +4,10 @@
 #include <gb/cgb.h>
 #include <stdint.h>
 
-#define CE_MAX_ENTITIES 31u
+#define CE_MAX_ENTITIES 39u
+#define CE_MAX_ENEMIES 12u
+#define CE_MAX_ESHOTS 32u
+#define CE_FREE_GROUPS ((CE_MAX_ENTITIES + 7u) / 8u)
 #define CE_NONE 255u
 #define CE_ENEMY 1u
 #define CE_BOSS 2u

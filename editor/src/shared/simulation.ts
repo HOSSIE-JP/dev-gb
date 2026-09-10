@@ -14,6 +14,9 @@ import {
 } from "./model";
 import { dmgColors } from "./palette";
 
+export const ENTITY_LIMIT = 39;
+export const POOL_LIMITS = { enemy: 12, boss: 1, pshot: 6, eshot: 32, fx: 4 };
+
 // 0 = up, 4 = right, 8 = down. These integer tables are emitted into the ROM.
 export const SIN = [
     0, 6, 11, 15, 16, 15, 11, 6, 0, -6, -11, -15, -16, -15, -11, -6,
@@ -203,11 +206,10 @@ export class Simulation {
         };
     }
     add(entity: Omit<Entity, "slot">) {
-        const limits = { enemy: 8, boss: 1, pshot: 6, eshot: 24, fx: 4 };
         if (
-            this.entities.length >= 31 ||
+            this.entities.length >= ENTITY_LIMIT ||
             this.entities.filter((e) => e.kind === entity.kind).length >=
-                limits[entity.kind] ||
+                POOL_LIMITS[entity.kind] ||
             this.oam + this.slots(entity.asset) > 40
         ) {
             this.dropped++;
