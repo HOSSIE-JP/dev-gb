@@ -9,6 +9,11 @@ const labels: Record<string, string> = {
     seed: "乱数シード",
     startStage: "開始ステージ",
     clearBonus: "クリア加点",
+    ending: "エンディング", slides: "スライド", seconds: "自動送り秒数", presentation: "会話とクリア演出", enabled: "有効", dialogueBackground: "会話の立ち絵背景",
+    clearBackground: "クリアの立ち絵背景", rightPalette: "右側の立ち絵パレット",
+    dialogue: "会話ページ", speaker: "話者（18文字まで）", line1: "セリフ1行目（18文字まで）", line2: "セリフ2行目（18文字まで）",
+    clearEnabled: "クリア計算画面を表示", baseBonus: "ステージ基本点", lifeBonus: "残機1機あたり", noMissBonus: "ノーミス加点",
+    parallax: "視差タイルアニメーション", firstTile: "開始タイル番号", divisor: "奥行き速度の除数（2〜8）",
     asset: "スプライト",
     weapon: "自機の弾幕",
     focusWeapon: "Bボタンの集中ショット",
@@ -159,10 +164,10 @@ export function Form({
         <div className="form">
             {Object.entries(
                 context === "player" ? { focusWeapon: "", focusSpeed: value.speed, respawnDelay: 0, ...value }
-                : context === "stage" ? { requireBoss: false, scrollDown: false, music: 0, ...value }
+                : context === "stage" ? { requireBoss: false, scrollDown: false, music: 0, bossMusic: 0, presentation: { enabled: false, dialogueBackground: "", clearBackground: "", rightPalette: 0, dialogue: [], clearEnabled: false, baseBonus: game.clearBonus, lifeBonus: 200, noMissBonus: 1000 }, parallax: { enabled: false, firstTile: 0, width: 4, height: 2, divisor: 2 }, ...value }
                 : value.id === "hud" ? { rows: 2, ...value }
                 : "binding" in value ? { digits: 5, ...value }
-                : value.schemaVersion === 1 ? { stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
+                : value.schemaVersion === 1 ? { ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )
                 .filter(
@@ -181,6 +186,7 @@ export function Form({
                         ].includes(key) && !omit.includes(key),
                 )
                 .map(([key, v]: [string, any]) => {
+                    if (key === "bossMusic") return <MusicField key={key} label="専用ボスBGM（なし＝共通ボス曲）" value={v} onChange={(n) => edit(key, n)} />;
                     if (key === "music") return typeof v === "number"
                         ? <MusicField key={key} value={v} onChange={(n) => edit(key, n)} />
                         : <SoundtrackFields key={key} value={v} onChange={(n) => edit(key, n)} />;
@@ -195,6 +201,8 @@ export function Form({
                             "pattern",
                             "tileset",
                             "background",
+                            "dialogueBackground",
+                            "clearBackground",
                             "startStage",
                             "ref",
                         ].includes(key)
@@ -213,14 +221,14 @@ export function Form({
                                               a.kind ===
                                               (key === "tileset"
                                                   ? "tileset"
-                                                  : key === "background"
+                                                  : ["background", "dialogueBackground", "clearBackground"].includes(key)
                                                     ? "screen"
                                                     : "sprite"),
                                       );
-                        if (["pattern", "background", "focusWeapon"].includes(key))
+                        if (["pattern", "background", "dialogueBackground", "clearBackground", "focusWeapon"].includes(key))
                             choices = [{ id: "", name: "なし" }, ...choices];
                     }
-                    if (key === "palette")
+                    if (key === "palette" || key === "rightPalette")
                         choices = game.palettes.map((p, i) => ({
                             id: i,
                             name: `${i} · ${p.name}`,
@@ -275,7 +283,7 @@ export function Form({
                                     onChange={(n) =>
                                         edit(
                                             key,
-                                            key === "palette" ? Number(n) : n,
+                                            (key === "palette" || key === "rightPalette") ? Number(n) : n,
                                         )
                                     }
                                 />
@@ -426,6 +434,8 @@ export function Form({
                                     onClick={() => {
                                         const last = v.length
                                             ? clone(v[v.length - 1])
+                                            : key === "slides" ? {id: uid("slide"), background: game.assets.find(a => a.kind === "screen")?.id ?? ""}
+                                            : key === "dialogue" ? { id: uid("page"), speaker: "", line1: "", line2: "" }
                                             : key === "emitters"
                                               ? { x: 0, y: 0 }
                                               : key === "points"

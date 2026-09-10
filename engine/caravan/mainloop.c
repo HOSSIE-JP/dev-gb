@@ -1,4 +1,4 @@
-#pragma bank 1
+#pragma bank 255
 #include "caravan.h"
 #include "music.h"
 #include "mainloop.h"
@@ -10,7 +10,8 @@ static void record_score(void) {
 }
 void ce_mainloop(void) BANKED {
     uint8_t input, pressed, previous = 0;
-    uint16_t now;
+    uint16_t now, ending_timer = 0;
+    uint8_t ending_slide = 0;
     ce_is_cgb = _cpu == CGB_TYPE;
     if (ce_is_cgb) cpu_fast();
     NR52_REG = 0x80; NR50_REG = 0x77; NR51_REG = 0xff;
@@ -34,15 +35,24 @@ void ce_mainloop(void) BANKED {
                 /* Drop overdue work instead of a four-update catch-up spiral.
                  * Under load the game slows gracefully while every update is drawn. */
                 ce_step(input);
-                ce_render();
+                if (!ce_state.result) ce_render();
             }
             if (ce_state.result) {
                 record_score(); ce_scene = ce_state.result == 1u ? 2u : 3u; ce_load_screen(ce_scene - 1u);
+                ending_slide = 0; ending_timer = 0;
+                if (ce_state.result == 2u && ce_ending_count) ce_load_screen(ce_ending_first);
                 ce_music_play(ce_state.result == 1u ? ce_music_gameover : ce_music_clear);
             }
         } else if (ce_scene == 0u) {
             if (pressed & (J_START | J_A)) { ce_fade(1); ce_reset(ce_campaign ? 0u : ce_start_stage, 1); ce_scene = 1; ce_pause = 0; ce_load_stage(); ce_fade(0); }
             else if (pressed & J_SELECT) { ce_scene = 4; ce_load_screen(3); }
+        } else if (ce_scene == 3u && ce_ending_count) {
+            if (ending_timer < ce_ending_frames) ++ending_timer;
+            if ((pressed & J_START) || ((pressed & J_A) && ending_slide + 1u == ce_ending_count)) {
+                ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title);
+            } else if ((pressed & J_A) || (ending_timer == ce_ending_frames && ending_slide + 1u < ce_ending_count)) {
+                ++ending_slide; ending_timer = 0; ce_load_screen(ce_ending_first + ending_slide);
+            }
         } else if (pressed & (J_START | J_A | J_B | J_SELECT)) { ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title); }
         ce_trace_write();
     }

@@ -90,14 +90,16 @@ void ce_count_frame(void) NONBANKED {
 void ce_hud_scanline(void) NONBANKED { if (ce_scene == 1u && !ce_hud_bottom) HIDE_WIN; }
 
 void ce_copy(uint8_t *dest, const CE_Data *source, uint16_t offset, uint16_t length) NONBANKED {
-    uint8_t bank = CURRENT_BANK;
-    SWITCH_ROM(source->bank);
-    memcpy(dest, source->data + offset, length);
+    uint8_t bank = CURRENT_BANK, source_bank = source->bank;
+    const uint8_t *data = source->data;
+    SWITCH_ROM(source_bank);
+    memcpy(dest, data + offset, length);
     SWITCH_ROM(bank);
 }
 uint8_t ce_read(const CE_Data *source, uint16_t offset) NONBANKED {
-    uint8_t value, bank = CURRENT_BANK;
-    SWITCH_ROM(source->bank); value = source->data[offset]; SWITCH_ROM(bank);
+    uint8_t value, bank = CURRENT_BANK, source_bank = source->bank;
+    const uint8_t *data = source->data;
+    SWITCH_ROM(source_bank); value = data[offset]; SWITCH_ROM(bank);
     return value;
 }
 static void read_event(void) {
@@ -114,7 +116,7 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     shot_top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
     shot_bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
     ce_state.stage = stage; ce_state.stage_tick = 0; ce_state.camera = ce_stages[stage].scroll_down ? ce_stages[stage].height * 128u - (144u - ce_hud_height) * 16u : 0;
-    ce_state.scroll = ce_stages[stage].scroll; ce_state.boss_defeated = 0;
+    ce_stage_misses = 0; ce_state.scroll = ce_stages[stage].scroll; ce_state.boss_defeated = 0;
     ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
     ce_state.invulnerable = ce_respawn ? 0 : ce_player_invulnerability; event_cursor = 0; read_event();
     ce_state.cooldown = ce_patterns[ce_player_weapon].delay; ce_state.player_sequence = 0;
@@ -123,9 +125,8 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     ce_music_play(ce_stages[stage].music);
 }
 static uint8_t allocate(uint8_t kind, uint8_t asset) {
-    static const uint8_t limits[6] = {0, CE_MAX_ENEMIES, 1, 6, CE_MAX_ESHOTS, 4};
     uint8_t group, bit = 1u, slot; CE_Entity *e;
-    if (ce_pool_oam + ce_assets[asset].tiles > 40u || ce_pool_counts[kind] >= limits[kind]) {
+    if (ce_pool_oam + ce_assets[asset].tiles > 40u || ce_pool_counts[kind] >= ce_entity_limits[kind]) {
         ++ce_state.dropped; return CE_NONE;
     }
     for (group = 0; group != CE_FREE_GROUPS && !free_slots[group]; ++group) {}
@@ -159,7 +160,10 @@ static void spawn_actor(uint8_t kind, uint8_t ref, int16_t x, int16_t y) {
     e = &ce_entities[slot]; e->ref = ref; e->hp = actor->hp; e->damage = 1;
     e->x = e->base_x = x * 16; e->y = e->base_y = y * 16;
     /* Actors are updated (and boxed) immediately after stage events. */
-    if (kind == CE_BOSS) ce_music_play(ce_music_boss);
+    if (kind == CE_BOSS) {
+        uint8_t track = ce_stages[ce_state.stage].boss_music;
+        ce_music_play(track ? track : ce_music_boss);
+    }
 }
 static uint8_t aim(int16_t dx, int16_t dy) {
     uint8_t i, angle, best = 0;
@@ -413,7 +417,7 @@ static void hit_player(void) {
     uint8_t i;
     if (ce_respawn || ce_state.invulnerable || ce_state.result) return;
     explode(ce_state.player_x, ce_state.player_y);
-    ce_sound(2); --ce_state.lives;
+    ce_sound(2); if (ce_stage_misses != 255u) ++ce_stage_misses; --ce_state.lives;
     if (!ce_state.lives) ce_state.result = 1;
     else {
         ce_respawn = ce_player_respawn_delay;
@@ -438,14 +442,15 @@ static void move_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) {
     }
     if (m->kind == 3u) {
         t = m->points[m->count - 1u].frame;
-        age = m->loop && t ? age % t : (age > t ? t : age);
+        /* 256-update authored paths wrap exactly with the low byte. */
+        age = m->loop && t ? (t == 256u ? (uint8_t)age : age % t) : (age > t ? t : age);
         i = 0; while (i < m->count - 2u && age >= m->points[i + 1u].frame) ++i;
         p = &m->points[i]; t = age - p->frame;
         e->x = e->base_x + p->x + p->vx * t; e->y = e->base_y + p->y + p->vy * t;
         return;
     }
     if (m->kind == 2u) {
-        i = (age % m->period) * 16u / m->period;
+        i = m->period == 128u ? (uint8_t)(age & 127u) >> 3 : (age % m->period) * 16u / m->period;
         e->x = e->base_x + m->vx * age + (int16_t)ce_sin[i] * m->amplitude;
         e->y = e->base_y + m->vy * age; return;
     }
@@ -503,6 +508,7 @@ static uint8_t stage_events(void) {
         else { end -= (144u - ce_hud_height) * 16u; if (ce_state.camera < before || ce_state.camera > end) ce_state.camera = end; }
     }
     while (event_cursor < stage->event_count && next_event.frame <= ce_state.stage_tick) {
+        if (next_event.kind == 2u) ce_dialogue();
         if (next_event.kind <= 2u) spawn_actor(next_event.kind, next_event.ref, next_event.x, next_event.y);
         else if (next_event.kind == 3u) ce_state.scroll = next_event.value;
         else finish = 1;
@@ -708,7 +714,7 @@ static void celebrate_boss(void) {
     ce_used = 0;
     wreck = allocate(CE_BOSS, defeated_asset);
     if (wreck != CE_NONE) { ce_entities[wreck].x = defeated_x; ce_entities[wreck].y = defeated_y; }
-    ce_music_play(CE_MUSIC_VICTORY); ce_hud();
+    ce_music_play(ce_music_victory); ce_hud();
     for (ce_victory_frame = 1; ce_victory_frame <= 144u; ++ce_victory_frame) {
         if ((ce_victory_frame & 7u) == 1u) {
             explode(defeated_x + (int16_t)bursts[burst] * 16, defeated_y + (int16_t)bursts[burst + 1u] * 16);
@@ -723,7 +729,7 @@ static void celebrate_boss(void) {
         victory_effects();
     }
     /* Let the final fanfare cadence resolve before starting the scene fade. */
-    while (ce_music_track == CE_MUSIC_VICTORY) victory_effects();
+    while (ce_music_track && ce_music_track == ce_music_victory) victory_effects();
     for (i = 0; i != ce_used; ++i) release(i);
     ce_used = 0; ce_victory_frame = 0; ce_state.dropped = dropped;
 }
@@ -738,11 +744,9 @@ void ce_step(uint8_t input) NONBANKED {
     if (!ce_state.result && stage->require_boss && !ce_state.boss_defeated && (finish || (ce_time_limit && ce_state.stage_tick >= stage->duration)))
         ce_state.result = 1;
     if (!ce_state.result && (finish || (ce_state.boss_defeated && stage->clear_boss) || (ce_time_limit && ce_state.stage_tick >= stage->duration))) {
-        add_score(ce_clear_bonus);
         if (ce_state.boss_defeated && ce_boss_celebration) celebrate_boss();
         else ce_sound(3);
-        if (ce_campaign && ce_state.stage + 1u < ce_stage_count) { ce_fade(1); ce_reset(ce_state.stage + 1u, 0); ce_load_stage(); ce_fade(0); }
-        else ce_state.result = 2;
+        ce_stage_complete();
     }
 }
 uint8_t ce_boss_hp(void) NONBANKED {

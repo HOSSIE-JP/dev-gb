@@ -43,11 +43,12 @@ export function SoundtrackFields({
                     ["boss", "ボス戦"],
                     ["clear", "クリア"],
                     ["gameover", "ゲームオーバー"],
+                    ["victory", "撃破ファンファーレ（非ループ曲）"],
                 ] as const).map(([key, label]) => (
                     <MusicField
                         key={key}
                         label={label}
-                        value={soundtrack[key]}
+                        value={key === "victory" ? soundtrack[key] ?? 8 : soundtrack[key]}
                         onChange={(track) => onChange({ ...soundtrack, [key]: track })}
                     />
                 ))}
