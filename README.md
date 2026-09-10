@@ -23,10 +23,23 @@ git clone https://github.com/HOSSIE-JP/dev-gb.git
 cd dev-gb
 setup.cmd
 doctor.cmd
+.tools\node\npm.cmd --prefix editor run build
 editor.cmd nova-spear
 ```
 
 エディターの「新規作品」でテンプレートを選び、独立した作品を作成します。画像・敵・弾幕・ボス・ステージ・画面を編集し、**F5**で保存・ビルド・プレイできます。元作品を編集する場合は、先に「作品を複製」しておくと比較しやすくなります。
+
+### エディターをソースから開発する
+
+`bootstrap.cmd` はロック済みのNode.js・Electron・GBDK・美咲フォントを`.tools`へ展開し、`editor/package-lock.json`から依存をインストールして、初回の開発ビルドまで行います。ソースを変更した後は、リポジトリ内のNode.jsを明示して開発ビルドできます。
+
+```bat
+.tools\node\npm.cmd --prefix editor run build
+.tools\node\npm.cmd --prefix editor run typecheck
+editor.cmd star-caravan
+```
+
+`editor.cmd`は開発ビルド済みのCaravan EditorをポータブルElectronで起動します。エディターの回帰検証は`.tools\node\npm.cmd --prefix editor run check`、全作品のクリーンビルド・ROMスモーク検査・エディター検証は`test.cmd`で実行します。BGBは任意ツールのため未導入時は`test.cmd`でもBGBスイートをINFOとして省略します。BGBの検証も行う場合は`setup.cmd`でBGBを選択してから`test.cmd`を再実行してください。
 
 [エディター操作ガイド](docs/caravan-editor.md) / [AIによるゲーム制作](docs/ai-authoring.md) / [セットアップ詳細](docs/toolchain.md)
 

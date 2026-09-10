@@ -79,7 +79,13 @@ try {
     if ($projects -contains 'star-caravan') {
         $editorTests += (Join-Path $root 'editor\tests\rom.test.mjs')
         $editorTests += (Join-Path $root 'editor\tests\integration.test.mjs')
-        $editorTests += (Join-Path $root 'editor\tests\bgb.test.mjs')
+        $bgbExecutable = Join-Path $root '.tools\bgb\bgb64.exe'
+        if (Test-Path -LiteralPath $bgbExecutable -PathType Leaf) {
+            $editorTests += (Join-Path $root 'editor\tests\bgb.test.mjs')
+        }
+        else {
+            Write-Check INFO 'BGB suite skipped: .tools\bgb\bgb64.exe is not installed. Run setup.cmd and select BGB to enable it.'
+        }
     }
     Invoke-CheckedCommand -FilePath $editorNode -ArgumentList $editorTests -WorkingDirectory $root
     Write-Check OK 'All tests passed'
