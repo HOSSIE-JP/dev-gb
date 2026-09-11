@@ -1,4 +1,4 @@
-/* Q12.4 motion and lifetime planes: one register save per traversal. */
+/* Q8.8 motion and lifetime planes: one register save per traversal. */
 static void update_all(void) __naked {
     __asm
         push bc
@@ -43,6 +43,7 @@ static void update_all(void) __naked {
         ld a, (hl)
         adc d
         ld (hl), a
+        ld (_px), a
         ld hl, #_ce_bg_vy
         add hl, bc
         ld a, (hl+)
@@ -56,7 +57,8 @@ static void update_all(void) __naked {
         ld a, (hl)
         adc d
         ld (hl), a
-        call _draw_shot
+        ld (_py), a
+        call _draw_xy
 005$:
         ld hl, #_slot
         inc (hl)

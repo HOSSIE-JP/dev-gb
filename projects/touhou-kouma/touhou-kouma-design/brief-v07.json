@@ -1,0 +1,8 @@
+{
+  "project": "touhou-kouma",
+  "baseRevision": "e3df1038693e7e2fbd81a88450ffee0646832913fba689d5ef8138c4f2454162",
+  "feedback": ["ルーミアが強すぎる", "ルーミアの会話・敗北画像を過去デザインに統一", "チルノを24pxでも識別できるスプライトへ", "カットイン0.75秒と開始効果音", "64発への削減を許容しGBC 60fpsを目指す"],
+  "art": {"composition": "既存の霊夢を左、ルーミアを右。立ち姿と敗北姿を64x88/64x80に変換", "storage": "imagegen-v06に前回分、imagegen-v07に新原稿・採用画像・プロンプトを保存"},
+  "performance": {"target": "GBC 59.7275 logical updates/s", "bgBulletLimit": 64, "preserve": ["DMG互換", "当たり判定と表示の一致", "完成したOAMの転送", "通常ステージの動作"]},
+  "release": {"status": "revision requested", "approved": false}
+}

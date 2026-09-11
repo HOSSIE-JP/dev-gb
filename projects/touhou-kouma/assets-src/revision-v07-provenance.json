@@ -1,0 +1,43 @@
+{
+  "version": "0.7",
+  "date": "2026-09-11",
+  "method": "Built-in image generation with existing design references; deterministic four-shade conversion",
+  "references": [
+    "touhou-kouma-design/imagegen-v03/meiling.png",
+    "touhou-kouma-design/converted-v03/reimu-portrait-0.png",
+    "touhou-kouma-design/converted-v03/reimu-portrait-1.png",
+    "touhou-kouma-design/imagegen-v05/cirno-sheet.png"
+  ],
+  "userCorrection": "Rumia arms horizontal; anatomical right hand (viewer-left) closed fist",
+  "sourceRights": "Touhou character fan art. New generated art, no art or code extracted from reference ROMs.",
+  "files": [
+    {
+      "path": "touhou-kouma-design/imagegen-v07/rumia-sheet.png",
+      "sha256": "72985172e81def6f644946130b8922256c75713fcfb533cc022c367078afd6fb"
+    },
+    {
+      "path": "touhou-kouma-design/imagegen-v07/rumia-sheet-corrected.png",
+      "sha256": "ee93d92f6aa3a88a1f54056caab64e1ef6012ef1e8fcac260530cef313285489"
+    },
+    {
+      "path": "touhou-kouma-design/imagegen-v07/cirno-sprite.png",
+      "sha256": "3f8039affad4e93c1dcbe269f61225e17f2f1a974ec68fa9eacf451999f84e1e"
+    },
+    {
+      "path": "touhou-kouma-design/convert-v07.cjs",
+      "sha256": "aad2acf0be89533129a443466f3e3b510b006ec91455596bf2c400053353ec97"
+    },
+    {
+      "path": "assets-src/images/cirno.png",
+      "sha256": "4fda1e0ddbd05e53583ac0ebfb9a7932fa0b5b1de7655a0476df37d0ddc0d4ce"
+    },
+    {
+      "path": "assets-src/images/dialogue-rumia.png",
+      "sha256": "71b8a2482a34f392546d23a2e6254944afba16dc718c9c4bb0628460c2ac05f1"
+    },
+    {
+      "path": "assets-src/images/result-rumia.png",
+      "sha256": "45ebabbc19db7edeb81b8a9bd68a5c66f501e6c564187c4dbe4a32fc60882ec2"
+    }
+  ]
+}

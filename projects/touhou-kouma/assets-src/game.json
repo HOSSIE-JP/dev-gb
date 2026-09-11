@@ -1729,7 +1729,7 @@
       "angle": 180,
       "count": 12,
       "spread": 90,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
@@ -1745,7 +1745,7 @@
       "angle": 0,
       "count": 1,
       "spread": 120,
-      "interval": 5,
+      "interval": 24,
       "rotation": 60,
       "repeats": 0,
       "delay": 48,
@@ -1761,7 +1761,7 @@
       "angle": 0,
       "count": 1,
       "spread": 0,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 70,
@@ -1777,7 +1777,7 @@
       "angle": 0,
       "count": 16,
       "spread": 360,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
@@ -1793,7 +1793,7 @@
       "angle": 180,
       "count": 16,
       "spread": 180,
-      "interval": 16,
+      "interval": 32,
       "rotation": 45,
       "repeats": 0,
       "delay": 48,
@@ -1809,7 +1809,7 @@
       "angle": 180,
       "count": 12,
       "spread": 90,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 80,
@@ -1825,7 +1825,7 @@
       "angle": 180,
       "count": 12,
       "spread": 90,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 30,
@@ -1841,7 +1841,7 @@
       "angle": 180,
       "count": 16,
       "spread": 180,
-      "interval": 16,
+      "interval": 32,
       "rotation": 45,
       "repeats": 0,
       "delay": 24,
@@ -1857,7 +1857,7 @@
       "angle": 0,
       "count": 1,
       "spread": 0,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 84,
@@ -1873,7 +1873,7 @@
       "angle": 22.5,
       "count": 16,
       "spread": 360,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
@@ -1889,7 +1889,7 @@
       "angle": 180,
       "count": 12,
       "spread": 135,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 64,
@@ -1905,7 +1905,7 @@
       "angle": 180,
       "count": 16,
       "spread": 180,
-      "interval": 16,
+      "interval": 32,
       "rotation": 22.5,
       "repeats": 0,
       "delay": 28,
@@ -1921,7 +1921,7 @@
       "angle": 22.5,
       "count": 16,
       "spread": 360,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
@@ -1937,7 +1937,7 @@
       "angle": 180,
       "count": 16,
       "spread": 180,
-      "interval": 16,
+      "interval": 32,
       "rotation": -45,
       "repeats": 0,
       "delay": 70,
@@ -1953,7 +1953,7 @@
       "angle": 180,
       "count": 12,
       "spread": 90,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 32,
@@ -1969,7 +1969,7 @@
       "angle": 180,
       "count": 12,
       "spread": 90,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
@@ -1985,7 +1985,7 @@
       "angle": 0,
       "count": 16,
       "spread": 360,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 48,
@@ -2001,7 +2001,7 @@
       "angle": 0,
       "count": 1,
       "spread": 0,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 72,
@@ -2013,15 +2013,15 @@
       "name": "宵闇の輪",
       "asset": "shot-orb",
       "kind": "ring",
-      "speed": 0.5,
+      "speed": 0.375,
       "angle": 0,
-      "count": 16,
+      "count": 8,
       "spread": 360,
-      "interval": 16,
+      "interval": 48,
       "rotation": 0,
       "repeats": 0,
-      "delay": 8,
-      "lifetime": 320,
+      "delay": 24,
+      "lifetime": 240,
       "damage": 1
     },
     {
@@ -2029,15 +2029,15 @@
       "name": "月隠れのリボン",
       "asset": "shot-orb",
       "kind": "spiral",
-      "speed": 0.5,
+      "speed": 0.375,
       "angle": 180,
-      "count": 12,
+      "count": 6,
       "spread": 180,
-      "interval": 14,
-      "rotation": 22.5,
+      "interval": 48,
+      "rotation": 45,
       "repeats": 0,
-      "delay": 8,
-      "lifetime": 320,
+      "delay": 24,
+      "lifetime": 240,
       "damage": 1
     },
     {
@@ -2045,15 +2045,15 @@
       "name": "ほたるの月道",
       "asset": "shot-orb",
       "kind": "fan",
-      "speed": 0.5,
+      "speed": 0.375,
       "angle": 180,
-      "count": 12,
-      "spread": 150,
-      "interval": 12,
+      "count": 6,
+      "spread": 120,
+      "interval": 48,
       "rotation": 0,
       "repeats": 0,
-      "delay": 8,
-      "lifetime": 320,
+      "delay": 24,
+      "lifetime": 240,
       "damage": 1
     }
   ],
@@ -2306,7 +2306,7 @@
       "id": "rumia",
       "name": "ルーミア",
       "asset": "rumia",
-      "hp": 90,
+      "hp": 60,
       "score": 1000,
       "motion": {
         "kind": "straight",
@@ -2363,7 +2363,7 @@
           "id": "rumia-phase-1",
           "name": "宵闇の輪",
           "until": "hp",
-          "threshold": 60,
+          "threshold": 40,
           "pattern": "rumia-halo",
           "attacks": [],
           "motion": {
@@ -2400,14 +2400,14 @@
             "enabled": true,
             "background": "cutin-rumia",
             "spellName": "闇符「宵闇の輪舞」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
           "id": "rumia-phase-2",
           "name": "月隠れのリボン",
           "until": "hp",
-          "threshold": 30,
+          "threshold": 20,
           "pattern": "rumia-ribbon",
           "attacks": [],
           "motion": {
@@ -2444,7 +2444,7 @@
             "enabled": true,
             "background": "cutin-rumia",
             "spellName": "夜符「月隠れのリボン」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -2488,13 +2488,13 @@
             "enabled": true,
             "background": "cutin-rumia",
             "spellName": "闇夜「ほたるの月道」",
-            "seconds": 3
+            "seconds": 0.75
           }
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 128
+        "maxBullets": 64
       }
     },
     {
@@ -2600,7 +2600,7 @@
             "enabled": true,
             "background": "cutin-meiling",
             "spellName": "花符「紅い花の円舞」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -2654,7 +2654,7 @@
             "enabled": true,
             "background": "cutin-meiling",
             "spellName": "華符「門番の守り」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -2723,13 +2723,13 @@
             "enabled": true,
             "background": "cutin-meiling",
             "spellName": "彩符「花びらの雨」",
-            "seconds": 3
+            "seconds": 0.75
           }
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 128
+        "maxBullets": 64
       }
     },
     {
@@ -2825,7 +2825,7 @@
             "enabled": true,
             "background": "cutin-patchouli",
             "spellName": "書符「六曜の頁」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -2874,7 +2874,7 @@
             "enabled": true,
             "background": "cutin-patchouli",
             "spellName": "月符「余白の星図」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -2928,13 +2928,13 @@
             "enabled": true,
             "background": "cutin-patchouli",
             "spellName": "秘符「閉じない魔導書」",
-            "seconds": 3
+            "seconds": 0.75
           }
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 128
+        "maxBullets": 64
       }
     },
     {
@@ -3060,7 +3060,7 @@
             "enabled": true,
             "background": "cutin-sakuya",
             "spellName": "銀符「秒針の列」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -3114,7 +3114,7 @@
             "enabled": true,
             "background": "cutin-sakuya",
             "spellName": "時符「交わる銀の針」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -3163,13 +3163,13 @@
             "enabled": true,
             "background": "cutin-sakuya",
             "spellName": "幻符「時計の扇」",
-            "seconds": 3
+            "seconds": 0.75
           }
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 128
+        "maxBullets": 64
       }
     },
     {
@@ -3280,7 +3280,7 @@
             "enabled": true,
             "background": "cutin-remilia",
             "spellName": "夜符「紅い月の輪」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -3344,7 +3344,7 @@
             "enabled": true,
             "background": "cutin-remilia",
             "spellName": "紅符「夜潮の扇」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -3393,13 +3393,13 @@
             "enabled": true,
             "background": "cutin-remilia",
             "spellName": "月符「小さな王冠」",
-            "seconds": 3
+            "seconds": 0.75
           }
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 128
+        "maxBullets": 64
       }
     },
     {
@@ -3495,7 +3495,7 @@
             "enabled": true,
             "background": "cutin-flandre",
             "spellName": "遊符「七色の輪」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -3559,7 +3559,7 @@
             "enabled": true,
             "background": "cutin-flandre",
             "spellName": "禁符「暁のかくれんぼ」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -3628,13 +3628,13 @@
             "enabled": true,
             "background": "cutin-flandre",
             "spellName": "星符「結晶の螺旋」",
-            "seconds": 3
+            "seconds": 0.75
           }
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 128
+        "maxBullets": 64
       }
     },
     {
@@ -3740,7 +3740,7 @@
             "enabled": true,
             "background": "cutin-cirno",
             "spellName": "氷符「つららの扇」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -3794,7 +3794,7 @@
             "enabled": true,
             "background": "cutin-cirno",
             "spellName": "雪符「氷晶の十字」",
-            "seconds": 3
+            "seconds": 0.75
           }
         },
         {
@@ -3863,13 +3863,13 @@
             "enabled": true,
             "background": "cutin-cirno",
             "spellName": "凍符「雪玉の追いかけっこ」",
-            "seconds": 3
+            "seconds": 0.75
           }
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 128
+        "maxBullets": 64
       }
     }
   ],

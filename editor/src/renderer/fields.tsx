@@ -63,7 +63,7 @@ const labels: Record<string, string> = {
     lifetime: "弾の寿命（frame）",
     damage: "ダメージ",
     phases: "攻撃フェーズ",
-    battle: "ボス戦の表示", maxBullets: "BG敵弾の上限（1〜128）",
+    battle: "ボス戦の表示", maxBullets: "BG敵弾の上限（1〜64）",
     intro: "フェーズ開始カットイン", spellName: "弾幕名（36文字まで）", clearWaitSeconds: "集計完了後の待ち時間（秒）",
     until: "次フェーズへの条件",
     threshold: "条件値（frame / HP）",
@@ -167,8 +167,8 @@ export function Form({
             {Object.entries(
                 context === "player" ? { focusWeapon: "", focusSpeed: value.speed, respawnDelay: 0, ...value }
                 : context === "stage" ? { requireBoss: false, scrollDown: false, music: 0, bossMusic: 0, presentation: { enabled: false, dialogueBackground: "", clearBackground: "", rightPalette: 0, dialogue: [], clearEnabled: false, baseBonus: game.clearBonus, lifeBonus: 200, noMissBonus: 1000 }, parallax: { enabled: false, firstTile: 0, width: 4, height: 2, divisor: 2 }, ...value }
-                : "phases" in value ? {battle: {background: "stage", maxBullets: 128}, ...value}
-                : context === "phase" ? {intro: {enabled: false, background: "", spellName: value.name, seconds: 3}, ...value}
+                : "phases" in value ? {battle: {background: "stage", maxBullets: 64}, ...value}
+                : context === "phase" ? {intro: {enabled: false, background: "", spellName: value.name, seconds: 0.75}, ...value}
                 : context === "presentation" ? {clearWaitSeconds: 2, ...value}
                 : value.id === "hud" ? { rows: 2, ...value }
                 : "binding" in value ? { digits: 5, ...value }
@@ -323,6 +323,7 @@ export function Form({
                                             : "text"
                                     }
                                     step={
+                                        key === "seconds" && context === "intro" ? 0.05 :
                                         [
                                             "speed",
                                             "focusSpeed",

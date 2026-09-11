@@ -75,10 +75,10 @@ void ce_stage_complete(void) BANKED {
 void ce_phase_intro(const CE_Phase *phase) BANKED {
     if (!phase->intro_frames || phase->intro_screen == CE_NONE) return;
     ce_boss_invulnerable = 1; ce_clear_combat(0);
-    ce_fade(1); ce_scene = 7; ce_load_screen(phase->intro_screen);
+    ce_scene = 7; ce_load_screen(phase->intro_screen); ce_sound(5);
     ce_intro_left = phase->intro_frames;
     while (ce_intro_left) { scene_input(); --ce_intro_left; }
-    ce_fade(1); ce_load_stage(); ce_scene = 1; ce_fade(0);
+    ce_load_stage(); ce_scene = 1;
     ce_boss_invulnerable = 0;
 }
 

@@ -151,14 +151,14 @@ export class Simulation {
     entities: Entity[] = [];
     bgShots: {x: number; y: number; vx: number; vy: number; life: number; damage: number}[] = [];
     battleMode = "stage";
-    bgLimit = 128;
+    bgLimit = 64;
     intro: BossPhase["intro"] | undefined;
     introLeft = 0;
     phaseLocked = false;
     startIntro(phase: BossPhase) {
         if (!phase.intro?.enabled) return;
         this.entities = this.entities.filter(e => e.kind !== "pshot" && e.kind !== "eshot");
-        this.bgShots = []; this.intro = phase.intro; this.introLeft = phase.intro.seconds * 60;
+        this.bgShots = []; this.intro = phase.intro; this.introLeft = Math.round(phase.intro.seconds * 60);
     }
     dropped = 0;
     result = 0;
@@ -239,7 +239,7 @@ export class Simulation {
             kind === "boss" ? this.game.bosses : this.game.enemies
         ).find((a) => a.id === ref);
         if (!actor || (kind === "enemy" && this.battleMode !== "stage") || (kind === "boss" && this.entities.some(e => e.kind === "boss"))) return;
-        if (kind === "boss") { const b = actor as Boss; this.battleMode = b.battle?.background ?? "stage"; this.bgLimit = b.battle?.maxBullets ?? 128; if (this.battleMode !== "stage") {this.entities = []; this.bgShots = []; this.scroll = 0;} this.startIntro(b.phases[0]); }
+        if (kind === "boss") { const b = actor as Boss; this.battleMode = b.battle?.background ?? "stage"; this.bgLimit = b.battle?.maxBullets ?? 64; if (this.battleMode !== "stage") {this.entities = []; this.bgShots = []; this.scroll = 0;} this.startIntro(b.phases[0]); }
         this.add({
             kind,
             ref,

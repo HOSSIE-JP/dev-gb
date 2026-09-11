@@ -126,6 +126,12 @@ void ce_dialogue_update(uint8_t screen) BANKED {
 }
 void ce_load_stage(void) BANKED {
     uint8_t row; uint16_t start = ce_state.camera >> 7; const CE_Stage *s = &ce_stages[ce_state.stage];
+    if (ce_battle_mode == 2u) {
+        /* A cut-in replaced only the arena. Reload its HUD/sprites/bullet tiles,
+         * without uploading the scrolling stage map that stays invisible. */
+        ce_active_screen = 4; hide_all(); SPRITES_8x8; ce_battle_setup();
+        SHOW_BKG; SHOW_SPRITES; DISPLAY_ON; return;
+    }
     /* Preserve an enabled, black LCD during transition loading. Turning it off
      * would flash white on DMG. GBDK VRAM APIs wait for safe access windows. */
     if (!ce_battle_mode && ce_fade_level != 4u) DISPLAY_OFF;

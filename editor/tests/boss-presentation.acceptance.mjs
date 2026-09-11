@@ -31,7 +31,7 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
    if(scene===7&&left>0) {
     const phase=m[syms._ce_entities-0xc000+4],hp=m[syms._ce_entities-0xc000+3],tick=word('_ce_state');
     if(!cards.has(phase)){cards.set(phase,{first:frame,last:frame,hp,tick,frames:0});capture(gb,path.join(out,label+'-cutin-'+phase+'.png'));}
-    const c=cards.get(phase);assert.equal(hp,c.hp,'boss HP freezes throughout cut-in');assert.equal(tick,c.tick,'game clock freezes');assert.equal(byte('_ce_boss_invulnerable'),1);assert.equal(byte('_ce_bg_count'),0);c.last=frame;c.frames++;
+    const c=cards.get(phase);if(c.frames<3){const io=memory(gb).io;assert.ok(io[0x26]&1,'cut-in starts square-1 SFX');}assert.equal(hp,c.hp,'boss HP freezes throughout cut-in');assert.equal(tick,c.tick,'game clock freezes');assert.equal(byte('_ce_boss_invulnerable'),1);assert.equal(byte('_ce_bg_count'),0);c.last=frame;c.frames++;
     if(c.frames===10)capture(gb,path.join(out,label+'-cutin-'+phase+'.png'));
    }
    if(scene===6) {
@@ -47,7 +47,7 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
    lastScene=scene;const regs=gb.registers();lastState={frame,scene,left,pc:regs.pc,sp:regs.sp,ram:Buffer.from(m).toString('base64')};regs.free();frames(gb,1);
   }
   assert.equal(cards.size,3,'all three damage phases announce their own spell');
-  for(const c of cards.values())assert.ok(c.frames>=179&&c.frames<=181,'authored three-second timer uses VBlanks');
+  for(const c of cards.values())assert.ok(c.frames>=44&&c.frames<=46,'authored 0.75-second timer uses VBlanks');
   assert.ok(heldAt-clearStart>=118,'at least 120 VBlanks from counting completion to accepting input');assert.ok(exited,'fresh A accepts after the wait');
   results.push({mode:label,cards:[...cards.values()],scoreWaitFrames:heldAt-clearStart,heldButtonFrames:60,freshPressAccepted:exited});
  } catch(error){fs.writeFileSync(path.join(out,label+'-failure.json'),JSON.stringify(lastState));console.error(label,'primary failure:',error);throw error;} finally{try{gb.free();}catch(error){console.error('Emulator cleanup failed:',error.message);}}

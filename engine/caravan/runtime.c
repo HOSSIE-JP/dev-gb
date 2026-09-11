@@ -720,7 +720,9 @@ void ce_trace_write(void) NONBANKED {
     ce_trace[22] = 0;
 }
 void ce_sound(uint8_t effect) NONBANKED {
-    if (effect == 4u) {
+    if (effect == 5u) {
+        NR10_REG = 0x35; NR11_REG = 0x80; NR12_REG = 0xb2; NR13_REG = 0x20; NR14_REG = 0x87;
+    } else if (effect == 4u) {
         if (hit_sound_wait) return;
         hit_sound_wait = 4;
         NR41_REG = 0x38; NR42_REG = 0xa1; NR43_REG = 0x19; NR44_REG = 0xc0;

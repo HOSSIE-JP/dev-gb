@@ -73,8 +73,11 @@ electron.app.whenReady().then(async()=>{
  const data=await js("(()=>{const c=document.querySelector('canvas[aria-label=弾幕名カットインプレビュー]');return [...new Set(c.getContext('2d').getImageData(0,0,160,144).data)].length;})()");assert.ok(data>4);
  const modes=await js("[...document.querySelectorAll('select')].find(e=>[...e.options].some(o=>o.value==='bg-bullets'))?.value");assert.equal(modes,'bg-bullets');
  await js("new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))");
- fs.writeFileSync(path.join(root,'.cache/kouma-expansion/editor-boss.png'),(await win.webContents.capturePage()).toPNG());
+ const duration=await js("[...document.querySelectorAll('label')].find(e=>e.textContent.includes('表示時間（秒）'))?.querySelector('input')?.value");
+ assert.equal(Number(duration),.75,'fractional phase duration reaches the actual editor');
+ fs.mkdirSync(path.join(root,'.cache/kouma-v07'),{recursive:true});
+ fs.writeFileSync(path.join(root,'.cache/kouma-v07/editor-boss.png'),(await win.webContents.capturePage()).toPNG());
  await js("[...document.querySelectorAll('.category')].find(e=>e.textContent.includes('ステージ')).click()");
  await until("document.body.innerText.includes('集計完了後の待ち時間')");
- record({bossControls:true,cutinPreview:true,scoreWaitControl:true});clearTimeout(timer);electron.app.exit(0);
+ record({bossControls:true,cutinPreview:true,cutinSeconds:Number(duration),scoreWaitControl:true});clearTimeout(timer);electron.app.exit(0);
 }).catch(error=>{record({error:error.stack});clearTimeout(timer);electron.app.exit(1);});

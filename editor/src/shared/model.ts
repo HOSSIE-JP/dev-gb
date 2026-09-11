@@ -690,13 +690,13 @@ export function validate(value: unknown): Diagnostic[] {
     for (const b of game.bosses) {
         if (b.battle) {
             if (!["stage", "blank", "bg-bullets"].includes(b.battle.background)) err(b.id, "ボス背景モードが不正です");
-            integer(b.battle.maxBullets, 1, 128, b.id);
+            integer(b.battle.maxBullets, 1, 64, b.id);
         }
         uniqueIds(b.phases, b.id);
         integer(b.phases.length, 1, 8, b.id);
         for (const p of b.phases) {
             if (p.intro) {
-                integer(p.intro.seconds, 1, 10, b.id);
+                finite(p.intro.seconds, 0.1, 10, b.id);
                 if (p.intro.enabled) {
                     if (!game.assets.some(a => a.id === p.intro!.background && a.kind === "screen" && a.width === 160 && a.height === 144)) err(b.id, "カットインは160x144の画面画像を指定してください");
                     if (!p.intro.spellName.trim() || [...p.intro.spellName.normalize("NFC")].length > 36 || /[\r\n]/.test(p.intro.spellName)) err(b.id, "弾幕名は1〜36文字で指定してください");
