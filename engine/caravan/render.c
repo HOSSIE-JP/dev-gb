@@ -547,7 +547,12 @@ void ce_render(void) BANKED {
         player_pose.y = ce_state.player_y; player_pose.age = ce_state.tick;
         animation_slot = 0; pose = &player_pose; sprite();
     }
-    for (i = ce_used, animation_slot = 1, pose = ce_entities; i; --i, ++pose, ++animation_slot) if (pose->kind) sprite();
+    if (ce_transition_state == 1u) {
+        /* A single break burst replaces the boss briefly, so its smaller sprite
+         * cannot be occluded by the boss's earlier OAM entries on DMG or CGB. */
+        for (i = ce_used, animation_slot = 1, pose = ce_entities; i; --i, ++pose, ++animation_slot)
+            if (pose->kind && pose->kind != CE_BOSS) sprite();
+    } else for (i = ce_used, animation_slot = 1, pose = ce_entities; i; --i, ++pose, ++animation_slot) if (pose->kind) sprite();
     /* Do not DMA a partially written metasprite list. */
     i = pose_slot;
     while (pose_slot < previous_slots) shadow_OAM[pose_slot++].y = 0;

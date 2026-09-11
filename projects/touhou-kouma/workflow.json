@@ -1,15 +1,33 @@
 {
-  "version": "0.7-gbc-performance",
+  "version": "0.9-density-balance",
   "updatedAt": "2026-09-11",
   "status": "playtest-ready",
   "approved": false,
-  "projectRevision": "78536a539459b381e1b96bfa3b6b38b90e9fed35f15056ee9a3164586e70d112",
+  "projectRevision": "02000f9cf467f0f53eaed503f5692ac804328e8337bcfc3a96d26b2842f6efd2",
   "rom": {
     "bytes": 524288,
-    "sha256": "2b90c7c0506b0a119bca434d88b25b557cf0962a8eb839ca922a3334ef3fdbba",
-    "path": "build/Release/touhou-kouma-v07.gb"
+    "sha256": "48bf553af8688c2ede9f07ca497d39ab31a5510cd261817d47a236ed1a04b0f9",
+    "path": "build/Release/touhou-kouma-v09.gb"
   },
   "previous": [
+    {
+      "version": "0.8-boss-phase-sequence",
+      "rom": {
+        "bytes": 524288,
+        "sha256": "1eaf8ae30e3b8ed9ec3871f721fe35ed6648a9edc062bad48343fbc6cf58007e",
+        "path": "build/Release/touhou-kouma-v08.gb"
+      },
+      "projectRevision": "76d1d8211a7d4ad6b0f07a9cf5d8d3668093f8ac790c99686e80c43b4dcdebec"
+    },
+    {
+      "version": "0.7-gbc-performance",
+      "rom": {
+        "bytes": 524288,
+        "sha256": "2b90c7c0506b0a119bca434d88b25b557cf0962a8eb839ca922a3334ef3fdbba",
+        "path": "build/Release/touhou-kouma-v07.gb"
+      },
+      "projectRevision": "78536a539459b381e1b96bfa3b6b38b90e9fed35f15056ee9a3164586e70d112"
+    },
     {
       "version": "0.6-boss-arena-prototype",
       "rom": {
@@ -21,21 +39,45 @@
     }
   ],
   "checks": {
-    "standardTests": 63,
-    "bgBullets": 64,
-    "cgbFixtureUpdatesPerSecond": 59.7275,
-    "cgbRumiaMeasuredUpdates": 153,
-    "cgbRumiaMeasuredDisplayFrames": 153,
-    "nativeBgbTimingSamples": 254,
-    "cutinFrames": 45,
+    "standardTests": 66,
     "editorUi": true,
-    "dmgAndCgbCutins": 21
+    "unsavedVictoryPreview": true,
+    "phaseHp": 100,
+    "attackPhases": 3,
+    "totalBossHp": 300,
+    "maxBgBullets": 40,
+    "bossPeaks": {
+      "rumia": 9,
+      "meiling": 20,
+      "patchouli": 24,
+      "sakuya": 30,
+      "remilia": 36,
+      "flandre": 40,
+      "cirno": 17
+    },
+    "cutinFrames": 72,
+    "allBossesDmgAndCgb": 7,
+    "cutinsPerMode": 21,
+    "victoryPagesAuthored": 28,
+    "downwardHostileDirections": true,
+    "bgTileDrops": 0,
+    "nativeBgbPhases": 21,
+    "nativeBgbTimingSamples": 8909,
+    "nativeBgbMinUpdatesPerSecond": 58.274,
+    "wasmCgbMinUpdatesPerSecond": 58.794,
+    "unmodifiedRumiaHpPhases": [
+      100,
+      100,
+      100
+    ],
+    "unmodifiedRumiaDefeated": false
   },
   "pending": [
-    "Human full campaign playtest and difficulty tuning",
-    "Human audio listening",
+    "Human full campaign playtest and difficulty/time tuning",
+    "Rare two-frame CGB updates and sustained DMG slowdown remain",
+    "Human judgment of announcement sound",
     "DMG/CGB hardware and native controller",
-    "Emulicious launch times out"
+    "Emulicious launch timed out after 60 seconds"
   ],
-  "evidence": "../../docs/touhou-kouma-v07.md"
+  "evidence": "../../docs/touhou-kouma-v09.md"
 }

@@ -16,6 +16,7 @@ import {
 import { Form, Field, Select } from "./fields";
 import { AssetCanvas, MapCanvas, ScreenCanvas, MotionCanvas } from "./canvases";
 import { BossCanvas } from "./boss-canvas";
+import { VictoryDialogueCanvas } from "./victory-dialogue-canvas";
 import { Preview, RomPreview } from "./preview";
 import { Timeline } from "./timeline";
 import { createEntity } from "./entity-defaults";
@@ -1081,6 +1082,7 @@ function App() {
                                     </div>
                                 </>
                             ) : stage ? (
+                                <><VictoryDialogueCanvas game={game} stage={stage} glyphs={glyphs} dmg={dmg} />
                                 <MapCanvas
                                     game={game}
                                     stage={stage}
@@ -1089,7 +1091,7 @@ function App() {
                                     grid={grid}
                                     eventId={eventId}
                                     onEvent={setEventId}
-                                />
+                                /></>
                             ) : screen ? (
                                 <ScreenCanvas
                                     game={game}

@@ -63,6 +63,7 @@ export type BossPhase = {
     name: string;
     until: "time" | "hp";
     threshold: number;
+    hp?: number;
     pattern: string;
     attacks?: { id: string; pattern: string }[];
     motion: Motion;
@@ -70,7 +71,7 @@ export type BossPhase = {
 };
 export type Boss = Actor & {
     phases: BossPhase[];
-    battle?: { background: "stage" | "blank" | "bg-bullets"; maxBullets: number };
+    battle?: { background: "stage" | "blank" | "bg-bullets"; maxBullets: number; returnX?: number; returnY?: number };
 };
 export type StageEvent = {
     id: string;
@@ -95,6 +96,7 @@ export type Presentation = {
     lifeBonus: number;
     noMissBonus: number;
     clearWaitSeconds?: number;
+    victoryDialogue?: { enabled: boolean; background: string; pages: { id: string; speaker: string; line1: string; line2: string }[] };
 };
 export type Parallax = { enabled: boolean; firstTile: number; width: number; height: number; divisor: number };
 export type Stage = {
@@ -332,13 +334,14 @@ export function validateShape(
         bosses: [
             {
                 ...actor,
-                "battle?": {background: "string", maxBullets: "number"},
+                "battle?": {background: "string", maxBullets: "number", "returnX?": "number", "returnY?": "number"},
                 phases: [
                     {
                         id: "string",
                         name: "string",
                         until: "string",
                         threshold: "number",
+                        "hp?": "number",
                         pattern: "string",
                         "attacks?": attacks,
                         motion,
@@ -367,7 +370,8 @@ export function validateShape(
                 "presentation?": {
                     enabled: "boolean", dialogueBackground: "string", clearBackground: "string", rightPalette: "number",
                     dialogue: [{id: "string", speaker: "string", line1: "string", line2: "string"}],
-                    clearEnabled: "boolean", baseBonus: "number", lifeBonus: "number", noMissBonus: "number", "clearWaitSeconds?": "number"
+                    clearEnabled: "boolean", baseBonus: "number", lifeBonus: "number", noMissBonus: "number", "clearWaitSeconds?": "number",
+                    "victoryDialogue?": {enabled: "boolean", background: "string", pages: [{id: "string", speaker: "string", line1: "string", line2: "string"}]}
                 },
                 "parallax?": {enabled: "boolean", firstTile: "number", width: "number", height: "number", divisor: "number"},
                 events: [
@@ -691,10 +695,15 @@ export function validate(value: unknown): Diagnostic[] {
         if (b.battle) {
             if (!["stage", "blank", "bg-bullets"].includes(b.battle.background)) err(b.id, "ボス背景モードが不正です");
             integer(b.battle.maxBullets, 1, 64, b.id);
+            if (b.battle.returnX !== undefined) integer(b.battle.returnX, 16, 144, b.id);
+            if (b.battle.returnY !== undefined) integer(b.battle.returnY, 24, 64, b.id);
         }
         uniqueIds(b.phases, b.id);
         integer(b.phases.length, 1, 8, b.id);
+        if (b.phases.at(-1)?.hp && b.phases.at(-1)?.until === "time") err(b.id, "フェーズHPを使う最終フェーズは残HP条件にしてください");
         for (const p of b.phases) {
+            if (p.hp !== undefined) integer(p.hp, 0, 255, b.id);
+            if (p.hp && p.until === "hp" && p.threshold !== 0) err(b.id, "フェーズHPを指定した攻撃は、次フェーズの条件値を0にしてください");
             if (p.intro) {
                 finite(p.intro.seconds, 0.1, 10, b.id);
                 if (p.intro.enabled) {
@@ -762,6 +771,16 @@ export function validate(value: unknown): Diagnostic[] {
             for (const page of presentation.dialogue) for (const key of ["speaker", "line1", "line2"] as const) {
                 if (!supportedText(page[key]) || page[key].normalize("NFC").length > 18)
                     err(stage.id, "会話は対応文字で各行18文字以内です");
+            }
+            const victory = presentation.victoryDialogue;
+            if (victory) {
+                if (victory.background) assetRef(victory.background, stage.id, "screen");
+                if (victory.enabled && !victory.background) err(stage.id, "撃破後会話の背景画像が必要です");
+                uniqueIds(victory.pages, stage.id);
+                integer(victory.pages.length, victory.enabled ? 1 : 0, 8, stage.id);
+                for (const page of victory.pages) for (const key of ["speaker", "line1", "line2"] as const) {
+                    if (!supportedText(page[key]) || page[key].normalize("NFC").length > 18) err(stage.id, "撃破後会話は対応文字で各行18文字以内です");
+                }
             }
             for (const value of [presentation.baseBonus, presentation.lifeBonus, presentation.noMissBonus]) integer(value, 0, 6000, stage.id);
         }

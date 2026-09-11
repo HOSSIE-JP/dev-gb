@@ -347,18 +347,18 @@ export function generate(
         return `${items.length},${name}`;
     };
     const intros = game.bosses.flatMap(b => b.phases.filter(p => p.intro?.enabled));
-    const introFirst = 5 + game.stages.reduce((n,stage) => { const p = stage.presentation; return n + (p?.enabled ? p.dialogue.length : 0) + (p?.clearEnabled ? 1 : 0); }, 0) + (game.ending?.slides.length ?? 0);
+    const introFirst = 5 + game.stages.reduce((n,stage) => { const p = stage.presentation; return n + (p?.enabled ? p.dialogue.length : 0) + (p?.clearEnabled ? 1 : 0) + (p?.victoryDialogue?.enabled ? p.victoryDialogue.pages.length : 0); }, 0) + (game.ending?.slides.length ?? 0);
     const enemies = game.enemies.map(
         (a) =>
-            `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},0,0,${attackList(a.attacks)},0,0}`,
+            `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},0,0,${attackList(a.attacks)},0,0,0,0}`,
     );
     const bosses = game.bosses.map((a, i) => {
         const phases = a.phases.map(
             (p) =>
-                `{${p.until === "hp" ? 1 : 0},${p.threshold},${patternId(p.pattern)},${motion(p.motion)},${attackList(p.attacks)},${p.intro?.enabled ? introFirst + intros.indexOf(p) : 255},${p.intro?.enabled ? Math.round(p.intro.seconds * 60) : 0}}`,
+                `{${p.until === "hp" ? 1 : 0},${p.threshold},${patternId(p.pattern)},${motion(p.motion)},${attackList(p.attacks)},${p.intro?.enabled ? introFirst + intros.indexOf(p) : 255},${p.intro?.enabled ? Math.round(p.intro.seconds * 60) : 0},${p.hp ?? 0}}`,
         );
         config.push(`static const CE_Phase boss_${i}_phases[]={${phases}};`);
-        return `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},${phases.length},boss_${i}_phases,${attackList(a.attacks)},${["stage", "blank", "bg-bullets"].indexOf(a.battle?.background ?? "stage")},${a.battle?.maxBullets ?? 64}}`;
+        return `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},${phases.length},boss_${i}_phases,${attackList(a.attacks)},${["stage", "blank", "bg-bullets"].indexOf(a.battle?.background ?? "stage")},${a.battle?.maxBullets ?? 64},${a.battle?.returnX ?? 80},${a.battle?.returnY ?? 36}}`;
     });
     config.push(
         `const CE_Actor ce_enemies[]={${enemies}};`,
@@ -485,7 +485,17 @@ export function generate(
             {id: "total", text: "ごうけい     ", x: 1, y: 15, palette: 0, binding: "score"},
             {id: "next", text: "A:つぎへ", x: 10, y: 17, palette: 0, binding: "none"}
         ]}, screenRows.length, p.rightPalette);
-        presentationRows.push(`{${first},${p?.enabled ? p.dialogue.length : 0},${p?.clearEnabled ? clear : 255},${p?.baseBonus ?? game.clearBonus},${p?.lifeBonus ?? 0},${p?.noMissBonus ?? 0},${(p?.clearWaitSeconds ?? 2) * 60}}`);
+        const victoryFirst = screenRows.length, victory = p?.victoryDialogue;
+        if (victory?.enabled) {
+            const chars = [...new Set(victory.pages.map(page => page.speaker + page.line1 + page.line2).join("") + "A:つぎ START:スキップ")].join("");
+            for (const page of victory.pages) compileScreen({id: "clear", name: `${stage.name} 撃破後 ${page.speaker}`, background: victory.background, palette: 0, dock: "top", items: [
+                {id: "name", text: page.speaker, x: 1, y: 12, palette: 0, binding: "none"},
+                {id: "line1", text: page.line1, x: 1, y: 14, palette: 0, binding: "none"},
+                {id: "line2", text: page.line2, x: 1, y: 15, palette: 0, binding: "none"},
+                {id: "next", text: "A:つぎ START:スキップ", x: 1, y: 17, palette: 0, binding: "none"}
+            ]}, screenRows.length, p!.rightPalette, chars);
+        }
+        presentationRows.push(`{${first},${p?.enabled ? p.dialogue.length : 0},${p?.clearEnabled ? clear : 255},${p?.baseBonus ?? game.clearBonus},${p?.lifeBonus ?? 0},${p?.noMissBonus ?? 0},${(p?.clearWaitSeconds ?? 2) * 60},${victoryFirst},${victory?.enabled ? victory.pages.length : 0}}`);
         const par = stage.parallax;
         if (par?.enabled) {
             const asset = game.assets.find(a => a.id === stage.tileset)!;

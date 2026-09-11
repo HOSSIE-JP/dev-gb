@@ -84,10 +84,10 @@ static void advance_shot_animation(uint8_t slot) {
     ce_shot_oam[slot].tile = a->first_tile + frame;
 }
 void ce_count_frame(void) NONBANKED {
-    if (ce_scene == 1u && ce_battle_mode != 2u) SHOW_WIN;
+    if ((ce_scene == 1u || ce_scene == 8u) && ce_battle_mode != 2u) SHOW_WIN;
 }
 /* A top-docked Window otherwise covers the entire playfield. */
-void ce_hud_scanline(void) NONBANKED { if (ce_scene == 1u && !ce_hud_bottom) HIDE_WIN; }
+void ce_hud_scanline(void) NONBANKED { if ((ce_scene == 1u || ce_scene == 8u) && !ce_hud_bottom) HIDE_WIN; }
 
 void ce_copy(uint8_t *dest, const CE_Data *source, uint16_t offset, uint16_t length) NONBANKED {
     uint8_t bank = CURRENT_BANK, source_bank = source->bank;
@@ -104,7 +104,7 @@ uint8_t ce_read(const CE_Data *source, uint16_t offset) NONBANKED {
 }
 void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     if (new_game) { ce_respawn = 0; memset(&ce_state, 0, sizeof(ce_state)); ce_state.lives = ce_player_lives; }
-    ce_battle_mode = 0; ce_battle_asset = CE_NONE; ce_boss_invulnerable = 0; ce_bg_clear();
+    ce_battle_mode = 0; ce_battle_asset = CE_NONE; ce_boss_invulnerable = 0; ce_transition_state = 0; ce_bg_clear();
     memset(ce_entities, 0, sizeof(ce_entities));
     ce_used = 0; memset(ce_pool_counts, 0, sizeof(ce_pool_counts));
     memset(free_slots, 255, sizeof(free_slots));
@@ -500,9 +500,12 @@ static void step_actor(CE_Entity *e, uint8_t slot) {
             layers = actor->layer; layer_count = actor->layers;
             if (e->kind == CE_BOSS) {
                 phase = &actor->phase[e->phase];
-                if (e->phase + 1u < actor->phases && (phase->until ? e->hp <= phase->threshold : e->phase_age >= phase->threshold)) {
-                    ++e->phase; e->phase_age = 0; e->sequence = 0; e->base_x = e->x; e->base_y = e->y;
-                    if (actor->phase[e->phase].intro_frames) ce_phase_intro(&actor->phase[e->phase]);
+                if (e->phase + 1u < actor->phases && (phase->until ? e->hp <= (phase->hp ? 0u : phase->threshold) : e->phase_age >= phase->threshold)) {
+                    if (phase->hp || actor->phase[e->phase + 1u].hp) ce_change_phase(e, phase->until);
+                    else {
+                        ++e->phase; e->phase_age = 0; e->sequence = 0; e->base_x = e->x; e->base_y = e->y;
+                        if (actor->phase[e->phase].intro_frames) ce_phase_intro(&actor->phase[e->phase]);
+                    }
                 }
                 phase = &actor->phase[e->phase]; motion = phase->motion; pattern = phase->pattern; age = e->phase_age;
                 layers = phase->layer; layer_count = phase->layers;
@@ -650,8 +653,11 @@ static void collide_shots(void) {
             release(i);
             if (target->kind == CE_BOSS) {
                 actor = &ce_bosses[target->ref];
-                if (target->phase + 1u < actor->phases && actor->phase[target->phase].until && actor->phase[target->phase + 1u].intro_frames && target->hp <= actor->phase[target->phase].threshold + e->damage) {
-                    target->hp = actor->phase[target->phase].threshold; ce_boss_invulnerable = 1; break;
+                if (target->phase + 1u < actor->phases && actor->phase[target->phase].until && (actor->phase[target->phase].hp || actor->phase[target->phase + 1u].intro_frames) && target->hp <= (actor->phase[target->phase].hp ? 0u : actor->phase[target->phase].threshold) + e->damage) {
+                    target->hp = actor->phase[target->phase].hp ? 0u : actor->phase[target->phase].threshold;
+                    ce_boss_invulnerable = 1; ce_clear_combat(0);
+                    if (ce_battle_mode == 2u) ce_bg_begin();
+                    ce_hud(); break;
                 }
             }
             if (target->hp <= e->damage) {
@@ -698,6 +704,7 @@ void ce_step(uint8_t input) NONBANKED {
     if (!ce_state.result && (finish || (ce_state.boss_defeated && stage->clear_boss) || (ce_time_limit && ce_state.stage_tick >= stage->duration))) {
         if (ce_state.boss_defeated && ce_boss_celebration) ce_celebrate_boss();
         else ce_sound(3);
+        if (ce_state.boss_defeated) ce_victory_dialogue();
         ce_stage_complete();
     }
 }
@@ -721,7 +728,10 @@ void ce_trace_write(void) NONBANKED {
 }
 void ce_sound(uint8_t effect) NONBANKED {
     if (effect == 5u) {
-        NR10_REG = 0x35; NR11_REG = 0x80; NR12_REG = 0xb2; NR13_REG = 0x20; NR14_REG = 0x87;
+        /* Bright pulse plus a noise crash; ~0.9s / ~0.75s hardware decay.
+         * BGM retains pulse 2 and wave 3 throughout the announcement. */
+        NR10_REG = 0; NR11_REG = 0x40; NR12_REG = 0xf4; NR13_REG = 0x83; NR14_REG = 0x87;
+        NR41_REG = 0; NR42_REG = 0xc4; NR43_REG = 0x43; NR44_REG = 0x80;
     } else if (effect == 4u) {
         if (hit_sound_wait) return;
         hit_sound_wait = 4;

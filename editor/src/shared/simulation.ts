@@ -155,6 +155,22 @@ export class Simulation {
     intro: BossPhase["intro"] | undefined;
     introLeft = 0;
     phaseLocked = false;
+    transition: {boss: Entity; stage: "break" | "return"; elapsed: number; x: number; y: number} | undefined;
+    finishPhase(boss: Entity) {
+        const b = this.game.bosses.find(b => b.id === boss.ref)!;
+        boss.x = boss.baseX = q4(b.battle?.returnX ?? 80); boss.y = boss.baseY = q4(b.battle?.returnY ?? 36);
+        ++boss.phase; boss.phaseAge = 0; boss.sequence = 0;
+        const phase = b.phases[boss.phase]; if (phase.hp) boss.hp = phase.hp;
+        this.transition = undefined; this.startIntro(phase);
+        this.phaseLocked = !!this.introLeft || !!phase.hp && phase.until === "time";
+    }
+    startPhaseChange(boss: Entity, damage: boolean) {
+        this.phaseLocked = true; this.bgShots = [];
+        this.entities = this.entities.filter(e => !["pshot", "eshot", "fx"].includes(e.kind));
+        if (!damage) {this.finishPhase(boss); return;}
+        this.explode(boss.x, boss.y);
+        this.transition = {boss, stage: "break", elapsed: 0, x: boss.x, y: boss.y};
+    }
     startIntro(phase: BossPhase) {
         if (!phase.intro?.enabled) return;
         this.entities = this.entities.filter(e => e.kind !== "pshot" && e.kind !== "eshot");
@@ -250,7 +266,7 @@ export class Simulation {
             baseY: q4(y),
             vx: 0,
             vy: 0,
-            hp: actor.hp,
+            hp: kind === "boss" ? (actor as Boss).phases[0].hp || actor.hp : actor.hp,
             age: 0,
             phase: 0,
             phaseAge: 0,
@@ -258,6 +274,7 @@ export class Simulation {
             lifetime: 0,
             damage: 1,
         });
+        if (kind === "boss") this.phaseLocked = !!(actor as Boss).phases[0].hp && (actor as Boss).phases[0].until === "time";
     }
     shoot(
         ref: string,
@@ -370,7 +387,7 @@ export class Simulation {
         }
     }
     finishStage() {
-        this.battleMode = "stage"; this.bgShots = []; this.intro = undefined; this.introLeft = 0; this.phaseLocked = false;
+        this.battleMode = "stage"; this.bgShots = []; this.intro = undefined; this.introLeft = 0; this.phaseLocked = false; this.transition = undefined;
         if (this.game.bossCelebration && this.bossDefeated) this.entities = [];
         this.score = Math.min(65535, this.score + this.game.clearBonus);
         if (
@@ -419,7 +436,27 @@ export class Simulation {
     }
     step(input = this.input) {
         if (this.result) return;
-        if (this.introLeft) { --this.introLeft; if (!this.introLeft) {this.intro = undefined; this.phaseLocked = false;} return; }
+        if (this.transition) {
+            const t = this.transition, b = this.game.bosses.find(b => b.id === t.boss.ref)!;
+            if (t.stage === "break") {
+                if (++t.elapsed >= this.game.effects.duration) {this.entities = this.entities.filter(e => e.kind !== "fx"); t.stage = "return"; t.elapsed = 0;}
+                else for (const e of this.entities) if (e.kind === "fx") e.age = t.elapsed;
+            } else {
+                const position = (start: number, target: number) => {const d = target - start;return start + Math.trunc(d / 32) * t.elapsed + Math.trunc((d % 32) * t.elapsed / 32);};
+                t.boss.x = position(t.x, q4(b.battle?.returnX ?? 80)); t.boss.y = position(t.y, q4(b.battle?.returnY ?? 36));
+                if (t.elapsed++ === 32) this.finishPhase(t.boss);
+            }
+            return;
+        }
+        if (this.introLeft) {
+            if (!--this.introLeft) {
+                this.intro = undefined;
+                const boss = this.entities.find(e => e.kind === "boss");
+                const phase = boss && this.game.bosses.find(b => b.id === boss.ref)?.phases[boss.phase];
+                this.phaseLocked = !!phase?.hp && phase.until === "time";
+            }
+            return;
+        }
         const g = this.game,
             p = g.player,
             a = assetById(g, p.asset),
@@ -525,8 +562,9 @@ export class Simulation {
                         e.phase + 1 < phases.length &&
                         (phase.until === "time"
                             ? e.phaseAge >= phase.threshold
-                            : e.hp <= phase.threshold)
+                            : e.hp <= (phase.hp ? 0 : phase.threshold))
                     ) {
+                        if (phase.hp || phases[e.phase + 1].hp) {this.startPhaseChange(e, phase.until === "hp"); return;}
                         e.phase++;
                         e.phaseAge = 0;
                         e.sequence = 0;
@@ -575,6 +613,7 @@ export class Simulation {
         for (const shot of [...this.entities].filter(
             (e) => e.kind === "pshot",
         )) {
+            if (!this.entities.includes(shot)) continue;
             const enemy = this.entities.find(
                 (e) =>
                     (e.kind === "enemy" || e.kind === "boss") && !(e.kind === "boss" && this.phaseLocked) &&
@@ -587,8 +626,9 @@ export class Simulation {
             this.entities = this.entities.filter((e) => e !== shot);
             if (enemy.kind === "boss") {
                 const b = g.bosses.find(b => b.id === enemy.ref)!, phase = b.phases[enemy.phase];
-                if (phase.until === "hp" && b.phases[enemy.phase + 1]?.intro?.enabled && enemy.hp - shot.damage <= phase.threshold) {
-                    enemy.hp = phase.threshold; this.phaseLocked = true; continue;
+                if (phase.until === "hp" && b.phases[enemy.phase + 1] && (phase.hp || b.phases[enemy.phase + 1]?.intro?.enabled) && enemy.hp - shot.damage <= (phase.hp ? 0 : phase.threshold)) {
+                    enemy.hp = phase.hp ? 0 : phase.threshold; this.phaseLocked = true;
+                    this.bgShots = []; this.entities = this.entities.filter(e => e.kind !== "pshot" && e.kind !== "eshot"); continue;
                 }
             }
             enemy.hp -= shot.damage;
@@ -730,5 +770,5 @@ export function drawSimulation(
     };
     if (!sim.respawn && (!sim.invulnerable || (sim.invulnerable & 4) === 0))
         draw(g.player.asset, sim.playerX, sim.playerY);
-    for (const e of sim.entities) draw(e.asset, e.x, e.y, e.age);
+    for (const e of sim.entities) if (!(sim.transition?.stage === "break" && e.kind === "boss")) draw(e.asset, e.x, e.y, e.age);
 }

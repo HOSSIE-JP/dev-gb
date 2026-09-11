@@ -28,3 +28,34 @@ test('preview clears bullets and freezes game time for the whole cut-in',()=>{
  assert.equal(sim.tick,tick);assert.equal(sim.playerX,x);assert.equal(sim.bgShots.length,0);assert.equal(sim.introLeft,0);
  sim.step(0);assert.equal(sim.tick,tick+1);
 });
+
+test('phase HP overkill clears combat, breaks once, returns invulnerable and refills only the next phase',()=>{
+ const g=game(),b=g.bosses[0];g.stages[0].events=[];g.timeLimit=false;
+ b.battle={background:'bg-bullets',maxBullets:64,returnX:80,returnY:36};
+ const phase=structuredClone(b.phases[0]);Object.assign(phase,{until:'hp',threshold:0,hp:2,pattern:'',attacks:[],intro:undefined,motion:{...phase.motion,kind:'straight',vx:0,vy:0}});
+ b.phases=[phase,{...structuredClone(phase),id:'next',hp:5,intro:{enabled:true,background:'test-cut-in',spellName:'Next',seconds:1.2}}];
+ const sim=new lib.Simulation(g);sim.spawnActor(b.id,'boss',130,70);const boss=sim.entities.find(e=>e.kind==='boss');
+ sim.bgShots=[{x:0,y:0,vx:0,vy:0,life:100,damage:1}];
+ const weapon=g.patterns.find(p=>p.id===g.player.weapon);
+ sim.add({...structuredClone(boss),kind:'pshot',ref:weapon.id,asset:weapon.asset,damage:20,lifetime:100});
+ sim.step(0);assert.equal(boss.hp,0);assert.equal(boss.phase,0);assert.equal(sim.bossDefeated,false);assert.equal(sim.bgShots.length,0);assert.equal(sim.phaseLocked,true);
+ sim.step(0);assert.equal(sim.transition.stage,'break');assert.equal(sim.entities.filter(e=>e.kind==='fx').length,1);
+ const tick=sim.tick,playerX=sim.playerX;
+ for(let n=0;n<g.effects.duration;n++){sim.step(17);assert.equal(boss.hp,0);}
+ assert.equal(sim.transition.stage,'return');assert.equal(sim.entities.filter(e=>e.kind==='fx').length,0);
+ for(let n=0;n<32;n++){sim.step(17);assert.equal(boss.hp,0);assert.equal(sim.phaseLocked,true);}
+ sim.step(17);assert.equal(boss.phase,1);assert.equal(boss.hp,5);assert.equal(boss.x,80*16);assert.equal(boss.y,36*16);assert.equal(sim.introLeft,72);
+ for(let n=0;n<72;n++)sim.step(17);
+ assert.equal(sim.tick,tick);assert.equal(sim.playerX,playerX);assert.equal(sim.phaseLocked,false);assert.equal(sim.introLeft,0);
+ sim.add({...structuredClone(boss),kind:'pshot',ref:weapon.id,asset:weapon.asset,damage:20,lifetime:100});sim.step(0);assert.equal(sim.bossDefeated,true,'only the final phase depletion defeats the boss');
+});
+
+test('authored phase HP and victory dialogue reject values that cannot reach the ROM safely',()=>{
+ const g=game(),b=g.bosses[0];b.phases[0].hp=256;
+ assert.ok(lib.validate(g).some(d=>d.severity==='error'));b.phases[0].hp=2;b.phases[0].until='hp';b.phases[0].threshold=1;
+ assert.ok(lib.validate(g).some(d=>d.severity==='error'));b.phases[0].threshold=0;
+ g.stages[0].presentation={enabled:false,dialogueBackground:'',clearBackground:'',rightPalette:0,dialogue:[],clearEnabled:false,baseBonus:0,lifeBonus:0,noMissBonus:0,victoryDialogue:{enabled:true,background:'test-cut-in',pages:[{id:'one',speaker:'Reimu',line1:'Done',line2:''}]}};
+ assert.equal(lib.validate(g).filter(d=>d.severity==='error').length,0);
+ const v=g.stages[0].presentation.victoryDialogue;v.pages[0].line1='1234567890123456789';assert.ok(lib.validate(g).some(d=>d.severity==='error'));v.pages[0].line1='Done';v.background='missing';assert.ok(lib.validate(g).some(d=>d.severity==='error'));
+ v.background='test-cut-in';Object.assign(b.phases.at(-1),{hp:2,until:'time'});assert.ok(lib.validate(g).some(d=>d.severity==='error'),'timed invulnerable phases need a successor');
+});

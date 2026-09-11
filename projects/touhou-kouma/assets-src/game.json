@@ -1674,11 +1674,11 @@
     },
     {
       "id": "fairy-aim",
-      "name": "妖精・単発自機狙い",
+      "name": "妖精・下向きの灯",
       "asset": "shot-orb",
-      "kind": "aimed",
+      "kind": "straight",
       "speed": 1.25,
-      "angle": 0,
+      "angle": 180,
       "count": 1,
       "spread": 0,
       "interval": 100,
@@ -1722,338 +1722,338 @@
     },
     {
       "id": "mei-petal",
-      "name": "花符・五葉",
+      "name": "花扇・五枚の花びら",
       "asset": "shot-orb",
       "kind": "fan",
       "speed": 0.75,
       "angle": 180,
-      "count": 12,
+      "count": 5,
       "spread": 90,
-      "interval": 32,
+      "interval": 64,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 320,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "mei-guard",
-      "name": "門符・六方",
+      "name": "門番・両脇の構え",
       "asset": "shot-orb",
-      "kind": "aimed",
+      "kind": "fan",
       "speed": 0.75,
-      "angle": 0,
-      "count": 1,
-      "spread": 120,
-      "interval": 24,
-      "rotation": 60,
+      "angle": 180,
+      "count": 2,
+      "spread": 90,
+      "interval": 64,
+      "rotation": 0,
       "repeats": 0,
-      "delay": 48,
-      "lifetime": 320,
+      "delay": 24,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "mei-needle",
-      "name": "紅拳・狙いの間",
+      "name": "紅拳・三連の追い打ち",
       "asset": "shot-diamond",
-      "kind": "aimed",
+      "kind": "fan",
       "speed": 0.75,
-      "angle": 0,
-      "count": 1,
-      "spread": 0,
-      "interval": 32,
+      "angle": 180,
+      "count": 3,
+      "spread": 45,
+      "interval": 64,
       "rotation": 0,
       "repeats": 0,
-      "delay": 70,
-      "lifetime": 320,
+      "delay": 56,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "pat-element",
-      "name": "六曜の輪",
+      "name": "三角の魔法陣",
       "asset": "shot-star",
-      "kind": "ring",
+      "kind": "fan",
       "speed": 0.75,
-      "angle": 0,
-      "count": 16,
-      "spread": 360,
-      "interval": 32,
+      "angle": 180,
+      "count": 3,
+      "spread": 90,
+      "interval": 48,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 320,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "pat-page",
-      "name": "頁の螺旋",
+      "name": "四枚の魔導書",
       "asset": "shot-star",
-      "kind": "spiral",
+      "kind": "fan",
       "speed": 0.75,
       "angle": 180,
-      "count": 16,
-      "spread": 180,
-      "interval": 32,
-      "rotation": 45,
+      "count": 4,
+      "spread": 135,
+      "interval": 72,
+      "rotation": 0,
       "repeats": 0,
       "delay": 48,
-      "lifetime": 320,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "pat-seal",
-      "name": "三角の封印",
+      "name": "三列の封印",
       "asset": "shot-diamond",
       "kind": "fan",
       "speed": 0.75,
       "angle": 180,
-      "count": 12,
-      "spread": 90,
-      "interval": 32,
+      "count": 3,
+      "spread": 45,
+      "interval": 96,
       "rotation": 0,
       "repeats": 0,
-      "delay": 80,
-      "lifetime": 320,
+      "delay": 73,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "sak-fan",
-      "name": "時計の針",
+      "name": "銀の三連時計",
       "asset": "shot-knife",
       "kind": "fan",
       "speed": 0.75,
       "angle": 180,
-      "count": 12,
-      "spread": 90,
-      "interval": 32,
+      "count": 3,
+      "spread": 45,
+      "interval": 28,
       "rotation": 0,
       "repeats": 0,
-      "delay": 30,
-      "lifetime": 320,
+      "delay": 24,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "sak-cross",
-      "name": "逆時計回り",
+      "name": "銀扇・四本の針",
       "asset": "shot-knife",
-      "kind": "spiral",
+      "kind": "fan",
       "speed": 0.75,
       "angle": 180,
-      "count": 16,
-      "spread": 180,
-      "interval": 32,
-      "rotation": 45,
+      "count": 4,
+      "spread": 135,
+      "interval": 40,
+      "rotation": 0,
       "repeats": 0,
-      "delay": 24,
-      "lifetime": 320,
+      "delay": 42,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "sak-line",
-      "name": "銀の一閃",
+      "name": "秒針・真下への連射",
       "asset": "shot-knife",
-      "kind": "aimed",
+      "kind": "straight",
       "speed": 0.75,
-      "angle": 0,
+      "angle": 180,
       "count": 1,
       "spread": 0,
-      "interval": 32,
+      "interval": 16,
       "rotation": 0,
       "repeats": 0,
-      "delay": 84,
-      "lifetime": 320,
+      "delay": 31,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "rem-ring",
-      "name": "紅月の六芒",
+      "name": "紅い六枚の翼",
       "asset": "shot-diamond",
-      "kind": "ring",
+      "kind": "fan",
       "speed": 0.75,
-      "angle": 22.5,
-      "count": 16,
-      "spread": 360,
-      "interval": 32,
+      "angle": 180,
+      "count": 6,
+      "spread": 135,
+      "interval": 44,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 320,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "rem-fan",
-      "name": "夜の翼",
+      "name": "夜潮・五枚の扇",
       "asset": "shot-orb",
       "kind": "fan",
       "speed": 0.75,
       "angle": 180,
-      "count": 12,
-      "spread": 135,
-      "interval": 32,
+      "count": 5,
+      "spread": 90,
+      "interval": 48,
       "rotation": 0,
       "repeats": 0,
-      "delay": 64,
-      "lifetime": 320,
+      "delay": 26,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "rem-coil",
-      "name": "月下の渦",
+      "name": "紅月・垂直の槍",
       "asset": "shot-diamond",
-      "kind": "spiral",
+      "kind": "straight",
       "speed": 0.75,
       "angle": 180,
-      "count": 16,
-      "spread": 180,
-      "interval": 32,
-      "rotation": 22.5,
+      "count": 1,
+      "spread": 0,
+      "interval": 12,
+      "rotation": 0,
       "repeats": 0,
-      "delay": 28,
-      "lifetime": 320,
+      "delay": 27,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "flan-ring",
-      "name": "禁域の八方",
+      "name": "七枚の結晶",
       "asset": "shot-star",
-      "kind": "ring",
+      "kind": "fan",
       "speed": 0.75,
-      "angle": 22.5,
-      "count": 16,
-      "spread": 360,
-      "interval": 32,
+      "angle": 180,
+      "count": 7,
+      "spread": 135,
+      "interval": 40,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 320,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "flan-coil",
-      "name": "七色の破片",
+      "name": "結晶・三連の追奏",
       "asset": "shot-star",
-      "kind": "spiral",
+      "kind": "fan",
       "speed": 0.75,
       "angle": 180,
-      "count": 16,
-      "spread": 180,
+      "count": 3,
+      "spread": 45,
       "interval": 32,
-      "rotation": -45,
+      "rotation": 0,
       "repeats": 0,
-      "delay": 70,
-      "lifetime": 320,
+      "delay": 29,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "flan-final",
-      "name": "真紅の花冠",
+      "name": "真紅・五枚の結晶",
       "asset": "shot-diamond",
       "kind": "fan",
       "speed": 0.75,
       "angle": 180,
-      "count": 12,
+      "count": 5,
       "spread": 90,
-      "interval": 32,
+      "interval": 40,
       "rotation": 0,
       "repeats": 0,
-      "delay": 32,
-      "lifetime": 320,
+      "delay": 40,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "cirno-icicle",
-      "name": "つららの扇",
+      "name": "氷柱・三列落とし",
       "asset": "shot-orb",
       "kind": "fan",
       "speed": 0.75,
       "angle": 180,
-      "count": 12,
+      "count": 3,
       "spread": 90,
-      "interval": 32,
+      "interval": 72,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 320,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "cirno-crystal",
-      "name": "氷の十字",
+      "name": "つらら・右半分",
       "asset": "shot-orb",
-      "kind": "ring",
+      "kind": "fan",
       "speed": 0.75,
-      "angle": 0,
-      "count": 16,
-      "spread": 360,
-      "interval": 32,
+      "angle": 157.5,
+      "count": 2,
+      "spread": 45,
+      "interval": 72,
       "rotation": 0,
       "repeats": 0,
       "delay": 48,
-      "lifetime": 320,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "cirno-aim",
-      "name": "雪玉ねらい",
+      "name": "つらら・左半分",
       "asset": "shot-diamond",
-      "kind": "aimed",
+      "kind": "fan",
       "speed": 0.75,
-      "angle": 0,
-      "count": 1,
-      "spread": 0,
-      "interval": 32,
+      "angle": 202.5,
+      "count": 2,
+      "spread": 45,
+      "interval": 72,
       "rotation": 0,
       "repeats": 0,
-      "delay": 72,
-      "lifetime": 320,
+      "delay": 84,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "rumia-halo",
-      "name": "宵闇の輪",
+      "name": "宵闇・二つの灯",
       "asset": "shot-orb",
-      "kind": "ring",
-      "speed": 0.375,
-      "angle": 0,
-      "count": 8,
-      "spread": 360,
-      "interval": 48,
+      "kind": "fan",
+      "speed": 0.75,
+      "angle": 180,
+      "count": 2,
+      "spread": 45,
+      "interval": 80,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 240,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "rumia-ribbon",
-      "name": "月隠れのリボン",
+      "name": "夜のリボン・三列",
       "asset": "shot-orb",
-      "kind": "spiral",
-      "speed": 0.375,
+      "kind": "fan",
+      "speed": 0.75,
       "angle": 180,
-      "count": 6,
-      "spread": 180,
-      "interval": 48,
-      "rotation": 45,
+      "count": 3,
+      "spread": 90,
+      "interval": 88,
+      "rotation": 0,
       "repeats": 0,
-      "delay": 24,
-      "lifetime": 240,
+      "delay": 32,
+      "lifetime": 192,
       "damage": 1
     },
     {
       "id": "rumia-moon",
-      "name": "ほたるの月道",
+      "name": "月道・三つの灯",
       "asset": "shot-orb",
       "kind": "fan",
-      "speed": 0.375,
+      "speed": 0.75,
       "angle": 180,
-      "count": 6,
-      "spread": 120,
-      "interval": 48,
+      "count": 3,
+      "spread": 45,
+      "interval": 64,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 240,
+      "lifetime": 192,
       "damage": 1
     }
   ],
@@ -2306,7 +2306,7 @@
       "id": "rumia",
       "name": "ルーミア",
       "asset": "rumia",
-      "hp": 60,
+      "hp": 100,
       "score": 1000,
       "motion": {
         "kind": "straight",
@@ -2357,13 +2357,14 @@
                 "frame": 240
               }
             ]
-          }
+          },
+          "hp": 100
         },
         {
           "id": "rumia-phase-1",
-          "name": "宵闇の輪",
+          "name": "宵闇の二灯",
           "until": "hp",
-          "threshold": 40,
+          "threshold": 0,
           "pattern": "rumia-halo",
           "attacks": [],
           "motion": {
@@ -2399,15 +2400,16 @@
           "intro": {
             "enabled": true,
             "background": "cutin-rumia",
-            "spellName": "闇符「宵闇の輪舞」",
-            "seconds": 0.75
-          }
+            "spellName": "闇符「宵闇の二灯」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "rumia-phase-2",
-          "name": "月隠れのリボン",
+          "name": "夜のリボン",
           "until": "hp",
-          "threshold": 20,
+          "threshold": 0,
           "pattern": "rumia-ribbon",
           "attacks": [],
           "motion": {
@@ -2444,12 +2446,13 @@
             "enabled": true,
             "background": "cutin-rumia",
             "spellName": "夜符「月隠れのリボン」",
-            "seconds": 0.75
-          }
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "rumia-phase-3",
-          "name": "ほたるの月道",
+          "name": "三つの月道",
           "until": "hp",
           "threshold": 0,
           "pattern": "rumia-moon",
@@ -2487,21 +2490,24 @@
           "intro": {
             "enabled": true,
             "background": "cutin-rumia",
-            "spellName": "闇夜「ほたるの月道」",
-            "seconds": 0.75
-          }
+            "spellName": "闇夜「三つの月道」",
+            "seconds": 1.2
+          },
+          "hp": 100
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 64
+        "maxBullets": 12,
+        "returnX": 80,
+        "returnY": 36
       }
     },
     {
       "id": "meiling",
       "name": "紅美鈴",
       "asset": "meiling",
-      "hp": 110,
+      "hp": 100,
       "score": 1200,
       "motion": {
         "kind": "straight",
@@ -2552,20 +2558,16 @@
                 "frame": 240
               }
             ]
-          }
+          },
+          "hp": 100
         },
         {
           "id": "meiling-p1",
-          "name": "花扇と追尾",
+          "name": "五枚の花扇",
           "until": "hp",
-          "threshold": 73,
+          "threshold": 0,
           "pattern": "mei-petal",
-          "attacks": [
-            {
-              "id": "meiling-p1-layer",
-              "pattern": "mei-needle"
-            }
-          ],
+          "attacks": [],
           "motion": {
             "kind": "path",
             "vx": 0,
@@ -2599,20 +2601,21 @@
           "intro": {
             "enabled": true,
             "background": "cutin-meiling",
-            "spellName": "花符「紅い花の円舞」",
-            "seconds": 0.75
-          }
+            "spellName": "花符「五枚の花扇」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "meiling-p2",
-          "name": "四方陣・接近",
+          "name": "門番の構え",
           "until": "hp",
-          "threshold": 36,
+          "threshold": 0,
           "pattern": "mei-guard",
           "attacks": [
             {
               "id": "meiling-p2-layer",
-              "pattern": "mei-petal"
+              "pattern": "mei-needle"
             }
           ],
           "motion": {
@@ -2653,20 +2656,21 @@
           "intro": {
             "enabled": true,
             "background": "cutin-meiling",
-            "spellName": "華符「門番の守り」",
-            "seconds": 0.75
-          }
+            "spellName": "華符「門番の構え」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "meiling-p3",
-          "name": "門番の連携",
+          "name": "花びらの追撃",
           "until": "hp",
           "threshold": 0,
-          "pattern": "mei-needle",
+          "pattern": "mei-petal",
           "attacks": [
             {
               "id": "meiling-p3-layer",
-              "pattern": "mei-guard"
+              "pattern": "mei-needle"
             }
           ],
           "motion": {
@@ -2722,21 +2726,24 @@
           "intro": {
             "enabled": true,
             "background": "cutin-meiling",
-            "spellName": "彩符「花びらの雨」",
-            "seconds": 0.75
-          }
+            "spellName": "彩符「花びらの追撃」",
+            "seconds": 1.2
+          },
+          "hp": 100
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 64
+        "maxBullets": 22,
+        "returnX": 80,
+        "returnY": 36
       }
     },
     {
       "id": "patchouli",
       "name": "パチュリー・ノーレッジ",
       "asset": "patchouli",
-      "hp": 135,
+      "hp": 100,
       "score": 1600,
       "motion": {
         "kind": "straight",
@@ -2787,13 +2794,14 @@
                 "frame": 240
               }
             ]
-          }
+          },
+          "hp": 100
         },
         {
           "id": "patchouli-p1",
-          "name": "四元素と封印",
+          "name": "三角の頁",
           "until": "hp",
-          "threshold": 90,
+          "threshold": 0,
           "pattern": "pat-element",
           "attacks": [
             {
@@ -2824,15 +2832,16 @@
           "intro": {
             "enabled": true,
             "background": "cutin-patchouli",
-            "spellName": "書符「六曜の頁」",
-            "seconds": 0.75
-          }
+            "spellName": "書符「三角の頁」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "patchouli-p2",
-          "name": "回転する書頁",
+          "name": "交わる星図",
           "until": "hp",
-          "threshold": 44,
+          "threshold": 0,
           "pattern": "pat-page",
           "attacks": [
             {
@@ -2873,20 +2882,25 @@
           "intro": {
             "enabled": true,
             "background": "cutin-patchouli",
-            "spellName": "月符「余白の星図」",
-            "seconds": 0.75
-          }
+            "spellName": "月符「交わる星図」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "patchouli-p3",
-          "name": "封印の交差",
+          "name": "三重の魔導書",
           "until": "hp",
           "threshold": 0,
-          "pattern": "pat-seal",
+          "pattern": "pat-element",
           "attacks": [
             {
               "id": "patchouli-p3-layer",
               "pattern": "pat-page"
+            },
+            {
+              "id": "patchouli-p3-v09-layer-1",
+              "pattern": "pat-seal"
             }
           ],
           "motion": {
@@ -2927,21 +2941,24 @@
           "intro": {
             "enabled": true,
             "background": "cutin-patchouli",
-            "spellName": "秘符「閉じない魔導書」",
-            "seconds": 0.75
-          }
+            "spellName": "秘符「三重の魔導書」",
+            "seconds": 1.2
+          },
+          "hp": 100
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 64
+        "maxBullets": 26,
+        "returnX": 80,
+        "returnY": 36
       }
     },
     {
       "id": "sakuya",
       "name": "十六夜咲夜",
       "asset": "sakuya",
-      "hp": 160,
+      "hp": 100,
       "score": 2100,
       "motion": {
         "kind": "straight",
@@ -2992,18 +3009,19 @@
                 "frame": 240
               }
             ]
-          }
+          },
+          "hp": 100
         },
         {
           "id": "sakuya-p1",
-          "name": "停止と狙撃",
+          "name": "秒針の列",
           "until": "hp",
-          "threshold": 107,
-          "pattern": "sak-line",
+          "threshold": 0,
+          "pattern": "sak-fan",
           "attacks": [
             {
               "id": "sakuya-p1-layer",
-              "pattern": "sak-fan"
+              "pattern": "sak-line"
             }
           ],
           "motion": {
@@ -3060,14 +3078,15 @@
             "enabled": true,
             "background": "cutin-sakuya",
             "spellName": "銀符「秒針の列」",
-            "seconds": 0.75
-          }
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "sakuya-p2",
-          "name": "旋回する双刃",
+          "name": "時差の銀針",
           "until": "hp",
-          "threshold": 52,
+          "threshold": 0,
           "pattern": "sak-cross",
           "attacks": [
             {
@@ -3113,13 +3132,14 @@
           "intro": {
             "enabled": true,
             "background": "cutin-sakuya",
-            "spellName": "時符「交わる銀の針」",
-            "seconds": 0.75
-          }
+            "spellName": "時符「時差の銀針」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "sakuya-p3",
-          "name": "横薙ぎと追尾",
+          "name": "時計の二重扇",
           "until": "hp",
           "threshold": 0,
           "pattern": "sak-fan",
@@ -3162,21 +3182,24 @@
           "intro": {
             "enabled": true,
             "background": "cutin-sakuya",
-            "spellName": "幻符「時計の扇」",
-            "seconds": 0.75
-          }
+            "spellName": "幻符「時計の二重扇」",
+            "seconds": 1.2
+          },
+          "hp": 100
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 64
+        "maxBullets": 30,
+        "returnX": 80,
+        "returnY": 36
       }
     },
     {
       "id": "remilia",
       "name": "レミリア・スカーレット",
       "asset": "remilia",
-      "hp": 190,
+      "hp": 100,
       "score": 2800,
       "motion": {
         "kind": "straight",
@@ -3227,18 +3250,19 @@
                 "frame": 240
               }
             ]
-          }
+          },
+          "hp": 100
         },
         {
           "id": "remilia-p1",
-          "name": "紅い四方陣",
+          "name": "六枚の翼と槍",
           "until": "hp",
-          "threshold": 127,
+          "threshold": 0,
           "pattern": "rem-ring",
           "attacks": [
             {
               "id": "remilia-p1-layer",
-              "pattern": "rem-fan"
+              "pattern": "rem-coil"
             }
           ],
           "motion": {
@@ -3279,20 +3303,21 @@
           "intro": {
             "enabled": true,
             "background": "cutin-remilia",
-            "spellName": "夜符「紅い月の輪」",
-            "seconds": 0.75
-          }
+            "spellName": "夜符「六枚の翼と槍」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "remilia-p2",
-          "name": "急襲と薙ぎ払い",
+          "name": "夜潮の槍",
           "until": "hp",
-          "threshold": 62,
+          "threshold": 0,
           "pattern": "rem-fan",
           "attacks": [
             {
               "id": "remilia-p2-layer",
-              "pattern": "rem-ring"
+              "pattern": "rem-coil"
             }
           ],
           "motion": {
@@ -3343,16 +3368,17 @@
           "intro": {
             "enabled": true,
             "background": "cutin-remilia",
-            "spellName": "紅符「夜潮の扇」",
-            "seconds": 0.75
-          }
+            "spellName": "紅符「夜潮の槍」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "remilia-p3",
-          "name": "双螺旋の夜",
+          "name": "紅月の二重冠",
           "until": "hp",
           "threshold": 0,
-          "pattern": "rem-coil",
+          "pattern": "rem-ring",
           "attacks": [
             {
               "id": "remilia-p3-layer",
@@ -3392,21 +3418,24 @@
           "intro": {
             "enabled": true,
             "background": "cutin-remilia",
-            "spellName": "月符「小さな王冠」",
-            "seconds": 0.75
-          }
+            "spellName": "月符「紅月の二重冠」",
+            "seconds": 1.2
+          },
+          "hp": 100
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 64
+        "maxBullets": 36,
+        "returnX": 80,
+        "returnY": 36
       }
     },
     {
       "id": "flandre",
       "name": "フランドール・スカーレット",
       "asset": "flandre",
-      "hp": 225,
+      "hp": 100,
       "score": 3600,
       "motion": {
         "kind": "straight",
@@ -3457,13 +3486,14 @@
                 "frame": 240
               }
             ]
-          }
+          },
+          "hp": 100
         },
         {
           "id": "flandre-p1",
-          "name": "八方星と回転弾",
+          "name": "七枚の結晶と追奏",
           "until": "hp",
-          "threshold": 150,
+          "threshold": 0,
           "pattern": "flan-ring",
           "attacks": [
             {
@@ -3494,15 +3524,16 @@
           "intro": {
             "enabled": true,
             "background": "cutin-flandre",
-            "spellName": "遊符「七色の輪」",
-            "seconds": 0.75
-          }
+            "spellName": "遊符「七枚の結晶と追奏」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "flandre-p2",
-          "name": "遊戯の急襲",
+          "name": "五拍のかくれんぼ",
           "until": "hp",
-          "threshold": 74,
+          "threshold": 0,
           "pattern": "flan-final",
           "attacks": [
             {
@@ -3558,20 +3589,21 @@
           "intro": {
             "enabled": true,
             "background": "cutin-flandre",
-            "spellName": "禁符「暁のかくれんぼ」",
-            "seconds": 0.75
-          }
+            "spellName": "禁符「五拍のかくれんぼ」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "flandre-p3",
-          "name": "星の檻",
+          "name": "七枚と五枚の交奏",
           "until": "hp",
           "threshold": 0,
-          "pattern": "flan-coil",
+          "pattern": "flan-ring",
           "attacks": [
             {
               "id": "flandre-p3-layer",
-              "pattern": "flan-ring"
+              "pattern": "flan-final"
             }
           ],
           "motion": {
@@ -3627,21 +3659,24 @@
           "intro": {
             "enabled": true,
             "background": "cutin-flandre",
-            "spellName": "星符「結晶の螺旋」",
-            "seconds": 0.75
-          }
+            "spellName": "星符「七枚と五枚の交奏」",
+            "seconds": 1.2
+          },
+          "hp": 100
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 64
+        "maxBullets": 40,
+        "returnX": 80,
+        "returnY": 36
       }
     },
     {
       "id": "cirno",
       "name": "チルノ",
       "asset": "cirno",
-      "hp": 90,
+      "hp": 100,
       "score": 1000,
       "motion": {
         "kind": "straight",
@@ -3692,20 +3727,16 @@
                 "frame": 240
               }
             ]
-          }
+          },
+          "hp": 100
         },
         {
           "id": "cirno-p1",
-          "name": "つららの扇",
+          "name": "三列のつらら",
           "until": "hp",
-          "threshold": 60,
+          "threshold": 0,
           "pattern": "cirno-icicle",
-          "attacks": [
-            {
-              "id": "cirno-layer1",
-              "pattern": "cirno-crystal"
-            }
-          ],
+          "attacks": [],
           "motion": {
             "kind": "path",
             "vx": 0,
@@ -3739,15 +3770,16 @@
           "intro": {
             "enabled": true,
             "background": "cutin-cirno",
-            "spellName": "氷符「つららの扇」",
-            "seconds": 0.75
-          }
+            "spellName": "氷符「三列のつらら」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "cirno-p2",
-          "name": "氷の十字",
+          "name": "交互の氷柱",
           "until": "hp",
-          "threshold": 30,
+          "threshold": 0,
           "pattern": "cirno-crystal",
           "attacks": [
             {
@@ -3793,20 +3825,25 @@
           "intro": {
             "enabled": true,
             "background": "cutin-cirno",
-            "spellName": "雪符「氷晶の十字」",
-            "seconds": 0.75
-          }
+            "spellName": "雪符「交互の氷柱」",
+            "seconds": 1.2
+          },
+          "hp": 100
         },
         {
           "id": "cirno-p3",
-          "name": "雪玉ねらい",
+          "name": "氷柱の行進",
           "until": "hp",
           "threshold": 0,
-          "pattern": "cirno-aim",
+          "pattern": "cirno-icicle",
           "attacks": [
             {
               "id": "cirno-layer3",
-              "pattern": "cirno-icicle"
+              "pattern": "cirno-crystal"
+            },
+            {
+              "id": "cirno-p3-v09-layer-1",
+              "pattern": "cirno-aim"
             }
           ],
           "motion": {
@@ -3862,14 +3899,17 @@
           "intro": {
             "enabled": true,
             "background": "cutin-cirno",
-            "spellName": "凍符「雪玉の追いかけっこ」",
-            "seconds": 0.75
-          }
+            "spellName": "凍符「氷柱の行進」",
+            "seconds": 1.2
+          },
+          "hp": 100
         }
       ],
       "battle": {
         "background": "bg-bullets",
-        "maxBullets": 64
+        "maxBullets": 18,
+        "returnX": 80,
+        "returnY": 36
       }
     }
   ],
@@ -9816,7 +9856,37 @@
         "baseBonus": 1000,
         "lifeBonus": 200,
         "noMissBonus": 1000,
-        "clearWaitSeconds": 2
+        "clearWaitSeconds": 2,
+        "victoryDialogue": {
+          "enabled": true,
+          "background": "result-rumia",
+          "pages": [
+            {
+              "id": "rumia-victory-0",
+              "speaker": "れいむ",
+              "line1": "これで、みちがみえるわ。",
+              "line2": "あかいきりは、あっちね。"
+            },
+            {
+              "id": "rumia-victory-1",
+              "speaker": "ルーミア",
+              "line1": "くらやみが、ほどけちゃった。",
+              "line2": "みずうみのほうは、さむいよ。"
+            },
+            {
+              "id": "rumia-victory-2",
+              "speaker": "れいむ",
+              "line1": "こおりまであるの?",
+              "line2": "ほんと、めんどうなよるね。"
+            },
+            {
+              "id": "rumia-victory-3",
+              "speaker": "ルーミア",
+              "line1": "こんどは、もっとくらいよるに!",
+              "line2": "また、あそんでね。"
+            }
+          ]
+        }
       }
     },
     {
@@ -16481,7 +16551,37 @@
         "baseBonus": 1000,
         "lifeBonus": 200,
         "noMissBonus": 1000,
-        "clearWaitSeconds": 2
+        "clearWaitSeconds": 2,
+        "victoryDialogue": {
+          "enabled": true,
+          "background": "result-cirno",
+          "pages": [
+            {
+              "id": "cirno-victory-0",
+              "speaker": "チルノ",
+              "line1": "こおりがとけたせいで、まけたの!",
+              "line2": "あたいがよわいわけじゃない!"
+            },
+            {
+              "id": "cirno-victory-1",
+              "speaker": "れいむ",
+              "line1": "はいはい。みちはあけてね。",
+              "line2": "あのやしきに、ようがあるの。"
+            },
+            {
+              "id": "cirno-victory-2",
+              "speaker": "チルノ",
+              "line1": "もんのひとは、てごわいよ。",
+              "line2": "あとで、ないてもしらないから!"
+            },
+            {
+              "id": "cirno-victory-3",
+              "speaker": "れいむ",
+              "line1": "しんぱいしてくれて、ありがと。",
+              "line2": "かぜひかないようにね。"
+            }
+          ]
+        }
       }
     },
     {
@@ -23158,7 +23258,37 @@
         "baseBonus": 1000,
         "lifeBonus": 200,
         "noMissBonus": 1000,
-        "clearWaitSeconds": 2
+        "clearWaitSeconds": 2,
+        "victoryDialogue": {
+          "enabled": true,
+          "background": "result-1",
+          "pages": [
+            {
+              "id": "meiling-victory-0",
+              "speaker": "めいりん",
+              "line1": "もんばんが、とおしちゃだめなのに。",
+              "line2": "おじょうさまに、おこられる!"
+            },
+            {
+              "id": "meiling-victory-1",
+              "speaker": "れいむ",
+              "line1": "きりをはらせば、すぐかえるわ。",
+              "line2": "ねていたことに、しておけば?"
+            },
+            {
+              "id": "meiling-victory-2",
+              "speaker": "めいりん",
+              "line1": "それが、いちばんおこられます!",
+              "line2": "なかでは、おしずかに。"
+            },
+            {
+              "id": "meiling-victory-3",
+              "speaker": "れいむ",
+              "line1": "それは、あちらしだいね。",
+              "line2": "とりあえず、おじゃまするわ。"
+            }
+          ]
+        }
       }
     },
     {
@@ -30607,7 +30737,37 @@
         "baseBonus": 1000,
         "lifeBonus": 200,
         "noMissBonus": 1000,
-        "clearWaitSeconds": 2
+        "clearWaitSeconds": 2,
+        "victoryDialogue": {
+          "enabled": true,
+          "background": "result-2",
+          "pages": [
+            {
+              "id": "patchouli-victory-0",
+              "speaker": "パチュリー",
+              "line1": "ほんは、ぶじみたいね。",
+              "line2": "あなたのほうが、うるさかったわ。"
+            },
+            {
+              "id": "patchouli-victory-1",
+              "speaker": "れいむ",
+              "line1": "やくそくは、まもったでしょ。",
+              "line2": "きりのぬしは、どこ?"
+            },
+            {
+              "id": "patchouli-victory-2",
+              "speaker": "パチュリー",
+              "line1": "とけいのむこう、いちばんおく。",
+              "line2": "ほんだなには、さわらないで。"
+            },
+            {
+              "id": "patchouli-victory-3",
+              "speaker": "れいむ",
+              "line1": "ようじがすんだら、すぐかえる。",
+              "line2": "ありがと。あとは、やすんでて。"
+            }
+          ]
+        }
       }
     },
     {
@@ -38852,7 +39012,37 @@
         "baseBonus": 1000,
         "lifeBonus": 200,
         "noMissBonus": 1000,
-        "clearWaitSeconds": 2
+        "clearWaitSeconds": 2,
+        "victoryDialogue": {
+          "enabled": true,
+          "background": "result-3",
+          "pages": [
+            {
+              "id": "sakuya-victory-0",
+              "speaker": "さくや",
+              "line1": "おじょうさまを、おまもりできず。",
+              "line2": "わたしも、まだまだですね。"
+            },
+            {
+              "id": "sakuya-victory-1",
+              "speaker": "れいむ",
+              "line1": "そのとけいは、もううごかして。",
+              "line2": "よるがあけないと、こまるの。"
+            },
+            {
+              "id": "sakuya-victory-2",
+              "speaker": "さくや",
+              "line1": "では、おじょうさまへどうぞ。",
+              "line2": "おちゃを、いれておきますわ。"
+            },
+            {
+              "id": "sakuya-victory-3",
+              "speaker": "れいむ",
+              "line1": "きりがはれたら、いただくわ。",
+              "line2": "それまで、まっててね。"
+            }
+          ]
+        }
       }
     },
     {
@@ -47869,7 +48059,37 @@
         "baseBonus": 1000,
         "lifeBonus": 200,
         "noMissBonus": 1000,
-        "clearWaitSeconds": 2
+        "clearWaitSeconds": 2,
+        "victoryDialogue": {
+          "enabled": true,
+          "background": "result-4",
+          "pages": [
+            {
+              "id": "remilia-victory-0",
+              "speaker": "レミリア",
+              "line1": "こんなけつまつは、よんでないわ。",
+              "line2": "わたしのよるだったのに。"
+            },
+            {
+              "id": "remilia-victory-1",
+              "speaker": "れいむ",
+              "line1": "よるは、みんなのものなの。",
+              "line2": "あかいきりは、おしまいよ。"
+            },
+            {
+              "id": "remilia-victory-2",
+              "speaker": "レミリア",
+              "line1": "わかったわ。やくそくはまもる。",
+              "line2": "でも、いもうとがまってるの。"
+            },
+            {
+              "id": "remilia-victory-3",
+              "speaker": "れいむ",
+              "line1": "まだ、かえれないわけ?",
+              "line2": "じゃあ、もうひとしごとね。"
+            }
+          ]
+        }
       }
     },
     {
@@ -57630,7 +57850,37 @@
         "baseBonus": 1000,
         "lifeBonus": 200,
         "noMissBonus": 1000,
-        "clearWaitSeconds": 2
+        "clearWaitSeconds": 2,
+        "victoryDialogue": {
+          "enabled": true,
+          "background": "result-5",
+          "pages": [
+            {
+              "id": "flandre-victory-0",
+              "speaker": "フランドール",
+              "line1": "あーあ。おわっちゃった。",
+              "line2": "こわれないあそびも、いいね。"
+            },
+            {
+              "id": "flandre-victory-1",
+              "speaker": "れいむ",
+              "line1": "つぎも、きまりはまもりなさい。",
+              "line2": "もう、かえるじかんよ。"
+            },
+            {
+              "id": "flandre-victory-2",
+              "speaker": "フランドール",
+              "line1": "こんどは、おちゃものもうね。",
+              "line2": "また、あそびにきて!"
+            },
+            {
+              "id": "flandre-victory-3",
+              "speaker": "れいむ",
+              "line1": "きりをださないなら、かんがえる。",
+              "line2": "じゃあね。おとなしくしてて。"
+            }
+          ]
+        }
       }
     }
   ],

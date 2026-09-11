@@ -1,5 +1,5 @@
 // Native, read-only corroboration. ROM and RAM are never patched.
-// node editor/tests/bgb-trace.mjs ROM.gb OUTDIR FRAMES direct|menu|idle [--breakpoint SPEC] [--watchpoint SPEC]
+// node editor/tests/bgb-trace.mjs ROM.gb OUTDIR FRAMES direct|menu|idle|focus [--breakpoint SPEC] [--watchpoint SPEC]
 // SPEC uses BGB's documented -br/-wp syntax; logging expressions use hex.
 import fs from "node:fs";
 import path from "node:path";
@@ -14,7 +14,7 @@ const rom = path.resolve(romArg),
     out = path.resolve(outArg),
     count = Number(countArg);
 assert.ok(Number.isInteger(count) && count > 0 && count <= 120000);
-assert.ok(["direct", "menu", "idle"].includes(recipe));
+assert.ok(["direct", "menu", "idle", "focus"].includes(recipe));
 fs.mkdirSync(out, { recursive: true });
 const executable = path.join(out, "bgb64.exe");
 fs.copyFileSync(path.join(root, ".tools/bgb/bgb64.exe"), executable);
@@ -30,7 +30,7 @@ const prefix =
           ]);
 const demo = Buffer.concat([
     prefix,
-    Buffer.alloc(count, recipe === "idle" ? 0 : 1),
+    Buffer.alloc(count, recipe === "idle" ? 0 : recipe === "focus" ? 2 : 1),
 ]);
 fs.writeFileSync(path.join(out, "input.dem"), demo);
 const args = [
@@ -59,7 +59,7 @@ for (let i = 0; i < options.length; i += 2) {
 const result = spawnSync(executable, args, {
     cwd: out,
     windowsHide: true,
-    timeout: 120000,
+    timeout: Math.max(120000, demo.length * 15),
 });
 if (result.error) throw result.error;
 assert.equal(result.status, 0, "native BGB execution");

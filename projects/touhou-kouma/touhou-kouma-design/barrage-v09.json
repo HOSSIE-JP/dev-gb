@@ -1,0 +1,334 @@
+{
+  "patterns": {
+    "rumia-halo": {
+      "name": "宵闇・二つの灯",
+      "count": 2,
+      "spread": 45,
+      "interval": 80,
+      "delay": 24
+    },
+    "rumia-ribbon": {
+      "name": "夜のリボン・三列",
+      "count": 3,
+      "spread": 90,
+      "interval": 88,
+      "delay": 32
+    },
+    "rumia-moon": {
+      "name": "月道・三つの灯",
+      "count": 3,
+      "spread": 45,
+      "interval": 64,
+      "delay": 24
+    },
+    "cirno-icicle": {
+      "name": "氷柱・三列落とし",
+      "count": 3,
+      "spread": 90,
+      "interval": 72,
+      "delay": 24
+    },
+    "cirno-crystal": {
+      "name": "つらら・右半分",
+      "count": 2,
+      "spread": 45,
+      "angle": 157.5,
+      "interval": 72,
+      "delay": 48
+    },
+    "cirno-aim": {
+      "name": "つらら・左半分",
+      "count": 2,
+      "spread": 45,
+      "angle": 202.5,
+      "interval": 72,
+      "delay": 84
+    },
+    "mei-petal": {
+      "name": "花扇・五枚の花びら",
+      "count": 5,
+      "spread": 90,
+      "interval": 64,
+      "delay": 24
+    },
+    "mei-guard": {
+      "name": "門番・両脇の構え",
+      "count": 2,
+      "spread": 90,
+      "interval": 64,
+      "delay": 24
+    },
+    "mei-needle": {
+      "name": "紅拳・三連の追い打ち",
+      "count": 3,
+      "spread": 45,
+      "interval": 64,
+      "delay": 56
+    },
+    "pat-element": {
+      "name": "三角の魔法陣",
+      "count": 3,
+      "spread": 90,
+      "interval": 48,
+      "delay": 24
+    },
+    "pat-page": {
+      "name": "四枚の魔導書",
+      "count": 4,
+      "spread": 135,
+      "interval": 72,
+      "delay": 48
+    },
+    "pat-seal": {
+      "name": "三列の封印",
+      "count": 3,
+      "spread": 45,
+      "interval": 96,
+      "delay": 73
+    },
+    "sak-fan": {
+      "name": "銀の三連時計",
+      "count": 3,
+      "spread": 45,
+      "interval": 28,
+      "delay": 24
+    },
+    "sak-cross": {
+      "name": "銀扇・四本の針",
+      "count": 4,
+      "spread": 135,
+      "interval": 40,
+      "delay": 42
+    },
+    "sak-line": {
+      "name": "秒針・真下への連射",
+      "count": 1,
+      "spread": 0,
+      "interval": 16,
+      "delay": 31
+    },
+    "rem-ring": {
+      "name": "紅い六枚の翼",
+      "count": 6,
+      "spread": 135,
+      "interval": 44,
+      "delay": 24
+    },
+    "rem-fan": {
+      "name": "夜潮・五枚の扇",
+      "count": 5,
+      "spread": 90,
+      "interval": 48,
+      "delay": 26
+    },
+    "rem-coil": {
+      "name": "紅月・垂直の槍",
+      "count": 1,
+      "spread": 0,
+      "interval": 12,
+      "delay": 27
+    },
+    "flan-ring": {
+      "name": "七枚の結晶",
+      "count": 7,
+      "spread": 135,
+      "interval": 40,
+      "delay": 24
+    },
+    "flan-coil": {
+      "name": "結晶・三連の追奏",
+      "count": 3,
+      "spread": 45,
+      "interval": 32,
+      "delay": 29
+    },
+    "flan-final": {
+      "name": "真紅・五枚の結晶",
+      "count": 5,
+      "spread": 90,
+      "interval": 40,
+      "delay": 40
+    }
+  },
+  "phases": {
+    "rumia": [
+      {
+        "name": "宵闇の二灯",
+        "spellName": "闇符「宵闇の二灯」",
+        "patterns": [
+          "rumia-halo"
+        ]
+      },
+      {
+        "name": "夜のリボン",
+        "spellName": "夜符「月隠れのリボン」",
+        "patterns": [
+          "rumia-ribbon"
+        ]
+      },
+      {
+        "name": "三つの月道",
+        "spellName": "闇夜「三つの月道」",
+        "patterns": [
+          "rumia-moon"
+        ]
+      }
+    ],
+    "cirno": [
+      {
+        "name": "三列のつらら",
+        "spellName": "氷符「三列のつらら」",
+        "patterns": [
+          "cirno-icicle"
+        ]
+      },
+      {
+        "name": "交互の氷柱",
+        "spellName": "雪符「交互の氷柱」",
+        "patterns": [
+          "cirno-crystal",
+          "cirno-aim"
+        ]
+      },
+      {
+        "name": "氷柱の行進",
+        "spellName": "凍符「氷柱の行進」",
+        "patterns": [
+          "cirno-icicle",
+          "cirno-crystal",
+          "cirno-aim"
+        ]
+      }
+    ],
+    "meiling": [
+      {
+        "name": "五枚の花扇",
+        "spellName": "花符「五枚の花扇」",
+        "patterns": [
+          "mei-petal"
+        ]
+      },
+      {
+        "name": "門番の構え",
+        "spellName": "華符「門番の構え」",
+        "patterns": [
+          "mei-guard",
+          "mei-needle"
+        ]
+      },
+      {
+        "name": "花びらの追撃",
+        "spellName": "彩符「花びらの追撃」",
+        "patterns": [
+          "mei-petal",
+          "mei-needle"
+        ]
+      }
+    ],
+    "patchouli": [
+      {
+        "name": "三角の頁",
+        "spellName": "書符「三角の頁」",
+        "patterns": [
+          "pat-element",
+          "pat-seal"
+        ]
+      },
+      {
+        "name": "交わる星図",
+        "spellName": "月符「交わる星図」",
+        "patterns": [
+          "pat-page",
+          "pat-element"
+        ]
+      },
+      {
+        "name": "三重の魔導書",
+        "spellName": "秘符「三重の魔導書」",
+        "patterns": [
+          "pat-element",
+          "pat-page",
+          "pat-seal"
+        ]
+      }
+    ],
+    "sakuya": [
+      {
+        "name": "秒針の列",
+        "spellName": "銀符「秒針の列」",
+        "patterns": [
+          "sak-fan",
+          "sak-line"
+        ]
+      },
+      {
+        "name": "時差の銀針",
+        "spellName": "時符「時差の銀針」",
+        "patterns": [
+          "sak-cross",
+          "sak-line"
+        ]
+      },
+      {
+        "name": "時計の二重扇",
+        "spellName": "幻符「時計の二重扇」",
+        "patterns": [
+          "sak-fan",
+          "sak-cross"
+        ]
+      }
+    ],
+    "remilia": [
+      {
+        "name": "六枚の翼と槍",
+        "spellName": "夜符「六枚の翼と槍」",
+        "patterns": [
+          "rem-ring",
+          "rem-coil"
+        ]
+      },
+      {
+        "name": "夜潮の槍",
+        "spellName": "紅符「夜潮の槍」",
+        "patterns": [
+          "rem-fan",
+          "rem-coil"
+        ]
+      },
+      {
+        "name": "紅月の二重冠",
+        "spellName": "月符「紅月の二重冠」",
+        "patterns": [
+          "rem-ring",
+          "rem-fan"
+        ]
+      }
+    ],
+    "flandre": [
+      {
+        "name": "七枚の結晶と追奏",
+        "spellName": "遊符「七枚の結晶と追奏」",
+        "patterns": [
+          "flan-ring",
+          "flan-coil"
+        ]
+      },
+      {
+        "name": "五拍のかくれんぼ",
+        "spellName": "禁符「五拍のかくれんぼ」",
+        "patterns": [
+          "flan-final",
+          "flan-coil"
+        ]
+      },
+      {
+        "name": "七枚と五枚の交奏",
+        "spellName": "星符「七枚と五枚の交奏」",
+        "patterns": [
+          "flan-ring",
+          "flan-final"
+        ]
+      }
+    ]
+  }
+}

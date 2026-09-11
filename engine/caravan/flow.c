@@ -2,6 +2,9 @@
 #include "caravan.h"
 #include "music.h"
 static CE_Presentation presentation;
+extern uint8_t allocate(uint8_t kind, uint8_t asset);
+extern void release(uint8_t slot);
+extern void explode(int16_t x, int16_t y);
 
 /* Presentation runs with gameplay frozen. Only real button edges advance pages. */
 uint8_t ce_stage_misses, ce_dialogue_page, ce_boss_invulnerable;
@@ -32,6 +35,20 @@ void ce_dialogue(void) BANKED {
     }
     while (joypad() & (J_A | J_START)) scene_input();
     ce_fade(1); ce_load_stage(); ce_scene = 1; ce_fade(0);
+}
+void ce_victory_dialogue(void) BANKED {
+    uint8_t pressed;
+    ce_get_presentation(&presentation, ce_state.stage);
+    if (!presentation.victory_count) return;
+    ce_clear_combat(0); ce_fade(1); ce_scene = 9;
+    ce_music_play(ce_music_clear); scene_previous = joypad();
+    for (ce_dialogue_page = 0; ce_dialogue_page != presentation.victory_count; ++ce_dialogue_page) {
+        if (!ce_dialogue_page) ce_load_screen(presentation.victory_first);
+        else ce_dialogue_update(presentation.victory_first + ce_dialogue_page);
+        do { pressed = scene_input(); } while (!(pressed & (J_A | J_START)));
+        if (pressed & J_START) break;
+    }
+    while (joypad() & (J_A | J_START)) scene_input();
 }
 void ce_stage_complete(void) BANKED {
     const CE_Presentation *p = &presentation;
@@ -82,9 +99,53 @@ void ce_phase_intro(const CE_Phase *phase) BANKED {
     ce_boss_invulnerable = 0;
 }
 
-extern uint8_t allocate(uint8_t kind, uint8_t asset);
-extern void release(uint8_t slot);
-extern void explode(int16_t x, int16_t y);
+/* Only a phase with its own HP opts into the break / return sequence.
+ * These waits use VBlank time, never advance gameplay or issue attacks. */
+uint8_t ce_transition_state;
+static void transition_frame(void) {
+    ce_render(); ce_audio_sync(); ce_trace_write();
+}
+static uint16_t transition_clock(void) {
+    uint16_t now; CRITICAL { now = sys_time; } return now;
+}
+static void clear_effects(void) {
+    uint8_t i; for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_FX) release(i);
+}
+static int16_t return_position(int16_t start, int16_t delta, uint8_t elapsed) {
+    /* Split the product to stay within signed 16 bits at either screen edge. */
+    return start + (delta / 32) * elapsed + (delta % 32) * elapsed / 32;
+}
+void ce_change_phase(CE_Entity *boss, uint8_t damage) BANKED {
+    const CE_Actor *actor = &ce_bosses[boss->ref];
+    uint16_t start, elapsed; uint8_t i;
+    int16_t x = boss->x, y = boss->y;
+    int16_t dx = (int16_t)actor->return_x * 16 - x, dy = (int16_t)actor->return_y * 16 - y;
+    ce_boss_invulnerable = 1; ce_clear_combat(0); clear_effects();
+    if (ce_battle_mode == 2u) ce_bg_begin();
+    ce_scene = 8; ce_hud();
+    if (damage) {
+        ce_transition_state = 1; explode(x, y); ce_sound(1);
+        start = transition_clock(); elapsed = 0;
+        do {
+            for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_FX) ce_entities[i].age = elapsed;
+            transition_frame(); elapsed = transition_clock() - start;
+        } while (elapsed < ce_explosion_duration);
+        clear_effects(); ce_transition_state = 2; start = transition_clock(); elapsed = 0;
+        for (;;) {
+            if (elapsed > 32u) elapsed = 32u;
+            boss->x = return_position(x, dx, elapsed); boss->y = return_position(y, dy, elapsed);
+            transition_frame(); if (elapsed == 32u) break;
+            elapsed = transition_clock() - start;
+        }
+    }
+    boss->x = boss->base_x = (int16_t)actor->return_x * 16;
+    boss->y = boss->base_y = (int16_t)actor->return_y * 16;
+    ++boss->phase; boss->phase_age = 0; boss->sequence = 0;
+    if (actor->phase[boss->phase].hp) boss->hp = actor->phase[boss->phase].hp;
+    ce_transition_state = 3; ce_phase_intro(&actor->phase[boss->phase]);
+    ce_scene = 1; ce_transition_state = 0;
+    ce_boss_invulnerable = actor->phase[boss->phase].hp && !actor->phase[boss->phase].until;
+}
 extern uint8_t defeated_asset;
 extern int16_t defeated_x, defeated_y;
 static void victory_effects(void) {
@@ -145,9 +206,11 @@ static void spawn_actor(uint8_t kind, uint8_t ref, int16_t x, int16_t y) {
     if (kind == CE_BOSS) {
         uint8_t track = ce_stages[ce_state.stage].boss_music;
         ce_battle_mode = actor->background; ce_battle_asset = actor->asset; ce_bg_limit = actor->bg_limit;
+        if (actor->phase[0].hp) e->hp = actor->phase[0].hp;
         if (ce_battle_mode) { ce_state.scroll = 0; ce_battle_setup(); }
         else ce_load_boss(actor->asset);
         if (actor->phase[0].intro_frames) ce_phase_intro(&actor->phase[0]);
+        ce_boss_invulnerable = actor->phase[0].hp && !actor->phase[0].until;
         ce_music_play(track ? track : ce_music_boss);
     }
 }

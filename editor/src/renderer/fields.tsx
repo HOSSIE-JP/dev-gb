@@ -161,15 +161,18 @@ export function Form({
     context?: string;
 }) {
     const edit = (key: string, next: any) =>
-        onChange({ ...value, [key]: next });
+        onChange({ ...value, [key]: next,
+            ...(context === "phase" && ((key === "hp" && next > 0 && value.until === "hp") || (key === "until" && next === "hp" && value.hp > 0)) ? {threshold: 0} : {})
+        });
     return (
         <div className="form">
             {Object.entries(
                 context === "player" ? { focusWeapon: "", focusSpeed: value.speed, respawnDelay: 0, ...value }
                 : context === "stage" ? { requireBoss: false, scrollDown: false, music: 0, bossMusic: 0, presentation: { enabled: false, dialogueBackground: "", clearBackground: "", rightPalette: 0, dialogue: [], clearEnabled: false, baseBonus: game.clearBonus, lifeBonus: 200, noMissBonus: 1000 }, parallax: { enabled: false, firstTile: 0, width: 4, height: 2, divisor: 2 }, ...value }
                 : "phases" in value ? {battle: {background: "stage", maxBullets: 64}, ...value}
-                : context === "phase" ? {intro: {enabled: false, background: "", spellName: value.name, seconds: 0.75}, ...value}
-                : context === "presentation" ? {clearWaitSeconds: 2, ...value}
+                : context === "phase" ? {hp: 0, intro: {enabled: false, background: "", spellName: value.name, seconds: 1.2}, ...value}
+                : context === "battle" ? {returnX: 80, returnY: 36, ...value}
+                : context === "presentation" ? {clearWaitSeconds: 2, victoryDialogue: {enabled: false, background: value.clearBackground ?? "", pages: []}, ...value}
                 : value.id === "hud" ? { rows: 2, ...value }
                 : "binding" in value ? { digits: 5, ...value }
                 : value.schemaVersion === 1 ? { ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
@@ -275,6 +278,11 @@ export function Form({
                             name: names[id] ?? id,
                         }));
                     const label =
+                        key === "hp" && context === "phase" ? "このフェーズのHP（0＝通算HP）" :
+                        key === "threshold" && context === "phase" && value.hp > 0 && value.until === "hp" ? "切替HP（フェーズHP使用時は0）" :
+                        key === "returnX" ? "フェーズ復帰位置X" : key === "returnY" ? "フェーズ復帰位置Y" :
+                        key === "victoryDialogue" ? "撃破後の勝者・敗者会話" :
+                        key === "pages" && context === "victoryDialogue" ? "撃破後会話ページ" :
                         key === "seconds" && context === "intro" ? "表示時間（秒）" :
                         key === "background" && context === "battle" ? "描画方式" :
                         key === "duration" && context === "stage"
@@ -317,6 +325,7 @@ export function Form({
                             <Field label={label} key={key}>
                                 <input
                                     aria-label={label}
+                                    disabled={key === "threshold" && context === "phase" && value.hp > 0 && value.until === "hp"}
                                     type={
                                         typeof v === "number"
                                             ? "number"
@@ -446,7 +455,7 @@ export function Form({
                                         const last = v.length
                                             ? clone(v[v.length - 1])
                                             : key === "slides" ? {id: uid("slide"), background: game.assets.find(a => a.kind === "screen")?.id ?? ""}
-                                            : key === "dialogue" ? { id: uid("page"), speaker: "", line1: "", line2: "" }
+                                            : key === "dialogue" || key === "pages" ? { id: uid("page"), speaker: "", line1: "", line2: "" }
                                             : key === "emitters"
                                               ? { x: 0, y: 0 }
                                               : key === "points"
