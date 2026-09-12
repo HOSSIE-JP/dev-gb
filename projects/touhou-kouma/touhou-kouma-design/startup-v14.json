@@ -1,0 +1,28 @@
+{
+  "settings": {
+    "enabled": true,
+    "fadeSeconds": 0.4,
+    "slides": []
+  },
+  "maxPages": 16,
+  "defaults": {
+    "pageSeconds": 2,
+    "fadeSeconds": 0.4
+  },
+  "oncePerBoot": true,
+  "skipButtons": [
+    "A",
+    "B",
+    "START",
+    "SELECT",
+    "UP",
+    "DOWN",
+    "LEFT",
+    "RIGHT"
+  ],
+  "dimensions": [
+    160,
+    144
+  ],
+  "note": "No logo art was supplied; production list is empty. Test ROM uses generated diagnostic patterns, not release logos."
+}

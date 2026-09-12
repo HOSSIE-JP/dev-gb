@@ -195,49 +195,12 @@ static const uint8_t gero_over_lead[]={G5,H,E5,H,D5,E5,C5,H,F5,H,D5,H,C5,H,H,RES
 static const uint8_t gero_over_bass[]={C3,H,G2,H,F2,H,C3,H,C3,H,G2,H,F2,H,C3,H,C3,H,G2,H,F2,H,C3,H,C3,H,G2,H,F2,H,C3,H};
 
 
-/* Original SCARLET PILGRIMAGE score. Generated from projects/touhou-kouma-design/score.json. */
-static const uint8_t kouma_title_lead[]={D4,A4,D5,H,F5,E5,D5,A4,AS4,D5,F5,E5,CS5,A4,D5,H,AS3,F4,AS4,H,CS5,C5,AS4,F4,FS4,AS4,CS5,C5,A4,F4,AS4,H,C4,G4,C5,H,DS5,D5,C5,G4,GS4,C5,DS5,D5,B4,G4,C5,H,A3,E4,A4,H,C5,B4,A4,E4,F4,A4,C5,B4,GS4,E4,A4,H,D5,H,F5,FS5,D5,A4,AS4,E5,F5,E5,CS5,B4,D5,H,D4,A4,AS4,H,CS5,D5,AS4,F4,FS4,C5,CS5,C5,A4,G4,AS4,H,AS3,F4,C5,H,DS5,E5,C5,G4,GS4,D5,DS5,D5,B4,A4,C5,H,C4,G4,A4,H,C5,C5,A4,E4,F4,AS4,C5,B4,GS4,F4,A4,H,A3,E4};
-static const uint8_t kouma_title_bass[]={D2,A2,D3,A2,F2,A2,D3,A2,AS2,F3,AS3,F3,D3,F3,AS3,F3,C2,G2,C3,G2,E2,G2,C3,G2,A2,E3,A3,E3,CS3,E3,A3,E3};
-static const uint8_t kouma_gate_lead[]={G4,AS4,D5,F5,D5,C5,AS4,A4,G4,D5,G5,F5,DS5,D5,AS4,C5,DS4,FS4,AS4,CS5,AS4,GS4,FS4,F4,DS4,AS4,DS5,CS5,B4,AS4,FS4,GS4,F4,GS4,C5,DS5,C5,AS4,GS4,G4,F4,C5,F5,DS5,CS5,C5,GS4,AS4,D4,F4,A4,C5,A4,G4,F4,E4,D4,A4,D5,C5,AS4,A4,F4,G4,D5,F5,D5,D5,AS4,A4,G4,E5,G5,F5,DS5,E5,AS4,C5,G4,AS4,AS4,CS5,AS4,AS4,FS4,F4,DS4,C5,DS5,CS5,B4,C5,FS4,GS4,DS4,FS4,C5,DS5,C5,C5,GS4,G4,F4,D5,F5,DS5,CS5,D5,GS4,AS4,F4,GS4,A4,C5,A4,GS4,F4,E4,D4,AS4,D5,C5,AS4,AS4,F4,G4,D4,F4,D6,C5,AS4,A4,G5,D5,G5,F5,DS6,D5,AS4,C5,G5,AS4,D5,F5,AS5,GS4,FS4,F4,DS5,AS4,DS5,CS5,B5,AS4,FS4,GS4,DS5,FS4,AS4,CS5,C6,AS4,GS4,G4,F5,C5,F5,DS5,CS6,C5,GS4,AS4,F5,GS4,C5,DS5,A5,G4,F4,E4,D5,A4,D5,C5,AS5,A4,F4,G4,D5,F4,A4,C5};
-static const uint8_t kouma_gate_bass[]={G2,D3,G3,D3,AS2,D3,G3,D3,DS2,AS2,DS3,AS2,G2,AS2,DS3,AS2,F2,C3,F3,C3,A2,C3,F3,C3,D2,A2,D3,A2,FS2,A2,D3,A2};
-static const uint8_t kouma_meiling_lead[]={D5,G4,AS4,D5,G5,F5,D5,AS4,C5,DS5,G5,AS5,A5,G5,F5,D5,AS4,DS4,FS4,AS4,DS5,CS5,AS4,FS4,GS4,B4,DS5,FS5,F5,DS5,CS5,AS4,C5,F4,GS4,C5,F5,DS5,C5,GS4,AS4,CS5,F5,GS5,G5,F5,DS5,C5,A4,D4,F4,A4,D5,C5,A4,F4,G4,AS4,D5,F5,E5,D5,C5,A4,AS4,D5,G5,G5,D5,AS4,C5,F5,G5,AS5,A5,A5,F5,D5,D5,G4,FS4,AS4,DS5,DS5,AS4,FS4,GS4,CS5,DS5,FS5,F5,F5,CS5,AS4,AS4,DS4,GS4,C5,F5,F5,C5,GS4,AS4,DS5,F5,GS5,G5,G5,DS5,C5,C5,F4,F4,A4,D5,CS5,A4,F4,G4,B4,D5,F5,E5,DS5,C5,A4,A4,D4,G6,F5,D5,AS4,C6,DS5,G5,AS5,A6,G5,F5,D5,D6,G4,AS4,D5,DS6,CS5,AS4,FS4,GS5,B4,DS5,FS5,F6,DS5,CS5,AS4,AS5,DS4,FS4,AS4,F6,DS5,C5,GS4,AS5,CS5,F5,GS5,G6,F5,DS5,C5,C6,F4,GS4,C5,D6,C5,A4,F4,G5,AS4,D5,F5,E6,D5,C5,A4,A5,D4,F4,A4};
-static const uint8_t kouma_meiling_bass[]={G2,D3,G3,D3,AS2,D3,G3,D3,DS2,AS2,DS3,AS2,G2,AS2,DS3,AS2,F2,C3,F3,C3,A2,C3,F3,C3,D2,A2,D3,A2,FS2,A2,D3,A2};
-static const uint8_t kouma_library_lead[]={FS4,H,CS5,A4,F5,CS5,GS5,FS5,D5,H,B4,A4,CS5,F5,FS5,CS5,D4,H,A4,F4,CS5,A4,E5,D5,AS4,H,G4,F4,A4,CS5,D5,A4,E4,H,B4,G4,DS5,B4,FS5,E5,C5,H,A4,G4,B4,DS5,E5,B4,CS4,H,GS4,E4,C5,GS4,DS5,CS5,A4,H,FS4,E4,GS4,C5,CS5,GS4,CS5,A4,F5,DS5,GS5,FS5,D5,H,B4,A4,CS5,G5,FS5,CS5,FS4,H,A4,F4,CS5,B4,E5,D5,AS4,H,G4,F4,A4,DS5,D5,A4,D4,H,B4,G4,DS5,CS5,FS5,E5,C5,H,A4,G4,B4,F5,E5,B4,E4,H,GS4,E4,C5,A4,DS5,CS5,A4,H,FS4,E4,GS4,CS5,CS5,GS4,CS4,H,F6,CS5,GS5,FS5,D6,H,B4,A4,CS6,F5,FS5,CS5,FS5,H,CS5,A4,CS6,A4,E5,D5,AS5,H,G4,F4,A5,CS5,D5,A4,D5,H,A4,F4,DS6,B4,FS5,E5,C6,H,A4,G4,B5,DS5,E5,B4,E5,H,B4,G4,C6,GS4,DS5,CS5,A5,H,FS4,E4,GS5,C5,CS5,GS4,CS5,H,GS4,E4};
-static const uint8_t kouma_library_bass[]={FS2,CS3,FS3,CS3,A2,CS3,FS3,CS3,D2,A2,D3,A2,FS2,A2,D3,A2,E2,B2,E3,B2,GS2,B2,E3,B2,CS2,GS2,CS3,GS2,F2,GS2,CS3,GS2};
-static const uint8_t kouma_patchouli_lead[]={FS5,CS5,A4,CS5,F5,GS5,F5,CS5,D5,FS5,A5,FS5,CS5,B4,A4,GS4,D5,A4,F4,A4,CS5,E5,CS5,A4,AS4,D5,F5,D5,A4,G4,F4,E4,E5,B4,G4,B4,DS5,FS5,DS5,B4,C5,E5,G5,E5,B4,A4,G4,FS4,CS5,GS4,E4,GS4,C5,DS5,C5,GS4,A4,CS5,E5,CS5,GS4,FS4,E4,DS4,A4,CS5,F5,AS5,F5,CS5,D5,GS5,A5,FS5,CS5,CS5,A4,GS4,FS5,CS5,F4,A4,CS5,FS5,CS5,A4,AS4,E5,F5,D5,A4,A4,F4,E4,D5,A4,G4,B4,DS5,GS5,DS5,B4,C5,FS5,G5,E5,B4,B4,G4,FS4,E5,B4,E4,GS4,C5,E5,C5,GS4,A4,D5,E5,CS5,GS4,G4,E4,DS4,CS5,GS4,F6,GS5,F5,CS5,D6,FS5,A5,FS5,CS6,B4,A4,GS4,FS6,CS5,A4,CS5,CS6,E5,CS5,A4,AS5,D5,F5,D5,A5,G4,F4,E4,D6,A4,F4,A4,DS6,FS5,DS5,B4,C6,E5,G5,E5,B5,A4,G4,FS4,E6,B4,G4,B4,C6,DS5,C5,GS4,A5,CS5,E5,CS5,GS5,FS4,E4,DS4,CS6,GS4,E4,GS4};
-static const uint8_t kouma_patchouli_bass[]={FS2,CS3,FS3,CS3,A2,CS3,FS3,CS3,D2,A2,D3,A2,FS2,A2,D3,A2,E2,B2,E3,B2,GS2,B2,E3,B2,CS2,GS2,CS3,GS2,F2,GS2,CS3,GS2};
-static const uint8_t kouma_clock_lead[]={B4,REST,FS5,B4,D5,REST,A5,FS5,CS5,REST,E5,G5,AS5,FS5,B5,H,G4,REST,D5,G4,AS4,REST,F5,D5,A4,REST,C5,DS5,FS5,D5,G5,H,A4,REST,E5,A4,C5,REST,G5,E5,B4,REST,D5,F5,GS5,E5,A5,H,FS4,REST,CS5,FS4,A4,REST,E5,CS5,GS4,REST,B4,D5,F5,CS5,FS5,H,FS5,B4,D5,REST,A5,FS5,CS5,REST,E5,G5,AS5,GS5,B5,H,B4,REST,D5,G4,AS4,REST,F5,D5,A4,REST,C5,DS5,FS5,E5,G5,H,G4,REST,E5,A4,C5,REST,G5,E5,B4,REST,D5,F5,GS5,FS5,A5,H,A4,REST,CS5,FS4,A4,REST,E5,CS5,GS4,REST,B4,D5,F5,D5,FS5,H,FS4,REST,D6,REST,A5,FS5,CS6,REST,E5,G5,AS6,FS5,B5,H,B5,REST,FS5,B4,AS5,REST,F5,D5,A5,REST,C5,DS5,FS6,D5,G5,H,G5,REST,D5,G4,C6,REST,G5,E5,B5,REST,D5,F5,GS6,E5,A5,H,A5,REST,E5,A4,A5,REST,E5,CS5,GS5,REST,B4,D5,F6,CS5,FS5,H,FS5,REST,CS5,FS4};
-static const uint8_t kouma_clock_bass[]={B2,FS3,B3,FS3,D3,FS3,B3,FS3,G2,D3,G3,D3,B2,D3,G3,D3,A2,E3,A3,E3,CS3,E3,A3,E3,FS2,CS3,FS3,CS3,AS2,CS3,FS3,CS3};
-static const uint8_t kouma_sakuya_lead[]={FS5,B4,FS5,D5,A5,FS5,A5,E5,B5,FS5,CS6,AS5,B5,FS5,D5,REST,D5,G4,D5,AS4,F5,D5,F5,C5,G5,D5,A5,FS5,G5,D5,AS4,REST,E5,A4,E5,C5,G5,E5,G5,D5,A5,E5,B5,GS5,A5,E5,C5,REST,CS5,FS4,CS5,A4,E5,CS5,E5,B4,FS5,CS5,GS5,F5,FS5,CS5,A4,REST,FS5,D5,A5,GS5,A5,E5,B5,GS5,CS6,AS5,B5,GS5,D5,REST,FS5,B4,D5,AS4,F5,E5,F5,C5,G5,E5,A5,FS5,G5,E5,AS4,REST,D5,G4,E5,C5,G5,FS5,G5,D5,A5,FS5,B5,GS5,A5,FS5,C5,REST,E5,A4,CS5,A4,E5,D5,E5,B4,FS5,D5,GS5,F5,FS5,D5,A4,REST,CS5,FS4,A6,FS5,A5,E5,B6,FS5,CS6,AS5,B6,FS5,D5,REST,FS6,B4,FS5,D5,F6,D5,F5,C5,G6,D5,A5,FS5,G6,D5,AS4,REST,D6,G4,D5,AS4,G6,E5,G5,D5,A6,E5,B5,GS5,A6,E5,C5,REST,E6,A4,E5,C5,E6,CS5,E5,B4,FS6,CS5,GS5,F5,FS6,CS5,A4,REST,CS6,FS4,CS5,A4};
-static const uint8_t kouma_sakuya_bass[]={B2,FS3,B3,FS3,D3,FS3,B3,FS3,G2,D3,G3,D3,B2,D3,G3,D3,A2,E3,A3,E3,CS3,E3,A3,E3,FS2,CS3,FS3,CS3,AS2,CS3,FS3,CS3};
-static const uint8_t kouma_roof_lead[]={E5,H,B4,D5,G5,H,FS5,E5,C5,E5,G5,B5,A5,G5,FS5,DS5,C5,H,G4,AS4,DS5,H,D5,C5,GS4,C5,DS5,G5,F5,DS5,D5,B4,D5,H,A4,C5,F5,H,E5,D5,AS4,D5,F5,A5,G5,F5,E5,CS5,B4,H,FS4,A4,D5,H,CS5,B4,G4,B4,D5,FS5,E5,D5,CS5,AS4,B4,D5,G5,H,FS5,E5,C5,FS5,G5,B5,A5,A5,FS5,DS5,E5,H,G4,AS4,DS5,H,D5,C5,GS4,D5,DS5,G5,F5,F5,D5,B4,C5,H,A4,C5,F5,H,E5,D5,AS4,E5,F5,A5,G5,G5,E5,CS5,D5,H,FS4,A4,D5,H,CS5,B4,G4,C5,D5,FS5,E5,DS5,CS5,AS4,B4,H,G6,H,FS5,E5,C6,E5,G5,B5,A6,G5,FS5,DS5,E6,H,B4,D5,DS6,H,D5,C5,GS5,C5,DS5,G5,F6,DS5,D5,B4,C6,H,G4,AS4,F6,H,E5,D5,AS5,D5,F5,A5,G6,F5,E5,CS5,D6,H,A4,C5,D6,H,CS5,B4,G5,B4,D5,FS5,E6,D5,CS5,AS4,B5,H,FS4,A4};
-static const uint8_t kouma_roof_bass[]={E2,B2,E3,B2,G2,B2,E3,B2,C2,G2,C3,G2,E2,G2,C3,G2,D2,A2,D3,A2,FS2,A2,D3,A2,B2,FS3,B3,FS3,DS3,FS3,B3,FS3};
-static const uint8_t kouma_remilia_lead[]={E4,B4,E5,G5,B5,G5,E5,D5,C5,G5,C6,B5,A5,FS5,DS5,B4,C4,G4,C5,DS5,G5,DS5,C5,AS4,GS4,DS5,GS5,G5,F5,D5,B4,G4,D4,A4,D5,F5,A5,F5,D5,C5,AS4,F5,AS5,A5,G5,E5,CS5,A4,B3,FS4,B4,D5,FS5,D5,B4,A4,G4,D5,G5,FS5,E5,CS5,AS4,FS4,E5,G5,B5,A5,E5,D5,C5,A5,C6,B5,A5,GS5,DS5,B4,E4,B4,C5,DS5,G5,F5,C5,AS4,GS4,F5,GS5,G5,F5,E5,B4,G4,C4,G4,D5,F5,A5,G5,D5,C5,AS4,G5,AS5,A5,G5,FS5,CS5,A4,D4,A4,B4,D5,FS5,DS5,B4,A4,G4,DS5,G5,FS5,E5,D5,AS4,FS4,B3,FS4,B6,G5,E5,D5,C6,G5,C6,B5,A6,FS5,DS5,B4,E5,B4,E5,G5,G6,DS5,C5,AS4,GS5,DS5,GS5,G5,F6,D5,B4,G4,C5,G4,C5,DS5,A6,F5,D5,C5,AS5,F5,AS5,A5,G6,E5,CS5,A4,D5,A4,D5,F5,FS6,D5,B4,A4,G5,D5,G5,FS5,E6,CS5,AS4,FS4,B4,FS4,B4,D5};
-static const uint8_t kouma_remilia_bass[]={E2,B2,E3,B2,G2,B2,E3,B2,C2,G2,C3,G2,E2,G2,C3,G2,D2,A2,D3,A2,FS2,A2,D3,A2,B2,FS3,B3,FS3,DS3,FS3,B3,FS3};
-static const uint8_t kouma_basement_lead[]={CS4,D4,GS4,E4,CS5,C5,GS4,REST,A4,GS4,FS4,E4,DS4,FS4,C5,CS5,A3,AS3,E4,C4,A4,GS4,E4,REST,F4,E4,D4,C4,B3,D4,GS4,A4,B3,C4,FS4,D4,B4,AS4,FS4,REST,G4,FS4,E4,D4,CS4,E4,AS4,B4,GS3,A3,DS4,B3,GS4,G4,DS4,REST,E4,DS4,CS4,B3,AS3,CS4,G4,GS4,GS4,E4,CS5,D5,GS4,REST,A4,AS4,FS4,E4,DS4,GS4,C5,CS5,CS4,D4,E4,C4,A4,AS4,E4,REST,F4,FS4,D4,C4,B3,E4,GS4,A4,A3,AS3,FS4,D4,B4,C5,FS4,REST,G4,GS4,E4,D4,CS4,FS4,AS4,B4,B3,C4,DS4,B3,GS4,GS4,DS4,REST,E4,E4,CS4,B3,AS3,D4,G4,GS4,GS3,A3,CS6,C5,GS4,REST,A5,GS4,FS4,E4,DS5,FS4,C5,CS5,CS5,D4,GS4,E4,A5,GS4,E4,REST,F5,E4,D4,C4,B4,D4,GS4,A4,A4,AS3,E4,C4,B5,AS4,FS4,REST,G5,FS4,E4,D4,CS5,E4,AS4,B4,B4,C4,FS4,D4,GS5,G4,DS4,REST,E5,DS4,CS4,B3,AS4,CS4,G4,GS4,GS4,A3,DS4,B3};
-static const uint8_t kouma_basement_bass[]={CS2,GS2,CS3,GS2,E2,GS2,CS3,GS2,A2,E3,A3,E3,CS3,E3,A3,E3,B2,FS3,B3,FS3,DS3,FS3,B3,FS3,GS2,DS3,GS3,DS3,C3,DS3,GS3,DS3};
-static const uint8_t kouma_flandre_lead[]={CS5,CS4,GS4,E4,E5,GS4,DS5,C5,A4,E5,A5,FS5,GS5,DS5,C5,GS4,A4,A3,E4,C4,C5,E4,B4,GS4,F4,C5,F5,D5,E5,B4,GS4,E4,B4,B3,FS4,D4,D5,FS4,CS5,AS4,G4,D5,G5,E5,FS5,CS5,AS4,FS4,GS4,GS3,DS4,B3,B4,DS4,AS4,G4,E4,B4,E5,CS5,DS5,AS4,G4,DS4,GS4,E4,E5,AS4,DS5,C5,A4,FS5,A5,FS5,GS5,F5,C5,GS4,CS5,CS4,E4,C4,C5,FS4,B4,GS4,F4,D5,F5,D5,E5,CS5,GS4,E4,A4,A3,FS4,D4,D5,GS4,CS5,AS4,G4,E5,G5,E5,FS5,DS5,AS4,FS4,B4,B3,DS4,B3,B4,E4,AS4,G4,E4,C5,E5,CS5,DS5,B4,G4,DS4,GS4,GS3,E6,GS4,DS5,C5,A5,E5,A5,FS5,GS6,DS5,C5,GS4,CS6,CS4,GS4,E4,C6,E4,B4,GS4,F5,C5,F5,D5,E6,B4,GS4,E4,A5,A3,E4,C4,D6,FS4,CS5,AS4,G5,D5,G5,E5,FS6,CS5,AS4,FS4,B5,B3,FS4,D4,B5,DS4,AS4,G4,E5,B4,E5,CS5,DS6,AS4,G4,DS4,GS5,GS3,DS4,B3};
-static const uint8_t kouma_flandre_bass[]={CS2,GS2,CS3,GS2,E2,GS2,CS3,GS2,A2,E3,A3,E3,CS3,E3,A3,E3,B2,FS3,B3,FS3,DS3,FS3,B3,FS3,GS2,DS3,GS3,DS3,C3,DS3,GS3,DS3};
-static const uint8_t kouma_clear_lead[]={D5,H,F5,A5,D6,H,A5,H,AS5,A5,G5,F5,E5,H,A5,H,D5,F5,A5,D6,C6,A5,G5,E5,F5,A5,D6,H,H,H,H,REST};
-static const uint8_t kouma_clear_bass[]={D3,A3,D4,A3,AS2,F3,AS3,F3,C3,G3,C4,G3,A2,E3,D3,H,D3,A3,D4,A3,AS2,F3,AS3,F3,C3,G3,C4,G3,A2,E3,D3,H};
-static const uint8_t kouma_over_lead[]={A5,H,F5,E5,D5,H,AS4,H,A4,CS5,E5,H,D5,H,H,REST};
-static const uint8_t kouma_over_bass[]={D3,A3,D4,A3,AS2,F3,AS3,F3,C3,G3,C4,G3,A2,E3,D3,H,D3,A3,D4,A3,AS2,F3,AS3,F3,C3,G3,C4,G3,A2,E3,D3,H};
-static const uint8_t kouma_victory_lead[]={D5,F5,A5,D6,REST,A5,REST,D6,C6,A5,G5,E5,F5,A5,D6,H,AS5,D6,F6,H,E6,CS6,A5,E5,F5,G5,A5,CS6,D6,H,H,REST};
-static const uint8_t kouma_victory_bass[]={D3,A3,D4,A3,AS2,F3,AS3,F3,C3,G3,C4,G3,A2,E3,D3,H,D3,A3,D4,A3,AS2,F3,AS3,F3,C3,G3,C4,G3,A2,E3,D3,H};
+/* Legacy scores remain byte-for-byte compatible with their original projects. */
 
 typedef struct {
     uint8_t rows, speed, duty, envelope, loop;
     const uint8_t *lead, *bass;
 } CE_Song;
-static const uint8_t kouma_lake_lead[]={A4,E5,A5,B5,A5,E5,CS5,B4,A4,CS5,E5,GS5,FS5,E5,CS5,H,F4,C5,F5,G5,F5,C5,A4,G4,F4,A4,C5,E5,D5,C5,A4,H,G4,D5,G5,A5,G5,D5,B4,A4,G4,B4,D5,FS5,E5,D5,B4,H,E4,B4,E5,FS5,E5,B4,GS4,FS4,E4,GS4,B4,DS5,CS5,B4,GS4,H,A5,B5,A5,FS5,CS5,B4,A4,DS5,E5,GS5,FS5,FS5,CS5,H,A4,E5,F5,G5,F5,D5,A4,G4,F4,B4,C5,E5,D5,D5,A4,H,F4,C5,G5,A5,G5,E5,B4,A4,G4,CS5,D5,FS5,E5,E5,B4,H,G4,D5,E5,FS5,E5,C5,GS4,FS4,E4,A4,B4,DS5,CS5,C5,GS4,H,E4,B4,A6,E5,CS5,B4,A5,CS5,E5,GS5,FS6,E5,CS5,H,A5,E5,A5,B5,F6,C5,A4,G4,F5,A4,C5,E5,D6,C5,A4,H,F5,C5,F5,G5,G6,D5,B4,A4,G5,B4,D5,FS5,E6,D5,B4,H,G5,D5,G5,A5,E6,B4,GS4,FS4,E5,GS4,B4,DS5,CS6,B4,GS4,H,E5,B4,E5,FS5};
-static const uint8_t kouma_lake_bass[]={A2,E3,A3,E3,C3,E3,A3,E3,F2,C3,F3,C3,A2,C3,F3,C3,G2,D3,G3,D3,B2,D3,G3,D3,E2,B2,E3,B2,GS2,B2,E3,B2};
-static const uint8_t kouma_cirno_lead[]={A5,E5,A4,E5,B5,A5,FS5,CS5,GS5,E5,B4,E5,CS6,B5,A5,REST,F5,C5,F4,C5,G5,F5,D5,A4,E5,C5,G4,C5,A5,G5,F5,REST,G5,D5,G4,D5,A5,G5,E5,B4,FS5,D5,A4,D5,B5,A5,G5,REST,E5,B4,E4,B4,FS5,E5,CS5,GS4,DS5,B4,FS4,B4,GS5,FS5,E5,REST,A4,E5,B5,B5,FS5,CS5,GS5,FS5,B4,E5,CS6,CS6,A5,REST,A5,E5,F4,C5,G5,G5,D5,A4,E5,D5,G4,C5,A5,A5,F5,REST,F5,C5,G4,D5,A5,A5,E5,B4,FS5,E5,A4,D5,B5,B5,G5,REST,G5,D5,E4,B4,FS5,F5,CS5,GS4,DS5,C5,FS4,B4,GS5,G5,E5,REST,E5,B4,B6,A5,FS5,CS5,GS6,E5,B4,E5,CS6,B5,A5,REST,A6,E5,A4,E5,G6,F5,D5,A4,E6,C5,G4,C5,A6,G5,F5,REST,F6,C5,F4,C5,A6,G5,E5,B4,FS6,D5,A4,D5,B6,A5,G5,REST,G6,D5,G4,D5,FS6,E5,CS5,GS4,DS6,B4,FS4,B4,GS6,FS5,E5,REST,E6,B4,E4,B4};
-static const uint8_t kouma_cirno_bass[]={A2,E3,A3,E3,C3,E3,A3,E3,F2,C3,F3,C3,A2,C3,F3,C3,G2,D3,G3,D3,B2,D3,G3,D3,E2,B2,E3,B2,GS2,B2,E3,B2};
-/* Original Rumia cues, 2026-09. Four harmonic sections, two lead variations. */
-static const uint8_t kouma_forest_lead[]={D4,H,A4,F4,E4,H,D4,REST,F4,A4,C5,H,A4,F4,E4,H,AS3,H,F4,D4,C4,H,AS3,REST,D4,F4,A4,H,F4,E4,D4,H,C4,H,G4,E4,D4,H,C4,REST,E4,G4,AS4,H,G4,E4,F4,H,A3,H,E4,CS4,D4,H,E4,REST,A4,G4,E4,CS4,D4,H,H,REST,F5,E5,D5,H,A4,H,F4,A4,C5,AS4,A4,H,G4,E4,D4,H,D5,C5,AS4,H,F4,H,D4,F4,A4,G4,F4,H,E4,D4,C4,H,E5,D5,C5,H,G4,H,E4,G4,AS4,A4,G4,E4,F4,G4,A4,H,CS5,H,A4,G4,E4,H,CS4,E4,D4,A4,F4,E4,D4,H,H,REST};
-static const uint8_t kouma_forest_bass[]={D2,A2,D3,A2,F2,A2,D3,A2,AS2,F3,AS3,F3,D3,F3,AS3,F3,C3,G3,C4,G3,E3,G3,C4,G3,A2,E3,A3,E3,CS3,E3,A3,E3};
-static const uint8_t kouma_rumia_lead[]={C5,G4,REST,DS5,D5,G4,C5,REST,G5,F5,DS5,D5,C5,G4,AS4,H,GS4,DS4,REST,C5,AS4,DS4,GS4,REST,DS5,D5,C5,AS4,GS4,DS4,G4,H,AS4,F4,REST,D5,C5,F4,AS4,REST,F5,DS5,D5,C5,AS4,F4,A4,H,G4,D4,REST,B4,A4,D4,G4,REST,D5,C5,B4,A4,G4,B4,D5,REST,G5,C5,DS5,REST,G5,F5,DS5,D5,C5,DS5,G5,AS5,G5,F5,DS5,H,DS5,GS4,C5,REST,DS5,D5,C5,AS4,GS4,C5,DS5,G5,DS5,D5,C5,H,F5,AS4,D5,REST,F5,DS5,D5,C5,AS4,D5,F5,GS5,F5,DS5,D5,H,D5,G4,B4,REST,D5,C5,B4,A4,G4,B4,D5,F5,DS5,D5,C5,REST};
-static const uint8_t kouma_rumia_bass[]={C2,G2,C3,G2,DS2,G2,C3,G2,GS2,DS3,GS3,DS3,C3,DS3,GS3,DS3,AS2,F3,AS3,F3,D3,F3,AS3,F3,G2,D3,G3,D3,B2,D3,G3,D3};
 static const CE_Song songs[]={
     {64,15,0x80,0x72,1,title_lead,title_bass},
     {128,10,0x80,0x72,1,orbit_lead,orbit_bass},
@@ -254,28 +217,17 @@ static const CE_Song songs[]={
     {64,10,0x40,0x82,1,gero_ninja_lead,gero_ninja_bass},
     {32,13,0x80,0x83,0,gero_clear_lead,gero_clear_bass},
     {16,17,0x80,0x72,0,gero_over_lead,gero_over_bass},
-    {128,9,0x80,0x82,1,kouma_title_lead,kouma_title_bass},
-    {192,7,0x40,0x72,1,kouma_gate_lead,kouma_gate_bass},
-    {192,6,0x40,0x82,1,kouma_meiling_lead,kouma_meiling_bass},
-    {192,8,0x80,0x72,1,kouma_library_lead,kouma_library_bass},
-    {192,6,0x80,0x82,1,kouma_patchouli_lead,kouma_patchouli_bass},
-    {192,7,0x40,0x72,1,kouma_clock_lead,kouma_clock_bass},
-    {192,5,0x40,0x82,1,kouma_sakuya_lead,kouma_sakuya_bass},
-    {192,8,0x80,0x72,1,kouma_roof_lead,kouma_roof_bass},
-    {192,6,0x40,0x82,1,kouma_remilia_lead,kouma_remilia_bass},
-    {192,7,0x80,0x72,1,kouma_basement_lead,kouma_basement_bass},
-    {192,5,0x40,0x82,1,kouma_flandre_lead,kouma_flandre_bass},
-    {32,11,0x80,0x82,0,kouma_clear_lead,kouma_clear_bass},
-    {16,13,0x80,0x82,0,kouma_over_lead,kouma_over_bass},
-    {32,5,0x80,0x82,0,kouma_victory_lead,kouma_victory_bass},
-{192,8,0x80,0x82,1,kouma_lake_lead,kouma_lake_bass},
-{192,6,0x40,0x72,1,kouma_cirno_lead,kouma_cirno_bass},
-{128,10,0x80,0x72,1,kouma_forest_lead,kouma_forest_bass},
-{128,7,0x40,0x82,1,kouma_rumia_lead,kouma_rumia_bass}
 };
 
 uint8_t ce_music_track;
-static uint8_t row, remaining, paused, lead_note, bass_note;
+uint16_t ce_music_row;
+static uint16_t song_rows;
+static uint8_t remaining, paused, lead_note, bass_note, song_speed, song_loop;
+static uint8_t instrument_duty, instrument_envelope, instrument_level;
+static uint8_t bar[35];
+static const CE_MusicScore *score;
+
+static void load_bar(void) NONBANKED;
 
 static void mute(void) {
     NR22_REG = 0; NR30_REG = 0;
@@ -284,8 +236,8 @@ static void lead(uint8_t note) {
     uint16_t pitch;
     if (!note) { NR22_REG = 0; return; }
     pitch = pulse_pitch[note];
-    NR21_REG = songs[ce_music_track - 1u].duty;
-    NR22_REG = songs[ce_music_track - 1u].envelope;
+    NR21_REG = instrument_duty;
+    NR22_REG = instrument_envelope;
     NR23_REG = (uint8_t)pitch;
     NR24_REG = 0x80u | (uint8_t)(pitch >> 8);
 }
@@ -296,27 +248,46 @@ static void bass(uint8_t note) {
     pitch = 1024u + (pulse_pitch[note] >> 1);
     /* Stop before retriggering: active-channel retriggers can corrupt wave
      * RAM on DMG. The waveform itself is only loaded at track changes. */
-    NR30_REG = 0; NR30_REG = 0x80; NR31_REG = 0; NR32_REG = 0x60;
+    NR30_REG = 0; NR30_REG = 0x80; NR31_REG = 0; NR32_REG = instrument_level;
     NR33_REG = (uint8_t)pitch;
     NR34_REG = 0x80u | (uint8_t)(pitch >> 8);
 }
 static void play_row(void) {
-    const CE_Song *song = &songs[ce_music_track - 1u];
-    uint8_t note = song->lead[row];
-    if (note != H) { lead_note = note; lead(note); }
-    if (!(row & 1u)) {
-        note = song->bass[(row >> 1) & 31u];
+    uint8_t note;
+    if (ce_music_track >= 16u) {
+        if (!(ce_music_row & 15u)) {
+            load_bar(); instrument_duty = bar[0]; instrument_envelope = bar[1]; instrument_level = bar[2];
+        }
+        note = bar[3u + (ce_music_row & 15u)];
+        if (note != H) { lead_note = note; lead(note); }
+        note = bar[19u + (ce_music_row & 15u)];
         if (note != H) { bass_note = note; bass(note); }
+    } else {
+        const CE_Song *song = &songs[ce_music_track - 1u];
+        note = song->lead[ce_music_row];
+        if (note != H) { lead_note = note; lead(note); }
+        if (!(ce_music_row & 1u)) {
+            note = song->bass[(ce_music_row >> 1) & 31u];
+            if (note != H) { bass_note = note; bass(note); }
+        }
     }
-    remaining = song->speed;
+    remaining = song_speed;
 }
 void ce_music_play(uint8_t track) BANKED {
     uint8_t i;
     if (track > CE_MUSIC_MAX) track = CE_MUSIC_OFF;
     if (track == ce_music_track) return;
     mute(); ce_music_track = track;
-    row = 0; remaining = 0; paused = 0; lead_note = 0; bass_note = 0;
+    ce_music_row = 0; remaining = 0; paused = 0; lead_note = 0; bass_note = 0;
     if (!track) return;
+    if (track >= 16u) {
+        score = &ce_music_scores[track - 16u];
+        song_rows = score->rows; song_speed = score->speed; song_loop = score->loop;
+    } else {
+        const CE_Song *song = &songs[track - 1u];
+        song_rows = song->rows; song_speed = song->speed; song_loop = song->loop;
+        instrument_duty = song->duty; instrument_envelope = song->envelope; instrument_level = 0x60;
+    }
     /* DMG permits safe wave RAM writes only while the wave DAC is off. */
     for (i = 0; i != 16u; ++i) AUD3WAVE[i] = bass_wave[i];
     play_row();
@@ -330,14 +301,12 @@ void ce_music_pause(uint8_t value) BANKED {
 }
 void ce_music_tick(uint8_t elapsed) BANKED {
     uint8_t advanced = 0;
-    const CE_Song *song;
     if (!ce_music_track || paused || !elapsed) return;
-    song = &songs[ce_music_track - 1u];
     while (elapsed >= remaining) {
         elapsed -= remaining;
-        if (++row == song->rows) {
-            if (!song->loop) { mute(); ce_music_track = 0; return; }
-            row = 0;
+        if (++ce_music_row == song_rows) {
+            if (!song_loop) { mute(); ce_music_track = 0; return; }
+            ce_music_row = 0;
         }
         play_row();
         /* Bound the work after a loading stall instead of bursting every
@@ -345,4 +314,13 @@ void ce_music_tick(uint8_t elapsed) BANKED {
         if (++advanced == 3u) return;
     }
     remaining -= elapsed;
+}
+
+/* Executed in fixed ROM: changing banks must never unmap the copy code. */
+static void load_bar(void) NONBANKED {
+    uint8_t i, previous = CURRENT_BANK, bank = score->bank;
+    const uint8_t *source = score->data + (ce_music_row >> 4) * 35u;
+    SWITCH_ROM(bank);
+    for (i = 0; i != 35u; ++i) bar[i] = source[i];
+    SWITCH_ROM(previous);
 }

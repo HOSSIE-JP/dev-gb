@@ -14,6 +14,8 @@ import {
     q4,
 } from "../shared/model";
 import { angleStep, shotAngles, SIN, COS } from "../shared/simulation";
+import {resolvePresentation, resolveEnding, dialoguePixels} from "../shared/presentation";
+import {generateMusic} from "./music-data";
 import {
     safePath,
     projectDir,
@@ -311,7 +313,8 @@ export function generate(
         config.push(
             `static const int8_t pattern_${i}_angles[] = {${offsets}};`,
         );
-        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)}}`;
+        const l = p.launch, h = p.guidance;
+        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral", "homing"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)},${[l ? ["actor", "left", "right", "alternate", "both", "fixed"].indexOf(l.kind) : 0,l?.x ?? 80,l?.y ?? 32,l?.step ?? 0,l?.lanes ?? 1,h?.frames ?? 48,(h?.period ?? 16)-1]}}`;
     });
     config.push(
         `const CE_Pattern ce_patterns[]={${patternRows}};`,
@@ -347,7 +350,12 @@ export function generate(
         return `${items.length},${name}`;
     };
     const intros = game.bosses.flatMap(b => b.phases.filter(p => p.intro?.enabled));
-    const introFirst = 5 + game.stages.reduce((n,stage) => { const p = stage.presentation; return n + (p?.enabled ? p.dialogue.length : 0) + (p?.clearEnabled ? 1 : 0) + (p?.victoryDialogue?.enabled ? p.victoryDialogue.pages.length : 0); }, 0) + (game.ending?.slides.length ?? 0);
+    const players = [{...game.player, name: game.player.name ?? "PLAYER 1", bombBackground:"", bombStyle:"orb"}, ...(game.player.characters ?? [])];
+    const endings = players.map((_, i) => resolveEnding(game, i));
+    const endingAssets = [...new Set(endings.flatMap(slides => slides.map(s => s.background)))];
+    const introFirst = 5 + game.stages.reduce((n,stage) => n + players.reduce((sum,_,i) => {
+        const p=resolvePresentation(game,stage,i);return sum + (p?.clearEnabled ? 1 : 0) + (p?.enabled ? p.dialogue.length : 0) + (p?.victoryDialogue?.enabled ? p.victoryDialogue.pages.length : 0);
+    },0), 0) + endingAssets.length;
     const enemies = game.enemies.map(
         (a) =>
             `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},0,0,${attackList(a.attacks)},0,0,0,0}`,
@@ -368,7 +376,7 @@ export function generate(
     const glyphs = readFont(root),
         screenRows: string[] = [], sceneConfig: string[] = [];
     let hudTileCount = 0;
-    function compileScreen(s: Screen, index: number, rightPalette?: number, sharedChars = "") {
+    function compileScreen(s: Screen, index: number, rightPalette?: number, sharedChars = "", pixels?: number[], tileBudget = 255) {
         const width = 20,
             height = s.id === "hud" ? (s.rows ?? 2) : 18,
             tileBytes = Array(16).fill(0),
@@ -385,12 +393,12 @@ export function generate(
             tileBytes.push(...tile);
             return id;
         };
-        if (s.background && s.id !== "hud") {
-            const a = game.assets.find((a) => a.id === s.background)!,
-                data = converted.get(a.frames[0].image)!;
+        if ((s.background || pixels) && s.id !== "hud") {
+            const a = game.assets.find((a) => a.id === s.background),
+                data = pixels ? packTiles(160, 144, pixels) : converted.get(a!.frames[0].image)!;
             for (let i = 0; i < tileMap.length; i++) {
                 tileMap[i] = addTile(data.slice(i * 16, i * 16 + 16));
-                attrs[i] = rightPalette !== undefined && i % 20 >= 10 ? rightPalette : a.palette;
+                attrs[i] = rightPalette !== undefined && i % 20 >= 10 ? rightPalette : pixels ? s.palette : a?.palette ?? s.palette;
             }
         }
         const chars: Record<string, number> = {};
@@ -410,7 +418,7 @@ export function generate(
             });
             if (item.binding !== "none") {
                 bindings.push(
-                    `{${["none", "score", "lives", "time", "boss", "highscores"].indexOf(item.binding)},${item.x + labelLength},${item.y},${item.digits ?? 5}}`,
+                    `{${["none", "score", "lives", "time", "boss", "highscores", "bombs"].indexOf(item.binding)},${item.x + labelLength},${item.y},${item.digits ?? 5}}`,
                 );
                 const count = item.binding === "highscores" ? 9 : (item.digits ?? 5);
                 for (let n = 0; n < count; n++)
@@ -436,7 +444,7 @@ export function generate(
         // Full-screen scenes hide sprites and reload their tiles on stage entry.
         // They may use both halves of the BG tile area; gameplay/HUD still share
         // the original 128-tile budget with sprites. 255 fits CE_Screen.tile_count.
-        const tileLimit = s.id === "hud" ? 128 : 255;
+        const tileLimit = s.id === "hud" ? 128 : tileBudget;
         if (count > tileLimit)
             throw new Error(
                 `${s.name}: 背景と文字が${count}タイルあります（上限${tileLimit}）`,
@@ -465,37 +473,42 @@ export function generate(
         if (!ordered.includes(stage)) ordered.push(stage);
     const presentationRows: string[] = [], parallaxRows: string[] = [];
     for (const stage of ordered) {
-        const p = stage.presentation;
+        for (const [character] of players.entries()) {
+        const p = resolvePresentation(game,stage,character);
+        let clear = 255;
         const first = screenRows.length;
         const dialogueChars = p?.enabled ? [...new Set(p.dialogue.map(page => page.speaker + page.line1 + page.line2).join("") + "A:つぎ START:スキップ")].join("") : "";
         if (p?.enabled) for (const page of p.dialogue) {
-            compileScreen({id: "clear", name: `${stage.name} ${page.speaker}`, background: p.dialogueBackground, palette: 0, dock: "top", items: [
+            compileScreen({id: "clear", name: `${stage.name} ${page.speaker}`, background: p.dialogueBackground, palette: game.assets.find(a=>a.id===p.dialoguePortrait)?.palette ?? 0, dock: "top", items: [
                 {id: "name", text: page.speaker, x: 1, y: 12, palette: 0, binding: "none"},
                 {id: "line1", text: page.line1, x: 1, y: 14, palette: 0, binding: "none"},
                 {id: "line2", text: page.line2, x: 1, y: 15, palette: 0, binding: "none"},
                 {id: "next", text: "A:つぎ START:スキップ", x: 1, y: 17, palette: 0, binding: "none"}
-            ]}, screenRows.length, p.rightPalette, dialogueChars);
+            ]}, screenRows.length, p.rightPalette, dialogueChars, dialoguePixels(game,p.dialogueBackground,p.dialoguePortrait));
         }
-        const clear = screenRows.length;
-        if (p?.clearEnabled) compileScreen({id: "clear", name: `${stage.name} BONUS`, background: p.clearBackground, palette: 0, dock: "top", items: [
+        if (p?.clearEnabled) {
+        clear = screenRows.length;
+        compileScreen({id: "clear", name: `${stage.name} BONUS`, background: p.clearBackground, palette: game.assets.find(a=>a.id===p.victoryDialogue?.portrait)?.palette ?? 0, dock: "top", items: [
             {id: "heading", text: "STAGE CLEAR", x: 4, y: 0, palette: 0, binding: "none"},
             {id: "base", text: "ステージ     ", x: 1, y: 12, palette: 0, binding: "score"},
             {id: "lives", text: "のこり      ", x: 1, y: 13, palette: 0, binding: "score"},
             {id: "miss", text: "ノーミス     ", x: 1, y: 14, palette: 0, binding: "score"},
             {id: "total", text: "ごうけい     ", x: 1, y: 15, palette: 0, binding: "score"},
             {id: "next", text: "A:つぎへ", x: 10, y: 17, palette: 0, binding: "none"}
-        ]}, screenRows.length, p.rightPalette);
+        ]}, screenRows.length, p.rightPalette, "", dialoguePixels(game,p.clearBackground,p.victoryDialogue?.portrait));
+        }
         const victoryFirst = screenRows.length, victory = p?.victoryDialogue;
         if (victory?.enabled) {
             const chars = [...new Set(victory.pages.map(page => page.speaker + page.line1 + page.line2).join("") + "A:つぎ START:スキップ")].join("");
-            for (const page of victory.pages) compileScreen({id: "clear", name: `${stage.name} 撃破後 ${page.speaker}`, background: victory.background, palette: 0, dock: "top", items: [
+            for (const page of victory.pages) compileScreen({id: "clear", name: `${stage.name} 撃破後 ${page.speaker}`, background: victory.background, palette: game.assets.find(a=>a.id===victory.portrait)?.palette ?? 0, dock: "top", items: [
                 {id: "name", text: page.speaker, x: 1, y: 12, palette: 0, binding: "none"},
                 {id: "line1", text: page.line1, x: 1, y: 14, palette: 0, binding: "none"},
                 {id: "line2", text: page.line2, x: 1, y: 15, palette: 0, binding: "none"},
                 {id: "next", text: "A:つぎ START:スキップ", x: 1, y: 17, palette: 0, binding: "none"}
-            ]}, screenRows.length, p!.rightPalette, chars);
+            ]}, screenRows.length, p!.rightPalette, chars, dialoguePixels(game,victory.background,victory.portrait));
         }
         presentationRows.push(`{${first},${p?.enabled ? p.dialogue.length : 0},${p?.clearEnabled ? clear : 255},${p?.baseBonus ?? game.clearBonus},${p?.lifeBonus ?? 0},${p?.noMissBonus ?? 0},${(p?.clearWaitSeconds ?? 2) * 60},${victoryFirst},${victory?.enabled ? victory.pages.length : 0}}`);
+        }
         const par = stage.parallax;
         if (par?.enabled) {
             const asset = game.assets.find(a => a.id === stage.tileset)!;
@@ -515,8 +528,13 @@ export function generate(
         } else parallaxRows.push("{0,0,1,2,{0,0,0}}");
     }
     const endingFirst = screenRows.length;
-    for (const slide of game.ending?.slides ?? []) compileScreen({id: "clear", name: "Ending", background: slide.background, palette: 0, dock: "top", items: []}, screenRows.length);
-    config.push(`const uint8_t ce_ending_first=${endingFirst},ce_ending_count=${game.ending?.slides.length ?? 0};`, `const uint16_t ce_ending_frames=${(game.ending?.seconds ?? 6) * 60};`);
+    for (const background of endingAssets) compileScreen({id: "clear", name: "Ending", background, palette: game.assets.find(a=>a.id===background)!.palette, dock: "top", items: []}, screenRows.length);
+    let endingOffset = 0;
+    config.push(`const uint8_t ce_ending_offsets[]={${endings.map(slides=>{const offset=endingOffset;endingOffset+=slides.length;return offset;})}};`,
+        `const uint8_t ce_ending_counts[]={${endings.map(s=>s.length)}};`,
+        `const uint8_t ce_ending_screens[]={${endings.flatMap(slides=>slides.map(s=>endingFirst+endingAssets.indexOf(s.background))).join(",") || "0"}};`,
+        `const uint8_t ce_ending_score_after=${+!!game.ending?.scoreAfter},ce_music_ending=${game.ending?.music ?? game.music?.clear ?? 0};`,
+        `const uint16_t ce_ending_frames=${(game.ending?.seconds ?? 6) * 60};`);
     if (screenRows.length !== introFirst) throw new Error("Cut-in screen index mismatch");
     for (const phase of intros) {
         const intro = phase.intro!, name = [...intro.spellName.normalize("NFC")];
@@ -525,6 +543,43 @@ export function generate(
             {id: "spell-2", text: name.slice(18).join(""), x: 1, y: 16, palette: 0, binding: "none"},
         ]}, screenRows.length);
     }
+    config.push(`const CE_Player ce_players[]={${players.map(p => `{${assetId(p.asset)},${patternId(p.weapon)},${q4(p.speed)},${p.focusWeapon ? patternId(p.focusWeapon) : 255},${q4(p.focusSpeed ?? p.speed)}}`)}};`,
+        `const uint8_t ce_player_count=${players.length},ce_select_first=${screenRows.length};`);
+    if (players.length > 1) for (const [i,p] of players.entries()) {
+        if (p.selectionBackground) {
+            compileScreen({id:"clear",name:`${p.name}の機体選択`,background:p.selectionBackground,palette:0,dock:"top",items:[]},screenRows.length);
+            continue;
+        }
+        const a = game.assets.find(a => a.id === p.asset)!, pixels = Array(160*144).fill(0), scale = Math.min(3, Math.floor(64/a.width), Math.floor(72/a.height));
+        const ox = Math.floor((160-a.width*scale)/2), oy = 32;
+        for(let y=0;y<a.height*scale;y++) for(let x=0;x<a.width*scale;x++) pixels[(oy+y)*160+ox+x] = a.frames[0].pixels[Math.floor(y/scale)*a.width+Math.floor(x/scale)];
+        const text = (id:string,t:string,x:number,y:number) => ({id,text:t,x,y,palette:a.palette,binding:"none" as const});
+        compileScreen({id:"clear",name:"機体選択",background:"",palette:a.palette,dock:"top",items:[text("title","PLAYER SELECT",3,1),text("name",p.name,Math.floor((20-p.name.length)/2),3),text("index",`${i+1}/${players.length}`,9,13),text("speed",`SPEED ${p.speed.toFixed(2)} / ${(p.focusSpeed ?? p.speed).toFixed(2)}`,1,14),text("select","LEFT/RIGHT  A:OK",2,16),text("back","B:BACK",6,17)]},screenRows.length,undefined,"",pixels);
+    }
+    const gameover = game.screens.find(s=>s.id==="gameover")!, gameoverScreens:number[]=[];
+    for(const p of players){
+        gameoverScreens.push(p.gameoverBackground ? screenRows.length : 1);
+        if(p.gameoverBackground)compileScreen({...gameover,name:`${p.name}のゲームオーバー`,background:p.gameoverBackground},screenRows.length);
+    }
+    config.push(`const uint8_t ce_gameover_screens[]={${gameoverScreens}};`);
+    const bomb=game.player.bomb,bombScreens:number[]=[];
+    for(const p of players){
+        bombScreens.push(bomb?.enabled?screenRows.length:255);
+        if(bomb?.enabled)compileScreen({id:"clear",name:`${p.name}のボム（スプライト領域を保持）`,background:p.bombBackground||bomb.background,palette:0,dock:"top",items:[]},screenRows.length,undefined,"",undefined,128);
+    }
+    config.push(`const uint8_t ce_bomb_stock=${bomb?.enabled ? bomb.stock : 0},ce_bomb_damage=${bomb?.damage ?? 30},ce_bomb_frames=${bomb?.frames ?? 48},ce_bomb_period=${bomb?.flashPeriod ?? 2};`,
+        `const uint8_t ce_bomb_screens[]={${bombScreens}},ce_bomb_styles[]={${players.map(p=>+(p.bombStyle==="beam"))}};`);
+    const logos = game.startup?.enabled ? game.startup.slides : [], logoRows: string[] = [], logoScreens = new Map<string,number>();
+    for (const slide of logos) {
+        let screen = logoScreens.get(slide.background);
+        if (screen === undefined) {
+            screen = screenRows.length; logoScreens.set(slide.background, screen);
+            compileScreen({id:"clear",name:"起動ロゴ",background:slide.background,palette:game.assets.find(a=>a.id===slide.background)!.palette,dock:"top",items:[]}, screen);
+        }
+        logoRows.push(`{${screen},${Math.round(slide.seconds*60)}}`);
+    }
+    config.push(`const CE_Logo ce_logos[]={${logoRows.join(",")||"{0,0}"}};`,
+        `const uint8_t ce_logo_count=${logos.length},ce_logo_fade_step=${Math.max(1,Math.round((game.startup?.fadeSeconds??0.4)*60/4))};`);
     if (screenRows.length > 255) throw new Error("会話を含む画面は255枚までです");
     sceneConfig.push(`const CE_Screen ce_screens[]={${screenRows}};`,
         `const CE_Presentation ce_presentations[]={${presentationRows}};`,
@@ -600,8 +655,7 @@ export function generate(
         )},ce_hud_bottom=${+(game.screens.find((s) => s.id === "hud")!.dock === "bottom")},ce_hud_height=${(game.screens.find((s) => s.id === "hud")!.rows ?? 2) * 8};`,
     );
     config.push(
-        `const uint8_t ce_player_asset=${assetId(game.player.asset)},ce_player_weapon=${patternId(game.player.weapon)},ce_player_speed=${q4(game.player.speed)},ce_player_lives=${game.player.lives};`,
-        `const uint8_t ce_player_focus_weapon=${game.player.focusWeapon ? patternId(game.player.focusWeapon) : 255},ce_player_focus_speed=${q4(game.player.focusSpeed ?? game.player.speed)};`,
+        `const uint8_t ce_player_lives=${game.player.lives};`,
         `const uint8_t ce_music_title=${game.music?.title ?? 0},ce_music_boss=${game.music?.boss ?? 0},ce_music_clear=${game.music?.clear ?? 0},ce_music_gameover=${game.music?.gameover ?? 0},ce_music_victory=${game.music?.victory ?? 8};`,
         `const uint8_t ce_entity_limits[6]={0,${game.performance?.enemies ?? 12},1,${game.performance?.playerShots ?? 6},${game.performance?.enemyShots ?? 32},${game.performance?.effects ?? 4}};`,
     );
@@ -624,6 +678,7 @@ export function generate(
         '#include "caravan.h"\nvoid main(void) { ce_run(); }\n',
     );
     sources.push("caravan_data.c", "caravan_main.c");
+    sources.push(...generateMusic(root,target));
     const report = {
         revision: revision(game),
         spriteTiles,
@@ -703,7 +758,7 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "mainloop.c", "flow.c", "bg-bullets.c", "render.c", "music.c", "save.c"]
+        const inputs = ["runtime.c", "mainloop.c", "flow.c", "special.c", "bg-bullets.c", "render.c", "music.c", "save.c"]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [

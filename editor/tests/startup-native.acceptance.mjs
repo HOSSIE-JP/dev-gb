@@ -1,0 +1,14 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import crypto from 'node:crypto';import {spawnSync} from 'node:child_process';import {symbols} from './emulator.mjs';
+const root=path.resolve(import.meta.dirname,'../..'),file=path.resolve(process.argv[2]??'.cache/kouma-v14/startup/fixture/projects/startup-test/build/Debug/startup-test.gb'),out=path.resolve(process.argv[3]??'.cache/kouma-v14/bgb'),rom=fs.readFileSync(file),s=symbols(file.replace(/\.gb$/,'.map')),t=s._ce_trace,signature=Buffer.from([0x21,(t+22)&255,(t+22)>>8,0x36,0]),published=rom.indexOf(signature,s._ce_trace_write)+signature.length,results=[];
+assert.ok(published>s._ce_trace_write&&published<s._ce_sound);const hex=n=>n.toString(16),ref=n=>`%(${hex(n)})%`;
+for(const skip of [false,true]){
+ const dir=path.join(out,skip?'skip':'auto');fs.mkdirSync(dir,{recursive:true});const exe=path.join(dir,'bgb64.exe');fs.copyFileSync(path.join(root,'.tools/bgb/bgb64.exe'),exe);
+ fs.writeFileSync(path.join(dir,'input.dem'),skip?Buffer.concat([Buffer.alloc(170),Buffer.alloc(120,1),Buffer.alloc(70)]):Buffer.alloc(600));
+ const bp=`${hex(published)}///LOGO ${[t+22,t+17,s._ce_logo_page,s._ce_logo_phase,s._ce_fade_level,s._ce_logo_left,s._ce_logo_left+1,s._ce_active_screen,s._ce_is_cgb].map(ref).join(' ')}`;
+ if(!process.argv.includes('--reuse')){const r=spawnSync(exe,['-hf','-nobatt','-nowriteini','-ini',path.join(dir,'bgb.ini'),'-set','DebugMsgFile=1','-set','DebugMsgFileTS=0','-rom',file,'-demoplay',path.join(dir,'input.dem'),'-screenonexit',path.join(dir,'screen.bmp'),'-br',bp],{cwd:dir,windowsHide:true,timeout:120000});if(r.error)throw r.error;assert.equal(r.status,0);}
+ const rows=fs.readFileSync(path.join(dir,'debugmsg.txt'),'utf8').split(/\r?\n/).filter(l=>l.startsWith('LOGO ')).map(l=>l.slice(5).trim().split(/\s+/).map(n=>parseInt(n,16))).filter(r=>r[0]===0&&r[8]===1),logos=rows.filter(r=>r[1]===12),title=rows.filter(r=>r[1]===0);assert.ok(logos.length);assert.ok(title.length>30);assert.ok(!rows.some(r=>r[1]===1),'held skip never starts gameplay');
+ if(!skip)for(let page=0;page<3;page++){const data=logos.filter(r=>r[2]===page);for(const phase of [1,3])assert.deepEqual([...new Set(data.filter(r=>r[3]===phase).map(r=>r[4]))].sort(),phase===1?[0,1,2,3]:[1,2,3,4]);assert.equal(data.filter(r=>r[3]===2).length,[30,45,60][page]);const screen=rom[s._ce_logos+page*3];assert.ok(data.filter(r=>r[3]===2).every(r=>r[7]===screen));}
+ else assert.ok(!logos.some(r=>r[2]===2&&r[3]===3),'skip avoids remaining pages');
+ results.push({skip,cgb:true,logoSamples:logos.length,titleSamples:title.length,heldInputGuard:true});
+}
+fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({rom:file,sha256:crypto.createHash('sha256').update(rom).digest('hex'),emulator:'BGB 1.6.6',fixture:true,results},null,2));console.log('BGB startup auto and skip passed');

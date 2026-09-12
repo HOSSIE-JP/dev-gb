@@ -1,0 +1,265 @@
+{
+  "revision": "c9c414dcb69e6c986aeb9f4b2c7f1796e0a6200203bd6f0f24866c156c2b8968",
+  "sideLanes": [
+    {
+      "id": "mei-guard",
+      "lanes": [
+        88,
+        104,
+        120
+      ]
+    },
+    {
+      "id": "sak-cross",
+      "lanes": [
+        80,
+        96,
+        112,
+        128
+      ]
+    },
+    {
+      "id": "cirno-crystal",
+      "lanes": [
+        88,
+        104,
+        120
+      ]
+    },
+    {
+      "id": "cirno-aim",
+      "lanes": [
+        88,
+        104,
+        120
+      ]
+    }
+  ],
+  "maxAuthoredScore": 63390,
+  "stages": [
+    {
+      "id": "stage-forest",
+      "name": "宵闇の森・夜の散歩道",
+      "oldBossFrame": 1364,
+      "bossFrame": 2280,
+      "oldEnemies": 16,
+      "armedEnemies": 24,
+      "raidEnemies": 32,
+      "sections": [
+        {
+          "section": 1,
+          "armedStart": 80,
+          "raidStart": 488,
+          "raidLastSpawn": 794,
+          "raidWaves": 2
+        },
+        {
+          "section": 2,
+          "armedStart": 912,
+          "raidStart": 1320,
+          "raidLastSpawn": 1446,
+          "raidWaves": 1
+        },
+        {
+          "section": 3,
+          "armedStart": 1564,
+          "raidStart": 1876,
+          "raidLastSpawn": 2002,
+          "raidWaves": 1
+        }
+      ]
+    },
+    {
+      "id": "stage-lake",
+      "name": "霧の湖・氷の妖精",
+      "oldBossFrame": 1605,
+      "bossFrame": 2460,
+      "oldEnemies": 16,
+      "armedEnemies": 24,
+      "raidEnemies": 40,
+      "sections": [
+        {
+          "section": 1,
+          "armedStart": 80,
+          "raidStart": 488,
+          "raidLastSpawn": 794,
+          "raidWaves": 2
+        },
+        {
+          "section": 2,
+          "armedStart": 912,
+          "raidStart": 1320,
+          "raidLastSpawn": 1626,
+          "raidWaves": 2
+        },
+        {
+          "section": 3,
+          "armedStart": 1744,
+          "raidStart": 2056,
+          "raidLastSpawn": 2182,
+          "raidWaves": 1
+        }
+      ]
+    },
+    {
+      "id": "stage-1",
+      "name": "紅魔館・花の門",
+      "oldBossFrame": 1920,
+      "bossFrame": 2760,
+      "oldEnemies": 21,
+      "armedEnemies": 25,
+      "raidEnemies": 48,
+      "sections": [
+        {
+          "section": 1,
+          "armedStart": 80,
+          "raidStart": 488,
+          "raidLastSpawn": 794,
+          "raidWaves": 2
+        },
+        {
+          "section": 2,
+          "armedStart": 912,
+          "raidStart": 1320,
+          "raidLastSpawn": 1626,
+          "raidWaves": 2
+        },
+        {
+          "section": 3,
+          "armedStart": 1744,
+          "raidStart": 2152,
+          "raidLastSpawn": 2458,
+          "raidWaves": 2
+        }
+      ]
+    },
+    {
+      "id": "stage-2",
+      "name": "地下大図書館",
+      "oldBossFrame": 2160,
+      "bossFrame": 3060,
+      "oldEnemies": 23,
+      "armedEnemies": 28,
+      "raidEnemies": 56,
+      "sections": [
+        {
+          "section": 1,
+          "armedStart": 80,
+          "raidStart": 584,
+          "raidLastSpawn": 1070,
+          "raidWaves": 3
+        },
+        {
+          "section": 2,
+          "armedStart": 1188,
+          "raidStart": 1596,
+          "raidLastSpawn": 1902,
+          "raidWaves": 2
+        },
+        {
+          "section": 3,
+          "armedStart": 2020,
+          "raidStart": 2428,
+          "raidLastSpawn": 2734,
+          "raidWaves": 2
+        }
+      ]
+    },
+    {
+      "id": "stage-3",
+      "name": "月時計の回廊",
+      "oldBossFrame": 2400,
+      "bossFrame": 3480,
+      "oldEnemies": 30,
+      "armedEnemies": 36,
+      "raidEnemies": 64,
+      "sections": [
+        {
+          "section": 1,
+          "armedStart": 80,
+          "raidStart": 680,
+          "raidLastSpawn": 1166,
+          "raidWaves": 3
+        },
+        {
+          "section": 2,
+          "armedStart": 1284,
+          "raidStart": 1788,
+          "raidLastSpawn": 2274,
+          "raidWaves": 3
+        },
+        {
+          "section": 3,
+          "armedStart": 2392,
+          "raidStart": 2896,
+          "raidLastSpawn": 3202,
+          "raidWaves": 2
+        }
+      ]
+    },
+    {
+      "id": "stage-4",
+      "name": "紅月の屋上",
+      "oldBossFrame": 2640,
+      "bossFrame": 3780,
+      "oldEnemies": 31,
+      "armedEnemies": 39,
+      "raidEnemies": 72,
+      "sections": [
+        {
+          "section": 1,
+          "armedStart": 80,
+          "raidStart": 680,
+          "raidLastSpawn": 1166,
+          "raidWaves": 3
+        },
+        {
+          "section": 2,
+          "armedStart": 1284,
+          "raidStart": 1884,
+          "raidLastSpawn": 2370,
+          "raidWaves": 3
+        },
+        {
+          "section": 3,
+          "armedStart": 2488,
+          "raidStart": 2992,
+          "raidLastSpawn": 3478,
+          "raidWaves": 3
+        }
+      ]
+    },
+    {
+      "id": "stage-5",
+      "name": "封印された地下室",
+      "oldBossFrame": 2880,
+      "bossFrame": 4140,
+      "oldEnemies": 37,
+      "armedEnemies": 44,
+      "raidEnemies": 80,
+      "sections": [
+        {
+          "section": 1,
+          "armedStart": 80,
+          "raidStart": 776,
+          "raidLastSpawn": 1442,
+          "raidWaves": 4
+        },
+        {
+          "section": 2,
+          "armedStart": 1560,
+          "raidStart": 2160,
+          "raidLastSpawn": 2646,
+          "raidWaves": 3
+        },
+        {
+          "section": 3,
+          "armedStart": 2764,
+          "raidStart": 3364,
+          "raidLastSpawn": 3850,
+          "raidWaves": 3
+        }
+      ]
+    }
+  ]
+}

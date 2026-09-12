@@ -36,7 +36,9 @@ export type Pattern = {
     id: string;
     name: string;
     asset: string;
-    kind: "straight" | "aimed" | "fan" | "ring" | "spiral";
+    kind: "straight" | "aimed" | "fan" | "ring" | "spiral" | "homing";
+    launch?: { kind: "actor" | "left" | "right" | "alternate" | "both" | "fixed"; x: number; y: number; step: number; lanes: number };
+    guidance?: { frames: number; period: number };
     speed: number;
     angle: number;
     count: number;
@@ -85,18 +87,23 @@ export type StageEvent = {
     interval: number;
     value: number;
 };
+export type DialoguePage = { id: string; speaker: string; line1: string; line2: string };
+export type DialogueScene = { enabled: boolean; background: string; portrait?: string; pages: DialoguePage[] };
+export type CharacterDialogue = { id: string; character: string; before: DialogueScene; after: DialogueScene };
 export type Presentation = {
     enabled: boolean;
     dialogueBackground: string;
     clearBackground: string;
     rightPalette: number;
-    dialogue: { id: string; speaker: string; line1: string; line2: string }[];
+    dialogue: DialoguePage[];
+    dialoguePortrait?: string;
+    characterDialogues?: CharacterDialogue[];
     clearEnabled: boolean;
     baseBonus: number;
     lifeBonus: number;
     noMissBonus: number;
     clearWaitSeconds?: number;
-    victoryDialogue?: { enabled: boolean; background: string; pages: { id: string; speaker: string; line1: string; line2: string }[] };
+    victoryDialogue?: DialogueScene;
 };
 export type Parallax = { enabled: boolean; firstTile: number; width: number; height: number; divisor: number };
 export type Stage = {
@@ -127,7 +134,7 @@ export type TextItem = {
     y: number;
     palette: number;
     digits?: number;
-    binding: "none" | "score" | "lives" | "time" | "boss" | "highscores";
+    binding: "none" | "score" | "lives" | "time" | "boss" | "highscores" | "bombs";
 };
 export type Screen = {
     id: "title" | "gameover" | "clear" | "scores" | "hud";
@@ -140,6 +147,8 @@ export type Screen = {
 };
 export const hudHeight = (game: Game) => (game.screens.find(s => s.id === "hud")?.rows ?? 2) * 8;
 
+export type PlayerCharacter = { id: string; name: string; asset: string; speed: number; weapon: string; focusWeapon?: string; focusSpeed?: number; bombBackground?: string; bombStyle?: "orb" | "beam"; selectionBackground?: string; gameoverBackground?: string };
+export type Bomb = { enabled: boolean; stock: number; damage: number; frames: number; flashPeriod: number; background: string };
 export type Game = {
     schemaVersion: 1;
     name: string;
@@ -158,6 +167,11 @@ export type Game = {
     stages: Stage[];
     screens: Screen[];
     player: {
+        name?: string;
+        selectionBackground?: string;
+        gameoverBackground?: string;
+        characters?: PlayerCharacter[];
+        bomb?: Bomb;
         asset: string;
         speed: number;
         lives: number;
@@ -169,7 +183,10 @@ export type Game = {
         x: number;
         y: number;
     };
-    ending?: { seconds: number; slides: { id: string; background: string }[] };
+    startup?: { enabled: boolean; fadeSeconds: number; slides: {id: string; background: string; seconds: number}[] };
+    ending?: { seconds: number; slides: { id: string; background: string }[];
+        music?: number; scoreAfter?: boolean;
+        characterSlides?: {id: string; character: string; slides: {id: string; background: string}[]}[] };
     clearBonus: number;
     stageFade?: boolean;
     timeLimit?: boolean;
@@ -271,6 +288,8 @@ export function validateShape(
         points: [{ x: "number", y: "number", frame: "number" }],
     };
     const attacks: Shape = [{ id: "string", pattern: "string" }];
+    const dialoguePage: Shape = {id: "string", speaker: "string", line1: "string", line2: "string"};
+    const dialogueScene: Shape = {enabled: "boolean", background: "string", "portrait?": "string", pages: [dialoguePage]};
     const actor = {
         id: "string",
         name: "string",
@@ -319,6 +338,8 @@ export function validateShape(
                 asset: "string",
                 kind: "string",
                 speed: "number",
+                "launch?": {kind: "string", x: "number", y: "number", step: "number", lanes: "number"},
+                "guidance?": {frames: "number", period: "number"},
                 angle: "number",
                 count: "number",
                 spread: "number",
@@ -371,7 +392,9 @@ export function validateShape(
                     enabled: "boolean", dialogueBackground: "string", clearBackground: "string", rightPalette: "number",
                     dialogue: [{id: "string", speaker: "string", line1: "string", line2: "string"}],
                     clearEnabled: "boolean", baseBonus: "number", lifeBonus: "number", noMissBonus: "number", "clearWaitSeconds?": "number",
-                    "victoryDialogue?": {enabled: "boolean", background: "string", pages: [{id: "string", speaker: "string", line1: "string", line2: "string"}]}
+                    "victoryDialogue?": dialogueScene,
+                    "dialoguePortrait?": "string",
+                    "characterDialogues?": [{id: "string", character: "string", before: dialogueScene, after: dialogueScene}]
                 },
                 "parallax?": {enabled: "boolean", firstTile: "number", width: "number", height: "number", divisor: "number"},
                 events: [
@@ -412,6 +435,10 @@ export function validateShape(
             },
         ],
         player: {
+            "name?": "string",
+            "selectionBackground?": "string", "gameoverBackground?": "string",
+            "characters?": [{id: "string", name: "string", asset: "string", speed: "number", weapon: "string", "focusWeapon?": "string", "focusSpeed?": "number", "bombBackground?": "string", "bombStyle?": "string", "selectionBackground?": "string", "gameoverBackground?": "string"}],
+            "bomb?": {enabled: "boolean", stock: "number", damage: "number", frames: "number", flashPeriod: "number", background: "string"},
             asset: "string",
             speed: "number",
             lives: "number",
@@ -423,7 +450,9 @@ export function validateShape(
             x: "number",
             y: "number",
         },
-        "ending?": { seconds: "number", slides: [{id: "string", background: "string"}] },
+        "startup?": {enabled:"boolean", fadeSeconds:"number", slides:[{id:"string",background:"string",seconds:"number"}]},
+        "ending?": { seconds: "number", slides: [{id: "string", background: "string"}], "music?":"number", "scoreAfter?":"boolean",
+            "characterSlides?":[{id:"string",character:"string",slides:[{id:"string",background:"string"}]}] },
         clearBonus: "number",
         "stageFade?": "boolean",
         "timeLimit?": "boolean",
@@ -552,7 +581,8 @@ export function validate(value: unknown): Diagnostic[] {
         }
     };
     integer(game.palettes.length, 1, 8, "palettes");
-    integer(game.assets.length, 1, 64, "assets");
+    integer(game.assets.length, 1, 128, "assets");
+    integer(game.assets.filter(a => a.kind === "sprite").length, 1, 64, "assets");
     integer(game.patterns.length, 1, 32, "patterns");
     integer(game.enemies.length, 1, 32, "enemies");
     integer(game.bosses.length, 1, 8, "bosses");
@@ -670,8 +700,19 @@ export function validate(value: unknown): Diagnostic[] {
     };
     for (const p of game.patterns) {
         assetRef(p.asset, p.id);
-        if (!["straight", "aimed", "fan", "ring", "spiral"].includes(p.kind))
+        if (!["straight", "aimed", "fan", "ring", "spiral", "homing"].includes(p.kind))
             err(p.id, "弾幕方式が不正です");
+        if (p.launch) {
+            const l = p.launch;
+            if (!["actor", "left", "right", "alternate", "both", "fixed"].includes(l.kind)) err(p.id, "発生位置が不正です");
+            integer(l.x, 0, 159, p.id); integer(l.y, 0, 143, p.id);
+            integer(l.step, 0, 64, p.id); integer(l.lanes, 1, 8, p.id);
+            if (l.y + l.step * (l.lanes - 1) > 143) err(p.id, "発生レーンが画面下端を超えています");
+        }
+        if (p.guidance) {
+            integer(p.guidance.frames, 0, 240, p.id);
+            if (![8, 16, 32].includes(p.guidance.period)) err(p.id, "誘導周期は8・16・32更新です");
+        }
         finite(p.speed, 0.0625, 8, p.id);
         finite(p.angle, -360, 360, p.id);
         finite(p.rotation, -360, 360, p.id);
@@ -728,13 +769,31 @@ export function validate(value: unknown): Diagnostic[] {
     patternRef(game.player.weapon, "player");
     if (game.player.focusWeapon) patternRef(game.player.focusWeapon, "player");
     if (game.player.focusSpeed !== undefined) finite(game.player.focusSpeed, 0.0625, 8, "player");
+    if (game.startup) {
+        const p = game.startup;
+        finite(p.fadeSeconds, 0.1, 3, "startup"); integer(p.slides.length, 0, 16, "startup"); uniqueIds(p.slides, "startup");
+        for (const slide of p.slides) {
+            finite(slide.seconds, 0.1, 60, "startup");
+            if (!game.assets.some(a => a.id === slide.background && a.kind === "screen" && a.width === 160 && a.height === 144)) err("startup", "ロゴには160x144の画面画像を指定してください");
+        }
+    }
     if (game.ending) {
         integer(game.ending.seconds, 1, 60, "ending");
-        if (game.ending.slides.length > 20) d.push({severity: "error", target: "ending", message: "スライドは20枚までです"});
-        for (const slide of game.ending.slides) if (!game.assets.some(a => a.id === slide.background && a.kind === "screen" && a.width === 160 && a.height === 144)) d.push({severity: "error", target: "ending", message: "160x144の画面画像を指定してください"});
+        if (game.ending.music !== undefined) integer(game.ending.music, 0, 34, "ending");
+        const variants = game.ending.characterSlides ?? [], seen = new Set<string>();
+        integer(variants.length, 0, 3, "ending"); uniqueIds(variants, "ending");
+        for (const v of variants) {
+            if (!game.player.characters?.some(c => c.id === v.character) || seen.has(v.character)) err("ending", "追加機体の指定が不正または重複しています");
+            seen.add(v.character);
+        }
+        for (const slides of [game.ending.slides, ...variants.map(v => v.slides)]) {
+            uniqueIds(slides, "ending");
+            if (slides.length > 20) err("ending", "スライドは20枚までです");
+            for (const slide of slides) if (!game.assets.some(a => a.id === slide.background && a.kind === "screen" && a.width === 160 && a.height === 144)) err("ending", "160x144の画面画像を指定してください");
+        }
     }
-    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 33, "music");
-    if (game.bossCelebration && game.music?.victory !== undefined && ![0, 6, 7, 8, 14, 15, 27, 28, 29].includes(game.music.victory))
+    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 34, "music");
+    if (game.bossCelebration && game.music?.victory !== undefined && ![0, 6, 7, 8, 14, 15, 29].includes(game.music.victory))
         err("music", "撃破ファンファーレはループしない曲または無音を選択してください");
     if (game.performance) {
         integer(game.performance.enemies, 1, 12, "performance");
@@ -743,6 +802,32 @@ export function validate(value: unknown): Diagnostic[] {
         integer(game.performance.effects, 1, 4, "performance");
     }
     if (!game.player.weapon) err("player", "自機の武器を選択してください");
+    const characters = game.player.characters ?? [];
+    integer(characters.length, 0, 3, "player"); uniqueIds(characters, "player");
+    for(const c of characters){
+        if(c.bombBackground && !game.assets.some(a=>a.id===c.bombBackground && a.kind==="screen"))err("player","機体のボム画像が不正です");
+        if(c.bombStyle && !["orb","beam"].includes(c.bombStyle))err("player","ボムの演出方式が不正です");
+    }
+    for (const p of [game.player, ...characters]) {
+        for (const key of ["selectionBackground", "gameoverBackground"] as const)
+            if (p[key]) assetRef(p[key]!, "player", "screen");
+        if (p.name !== undefined && (!/^[\u0020-\u007e\u3000-\u30ff\u3400-\u9fff]+$/u.test(p.name) || !p.name.trim() || p.name.length > 16)) err("player", "機体名は英数字・日本語で1〜16文字です");
+        assetRef(p.asset, "player"); patternRef(p.weapon, "player");
+        if (!p.weapon) err("player", "各機体の武器を選択してください");
+        if (p.focusWeapon) patternRef(p.focusWeapon, "player");
+        finite(p.speed, 0.0625, 8, "player");
+        if (p.focusSpeed !== undefined) finite(p.focusSpeed, 0.0625, 8, "player");
+        for (const id of [p.weapon, p.focusWeapon]) {
+            const shot = game.patterns.find(s => s.id === id);
+            if (shot && (shot.kind === "homing" || shot.launch && shot.launch.kind !== "actor")) err("player", "自機ショットは機体起点・誘導なしで設定してください");
+        }
+    }
+    if (game.player.bomb) {
+        const b = game.player.bomb;
+        integer(b.stock, 1, 9, "player"); integer(b.damage, 1, 255, "player");
+        integer(b.frames, 12, 120, "player"); integer(b.flashPeriod, 1, 8, "player");
+        if (b.enabled && !game.assets.some(a => a.id === b.background && a.kind === "screen")) err("player", "ボムの背景画像を選択してください");
+    }
     finite(game.player.speed, 0.0625, 8, "player");
     integer(game.player.lives, 1, 9, "player");
     integer(game.player.invulnerability, 0, 1024, "player");
@@ -755,11 +840,28 @@ export function validate(value: unknown): Diagnostic[] {
         integer(stage.width, 20, 20, stage.id);
         integer(stage.height, 18, 512, stage.id);
         integer(stage.duration, 1, 600, stage.id);
-        if (stage.music !== undefined) integer(stage.music, 0, 33, stage.id);
-        if (stage.bossMusic !== undefined) integer(stage.bossMusic, 0, 33, stage.id);
+        if (stage.music !== undefined) integer(stage.music, 0, 34, stage.id);
+        if (stage.bossMusic !== undefined) integer(stage.bossMusic, 0, 34, stage.id);
         finite(stage.scrollSpeed, 0, 4, stage.id);
         const presentation = stage.presentation;
         if (presentation) {
+            if (presentation.dialoguePortrait) assetRef(presentation.dialoguePortrait, stage.id, "screen");
+            const variants = presentation.characterDialogues ?? [];
+            integer(variants.length, 0, 3, stage.id); uniqueIds(variants, stage.id);
+            const seenCharacters = new Set<string>();
+            for (const variant of variants) {
+                if (!characters.some(c => c.id === variant.character)) err(stage.id, "会話の対象機体が見つかりません");
+                if (seenCharacters.has(variant.character)) err(stage.id, "同じ機体の会話が重複しています");
+                seenCharacters.add(variant.character);
+                for (const scene of [variant.before, variant.after]) {
+                    if (scene.background) assetRef(scene.background, stage.id, "screen");
+                    if (scene.portrait) assetRef(scene.portrait, stage.id, "screen");
+                    if (scene.enabled && !scene.background) err(stage.id, "機体別会話の背景画像が必要です");
+                    uniqueIds(scene.pages, stage.id); integer(scene.pages.length, scene.enabled ? 1 : 0, 8, stage.id);
+                    for (const page of scene.pages) for (const key of ["speaker", "line1", "line2"] as const)
+                        if (!supportedText(page[key]) || page[key].normalize("NFC").length > 18) err(stage.id, "機体別会話は対応文字で各行18文字以内です");
+                }
+            }
             if (presentation.clearWaitSeconds !== undefined) integer(presentation.clearWaitSeconds, 1, 10, stage.id);
             for (const key of ["dialogueBackground", "clearBackground"] as const)
                 if (presentation[key]) assetRef(presentation[key], stage.id, "screen");
@@ -774,6 +876,7 @@ export function validate(value: unknown): Diagnostic[] {
             }
             const victory = presentation.victoryDialogue;
             if (victory) {
+                if (victory.portrait) assetRef(victory.portrait, stage.id, "screen");
                 if (victory.background) assetRef(victory.background, stage.id, "screen");
                 if (victory.enabled && !victory.background) err(stage.id, "撃破後会話の背景画像が必要です");
                 uniqueIds(victory.pages, stage.id);
@@ -885,6 +988,7 @@ export function validate(value: unknown): Diagnostic[] {
                     "time",
                     "boss",
                     "highscores",
+                    "bombs",
                 ].includes(text.binding)
             )
                 err(text.id, "動的表示の種類が不正です");
@@ -907,7 +1011,7 @@ export function validate(value: unknown): Diagnostic[] {
 
 /** One boss can exist at a time. Exclusive boss art shares a reloadable VRAM slot. */
 export function spriteLayout(game: Game) {
-    const resident = new Set([game.player.asset, ...game.enemies.map(a => a.asset), ...game.patterns.map(p => p.asset), game.effects.explosion]);
+    const resident = new Set([game.player.asset, ...(game.player.characters ?? []).map(p => p.asset), ...game.enemies.map(a => a.asset), ...game.patterns.map(p => p.asset), game.effects.explosion]);
     const overlay = new Set(game.bosses.map(b => b.asset).filter(id => !resident.has(id)));
     const assets = game.assets.filter(a => a.kind === "sprite");
     let base = 0, size = 0;

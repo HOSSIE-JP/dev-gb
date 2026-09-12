@@ -1,0 +1,36 @@
+[
+  {
+    "id": "logo-ai-slop",
+    "master": "logo-ai-slop-pop-original.png",
+    "masterSha256": "c3160941d22b8888943e03b660156343b9b4f334530359e3fa3de2dcd23744db",
+    "sourceSize": [
+      1322,
+      1190
+    ],
+    "outputSize": [
+      160,
+      144
+    ],
+    "sampling": "nearest-neighbor pixel-center, alpha composited over black, luma rounded to four shades",
+    "palette": 7,
+    "uniqueTiles": 161,
+    "assetSha256": "6df3859173dbaca985fc1f4f8f4819d27767cd74e92ff4f41edb0ec7a7233d89"
+  },
+  {
+    "id": "logo-touhou-notice",
+    "master": "logo-touhou-notice-original.png",
+    "masterSha256": "4fc8e9cf514d7a7d64f7512162ff9c4ea837eda0695d73ee8bd17f1e3702ac43",
+    "sourceSize": [
+      1322,
+      1190
+    ],
+    "outputSize": [
+      160,
+      144
+    ],
+    "sampling": "nearest-neighbor pixel-center, alpha composited over black, luma rounded to four shades",
+    "palette": 7,
+    "uniqueTiles": 254,
+    "assetSha256": "2db2a81e9e1293a690ce0634f21feac1b5da23e088f12a07b665a12d5aed0db5"
+  }
+]

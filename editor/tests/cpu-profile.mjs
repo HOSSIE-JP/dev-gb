@@ -1,5 +1,5 @@
 // Read-only, cycle-weighted PC sampling. No instrumented ROM or gameplay edits.
-// node editor/tests/cpu-profile.mjs ROM.gb OUT.json [fromTick=120] [toTick=720] [input=fire]
+// node editor/tests/cpu-profile.mjs ROM.gb OUT.json [fromTick=120] [toTick=720] [input=fire|focus|none] [both|DMG|CGB]
 // A matching Debug .cdb is required for local-function attribution. Debug and
 // Release may share symbols ONLY after checking that their ROM bytes match.
 import fs from "node:fs";
@@ -14,8 +14,9 @@ import {
     PadKey,
 } from "./emulator.mjs";
 
-const [romPath, out, from = "120", to = "720", input = "fire"] =
+const [romPath, out, from = "120", to = "720", input = "fire", modeFilter = "both"] =
     process.argv.slice(2);
+assert.ok(["both", "DMG", "CGB"].includes(modeFilter), "mode must be both, DMG or CGB");
 const rom = fs.readFileSync(romPath),
     stem = romPath.replace(/\.gb$/, "");
 const syms = symbols(stem + ".map"),
@@ -101,6 +102,7 @@ const results = {
 };
 assert.equal(rom[0x147], 0x1b, "bank decoder here is for the engine MBC5 ROMs");
 for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
+    if (modeFilter !== "both" && modeFilter !== (mode === GameBoyMode.Dmg ? "DMG" : "CGB")) continue;
     const gb = boot(rom, mode),
         counts = new Map(),
         pcs = new Map();
@@ -117,9 +119,14 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             let n = 0;
             n < 600 && memory(gb).ram[syms._ce_scene - 0xc000] !== 1;
             n++
-        )
+        ) {
+            if (memory(gb).ram[syms._ce_scene - 0xc000] === 10) {
+                gb.key_press(PadKey.A); frames(gb, 3); gb.key_lift(PadKey.A);
+            }
             frames(gb, 1);
+        }
         if (input === "fire") gb.key_press(PadKey.A);
+        if (input === "focus") gb.key_press(PadKey.B);
         for (let i = 0; i < 2000000; i++) {
             const mem = memory(gb),
                 tick = mem.ram.readUInt16LE(syms._ce_state - 0xc000);

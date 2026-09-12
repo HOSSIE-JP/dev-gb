@@ -8,6 +8,8 @@ fs.mkdirSync(out,{recursive:true});const fixture=path.join(out,'fixture');fs.mkd
 for(const dir of ['engine','.tools/gbdk','.tools/misaki'])fs.cpSync(path.join(root,dir),path.join(fixture,dir),{recursive:true});
 const game=lib.readGame(source,'touhou-kouma'),boss=game.bosses.find(b=>b.id==='rumia'),stage=game.stages.find(s=>s.id==='stage-forest');
 game.bosses=[boss];game.stages=[stage];game.stageOrder=[stage.id];game.startStage=stage.id;
+game.player.characters=[];game.ending.characterSlides=[];game.ending.scoreAfter=false;game.player.bomb=undefined; // Selection/bombs have a separate acceptance fixture.
+delete game.player.selectionBackground;delete game.player.gameoverBackground;delete stage.presentation.characterDialogues;
 game.stageFade=false;game.bossCelebration=false;game.timeLimit=false;game.player.invulnerability=1024;
 boss.hp=2;for(const [i,p]of boss.phases.entries()) {p.hp=[2,2,3,1][i];p.threshold=i===0?2:0;p.pattern=i?'rumia-halo':'';p.attacks=[];p.motion={...p.motion,kind:'straight',vx:i?.25:0,vy:i?.125:0};}
 stage.events=[{id:'boss',frame:0,kind:'boss',ref:boss.id,x:80,y:36,count:1,spacing:0,interval:0,value:0}];stage.presentation.enabled=false;

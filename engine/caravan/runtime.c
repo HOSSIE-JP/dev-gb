@@ -26,6 +26,14 @@ uint8_t ce_used;
 uint8_t ce_pool_counts[6], ce_pool_oam;
 static uint8_t free_slots[CE_FREE_GROUPS];
 uint16_t ce_scores[5], ce_respawn;
+uint8_t ce_character, ce_player_asset, ce_player_weapon, ce_player_speed, ce_player_focus_weapon, ce_player_focus_speed;
+uint8_t ce_bombs, ce_bomb_latch, ce_bomb_left;
+void ce_select_player(uint8_t index) NONBANKED {
+    const CE_Player *p;
+    ce_character = index < ce_player_count ? index : 0; p = &ce_players[ce_character];
+    ce_player_asset=p->asset;ce_player_weapon=p->weapon;ce_player_speed=p->speed;
+    ce_player_focus_weapon=p->focus_weapon;ce_player_focus_speed=p->focus_speed;
+}
 uint16_t ce_music_time;
 static uint8_t hit_sound_wait;
 volatile uint8_t ce_trace[24];
@@ -59,7 +67,7 @@ static void prepare_player_ranges(void) {
 }
 static void box(CE_Box *b, const CE_Entity *e);
 static void prepare_shot(uint8_t slot);
-static void init_shot_visual(uint8_t slot) {
+void ce_init_shot_visual(uint8_t slot) NONBANKED {
     const CE_Asset *a = &ce_assets[ce_entities[slot].asset];
     shot_ox[slot] = 8u - a->ox; shot_oy[slot] = 16u - a->oy;
     ce_shot_oam[slot].tile = a->first_tile;
@@ -103,7 +111,8 @@ uint8_t ce_read(const CE_Data *source, uint16_t offset) NONBANKED {
     return value;
 }
 void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
-    if (new_game) { ce_respawn = 0; memset(&ce_state, 0, sizeof(ce_state)); ce_state.lives = ce_player_lives; }
+    if (new_game) { ce_select_player(ce_character); ce_bombs=ce_bomb_stock; ce_bomb_left=0; ce_respawn = 0; memset(&ce_state, 0, sizeof(ce_state)); ce_state.lives = ce_player_lives; }
+    ce_bomb_latch=1;
     ce_battle_mode = 0; ce_battle_asset = CE_NONE; ce_boss_invulnerable = 0; ce_transition_state = 0; ce_bg_clear();
     memset(ce_entities, 0, sizeof(ce_entities));
     ce_used = 0; memset(ce_pool_counts, 0, sizeof(ce_pool_counts));
@@ -155,7 +164,7 @@ void explode(int16_t x, int16_t y) {
     slot = allocate(CE_FX, ce_explosion_asset); if (slot == CE_NONE) return;
     e = &ce_entities[slot]; e->x = x; e->y = y; e->lifetime = ce_explosion_duration;
 }
-static uint8_t aim(int16_t dx, int16_t dy) {
+uint8_t ce_aim(int16_t dx, int16_t dy) NONBANKED {
     uint8_t i, angle, best = 0;
     int16_t ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
     int16_t maximum = -1;
@@ -172,36 +181,6 @@ static uint8_t aim(int16_t dx, int16_t dy) {
         if (score[i] > maximum || (score[i] == maximum && angle < best)) { maximum = score[i]; best = angle; }
     }
     return best;
-}
-static void shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t friendly, uint8_t sequence) {
-    const CE_Pattern *p; const CE_Asset *a; uint8_t emitter, n, base, angle, slot;
-    int16_t px, py; CE_Entity *e;
-    if (pattern == CE_NONE) return;
-    p = &ce_patterns[pattern]; a = &ce_assets[source];
-    for (emitter = 0; emitter != a->emitters; ++emitter) {
-        px = x + (int16_t)a->emitter_xy[emitter * 2u] * 16;
-        py = y + (int16_t)a->emitter_xy[emitter * 2u + 1u] * 16;
-        base = p->angle;
-        if (p->kind == 1u) base += aim((ce_state.player_x - px) / 16, (ce_state.player_y - py) / 16);
-        if (p->kind == 4u) base += sequence * p->rotation;
-        for (n = 0; n != p->count; ++n) {
-            angle = (base + p->angles[n]) & 15u;
-            if (!friendly && ce_battle_mode == 2u) {
-                ce_bg_request.x = px; ce_bg_request.y = py;
-                ce_bg_request.vx = p->velocity[angle * 2u]; ce_bg_request.vy = p->velocity[angle * 2u + 1u];
-                ce_bg_request.life = p->lifetime; ce_bg_request.damage = p->damage; ce_bg_spawn(); continue;
-            }
-            slot = allocate(friendly ? CE_PSHOT : CE_ESHOT, p->asset); if (slot == CE_NONE) continue;
-            e = &ce_entities[slot]; e->ref = pattern;
-            ce_shot_x[slot] = px; ce_shot_y[slot] = py; ce_shot_age[slot] = 0;
-            angle <<= 1;
-            ce_shot_vx[slot] = p->velocity[angle]; ce_shot_vy[slot] = p->velocity[angle + 1u];
-            e->hp = 1; ce_shot_lifetime[slot] = p->lifetime; e->damage = p->damage;
-            init_shot_visual(slot);
-            /* Enemy shots collide against cached center intervals, including
-             * newly spawned shots that will not move until the next update. */
-        }
-    }
 }
 /* Main-loop only. SDCC SM83 call(1): destination DE, entity BC. The signed
  * divide must round towards zero, including negative fractional coordinates.
@@ -415,6 +394,7 @@ static void hit_player(void) {
     ce_sound(2); if (ce_stage_misses != 255u) ++ce_stage_misses; --ce_state.lives;
     if (!ce_state.lives) ce_state.result = 1;
     else {
+        ce_bombs=ce_bomb_stock;ce_bomb_latch=1;
         ce_respawn = ce_player_respawn_delay;
         ce_state.invulnerable = ce_respawn ? 0 : ce_player_invulnerability;
         ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
@@ -445,7 +425,19 @@ static void move_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) {
         return;
     }
     if (m->kind == 2u) {
-        i = m->period == 128u ? (uint8_t)(age & 127u) >> 3 : (age % m->period) * 16u / m->period;
+        if (m->period == 128u) {
+            /* A sine sample lasts eight updates. Integrate the linear part
+             * and add only the sample delta at an edge; age 0 also handles
+             * phase entry and the 16-bit wrap. Same Q4 path, fewer multiplies. */
+            if (!age) { e->x = e->base_x; e->y = e->base_y; return; }
+            e->x += m->vx; e->y += m->vy;
+            if (!(age & 7u)) {
+                i = (uint8_t)(age & 127u) >> 3;
+                e->x += (int16_t)(ce_sin[i] - ce_sin[(i - 1u) & 15u]) * m->amplitude;
+            }
+            return;
+        }
+        i = (age % m->period) * 16u / m->period;
         e->x = e->base_x + m->vx * age + (int16_t)ce_sin[i] * m->amplitude;
         e->y = e->base_y + m->vy * age; return;
     }
@@ -455,9 +447,6 @@ static void move_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) {
         offset = phase == 0u ? span : phase == 1u ? m->amplitude - span : phase == 2u ? -span : -m->amplitude + span;
     }
     e->x = e->base_x + m->vx * age + offset * 16; e->y = e->base_y + m->vy * age;
-}
-static void add_score(uint16_t value) {
-    ce_state.score = 65535u - ce_state.score < value ? 65535u : ce_state.score + value;
 }
 static void step_player(uint8_t input) {
     uint8_t top = ce_hud_bottom ? 0u : ce_hud_height;
@@ -484,7 +473,7 @@ static void step_player(uint8_t input) {
     if (!(input & (J_A | J_B))) { ce_state.cooldown = weapon->delay; ce_state.player_sequence = 0; }
     else if (ce_state.cooldown) --ce_state.cooldown;
     else if (!weapon->repeats || ce_state.player_sequence < weapon->repeats) {
-        shoot(pattern, ce_player_asset, ce_state.player_x, ce_state.player_y, 1, ce_state.player_sequence++);
+        ce_shoot(pattern, ce_player_asset, ce_state.player_x, ce_state.player_y, 1, ce_state.player_sequence++);
         ce_state.cooldown = weapon->interval - 1u; ce_sound(0);
     }
     if (ce_state.invulnerable) --ce_state.invulnerable;
@@ -494,7 +483,6 @@ static void step_actor(CE_Entity *e, uint8_t slot) {
     static uint8_t k, pattern, primary, layer_count;
     static uint16_t age, sequence; static const uint8_t *layers;
     static const CE_Actor *actor; static const CE_Phase *phase; static const CE_Motion *motion; static const CE_Pattern *shot;
-    schedule = &next_attack[(uint16_t)slot << 2];
             actor = e->kind == CE_BOSS ? &ce_bosses[e->ref] : &ce_enemies[e->ref];
             motion = actor->motion; pattern = actor->pattern; age = e->age;
             layers = actor->layer; layer_count = actor->layers;
@@ -511,6 +499,10 @@ static void step_actor(CE_Entity *e, uint8_t slot) {
                 layers = phase->layer; layer_count = phase->layers;
             }
             move_actor(e, motion, age);
+            /* Unarmed formations need neither a deadline lookup nor an attack
+             * traversal. Preserve both age counters, including their wrap. */
+            if (pattern == CE_NONE && !layer_count) { ++e->age; ++e->phase_age; return; }
+            schedule = &next_attack[(uint16_t)slot << 2];
             primary = pattern;
             for (k = 0; k <= layer_count; ++k) {
                 pattern = k ? layers[k - 1u] : primary;
@@ -522,7 +514,7 @@ static void step_actor(CE_Entity *e, uint8_t slot) {
                 if (age >= shot->delay && age == schedule[k]) {
                     schedule[k] += shot->interval;
                     sequence = (age - shot->delay) / shot->interval;
-                    if (!shot->repeats || sequence < shot->repeats) shoot(pattern, e->asset, e->x, e->y, 0, sequence);
+                    if (!shot->repeats || sequence < shot->repeats) ce_shoot(pattern, e->asset, e->x, e->y, 0, sequence);
                 }
             }
             ++e->age; ++e->phase_age;
@@ -638,8 +630,18 @@ static void step_entities(void) __naked {
         ret
     __endasm;
 }
+static void steer_sprite_shots(void) {
+    uint8_t i, angle; const CE_Pattern *p;
+    /* One eighth of slots per update; ordinary shots keep the ASM path. */
+    for(i=ce_state.tick&7u;i<ce_used;i+=8u)if(ce_entities[i].kind==CE_ESHOT){
+        p=&ce_patterns[ce_entities[i].ref];
+        if(p->kind!=5u || ce_shot_age[i]>=p->guide_frames || ((ce_state.tick-i)&p->guide_mask))continue;
+        angle=ce_home(ce_entities[i].sequence,ce_shot_x[i]/16,ce_shot_y[i]/16);ce_entities[i].sequence=angle;
+        ce_shot_vx[i]=p->velocity[angle*2u];ce_shot_vy[i]=p->velocity[angle*2u+1u];
+    }
+}
 static void collide_shots(void) {
-    static uint8_t i, j; static CE_Entity *e, *target; static const CE_Actor *actor;
+    static uint8_t i, j; static CE_Entity *e, *target;
     if (!ce_pool_counts[CE_PSHOT] || !(ce_pool_counts[CE_ENEMY] | ce_pool_counts[CE_BOSS])) return;
     target_count = 0;
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) if (e->kind == CE_ENEMY || e->kind == CE_BOSS) { targets[target_count] = e; target_slots[target_count] = i; target_boxes[target_count++] = &boxes[i]; }
@@ -647,25 +649,14 @@ static void collide_shots(void) {
         if (e->kind != CE_PSHOT) continue;
         box_a = &boxes[i];
         for (j = 0; j != target_count; ++j) {
+            /* Reject spatial misses before following the target entity pointer.
+             * A previous hit may have released/reused that slot, so its kind
+             * still has to be checked before applying damage. */
+            box_b = target_boxes[j]; if (!overlap()) continue;
             target = targets[j]; if (target->kind != CE_ENEMY && target->kind != CE_BOSS) continue;
             if (target->kind == CE_BOSS && ce_boss_invulnerable) continue;
-            box_b = target_boxes[j]; if (!overlap()) continue;
             release(i);
-            if (target->kind == CE_BOSS) {
-                actor = &ce_bosses[target->ref];
-                if (target->phase + 1u < actor->phases && actor->phase[target->phase].until && (actor->phase[target->phase].hp || actor->phase[target->phase + 1u].intro_frames) && target->hp <= (actor->phase[target->phase].hp ? 0u : actor->phase[target->phase].threshold) + e->damage) {
-                    target->hp = actor->phase[target->phase].hp ? 0u : actor->phase[target->phase].threshold;
-                    ce_boss_invulnerable = 1; ce_clear_combat(0);
-                    if (ce_battle_mode == 2u) ce_bg_begin();
-                    ce_hud(); break;
-                }
-            }
-            if (target->hp <= e->damage) {
-                actor = target->kind == CE_BOSS ? &ce_bosses[target->ref] : &ce_enemies[target->ref];
-                add_score(actor->score); if (target->kind == CE_BOSS) { ce_state.boss_defeated = 1; defeated_asset = target->asset; defeated_x = target->x; defeated_y = target->y; }
-                release(target_slots[j]); ce_sound(1);
-                explode(target->x, target->y);
-            } else { target->hp -= e->damage; if (target->kind == CE_BOSS) ce_sound(4); }
+            ce_damage_actor(target_slots[j],e->damage);
             break;
         }
     }
@@ -689,9 +680,16 @@ void ce_step(uint8_t input) NONBANKED {
     uint8_t finish; const CE_Stage *stage = &ce_stages[ce_state.stage];
     if (ce_state.result) return;
     ce_trace[22] = 1; /* Keep entity RAM and the public trace in the same snapshot. */
+    if(!(input&(J_A|J_B)))ce_bomb_latch=0;
+    if((input&(J_A|J_B))==(J_A|J_B) && !ce_bomb_latch && ce_bombs && !ce_respawn){
+        ce_bomb_latch=1;--ce_bombs;
+        if(ce_state.invulnerable<90u)ce_state.invulnerable=90u;
+        ce_bomb_apply();ce_bomb_effect();return;
+    }
     step_walls = ce_battle_mode ? 0 : stage->has_walls;
     step_player(input); if (ce_battle_mode == 2u) ce_bg_update();
     finish = ce_stage_events(); step_walls = ce_battle_mode ? 0 : stage->has_walls;
+    if(ce_pool_counts[CE_ESHOT])steer_sprite_shots();
     step_entities(); collide_shots(); collide_player();
     if (ce_bg_hit) hit_player();
     if (ce_state.boss_defeated && ce_battle_mode && !stage->clear_boss) {

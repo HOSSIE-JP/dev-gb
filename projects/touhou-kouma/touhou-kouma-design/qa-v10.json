@@ -1,0 +1,2198 @@
+{
+  "version": "0.10",
+  "date": "2026-09-12",
+  "revision": "1ae1fe073c4a883b331b6584607eea4df5edcb953cea9af5169e6d1500b4a796",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v10.gb",
+    "sha256": "2656f1831cdac466907ea276f4b3e170748e07641f5d96ea16355be9718496c9",
+    "bytes": 524288
+  },
+  "standardTests": 73,
+  "ui": [
+    {
+      "characterControls": true,
+      "characterPreviewSelection": true,
+      "characterBombImage": true,
+      "launchOptions": 6,
+      "guidanceControls": true,
+      "savedAndReopened": true,
+      "buildFree": true
+    },
+    {
+      "victoryPreview": true,
+      "unsavedDialogueRefresh": true,
+      "phaseHpControl": true,
+      "phaseHp": 100,
+      "returnPositionControl": true,
+      "bossControls": true,
+      "cutinPreview": true,
+      "cutinSeconds": 1.2,
+      "scoreWaitControl": true
+    }
+  ],
+  "players": [
+    {
+      "label": "DMG-reimu",
+      "character": 0,
+      "speed": 2.25,
+      "bombFramesObserved": 41,
+      "visible": 21,
+      "blank": 20,
+      "bitmapLitPixels": 2585,
+      "blankLitPixels": 76,
+      "spriteTilesPreserved": true,
+      "stockSequence": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "heldChordSingleActivation": true,
+      "zeroStockRejected": true,
+      "menuCancelAndWrap": true,
+      "refillAfterRealCollision": true
+    },
+    {
+      "label": "DMG-marisa",
+      "character": 1,
+      "speed": 3.25,
+      "bombFramesObserved": 41,
+      "visible": 21,
+      "blank": 20,
+      "bitmapLitPixels": 3776,
+      "blankLitPixels": 69,
+      "spriteTilesPreserved": true,
+      "stockSequence": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "heldChordSingleActivation": true,
+      "zeroStockRejected": true,
+      "menuCancelAndWrap": true,
+      "refillAfterRealCollision": true
+    },
+    {
+      "label": "CGB-reimu",
+      "character": 0,
+      "speed": 2.25,
+      "bombFramesObserved": 41,
+      "visible": 21,
+      "blank": 20,
+      "bitmapLitPixels": 2585,
+      "blankLitPixels": 76,
+      "spriteTilesPreserved": true,
+      "stockSequence": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "heldChordSingleActivation": true,
+      "zeroStockRejected": true,
+      "menuCancelAndWrap": true,
+      "refillAfterRealCollision": true
+    },
+    {
+      "label": "CGB-marisa",
+      "character": 1,
+      "speed": 3.25,
+      "bombFramesObserved": 41,
+      "visible": 21,
+      "blank": 20,
+      "bitmapLitPixels": 3776,
+      "blankLitPixels": 69,
+      "spriteTilesPreserved": true,
+      "stockSequence": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "heldChordSingleActivation": true,
+      "zeroStockRejected": true,
+      "menuCancelAndWrap": true,
+      "refillAfterRealCollision": true
+    }
+  ],
+  "bossBomb": [
+    {
+      "label": "DMG-0",
+      "phases": [
+        {
+          "from": 1,
+          "to": 2,
+          "bulletsCleared": 2,
+          "hpAfterBomb": 0,
+          "nextHp": 20,
+          "stock": 1
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "bulletsCleared": 3,
+          "hpAfterBomb": 0,
+          "nextHp": 20,
+          "stock": 0
+        }
+      ],
+      "victoryPages": 4,
+      "scoreAfterDialogue": true
+    },
+    {
+      "label": "DMG-1",
+      "phases": [
+        {
+          "from": 1,
+          "to": 2,
+          "bulletsCleared": 2,
+          "hpAfterBomb": 0,
+          "nextHp": 20,
+          "stock": 1
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "bulletsCleared": 3,
+          "hpAfterBomb": 0,
+          "nextHp": 20,
+          "stock": 0
+        }
+      ],
+      "victoryPages": 4,
+      "scoreAfterDialogue": true
+    },
+    {
+      "label": "CGB-0",
+      "phases": [
+        {
+          "from": 1,
+          "to": 2,
+          "bulletsCleared": 2,
+          "hpAfterBomb": 0,
+          "nextHp": 20,
+          "stock": 1
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "bulletsCleared": 3,
+          "hpAfterBomb": 0,
+          "nextHp": 20,
+          "stock": 0
+        }
+      ],
+      "victoryPages": 4,
+      "scoreAfterDialogue": true
+    },
+    {
+      "label": "CGB-1",
+      "phases": [
+        {
+          "from": 1,
+          "to": 2,
+          "bulletsCleared": 2,
+          "hpAfterBomb": 0,
+          "nextHp": 20,
+          "stock": 1
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "bulletsCleared": 3,
+          "hpAfterBomb": 0,
+          "nextHp": 20,
+          "stock": 0
+        }
+      ],
+      "victoryPages": 4,
+      "scoreAfterDialogue": true
+    }
+  ],
+  "presentation": [
+    {
+      "mode": "DMG",
+      "cards": [
+        {
+          "first": 31,
+          "last": 102,
+          "hp": 2,
+          "tick": 2,
+          "frames": 72
+        },
+        {
+          "first": 196,
+          "last": 267,
+          "hp": 3,
+          "tick": 12,
+          "frames": 72
+        },
+        {
+          "first": 360,
+          "last": 431,
+          "hp": 1,
+          "tick": 22,
+          "frames": 72
+        }
+      ],
+      "breaks": [
+        {
+          "tick": 12,
+          "x": 1316,
+          "y": 594,
+          "frames": 16,
+          "returned": true
+        },
+        {
+          "tick": 22,
+          "x": 1316,
+          "y": 594,
+          "frames": 16,
+          "returned": true
+        }
+      ],
+      "returnPhases": [
+        1,
+        2
+      ],
+      "victoryPages": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "victoryHeldFrames": 60,
+      "peakBgBullets": 2,
+      "scoreWaitFrames": 118,
+      "heldButtonFrames": 60,
+      "freshPressAccepted": true
+    },
+    {
+      "mode": "CGB",
+      "cards": [
+        {
+          "first": 28,
+          "last": 99,
+          "hp": 2,
+          "tick": 2,
+          "frames": 72
+        },
+        {
+          "first": 182,
+          "last": 253,
+          "hp": 3,
+          "tick": 12,
+          "frames": 72
+        },
+        {
+          "first": 335,
+          "last": 406,
+          "hp": 1,
+          "tick": 22,
+          "frames": 72
+        }
+      ],
+      "breaks": [
+        {
+          "tick": 12,
+          "x": 1316,
+          "y": 594,
+          "frames": 17,
+          "returned": true
+        },
+        {
+          "tick": 22,
+          "x": 1316,
+          "y": 594,
+          "frames": 17,
+          "returned": true
+        }
+      ],
+      "returnPhases": [
+        1,
+        2
+      ],
+      "victoryPages": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "victoryHeldFrames": 60,
+      "peakBgBullets": 2,
+      "scoreWaitFrames": 119,
+      "heldButtonFrames": 60,
+      "freshPressAccepted": true
+    }
+  ],
+  "campaign": [
+    {
+      "mode": "DMG",
+      "cutins": [
+        "0-1",
+        "0-2",
+        "0-3",
+        "1-1",
+        "1-2",
+        "1-3",
+        "2-1",
+        "2-2",
+        "2-3",
+        "3-1",
+        "3-2",
+        "3-3",
+        "4-1",
+        "4-2",
+        "4-3",
+        "5-1",
+        "5-2",
+        "5-3",
+        "6-1",
+        "6-2",
+        "6-3"
+      ],
+      "scoreStages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "dialogueStages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "victoryDialogueStages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "endingReached": true,
+      "peakBgBullets": 0
+    },
+    {
+      "mode": "CGB",
+      "cutins": [
+        "0-1",
+        "0-2",
+        "0-3",
+        "1-1",
+        "1-2",
+        "1-3",
+        "2-1",
+        "2-2",
+        "2-3",
+        "3-1",
+        "3-2",
+        "3-3",
+        "4-1",
+        "4-2",
+        "4-3",
+        "5-1",
+        "5-2",
+        "5-3",
+        "6-1",
+        "6-2",
+        "6-3"
+      ],
+      "scoreStages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "dialogueStages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "victoryDialogueStages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "endingReached": true,
+      "peakBgBullets": 0
+    }
+  ],
+  "motion": [
+    {
+      "mode": "DMG",
+      "rows": [
+        {
+          "stage": 0,
+          "phase": 1,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 0,
+          "phase": 2,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 0,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 1,
+          "phase": 1,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 1,
+          "phase": 2,
+          "turns": 0,
+          "leftSpawns": 9,
+          "rightSpawns": 8,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 1,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 10,
+          "rightSpawns": 10,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 2,
+          "phase": 1,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 2,
+          "phase": 2,
+          "turns": 0,
+          "leftSpawns": 10,
+          "rightSpawns": 10,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 2,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 3,
+          "phase": 1,
+          "turns": 18,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 3,
+          "phase": 2,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 36
+        },
+        {
+          "stage": 3,
+          "phase": 3,
+          "turns": 23,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 40
+        },
+        {
+          "stage": 4,
+          "phase": 1,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 4,
+          "phase": 2,
+          "turns": 0,
+          "leftSpawns": 11,
+          "rightSpawns": 11,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 4,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 13,
+          "rightSpawns": 13,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 5,
+          "phase": 1,
+          "turns": 38,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 5,
+          "phase": 2,
+          "turns": 39,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 5,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 6,
+          "phase": 1,
+          "turns": 35,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 6,
+          "phase": 2,
+          "turns": 40,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 6,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        }
+      ]
+    },
+    {
+      "mode": "CGB",
+      "rows": [
+        {
+          "stage": 0,
+          "phase": 1,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 0,
+          "phase": 2,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 0,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 1,
+          "phase": 1,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 1,
+          "phase": 2,
+          "turns": 0,
+          "leftSpawns": 9,
+          "rightSpawns": 8,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 1,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 10,
+          "rightSpawns": 10,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 2,
+          "phase": 1,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 2,
+          "phase": 2,
+          "turns": 0,
+          "leftSpawns": 10,
+          "rightSpawns": 10,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 2,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 3,
+          "phase": 1,
+          "turns": 18,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 3,
+          "phase": 2,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 36
+        },
+        {
+          "stage": 3,
+          "phase": 3,
+          "turns": 23,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 40
+        },
+        {
+          "stage": 4,
+          "phase": 1,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 4,
+          "phase": 2,
+          "turns": 0,
+          "leftSpawns": 11,
+          "rightSpawns": 11,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 4,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 13,
+          "rightSpawns": 13,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 5,
+          "phase": 1,
+          "turns": 38,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 5,
+          "phase": 2,
+          "turns": 39,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 5,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 6,
+          "phase": 1,
+          "turns": 35,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 6,
+          "phase": 2,
+          "turns": 40,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        },
+        {
+          "stage": 6,
+          "phase": 3,
+          "turns": 0,
+          "leftSpawns": 0,
+          "rightSpawns": 0,
+          "ceilingSpawns": 0
+        }
+      ]
+    }
+  ],
+  "performance": {
+    "reimu": [
+      {
+        "mode": "DMG",
+        "min": 20.046,
+        "max": 29.864,
+        "oneFramePhases": 0
+      },
+      {
+        "mode": "CGB",
+        "min": 58.017,
+        "max": 59.727,
+        "oneFramePhases": 18
+      }
+    ],
+    "marisa": [
+      {
+        "mode": "DMG",
+        "min": 20.261,
+        "max": 29.864,
+        "oneFramePhases": 0
+      },
+      {
+        "mode": "CGB",
+        "min": 58.145,
+        "max": 59.727,
+        "oneFramePhases": 17
+      }
+    ],
+    "bgbMin": 57.763,
+    "bgbSamples": 8841,
+    "reimuRows": [
+      {
+        "mode": "DMG",
+        "rows": [
+          {
+            "boss": "rumia",
+            "phase": 1,
+            "cap": 12,
+            "peak": 4,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 3.71,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "rumia",
+            "phase": 2,
+            "cap": 12,
+            "peak": 7,
+            "samples": 359,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.13,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "rumia",
+            "phase": 3,
+            "cap": 12,
+            "peak": 9,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.71,
+            "framesPerUpdate": 2.0113,
+            "updatesPerSecond": 29.695,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "cirno",
+            "phase": 1,
+            "cap": 18,
+            "peak": 8,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.18,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 2,
+            "cap": 18,
+            "peak": 6,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.32,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 3,
+            "cap": 18,
+            "peak": 13,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.4,
+            "framesPerUpdate": 2.0068,
+            "updatesPerSecond": 29.763,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 1,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.99,
+            "framesPerUpdate": 2.0159,
+            "updatesPerSecond": 29.629,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 2,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.33,
+            "framesPerUpdate": 2.0136,
+            "updatesPerSecond": 29.662,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 3,
+            "cap": 22,
+            "peak": 20,
+            "samples": 372,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.98,
+            "framesPerUpdate": 2.0995,
+            "updatesPerSecond": 28.449,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 1,
+            "cap": 26,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.92,
+            "framesPerUpdate": 2.0249,
+            "updatesPerSecond": 29.496,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 2,
+            "cap": 26,
+            "peak": 21,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 17.51,
+            "framesPerUpdate": 2.1111,
+            "updatesPerSecond": 28.292,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 3,
+            "cap": 26,
+            "peak": 23,
+            "samples": 352,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 18.6,
+            "framesPerUpdate": 2.1591,
+            "updatesPerSecond": 27.663,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 1,
+            "cap": 30,
+            "peak": 23,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 21.51,
+            "framesPerUpdate": 2.4263,
+            "updatesPerSecond": 24.617,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 2,
+            "cap": 30,
+            "peak": 15,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 13.54,
+            "framesPerUpdate": 2.068,
+            "updatesPerSecond": 28.881,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 3,
+            "cap": 30,
+            "peak": 22,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.7,
+            "framesPerUpdate": 2.1905,
+            "updatesPerSecond": 27.267,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 1,
+            "cap": 36,
+            "peak": 25,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.85,
+            "framesPerUpdate": 2.4376,
+            "updatesPerSecond": 24.502,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 2,
+            "cap": 36,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.78,
+            "framesPerUpdate": 2.265,
+            "updatesPerSecond": 26.37,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 3,
+            "cap": 36,
+            "peak": 36,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 9,
+            "meanBullets": 31.07,
+            "framesPerUpdate": 2.8821,
+            "updatesPerSecond": 20.724,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 1,
+            "cap": 40,
+            "peak": 30,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 27.22,
+            "framesPerUpdate": 2.7778,
+            "updatesPerSecond": 21.502,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 2,
+            "cap": 40,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.91,
+            "framesPerUpdate": 2.3333,
+            "updatesPerSecond": 25.597,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 3,
+            "cap": 40,
+            "peak": 40,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 11,
+            "meanBullets": 35.43,
+            "framesPerUpdate": 2.9796,
+            "updatesPerSecond": 20.046,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "mode": "CGB",
+        "rows": [
+          {
+            "boss": "rumia",
+            "phase": 1,
+            "cap": 12,
+            "peak": 4,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 3.71,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "rumia",
+            "phase": 2,
+            "cap": 12,
+            "peak": 7,
+            "samples": 359,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.13,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "rumia",
+            "phase": 3,
+            "cap": 12,
+            "peak": 9,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.71,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 1,
+            "cap": 18,
+            "peak": 8,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.18,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 2,
+            "cap": 18,
+            "peak": 6,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.32,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 3,
+            "cap": 18,
+            "peak": 13,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.4,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 1,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.99,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 2,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.33,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 3,
+            "cap": 22,
+            "peak": 20,
+            "samples": 372,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.98,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 1,
+            "cap": 26,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.92,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 2,
+            "cap": 26,
+            "peak": 21,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 17.51,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 3,
+            "cap": 26,
+            "peak": 23,
+            "samples": 352,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 18.6,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 1,
+            "cap": 30,
+            "peak": 23,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 21.51,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 2,
+            "cap": 30,
+            "peak": 15,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 13.54,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 3,
+            "cap": 30,
+            "peak": 22,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.7,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "remilia",
+            "phase": 1,
+            "cap": 36,
+            "peak": 25,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.85,
+            "framesPerUpdate": 1.0023,
+            "updatesPerSecond": 59.592,
+            "oneFramePercent": 99.77,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "remilia",
+            "phase": 2,
+            "cap": 36,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.78,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "remilia",
+            "phase": 3,
+            "cap": 36,
+            "peak": 36,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 9,
+            "meanBullets": 31.07,
+            "framesPerUpdate": 1.0159,
+            "updatesPerSecond": 58.794,
+            "oneFramePercent": 98.41,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "flandre",
+            "phase": 1,
+            "cap": 40,
+            "peak": 30,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 27.22,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "flandre",
+            "phase": 2,
+            "cap": 40,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.91,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "flandre",
+            "phase": 3,
+            "cap": 40,
+            "peak": 40,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 11,
+            "meanBullets": 35.43,
+            "framesPerUpdate": 1.0295,
+            "updatesPerSecond": 58.017,
+            "oneFramePercent": 97.05,
+            "maxFrameGap": 2
+          }
+        ]
+      }
+    ],
+    "marisaRows": [
+      {
+        "mode": "DMG",
+        "rows": [
+          {
+            "boss": "rumia",
+            "phase": 1,
+            "cap": 12,
+            "peak": 4,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 3.71,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "rumia",
+            "phase": 2,
+            "cap": 12,
+            "peak": 7,
+            "samples": 359,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 5.13,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "rumia",
+            "phase": 3,
+            "cap": 12,
+            "peak": 9,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 6.71,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 1,
+            "cap": 18,
+            "peak": 8,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 6.18,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 2,
+            "cap": 18,
+            "peak": 6,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 5.32,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 3,
+            "cap": 18,
+            "peak": 13,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 11.4,
+            "framesPerUpdate": 2.0113,
+            "updatesPerSecond": 29.695,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 1,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 10.99,
+            "framesPerUpdate": 2.0023,
+            "updatesPerSecond": 29.83,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 2,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 11.33,
+            "framesPerUpdate": 2.0068,
+            "updatesPerSecond": 29.763,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 3,
+            "cap": 22,
+            "peak": 20,
+            "samples": 372,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 16.98,
+            "framesPerUpdate": 2.0188,
+            "updatesPerSecond": 29.585,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 1,
+            "cap": 26,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 10.92,
+            "framesPerUpdate": 2.0045,
+            "updatesPerSecond": 29.796,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 2,
+            "cap": 26,
+            "peak": 21,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 17.51,
+            "framesPerUpdate": 2.0363,
+            "updatesPerSecond": 29.332,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 3,
+            "cap": 26,
+            "peak": 23,
+            "samples": 352,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 18.6,
+            "framesPerUpdate": 2.0881,
+            "updatesPerSecond": 28.604,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 1,
+            "cap": 30,
+            "peak": 23,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 21.51,
+            "framesPerUpdate": 2.22,
+            "updatesPerSecond": 26.905,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 2,
+            "cap": 30,
+            "peak": 15,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 13.54,
+            "framesPerUpdate": 2.0068,
+            "updatesPerSecond": 29.763,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 3,
+            "cap": 30,
+            "peak": 22,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 20.7,
+            "framesPerUpdate": 2.1338,
+            "updatesPerSecond": 27.991,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 1,
+            "cap": 36,
+            "peak": 25,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 20.85,
+            "framesPerUpdate": 2.22,
+            "updatesPerSecond": 26.905,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 2,
+            "cap": 36,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 16.78,
+            "framesPerUpdate": 2.1425,
+            "updatesPerSecond": 27.878,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 3,
+            "cap": 36,
+            "peak": 36,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 9,
+            "meanBullets": 31.07,
+            "framesPerUpdate": 2.7211,
+            "updatesPerSecond": 21.95,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 1,
+            "cap": 40,
+            "peak": 30,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 27.22,
+            "framesPerUpdate": 2.6236,
+            "updatesPerSecond": 22.766,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 2,
+            "cap": 40,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 16.91,
+            "framesPerUpdate": 2.1909,
+            "updatesPerSecond": 27.262,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 3,
+            "cap": 40,
+            "peak": 40,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 11,
+            "meanBullets": 35.43,
+            "framesPerUpdate": 2.9478,
+            "updatesPerSecond": 20.261,
+            "oneFramePercent": 0,
+            "maxFrameGap": 4
+          }
+        ]
+      },
+      {
+        "mode": "CGB",
+        "rows": [
+          {
+            "boss": "rumia",
+            "phase": 1,
+            "cap": 12,
+            "peak": 4,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 3.71,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "rumia",
+            "phase": 2,
+            "cap": 12,
+            "peak": 7,
+            "samples": 359,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 5.13,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "rumia",
+            "phase": 3,
+            "cap": 12,
+            "peak": 9,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 6.71,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 1,
+            "cap": 18,
+            "peak": 8,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 6.18,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 2,
+            "cap": 18,
+            "peak": 6,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 5.32,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 3,
+            "cap": 18,
+            "peak": 13,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 11.4,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 1,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 10.99,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 2,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 11.33,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 3,
+            "cap": 22,
+            "peak": 20,
+            "samples": 372,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 16.98,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 1,
+            "cap": 26,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 10.92,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 2,
+            "cap": 26,
+            "peak": 21,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 17.51,
+            "framesPerUpdate": 1.0023,
+            "updatesPerSecond": 59.592,
+            "oneFramePercent": 99.77,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "patchouli",
+            "phase": 3,
+            "cap": 26,
+            "peak": 23,
+            "samples": 352,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 18.6,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 1,
+            "cap": 30,
+            "peak": 23,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 21.51,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 2,
+            "cap": 30,
+            "peak": 15,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 13.54,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 3,
+            "cap": 30,
+            "peak": 22,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 20.7,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "remilia",
+            "phase": 1,
+            "cap": 36,
+            "peak": 25,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 20.85,
+            "framesPerUpdate": 1.0023,
+            "updatesPerSecond": 59.592,
+            "oneFramePercent": 99.77,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "remilia",
+            "phase": 2,
+            "cap": 36,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 16.78,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "remilia",
+            "phase": 3,
+            "cap": 36,
+            "peak": 36,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 9,
+            "meanBullets": 31.07,
+            "framesPerUpdate": 1.0045,
+            "updatesPerSecond": 59.458,
+            "oneFramePercent": 99.55,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "flandre",
+            "phase": 1,
+            "cap": 40,
+            "peak": 30,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 27.22,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "flandre",
+            "phase": 2,
+            "cap": 40,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 2,
+            "spawnDrops": 0,
+            "meanBullets": 16.91,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "flandre",
+            "phase": 3,
+            "cap": 40,
+            "peak": 40,
+            "samples": 441,
+            "playerShotPeak": 2,
+            "spawnDrops": 11,
+            "meanBullets": 35.43,
+            "framesPerUpdate": 1.0272,
+            "updatesPerSecond": 58.145,
+            "oneFramePercent": 97.28,
+            "maxFrameGap": 2
+          }
+        ]
+      }
+    ],
+    "bgbRows": [
+      {
+        "stage": 0,
+        "phase": 1,
+        "peak": 4,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 0,
+        "phase": 2,
+        "peak": 7,
+        "samples": 359,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 0,
+        "phase": 3,
+        "peak": 9,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 1,
+        "phase": 1,
+        "peak": 8,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 1,
+        "phase": 2,
+        "peak": 6,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 1,
+        "phase": 3,
+        "peak": 13,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 2,
+        "phase": 1,
+        "peak": 14,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 2,
+        "phase": 2,
+        "peak": 14,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 2,
+        "phase": 3,
+        "peak": 20,
+        "samples": 372,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 3,
+        "phase": 1,
+        "peak": 14,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 3,
+        "phase": 2,
+        "peak": 21,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 3,
+        "phase": 3,
+        "peak": 23,
+        "samples": 352,
+        "updatesPerSecond": 59.558,
+        "maxGap": 2
+      },
+      {
+        "stage": 4,
+        "phase": 1,
+        "peak": 23,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 4,
+        "phase": 2,
+        "peak": 15,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 4,
+        "phase": 3,
+        "peak": 22,
+        "samples": 441,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 5,
+        "phase": 1,
+        "peak": 25,
+        "samples": 441,
+        "updatesPerSecond": 59.592,
+        "maxGap": 2
+      },
+      {
+        "stage": 5,
+        "phase": 2,
+        "peak": 21,
+        "samples": 351,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 5,
+        "phase": 3,
+        "peak": 36,
+        "samples": 441,
+        "updatesPerSecond": 58.794,
+        "maxGap": 2
+      },
+      {
+        "stage": 6,
+        "phase": 1,
+        "peak": 30,
+        "samples": 441,
+        "updatesPerSecond": 59.191,
+        "maxGap": 2
+      },
+      {
+        "stage": 6,
+        "phase": 2,
+        "peak": 21,
+        "samples": 351,
+        "updatesPerSecond": 59.727,
+        "maxGap": 1
+      },
+      {
+        "stage": 6,
+        "phase": 3,
+        "peak": 40,
+        "samples": 441,
+        "updatesPerSecond": 57.763,
+        "maxGap": 2
+      }
+    ]
+  },
+  "limits": [
+    "Not an unmodified full-campaign clear",
+    "Shared Reimu story/dialogue and ending for both player choices",
+    "DMG slowdown and occasional two-frame CGB updates",
+    "Emulicious initialize succeeded but launch timed out after 60 seconds",
+    "Human sound/difficulty assessment, controller and physical DMG/CGB not tested"
+  ]
+}

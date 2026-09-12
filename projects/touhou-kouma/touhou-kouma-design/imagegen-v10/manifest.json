@@ -1,0 +1,29 @@
+{
+  "tool": "built-in image_gen",
+  "originals": {
+    "marisa": {
+      "file": "marisa-original.png",
+      "sha256": "ac94989e9cf629b39568e9ba63a2467d744b6e279860284445aa7cda9ad433b7"
+    },
+    "explosionStudy": {
+      "file": "explosionStudy-original.png",
+      "sha256": "ad849712ca75c36c51151b2657e1513c01a31b129fd08be197535e3e5d081baf"
+    },
+    "yinYang": {
+      "file": "yinYang-original.png",
+      "sha256": "a4ca8f61296580dfea7366dcf812435375dc04efb9645961c3965daf09f9e5e5"
+    },
+    "spark": {
+      "file": "spark-original.png",
+      "sha256": "b5aaf7590c5cb85a6316273dd299b46169b2da5bcc1c140c9355cb6f53063ea5"
+    }
+  },
+  "conversion": "Nearest-center sampling to 16x24 sprite / 96x96 orb / 96x128 beam, 4 grayscale indices; sprite threshold48 and alpha200. Generated explosionStudy is retained but unused after user chose character-specific bombs.",
+  "marisaCrop": {
+    "x0": 284,
+    "y0": 245,
+    "x1": 758,
+    "y1": 1334
+  },
+  "revision": "d511b3759218da233cf3699a4b3865b68b9f6e317c3de14b685ceedc66ea998b"
+}

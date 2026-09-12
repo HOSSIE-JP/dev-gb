@@ -43,6 +43,7 @@ static void palettes(void) {
     }
     if (ce_active_screen == 4u && ce_battle_mode == 2u) ce_bg_palette();
 }
+void ce_set_fade(uint8_t level) BANKED { ce_fade_level = level; palettes(); }
 void ce_fade(uint8_t out) BANKED {
     uint8_t frame;
     if (!ce_stage_fade) return;
@@ -61,6 +62,7 @@ static void tiles(const CE_Data *data, uint8_t first, uint8_t count, uint8_t spr
         n = count > 8u ? 8u : count; ce_copy(buffer, data, offset, (uint16_t)n * 16u);
         if (sprite) set_sprite_data(first, n, buffer); else set_bkg_data(first, n, buffer);
         first += n; count -= n; offset += (uint16_t)n * 16u;
+        if (ce_scene == 12u) ce_logo_skip |= joypad();
     }
 }
 static void hide_all(void) {
@@ -71,6 +73,7 @@ static void hide_all(void) {
 static void screen_map(uint8_t index, uint8_t window) {
     const CE_Screen *s = &ce_screens[index]; uint8_t row, n, height = window ? ce_hud_height >> 3 : 18u;
     for (row = 0; row != height; ++row) {
+        if (ce_scene == 12u) ce_logo_skip |= joypad();
         ce_copy(buffer, &s->map, (uint16_t)row * 20u, 20u);
         if (window) set_win_tiles(0, row, 20, 1, buffer); else set_bkg_tiles(0, row, 20, 1, buffer);
         if (ce_is_cgb) {
@@ -99,7 +102,7 @@ static void map_row(uint16_t row) {
         VBK_REG = 1; set_bkg_tiles(0, target, 20, 1, buffer); VBK_REG = 0;
     }
 }
-void ce_load_screen(uint8_t screen) BANKED {
+static void load_screen(uint8_t screen, uint8_t black) {
     ce_trace[22] = 1;
     /* Keep the LCD enabled: LCD-off is visibly white on DMG. Load behind black. */
     ce_active_screen = screen; LCDC_REG &= ~8u;
@@ -107,8 +110,10 @@ void ce_load_screen(uint8_t screen) BANKED {
     HIDE_WIN; HIDE_SPRITES; hide_all(); ce_active_screen = screen;
     tiles(&ce_screens[screen].tiles, 0, ce_screens[screen].tile_count, 0);
     screen_map(screen, 0); move_bkg(0, 0); ce_hud(); SHOW_BKG; DISPLAY_ON;
-    vsync(); ce_fade_level = 0; palettes();
+    vsync(); ce_fade_level = black ? 4 : 0; palettes();
 }
+void ce_load_screen(uint8_t screen) BANKED { load_screen(screen, 0); }
+void ce_load_logo(uint8_t screen) BANKED { load_screen(screen, 1); }
 void ce_dialogue_update(uint8_t screen) BANKED {
     uint8_t row;
     /* Compiler shares the complete glyph atlas across this conversation.
@@ -123,6 +128,30 @@ void ce_dialogue_update(uint8_t screen) BANKED {
         }
         ce_audio_sync();
     }
+}
+void ce_bomb_setup(void) BANKED {
+    uint8_t row,screen=ce_bomb_screens[ce_character];const CE_Screen *s=&ce_screens[screen];
+    ce_active_screen=screen;ce_fade_level=4;palettes();HIDE_WIN;
+    /* The compiler limits this atlas to 128 tiles: sprite art stays intact. */
+    for(row=0;row!=32u;++row)buffer[row]=0;
+    LCDC_REG&=~8u;
+    for(row=0;row!=32u;++row){set_bkg_tiles(0,row,32,1,buffer);if(ce_is_cgb){VBK_REG=1;set_bkg_tiles(0,row,32,1,buffer);VBK_REG=0;}}
+    tiles(&s->tiles,0,s->tile_count,0);screen_map(screen,0);
+    if(ce_bomb_styles[ce_character] && ce_state.player_y>1920){
+        /* Continue the beam through the wrapped top edge when fired near the bottom. */
+        ce_copy(buffer,&s->map,0,20);set_bkg_tiles(0,30,20,1,buffer);set_bkg_tiles(0,31,20,1,buffer);
+        if(ce_is_cgb){ce_copy(buffer,&s->attrs,0,20);VBK_REG=1;set_bkg_tiles(0,30,20,1,buffer);set_bkg_tiles(0,31,20,1,buffer);VBK_REG=0;}
+    }
+    LCDC_REG|=8u;
+    for(row=0;row!=32u;++row)buffer[row]=0;
+    for(row=0;row!=32u;++row){
+        set_bkg_tiles(0,row,32,1,buffer);
+        if(ce_is_cgb){VBK_REG=1;set_bkg_tiles(0,row,32,1,buffer);VBK_REG=0;}
+    }
+    move_bkg(ce_bomb_styles[ce_character]?80-ce_state.player_x/16:0,ce_bomb_styles[ce_character]?120-ce_state.player_y/16:0);vsync();ce_fade_level=0;palettes();SHOW_BKG;SHOW_SPRITES;
+}
+void ce_bomb_draw(uint8_t visible) BANKED {
+    if(visible)LCDC_REG&=~8u;else LCDC_REG|=8u;
 }
 void ce_load_stage(void) BANKED {
     uint8_t row; uint16_t start = ce_state.camera >> 7; const CE_Stage *s = &ce_stages[ce_state.stage];
@@ -162,6 +191,7 @@ void ce_hud(void) BANKED {
         if (b->kind == 2u) value = ce_state.lives;
         if (b->kind == 3u && ce_time_limit && ce_state.stage_tick < ce_stages[ce_state.stage].duration) value = (ce_stages[ce_state.stage].duration - ce_state.stage_tick + 59u) / 60u;
         if (b->kind == 4u) value = ce_boss_hp();
+        if (b->kind == 6u) value = ce_bombs;
         if (ce_active_screen == 4u) {
             if (hud_valid && hud_values[i] == value) continue;
             hud_values[i] = value;
@@ -542,7 +572,7 @@ void ce_render(void) BANKED {
     emit_top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
     emit_bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
     DISABLE_OAM_DMA;
-    if (!ce_respawn && (!ce_state.invulnerable || !(ce_state.invulnerable & 4u))) {
+    if (!ce_respawn && (ce_bomb_left || !ce_state.invulnerable || !(ce_state.invulnerable & 4u))) {
         player_pose.asset = ce_player_asset; player_pose.x = ce_state.player_x;
         player_pose.y = ce_state.player_y; player_pose.age = ce_state.tick;
         animation_slot = 0; pose = &player_pose; sprite();
@@ -568,7 +598,7 @@ void ce_render(void) BANKED {
     else if (!ce_battle_mode) { move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height)); parallax(); }
 }
 
-void ce_get_presentation(CE_Presentation *dest, uint8_t stage) BANKED { *dest = ce_presentations[stage]; }
+void ce_get_presentation(CE_Presentation *dest, uint8_t stage) BANKED { *dest = ce_presentations[(uint16_t)stage * ce_player_count + ce_character]; }
 
 void ce_get_screen(CE_Screen *dest, uint8_t index) BANKED { *dest = ce_screens[index]; }
 void ce_load_boss(uint8_t asset) BANKED {

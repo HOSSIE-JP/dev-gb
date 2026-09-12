@@ -12,6 +12,8 @@ uint16_t ce_intro_left, ce_clear_wait_left;
 uint16_t ce_bonus_values[4];
 static uint16_t bonus_targets[3];
 static uint8_t scene_previous;
+uint8_t ce_ending_slide;
+uint16_t ce_ending_left;
 static uint8_t scene_input(void) {
     uint8_t input, pressed;
     vsync(); ce_audio_sync(); ce_trace_write();
@@ -20,6 +22,68 @@ static uint8_t scene_input(void) {
 }
 static uint16_t sum_score(uint16_t a, uint16_t b) {
     return 65535u - a < b ? 65535u : a + b;
+}
+/* Only startup uses this scene. Input is also latched during black VRAM loads. */
+uint8_t ce_logo_page, ce_logo_phase, ce_logo_skip;
+uint16_t ce_logo_left;
+static uint8_t logo_wait(uint16_t duration) {
+    uint16_t start, now, elapsed;
+    CRITICAL { start = sys_time; }
+    ce_logo_left = duration;
+    if (!duration) { ce_logo_skip |= joypad(); return ce_logo_skip; }
+    do {
+        ce_logo_skip |= joypad();
+        if (ce_logo_skip) return 1;
+        vsync(); ce_audio_sync();
+        ce_logo_skip |= joypad();
+        CRITICAL { now = sys_time; }
+        elapsed = now - start;
+        ce_logo_left = elapsed >= duration ? 0 : duration - elapsed;
+        ce_trace_write();
+    } while (ce_logo_left && !ce_logo_skip);
+    return ce_logo_skip;
+}
+void ce_play_logos(void) BANKED {
+    uint8_t step;
+    if (!ce_logo_count) return;
+    ce_scene = 12; ce_logo_skip = joypad();
+    for (ce_logo_page = 0; ce_logo_page < ce_logo_count && !ce_logo_skip; ++ce_logo_page) {
+        ce_logo_phase = 0; ce_logo_left = 0;
+        ce_load_logo(ce_logos[ce_logo_page].screen);
+        ce_logo_phase = 1;
+        for (step = 0; step != 4u && !ce_logo_skip; ++step) {
+            vsync(); ce_set_fade(3u - step);
+            logo_wait(ce_logo_fade_step - 1u);
+        }
+        if (ce_logo_skip) break;
+        ce_logo_phase = 2; logo_wait(ce_logos[ce_logo_page].frames);
+        ce_logo_phase = 3;
+        for (step = 0; step != 4u && !ce_logo_skip; ++step) {
+            vsync(); ce_set_fade(step + 1u);
+            logo_wait(ce_logo_fade_step - 1u);
+        }
+    }
+    vsync(); ce_set_fade(4); ce_logo_phase = 4; ce_logo_left = 0;
+}
+void ce_play_ending(void) BANKED {
+    uint8_t count = ce_ending_counts[ce_character], offset = ce_ending_offsets[ce_character], pressed;
+    uint16_t start, now, elapsed;
+    if (!count) return;
+    ce_fade(1); ce_scene = 11; ce_music_play(ce_music_ending);
+    for (ce_ending_slide = 0; ce_ending_slide < count; ++ce_ending_slide) {
+        ce_load_screen(ce_ending_screens[offset + ce_ending_slide]);
+        scene_previous = joypad(); ce_ending_left = ce_ending_frames;
+        CRITICAL { start = sys_time; }
+        do {
+            pressed = scene_input();
+            CRITICAL { now = sys_time; }
+            elapsed = now - start;
+            ce_ending_left = elapsed >= ce_ending_frames ? 0 : ce_ending_frames - elapsed;
+        } while (ce_ending_left && !(pressed & (J_A | J_START)));
+        if (pressed & J_START) break;
+    }
+    ce_ending_left = 0;
+    while (joypad() & (J_A | J_START)) scene_input();
 }
 void ce_dialogue(void) BANKED {
     const CE_Presentation *p = &presentation;
@@ -54,6 +118,7 @@ void ce_stage_complete(void) BANKED {
     const CE_Presentation *p = &presentation;
     uint8_t i, pressed, complete;
     uint16_t total, wait_clock, now, elapsed;
+    if (ce_ending_score_after && (!ce_campaign || ce_state.stage + 1u == ce_stage_count)) ce_play_ending();
     ce_get_presentation(&presentation, ce_state.stage);
     if (p->clear != 255u) {
         bonus_targets[0] = p->base;
@@ -95,7 +160,7 @@ void ce_phase_intro(const CE_Phase *phase) BANKED {
     ce_scene = 7; ce_load_screen(phase->intro_screen); ce_sound(5);
     ce_intro_left = phase->intro_frames;
     while (ce_intro_left) { scene_input(); --ce_intro_left; }
-    ce_load_stage(); ce_scene = 1;
+    ce_load_stage(); ce_scene = 1; ce_bomb_latch=1;
     ce_boss_invulnerable = 0;
 }
 

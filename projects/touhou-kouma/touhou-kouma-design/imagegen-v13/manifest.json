@@ -1,0 +1,17 @@
+{
+  "tool": "built-in image_gen",
+  "master": "ending-marisa-original.png",
+  "masterSha256": "ff68ae6a62082dc659182bafbc34721ba6a9125baf1890fcbdb20cd0935ac8b6",
+  "sourceSize": [
+    1322,
+    1190
+  ],
+  "layout": [
+    144,
+    128,
+    8,
+    8
+  ],
+  "uniqueTiles": 238,
+  "assetSha256": "6275adfdc9603c05e5b7ec987fbb0b15695e75344638bac0f139ec85effebcae"
+}

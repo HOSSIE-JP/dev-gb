@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "fadeSeconds": 0.4,
+  "slides": [
+    {
+      "id": "brand-ai-slop",
+      "background": "logo-ai-slop",
+      "seconds": 2.5
+    },
+    {
+      "id": "touhou-fan-notice",
+      "background": "logo-touhou-notice",
+      "seconds": 5
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import {createRequire} from "node:module";
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -8,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import { boot, frames, memory, symbols, GameBoyMode } from "./emulator.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const lib=createRequire(import.meta.url)("../build/library.cjs");
 const labels = [
     "same track does not restart its clock",
     "one-shot ends at the exact note boundary and silences music",
@@ -33,9 +35,10 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             for (const name of ["music.c", "music.h"])
                 fs.copyFileSync(path.join(root, "engine/caravan", name), path.join(work, name));
             fs.copyFileSync(path.join(root, "editor/tests/fixtures/music_harness.c"), path.join(work, "main.c"));
+            const scores=lib.generateMusic(root,work);
             const result = spawnSync(
                 path.join(root, ".tools/gbdk/bin", process.platform === "win32" ? "lcc.exe" : "lcc"),
-                ["-Wm-yc", "-Wl-yt0x19", "-Wm-yo4", "-Wl-m", "-Wl-j", "-debug", "-o", "music.gb", "main.c", "music.c"],
+                ["-Wm-yc", "-Wl-yt0x19", "-Wm-yoA", "-autobank", "-Wb-ext=.rel", "-I.", "-Wl-m", "-Wl-j", "-debug", "-o", "music.gb", "main.c", "music.c", ...scores],
                 { cwd: work, encoding: "utf8" },
             );
             if (result.error) throw result.error;

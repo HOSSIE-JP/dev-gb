@@ -3,13 +3,17 @@ import { type Game, clone, uid } from "../shared/model";
 import { MusicField, SoundtrackFields } from "./music-field";
 
 const labels: Record<string, string> = {
+    selectionBackground:"機体選択の画像（文字なし）",gameoverBackground:"ゲームオーバーの専用画像",characterDialogues:"追加機体の会話",character:"対象の選択機体",before:"戦闘開始前の会話",after:"撃破後の会話",portrait:"左の立ち絵差替え（上部80×96）",dialoguePortrait:"左の立ち絵差替え（上部80×96）",
+    characters:"追加の選択機体（最大3）", bomb:"A＋Bボム（全機体共通）", bombBackground:"専用ボム画像（空欄＝共通）", bombStyle:"ボムの演出方式", stock:"残機1機ごとのボム数", flashPeriod:"点滅切替間隔（表示フレーム）",
+    launch:"弾の発生位置", guidance:"誘導設定（敵弾専用）", step:"レーン間隔Y", lanes:"発生レーン数",
     name: "名前",
     title: "ゲームタイトル",
     mode: "ゲームモード",
     seed: "乱数シード",
     startStage: "開始ステージ",
     clearBonus: "クリア加点",
-    ending: "エンディング", slides: "スライド", seconds: "自動送り秒数", presentation: "会話とクリア演出", enabled: "有効", dialogueBackground: "会話の立ち絵背景",
+    startup: "起動ロゴ（タイトル前）", fadeSeconds: "フェード時間（片道・秒）",
+    ending: "エンディング", slides: "スライド", characterSlides: "追加機体のエンディング", scoreAfter: "最終スコアをエンディング後に集計", seconds: "自動送り秒数", presentation: "会話とクリア演出", enabled: "有効", dialogueBackground: "会話の立ち絵背景",
     clearBackground: "クリアの立ち絵背景", rightPalette: "右側の立ち絵パレット",
     dialogue: "会話ページ", speaker: "話者（18文字まで）", line1: "セリフ1行目（18文字まで）", line2: "セリフ2行目（18文字まで）",
     clearEnabled: "クリア計算画面を表示", baseBonus: "ステージ基本点", lifeBonus: "残機1機あたり", noMissBonus: "ノーミス加点",
@@ -88,6 +92,7 @@ const labels: Record<string, string> = {
     explosion: "爆発スプライト",
 };
 const names: Record<string, string> = {
+    actor:"キャラクター起点",left:"画面左端",right:"画面右端",alternate:"左右交互",both:"左右両端",fixed:"画面内の固定座標",homing:"短時間追尾→直進",bombs:"ボム残数",orb:"中央の大玉",beam:"自機Xに合わせるレーザー",
     caravan: "キャラバン",
     campaign: "通常・ステージ順",
     straight: "直線",
@@ -167,15 +172,19 @@ export function Form({
     return (
         <div className="form">
             {Object.entries(
-                context === "player" ? { focusWeapon: "", focusSpeed: value.speed, respawnDelay: 0, ...value }
+                context === "player" ? { name:"PLAYER 1",selectionBackground:"",gameoverBackground:"", focusWeapon: "", focusSpeed: value.speed, respawnDelay: 0, characters:[], bomb:{enabled:false,stock:2,damage:30,frames:48,flashPeriod:2,background:""}, ...value }
+                : context === "characters" ? {selectionBackground:"",gameoverBackground:"",focusWeapon:"",focusSpeed:value.speed,bombBackground:"",bombStyle:"orb",...value}
+                : context === "pattern" ? {launch:{kind:"actor",x:80,y:32,step:16,lanes:1},guidance:{frames:48,period:16},...value}
                 : context === "stage" ? { requireBoss: false, scrollDown: false, music: 0, bossMusic: 0, presentation: { enabled: false, dialogueBackground: "", clearBackground: "", rightPalette: 0, dialogue: [], clearEnabled: false, baseBonus: game.clearBonus, lifeBonus: 200, noMissBonus: 1000 }, parallax: { enabled: false, firstTile: 0, width: 4, height: 2, divisor: 2 }, ...value }
                 : "phases" in value ? {battle: {background: "stage", maxBullets: 64}, ...value}
                 : context === "phase" ? {hp: 0, intro: {enabled: false, background: "", spellName: value.name, seconds: 1.2}, ...value}
                 : context === "battle" ? {returnX: 80, returnY: 36, ...value}
-                : context === "presentation" ? {clearWaitSeconds: 2, victoryDialogue: {enabled: false, background: value.clearBackground ?? "", pages: []}, ...value}
+                : context === "presentation" ? {dialoguePortrait:"",characterDialogues:[],clearWaitSeconds: 2, victoryDialogue: {enabled: false, background: value.clearBackground ?? "", pages: []}, ...value}
+                : ["before","after","victoryDialogue"].includes(context) ? {portrait:"",...value}
+                : context === "ending" ? {music: game.music?.clear ?? 0, scoreAfter:false, characterSlides:[], ...value}
                 : value.id === "hud" ? { rows: 2, ...value }
                 : "binding" in value ? { digits: 5, ...value }
-                : value.schemaVersion === 1 ? { ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
+                : value.schemaVersion === 1 ? { startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )
                 .filter(
@@ -183,7 +192,6 @@ export function Form({
                         ![
                             "id",
                             "pixels",
-                            "frames",
                             "tiles",
                             "walls",
                             "events",
@@ -191,12 +199,12 @@ export function Form({
                             "image",
                             "stageOrder",
                             "schemaVersion",
-                        ].includes(key) && !omit.includes(key),
+                        ].includes(key) && !(key==="frames"&&Array.isArray(value.frames)) && !omit.includes(key),
                 )
                 .map(([key, v]: [string, any]) => {
                     if (key === "bossMusic") return <MusicField key={key} label="専用ボスBGM（なし＝共通ボス曲）" value={v} onChange={(n) => edit(key, n)} />;
                     if (key === "music") return typeof v === "number"
-                        ? <MusicField key={key} value={v} onChange={(n) => edit(key, n)} />
+                        ? <MusicField key={key} label={context === "ending" ? "エンディングBGM" : undefined} value={v} onChange={(n) => edit(key, n)} />
                         : <SoundtrackFields key={key} value={v} onChange={(n) => edit(key, n)} />;
                     let choices:
                         { id: string | number; name: string }[] | undefined;
@@ -211,6 +219,8 @@ export function Form({
                             "background",
                             "dialogueBackground",
                             "clearBackground",
+                            "bombBackground",
+                            "selectionBackground", "gameoverBackground", "portrait", "dialoguePortrait",
                             "startStage",
                             "ref",
                         ].includes(key)
@@ -229,13 +239,14 @@ export function Form({
                                               a.kind ===
                                               (key === "tileset"
                                                   ? "tileset"
-                                                  : ["background", "dialogueBackground", "clearBackground"].includes(key)
+                                                  : ["background", "dialogueBackground", "clearBackground", "bombBackground", "selectionBackground", "gameoverBackground", "portrait", "dialoguePortrait"].includes(key)
                                                     ? "screen"
                                                     : "sprite"),
                                       );
-                        if (["pattern", "background", "dialogueBackground", "clearBackground", "focusWeapon"].includes(key))
+                        if (["pattern", "background", "dialogueBackground", "clearBackground", "focusWeapon", "bombBackground", "selectionBackground", "gameoverBackground", "portrait", "dialoguePortrait"].includes(key))
                             choices = [{ id: "", name: "なし" }, ...choices];
                     }
+                    if (key === "character") choices = (game.player.characters ?? []).map(p=>({id:p.id,name:p.name}));
                     if (key === "background" && context === "battle") choices = [
                         {id: "stage", name: "ステージ背景を継続"}, {id: "blank", name: "背景なし・スプライト弾"}, {id: "bg-bullets", name: "背景なし・BG弾幕（単色2×2・2ドット刻み）"}
                     ];
@@ -248,6 +259,7 @@ export function Form({
                         mode: ["caravan", "campaign"],
                         until: ["time", "hp"],
                         dock: ["top", "bottom"],
+                        bombStyle:["orb","beam"],
                         binding: [
                             "none",
                             "score",
@@ -255,11 +267,12 @@ export function Form({
                             "time",
                             "boss",
                             "highscores",
+                            "bombs",
                         ],
                     };
                     if (key === "kind")
                         enums.kind =
-                            context === "motion"
+                            context === "launch" ? ["actor","left","right","alternate","both","fixed"] : context === "motion"
                                 ? ["straight", "bounce", "wave", "path"]
                                 : context === "event"
                                   ? ["enemy", "boss", "scroll", "end"]
@@ -271,6 +284,7 @@ export function Form({
                                           "fan",
                                           "ring",
                                           "spiral",
+                                          "homing",
                                       ];
                     if (enums[key])
                         choices = enums[key].map((id) => ({
@@ -278,6 +292,8 @@ export function Form({
                             name: names[id] ?? id,
                         }));
                     const label =
+                        key === "frames" && context === "guidance" ? "追尾する期間（更新数、以後は直進）" : key === "frames" && context === "bomb" ? "ボム表示時間（表示フレーム）" :
+                        key === "period" && context === "guidance" ? "誘導周期（8・16・32更新）" :
                         key === "hp" && context === "phase" ? "このフェーズのHP（0＝通算HP）" :
                         key === "threshold" && context === "phase" && value.hp > 0 && value.until === "hp" ? "切替HP（フェーズHP使用時は0）" :
                         key === "returnX" ? "フェーズ復帰位置X" : key === "returnY" ? "フェーズ復帰位置Y" :
@@ -312,6 +328,7 @@ export function Form({
                             <label className="check" key={key}>
                                 <input
                                     type="checkbox"
+                                    aria-label={label}
                                     checked={v}
                                     onChange={(e) =>
                                         edit(key, e.target.checked)
@@ -332,6 +349,7 @@ export function Form({
                                             : "text"
                                     }
                                     step={
+                                        key === "fadeSeconds" || (key === "seconds" && context === "slides") ? 0.1 :
                                         key === "seconds" && context === "intro" ? 0.05 :
                                         [
                                             "speed",
@@ -454,7 +472,10 @@ export function Form({
                                     onClick={() => {
                                         const last = v.length
                                             ? clone(v[v.length - 1])
-                                            : key === "slides" ? {id: uid("slide"), background: game.assets.find(a => a.kind === "screen")?.id ?? ""}
+                                            : key === "slides" ? {id: uid("slide"), background: game.assets.find(a => a.kind === "screen")?.id ?? "", ...(context === "startup" ? {seconds:2} : {})}
+                                            : key === "characterSlides" ? {id:uid("ending-route"),character:game.player.characters?.[0]?.id??"",slides:clone(game.ending?.slides??[])}
+                                            : key === "characters" ? {id:uid("character"),name:"NEW PLAYER",asset:game.player.asset,speed:3,weapon:game.player.weapon,focusWeapon:game.player.focusWeapon??"",focusSpeed:1.5,bombBackground:"",bombStyle:"orb"}
+                                            : key === "characterDialogues" ? {id:uid("dialogue-route"),character:game.player.characters?.[0]?.id??"",before:{enabled:value.enabled??false,background:value.dialogueBackground??"",portrait:"",pages:clone(value.dialogue??[])},after:clone(value.victoryDialogue??{enabled:false,background:"",portrait:"",pages:[]})}
                                             : key === "dialogue" || key === "pages" ? { id: uid("page"), speaker: "", line1: "", line2: "" }
                                             : key === "emitters"
                                               ? { x: 0, y: 0 }

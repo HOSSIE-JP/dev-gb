@@ -35,7 +35,7 @@ test('phase HP overkill clears combat, breaks once, returns invulnerable and ref
  const phase=structuredClone(b.phases[0]);Object.assign(phase,{until:'hp',threshold:0,hp:2,pattern:'',attacks:[],intro:undefined,motion:{...phase.motion,kind:'straight',vx:0,vy:0}});
  b.phases=[phase,{...structuredClone(phase),id:'next',hp:5,intro:{enabled:true,background:'test-cut-in',spellName:'Next',seconds:1.2}}];
  const sim=new lib.Simulation(g);sim.spawnActor(b.id,'boss',130,70);const boss=sim.entities.find(e=>e.kind==='boss');
- sim.bgShots=[{x:0,y:0,vx:0,vy:0,life:100,damage:1}];
+ sim.bgShots=[{slot:0,ref:g.patterns[0].id,angle:8,x:0,y:0,vx:0,vy:0,life:100,damage:1}];
  const weapon=g.patterns.find(p=>p.id===g.player.weapon);
  sim.add({...structuredClone(boss),kind:'pshot',ref:weapon.id,asset:weapon.asset,damage:20,lifetime:100});
  sim.step(0);assert.equal(boss.hp,0);assert.equal(boss.phase,0);assert.equal(sim.bossDefeated,false);assert.equal(sim.bgShots.length,0);assert.equal(sim.phaseLocked,true);

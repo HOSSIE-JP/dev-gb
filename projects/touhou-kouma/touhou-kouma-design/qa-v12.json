@@ -1,0 +1,5599 @@
+{
+  "version": "0.12",
+  "revision": "c9c414dcb69e6c986aeb9f4b2c7f1796e0a6200203bd6f0f24866c156c2b8968",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v12.gb",
+    "sha256": "ed50e665f456fbacc2ddae95c0077940c3334fe1746aff77b7cf4ade5e95003e",
+    "bytes": 1048576
+  },
+  "build": {
+    "ok": true,
+    "revision": "c9c414dcb69e6c986aeb9f4b2c7f1796e0a6200203bd6f0f24866c156c2b8968",
+    "configuration": "Release",
+    "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+    "size": 1048576,
+    "ramBytes": 6949,
+    "spriteTiles": 80,
+    "diagnostics": [],
+    "romHash": "ed50e665f456fbacc2ddae95c0077940c3334fe1746aff77b7cf4ade5e95003e",
+    "builtAt": "2026-09-11T16:43:47.713Z",
+    "durationMs": 143768,
+    "debugReleaseIdentical": true
+  },
+  "checks": {
+    "doctorWarnings": 0,
+    "helloCleanDebug": true,
+    "standardTests": 80,
+    "starDebugRelease": true,
+    "touhouDebugRelease": true
+  },
+  "preserved": {
+    "baseRevision": "7a692f06d03b3aeb2331d50977787cfd5034431154beae34b67c2b33f9428943",
+    "revision": "c9c414dcb69e6c986aeb9f4b2c7f1796e0a6200203bd6f0f24866c156c2b8968",
+    "preservedImages": 75,
+    "preserved": "All definitions except enemy/effect limits, lower side lane Y, fairy-down motion, new raid actors and road event/map extension; all original event IDs and map cells preserved."
+  },
+  "design": {
+    "revision": "c9c414dcb69e6c986aeb9f4b2c7f1796e0a6200203bd6f0f24866c156c2b8968",
+    "sideLanes": [
+      {
+        "id": "mei-guard",
+        "lanes": [
+          88,
+          104,
+          120
+        ]
+      },
+      {
+        "id": "sak-cross",
+        "lanes": [
+          80,
+          96,
+          112,
+          128
+        ]
+      },
+      {
+        "id": "cirno-crystal",
+        "lanes": [
+          88,
+          104,
+          120
+        ]
+      },
+      {
+        "id": "cirno-aim",
+        "lanes": [
+          88,
+          104,
+          120
+        ]
+      }
+    ],
+    "maxAuthoredScore": 63390,
+    "stages": [
+      {
+        "id": "stage-forest",
+        "name": "宵闇の森・夜の散歩道",
+        "oldBossFrame": 1364,
+        "bossFrame": 2280,
+        "oldEnemies": 16,
+        "armedEnemies": 24,
+        "raidEnemies": 32,
+        "sections": [
+          {
+            "section": 1,
+            "armedStart": 80,
+            "raidStart": 488,
+            "raidLastSpawn": 794,
+            "raidWaves": 2
+          },
+          {
+            "section": 2,
+            "armedStart": 912,
+            "raidStart": 1320,
+            "raidLastSpawn": 1446,
+            "raidWaves": 1
+          },
+          {
+            "section": 3,
+            "armedStart": 1564,
+            "raidStart": 1876,
+            "raidLastSpawn": 2002,
+            "raidWaves": 1
+          }
+        ]
+      },
+      {
+        "id": "stage-lake",
+        "name": "霧の湖・氷の妖精",
+        "oldBossFrame": 1605,
+        "bossFrame": 2460,
+        "oldEnemies": 16,
+        "armedEnemies": 24,
+        "raidEnemies": 40,
+        "sections": [
+          {
+            "section": 1,
+            "armedStart": 80,
+            "raidStart": 488,
+            "raidLastSpawn": 794,
+            "raidWaves": 2
+          },
+          {
+            "section": 2,
+            "armedStart": 912,
+            "raidStart": 1320,
+            "raidLastSpawn": 1626,
+            "raidWaves": 2
+          },
+          {
+            "section": 3,
+            "armedStart": 1744,
+            "raidStart": 2056,
+            "raidLastSpawn": 2182,
+            "raidWaves": 1
+          }
+        ]
+      },
+      {
+        "id": "stage-1",
+        "name": "紅魔館・花の門",
+        "oldBossFrame": 1920,
+        "bossFrame": 2760,
+        "oldEnemies": 21,
+        "armedEnemies": 25,
+        "raidEnemies": 48,
+        "sections": [
+          {
+            "section": 1,
+            "armedStart": 80,
+            "raidStart": 488,
+            "raidLastSpawn": 794,
+            "raidWaves": 2
+          },
+          {
+            "section": 2,
+            "armedStart": 912,
+            "raidStart": 1320,
+            "raidLastSpawn": 1626,
+            "raidWaves": 2
+          },
+          {
+            "section": 3,
+            "armedStart": 1744,
+            "raidStart": 2152,
+            "raidLastSpawn": 2458,
+            "raidWaves": 2
+          }
+        ]
+      },
+      {
+        "id": "stage-2",
+        "name": "地下大図書館",
+        "oldBossFrame": 2160,
+        "bossFrame": 3060,
+        "oldEnemies": 23,
+        "armedEnemies": 28,
+        "raidEnemies": 56,
+        "sections": [
+          {
+            "section": 1,
+            "armedStart": 80,
+            "raidStart": 584,
+            "raidLastSpawn": 1070,
+            "raidWaves": 3
+          },
+          {
+            "section": 2,
+            "armedStart": 1188,
+            "raidStart": 1596,
+            "raidLastSpawn": 1902,
+            "raidWaves": 2
+          },
+          {
+            "section": 3,
+            "armedStart": 2020,
+            "raidStart": 2428,
+            "raidLastSpawn": 2734,
+            "raidWaves": 2
+          }
+        ]
+      },
+      {
+        "id": "stage-3",
+        "name": "月時計の回廊",
+        "oldBossFrame": 2400,
+        "bossFrame": 3480,
+        "oldEnemies": 30,
+        "armedEnemies": 36,
+        "raidEnemies": 64,
+        "sections": [
+          {
+            "section": 1,
+            "armedStart": 80,
+            "raidStart": 680,
+            "raidLastSpawn": 1166,
+            "raidWaves": 3
+          },
+          {
+            "section": 2,
+            "armedStart": 1284,
+            "raidStart": 1788,
+            "raidLastSpawn": 2274,
+            "raidWaves": 3
+          },
+          {
+            "section": 3,
+            "armedStart": 2392,
+            "raidStart": 2896,
+            "raidLastSpawn": 3202,
+            "raidWaves": 2
+          }
+        ]
+      },
+      {
+        "id": "stage-4",
+        "name": "紅月の屋上",
+        "oldBossFrame": 2640,
+        "bossFrame": 3780,
+        "oldEnemies": 31,
+        "armedEnemies": 39,
+        "raidEnemies": 72,
+        "sections": [
+          {
+            "section": 1,
+            "armedStart": 80,
+            "raidStart": 680,
+            "raidLastSpawn": 1166,
+            "raidWaves": 3
+          },
+          {
+            "section": 2,
+            "armedStart": 1284,
+            "raidStart": 1884,
+            "raidLastSpawn": 2370,
+            "raidWaves": 3
+          },
+          {
+            "section": 3,
+            "armedStart": 2488,
+            "raidStart": 2992,
+            "raidLastSpawn": 3478,
+            "raidWaves": 3
+          }
+        ]
+      },
+      {
+        "id": "stage-5",
+        "name": "封印された地下室",
+        "oldBossFrame": 2880,
+        "bossFrame": 4140,
+        "oldEnemies": 37,
+        "armedEnemies": 44,
+        "raidEnemies": 80,
+        "sections": [
+          {
+            "section": 1,
+            "armedStart": 80,
+            "raidStart": 776,
+            "raidLastSpawn": 1442,
+            "raidWaves": 4
+          },
+          {
+            "section": 2,
+            "armedStart": 1560,
+            "raidStart": 2160,
+            "raidLastSpawn": 2646,
+            "raidWaves": 3
+          },
+          {
+            "section": 3,
+            "armedStart": 2764,
+            "raidStart": 3364,
+            "raidLastSpawn": 3850,
+            "raidWaves": 3
+          }
+        ]
+      }
+    ]
+  },
+  "roads": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v12\\roads-final\\fixture\\projects\\road-test\\build\\Debug\\road-test.gb",
+    "sha256": "dcb40b3338cefd79c9030ee9d70ed5a962f133b464ee842246744d84621efbba",
+    "authoredRevision": "c9c414dcb69e6c986aeb9f4b2c7f1796e0a6200203bd6f0f24866c156c2b8968",
+    "fixture": "All road event times, enemies, patterns, maps, weapons and engine retained. Boss event becomes stage end; presentation disabled; player stays at x8 with 9 lives and 1024-update initial invulnerability. Fire case continuously shoots while leaving most enemies alive for load measurement. No RAM writes or engine patches.",
+    "baseline": false,
+    "results": [
+      {
+        "label": "DMG-0-observe",
+        "character": 0,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 43.993,
+            "busyUpdatesPerSecond": 39.485,
+            "oneFramePercent": 64.23,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 38.159,
+            "busyUpdatesPerSecond": 34.173,
+            "oneFramePercent": 38.8,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 39.98,
+            "busyUpdatesPerSecond": 35.507,
+            "oneFramePercent": 41.48,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 38.428,
+            "busyUpdatesPerSecond": 34.827,
+            "oneFramePercent": 41.43,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 37.226,
+            "busyUpdatesPerSecond": 34.28,
+            "oneFramePercent": 37.43,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 38.287,
+            "busyUpdatesPerSecond": 35.627,
+            "oneFramePercent": 42.19,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 36.482,
+            "busyUpdatesPerSecond": 33.764,
+            "oneFramePercent": 38.95,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "DMG-0-fire",
+        "character": 0,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 36.461,
+            "busyUpdatesPerSecond": 30.947,
+            "oneFramePercent": 36.98,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 32.962,
+            "busyUpdatesPerSecond": 29.123,
+            "oneFramePercent": 22.19,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 6,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 880,
+            "kills": 26,
+            "rapidKills": 14,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 34.985,
+            "busyUpdatesPerSecond": 30.506,
+            "oneFramePercent": 28.25,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 600,
+            "kills": 9,
+            "rapidKills": 6,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 32.662,
+            "busyUpdatesPerSecond": 29.322,
+            "oneFramePercent": 19.28,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1740,
+            "kills": 44,
+            "rapidKills": 23,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 34.063,
+            "busyUpdatesPerSecond": 30.122,
+            "oneFramePercent": 29.97,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1460,
+            "kills": 39,
+            "rapidKills": 17,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 33.182,
+            "busyUpdatesPerSecond": 30.006,
+            "oneFramePercent": 26.19,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1580,
+            "kills": 37,
+            "rapidKills": 22,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 31.973,
+            "busyUpdatesPerSecond": 28.904,
+            "oneFramePercent": 20.75,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "DMG-1-observe",
+        "character": 1,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 44.068,
+            "busyUpdatesPerSecond": 39.572,
+            "oneFramePercent": 64.47,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 38.711,
+            "busyUpdatesPerSecond": 34.673,
+            "oneFramePercent": 39.57,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 40.226,
+            "busyUpdatesPerSecond": 35.727,
+            "oneFramePercent": 41.94,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 39.072,
+            "busyUpdatesPerSecond": 35.517,
+            "oneFramePercent": 42.22,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 37.639,
+            "busyUpdatesPerSecond": 34.655,
+            "oneFramePercent": 37.97,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 38.647,
+            "busyUpdatesPerSecond": 35.957,
+            "oneFramePercent": 42.68,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 36.95,
+            "busyUpdatesPerSecond": 34.233,
+            "oneFramePercent": 39.93,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "DMG-1-fire",
+        "character": 1,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 11,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 37.537,
+            "busyUpdatesPerSecond": 30.705,
+            "oneFramePercent": 41.95,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 10,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 34.269,
+            "busyUpdatesPerSecond": 29.65,
+            "oneFramePercent": 25.41,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 1000,
+            "kills": 30,
+            "rapidKills": 21,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 36.65,
+            "busyUpdatesPerSecond": 30.183,
+            "oneFramePercent": 29.09,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 540,
+            "kills": 8,
+            "rapidKills": 5,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 33.264,
+            "busyUpdatesPerSecond": 29.879,
+            "oneFramePercent": 19.93,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1920,
+            "kills": 52,
+            "rapidKills": 38,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 35.283,
+            "busyUpdatesPerSecond": 29.88,
+            "oneFramePercent": 29.85,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1880,
+            "kills": 51,
+            "rapidKills": 35,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 34.92,
+            "busyUpdatesPerSecond": 29.352,
+            "oneFramePercent": 30.03,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1820,
+            "kills": 43,
+            "rapidKills": 30,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 33.237,
+            "busyUpdatesPerSecond": 28.904,
+            "oneFramePercent": 20.87,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-0-observe",
+        "character": 0,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.727,
+            "busyUpdatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.728,
+            "busyUpdatesPerSecond": 59.833,
+            "oneFramePercent": 37.51,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.682,
+            "busyUpdatesPerSecond": 59.695,
+            "oneFramePercent": 37.57,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.666,
+            "busyUpdatesPerSecond": 59.588,
+            "oneFramePercent": 37.58,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 59.674,
+            "busyUpdatesPerSecond": 59.615,
+            "oneFramePercent": 37.58,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 59.564,
+            "busyUpdatesPerSecond": 59.483,
+            "oneFramePercent": 37.75,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 59.328,
+            "busyUpdatesPerSecond": 59.243,
+            "oneFramePercent": 38.05,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-0-fire",
+        "character": 0,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.396,
+            "busyUpdatesPerSecond": 59.169,
+            "oneFramePercent": 99.44,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 57.222,
+            "busyUpdatesPerSecond": 55.948,
+            "oneFramePercent": 41.03,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 6,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 880,
+            "kills": 26,
+            "rapidKills": 14,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 58.439,
+            "busyUpdatesPerSecond": 57.592,
+            "oneFramePercent": 39.05,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 600,
+            "kills": 9,
+            "rapidKills": 6,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 58.179,
+            "busyUpdatesPerSecond": 57.328,
+            "oneFramePercent": 39.66,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1740,
+            "kills": 44,
+            "rapidKills": 23,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 58.266,
+            "busyUpdatesPerSecond": 57.15,
+            "oneFramePercent": 39.37,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1460,
+            "kills": 39,
+            "rapidKills": 17,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 57.476,
+            "busyUpdatesPerSecond": 56.337,
+            "oneFramePercent": 39.56,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1580,
+            "kills": 37,
+            "rapidKills": 22,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 56.315,
+            "busyUpdatesPerSecond": 54.767,
+            "oneFramePercent": 40.22,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-1-observe",
+        "character": 1,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.727,
+            "busyUpdatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.728,
+            "busyUpdatesPerSecond": 59.833,
+            "oneFramePercent": 37.51,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.705,
+            "busyUpdatesPerSecond": 59.728,
+            "oneFramePercent": 37.53,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.687,
+            "busyUpdatesPerSecond": 59.616,
+            "oneFramePercent": 37.54,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 59.71,
+            "busyUpdatesPerSecond": 59.66,
+            "oneFramePercent": 37.52,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 59.597,
+            "busyUpdatesPerSecond": 59.524,
+            "oneFramePercent": 37.7,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 59.343,
+            "busyUpdatesPerSecond": 59.261,
+            "oneFramePercent": 38.03,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-1-fire",
+        "character": 1,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 11,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.123,
+            "busyUpdatesPerSecond": 58.623,
+            "oneFramePercent": 98.98,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 10,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 58.326,
+            "busyUpdatesPerSecond": 57.489,
+            "oneFramePercent": 38.84,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 1000,
+            "kills": 30,
+            "rapidKills": 21,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 58.921,
+            "busyUpdatesPerSecond": 58.156,
+            "oneFramePercent": 38.37,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 540,
+            "kills": 8,
+            "rapidKills": 5,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 58.725,
+            "busyUpdatesPerSecond": 58.24,
+            "oneFramePercent": 38.4,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1920,
+            "kills": 52,
+            "rapidKills": 38,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 58.317,
+            "busyUpdatesPerSecond": 57.161,
+            "oneFramePercent": 39.55,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1880,
+            "kills": 51,
+            "rapidKills": 35,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 57.461,
+            "busyUpdatesPerSecond": 55.62,
+            "oneFramePercent": 39.59,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1820,
+            "kills": 43,
+            "rapidKills": 30,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 56.958,
+            "busyUpdatesPerSecond": 55.278,
+            "oneFramePercent": 39.2,
+            "maxFrameGap": 3
+          }
+        ]
+      }
+    ],
+    "measurementWindow": "64 < stage tick < end tick - 64; busy means at least 3 live enemies; PPU frames, not host throughput"
+  },
+  "unmodifiedPlay": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "ed50e665f456fbacc2ddae95c0077940c3334fe1746aff77b7cf4ade5e95003e",
+    "authoredRevision": "c9c414dcb69e6c986aeb9f4b2c7f1796e0a6200203bd6f0f24866c156c2b8968",
+    "results": [
+      {
+        "label": "DMG-reimu",
+        "fixture": false,
+        "bossReached": true,
+        "bossFrame": 2280,
+        "raidSections": [
+          1,
+          2,
+          3
+        ],
+        "enemyPeak": 6,
+        "killEvents": 39,
+        "rapidKillEvents": 21,
+        "score": 1870,
+        "lives": 2
+      },
+      {
+        "label": "DMG-marisa",
+        "fixture": false,
+        "bossReached": true,
+        "bossFrame": 2280,
+        "raidSections": [
+          1,
+          2,
+          3
+        ],
+        "enemyPeak": 3,
+        "killEvents": 54,
+        "rapidKillEvents": 30,
+        "score": 2720,
+        "lives": 3
+      },
+      {
+        "label": "CGB-reimu",
+        "fixture": false,
+        "bossReached": true,
+        "bossFrame": 2280,
+        "raidSections": [
+          1,
+          2,
+          3
+        ],
+        "enemyPeak": 6,
+        "killEvents": 39,
+        "rapidKillEvents": 21,
+        "score": 1870,
+        "lives": 2
+      },
+      {
+        "label": "CGB-marisa",
+        "fixture": false,
+        "bossReached": true,
+        "bossFrame": 2280,
+        "raidSections": [
+          1,
+          2,
+          3
+        ],
+        "enemyPeak": 3,
+        "killEvents": 54,
+        "rapidKillEvents": 30,
+        "score": 2720,
+        "lives": 3
+      }
+    ]
+  },
+  "barrage": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v12\\barrage-final\\fixture\\projects\\barrage-test\\build\\Release\\barrage-test.gb",
+    "authoredRevision": "c9c414dcb69e6c986aeb9f4b2c7f1796e0a6200203bd6f0f24866c156c2b8968",
+    "fixture": "Seven original bosses, phase HP, patterns, movement, music and return sequence; QA sets non-final phase HP to zero after 640 updates. No intro images/dialogue; stage timeout after 2040 updates, player x8 with focused B held, 9 lives and 1024-update invulnerability. Timing marker and forced phase depletion exist only in this fixture.",
+    "results": [
+      {
+        "mode": "DMG",
+        "rows": [
+          {
+            "boss": "rumia",
+            "phase": 1,
+            "cap": 12,
+            "peak": 4,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 3.71,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "rumia",
+            "phase": 2,
+            "cap": 12,
+            "peak": 7,
+            "samples": 359,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.13,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "rumia",
+            "phase": 3,
+            "cap": 12,
+            "peak": 9,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.71,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 1,
+            "cap": 18,
+            "peak": 8,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.18,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 2,
+            "cap": 18,
+            "peak": 6,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.32,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 3,
+            "cap": 18,
+            "peak": 13,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.4,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "meiling",
+            "phase": 1,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.99,
+            "framesPerUpdate": 2.0091,
+            "updatesPerSecond": 29.729,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 2,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.33,
+            "framesPerUpdate": 2.0091,
+            "updatesPerSecond": 29.729,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 3,
+            "cap": 22,
+            "peak": 20,
+            "samples": 372,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.98,
+            "framesPerUpdate": 2.0941,
+            "updatesPerSecond": 28.522,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 1,
+            "cap": 26,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.92,
+            "framesPerUpdate": 2.0045,
+            "updatesPerSecond": 29.796,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 2,
+            "cap": 26,
+            "peak": 21,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 17.51,
+            "framesPerUpdate": 2.093,
+            "updatesPerSecond": 28.537,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 3,
+            "cap": 26,
+            "peak": 23,
+            "samples": 352,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 18.6,
+            "framesPerUpdate": 2.125,
+            "updatesPerSecond": 28.107,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 1,
+            "cap": 30,
+            "peak": 23,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 21.51,
+            "framesPerUpdate": 2.3605,
+            "updatesPerSecond": 25.302,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 2,
+            "cap": 30,
+            "peak": 15,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 13.54,
+            "framesPerUpdate": 2.0431,
+            "updatesPerSecond": 29.234,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 3,
+            "cap": 30,
+            "peak": 22,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.7,
+            "framesPerUpdate": 2.1655,
+            "updatesPerSecond": 27.581,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 1,
+            "cap": 36,
+            "peak": 25,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.85,
+            "framesPerUpdate": 2.356,
+            "updatesPerSecond": 25.351,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 2,
+            "cap": 36,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.78,
+            "framesPerUpdate": 2.2165,
+            "updatesPerSecond": 26.946,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 3,
+            "cap": 36,
+            "peak": 36,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 9,
+            "meanBullets": 31.07,
+            "framesPerUpdate": 2.8481,
+            "updatesPerSecond": 20.971,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 1,
+            "cap": 40,
+            "peak": 30,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 27.22,
+            "framesPerUpdate": 2.7256,
+            "updatesPerSecond": 21.913,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 2,
+            "cap": 40,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.91,
+            "framesPerUpdate": 2.2735,
+            "updatesPerSecond": 26.271,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 3,
+            "cap": 40,
+            "peak": 40,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 11,
+            "meanBullets": 35.43,
+            "framesPerUpdate": 2.9569,
+            "updatesPerSecond": 20.199,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "mode": "CGB",
+        "rows": [
+          {
+            "boss": "rumia",
+            "phase": 1,
+            "cap": 12,
+            "peak": 4,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 3.71,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "rumia",
+            "phase": 2,
+            "cap": 12,
+            "peak": 7,
+            "samples": 359,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.13,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "rumia",
+            "phase": 3,
+            "cap": 12,
+            "peak": 9,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.71,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 1,
+            "cap": 18,
+            "peak": 8,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.18,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 2,
+            "cap": 18,
+            "peak": 6,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.32,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 3,
+            "cap": 18,
+            "peak": 13,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.4,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 1,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.99,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 2,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.33,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 3,
+            "cap": 22,
+            "peak": 20,
+            "samples": 372,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.98,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 1,
+            "cap": 26,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.92,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 2,
+            "cap": 26,
+            "peak": 21,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 17.51,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 3,
+            "cap": 26,
+            "peak": 23,
+            "samples": 352,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 18.6,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 1,
+            "cap": 30,
+            "peak": 23,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 21.51,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 2,
+            "cap": 30,
+            "peak": 15,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 13.54,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 3,
+            "cap": 30,
+            "peak": 22,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.7,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "remilia",
+            "phase": 1,
+            "cap": 36,
+            "peak": 25,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.85,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "remilia",
+            "phase": 2,
+            "cap": 36,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.78,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "remilia",
+            "phase": 3,
+            "cap": 36,
+            "peak": 36,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 9,
+            "meanBullets": 31.07,
+            "framesPerUpdate": 1.0091,
+            "updatesPerSecond": 59.191,
+            "oneFramePercent": 99.09,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "flandre",
+            "phase": 1,
+            "cap": 40,
+            "peak": 30,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 27.22,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "flandre",
+            "phase": 2,
+            "cap": 40,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.91,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "flandre",
+            "phase": 3,
+            "cap": 40,
+            "peak": 40,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 11,
+            "meanBullets": 35.43,
+            "framesPerUpdate": 1.0227,
+            "updatesPerSecond": 58.403,
+            "oneFramePercent": 97.73,
+            "maxFrameGap": 2
+          }
+        ]
+      }
+    ]
+  },
+  "side": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v12\\barrage-final\\fixture\\projects\\barrage-test\\build\\Release\\barrage-test.gb",
+    "results": [
+      {
+        "mode": "DMG",
+        "rows": [
+          {
+            "stage": 0,
+            "phase": 1,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 0,
+            "phase": 2,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 0,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 1,
+            "phase": 1,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 1,
+            "phase": 2,
+            "turns": 0,
+            "leftSpawns": 9,
+            "rightSpawns": 8,
+            "ceilingSpawns": 0,
+            "sideY": [
+              88,
+              104,
+              120
+            ],
+            "lowerCenterSamples": 301
+          },
+          {
+            "stage": 1,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 10,
+            "rightSpawns": 10,
+            "ceilingSpawns": 0,
+            "sideY": [
+              88,
+              104,
+              120
+            ],
+            "lowerCenterSamples": 369
+          },
+          {
+            "stage": 2,
+            "phase": 1,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 2,
+            "phase": 2,
+            "turns": 0,
+            "leftSpawns": 10,
+            "rightSpawns": 10,
+            "ceilingSpawns": 0,
+            "sideY": [
+              88,
+              104,
+              120
+            ],
+            "lowerCenterSamples": 363
+          },
+          {
+            "stage": 2,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 3,
+            "phase": 1,
+            "turns": 18,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 3,
+            "phase": 2,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 36,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 3,
+            "phase": 3,
+            "turns": 23,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 40,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 4,
+            "phase": 1,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 4,
+            "phase": 2,
+            "turns": 0,
+            "leftSpawns": 11,
+            "rightSpawns": 11,
+            "ceilingSpawns": 0,
+            "sideY": [
+              80,
+              96,
+              112,
+              128
+            ],
+            "lowerCenterSamples": 387
+          },
+          {
+            "stage": 4,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 13,
+            "rightSpawns": 13,
+            "ceilingSpawns": 0,
+            "sideY": [
+              80,
+              96,
+              112,
+              128
+            ],
+            "lowerCenterSamples": 477
+          },
+          {
+            "stage": 5,
+            "phase": 1,
+            "turns": 38,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 5,
+            "phase": 2,
+            "turns": 39,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 5,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 6,
+            "phase": 1,
+            "turns": 35,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 6,
+            "phase": 2,
+            "turns": 40,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 6,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          }
+        ]
+      },
+      {
+        "mode": "CGB",
+        "rows": [
+          {
+            "stage": 0,
+            "phase": 1,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 0,
+            "phase": 2,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 0,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 1,
+            "phase": 1,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 1,
+            "phase": 2,
+            "turns": 0,
+            "leftSpawns": 9,
+            "rightSpawns": 8,
+            "ceilingSpawns": 0,
+            "sideY": [
+              88,
+              104,
+              120
+            ],
+            "lowerCenterSamples": 301
+          },
+          {
+            "stage": 1,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 10,
+            "rightSpawns": 10,
+            "ceilingSpawns": 0,
+            "sideY": [
+              88,
+              104,
+              120
+            ],
+            "lowerCenterSamples": 369
+          },
+          {
+            "stage": 2,
+            "phase": 1,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 2,
+            "phase": 2,
+            "turns": 0,
+            "leftSpawns": 10,
+            "rightSpawns": 10,
+            "ceilingSpawns": 0,
+            "sideY": [
+              88,
+              104,
+              120
+            ],
+            "lowerCenterSamples": 363
+          },
+          {
+            "stage": 2,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 3,
+            "phase": 1,
+            "turns": 18,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 3,
+            "phase": 2,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 36,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 3,
+            "phase": 3,
+            "turns": 23,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 40,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 4,
+            "phase": 1,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 4,
+            "phase": 2,
+            "turns": 0,
+            "leftSpawns": 11,
+            "rightSpawns": 11,
+            "ceilingSpawns": 0,
+            "sideY": [
+              80,
+              96,
+              112,
+              128
+            ],
+            "lowerCenterSamples": 387
+          },
+          {
+            "stage": 4,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 13,
+            "rightSpawns": 13,
+            "ceilingSpawns": 0,
+            "sideY": [
+              80,
+              96,
+              112,
+              128
+            ],
+            "lowerCenterSamples": 477
+          },
+          {
+            "stage": 5,
+            "phase": 1,
+            "turns": 38,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 5,
+            "phase": 2,
+            "turns": 39,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 5,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 6,
+            "phase": 1,
+            "turns": 35,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 6,
+            "phase": 2,
+            "turns": 40,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          },
+          {
+            "stage": 6,
+            "phase": 3,
+            "turns": 0,
+            "leftSpawns": 0,
+            "rightSpawns": 0,
+            "ceilingSpawns": 0,
+            "sideY": [],
+            "lowerCenterSamples": 0
+          }
+        ]
+      }
+    ]
+  },
+  "native": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v12\\roads-final\\fixture\\projects\\road-test\\build\\Debug\\road-test.gb",
+    "sha256": "dcb40b3338cefd79c9030ee9d70ed5a962f133b464ee842246744d84621efbba",
+    "emulator": "BGB 1.6.6",
+    "fixture": true,
+    "readOnlyBreakpoint": true,
+    "results": [
+      {
+        "stage": 0,
+        "cgb": true,
+        "measuredTicks": 2208,
+        "displayFrames": 2217,
+        "updatesPerSecond": 59.485,
+        "enemyPeak": 6,
+        "oamPeak": 36
+      },
+      {
+        "stage": 1,
+        "cgb": true,
+        "measuredTicks": 2392,
+        "displayFrames": 2502,
+        "updatesPerSecond": 57.102,
+        "enemyPeak": 7,
+        "oamPeak": 36
+      }
+    ]
+  },
+  "parity": {
+    "before": ".cache/kouma-v12/roads/fixture/projects/road-test/build/Debug/road-test.gb",
+    "after": ".cache/kouma-v12/roads-final/fixture/projects/road-test/build/Debug/road-test.gb",
+    "results": [
+      {
+        "fire": false,
+        "mode": "CGB",
+        "updates": 4724,
+        "stages": 2,
+        "stateAndOamIdentical": true
+      },
+      {
+        "fire": true,
+        "mode": "CGB",
+        "updates": 4724,
+        "stages": 2,
+        "stateAndOamIdentical": true
+      }
+    ]
+  },
+  "wave": {
+    "fixture": true,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v12\\wave\\fixture-n4YxBb\\projects\\wave-test\\build\\Debug\\wave-test.gb",
+    "results": [
+      {
+        "mode": "DMG",
+        "ages": 65536,
+        "configurations": 4,
+        "wraps": 4,
+        "status": 165
+      },
+      {
+        "mode": "CGB",
+        "ages": 65536,
+        "configurations": 4,
+        "wraps": 4,
+        "status": 165
+      }
+    ]
+  },
+  "engine": [
+    {
+      "file": "engine/caravan/runtime.c",
+      "sha256": "1d8b5ee674683cd977121e62bfc77676f305884bc86fb1284961bebbe0f3154d"
+    },
+    {
+      "file": "engine/caravan/render.c",
+      "sha256": "919a5334d21bbd47f1fd712352590a2e95aab401784eb6e514571d131ffceb0b"
+    },
+    {
+      "file": "engine/caravan/mainloop.c",
+      "sha256": "633db8fec5e5dc3a8c1f72d10fe90d4100472ab945aa45a46700e2f9baf7f2e5"
+    }
+  ],
+  "performanceBeforeOptimization": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v12\\roads\\fixture\\projects\\road-test\\build\\Debug\\road-test.gb",
+    "sha256": "e0aba8e0ed5380f36175e5cf9532181d008478c94d898839e759bd0b22099ee3",
+    "authoredRevision": "c9c414dcb69e6c986aeb9f4b2c7f1796e0a6200203bd6f0f24866c156c2b8968",
+    "fixture": "All road event times, enemies, patterns, maps, weapons and engine retained. Boss event becomes stage end; presentation disabled; player stays at x8 with 9 lives and 1024-update initial invulnerability. Fire case continuously shoots while leaving most enemies alive for load measurement. No RAM writes or engine patches.",
+    "baseline": false,
+    "results": [
+      {
+        "label": "DMG-0-observe",
+        "character": 0,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 40.805,
+            "busyUpdatesPerSecond": 35.88,
+            "oneFramePercent": 53.63,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 35.775,
+            "busyUpdatesPerSecond": 31.814,
+            "oneFramePercent": 34.25,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 38.248,
+            "busyUpdatesPerSecond": 33.639,
+            "oneFramePercent": 38.4,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 37.298,
+            "busyUpdatesPerSecond": 33.606,
+            "oneFramePercent": 39.04,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 35.27,
+            "busyUpdatesPerSecond": 32.307,
+            "oneFramePercent": 33.19,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 36.094,
+            "busyUpdatesPerSecond": 33.339,
+            "oneFramePercent": 36.93,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 34.254,
+            "busyUpdatesPerSecond": 31.448,
+            "oneFramePercent": 33.82,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "DMG-0-fire",
+        "character": 0,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 35.405,
+            "busyUpdatesPerSecond": 30.136,
+            "oneFramePercent": 33.26,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 30.939,
+            "busyUpdatesPerSecond": 27.067,
+            "oneFramePercent": 20.39,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 6,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 880,
+            "kills": 26,
+            "rapidKills": 14,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 33.891,
+            "busyUpdatesPerSecond": 29.622,
+            "oneFramePercent": 26.27,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 600,
+            "kills": 9,
+            "rapidKills": 6,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 31.492,
+            "busyUpdatesPerSecond": 28.244,
+            "oneFramePercent": 17.37,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1740,
+            "kills": 44,
+            "rapidKills": 23,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 32.429,
+            "busyUpdatesPerSecond": 28.798,
+            "oneFramePercent": 26.36,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1460,
+            "kills": 39,
+            "rapidKills": 17,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 31.966,
+            "busyUpdatesPerSecond": 28.945,
+            "oneFramePercent": 23.18,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1580,
+            "kills": 37,
+            "rapidKills": 22,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 30.421,
+            "busyUpdatesPerSecond": 27.469,
+            "oneFramePercent": 18.08,
+            "maxFrameGap": 4
+          }
+        ]
+      },
+      {
+        "label": "DMG-1-observe",
+        "character": 1,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 41.829,
+            "busyUpdatesPerSecond": 37.021,
+            "oneFramePercent": 57.21,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 36.364,
+            "busyUpdatesPerSecond": 32.277,
+            "oneFramePercent": 34.42,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 38.586,
+            "busyUpdatesPerSecond": 33.963,
+            "oneFramePercent": 38.94,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 37.691,
+            "busyUpdatesPerSecond": 34,
+            "oneFramePercent": 39.59,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 35.641,
+            "busyUpdatesPerSecond": 32.674,
+            "oneFramePercent": 34,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 36.597,
+            "busyUpdatesPerSecond": 33.824,
+            "oneFramePercent": 37.64,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 34.636,
+            "busyUpdatesPerSecond": 31.779,
+            "oneFramePercent": 34.41,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "DMG-1-fire",
+        "character": 1,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 11,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 36.326,
+            "busyUpdatesPerSecond": 30.044,
+            "oneFramePercent": 37.63,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 10,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 32.044,
+            "busyUpdatesPerSecond": 27.287,
+            "oneFramePercent": 22.4,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 1000,
+            "kills": 30,
+            "rapidKills": 21,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 35.636,
+            "busyUpdatesPerSecond": 29.328,
+            "oneFramePercent": 27.68,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 540,
+            "kills": 8,
+            "rapidKills": 5,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 31.993,
+            "busyUpdatesPerSecond": 28.805,
+            "oneFramePercent": 18.19,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1920,
+            "kills": 52,
+            "rapidKills": 38,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 33.971,
+            "busyUpdatesPerSecond": 28.551,
+            "oneFramePercent": 27.67,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1880,
+            "kills": 51,
+            "rapidKills": 35,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 34.058,
+            "busyUpdatesPerSecond": 28.647,
+            "oneFramePercent": 28.22,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1820,
+            "kills": 43,
+            "rapidKills": 30,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 31.778,
+            "busyUpdatesPerSecond": 27.46,
+            "oneFramePercent": 18.88,
+            "maxFrameGap": 4
+          }
+        ]
+      },
+      {
+        "label": "CGB-0-observe",
+        "character": 0,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.727,
+            "busyUpdatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.472,
+            "busyUpdatesPerSecond": 59.483,
+            "oneFramePercent": 37.77,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.682,
+            "busyUpdatesPerSecond": 59.695,
+            "oneFramePercent": 37.57,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.605,
+            "busyUpdatesPerSecond": 59.504,
+            "oneFramePercent": 37.68,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 59.532,
+            "busyUpdatesPerSecond": 59.436,
+            "oneFramePercent": 37.82,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 59.321,
+            "busyUpdatesPerSecond": 59.18,
+            "oneFramePercent": 38.08,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 58.818,
+            "busyUpdatesPerSecond": 58.602,
+            "oneFramePercent": 38.6,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-0-fire",
+        "character": 0,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 58.933,
+            "busyUpdatesPerSecond": 58.395,
+            "oneFramePercent": 98.65,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 53.137,
+            "busyUpdatesPerSecond": 50.08,
+            "oneFramePercent": 43.95,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 6,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 880,
+            "kills": 26,
+            "rapidKills": 14,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 57.624,
+            "busyUpdatesPerSecond": 56.295,
+            "oneFramePercent": 39.77,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 600,
+            "kills": 9,
+            "rapidKills": 6,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 56.162,
+            "busyUpdatesPerSecond": 54.271,
+            "oneFramePercent": 41.91,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1740,
+            "kills": 44,
+            "rapidKills": 23,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 56.378,
+            "busyUpdatesPerSecond": 54.225,
+            "oneFramePercent": 40.66,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1460,
+            "kills": 39,
+            "rapidKills": 17,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 56.172,
+            "busyUpdatesPerSecond": 54.473,
+            "oneFramePercent": 40.27,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1580,
+            "kills": 37,
+            "rapidKills": 22,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 53.605,
+            "busyUpdatesPerSecond": 51.008,
+            "oneFramePercent": 41.2,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-1-observe",
+        "character": 1,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.727,
+            "busyUpdatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.498,
+            "busyUpdatesPerSecond": 59.518,
+            "oneFramePercent": 37.73,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.682,
+            "busyUpdatesPerSecond": 59.695,
+            "oneFramePercent": 37.57,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.646,
+            "busyUpdatesPerSecond": 59.56,
+            "oneFramePercent": 37.61,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 59.567,
+            "busyUpdatesPerSecond": 59.481,
+            "oneFramePercent": 37.76,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 59.37,
+            "busyUpdatesPerSecond": 59.241,
+            "oneFramePercent": 38.08,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 58.861,
+            "busyUpdatesPerSecond": 58.657,
+            "oneFramePercent": 38.53,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-1-fire",
+        "character": 1,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 11,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 58.717,
+            "busyUpdatesPerSecond": 57.894,
+            "oneFramePercent": 98.28,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 10,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 54.129,
+            "busyUpdatesPerSecond": 50.948,
+            "oneFramePercent": 42.62,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 1000,
+            "kills": 30,
+            "rapidKills": 21,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 57.794,
+            "busyUpdatesPerSecond": 56.12,
+            "oneFramePercent": 39.2,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 540,
+            "kills": 8,
+            "rapidKills": 5,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 57.321,
+            "busyUpdatesPerSecond": 56.156,
+            "oneFramePercent": 39.97,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1920,
+            "kills": 52,
+            "rapidKills": 38,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 56.666,
+            "busyUpdatesPerSecond": 54.38,
+            "oneFramePercent": 40.84,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1880,
+            "kills": 51,
+            "rapidKills": 35,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 56.566,
+            "busyUpdatesPerSecond": 54.091,
+            "oneFramePercent": 40.22,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1820,
+            "kills": 43,
+            "rapidKills": 30,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 54.458,
+            "busyUpdatesPerSecond": 51.463,
+            "oneFramePercent": 39.93,
+            "maxFrameGap": 3
+          }
+        ]
+      }
+    ]
+  },
+  "previousVersionRoads": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v12\\roads-before\\fixture\\projects\\road-test\\build\\Debug\\road-test.gb",
+    "sha256": "3721d8640f5bdcddf29dabb5d5fe5fd9193378736b9039eadc7ced7e83f52532",
+    "authoredRevision": "7a692f06d03b3aeb2331d50977787cfd5034431154beae34b67c2b33f9428943",
+    "fixture": "All road event times, enemies, patterns, maps, weapons and engine retained. Boss event becomes stage end; presentation disabled; player stays at x8 with 9 lives and 1024-update initial invulnerability. Fire case continuously shoots while leaving most enemies alive for load measurement. No RAM writes or engine patches.",
+    "baseline": true,
+    "results": [
+      {
+        "label": "DMG-0-observe",
+        "character": 0,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 16,
+            "observedSpawns": 6,
+            "enemyPeak": 3,
+            "shotPeak": 2,
+            "oamPeak": 20,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 9,
+            "lives": 9,
+            "updatesPerSecond": 49.609,
+            "busyUpdatesPerSecond": 46.106,
+            "oneFramePercent": 79.46,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 16,
+            "observedSpawns": 7,
+            "enemyPeak": 3,
+            "shotPeak": 2,
+            "oamPeak": 20,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 17,
+            "lives": 9,
+            "updatesPerSecond": 41.152,
+            "busyUpdatesPerSecond": 37.455,
+            "oneFramePercent": 52.68,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 21,
+            "observedSpawns": 13,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 20,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 25,
+            "lives": 9,
+            "updatesPerSecond": 43.317,
+            "busyUpdatesPerSecond": 35.747,
+            "oneFramePercent": 53.26,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 23,
+            "observedSpawns": 18,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 20,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 30,
+            "lives": 9,
+            "updatesPerSecond": 45.438,
+            "busyUpdatesPerSecond": 36.388,
+            "oneFramePercent": 53.91,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 30,
+            "observedSpawns": 24,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 20,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 36,
+            "lives": 9,
+            "updatesPerSecond": 44.777,
+            "busyUpdatesPerSecond": 36.642,
+            "oneFramePercent": 56.73,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 31,
+            "observedSpawns": 28,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 20,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 39,
+            "lives": 9,
+            "updatesPerSecond": 46.786,
+            "busyUpdatesPerSecond": 39.454,
+            "oneFramePercent": 58.77,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 37,
+            "observedSpawns": 34,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 17,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 42,
+            "lives": 9,
+            "updatesPerSecond": 46.982,
+            "busyUpdatesPerSecond": 41.851,
+            "oneFramePercent": 61.34,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "DMG-0-fire",
+        "character": 0,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 16,
+            "observedSpawns": 6,
+            "enemyPeak": 3,
+            "shotPeak": 2,
+            "oamPeak": 23,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 9,
+            "lives": 9,
+            "updatesPerSecond": 33.668,
+            "busyUpdatesPerSecond": 29.864,
+            "oneFramePercent": 22.45,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 16,
+            "observedSpawns": 9,
+            "enemyPeak": 3,
+            "shotPeak": 2,
+            "oamPeak": 23,
+            "scanlinePeak": 6,
+            "score": 80,
+            "kills": 1,
+            "rapidKills": 0,
+            "drops": 14,
+            "lives": 9,
+            "updatesPerSecond": 33.058,
+            "busyUpdatesPerSecond": 29.811,
+            "oneFramePercent": 36.53,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 21,
+            "observedSpawns": 13,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 23,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 22,
+            "lives": 9,
+            "updatesPerSecond": 34.827,
+            "busyUpdatesPerSecond": 29.697,
+            "oneFramePercent": 40.49,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-2",
+            "planned": 23,
+            "observedSpawns": 19,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 23,
+            "scanlinePeak": 6,
+            "score": 360,
+            "kills": 6,
+            "rapidKills": 0,
+            "drops": 26,
+            "lives": 9,
+            "updatesPerSecond": 37.738,
+            "busyUpdatesPerSecond": 29.621,
+            "oneFramePercent": 44.97,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-3",
+            "planned": 30,
+            "observedSpawns": 24,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 23,
+            "scanlinePeak": 7,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 32,
+            "lives": 9,
+            "updatesPerSecond": 35.344,
+            "busyUpdatesPerSecond": 29.76,
+            "oneFramePercent": 40.39,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 31,
+            "observedSpawns": 28,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 23,
+            "scanlinePeak": 5,
+            "score": 540,
+            "kills": 9,
+            "rapidKills": 0,
+            "drops": 35,
+            "lives": 9,
+            "updatesPerSecond": 38.482,
+            "busyUpdatesPerSecond": 29.788,
+            "oneFramePercent": 41.87,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 37,
+            "observedSpawns": 34,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 20,
+            "scanlinePeak": 5,
+            "score": 720,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 38,
+            "lives": 9,
+            "updatesPerSecond": 38.374,
+            "busyUpdatesPerSecond": 29.716,
+            "oneFramePercent": 38.94,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-0-observe",
+        "character": 0,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 16,
+            "observedSpawns": 6,
+            "enemyPeak": 3,
+            "shotPeak": 2,
+            "oamPeak": 20,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 9,
+            "lives": 9,
+            "updatesPerSecond": 59.771,
+            "busyUpdatesPerSecond": 59.727,
+            "oneFramePercent": 99.93,
+            "maxFrameGap": 1
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 16,
+            "observedSpawns": 7,
+            "enemyPeak": 3,
+            "shotPeak": 2,
+            "oamPeak": 20,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 17,
+            "lives": 9,
+            "updatesPerSecond": 59.765,
+            "busyUpdatesPerSecond": 59.842,
+            "oneFramePercent": 40.09,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-1",
+            "planned": 21,
+            "observedSpawns": 13,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 20,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 25,
+            "lives": 9,
+            "updatesPerSecond": 59.759,
+            "busyUpdatesPerSecond": 59.579,
+            "oneFramePercent": 39.5,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-2",
+            "planned": 23,
+            "observedSpawns": 18,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 20,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 30,
+            "lives": 9,
+            "updatesPerSecond": 59.755,
+            "busyUpdatesPerSecond": 59.381,
+            "oneFramePercent": 39.28,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-3",
+            "planned": 30,
+            "observedSpawns": 24,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 20,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 36,
+            "lives": 9,
+            "updatesPerSecond": 59.752,
+            "busyUpdatesPerSecond": 59.562,
+            "oneFramePercent": 39.1,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-4",
+            "planned": 31,
+            "observedSpawns": 28,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 20,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 39,
+            "lives": 9,
+            "updatesPerSecond": 59.75,
+            "busyUpdatesPerSecond": 59.727,
+            "oneFramePercent": 38.95,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-5",
+            "planned": 37,
+            "observedSpawns": 34,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 17,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 42,
+            "lives": 9,
+            "updatesPerSecond": 59.748,
+            "busyUpdatesPerSecond": 59.49,
+            "oneFramePercent": 38.83,
+            "maxFrameGap": 2
+          }
+        ]
+      },
+      {
+        "label": "CGB-0-fire",
+        "character": 0,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 16,
+            "observedSpawns": 6,
+            "enemyPeak": 3,
+            "shotPeak": 2,
+            "oamPeak": 23,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 9,
+            "lives": 9,
+            "updatesPerSecond": 59.771,
+            "busyUpdatesPerSecond": 59.727,
+            "oneFramePercent": 99.93,
+            "maxFrameGap": 1
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 16,
+            "observedSpawns": 9,
+            "enemyPeak": 3,
+            "shotPeak": 2,
+            "oamPeak": 23,
+            "scanlinePeak": 6,
+            "score": 80,
+            "kills": 1,
+            "rapidKills": 0,
+            "drops": 14,
+            "lives": 9,
+            "updatesPerSecond": 59.579,
+            "busyUpdatesPerSecond": 59.518,
+            "oneFramePercent": 40.4,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-1",
+            "planned": 21,
+            "observedSpawns": 13,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 23,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 22,
+            "lives": 9,
+            "updatesPerSecond": 59.48,
+            "busyUpdatesPerSecond": 58.919,
+            "oneFramePercent": 39.97,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-2",
+            "planned": 23,
+            "observedSpawns": 19,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 23,
+            "scanlinePeak": 6,
+            "score": 360,
+            "kills": 6,
+            "rapidKills": 0,
+            "drops": 26,
+            "lives": 9,
+            "updatesPerSecond": 59.562,
+            "busyUpdatesPerSecond": 58.657,
+            "oneFramePercent": 39.6,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-3",
+            "planned": 30,
+            "observedSpawns": 24,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 23,
+            "scanlinePeak": 7,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 32,
+            "lives": 9,
+            "updatesPerSecond": 59.529,
+            "busyUpdatesPerSecond": 58.908,
+            "oneFramePercent": 39.39,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-4",
+            "planned": 31,
+            "observedSpawns": 28,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 23,
+            "scanlinePeak": 5,
+            "score": 540,
+            "kills": 9,
+            "rapidKills": 0,
+            "drops": 35,
+            "lives": 9,
+            "updatesPerSecond": 59.637,
+            "busyUpdatesPerSecond": 58.973,
+            "oneFramePercent": 39.14,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-5",
+            "planned": 37,
+            "observedSpawns": 34,
+            "enemyPeak": 3,
+            "shotPeak": 4,
+            "oamPeak": 20,
+            "scanlinePeak": 5,
+            "score": 720,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 38,
+            "lives": 9,
+            "updatesPerSecond": 59.665,
+            "busyUpdatesPerSecond": 58.944,
+            "oneFramePercent": 38.97,
+            "maxFrameGap": 2
+          }
+        ]
+      }
+    ]
+  },
+  "profiles": {
+    "before": {
+      "rom": ".cache/kouma-v12/roads/fixture/projects/road-test/build/Debug/road-test.gb",
+      "romSha256": "e0aba8e0ed5380f36175e5cf9532181d008478c94d898839e759bd0b22099ee3",
+      "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+      "emulator": "Boytacean 0.13.2",
+      "fromTick": 2800,
+      "toTick": 3300,
+      "input": "focus",
+      "modes": [
+        {
+          "mode": "CGB",
+          "samples": 201382,
+          "totalTCycles": 77958636,
+          "functions": [
+            {
+              "name": "_wait_vbl_done",
+              "estimatedTCycles": 29853664,
+              "percent": 38.294
+            },
+            {
+              "name": "collide_shots",
+              "estimatedTCycles": 4382908,
+              "percent": 5.622
+            },
+            {
+              "name": "step_actor",
+              "estimatedTCycles": 3939000,
+              "percent": 5.053
+            },
+            {
+              "name": "sprite_animation",
+              "estimatedTCycles": 3177420,
+              "percent": 4.076
+            },
+            {
+              "name": "move_actor",
+              "estimatedTCycles": 3102324,
+              "percent": 3.979
+            },
+            {
+              "name": "_set_sprite_data",
+              "estimatedTCycles": 2888160,
+              "percent": 3.705
+            },
+            {
+              "name": "box",
+              "estimatedTCycles": 2744988,
+              "percent": 3.521
+            },
+            {
+              "name": "overlap",
+              "estimatedTCycles": 2500472,
+              "percent": 3.207
+            },
+            {
+              "name": "actor_sprite",
+              "estimatedTCycles": 2375308,
+              "percent": 3.047
+            },
+            {
+              "name": "__muluchar",
+              "estimatedTCycles": 2125336,
+              "percent": 2.726
+            },
+            {
+              "name": "ce_render",
+              "estimatedTCycles": 1871664,
+              "percent": 2.401
+            },
+            {
+              "name": "emit_oam",
+              "estimatedTCycles": 1844840,
+              "percent": 2.366
+            },
+            {
+              "name": "collide_player",
+              "estimatedTCycles": 1670360,
+              "percent": 2.143
+            },
+            {
+              "name": "step_entities",
+              "estimatedTCycles": 1651144,
+              "percent": 2.118
+            },
+            {
+              "name": "step_player",
+              "estimatedTCycles": 1364880,
+              "percent": 1.751
+            },
+            {
+              "name": "step_nonbullet",
+              "estimatedTCycles": 1238600,
+              "percent": 1.589
+            },
+            {
+              "name": "prepare_shot",
+              "estimatedTCycles": 1009932,
+              "percent": 1.295
+            },
+            {
+              "name": "ce_trace_write",
+              "estimatedTCycles": 885652,
+              "percent": 1.136
+            },
+            {
+              "name": "step_bullet",
+              "estimatedTCycles": 748432,
+              "percent": 0.96
+            },
+            {
+              "name": "ce_step",
+              "estimatedTCycles": 746332,
+              "percent": 0.957
+            },
+            {
+              "name": "_memcpy",
+              "estimatedTCycles": 630124,
+              "percent": 0.808
+            },
+            {
+              "name": "parallax",
+              "estimatedTCycles": 628756,
+              "percent": 0.807
+            },
+            {
+              "name": "ce_stage_events",
+              "estimatedTCycles": 585948,
+              "percent": 0.752
+            },
+            {
+              "name": "sprite",
+              "estimatedTCycles": 560964,
+              "percent": 0.72
+            },
+            {
+              "name": "shot_box",
+              "estimatedTCycles": 453396,
+              "percent": 0.582
+            },
+            {
+              "name": "_set_bkg_tiles",
+              "estimatedTCycles": 407476,
+              "percent": 0.523
+            },
+            {
+              "name": "shot_sprite",
+              "estimatedTCycles": 362792,
+              "percent": 0.465
+            },
+            {
+              "name": "HRAM / DMA",
+              "estimatedTCycles": 352564,
+              "percent": 0.452
+            },
+            {
+              "name": "___sdcc_bcall_ehl",
+              "estimatedTCycles": 344944,
+              "percent": 0.442
+            },
+            {
+              "name": "ce_shoot",
+              "estimatedTCycles": 321632,
+              "percent": 0.413
+            },
+            {
+              "name": "ce_hud",
+              "estimatedTCycles": 299232,
+              "percent": 0.384
+            },
+            {
+              "name": "step_shot_box",
+              "estimatedTCycles": 273732,
+              "percent": 0.351
+            },
+            {
+              "name": "ce_mainloop",
+              "estimatedTCycles": 263920,
+              "percent": 0.339
+            },
+            {
+              "name": "map_row",
+              "estimatedTCycles": 244140,
+              "percent": 0.313
+            },
+            {
+              "name": "__mulint",
+              "estimatedTCycles": 243620,
+              "percent": 0.312
+            },
+            {
+              "name": "ce_music_tick",
+              "estimatedTCycles": 202072,
+              "percent": 0.259
+            },
+            {
+              "name": "ce_audio_sync",
+              "estimatedTCycles": 174400,
+              "percent": 0.224
+            },
+            {
+              "name": "__moduint",
+              "estimatedTCycles": 129584,
+              "percent": 0.166
+            },
+            {
+              "name": "allocate",
+              "estimatedTCycles": 125032,
+              "percent": 0.16
+            },
+            {
+              "name": "_joypad",
+              "estimatedTCycles": 111332,
+              "percent": 0.143
+            },
+            {
+              "name": "ce_copy",
+              "estimatedTCycles": 102040,
+              "percent": 0.131
+            },
+            {
+              "name": "ce_init_shot_visual",
+              "estimatedTCycles": 87052,
+              "percent": 0.112
+            },
+            {
+              "name": "unmapped 20",
+              "estimatedTCycles": 70512,
+              "percent": 0.09
+            },
+            {
+              "name": "bullet_overlaps",
+              "estimatedTCycles": 58804,
+              "percent": 0.075
+            },
+            {
+              "name": "ce_count_frame",
+              "estimatedTCycles": 52588,
+              "percent": 0.067
+            },
+            {
+              "name": "ce_hud_scanline",
+              "estimatedTCycles": 51472,
+              "percent": 0.066
+            },
+            {
+              "name": "release",
+              "estimatedTCycles": 48692,
+              "percent": 0.062
+            },
+            {
+              "name": "ce_boss_hp",
+              "estimatedTCycles": 48180,
+              "percent": 0.062
+            },
+            {
+              "name": "_rROMB1",
+              "estimatedTCycles": 46684,
+              "percent": 0.06
+            },
+            {
+              "name": "steer_sprite_shots",
+              "estimatedTCycles": 39072,
+              "percent": 0.05
+            },
+            {
+              "name": "_memset",
+              "estimatedTCycles": 36588,
+              "percent": 0.047
+            },
+            {
+              "name": "play_row",
+              "estimatedTCycles": 35188,
+              "percent": 0.045
+            },
+            {
+              "name": "_nowait_int_handler",
+              "estimatedTCycles": 33584,
+              "percent": 0.043
+            },
+            {
+              "name": "spawn_actor",
+              "estimatedTCycles": 31304,
+              "percent": 0.04
+            },
+            {
+              "name": "unmapped 82",
+              "estimatedTCycles": 24020,
+              "percent": 0.031
+            },
+            {
+              "name": "lead",
+              "estimatedTCycles": 22800,
+              "percent": 0.029
+            },
+            {
+              "name": "unmapped 8b",
+              "estimatedTCycles": 22736,
+              "percent": 0.029
+            },
+            {
+              "name": "number",
+              "estimatedTCycles": 18808,
+              "percent": 0.024
+            },
+            {
+              "name": "unmapped 8c",
+              "estimatedTCycles": 13772,
+              "percent": 0.018
+            },
+            {
+              "name": "unmapped 87",
+              "estimatedTCycles": 13636,
+              "percent": 0.017
+            },
+            {
+              "name": "unmapped 83",
+              "estimatedTCycles": 13588,
+              "percent": 0.017
+            },
+            {
+              "name": "unmapped 80",
+              "estimatedTCycles": 12380,
+              "percent": 0.016
+            },
+            {
+              "name": "unmapped 89",
+              "estimatedTCycles": 12068,
+              "percent": 0.015
+            },
+            {
+              "name": "unmapped 40",
+              "estimatedTCycles": 11776,
+              "percent": 0.015
+            },
+            {
+              "name": "unmapped 84",
+              "estimatedTCycles": 10724,
+              "percent": 0.014
+            },
+            {
+              "name": "_set_win_data",
+              "estimatedTCycles": 10464,
+              "percent": 0.013
+            },
+            {
+              "name": "unmapped 41",
+              "estimatedTCycles": 10460,
+              "percent": 0.013
+            },
+            {
+              "name": "unmapped 48",
+              "estimatedTCycles": 10436,
+              "percent": 0.013
+            },
+            {
+              "name": "unmapped 94",
+              "estimatedTCycles": 9676,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 88",
+              "estimatedTCycles": 9452,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 92",
+              "estimatedTCycles": 9324,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 9f",
+              "estimatedTCycles": 9204,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 42",
+              "estimatedTCycles": 9172,
+              "percent": 0.012
+            },
+            {
+              "name": "ce_read_event",
+              "estimatedTCycles": 9084,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 86",
+              "estimatedTCycles": 8680,
+              "percent": 0.011
+            },
+            {
+              "name": "unmapped 91",
+              "estimatedTCycles": 8424,
+              "percent": 0.011
+            },
+            {
+              "name": "bass",
+              "estimatedTCycles": 8152,
+              "percent": 0.01
+            },
+            {
+              "name": "ce_sound",
+              "estimatedTCycles": 8004,
+              "percent": 0.01
+            },
+            {
+              "name": "unmapped 8d",
+              "estimatedTCycles": 7820,
+              "percent": 0.01
+            },
+            {
+              "name": "unmapped 45",
+              "estimatedTCycles": 6872,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped 93",
+              "estimatedTCycles": 6864,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped 96",
+              "estimatedTCycles": 6820,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped a4",
+              "estimatedTCycles": 6168,
+              "percent": 0.008
+            },
+            {
+              "name": "unmapped a8",
+              "estimatedTCycles": 6108,
+              "percent": 0.008
+            },
+            {
+              "name": "ce_damage_actor",
+              "estimatedTCycles": 6080,
+              "percent": 0.008
+            },
+            {
+              "name": "unmapped 9b",
+              "estimatedTCycles": 5784,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped 98",
+              "estimatedTCycles": 4096,
+              "percent": 0.005
+            },
+            {
+              "name": "unmapped a0",
+              "estimatedTCycles": 3992,
+              "percent": 0.005
+            },
+            {
+              "name": "unmapped 81",
+              "estimatedTCycles": 3848,
+              "percent": 0.005
+            },
+            {
+              "name": "unmapped 9a",
+              "estimatedTCycles": 3296,
+              "percent": 0.004
+            },
+            {
+              "name": "unmapped a6",
+              "estimatedTCycles": 3144,
+              "percent": 0.004
+            },
+            {
+              "name": "unmapped 9c",
+              "estimatedTCycles": 2800,
+              "percent": 0.004
+            },
+            {
+              "name": "explode",
+              "estimatedTCycles": 2788,
+              "percent": 0.004
+            },
+            {
+              "name": "unmapped 8a",
+              "estimatedTCycles": 2360,
+              "percent": 0.003
+            },
+            {
+              "name": "__divuint",
+              "estimatedTCycles": 2296,
+              "percent": 0.003
+            },
+            {
+              "name": "add_score",
+              "estimatedTCycles": 1036,
+              "percent": 0.001
+            },
+            {
+              "name": "_set_win_tiles",
+              "estimatedTCycles": 788,
+              "percent": 0.001
+            }
+          ],
+          "hotPCs": [
+            {
+              "address": "1c6",
+              "name": "_wait_vbl_done",
+              "percent": 38.232
+            },
+            {
+              "address": "3b5b",
+              "name": "_set_sprite_data",
+              "percent": 1.064
+            },
+            {
+              "address": "3b59",
+              "name": "_set_sprite_data",
+              "percent": 0.966
+            },
+            {
+              "address": "30a0",
+              "name": "__muluchar",
+              "percent": 0.689
+            },
+            {
+              "address": "3b5d",
+              "name": "_set_sprite_data",
+              "percent": 0.672
+            },
+            {
+              "address": "30a5",
+              "name": "__muluchar",
+              "percent": 0.662
+            },
+            {
+              "address": "30a1",
+              "name": "__muluchar",
+              "percent": 0.487
+            },
+            {
+              "address": "ff88",
+              "percent": 0.3
+            },
+            {
+              "address": "30a2",
+              "name": "__muluchar",
+              "percent": 0.233
+            },
+            {
+              "address": "30a6",
+              "name": "__muluchar",
+              "percent": 0.23
+            },
+            {
+              "address": "3b60",
+              "name": "_set_sprite_data",
+              "percent": 0.226
+            },
+            {
+              "address": "3b61",
+              "name": "_set_sprite_data",
+              "percent": 0.211
+            },
+            {
+              "address": "3b62",
+              "name": "_set_sprite_data",
+              "percent": 0.19
+            },
+            {
+              "address": "6d3",
+              "name": "overlap",
+              "percent": 0.186
+            },
+            {
+              "address": "3b5f",
+              "name": "_set_sprite_data",
+              "percent": 0.186
+            },
+            {
+              "address": "686",
+              "name": "overlap",
+              "percent": 0.174
+            },
+            {
+              "address": "15142",
+              "name": "actor_sprite",
+              "percent": 0.13
+            },
+            {
+              "address": "6a4",
+              "name": "overlap",
+              "percent": 0.126
+            },
+            {
+              "address": "65b",
+              "name": "box",
+              "percent": 0.124
+            },
+            {
+              "address": "14dbe",
+              "name": "emit_oam",
+              "percent": 0.124
+            },
+            {
+              "address": "14db0",
+              "name": "emit_oam",
+              "percent": 0.123
+            },
+            {
+              "address": "14db9",
+              "name": "emit_oam",
+              "percent": 0.123
+            },
+            {
+              "address": "688",
+              "name": "overlap",
+              "percent": 0.119
+            },
+            {
+              "address": "69e",
+              "name": "overlap",
+              "percent": 0.117
+            },
+            {
+              "address": "ff89",
+              "percent": 0.115
+            },
+            {
+              "address": "14dc1",
+              "name": "emit_oam",
+              "percent": 0.115
+            },
+            {
+              "address": "67b",
+              "name": "box",
+              "percent": 0.113
+            },
+            {
+              "address": "69a",
+              "name": "overlap",
+              "percent": 0.112
+            },
+            {
+              "address": "307a",
+              "name": "__mulint",
+              "percent": 0.111
+            },
+            {
+              "address": "687",
+              "name": "overlap",
+              "percent": 0.111
+            },
+            {
+              "address": "689",
+              "name": "overlap",
+              "percent": 0.109
+            },
+            {
+              "address": "690",
+              "name": "overlap",
+              "percent": 0.103
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "rom": ".cache/kouma-v12/roads-final/fixture/projects/road-test/build/Debug/road-test.gb",
+      "romSha256": "dcb40b3338cefd79c9030ee9d70ed5a962f133b464ee842246744d84621efbba",
+      "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+      "emulator": "Boytacean 0.13.2",
+      "fromTick": 2800,
+      "toTick": 3300,
+      "input": "focus",
+      "modes": [
+        {
+          "mode": "CGB",
+          "samples": 186107,
+          "totalTCycles": 72061740,
+          "functions": [
+            {
+              "name": "_wait_vbl_done",
+              "estimatedTCycles": 28739996,
+              "percent": 39.882
+            },
+            {
+              "name": "collide_shots",
+              "estimatedTCycles": 3457016,
+              "percent": 4.797
+            },
+            {
+              "name": "sprite_animation",
+              "estimatedTCycles": 3170312,
+              "percent": 4.399
+            },
+            {
+              "name": "_set_sprite_data",
+              "estimatedTCycles": 2891440,
+              "percent": 4.012
+            },
+            {
+              "name": "box",
+              "estimatedTCycles": 2722352,
+              "percent": 3.778
+            },
+            {
+              "name": "step_actor",
+              "estimatedTCycles": 2683360,
+              "percent": 3.724
+            },
+            {
+              "name": "overlap",
+              "estimatedTCycles": 2501320,
+              "percent": 3.471
+            },
+            {
+              "name": "actor_sprite",
+              "estimatedTCycles": 2354008,
+              "percent": 3.267
+            },
+            {
+              "name": "move_actor",
+              "estimatedTCycles": 2037864,
+              "percent": 2.828
+            },
+            {
+              "name": "ce_render",
+              "estimatedTCycles": 1860788,
+              "percent": 2.582
+            },
+            {
+              "name": "emit_oam",
+              "estimatedTCycles": 1852612,
+              "percent": 2.571
+            },
+            {
+              "name": "collide_player",
+              "estimatedTCycles": 1691580,
+              "percent": 2.347
+            },
+            {
+              "name": "step_entities",
+              "estimatedTCycles": 1619960,
+              "percent": 2.248
+            },
+            {
+              "name": "step_player",
+              "estimatedTCycles": 1363496,
+              "percent": 1.892
+            },
+            {
+              "name": "step_nonbullet",
+              "estimatedTCycles": 1253292,
+              "percent": 1.739
+            },
+            {
+              "name": "prepare_shot",
+              "estimatedTCycles": 1007428,
+              "percent": 1.398
+            },
+            {
+              "name": "__muluchar",
+              "estimatedTCycles": 885840,
+              "percent": 1.229
+            },
+            {
+              "name": "ce_trace_write",
+              "estimatedTCycles": 881696,
+              "percent": 1.224
+            },
+            {
+              "name": "step_bullet",
+              "estimatedTCycles": 752296,
+              "percent": 1.044
+            },
+            {
+              "name": "ce_step",
+              "estimatedTCycles": 736944,
+              "percent": 1.023
+            },
+            {
+              "name": "_memcpy",
+              "estimatedTCycles": 627908,
+              "percent": 0.871
+            },
+            {
+              "name": "parallax",
+              "estimatedTCycles": 623016,
+              "percent": 0.865
+            },
+            {
+              "name": "sprite",
+              "estimatedTCycles": 577996,
+              "percent": 0.802
+            },
+            {
+              "name": "ce_stage_events",
+              "estimatedTCycles": 574012,
+              "percent": 0.797
+            },
+            {
+              "name": "shot_box",
+              "estimatedTCycles": 472172,
+              "percent": 0.655
+            },
+            {
+              "name": "_set_bkg_tiles",
+              "estimatedTCycles": 416452,
+              "percent": 0.578
+            },
+            {
+              "name": "shot_sprite",
+              "estimatedTCycles": 362404,
+              "percent": 0.503
+            },
+            {
+              "name": "___sdcc_bcall_ehl",
+              "estimatedTCycles": 357016,
+              "percent": 0.495
+            },
+            {
+              "name": "HRAM / DMA",
+              "estimatedTCycles": 344676,
+              "percent": 0.478
+            },
+            {
+              "name": "ce_shoot",
+              "estimatedTCycles": 319180,
+              "percent": 0.443
+            },
+            {
+              "name": "ce_hud",
+              "estimatedTCycles": 298756,
+              "percent": 0.415
+            },
+            {
+              "name": "step_shot_box",
+              "estimatedTCycles": 274028,
+              "percent": 0.38
+            },
+            {
+              "name": "ce_mainloop",
+              "estimatedTCycles": 266336,
+              "percent": 0.37
+            },
+            {
+              "name": "map_row",
+              "estimatedTCycles": 244888,
+              "percent": 0.34
+            },
+            {
+              "name": "ce_music_tick",
+              "estimatedTCycles": 200248,
+              "percent": 0.278
+            },
+            {
+              "name": "ce_audio_sync",
+              "estimatedTCycles": 182028,
+              "percent": 0.253
+            },
+            {
+              "name": "_rROMB1",
+              "estimatedTCycles": 174136,
+              "percent": 0.242
+            },
+            {
+              "name": "allocate",
+              "estimatedTCycles": 120756,
+              "percent": 0.168
+            },
+            {
+              "name": "_joypad",
+              "estimatedTCycles": 109604,
+              "percent": 0.152
+            },
+            {
+              "name": "ce_copy",
+              "estimatedTCycles": 104056,
+              "percent": 0.144
+            },
+            {
+              "name": "ce_init_shot_visual",
+              "estimatedTCycles": 88000,
+              "percent": 0.122
+            },
+            {
+              "name": "unmapped 20",
+              "estimatedTCycles": 59064,
+              "percent": 0.082
+            },
+            {
+              "name": "bullet_overlaps",
+              "estimatedTCycles": 56464,
+              "percent": 0.078
+            },
+            {
+              "name": "ce_hud_scanline",
+              "estimatedTCycles": 50572,
+              "percent": 0.07
+            },
+            {
+              "name": "ce_boss_hp",
+              "estimatedTCycles": 49964,
+              "percent": 0.069
+            },
+            {
+              "name": "release",
+              "estimatedTCycles": 47336,
+              "percent": 0.066
+            },
+            {
+              "name": "ce_count_frame",
+              "estimatedTCycles": 46600,
+              "percent": 0.065
+            },
+            {
+              "name": "_memset",
+              "estimatedTCycles": 38536,
+              "percent": 0.053
+            },
+            {
+              "name": "_nowait_int_handler",
+              "estimatedTCycles": 38112,
+              "percent": 0.053
+            },
+            {
+              "name": "play_row",
+              "estimatedTCycles": 36540,
+              "percent": 0.051
+            },
+            {
+              "name": "steer_sprite_shots",
+              "estimatedTCycles": 36504,
+              "percent": 0.051
+            },
+            {
+              "name": "spawn_actor",
+              "estimatedTCycles": 31736,
+              "percent": 0.044
+            },
+            {
+              "name": "unmapped 82",
+              "estimatedTCycles": 25100,
+              "percent": 0.035
+            },
+            {
+              "name": "lead",
+              "estimatedTCycles": 18652,
+              "percent": 0.026
+            },
+            {
+              "name": "number",
+              "estimatedTCycles": 18620,
+              "percent": 0.026
+            },
+            {
+              "name": "__mulint",
+              "estimatedTCycles": 18256,
+              "percent": 0.025
+            },
+            {
+              "name": "unmapped 8b",
+              "estimatedTCycles": 16280,
+              "percent": 0.023
+            },
+            {
+              "name": "unmapped 87",
+              "estimatedTCycles": 15016,
+              "percent": 0.021
+            },
+            {
+              "name": "unmapped 84",
+              "estimatedTCycles": 14864,
+              "percent": 0.021
+            },
+            {
+              "name": "unmapped 40",
+              "estimatedTCycles": 11980,
+              "percent": 0.017
+            },
+            {
+              "name": "unmapped 8c",
+              "estimatedTCycles": 11876,
+              "percent": 0.016
+            },
+            {
+              "name": "unmapped 86",
+              "estimatedTCycles": 10060,
+              "percent": 0.014
+            },
+            {
+              "name": "unmapped 48",
+              "estimatedTCycles": 10008,
+              "percent": 0.014
+            },
+            {
+              "name": "unmapped 81",
+              "estimatedTCycles": 9284,
+              "percent": 0.013
+            },
+            {
+              "name": "ce_read_event",
+              "estimatedTCycles": 9192,
+              "percent": 0.013
+            },
+            {
+              "name": "unmapped 83",
+              "estimatedTCycles": 8932,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 88",
+              "estimatedTCycles": 8496,
+              "percent": 0.012
+            },
+            {
+              "name": "unmapped 92",
+              "estimatedTCycles": 8280,
+              "percent": 0.011
+            },
+            {
+              "name": "unmapped 41",
+              "estimatedTCycles": 8204,
+              "percent": 0.011
+            },
+            {
+              "name": "unmapped 93",
+              "estimatedTCycles": 8068,
+              "percent": 0.011
+            },
+            {
+              "name": "unmapped 9f",
+              "estimatedTCycles": 7828,
+              "percent": 0.011
+            },
+            {
+              "name": "unmapped 9b",
+              "estimatedTCycles": 7824,
+              "percent": 0.011
+            },
+            {
+              "name": "unmapped 8d",
+              "estimatedTCycles": 7700,
+              "percent": 0.011
+            },
+            {
+              "name": "ce_damage_actor",
+              "estimatedTCycles": 7684,
+              "percent": 0.011
+            },
+            {
+              "name": "unmapped 94",
+              "estimatedTCycles": 7616,
+              "percent": 0.011
+            },
+            {
+              "name": "_set_win_data",
+              "estimatedTCycles": 7472,
+              "percent": 0.01
+            },
+            {
+              "name": "bass",
+              "estimatedTCycles": 7236,
+              "percent": 0.01
+            },
+            {
+              "name": "ce_sound",
+              "estimatedTCycles": 7008,
+              "percent": 0.01
+            },
+            {
+              "name": "unmapped 89",
+              "estimatedTCycles": 7000,
+              "percent": 0.01
+            },
+            {
+              "name": "unmapped a8",
+              "estimatedTCycles": 6760,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped a0",
+              "estimatedTCycles": 6308,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped a4",
+              "estimatedTCycles": 6268,
+              "percent": 0.009
+            },
+            {
+              "name": "unmapped 96",
+              "estimatedTCycles": 5776,
+              "percent": 0.008
+            },
+            {
+              "name": "unmapped 98",
+              "estimatedTCycles": 5572,
+              "percent": 0.008
+            },
+            {
+              "name": "unmapped 42",
+              "estimatedTCycles": 5232,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped 45",
+              "estimatedTCycles": 4968,
+              "percent": 0.007
+            },
+            {
+              "name": "unmapped a6",
+              "estimatedTCycles": 4380,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped 91",
+              "estimatedTCycles": 4364,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped 80",
+              "estimatedTCycles": 4364,
+              "percent": 0.006
+            },
+            {
+              "name": "unmapped 8a",
+              "estimatedTCycles": 3880,
+              "percent": 0.005
+            },
+            {
+              "name": "__moduint",
+              "estimatedTCycles": 3088,
+              "percent": 0.004
+            },
+            {
+              "name": "explode",
+              "estimatedTCycles": 2580,
+              "percent": 0.004
+            },
+            {
+              "name": "unmapped 9c",
+              "estimatedTCycles": 2048,
+              "percent": 0.003
+            },
+            {
+              "name": "__divuint",
+              "estimatedTCycles": 1872,
+              "percent": 0.003
+            },
+            {
+              "name": "unmapped 9a",
+              "estimatedTCycles": 1624,
+              "percent": 0.002
+            },
+            {
+              "name": "_set_win_tiles",
+              "estimatedTCycles": 732,
+              "percent": 0.001
+            },
+            {
+              "name": "add_score",
+              "estimatedTCycles": 692,
+              "percent": 0.001
+            }
+          ],
+          "hotPCs": [
+            {
+              "address": "1c6",
+              "name": "_wait_vbl_done",
+              "percent": 39.814
+            },
+            {
+              "address": "3bb6",
+              "name": "_set_sprite_data",
+              "percent": 1.114
+            },
+            {
+              "address": "3bb4",
+              "name": "_set_sprite_data",
+              "percent": 1.091
+            },
+            {
+              "address": "3bb8",
+              "name": "_set_sprite_data",
+              "percent": 0.707
+            },
+            {
+              "address": "ff88",
+              "percent": 0.33
+            },
+            {
+              "address": "3100",
+              "name": "__muluchar",
+              "percent": 0.308
+            },
+            {
+              "address": "30fb",
+              "name": "__muluchar",
+              "percent": 0.301
+            },
+            {
+              "address": "3bba",
+              "name": "_set_sprite_data",
+              "percent": 0.231
+            },
+            {
+              "address": "3bbd",
+              "name": "_set_sprite_data",
+              "percent": 0.224
+            },
+            {
+              "address": "30fc",
+              "name": "__muluchar",
+              "percent": 0.212
+            },
+            {
+              "address": "3bbb",
+              "name": "_set_sprite_data",
+              "percent": 0.212
+            },
+            {
+              "address": "686",
+              "name": "overlap",
+              "percent": 0.208
+            },
+            {
+              "address": "3bbc",
+              "name": "_set_sprite_data",
+              "percent": 0.206
+            },
+            {
+              "address": "6d3",
+              "name": "overlap",
+              "percent": 0.186
+            },
+            {
+              "address": "65b",
+              "name": "box",
+              "percent": 0.155
+            },
+            {
+              "address": "15142",
+              "name": "actor_sprite",
+              "percent": 0.137
+            },
+            {
+              "address": "14dc1",
+              "name": "emit_oam",
+              "percent": 0.132
+            },
+            {
+              "address": "14dbe",
+              "name": "emit_oam",
+              "percent": 0.128
+            },
+            {
+              "address": "690",
+              "name": "overlap",
+              "percent": 0.127
+            },
+            {
+              "address": "68c",
+              "name": "overlap",
+              "percent": 0.126
+            },
+            {
+              "address": "689",
+              "name": "overlap",
+              "percent": 0.123
+            },
+            {
+              "address": "69e",
+              "name": "overlap",
+              "percent": 0.122
+            },
+            {
+              "address": "3ccd",
+              "name": "_set_bkg_tiles",
+              "percent": 0.121
+            },
+            {
+              "address": "14db9",
+              "name": "emit_oam",
+              "percent": 0.121
+            },
+            {
+              "address": "67b",
+              "name": "box",
+              "percent": 0.12
+            },
+            {
+              "address": "688",
+              "name": "overlap",
+              "percent": 0.12
+            },
+            {
+              "address": "3bbe",
+              "name": "_set_sprite_data",
+              "percent": 0.118
+            },
+            {
+              "address": "6a4",
+              "name": "overlap",
+              "percent": 0.118
+            },
+            {
+              "address": "69a",
+              "name": "overlap",
+              "percent": 0.117
+            },
+            {
+              "address": "15201",
+              "name": "sprite",
+              "percent": 0.116
+            },
+            {
+              "address": "687",
+              "name": "overlap",
+              "percent": 0.116
+            },
+            {
+              "address": "14da7",
+              "name": "emit_oam",
+              "percent": 0.116
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "emulicious": {
+    "initialize": true,
+    "launch": false,
+    "reason": "60-second launch response timeout; no ROM execution proof",
+    "log": ".cache/kouma-v12/emulicious.log"
+  },
+  "limits": [
+    "Not a normal-difficulty full-campaign clear",
+    "GBC is not locked to 60 fps; DMG slowdown remains",
+    "No physical hardware or human difficulty/audio assessment"
+  ],
+  "screens": [
+    {
+      "file": "verification-v12/CGB-reimu-raid.png",
+      "sha256": "9ef99572674949431c1fbfc5dd9f40773c20c5c23b7ea82e459103ee8bc915d3"
+    },
+    {
+      "file": "verification-v12/CGB-marisa-raid.png",
+      "sha256": "1c26f83a04686ed88410ae496474b77c7d2afd959b96253ae027eef71a62b854"
+    },
+    {
+      "file": "verification-v12/DMG-reimu-raid.png",
+      "sha256": "cc963fcd17b9341898253c35b970445eb26865826121fa78b16a587d24cb435b"
+    },
+    {
+      "file": "verification-v12/CGB-marisa-boss-dialogue.png",
+      "sha256": "5ec20819bc50c961b559d7abe12fd79e0fc0db1b841d711b9a79dd8c69d62729"
+    },
+    {
+      "file": "verification-v12/CGB-lake-density.png",
+      "sha256": "55c2d94f9099990a17f99a77c889fa6a65c3319e7b60a610beac51cc7f06cc40"
+    },
+    {
+      "file": "verification-v12/CGB-cirno-lower-lanes.png",
+      "sha256": "961868fe7da5736571d07d4c4d03297dbbc017f4c9f41722b9bf58e6a0cc0285"
+    },
+    {
+      "file": "verification-v12/CGB-meiling-lower-lanes.png",
+      "sha256": "e0f168fadae41b64d0956739997c719f0d803607ac0879d71bed30371da8a88e"
+    },
+    {
+      "file": "verification-v12/CGB-sakuya-lower-lanes.png",
+      "sha256": "4343caa75c7abae5cbeb7b308aad84b986ea376d10583e148a21bebc7207b23f"
+    }
+  ]
+}

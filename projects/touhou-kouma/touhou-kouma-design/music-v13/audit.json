@@ -1,0 +1,909 @@
+[
+  {
+    "id": 16,
+    "title": "朱い夜への巡礼",
+    "seconds": 60.006,
+    "bars": 32,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        4
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "VI",
+      "III",
+      "VII",
+      "iv",
+      "V"
+    ],
+    "distinctMelodyBars": 28,
+    "distinctAccompanimentBars": 25,
+    "leadNoteAttacks": 236,
+    "bassNoteAttacks": 236,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 17,
+    "title": "鉄門に舞う花",
+    "seconds": 60.006,
+    "bars": 32,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        4
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "IV",
+      "VII",
+      "III",
+      "ii",
+      "V"
+    ],
+    "distinctMelodyBars": 28,
+    "distinctAccompanimentBars": 23,
+    "leadNoteAttacks": 240,
+    "bassNoteAttacks": 236,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 18,
+    "title": "紅蓮の歩法",
+    "seconds": 57.863,
+    "bars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "iv",
+      "VI",
+      "V",
+      "III",
+      "VII",
+      "ii"
+    ],
+    "distinctMelodyBars": 34,
+    "distinctAccompanimentBars": 27,
+    "leadNoteAttacks": 291,
+    "bassNoteAttacks": 256,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 19,
+    "title": "六曜の書塵",
+    "seconds": 60.006,
+    "bars": 28,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "iv",
+      "VI",
+      "III",
+      "ii",
+      "V"
+    ],
+    "distinctMelodyBars": 24,
+    "distinctAccompanimentBars": 20,
+    "leadNoteAttacks": 182,
+    "bassNoteAttacks": 216,
+    "duty": [
+      128
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 20,
+    "title": "月の余白",
+    "seconds": 57.863,
+    "bars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "VI",
+      "iv",
+      "V",
+      "III",
+      "VII",
+      "ii"
+    ],
+    "distinctMelodyBars": 34,
+    "distinctAccompanimentBars": 27,
+    "leadNoteAttacks": 294,
+    "bassNoteAttacks": 256,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 21,
+    "title": "秒針の迷廊",
+    "seconds": 60.006,
+    "bars": 32,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        4
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "VII",
+      "VI",
+      "V",
+      "iv",
+      "III",
+      "ii"
+    ],
+    "distinctMelodyBars": 28,
+    "distinctAccompanimentBars": 26,
+    "leadNoteAttacks": 202,
+    "bassNoteAttacks": 236,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 22,
+    "title": "一瞬の銀",
+    "seconds": 57.863,
+    "bars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "VI",
+      "ii",
+      "V",
+      "iv",
+      "III",
+      "VII"
+    ],
+    "distinctMelodyBars": 32,
+    "distinctAccompanimentBars": 25,
+    "leadNoteAttacks": 256,
+    "bassNoteAttacks": 256,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 23,
+    "title": "胸壁の上の月",
+    "seconds": 60.006,
+    "bars": 28,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "III",
+      "VI",
+      "VII",
+      "iv",
+      "V",
+      "ii"
+    ],
+    "distinctMelodyBars": 24,
+    "distinctAccompanimentBars": 23,
+    "leadNoteAttacks": 197,
+    "bassNoteAttacks": 216,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 24,
+    "title": "夜潮の冠",
+    "seconds": 57.863,
+    "bars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "VI",
+      "III",
+      "VII",
+      "iv",
+      "ii",
+      "V"
+    ],
+    "distinctMelodyBars": 34,
+    "distinctAccompanimentBars": 29,
+    "leadNoteAttacks": 290,
+    "bassNoteAttacks": 256,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 25,
+    "title": "灯らぬ七つの窓",
+    "seconds": 60.006,
+    "bars": 32,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        4
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "VI",
+      "iv",
+      "V",
+      "III",
+      "ii",
+      "VII"
+    ],
+    "distinctMelodyBars": 28,
+    "distinctAccompanimentBars": 24,
+    "leadNoteAttacks": 226,
+    "bassNoteAttacks": 236,
+    "duty": [
+      128
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 26,
+    "title": "暁の外の遊戯室",
+    "seconds": 57.863,
+    "bars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "VI",
+      "III",
+      "V",
+      "iv",
+      "VII",
+      "ii"
+    ],
+    "distinctMelodyBars": 34,
+    "distinctAccompanimentBars": 29,
+    "leadNoteAttacks": 291,
+    "bassNoteAttacks": 256,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 27,
+    "title": "夜明けの静かな神社",
+    "seconds": 60.006,
+    "bars": 28,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "I",
+      "vi",
+      "IV",
+      "V",
+      "iii",
+      "ii"
+    ],
+    "distinctMelodyBars": 24,
+    "distinctAccompanimentBars": 20,
+    "leadNoteAttacks": 202,
+    "bassNoteAttacks": 216,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 28,
+    "title": "灯へ帰る",
+    "seconds": 57.863,
+    "bars": 24,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Coda",
+        4
+      ]
+    ],
+    "chords": [
+      "i",
+      "VI",
+      "iv",
+      "V",
+      "III",
+      "ii"
+    ],
+    "distinctMelodyBars": 24,
+    "distinctAccompanimentBars": 17,
+    "leadNoteAttacks": 146,
+    "bassNoteAttacks": 168,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 29,
+    "title": "封印がほどける",
+    "seconds": 3.215,
+    "bars": 2,
+    "form": [
+      [
+        "Fanfare",
+        2
+      ]
+    ],
+    "chords": [
+      "I"
+    ],
+    "distinctMelodyBars": 2,
+    "distinctAccompanimentBars": 2,
+    "leadNoteAttacks": 14,
+    "bassNoteAttacks": 14,
+    "duty": [
+      128
+    ],
+    "envelope": [
+      114
+    ],
+    "loop": false
+  },
+  {
+    "id": 30,
+    "title": "こおりぼしのさざなみ",
+    "seconds": 60.006,
+    "bars": 32,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        4
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "I",
+      "vi",
+      "ii",
+      "V",
+      "IV",
+      "iii"
+    ],
+    "distinctMelodyBars": 28,
+    "distinctAccompanimentBars": 24,
+    "leadNoteAttacks": 237,
+    "bassNoteAttacks": 236,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 31,
+    "title": "あさつゆのこおりあそび",
+    "seconds": 57.863,
+    "bars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "I",
+      "IV",
+      "vi",
+      "V",
+      "ii"
+    ],
+    "distinctMelodyBars": 34,
+    "distinctAccompanimentBars": 25,
+    "leadNoteAttacks": 289,
+    "bassNoteAttacks": 256,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 32,
+    "title": "宵闇の散歩道",
+    "seconds": 60.006,
+    "bars": 28,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "VI",
+      "III",
+      "VII",
+      "iv",
+      "V",
+      "ii"
+    ],
+    "distinctMelodyBars": 24,
+    "distinctAccompanimentBars": 23,
+    "leadNoteAttacks": 187,
+    "bassNoteAttacks": 216,
+    "duty": [
+      128
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 33,
+    "title": "月を隠すリボン",
+    "seconds": 60.006,
+    "bars": 32,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        4
+      ],
+      [
+        "Reprise",
+        8
+      ]
+    ],
+    "chords": [
+      "i",
+      "VI",
+      "iv",
+      "V",
+      "III",
+      "VII"
+    ],
+    "distinctMelodyBars": 30,
+    "distinctAccompanimentBars": 23,
+    "leadNoteAttacks": 238,
+    "bassNoteAttacks": 236,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  },
+  {
+    "id": 34,
+    "title": "おかえり、夜明けの空",
+    "seconds": 57.863,
+    "bars": 24,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Coda",
+        4
+      ]
+    ],
+    "chords": [
+      "I",
+      "vi",
+      "IV",
+      "V",
+      "iii",
+      "ii"
+    ],
+    "distinctMelodyBars": 24,
+    "distinctAccompanimentBars": 17,
+    "leadNoteAttacks": 156,
+    "bassNoteAttacks": 168,
+    "duty": [
+      128,
+      64
+    ],
+    "envelope": [
+      99,
+      114,
+      130
+    ],
+    "loop": true
+  }
+]

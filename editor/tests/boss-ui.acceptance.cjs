@@ -37,8 +37,8 @@ const native = {
     shell: { ...electron.shell, openPath: async (folder) => { opened.push(folder); return ''; } },
 };
 electron.app.disableHardwareAcceleration();
-const timer = setTimeout(() => { record({ error: 'timeout' }); electron.app.exit(1); }, 45000);
-const js = (source) => win.webContents.executeJavaScript(source);
+const timer = setTimeout(() => { record({ error: 'timeout' }); electron.app.exit(1); }, 90000);
+const js = async (source) => {try{return await win.webContents.executeJavaScript(source);}catch(error){throw Error(source+'\n'+error.message);}};
 async function click(selector) {
     const point = await js(`(() => {
         const element = document.querySelector(${JSON.stringify(selector)});
@@ -95,5 +95,77 @@ electron.app.whenReady().then(async()=>{
  assert.equal(await js("[...document.querySelectorAll('summary')].find(e=>e.textContent==='撃破後の勝者・敗者会話').parentElement.querySelector('input[aria-label=\"セリフ1行目（18文字まで）\"]').value"),'テスト');
  assert.equal(fs.existsSync(path.join(temp,'projects/first/build')),false,'unsaved dialogue preview does not build the ROM');
  fs.writeFileSync(path.join(output,'editor-victory.png'),(await win.webContents.capturePage()).toPNG());
+ if(lib.readGame(root,'touhou-kouma').stages[0].presentation?.characterDialogues?.length){
+  const variant="[...document.querySelectorAll('.inspector summary')].find(e=>e.textContent.startsWith('追加機体の会話')).parentElement";
+  for(const [title,section,text]of [['戦闘前会話','戦闘開始前の会話','ほうきで さんぽだぜ'],['撃破後会話','撃破後の会話','いい しょうぶ だったぜ']]){
+   const selector=`document.querySelector('select[aria-label="${title}の機体"]')`,canvas=`document.querySelector('canvas[aria-label="${title}プレビュー"]')`,initial=await js(canvas+'.toDataURL()');
+   await js(selector+'.closest("details").open=true');await js(selector+'.focus()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'Down'});win.webContents.sendInputEvent({type:'keyUp',keyCode:'Down'});
+   await until(selector+".value === '1'");await until(canvas+'.toDataURL() !== '+JSON.stringify(initial));
+   const input=variant+`.querySelectorAll('summary')`,field=`[...${input}].find(e=>e.textContent==='${section}').parentElement.querySelector('input[aria-label="セリフ1行目（18文字まで）"]')`,before=await js(canvas+'.toDataURL()');
+   await js(field+'.focus()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'A',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'A',modifiers:['control']});await win.webContents.insertText(text);
+   await until(canvas+'.toDataURL() !== '+JSON.stringify(before));assert.equal(await js(field+'.value'),text);
+   fs.writeFileSync(path.join(output,title+'-marisa.png'),Buffer.from((await js(canvas+'.toDataURL()')).split(',')[1],'base64'));
+  }
+  record({characterBeforeAndAfterPreviews:true,unsavedMarisaDialogueRefresh:true});
+ }
+ if(lib.readGame(root,'touhou-kouma').player.characters?.length){
+  await js("[...document.querySelectorAll('.category')].find(e=>e.textContent.includes('自機')).click()");
+  await until("document.body.innerText.includes('追加の選択機体')");
+  const characterPanel="[...document.querySelectorAll('summary')].find(e=>e.textContent.startsWith('追加の選択機体（最大3）')).parentElement";
+  const speedInput=characterPanel+".querySelector('input[aria-label=\"速度 px / frame\"]')";
+  assert.equal(Number(await js(speedInput+'.value')),3.25);
+  assert.ok((await js(characterPanel+'.innerText')).includes('魔理沙スパーク'));
+  if(await js("!!document.querySelector('select[aria-label=機体別画面のプレビュー]')")){
+   const select="document.querySelector('select[aria-label=機体別画面のプレビュー]')",selection="document.querySelector('canvas[aria-label=機体選択画像プレビュー]').toDataURL()",over="document.querySelector('canvas[aria-label=機体別ゲームオーバープレビュー]').toDataURL()";
+   const beforeSelect=await js(selection),beforeOver=await js(over);await js(select+'.focus()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'Down'});win.webContents.sendInputEvent({type:'keyUp',keyCode:'Down'});
+   await until(select+".value === '1'");await until(selection+' !== '+JSON.stringify(beforeSelect));await until(over+' !== '+JSON.stringify(beforeOver));
+   fs.writeFileSync(path.join(output,'select-marisa.png'),Buffer.from((await js(selection)).split(',')[1],'base64'));fs.writeFileSync(path.join(output,'gameover-marisa.png'),Buffer.from((await js(over)).split(',')[1],'base64'));
+   const refs=await js(characterPanel+`.querySelectorAll('select') && [...${characterPanel}.querySelectorAll('select')].map(e=>e.value)`);assert.ok(refs.includes('select-marisa'));assert.ok(refs.includes('gameover-marisa'));
+   record({playerScreenDropdown:true,selectionPreviewChanges:true,gameoverPreviewChanges:true,characterArtFields:true});
+  }
+  await js(speedInput+'.focus()');
+  win.webContents.sendInputEvent({type:'keyDown',keyCode:'A',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'A',modifiers:['control']});await win.webContents.insertText('3.5');
+  await until(speedInput+".value === '3.5'");
+  await js("[...document.querySelectorAll('.bottom-tabs button')].find(e=>e.textContent.trim()==='プレビュー').click()");
+  await js("document.querySelector('select[aria-label=プレビューの機体]').focus()");
+  win.webContents.sendInputEvent({type:'keyDown',keyCode:'Down'});win.webContents.sendInputEvent({type:'keyUp',keyCode:'Down'});
+  await until("document.querySelector('select[aria-label=プレビューの機体]').value === '1'");
+  fs.writeFileSync(path.join(output,'editor-player.png'),(await win.webContents.capturePage()).toPNG());
+  await js("[...document.querySelectorAll('.category')].find(e=>e.textContent.includes('弾幕')).click()");
+  await js("[...document.querySelectorAll('.asset-row')].find(e=>e.textContent.includes('pat-seal')).click()");
+  await until("document.body.innerText.includes('誘導設定（敵弾専用）')");
+  assert.equal(await js("[...document.querySelectorAll('.inspector select')].find(e=>[...e.options].some(o=>o.value==='homing')).value"),'homing');
+  const launchSelect="[...document.querySelectorAll('.inspector select')].find(e=>[...e.options].some(o=>o.value==='both'))";
+  assert.deepEqual(await js(launchSelect+'.options.length'),6);
+  await js(launchSelect+'.focus()');
+  win.webContents.sendInputEvent({type:'keyDown',keyCode:'Down'});win.webContents.sendInputEvent({type:'keyUp',keyCode:'Down'});
+  await until(launchSelect+".value === 'left'");
+  fs.writeFileSync(path.join(output,'editor-guidance.png'),(await win.webContents.capturePage()).toPNG());
+  win.webContents.sendInputEvent({type:'keyDown',keyCode:'S',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'S',modifiers:['control']});
+  for(let i=0;i<100;i++){if(lib.readGame(temp,'first').player.characters[0].speed===3.5)break;await new Promise(r=>setTimeout(r,50));}
+  const saved=lib.readGame(temp,'first');assert.equal(saved.player.characters[0].speed,3.5);assert.equal(saved.patterns.find(p=>p.id==='pat-seal').launch.kind,'left');
+  if(saved.stages[0].presentation.characterDialogues?.length){const v=saved.stages[0].presentation.characterDialogues[0];assert.equal(v.before.pages[0].line1,'ほうきで さんぽだぜ');assert.equal(v.after.pages[0].line1,'いい しょうぶ だったぜ');assert.equal(saved.player.characters[0].selectionBackground,'select-marisa');assert.equal(saved.player.characters[0].gameoverBackground,'gameover-marisa');record({characterStorySavedAndReopened:true,characterScreenReferencesPreserved:true});}
+  assert.equal(fs.existsSync(path.join(temp,'projects/first/build')),false);
+  record({characterControls:true,characterPreviewSelection:true,characterBombImage:true,launchOptions:6,guidanceControls:true,savedAndReopened:true,buildFree:true});
+ }
+
+ if(lib.readGame(root,'touhou-kouma').ending?.characterSlides?.length){
+  await js("[...document.querySelectorAll('.category')].find(e=>e.textContent.includes('自機')).click()");
+  await until("!!document.querySelector('canvas[aria-label=機体別エンディングプレビュー]')");
+  const endSelect="document.querySelector('select[aria-label=エンディング画像のプレビュー]')",characterSelect="document.querySelector('select[aria-label=機体別画面のプレビュー]')",canvas="document.querySelector('canvas[aria-label=機体別エンディングプレビュー]')";
+  await js(endSelect+'.focus()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'End'});win.webContents.sendInputEvent({type:'keyUp',keyCode:'End'});await until(endSelect+".value==='5'");
+  await js(characterSelect+'.focus()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'Home'});win.webContents.sendInputEvent({type:'keyUp',keyCode:'Home'});await until(characterSelect+".value==='0'");await js("new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))");
+  const reimu=await js(canvas+'.toDataURL()');
+  await js(characterSelect+'.focus()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'Down'});win.webContents.sendInputEvent({type:'keyUp',keyCode:'Down'});await until(characterSelect+".value==='1'");await until(canvas+'.toDataURL()!=='+JSON.stringify(reimu));
+  fs.writeFileSync(path.join(output,'ending-reimu.png'),Buffer.from(reimu.split(',')[1],'base64'));fs.writeFileSync(path.join(output,'ending-marisa.png'),Buffer.from((await js(canvas+'.toDataURL()')).split(',')[1],'base64'));
+  await js("[...document.querySelectorAll('.category')].find(e=>e.textContent.includes('プロジェクト')).click()");
+  await until("!!document.querySelector('input[aria-label=自動送り秒数]')");
+  const seconds="document.querySelector('input[aria-label=自動送り秒数]')",music="document.querySelector('select[aria-label=エンディングBGM]')",after="document.querySelector('input[aria-label=最終スコアをエンディング後に集計]')";
+  assert.equal(await js(seconds+'.value'),'10');assert.equal(await js(music+'.value'),'34');assert.equal(await js(after+'.checked'),true);
+  await js(seconds+'.focus()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'A',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'A',modifiers:['control']});await win.webContents.insertText('12');await until(seconds+".value==='12'");
+  win.webContents.sendInputEvent({type:'keyDown',keyCode:'S',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'S',modifiers:['control']});
+  for(let i=0;i<100&&lib.readGame(temp,'first').ending.seconds!==12;i++)await new Promise(r=>setTimeout(r,50));const saved=lib.readGame(temp,'first');assert.equal(saved.ending.seconds,12);assert.equal(saved.ending.music,34);assert.equal(saved.ending.scoreAfter,true);assert.equal(lib.resolveEnding(saved,1).at(-1).background,'ending-marisa');assert.equal(fs.existsSync(path.join(temp,'projects/first/build')),false);
+  fs.writeFileSync(path.join(output,'editor-ending.png'),(await win.webContents.capturePage()).toPNG());record({endingPreviewsBothCharacters:true,endingSecondsEditedAndReloaded:12,endingMusic:34,scoreAfter:true,buildFree:true});
+ }
  record({victoryPreview:true,unsavedDialogueRefresh:true,phaseHpControl:true,phaseHp,returnPositionControl:true,bossControls:true,cutinPreview:true,cutinSeconds:Number(duration),scoreWaitControl:true});clearTimeout(timer);electron.app.exit(0);
 }).catch(error=>{record({error:error.stack});clearTimeout(timer);electron.app.exit(1);});

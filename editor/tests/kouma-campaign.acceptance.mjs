@@ -4,6 +4,8 @@ import {boot,frames,memory,symbols,GameBoyMode,PadKey} from './emulator.mjs';imp
 const root=path.resolve(import.meta.dirname,'../..'),lib=createRequire(import.meta.url)('../build/library.cjs'),out=path.resolve(process.argv[2]&&!process.argv[2].startsWith('--')?process.argv[2]:path.join(root,'.cache/kouma-v08/campaign-qa')),fixture=path.join(out,'fixture');
 fs.mkdirSync(fixture,{recursive:true});for(const dir of ['engine','.tools/gbdk','.tools/misaki'])fs.cpSync(path.join(root,dir),path.join(fixture,dir),{recursive:true});
 const game=lib.readGame(root,'touhou-kouma');game.name='kouma-test';game.player.invulnerability=1024;game.bossCelebration=false;
+game.player.characters=[];game.ending.characterSlides=[];game.ending.scoreAfter=false; // Dedicated selection/bomb acceptance covers the menu separately.
+game.stages.forEach(s=>delete s.presentation.characterDialogues);
 const w=game.patterns.find(p=>p.id===game.player.weapon);Object.assign(w,{kind:'straight',speed:8,interval:2,delay:0,angle:0,damage:1});
 for(const b of game.bosses){b.hp=1;for(const [i,p]of b.phases.entries()){p.hp=1;p.threshold=i===0?2:0;p.motion={...p.motion,kind:'straight',vx:0,vy:0};}}
 for(const s of game.stages){const e=s.events.find(e=>e.kind==='boss');s.events=[{...e,frame:0,x:80,y:36}];}

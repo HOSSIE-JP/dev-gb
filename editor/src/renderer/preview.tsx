@@ -35,6 +35,8 @@ export function Preview({
         keys = useRef(0),
         [running, setRunning] = useState(true),
         [speed, setSpeed] = useState(1),
+        [character,setCharacter]=useState(0),
+        [bombs,setBombs]=useState(0),
         [hitbox, setHitbox] = useState(false),
         [tick, setTick] = useState(0),
         [oam, setOam] = useState(0),
@@ -94,7 +96,7 @@ export function Preview({
                     value: 0,
                 });
         }
-        return new Simulation(g, stageId);
+        return new Simulation(g, stageId, character);
     };
     const draw = () => {
         const c = ref.current?.getContext("2d"),
@@ -121,6 +123,7 @@ export function Preview({
             ]},glyphs,dmg);
         } else {
             drawSimulation(c, s, dmg, hitbox);
+            if (!s.bombLeft) {
             const hud = s.game.screens.find((s) => s.id === "hud")!;
             c.save();
             c.translate(0, hud.dock === "top" ? 0 : 144 - (hud.rows ?? 2) * 8);
@@ -134,8 +137,10 @@ export function Preview({
                     ),
                 ).padStart(5, "0"),
                 boss: String(s.bossHp).padStart(5, "0"),
+                bombs: String(s.bombs).padStart(5,"0"),
             });
             c.restore();
+            }
             if (s.aim) {
                 c.strokeStyle = "#ffbd66";
                 c.beginPath();
@@ -149,6 +154,7 @@ export function Preview({
         setTick(s.tick);
         setOam(s.oam);
         setDropped(s.dropped);
+        setBombs(s.bombs);
         setResult(s.result);
         const lines = Array(144).fill(0),
             items = [
@@ -167,7 +173,7 @@ export function Preview({
         sim.current = create();
         setTick(0);
         draw();
-    }, [game, id, kind, scope]);
+    }, [game, id, kind, scope, character]);
     useEffect(() => {
         let request = 0,
             last = performance.now(),
@@ -216,6 +222,11 @@ export function Preview({
         <div className="preview">
             <div className="toolbar">
                 <span className="eyebrow">LIVE PREVIEW</span>
+                <select aria-label="プレビューの機体" value={character} onChange={e=>setCharacter(+e.target.value)}>
+                    <option value={0}>{game.player.name??"PLAYER 1"}</option>
+                    {(game.player.characters??[]).map((p,i)=><option key={p.id} value={i+1}>{p.name}</option>)}
+                </select>
+                {game.player.bomb?.enabled && <span>ボム {bombs} · Z＋X</span>}
                 <select
                     value={scope}
                     onChange={(e) => setScope(e.target.value)}

@@ -38,9 +38,16 @@
 #define CE_MUSIC_KOUMA_CIRNO 31u
 #define CE_MUSIC_KOUMA_FOREST 32u
 #define CE_MUSIC_KOUMA_RUMIA 33u
-#define CE_MUSIC_MAX 33u
+#define CE_MUSIC_KOUMA_ENDING 34u
+#define CE_MUSIC_MAX 34u
+
+/* A streamed bar is 3 instrument bytes + 16 lead + 16 accompaniment steps.
+ * Its ROM bank is switched only once per bar; effects keep channels 1 and 4. */
+typedef struct { uint8_t bank; const uint8_t *data; uint16_t rows; uint8_t speed, loop; } CE_MusicScore;
+extern const CE_MusicScore ce_music_scores[];
 
 extern uint8_t ce_music_track;
+extern uint16_t ce_music_row;
 void ce_music_play(uint8_t track) BANKED;
 void ce_music_pause(uint8_t paused) BANKED;
 /* Call from the main loop with elapsed VBlanks, never from an interrupt.

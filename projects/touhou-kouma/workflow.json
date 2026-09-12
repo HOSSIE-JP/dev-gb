@@ -1,15 +1,69 @@
 {
-  "version": "0.9-density-balance",
-  "updatedAt": "2026-09-11",
+  "version": "0.15-pop-brand-startup",
+  "updatedAt": "2026-09-12",
   "status": "playtest-ready",
   "approved": false,
-  "projectRevision": "02000f9cf467f0f53eaed503f5692ac804328e8337bcfc3a96d26b2842f6efd2",
+  "projectRevision": "6a380276c9aa030a4f7d0d0a4d01796fdac4bb39e4474fe3d0a548da537a545a",
   "rom": {
-    "bytes": 524288,
-    "sha256": "48bf553af8688c2ede9f07ca497d39ab31a5510cd261817d47a236ed1a04b0f9",
-    "path": "build/Release/touhou-kouma-v09.gb"
+    "path": "build/Release/touhou-kouma-v15.gb",
+    "sha256": "ef365100ce9f2891c18d88360081dbdc92337ced00634a2421f32e524311402a",
+    "bytes": 1048576
   },
   "previous": [
+    {
+      "version": "0.14-optional-startup-logos",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v14.gb",
+        "sha256": "e45ec8585288597a0cefc30d8f0f3c38becf87f3f03e014213c81127b5a5fe70",
+        "bytes": 1048576
+      },
+      "projectRevision": "e3eac6bcbabeff134529047084976631f5d4436ba5fdb5cc33893868b7a619c8"
+    },
+    {
+      "version": "0.13-character-ending-arranged-music",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v13.gb",
+        "sha256": "8ea98daf02227ae333f5ff68a3af8d865cf08e4aed24c371c3ab2e89c7456bc7",
+        "bytes": 1048576
+      },
+      "projectRevision": "cb9337132ea356e5d89593a38c54a6e5816f43cb12356a75d68383e707b560ea"
+    },
+    {
+      "version": "0.12-road-formations",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v12.gb",
+        "sha256": "ed50e665f456fbacc2ddae95c0077940c3334fe1746aff77b7cf4ade5e95003e",
+        "bytes": 1048576
+      },
+      "projectRevision": "c9c414dcb69e6c986aeb9f4b2c7f1796e0a6200203bd6f0f24866c156c2b8968"
+    },
+    {
+      "version": "0.11-character-presentation",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v11.gb",
+        "sha256": "eaaedcd26a621430eae7d59ca96f1312e42f8f835423b5591bffee349cec5a8d",
+        "bytes": 1048576
+      },
+      "projectRevision": "7a692f06d03b3aeb2331d50977787cfd5034431154beae34b67c2b33f9428943"
+    },
+    {
+      "version": "0.10-characters-bombs",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v10.gb",
+        "sha256": "2656f1831cdac466907ea276f4b3e170748e07641f5d96ea16355be9718496c9",
+        "bytes": 524288
+      },
+      "projectRevision": "1ae1fe073c4a883b331b6584607eea4df5edcb953cea9af5169e6d1500b4a796"
+    },
+    {
+      "version": "0.9-density-balance",
+      "rom": {
+        "bytes": 524288,
+        "sha256": "48bf553af8688c2ede9f07ca497d39ab31a5510cd261817d47a236ed1a04b0f9",
+        "path": "build/Release/touhou-kouma-v09.gb"
+      },
+      "projectRevision": "02000f9cf467f0f53eaed503f5692ac804328e8337bcfc3a96d26b2842f6efd2"
+    },
     {
       "version": "0.8-boss-phase-sequence",
       "rom": {
@@ -39,45 +93,17 @@
     }
   ],
   "checks": {
-    "standardTests": 66,
-    "editorUi": true,
-    "unsavedVictoryPreview": true,
-    "phaseHp": 100,
-    "attackPhases": 3,
-    "totalBossHp": 300,
-    "maxBgBullets": 40,
-    "bossPeaks": {
-      "rumia": 9,
-      "meiling": 20,
-      "patchouli": 24,
-      "sakuya": 30,
-      "remilia": 36,
-      "flandre": 40,
-      "cirno": 17
-    },
-    "cutinFrames": 72,
-    "allBossesDmgAndCgb": 7,
-    "cutinsPerMode": 21,
-    "victoryPagesAuthored": 28,
-    "downwardHostileDirections": true,
-    "bgTileDrops": 0,
-    "nativeBgbPhases": 21,
-    "nativeBgbTimingSamples": 8909,
-    "nativeBgbMinUpdatesPerSecond": 58.274,
-    "wasmCgbMinUpdatesPerSecond": 58.794,
-    "unmodifiedRumiaHpPhases": [
-      100,
-      100,
-      100
-    ],
-    "unmodifiedRumiaDefeated": false
+    "standardTests": 86,
+    "productionStartupCases": 6,
+    "nativeStartupCases": 2,
+    "unchangedImages": 76,
+    "debugReleaseIdentical": true,
+    "saveReopen": true
   },
   "pending": [
-    "Human full campaign playtest and difficulty/time tuning",
-    "Rare two-frame CGB updates and sustained DMG slowdown remain",
-    "Human judgment of announcement sound",
-    "DMG/CGB hardware and native controller",
-    "Emulicious launch timed out after 60 seconds"
+    "Physical hardware has not been verified.",
+    "No new normal-difficulty full-campaign clear.",
+    "Emulicious launch timed out; not counted as execution evidence."
   ],
-  "evidence": "../../docs/touhou-kouma-v09.md"
+  "evidence": "../../docs/touhou-kouma-v15.md"
 }

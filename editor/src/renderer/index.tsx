@@ -17,6 +17,8 @@ import { Form, Field, Select } from "./fields";
 import { AssetCanvas, MapCanvas, ScreenCanvas, MotionCanvas } from "./canvases";
 import { BossCanvas } from "./boss-canvas";
 import { VictoryDialogueCanvas } from "./victory-dialogue-canvas";
+import { PlayerPresentationCanvas } from "./player-presentation-canvas";
+import { StartupPreview } from "./startup-preview";
 import { Preview, RomPreview } from "./preview";
 import { Timeline } from "./timeline";
 import { createEntity } from "./entity-defaults";
@@ -1082,7 +1084,8 @@ function App() {
                                     </div>
                                 </>
                             ) : stage ? (
-                                <><VictoryDialogueCanvas game={game} stage={stage} glyphs={glyphs} dmg={dmg} />
+                                <><VictoryDialogueCanvas game={game} stage={stage} glyphs={glyphs} dmg={dmg} before />
+                                <VictoryDialogueCanvas game={game} stage={stage} glyphs={glyphs} dmg={dmg} />
                                 <MapCanvas
                                     game={game}
                                     stage={stage}
@@ -1120,6 +1123,8 @@ function App() {
                                     />
                                 )
                             ) : selection.kind === "project" ? (
+                                <div style={{width:"100%",overflowY:"auto"}}>
+                                <StartupPreview game={game} glyphs={glyphs} dmg={dmg}/>
                                 <ProjectOverview
                                     game={game}
                                     diagnostics={diagnostics}
@@ -1135,6 +1140,9 @@ function App() {
                                     play={play}
                                     inspect={() => showPanel("build")}
                                 />
+                                </div>
+                            ) : selection.kind === "player" ? (
+                                <PlayerPresentationCanvas game={game} glyphs={glyphs} dmg={dmg}/>
                             ) : selection.kind === "palettes" ? (
                                 <div className="palette-display">
                                     {object?.colors.map(

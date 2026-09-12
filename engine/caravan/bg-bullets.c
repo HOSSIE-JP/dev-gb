@@ -9,6 +9,7 @@ uint16_t ce_bg_tile_drops, ce_bg_peak_tiles;
 int16_t ce_bg_x[CE_MAX_BG_SHOTS], ce_bg_y[CE_MAX_BG_SHOTS], ce_bg_vx[CE_MAX_BG_SHOTS], ce_bg_vy[CE_MAX_BG_SHOTS];
 uint16_t ce_bg_life[CE_MAX_BG_SHOTS];
 static uint8_t damage[CE_MAX_BG_SHOTS];
+static uint8_t guide_pattern[CE_MAX_BG_SHOTS], guide_angle[CE_MAX_BG_SHOTS], has_guidance;
 static uint16_t cells[360], compound_cells[CE_MAX_BG_SHOTS / 2];
 /* CGB uploads at most 32 composite tiles plus 18 full map rows in VBlank.
  * cells is dead after composition and doubles as the aligned DMA map source. */
@@ -29,7 +30,7 @@ static CE_Screen screen;
 CE_BGSpawn ce_bg_request;
 static const uint8_t expand[16]={0,192,48,240,12,204,60,252,3,195,51,243,15,207,63,255};
 #include "bg-kernels.h"
-void ce_bg_clear(void) BANKED {memset(ce_bg_life,0,sizeof(ce_bg_life));ce_bg_count=0;ce_bg_hit=0;spawn_next=0;}
+void ce_bg_clear(void) BANKED {memset(ce_bg_life,0,sizeof(ce_bg_life));ce_bg_count=0;ce_bg_hit=0;spawn_next=0;has_guidance=0;}
 void ce_bg_begin(void) BANKED {
     ce_bg_back=ce_is_cgb?0u:ce_bg_plane^1u;next_tile=hud_tiles+static_tiles;compound_count=0;
     /* Singleton masks are reconstructed on their first overlap. Every compound
@@ -69,7 +70,20 @@ void ce_bg_hud(uint8_t x,uint8_t y,uint8_t count,const uint8_t *data) BANKED {me
 static void retire(void){ce_bg_life[slot]=0;--ce_bg_count;}
 #include "bg-state-kernels.h"
 #include "bg-update-kernel.h"
-void ce_bg_update(void) BANKED {ce_bg_begin();update_all();}
+static void guide(void) {
+    uint8_t s,angle;const CE_Pattern *p;
+    for(s=ce_state.tick&7u;s<ce_bg_limit;s+=8u){
+        if(!ce_bg_life[s] || guide_pattern[s]==CE_NONE)continue;
+        p=&ce_patterns[guide_pattern[s]];
+        /* Retire steering metadata once the short homing window expires.
+         * Long-lived coasting bullets then skip pattern table lookups. */
+        if(p->lifetime-ce_bg_life[s]>=p->guide_frames){guide_pattern[s]=CE_NONE;continue;}
+        if((ce_state.tick-s)&p->guide_mask)continue;
+        angle=ce_home(guide_angle[s],(uint16_t)ce_bg_x[s]>>8,(uint16_t)ce_bg_y[s]>>8);guide_angle[s]=angle;
+        ce_bg_vx[s]=(uint16_t)p->velocity[angle*2u]<<4;ce_bg_vy[s]=(uint16_t)p->velocity[angle*2u+1u]<<4;
+    }
+}
+void ce_bg_update(void) BANKED {if(has_guidance)guide();ce_bg_begin();update_all();}
 void ce_bg_spawn(void) BANKED {
     if(ce_bg_count>=ce_bg_limit){++ce_state.dropped;return;}
     /* Continue after the preceding allocation instead of rescanning the same
@@ -79,6 +93,10 @@ void ce_bg_spawn(void) BANKED {
     spawn_next=slot+1u;if(spawn_next==ce_bg_limit)spawn_next=0;
     ce_bg_x[slot]=(uint16_t)ce_bg_request.x<<4;ce_bg_y[slot]=(uint16_t)ce_bg_request.y<<4;ce_bg_vx[slot]=(uint16_t)ce_bg_request.vx<<4;ce_bg_vy[slot]=(uint16_t)ce_bg_request.vy<<4;
     ce_bg_life[slot]=ce_bg_request.life;damage[slot]=ce_bg_request.damage;++ce_bg_count;draw_shot();
+    guide_pattern[slot]=CE_NONE;
+    if(ce_bg_request.pattern!=CE_NONE){
+        guide_pattern[slot]=ce_bg_request.pattern;guide_angle[slot]=ce_bg_request.angle;has_guidance=1;
+    }
 }
 void ce_bg_flush(void) BANKED {
     static uint16_t i;static uint8_t lo,hi,n;

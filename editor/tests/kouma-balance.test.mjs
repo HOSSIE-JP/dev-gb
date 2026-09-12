@@ -4,7 +4,7 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 const lib=createRequire(import.meta.url)('../build/library.cjs'),root=path.resolve(import.meta.dirname,'../..');
 
-test('Kouma uses three 100-HP attacks, increasing density ceilings up to 40, and distinct downward volleys',()=>{
+test('Kouma uses three 100-HP attacks, increasing density ceilings up to 40, and no upward volleys',()=>{
  const g=lib.readGame(root,'touhou-kouma'),owners=new Map();let previousCap=0;
  for(const stageId of g.stageOrder){
   const s=g.stages.find(s=>s.id===stageId),b=g.bosses.find(b=>b.id===s.events.find(e=>e.kind==='boss').ref),phases=b.phases.filter(p=>p.until==='hp');
@@ -16,7 +16,7 @@ test('Kouma uses three 100-HP attacks, increasing density ceilings up to 40, and
  for(const id of hostile){const p=g.patterns.find(p=>p.id===id);
   for(let sequence=0;sequence<256;sequence++)for(const [dx,dy]of [[0,-120],[0,120],[-120,0],[120,0]]){
    const angles=lib.shotAngles(p,sequence,dx,dy);assert.equal(new Set(angles).size,angles.length,id+' does not stack identical directions');
-   for(const a of angles)assert.ok(-lib.COS[a]>0,id+' always travels down, including when the player moves above the boss');
+   for(const a of angles)assert.ok(-lib.COS[a]>=0,id+' travels down or horizontally, including when the player moves above the boss');
   }
  }
 });

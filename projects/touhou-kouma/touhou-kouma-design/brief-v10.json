@@ -1,0 +1,67 @@
+{
+  "version": "0.10",
+  "baseRevision": "02000f9cf467f0f53eaed503f5692ac804328e8337bcfc3a96d26b2842f6efd2",
+  "features": {
+    "launch": [
+      "キャラクター",
+      "左端",
+      "右端",
+      "左右交互",
+      "両端",
+      "固定座標"
+    ],
+    "lanes": "固定座標・画面端ではY位置を指定し、斉射ごとに最大8レーンを巡回",
+    "guidance": "敵弾専用。48更新だけ、16更新ごとに最大22.5度曲がってから直進。下半分の方向に制限し、上向きに追いかけ続けない。汎用設定では期間0〜240、周期8/16/32。",
+    "selection": "タイトルのSTART/Aから機体選択。左右で切替、A/STARTで決定、Bで戻る。追加機体3人まで編集可能。",
+    "reimu": {
+      "speed": 2.25,
+      "focusSpeed": 1,
+      "weapon": "拡散札／集中札",
+      "bomb": "巨大陰陽玉"
+    },
+    "marisa": {
+      "speed": 3.25,
+      "focusSpeed": 1.5,
+      "weapon": "正面の星連射／高威力集中光弾",
+      "bomb": "極太レーザー・魔理沙スパーク"
+    },
+    "bomb": {
+      "buttons": "A+B",
+      "stock": 2,
+      "damage": 30,
+      "displayFrames": 48,
+      "flashPeriod": 2,
+      "refill": "新しいゲームとミス後の新しい残機で2に戻る。ステージ間では持ち越し。",
+      "rearm": "AとBを両方離すまで再発動しない。",
+      "effect": "画面内の敵弾・自弾を全消去し、画面内の敵に1回ダメージ。ボスの無敵とフェーズ境界を尊重。演出中はゲーム時計を停止し、終了後は最低90更新の無敵を確保。",
+      "presentation": "128タイル以内の機体別BG画像と空のBGマップを交互表示。スプライトVRAMを保持。レーザーは自機位置に合わせる。"
+    }
+  },
+  "authoredVariations": {
+    "cirno-crystal": "画面左端・Y24/40/56",
+    "cirno-aim": "画面右端・Y24/40/56",
+    "mei-guard": "両端・Y32/48/64",
+    "pat-page": "画面上部固定X80/Y16",
+    "pat-seal": "短時間追尾",
+    "sak-cross": "左右交互・Y32/48/64/80",
+    "rem-coil": "短時間追尾",
+    "flan-coil": "短時間追尾"
+  },
+  "preserve": [
+    "HP100×3",
+    "BG弾最大40発",
+    "ボス切替演出",
+    "撃破後会話",
+    "スコア待ち",
+    "既存の画像・BGM・ステージ構成"
+  ],
+  "assets": "imagegen-v10/ に生成原稿・採用画像の出典を保存。共通爆発の初稿も、機体別演出の追加依頼前の案として保持。",
+  "approved": false,
+  "performanceTuning": {
+    "boss": "flandre",
+    "pattern": "flan-final",
+    "intervalBefore": 40,
+    "intervalAfter": 48,
+    "reason": "Reduce overlapping volley load while preserving the 40-bullet ceiling"
+  }
+}

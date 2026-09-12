@@ -1,0 +1,24 @@
+{
+  "version": "0.15",
+  "project": "touhou-kouma",
+  "request": "タイトル前にAI Slop GamesのかわいくPOPなロゴと、ゆっくり解説風の東方Project二次創作案内を追加",
+  "feedback": "初案のゾンビ風・ドロドロ表現を不採用にし、ゲームパッドを持つ丸いロボットに変更。",
+  "notice": "このゲームは東方Projectの二次創作STGです。",
+  "settings": {
+    "enabled": true,
+    "fadeSeconds": 0.4,
+    "slides": [
+      {
+        "id": "brand-ai-slop",
+        "background": "logo-ai-slop",
+        "seconds": 2.5
+      },
+      {
+        "id": "touhou-fan-notice",
+        "background": "logo-touhou-notice",
+        "seconds": 5
+      }
+    ]
+  },
+  "assets": "imagegen-v15/manifest.json"
+}

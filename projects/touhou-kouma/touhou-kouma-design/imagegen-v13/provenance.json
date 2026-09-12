@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-12",
+  "tool": "image_gen imagegen",
+  "prompt": "prompt.txt",
+  "references": [
+    {
+      "file": "../imagegen-v04/ending.png",
+      "sha256": "9efb56902183848c41de56a3ff65116ab57321cc9c2be75dc047fc8643150274"
+    },
+    {
+      "file": "../imagegen-v11/select-marisa-original.png",
+      "sha256": "ecf8151707be693af9869530c4388f6cd28326cb3f724bbb8e814a98c0b0d99b"
+    }
+  ],
+  "original": {
+    "file": "ending-marisa-original.png",
+    "sha256": "ff68ae6a62082dc659182bafbc34721ba6a9125baf1890fcbdb20cd0935ac8b6"
+  },
+  "conversion": "convert.cjs",
+  "asset": "../../assets-src/images/ending-marisa.png",
+  "note": "New generated fan art for this private Touhou game project. Character identity belongs to the original Touhou creator; no third-party ROM image was extracted."
+}

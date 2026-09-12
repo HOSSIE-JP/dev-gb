@@ -1,0 +1,67 @@
+{
+  "revision": "7a692f06d03b3aeb2331d50977787cfd5034431154beae34b67c2b33f9428943",
+  "normalRomSha256": "eaaedcd26a621430eae7d59ca96f1312e42f8f835423b5591bffee349cec5a8d",
+  "campaignFixtureSha256": "33bf03762419741063b8423959f9791562f6e691cf3da58969a95ae628566fc7",
+  "images": [
+    {
+      "file": "DMG-reimu-selection.png",
+      "sha256": "d78a3e8fefa18ef0f0e9236945e9e6c151614e0388737bf3220b2b96d08b3d7c",
+      "fixture": false
+    },
+    {
+      "file": "DMG-reimu-gameover.png",
+      "sha256": "9a2b4a6523de1eed9402f0c95904082fc544d8d52fac15ad7f1f41baf219a35a",
+      "fixture": false
+    },
+    {
+      "file": "DMG-marisa-selection.png",
+      "sha256": "178601db5a7ae5249da670df802823f58fe57e309b1d35eab4946b369333dbc7",
+      "fixture": false
+    },
+    {
+      "file": "DMG-marisa-gameover.png",
+      "sha256": "618498a771eb05dd817b3f8b1e4921f0dec474c66f37f29c0d000eabefef6371",
+      "fixture": false
+    },
+    {
+      "file": "CGB-reimu-selection.png",
+      "sha256": "43ae65d85d342e92ed171a7368b6194d5320bb9f85deaa411a56514fb2f95aa0",
+      "fixture": false
+    },
+    {
+      "file": "CGB-reimu-gameover.png",
+      "sha256": "ae3b0b65b429a2d3301b37ad3012235fd84163e2c9e34c39d4de169a8fa9d258",
+      "fixture": false
+    },
+    {
+      "file": "CGB-marisa-selection.png",
+      "sha256": "f534a11e155cd056aadf3585251251c3396ee1db04f0ae3b172ac01a26365cb2",
+      "fixture": false
+    },
+    {
+      "file": "CGB-marisa-gameover.png",
+      "sha256": "4fa8ba20af3660e9beedc531d5e85efa6d124400f798c61f80b5bf0d2478964a",
+      "fixture": false
+    },
+    {
+      "file": "CGB-reimu-stage-forest-before.png",
+      "sha256": "c8eb2b90f87ed45b13e9870a9bff33b076a5f4386f6de5edde8f02dc70991f69",
+      "fixture": true
+    },
+    {
+      "file": "CGB-reimu-stage-forest-after.png",
+      "sha256": "b2dbc10914842feb0182a869427a523989a26c9be5a47407c9c0c5ff5448ae7f",
+      "fixture": true
+    },
+    {
+      "file": "CGB-marisa-stage-forest-before.png",
+      "sha256": "5ec20819bc50c961b559d7abe12fd79e0fc0db1b841d711b9a79dd8c69d62729",
+      "fixture": true
+    },
+    {
+      "file": "CGB-marisa-stage-forest-after.png",
+      "sha256": "e09b6c5205fd77f7e876a62f88e2bc43f50b7ed4eb9f6fa0debad5c859db2f8c",
+      "fixture": true
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "tool": "built-in image_gen",
+  "conversion": "Nearest-center sampling; red-channel neutral grayscale rounded to indices 0..3; selection retains the largest whole-image size within the 255-tile budget; dialogue portraits occupy the top-left 80x96 panel.",
+  "assets": [
+    {
+      "id": "select-reimu",
+      "original": "select-reimu-original.png",
+      "originalSha256": "46eb71997c1109a827015c3cce11c112fcfb9f1b9c0db2df65812d646f9c32f8",
+      "sourceSize": [
+        1322,
+        1190
+      ],
+      "layout": [
+        152,
+        136,
+        4,
+        4
+      ],
+      "uniqueTiles": 243,
+      "sourcePngSha256": "116e066d37d45f17f7f8e8a7ca5e4ed41e7238baecf63aba99dc494cb05d929d"
+    },
+    {
+      "id": "select-marisa",
+      "original": "select-marisa-original.png",
+      "originalSha256": "ecf8151707be693af9869530c4388f6cd28326cb3f724bbb8e814a98c0b0d99b",
+      "sourceSize": [
+        1322,
+        1190
+      ],
+      "layout": [
+        152,
+        136,
+        4,
+        4
+      ],
+      "uniqueTiles": 245,
+      "sourcePngSha256": "0bfb4bb677136cabb284e74af383c8d129428a427792bada53a7f29ed9ca75fa"
+    },
+    {
+      "id": "gameover-reimu",
+      "original": "gameover-reimu-original.png",
+      "originalSha256": "f66f160575a4e26e0a0470476e75563538e82e82a49669e37244b62b32612ce7",
+      "sourceSize": [
+        1322,
+        1190
+      ],
+      "layout": [
+        160,
+        144,
+        0,
+        0
+      ],
+      "uniqueTiles": 181,
+      "sourcePngSha256": "8fd617b66282445dd2b2865fef878b2e5b41f50382c4aaf93eb59bdd4de16aa2"
+    },
+    {
+      "id": "gameover-marisa",
+      "original": "gameover-marisa-original.png",
+      "originalSha256": "e94fe2b09015a598a0e1092493211fb01a2f632f744e273d84162503c81ceb47",
+      "sourceSize": [
+        1322,
+        1190
+      ],
+      "layout": [
+        160,
+        144,
+        0,
+        0
+      ],
+      "uniqueTiles": 164,
+      "sourcePngSha256": "f0d9839c4e487156de9350edecc881f73bec1bad498f7b2cc836ff2ceaa39095"
+    },
+    {
+      "id": "dialogue-marisa-before",
+      "original": "dialogue-marisa-before-original.png",
+      "originalSha256": "302c93416ddd785b4e8318145cbe4b714576e1cedc101b4a71530fc8587ee460",
+      "sourceSize": [
+        1086,
+        1448
+      ],
+      "layout": [
+        64,
+        88,
+        8,
+        4
+      ],
+      "uniqueTiles": 63,
+      "sourcePngSha256": "868fd730647fc7f30073d7ab50f6a27393246c66045371ed0b68940f54535e8e"
+    },
+    {
+      "id": "dialogue-marisa-after",
+      "original": "dialogue-marisa-after-original.png",
+      "originalSha256": "2fac3a5dd548dd27e1821898ef6502d598edf09535134597af39fdb69a8e86b6",
+      "sourceSize": [
+        1086,
+        1448
+      ],
+      "layout": [
+        64,
+        88,
+        8,
+        4
+      ],
+      "uniqueTiles": 64,
+      "sourcePngSha256": "f02481edbe2cf666f67e4281d0308ec7711426d26537e47cd5d6a5877018bbdf"
+    }
+  ],
+  "projectRevision": "7a692f06d03b3aeb2331d50977787cfd5034431154beae34b67c2b33f9428943"
+}

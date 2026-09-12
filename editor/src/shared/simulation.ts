@@ -48,7 +48,7 @@ export function shotAngles(
     if (pattern.kind === "spiral")
         base = (base + sequence * angleStep(pattern.rotation)) & 15;
     const count =
-        pattern.kind === "straight" || pattern.kind === "aimed"
+        pattern.kind === "straight" || pattern.kind === "aimed" || pattern.kind === "homing"
             ? 1
             : pattern.count;
     return Array.from({ length: count }, (_, i) => {
@@ -64,6 +64,18 @@ export function shotAngles(
                   : 0;
         return (base + offset + 32) & 15;
     });
+}
+export function launchPoints(p: Pattern, a: Asset, x: number, y: number, sequence: number) {
+    const l=p.launch;
+    if(!l || l.kind==="actor")return (a.emitters.length?a.emitters:[a.origin]).map(e=>({x:x+q4(e.x-a.origin.x),y:y+q4(e.y-a.origin.y),angle:p.angle}));
+    const py=q4(l.y+(sequence%l.lanes)*l.step);
+    if(l.kind==="fixed")return [{x:q4(l.x),y:py,angle:p.angle}];
+    const sides=l.kind==="both"?[false,true]:[l.kind==="right"||l.kind==="alternate"&&!!(sequence&1)];
+    return sides.map(right=>({x:q4(right?158:1),y:py,angle:p.kind==="aimed"?p.angle:right?270:90}));
+}
+export function homingAngle(angle:number, dx:number, dy:number) {
+    let target=aimStep(dx,dy);if(target<4||target>12)target=dx<0?12:4;
+    angle=clamp(angle,4,12);return angle+Math.sign(target-angle);
 }
 export function motionOffset(m: Motion, age: number): { x: number; y: number } {
     if (m.kind === "path") {
@@ -149,7 +161,13 @@ export class Simulation {
     playerSequence = 0;
     weaponMode = 0;
     entities: Entity[] = [];
-    bgShots: {x: number; y: number; vx: number; vy: number; life: number; damage: number}[] = [];
+    bgShots: {x: number; y: number; vx: number; vy: number; life: number; damage: number; slot: number; ref: string; angle: number}[] = [];
+    bgNext=0;
+    bombs=0;
+    bombLeft=0;
+    bombLatch=true;
+    bombBackground="";
+    bombStyle="orb";
     battleMode = "stage";
     bgLimit = 64;
     intro: BossPhase["intro"] | undefined;
@@ -165,7 +183,8 @@ export class Simulation {
         this.phaseLocked = !!this.introLeft || !!phase.hp && phase.until === "time";
     }
     startPhaseChange(boss: Entity, damage: boolean) {
-        this.phaseLocked = true; this.bgShots = [];
+        this.bombLatch=true;
+        this.phaseLocked = true; this.bgShots = []; this.bgNext=0;
         this.entities = this.entities.filter(e => !["pshot", "eshot", "fx"].includes(e.kind));
         if (!damage) {this.finishPhase(boss); return;}
         this.explode(boss.x, boss.y);
@@ -174,7 +193,7 @@ export class Simulation {
     startIntro(phase: BossPhase) {
         if (!phase.intro?.enabled) return;
         this.entities = this.entities.filter(e => e.kind !== "pshot" && e.kind !== "eshot");
-        this.bgShots = []; this.intro = phase.intro; this.introLeft = Math.round(phase.intro.seconds * 60);
+        this.bgShots = []; this.bgNext=0; this.bombLatch=true;this.intro = phase.intro; this.introLeft = Math.round(phase.intro.seconds * 60);
     }
     dropped = 0;
     result = 0;
@@ -187,7 +206,12 @@ export class Simulation {
         stageId = game.mode === "campaign"
             ? game.stageOrder[0]
             : game.startStage,
+        character=0,
     ) {
+        const extra=character ? game.player.characters?.[character-1] : undefined;
+        this.bombBackground=extra?.bombBackground || game.player.bomb?.background || "";this.bombStyle=extra?.bombStyle ?? "orb";
+        game=this.game={...game,player:{...game.player,...extra}};
+        this.bombs=game.player.bomb?.enabled?game.player.bomb.stock:0;
         const ordered = [
             ...game.stageOrder,
             ...game.stages
@@ -255,7 +279,7 @@ export class Simulation {
             kind === "boss" ? this.game.bosses : this.game.enemies
         ).find((a) => a.id === ref);
         if (!actor || (kind === "enemy" && this.battleMode !== "stage") || (kind === "boss" && this.entities.some(e => e.kind === "boss"))) return;
-        if (kind === "boss") { const b = actor as Boss; this.battleMode = b.battle?.background ?? "stage"; this.bgLimit = b.battle?.maxBullets ?? 64; if (this.battleMode !== "stage") {this.entities = []; this.bgShots = []; this.scroll = 0;} this.startIntro(b.phases[0]); }
+        if (kind === "boss") { const b = actor as Boss; this.battleMode = b.battle?.background ?? "stage"; this.bgLimit = b.battle?.maxBullets ?? 64; if (this.battleMode !== "stage") {this.entities = []; this.bgShots = []; this.bgNext=0;this.scroll = 0;} this.startIntro(b.phases[0]); }
         this.add({
             kind,
             ref,
@@ -287,23 +311,22 @@ export class Simulation {
         const p = this.game.patterns.find((p) => p.id === ref);
         if (!p) return;
         const asset = assetById(this.game, sourceAsset);
-        const emitters = asset.emitters.length
-            ? asset.emitters
-            : [{ x: asset.origin.x, y: asset.origin.y }];
-        for (const emitter of emitters) {
-            const px = x + q4(emitter.x - asset.origin.x),
-                py = y + q4(emitter.y - asset.origin.y);
+        for (const point of launchPoints(friendly?{...p,launch:undefined}:p,asset,x,y,sequence)) {
+            const px=point.x,py=point.y;
             const targetX = this.aim ? q4(this.aim.x) : this.playerX,
                 targetY = this.aim ? q4(this.aim.y) : this.playerY;
             for (const angle of shotAngles(
-                p,
+                {...p,angle:point.angle},
                 sequence,
                 Math.trunc((targetX - px) / 16),
                 Math.trunc((targetY - py) / 16),
             )) {
                 const speed = q4(p.speed);
                 if (!friendly && this.battleMode === "bg-bullets") {
-                    if (this.bgShots.length < this.bgLimit) this.bgShots.push({x: px, y: py, vx: Math.trunc(SIN[angle] * speed / 16), vy: Math.trunc(-COS[angle] * speed / 16), life: p.lifetime, damage: p.damage});
+                    if (this.bgShots.length < this.bgLimit) {
+                        while(this.bgShots.some(b=>b.slot===this.bgNext))this.bgNext=(this.bgNext+1)%this.bgLimit;
+                        this.bgShots.push({x: px, y: py, vx: Math.trunc(SIN[angle] * speed / 16), vy: Math.trunc(-COS[angle] * speed / 16), life: p.lifetime, damage: p.damage,slot:this.bgNext,ref:p.id,angle});this.bgNext=(this.bgNext+1)%this.bgLimit;
+                    }
                     else this.dropped++;
                     continue;
                 }
@@ -321,7 +344,7 @@ export class Simulation {
                     age: 0,
                     phase: 0,
                     phaseAge: 0,
-                    sequence: 0,
+                    sequence: angle,
                     lifetime: p.lifetime,
                     damage: p.damage,
                 });
@@ -370,12 +393,29 @@ export class Simulation {
         }
         return false;
     }
+    damageActor(enemy:Entity,damage:number) {
+        if(enemy.kind==="boss"){
+            if(this.phaseLocked)return;
+            const b=this.game.bosses.find(b=>b.id===enemy.ref)!,p=b.phases[enemy.phase];
+            if(p.until==="hp"&&b.phases[enemy.phase+1]&&(p.hp||b.phases[enemy.phase+1].intro?.enabled)&&enemy.hp-damage<=(p.hp?0:p.threshold)){
+                enemy.hp=p.hp?0:p.threshold;this.phaseLocked=true;this.bgShots=[];this.bgNext=0;
+                this.entities=this.entities.filter(e=>e.kind!=="pshot"&&e.kind!=="eshot");return;
+            }
+        }
+        enemy.hp-=damage;
+        if(enemy.hp<=0){
+            const a=(enemy.kind==="boss"?this.game.bosses:this.game.enemies).find(a=>a.id===enemy.ref)!;
+            this.score=Math.min(65535,this.score+a.score);this.entities=this.entities.filter(e=>e!==enemy);
+            if(enemy.kind==="boss")this.bossDefeated=true;this.explode(enemy.x,enemy.y);
+        }
+    }
     hitPlayer() {
         if (this.respawn || this.invulnerable || this.result) return;
         this.explode(this.playerX, this.playerY);
         this.lives--;
         if (!this.lives) this.result = 1;
         else {
+            this.bombs=this.game.player.bomb?.enabled?this.game.player.bomb.stock:0;this.bombLatch=true;
             this.respawn = this.game.player.respawnDelay ?? 0;
             this.invulnerable = this.respawn ? 0 : this.game.player.invulnerability;
             if (this.respawn) {
@@ -387,7 +427,7 @@ export class Simulation {
         }
     }
     finishStage() {
-        this.battleMode = "stage"; this.bgShots = []; this.intro = undefined; this.introLeft = 0; this.phaseLocked = false; this.transition = undefined;
+        this.battleMode = "stage"; this.bgShots = []; this.bgNext=0;this.bombLatch=true;this.intro = undefined; this.introLeft = 0; this.phaseLocked = false; this.transition = undefined;
         if (this.game.bossCelebration && this.bossDefeated) this.entities = [];
         this.score = Math.min(65535, this.score + this.game.clearBonus);
         if (
@@ -436,6 +476,7 @@ export class Simulation {
     }
     step(input = this.input) {
         if (this.result) return;
+        if(this.bombLeft){--this.bombLeft;return;}
         if (this.transition) {
             const t = this.transition, b = this.game.bosses.find(b => b.id === t.boss.ref)!;
             if (t.stage === "break") {
@@ -461,7 +502,14 @@ export class Simulation {
             p = g.player,
             a = assetById(g, p.asset),
             top =
-                g.screens.find((s) => s.id === "hud")?.dock === "top" ? hudHeight(g) : 0;
+                    g.screens.find((s) => s.id === "hud")?.dock === "top" ? hudHeight(g) : 0;
+        if(!(input&48))this.bombLatch=false;
+        if((input&48)===48 && !this.bombLatch && this.bombs && !this.respawn){
+            this.bombLatch=true;--this.bombs;this.bombLeft=p.bomb!.frames;this.invulnerable=Math.max(this.invulnerable,90);
+            this.bgShots=[];this.bgNext=0;this.entities=this.entities.filter(e=>e.kind!=="pshot"&&e.kind!=="eshot");
+            for(const e of [...this.entities])if((e.kind==="enemy"||e.kind==="boss")&&e.x>=0&&e.x<2560&&e.y>=0&&e.y<2304)this.damageActor(e,p.bomb!.damage);
+            return;
+        }
         const mode = input & 32 && p.focusWeapon ? 1 : 0;
         const pattern = mode ? p.focusWeapon! : p.weapon;
         const weapon = g.patterns.find((x) => x.id === pattern)!;
@@ -504,7 +552,14 @@ export class Simulation {
         }
         if (this.invulnerable) this.invulnerable--;
         }
-        for (const b of this.bgShots) { b.x += b.vx; b.y += b.vy; --b.life; }
+        for (const b of this.bgShots) {
+            const p=g.patterns.find(p=>p.id===b.ref)!;
+            if(p.kind==="homing" && p.lifetime-b.life<(p.guidance?.frames??48) && !((this.tick-b.slot)&((p.guidance?.period??16)-1))){
+                b.angle=homingAngle(b.angle,Math.trunc(this.playerX/16)-Math.trunc(b.x/16),Math.trunc(this.playerY/16)-Math.trunc(b.y/16));
+                b.vx=Math.trunc(SIN[b.angle]*q4(p.speed)/16);b.vy=Math.trunc(-COS[b.angle]*q4(p.speed)/16);
+            }
+            b.x += b.vx; b.y += b.vy; --b.life;
+        }
         this.bgShots = this.bgShots.filter(b => b.life > 0);
         this.camera += this.stage.scrollDown ? -this.scroll : this.scroll;
         const mapEnd = this.stage.height * 8 * 16;
@@ -540,6 +595,11 @@ export class Simulation {
                 if (e.age >= e.lifetime)
                     this.entities = this.entities.filter((x) => x !== e);
             } else if (e.kind === "pshot" || e.kind === "eshot") {
+                const p=g.patterns.find(p=>p.id===e.ref)!;
+                if(e.kind==="eshot"&&p.kind==="homing"&&e.age<(p.guidance?.frames??48)&&!((this.tick-e.slot)&((p.guidance?.period??16)-1))){
+                    e.sequence=homingAngle(e.sequence,Math.trunc(this.playerX/16)-Math.trunc(e.x/16),Math.trunc(this.playerY/16)-Math.trunc(e.y/16));
+                    e.vx=Math.trunc(SIN[e.sequence]*q4(p.speed)/16);e.vy=Math.trunc(-COS[e.sequence]*q4(p.speed)/16);
+                }
                 e.x += e.vx;
                 e.y += e.vy;
                 e.age++;
@@ -624,23 +684,7 @@ export class Simulation {
             );
             if (!enemy) continue;
             this.entities = this.entities.filter((e) => e !== shot);
-            if (enemy.kind === "boss") {
-                const b = g.bosses.find(b => b.id === enemy.ref)!, phase = b.phases[enemy.phase];
-                if (phase.until === "hp" && b.phases[enemy.phase + 1] && (phase.hp || b.phases[enemy.phase + 1]?.intro?.enabled) && enemy.hp - shot.damage <= (phase.hp ? 0 : phase.threshold)) {
-                    enemy.hp = phase.hp ? 0 : phase.threshold; this.phaseLocked = true;
-                    this.bgShots = []; this.entities = this.entities.filter(e => e.kind !== "pshot" && e.kind !== "eshot"); continue;
-                }
-            }
-            enemy.hp -= shot.damage;
-            if (enemy.hp <= 0) {
-                const def = (enemy.kind === "boss" ? g.bosses : g.enemies).find(
-                    (e) => e.id === enemy.ref,
-                )!;
-                this.score = Math.min(65535, this.score + def.score);
-                this.entities = this.entities.filter((e) => e !== enemy);
-                if (enemy.kind === "boss") this.bossDefeated = true;
-                this.explode(enemy.x, enemy.y);
-            }
+            this.damageActor(enemy,shot.damage);
         }
         if (!this.respawn) {
         const playerBox = this.box(p.asset, this.playerX, this.playerY);
@@ -750,6 +794,14 @@ export function drawSimulation(
         ctx.fillStyle = "#000"; ctx.fillRect(0,top,160,144-hudHeight(g)); ctx.fillStyle = "#fff";
         for (const b of sim.bgShots) { const x = Math.trunc(b.x/16) & ~1, y = Math.trunc(b.y/16) & ~1; ctx.fillRect(x,y,2,2); }
     }
+    if(sim.bombLeft){
+        ctx.fillStyle="#000";ctx.fillRect(0,0,160,144);
+        if(Math.floor((g.player.bomb!.frames-sim.bombLeft)/g.player.bomb!.flashPeriod)&1){
+            const beam=sim.bombStyle==="beam",x=beam?Math.trunc(sim.playerX/16)-80:0,y=beam?Math.trunc(sim.playerY/16)-120:0,art=assetById(g,sim.bombBackground);
+            if(beam&&y>0){ctx.save();ctx.beginPath();ctx.rect(0,0,160,y);ctx.clip();for(let row=y%8-8;row<y;row+=8){ctx.save();ctx.beginPath();ctx.rect(0,row,160,8);ctx.clip();drawAsset(ctx,g,art,x,row,0,dmg);ctx.restore();}ctx.restore();}
+            drawAsset(ctx,g,art,x,y,0,dmg);
+        }
+    }
     const draw = (assetId: string, x: number, y: number, age = sim.tick) => {
         const a = assetById(g, assetId);
         drawAsset(
@@ -768,7 +820,7 @@ export function drawSimulation(
             ctx.strokeRect(b.x, b.y, b.w, b.h);
         }
     };
-    if (!sim.respawn && (!sim.invulnerable || (sim.invulnerable & 4) === 0))
+    if (!sim.respawn && (sim.bombLeft || !sim.invulnerable || (sim.invulnerable & 4) === 0))
         draw(g.player.asset, sim.playerX, sim.playerY);
     for (const e of sim.entities) if (!(sim.transition?.stage === "break" && e.kind === "boss")) draw(e.asset, e.x, e.y, e.age);
 }

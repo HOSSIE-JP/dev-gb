@@ -1,0 +1,3255 @@
+{
+  "version": "0.13",
+  "revision": "cb9337132ea356e5d89593a38c54a6e5816f43cb12356a75d68383e707b560ea",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v13.gb",
+    "sha256": "8ea98daf02227ae333f5ff68a3af8d865cf08e4aed24c371c3ab2e89c7456bc7",
+    "bytes": 1048576
+  },
+  "build": {
+    "debug": {
+      "ok": true,
+      "revision": "cb9337132ea356e5d89593a38c54a6e5816f43cb12356a75d68383e707b560ea",
+      "configuration": "Debug",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "size": 1048576,
+      "ramBytes": 6997,
+      "spriteTiles": 80,
+      "diagnostics": [],
+      "romHash": "8ea98daf02227ae333f5ff68a3af8d865cf08e4aed24c371c3ab2e89c7456bc7",
+      "builtAt": "2026-09-12T00:59:56.479Z",
+      "durationMs": 147197
+    },
+    "release": {
+      "ok": true,
+      "revision": "cb9337132ea356e5d89593a38c54a6e5816f43cb12356a75d68383e707b560ea",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "size": 1048576,
+      "ramBytes": 6997,
+      "spriteTiles": 80,
+      "diagnostics": [],
+      "romHash": "8ea98daf02227ae333f5ff68a3af8d865cf08e4aed24c371c3ab2e89c7456bc7",
+      "builtAt": "2026-09-12T01:05:20.873Z",
+      "durationMs": 128170
+    },
+    "debugReleaseIdentical": true
+  },
+  "checks": {
+    "standardTests": 84,
+    "doctorWarnings": 0,
+    "helloCleanDebug": true,
+    "starDebugRelease": true,
+    "typecheck": true,
+    "diffCheck": true,
+    "musicDataReproducible": true,
+    "artReproducible": true
+  },
+  "ending": {
+    "authoredRevision": "cb9337132ea356e5d89593a38c54a6e5816f43cb12356a75d68383e707b560ea",
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v13\\ending\\fixture\\projects\\ending-test\\build\\Debug\\ending-test.gb",
+    "sha256": "72ed73bad942cba2a3da47128c4dbe26ebdca93d12519a32d3bb1e2589393d3f",
+    "fixture": "Final stage only, instant stationary HP 1 boss, fast player shots, invulnerability 1024, no fades or victory explosion. Original engine, art, dialogue and ten-second ending; real joypad inputs only.",
+    "results": [
+      {
+        "label": "DMG-reimu-auto",
+        "slides": [
+          [
+            0,
+            {
+              "first": 778,
+              "last": 1372,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            1,
+            {
+              "first": 1391,
+              "last": 1985,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            2,
+            {
+              "first": 2004,
+              "last": 2598,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            3,
+            {
+              "first": 2617,
+              "last": 3211,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            4,
+            {
+              "first": 3230,
+              "last": 3824,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            5,
+            {
+              "first": 3842,
+              "last": 4436,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ]
+        ],
+        "postbattlePages": 4,
+        "finalBonusAfterEnding": true,
+        "rankingReached": true,
+        "buttonAdvanceAndSkip": false
+      },
+      {
+        "label": "DMG-marisa-auto",
+        "slides": [
+          [
+            0,
+            {
+              "first": 778,
+              "last": 1372,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            1,
+            {
+              "first": 1391,
+              "last": 1985,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            2,
+            {
+              "first": 2004,
+              "last": 2598,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            3,
+            {
+              "first": 2617,
+              "last": 3211,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            4,
+            {
+              "first": 3230,
+              "last": 3824,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            5,
+            {
+              "first": 3843,
+              "last": 4437,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ]
+        ],
+        "postbattlePages": 4,
+        "finalBonusAfterEnding": true,
+        "rankingReached": true,
+        "buttonAdvanceAndSkip": false
+      },
+      {
+        "label": "CGB-reimu-auto",
+        "slides": [
+          [
+            0,
+            {
+              "first": 646,
+              "last": 1240,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            1,
+            {
+              "first": 1254,
+              "last": 1848,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            2,
+            {
+              "first": 1862,
+              "last": 2456,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            3,
+            {
+              "first": 2470,
+              "last": 3064,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            4,
+            {
+              "first": 3078,
+              "last": 3672,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            5,
+            {
+              "first": 3686,
+              "last": 4280,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ]
+        ],
+        "postbattlePages": 4,
+        "finalBonusAfterEnding": true,
+        "rankingReached": true,
+        "buttonAdvanceAndSkip": false
+      },
+      {
+        "label": "CGB-reimu-buttons",
+        "slides": [
+          [
+            0,
+            {
+              "first": 646,
+              "last": 682,
+              "firstLeft": 595,
+              "lastLeft": 559
+            }
+          ],
+          [
+            1,
+            {
+              "first": 696,
+              "last": 802,
+              "firstLeft": 595,
+              "lastLeft": 489
+            }
+          ]
+        ],
+        "postbattlePages": 4,
+        "finalBonusAfterEnding": true,
+        "rankingReached": true,
+        "buttonAdvanceAndSkip": true
+      },
+      {
+        "label": "CGB-marisa-auto",
+        "slides": [
+          [
+            0,
+            {
+              "first": 646,
+              "last": 1240,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            1,
+            {
+              "first": 1254,
+              "last": 1848,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            2,
+            {
+              "first": 1862,
+              "last": 2456,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            3,
+            {
+              "first": 2470,
+              "last": 3064,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            4,
+            {
+              "first": 3078,
+              "last": 3672,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ],
+          [
+            5,
+            {
+              "first": 3686,
+              "last": 4280,
+              "firstLeft": 595,
+              "lastLeft": 1
+            }
+          ]
+        ],
+        "postbattlePages": 4,
+        "finalBonusAfterEnding": true,
+        "rankingReached": true,
+        "buttonAdvanceAndSkip": false
+      },
+      {
+        "label": "CGB-marisa-buttons",
+        "slides": [
+          [
+            0,
+            {
+              "first": 646,
+              "last": 682,
+              "firstLeft": 595,
+              "lastLeft": 559
+            }
+          ],
+          [
+            1,
+            {
+              "first": 696,
+              "last": 802,
+              "firstLeft": 595,
+              "lastLeft": 489
+            }
+          ]
+        ],
+        "postbattlePages": 4,
+        "finalBonusAfterEnding": true,
+        "rankingReached": true,
+        "buttonAdvanceAndSkip": true
+      }
+    ]
+  },
+  "music": {
+    "fixture": "Music-only GBDK ROM; real joypad selection and VBlank playback. WAV listening copies normalized; raw amplitude is reported separately.",
+    "results": [
+      {
+        "mode": "DMG",
+        "id": 16,
+        "title": "朱い夜への巡礼",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.9589957215914167
+      },
+      {
+        "mode": "DMG",
+        "id": 17,
+        "title": "鉄門に舞う花",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.9141694227922639
+      },
+      {
+        "mode": "DMG",
+        "id": 18,
+        "title": "紅蓮の歩法",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 2.100007895144632
+      },
+      {
+        "mode": "DMG",
+        "id": 19,
+        "title": "六曜の書塵",
+        "bars": 28,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.8945344811178937
+      },
+      {
+        "mode": "DMG",
+        "id": 20,
+        "title": "月の余白",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 2.1154643075777613
+      },
+      {
+        "mode": "DMG",
+        "id": 21,
+        "title": "秒針の迷廊",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 10,
+        "rawRms": 1.7802179697188283
+      },
+      {
+        "mode": "DMG",
+        "id": 22,
+        "title": "一瞬の銀",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 10,
+        "rawRms": 1.9398209234205355
+      },
+      {
+        "mode": "DMG",
+        "id": 23,
+        "title": "胸壁の上の月",
+        "bars": 28,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.806633692255949
+      },
+      {
+        "mode": "DMG",
+        "id": 24,
+        "title": "夜潮の冠",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 2.096045355805806
+      },
+      {
+        "mode": "DMG",
+        "id": 25,
+        "title": "灯らぬ七つの窓",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 2.0244564838287755
+      },
+      {
+        "mode": "DMG",
+        "id": 26,
+        "title": "暁の外の遊戯室",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 2.0711596591671055
+      },
+      {
+        "mode": "DMG",
+        "id": 27,
+        "title": "夜明けの静かな神社",
+        "bars": 28,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.8250454772643219
+      },
+      {
+        "mode": "DMG",
+        "id": 28,
+        "title": "灯へ帰る",
+        "bars": 24,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Coda"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 1.60965075461176
+      },
+      {
+        "mode": "DMG",
+        "id": 29,
+        "title": "封印がほどける",
+        "bars": 2,
+        "sections": [
+          "Fanfare"
+        ],
+        "loop": false,
+        "oneShot": true,
+        "seconds": 3.2145996400318113,
+        "rawPeak": 8,
+        "rawRms": 2.034459362195527
+      },
+      {
+        "mode": "DMG",
+        "id": 30,
+        "title": "こおりぼしのさざなみ",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.8877399573017322
+      },
+      {
+        "mode": "DMG",
+        "id": 31,
+        "title": "あさつゆのこおりあそび",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 2.0711813047159664
+      },
+      {
+        "mode": "DMG",
+        "id": 32,
+        "title": "宵闇の散歩道",
+        "bars": 28,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.916158331642449
+      },
+      {
+        "mode": "DMG",
+        "id": 33,
+        "title": "月を隠すリボン",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.9103603522686146
+      },
+      {
+        "mode": "DMG",
+        "id": 34,
+        "title": "おかえり、夜明けの空",
+        "bars": 24,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Coda"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 1.6510114784254775
+      },
+      {
+        "mode": "CGB",
+        "id": 16,
+        "title": "朱い夜への巡礼",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.9587726818545736
+      },
+      {
+        "mode": "CGB",
+        "id": 17,
+        "title": "鉄門に舞う花",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.9176135471209372
+      },
+      {
+        "mode": "CGB",
+        "id": 18,
+        "title": "紅蓮の歩法",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 2.0993873915892123
+      },
+      {
+        "mode": "CGB",
+        "id": 19,
+        "title": "六曜の書塵",
+        "bars": 28,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.8976869373935752
+      },
+      {
+        "mode": "CGB",
+        "id": 20,
+        "title": "月の余白",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 2.114539822461901
+      },
+      {
+        "mode": "CGB",
+        "id": 21,
+        "title": "秒針の迷廊",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 10,
+        "rawRms": 1.7810393710285888
+      },
+      {
+        "mode": "CGB",
+        "id": 22,
+        "title": "一瞬の銀",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 10,
+        "rawRms": 1.93637936743189
+      },
+      {
+        "mode": "CGB",
+        "id": 23,
+        "title": "胸壁の上の月",
+        "bars": 28,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.8065749286930781
+      },
+      {
+        "mode": "CGB",
+        "id": 24,
+        "title": "夜潮の冠",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 2.0973153454740703
+      },
+      {
+        "mode": "CGB",
+        "id": 25,
+        "title": "灯らぬ七つの窓",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 2.028596136998335
+      },
+      {
+        "mode": "CGB",
+        "id": 26,
+        "title": "暁の外の遊戯室",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 2.071612174955277
+      },
+      {
+        "mode": "CGB",
+        "id": 27,
+        "title": "夜明けの静かな神社",
+        "bars": 28,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.8230047581811275
+      },
+      {
+        "mode": "CGB",
+        "id": 28,
+        "title": "灯へ帰る",
+        "bars": 24,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Coda"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 1.6091680403831905
+      },
+      {
+        "mode": "CGB",
+        "id": 29,
+        "title": "封印がほどける",
+        "bars": 2,
+        "sections": [
+          "Fanfare"
+        ],
+        "loop": false,
+        "oneShot": true,
+        "seconds": 3.2145996400318113,
+        "rawPeak": 8,
+        "rawRms": 2.0325200088737
+      },
+      {
+        "mode": "CGB",
+        "id": 30,
+        "title": "こおりぼしのさざなみ",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.8884170003017489
+      },
+      {
+        "mode": "CGB",
+        "id": 31,
+        "title": "あさつゆのこおりあそび",
+        "bars": 36,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 2.070177871649144
+      },
+      {
+        "mode": "CGB",
+        "id": 32,
+        "title": "宵闇の散歩道",
+        "bars": 28,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.9142483546141833
+      },
+      {
+        "mode": "CGB",
+        "id": 33,
+        "title": "月を隠すリボン",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Bridge",
+          "Reprise"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 9,
+        "rawRms": 1.904484039793477
+      },
+      {
+        "mode": "CGB",
+        "id": 34,
+        "title": "おかえり、夜明けの空",
+        "bars": 24,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Coda"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 57.8627935205726,
+        "rawPeak": 9,
+        "rawRms": 1.6534270158927862
+      }
+    ]
+  },
+  "campaign": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v13\\campaign\\fixture\\projects\\character-test\\build\\Debug\\character-test.gb",
+    "sha256": "edc5aa7b818460c0443e03bedf6a2458d75d8b71ca3a2c6bb2a93a796c27dc67",
+    "authoredRevision": "cb9337132ea356e5d89593a38c54a6e5816f43cb12356a75d68383e707b560ea",
+    "fixture": "All original art, pages, music, phases and engine. Bosses enter at frame 0, stationary with HP 1; player weapons accelerated, initial invulnerability 1024, victory explosion disabled. Real inputs only; not an unmodified full-game clear.",
+    "results": [
+      {
+        "label": "DMG-reimu",
+        "pages": [
+          "0-5-0",
+          "0-5-1",
+          "0-5-2",
+          "0-5-3",
+          "0-9-0",
+          "0-9-1",
+          "0-9-2",
+          "0-9-3",
+          "1-5-0",
+          "1-5-1",
+          "1-5-2",
+          "1-5-3",
+          "1-9-0",
+          "1-9-1",
+          "1-9-2",
+          "1-9-3",
+          "2-5-0",
+          "2-5-1",
+          "2-5-2",
+          "2-5-3",
+          "2-9-0",
+          "2-9-1",
+          "2-9-2",
+          "2-9-3",
+          "3-5-0",
+          "3-5-1",
+          "3-5-2",
+          "3-5-3",
+          "3-9-0",
+          "3-9-1",
+          "3-9-2",
+          "3-9-3",
+          "4-5-0",
+          "4-5-1",
+          "4-5-2",
+          "4-5-3",
+          "4-9-0",
+          "4-9-1",
+          "4-9-2",
+          "4-9-3",
+          "5-5-0",
+          "5-5-1",
+          "5-5-2",
+          "5-5-3",
+          "5-9-0",
+          "5-9-1",
+          "5-9-2",
+          "5-9-3",
+          "6-5-0",
+          "6-5-1",
+          "6-5-2",
+          "6-5-3",
+          "6-9-0",
+          "6-9-1",
+          "6-9-2",
+          "6-9-3"
+        ],
+        "pixelVerifiedPages": 56,
+        "stages": 7,
+        "scorePortraitsVerified": 7,
+        "cutins": 21,
+        "endingReached": true
+      },
+      {
+        "label": "DMG-marisa",
+        "pages": [
+          "0-5-0",
+          "0-5-1",
+          "0-5-2",
+          "0-5-3",
+          "0-9-0",
+          "0-9-1",
+          "0-9-2",
+          "0-9-3",
+          "1-5-0",
+          "1-5-1",
+          "1-5-2",
+          "1-5-3",
+          "1-9-0",
+          "1-9-1",
+          "1-9-2",
+          "1-9-3",
+          "2-5-0",
+          "2-5-1",
+          "2-5-2",
+          "2-5-3",
+          "2-9-0",
+          "2-9-1",
+          "2-9-2",
+          "2-9-3",
+          "3-5-0",
+          "3-5-1",
+          "3-5-2",
+          "3-5-3",
+          "3-9-0",
+          "3-9-1",
+          "3-9-2",
+          "3-9-3",
+          "4-5-0",
+          "4-5-1",
+          "4-5-2",
+          "4-5-3",
+          "4-9-0",
+          "4-9-1",
+          "4-9-2",
+          "4-9-3",
+          "5-5-0",
+          "5-5-1",
+          "5-5-2",
+          "5-5-3",
+          "5-9-0",
+          "5-9-1",
+          "5-9-2",
+          "5-9-3",
+          "6-5-0",
+          "6-5-1",
+          "6-5-2",
+          "6-5-3",
+          "6-9-0",
+          "6-9-1",
+          "6-9-2",
+          "6-9-3"
+        ],
+        "pixelVerifiedPages": 56,
+        "stages": 7,
+        "scorePortraitsVerified": 7,
+        "cutins": 21,
+        "endingReached": true
+      },
+      {
+        "label": "CGB-reimu",
+        "pages": [
+          "0-5-0",
+          "0-5-1",
+          "0-5-2",
+          "0-5-3",
+          "0-9-0",
+          "0-9-1",
+          "0-9-2",
+          "0-9-3",
+          "1-5-0",
+          "1-5-1",
+          "1-5-2",
+          "1-5-3",
+          "1-9-0",
+          "1-9-1",
+          "1-9-2",
+          "1-9-3",
+          "2-5-0",
+          "2-5-1",
+          "2-5-2",
+          "2-5-3",
+          "2-9-0",
+          "2-9-1",
+          "2-9-2",
+          "2-9-3",
+          "3-5-0",
+          "3-5-1",
+          "3-5-2",
+          "3-5-3",
+          "3-9-0",
+          "3-9-1",
+          "3-9-2",
+          "3-9-3",
+          "4-5-0",
+          "4-5-1",
+          "4-5-2",
+          "4-5-3",
+          "4-9-0",
+          "4-9-1",
+          "4-9-2",
+          "4-9-3",
+          "5-5-0",
+          "5-5-1",
+          "5-5-2",
+          "5-5-3",
+          "5-9-0",
+          "5-9-1",
+          "5-9-2",
+          "5-9-3",
+          "6-5-0",
+          "6-5-1",
+          "6-5-2",
+          "6-5-3",
+          "6-9-0",
+          "6-9-1",
+          "6-9-2",
+          "6-9-3"
+        ],
+        "pixelVerifiedPages": 56,
+        "stages": 7,
+        "scorePortraitsVerified": 7,
+        "cutins": 21,
+        "endingReached": true
+      },
+      {
+        "label": "CGB-marisa",
+        "pages": [
+          "0-5-0",
+          "0-5-1",
+          "0-5-2",
+          "0-5-3",
+          "0-9-0",
+          "0-9-1",
+          "0-9-2",
+          "0-9-3",
+          "1-5-0",
+          "1-5-1",
+          "1-5-2",
+          "1-5-3",
+          "1-9-0",
+          "1-9-1",
+          "1-9-2",
+          "1-9-3",
+          "2-5-0",
+          "2-5-1",
+          "2-5-2",
+          "2-5-3",
+          "2-9-0",
+          "2-9-1",
+          "2-9-2",
+          "2-9-3",
+          "3-5-0",
+          "3-5-1",
+          "3-5-2",
+          "3-5-3",
+          "3-9-0",
+          "3-9-1",
+          "3-9-2",
+          "3-9-3",
+          "4-5-0",
+          "4-5-1",
+          "4-5-2",
+          "4-5-3",
+          "4-9-0",
+          "4-9-1",
+          "4-9-2",
+          "4-9-3",
+          "5-5-0",
+          "5-5-1",
+          "5-5-2",
+          "5-5-3",
+          "5-9-0",
+          "5-9-1",
+          "5-9-2",
+          "5-9-3",
+          "6-5-0",
+          "6-5-1",
+          "6-5-2",
+          "6-5-3",
+          "6-9-0",
+          "6-9-1",
+          "6-9-2",
+          "6-9-3"
+        ],
+        "pixelVerifiedPages": 56,
+        "stages": 7,
+        "scorePortraitsVerified": 7,
+        "cutins": 21,
+        "endingReached": true
+      }
+    ]
+  },
+  "native": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v13\\ending\\fixture\\projects\\ending-test\\build\\Debug\\ending-test.gb",
+    "sha256": "72ed73bad942cba2a3da47128c4dbe26ebdca93d12519a32d3bb1e2589393d3f",
+    "emulator": "BGB 1.6.6",
+    "fixture": true,
+    "readOnlyBreakpoint": true,
+    "results": [
+      {
+        "character": 0,
+        "cgb": true,
+        "slides": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "music": 34,
+        "bonusAfterAllSlides": true,
+        "ranking": true
+      },
+      {
+        "character": 1,
+        "cgb": true,
+        "slides": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          29
+        ],
+        "music": 34,
+        "bonusAfterAllSlides": true,
+        "ranking": true
+      }
+    ]
+  },
+  "ui": {
+    "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\boss-ui-mkTnZj",
+    "checks": [
+      {
+        "characterBeforeAndAfterPreviews": true,
+        "unsavedMarisaDialogueRefresh": true
+      },
+      {
+        "playerScreenDropdown": true,
+        "selectionPreviewChanges": true,
+        "gameoverPreviewChanges": true,
+        "characterArtFields": true
+      },
+      {
+        "characterStorySavedAndReopened": true,
+        "characterScreenReferencesPreserved": true
+      },
+      {
+        "characterControls": true,
+        "characterPreviewSelection": true,
+        "characterBombImage": true,
+        "launchOptions": 6,
+        "guidanceControls": true,
+        "savedAndReopened": true,
+        "buildFree": true
+      },
+      {
+        "endingPreviewsBothCharacters": true,
+        "endingSecondsEditedAndReloaded": 12,
+        "endingMusic": 34,
+        "scoreAfter": true,
+        "buildFree": true
+      },
+      {
+        "victoryPreview": true,
+        "unsavedDialogueRefresh": true,
+        "phaseHpControl": true,
+        "phaseHp": 100,
+        "returnPositionControl": true,
+        "bossControls": true,
+        "cutinPreview": true,
+        "cutinSeconds": 1.2,
+        "scoreWaitControl": true
+      }
+    ]
+  },
+  "unmodifiedRoad": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "8ea98daf02227ae333f5ff68a3af8d865cf08e4aed24c371c3ab2e89c7456bc7",
+    "authoredRevision": "cb9337132ea356e5d89593a38c54a6e5816f43cb12356a75d68383e707b560ea",
+    "results": [
+      {
+        "label": "DMG-reimu",
+        "fixture": false,
+        "bossReached": true,
+        "bossFrame": 2280,
+        "raidSections": [
+          1,
+          2,
+          3
+        ],
+        "enemyPeak": 6,
+        "killEvents": 39,
+        "rapidKillEvents": 21,
+        "score": 1870,
+        "lives": 2
+      },
+      {
+        "label": "DMG-marisa",
+        "fixture": false,
+        "bossReached": true,
+        "bossFrame": 2280,
+        "raidSections": [
+          1,
+          2,
+          3
+        ],
+        "enemyPeak": 3,
+        "killEvents": 54,
+        "rapidKillEvents": 30,
+        "score": 2720,
+        "lives": 3
+      },
+      {
+        "label": "CGB-reimu",
+        "fixture": false,
+        "bossReached": true,
+        "bossFrame": 2280,
+        "raidSections": [
+          1,
+          2,
+          3
+        ],
+        "enemyPeak": 6,
+        "killEvents": 39,
+        "rapidKillEvents": 21,
+        "score": 1870,
+        "lives": 2
+      },
+      {
+        "label": "CGB-marisa",
+        "fixture": false,
+        "bossReached": true,
+        "bossFrame": 2280,
+        "raidSections": [
+          1,
+          2,
+          3
+        ],
+        "enemyPeak": 3,
+        "killEvents": 54,
+        "rapidKillEvents": 30,
+        "score": 2720,
+        "lives": 3
+      }
+    ]
+  },
+  "performance": {
+    "roadMin": 56.381,
+    "roadMax": 59.396,
+    "bossMin": 58.403,
+    "bossMax": 59.727,
+    "roadDeltaMin": -0.05,
+    "roadDeltaMax": 0.066,
+    "peakOam": 38,
+    "peakScanline": 6
+  },
+  "roads": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v13\\roads\\fixture\\projects\\road-test\\build\\Debug\\road-test.gb",
+    "sha256": "e3e3f5e63d613c49e23ad8b98f6ff51937698dac79103e66637358d4713258bb",
+    "authoredRevision": "cb9337132ea356e5d89593a38c54a6e5816f43cb12356a75d68383e707b560ea",
+    "fixture": "All road event times, enemies, patterns, maps, weapons and engine retained. Boss event becomes stage end; presentation disabled; player stays at x8 with 9 lives and 1024-update initial invulnerability. Fire case continuously shoots while leaving most enemies alive for load measurement. No RAM writes or engine patches.",
+    "baseline": false,
+    "results": [
+      {
+        "label": "DMG-0-observe",
+        "character": 0,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 43.993,
+            "busyUpdatesPerSecond": 39.485,
+            "oneFramePercent": 64.23,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 38.264,
+            "busyUpdatesPerSecond": 34.242,
+            "oneFramePercent": 38.76,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 40.031,
+            "busyUpdatesPerSecond": 35.576,
+            "oneFramePercent": 41.63,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 38.428,
+            "busyUpdatesPerSecond": 34.846,
+            "oneFramePercent": 41.43,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 37.295,
+            "busyUpdatesPerSecond": 34.347,
+            "oneFramePercent": 37.46,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 38.354,
+            "busyUpdatesPerSecond": 35.678,
+            "oneFramePercent": 42.22,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 36.516,
+            "busyUpdatesPerSecond": 33.806,
+            "oneFramePercent": 38.9,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "DMG-0-fire",
+        "character": 0,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 36.461,
+            "busyUpdatesPerSecond": 30.935,
+            "oneFramePercent": 37.02,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 32.946,
+            "busyUpdatesPerSecond": 29.105,
+            "oneFramePercent": 22.32,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 6,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 880,
+            "kills": 26,
+            "rapidKills": 14,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 35.016,
+            "busyUpdatesPerSecond": 30.506,
+            "oneFramePercent": 28.33,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 600,
+            "kills": 9,
+            "rapidKills": 6,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 32.711,
+            "busyUpdatesPerSecond": 29.33,
+            "oneFramePercent": 19.42,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1740,
+            "kills": 44,
+            "rapidKills": 23,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 34.086,
+            "busyUpdatesPerSecond": 30.152,
+            "oneFramePercent": 29.94,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1460,
+            "kills": 39,
+            "rapidKills": 17,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 33.202,
+            "busyUpdatesPerSecond": 30.006,
+            "oneFramePercent": 26.16,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1580,
+            "kills": 37,
+            "rapidKills": 22,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 31.998,
+            "busyUpdatesPerSecond": 28.92,
+            "oneFramePercent": 20.77,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "DMG-1-observe",
+        "character": 1,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 44.098,
+            "busyUpdatesPerSecond": 39.607,
+            "oneFramePercent": 64.56,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 38.808,
+            "busyUpdatesPerSecond": 34.768,
+            "oneFramePercent": 39.66,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 40.216,
+            "busyUpdatesPerSecond": 35.739,
+            "oneFramePercent": 41.98,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 39.168,
+            "busyUpdatesPerSecond": 35.626,
+            "oneFramePercent": 42.35,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 37.667,
+            "busyUpdatesPerSecond": 34.685,
+            "oneFramePercent": 38.06,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 38.653,
+            "busyUpdatesPerSecond": 35.987,
+            "oneFramePercent": 42.74,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 37.064,
+            "busyUpdatesPerSecond": 34.338,
+            "oneFramePercent": 40.45,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "DMG-1-fire",
+        "character": 1,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 11,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 37.57,
+            "busyUpdatesPerSecond": 30.746,
+            "oneFramePercent": 42.09,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 10,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 34.311,
+            "busyUpdatesPerSecond": 29.65,
+            "oneFramePercent": 25.45,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 1000,
+            "kills": 30,
+            "rapidKills": 21,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 36.676,
+            "busyUpdatesPerSecond": 30.15,
+            "oneFramePercent": 28.94,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 540,
+            "kills": 8,
+            "rapidKills": 5,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 33.296,
+            "busyUpdatesPerSecond": 29.879,
+            "oneFramePercent": 20,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1920,
+            "kills": 52,
+            "rapidKills": 38,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 35.314,
+            "busyUpdatesPerSecond": 29.88,
+            "oneFramePercent": 29.76,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1880,
+            "kills": 51,
+            "rapidKills": 35,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 34.909,
+            "busyUpdatesPerSecond": 29.366,
+            "oneFramePercent": 29.95,
+            "maxFrameGap": 4
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1820,
+            "kills": 43,
+            "rapidKills": 30,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 33.274,
+            "busyUpdatesPerSecond": 28.933,
+            "oneFramePercent": 20.97,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-0-observe",
+        "character": 0,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.727,
+            "busyUpdatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.728,
+            "busyUpdatesPerSecond": 59.833,
+            "oneFramePercent": 37.51,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.682,
+            "busyUpdatesPerSecond": 59.695,
+            "oneFramePercent": 37.57,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.687,
+            "busyUpdatesPerSecond": 59.616,
+            "oneFramePercent": 37.54,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 59.674,
+            "busyUpdatesPerSecond": 59.615,
+            "oneFramePercent": 37.58,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 59.532,
+            "busyUpdatesPerSecond": 59.443,
+            "oneFramePercent": 37.81,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 59.328,
+            "busyUpdatesPerSecond": 59.243,
+            "oneFramePercent": 38.05,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-0-fire",
+        "character": 0,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.396,
+            "busyUpdatesPerSecond": 59.169,
+            "oneFramePercent": 99.44,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 560,
+            "kills": 12,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 57.246,
+            "busyUpdatesPerSecond": 55.983,
+            "oneFramePercent": 41.07,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 6,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 880,
+            "kills": 26,
+            "rapidKills": 14,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 58.395,
+            "busyUpdatesPerSecond": 57.522,
+            "oneFramePercent": 39.01,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 600,
+            "kills": 9,
+            "rapidKills": 6,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 58.159,
+            "busyUpdatesPerSecond": 57.299,
+            "oneFramePercent": 39.62,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1740,
+            "kills": 44,
+            "rapidKills": 23,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 58.216,
+            "busyUpdatesPerSecond": 57.07,
+            "oneFramePercent": 39.4,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1460,
+            "kills": 39,
+            "rapidKills": 17,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 57.461,
+            "busyUpdatesPerSecond": 56.315,
+            "oneFramePercent": 39.53,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1580,
+            "kills": 37,
+            "rapidKills": 22,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 56.381,
+            "busyUpdatesPerSecond": 54.862,
+            "oneFramePercent": 40.2,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-1-observe",
+        "character": 1,
+        "fire": false,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.727,
+            "busyUpdatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 34,
+            "scanlinePeak": 5,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.728,
+            "busyUpdatesPerSecond": 59.833,
+            "oneFramePercent": 37.51,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.682,
+            "busyUpdatesPerSecond": 59.695,
+            "oneFramePercent": 37.57,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 34,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 59.707,
+            "busyUpdatesPerSecond": 59.644,
+            "oneFramePercent": 37.51,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 30,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 59.727,
+            "busyUpdatesPerSecond": 59.682,
+            "oneFramePercent": 37.49,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 59.581,
+            "busyUpdatesPerSecond": 59.503,
+            "oneFramePercent": 37.73,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 32,
+            "scanlinePeak": 6,
+            "score": 0,
+            "kills": 0,
+            "rapidKills": 0,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 59.343,
+            "busyUpdatesPerSecond": 59.261,
+            "oneFramePercent": 38.03,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "label": "CGB-1-fire",
+        "character": 1,
+        "fire": true,
+        "stages": [
+          {
+            "stage": "stage-forest",
+            "planned": 56,
+            "observedSpawns": 56,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 11,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 59.123,
+            "busyUpdatesPerSecond": 58.623,
+            "oneFramePercent": 98.98,
+            "maxFrameGap": 2
+          },
+          {
+            "stage": "stage-lake",
+            "planned": 64,
+            "observedSpawns": 64,
+            "enemyPeak": 7,
+            "shotPeak": 4,
+            "oamPeak": 37,
+            "scanlinePeak": 5,
+            "score": 740,
+            "kills": 18,
+            "rapidKills": 10,
+            "drops": 0,
+            "lives": 9,
+            "updatesPerSecond": 58.277,
+            "busyUpdatesPerSecond": 57.41,
+            "oneFramePercent": 38.84,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-1",
+            "planned": 73,
+            "observedSpawns": 73,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 37,
+            "scanlinePeak": 6,
+            "score": 1000,
+            "kills": 30,
+            "rapidKills": 21,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 58.899,
+            "busyUpdatesPerSecond": 58.114,
+            "oneFramePercent": 38.4,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-2",
+            "planned": 84,
+            "observedSpawns": 84,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 36,
+            "scanlinePeak": 6,
+            "score": 540,
+            "kills": 8,
+            "rapidKills": 5,
+            "drops": 0,
+            "lives": 8,
+            "updatesPerSecond": 58.745,
+            "busyUpdatesPerSecond": 58.269,
+            "oneFramePercent": 38.43,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-3",
+            "planned": 100,
+            "observedSpawns": 100,
+            "enemyPeak": 7,
+            "shotPeak": 6,
+            "oamPeak": 33,
+            "scanlinePeak": 6,
+            "score": 1920,
+            "kills": 52,
+            "rapidKills": 38,
+            "drops": 0,
+            "lives": 7,
+            "updatesPerSecond": 58.3,
+            "busyUpdatesPerSecond": 57.132,
+            "oneFramePercent": 39.64,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-4",
+            "planned": 111,
+            "observedSpawns": 111,
+            "enemyPeak": 8,
+            "shotPeak": 6,
+            "oamPeak": 38,
+            "scanlinePeak": 6,
+            "score": 1880,
+            "kills": 51,
+            "rapidKills": 35,
+            "drops": 0,
+            "lives": 6,
+            "updatesPerSecond": 57.491,
+            "busyUpdatesPerSecond": 55.672,
+            "oneFramePercent": 39.62,
+            "maxFrameGap": 3
+          },
+          {
+            "stage": "stage-5",
+            "planned": 124,
+            "observedSpawns": 124,
+            "enemyPeak": 8,
+            "shotPeak": 8,
+            "oamPeak": 35,
+            "scanlinePeak": 6,
+            "score": 1820,
+            "kills": 43,
+            "rapidKills": 30,
+            "drops": 0,
+            "lives": 5,
+            "updatesPerSecond": 56.985,
+            "busyUpdatesPerSecond": 55.32,
+            "oneFramePercent": 39.1,
+            "maxFrameGap": 3
+          }
+        ]
+      }
+    ]
+  },
+  "barrage": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v13\\barrage\\fixture\\projects\\barrage-test\\build\\Release\\barrage-test.gb",
+    "authoredRevision": "cb9337132ea356e5d89593a38c54a6e5816f43cb12356a75d68383e707b560ea",
+    "fixture": "Seven original bosses, phase HP, patterns, movement, music and return sequence; QA sets non-final phase HP to zero after 640 updates. No intro images/dialogue; stage timeout after 2040 updates, player x8 with focused B held, 9 lives and 1024-update invulnerability. Timing marker and forced phase depletion exist only in this fixture.",
+    "results": [
+      {
+        "mode": "DMG",
+        "rows": [
+          {
+            "boss": "rumia",
+            "phase": 1,
+            "cap": 12,
+            "peak": 4,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 3.71,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "rumia",
+            "phase": 2,
+            "cap": 12,
+            "peak": 7,
+            "samples": 359,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.13,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "rumia",
+            "phase": 3,
+            "cap": 12,
+            "peak": 9,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.71,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 1,
+            "cap": 18,
+            "peak": 8,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.18,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 2,
+            "cap": 18,
+            "peak": 6,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.32,
+            "framesPerUpdate": 2,
+            "updatesPerSecond": 29.864,
+            "oneFramePercent": 0,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "cirno",
+            "phase": 3,
+            "cap": 18,
+            "peak": 13,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.4,
+            "framesPerUpdate": 2.0045,
+            "updatesPerSecond": 29.796,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 1,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.99,
+            "framesPerUpdate": 2.0113,
+            "updatesPerSecond": 29.695,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 2,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.33,
+            "framesPerUpdate": 2.0068,
+            "updatesPerSecond": 29.763,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "meiling",
+            "phase": 3,
+            "cap": 22,
+            "peak": 20,
+            "samples": 372,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.98,
+            "framesPerUpdate": 2.1022,
+            "updatesPerSecond": 28.413,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 1,
+            "cap": 26,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.92,
+            "framesPerUpdate": 2.0091,
+            "updatesPerSecond": 29.729,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 2,
+            "cap": 26,
+            "peak": 21,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 17.51,
+            "framesPerUpdate": 2.0952,
+            "updatesPerSecond": 28.506,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "patchouli",
+            "phase": 3,
+            "cap": 26,
+            "peak": 23,
+            "samples": 352,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 18.6,
+            "framesPerUpdate": 2.1222,
+            "updatesPerSecond": 28.145,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 1,
+            "cap": 30,
+            "peak": 23,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 21.51,
+            "framesPerUpdate": 2.3379,
+            "updatesPerSecond": 25.548,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 2,
+            "cap": 30,
+            "peak": 15,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 13.54,
+            "framesPerUpdate": 2.0385,
+            "updatesPerSecond": 29.299,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "sakuya",
+            "phase": 3,
+            "cap": 30,
+            "peak": 22,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.7,
+            "framesPerUpdate": 2.1814,
+            "updatesPerSecond": 27.38,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 1,
+            "cap": 36,
+            "peak": 25,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.85,
+            "framesPerUpdate": 2.3401,
+            "updatesPerSecond": 25.523,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 2,
+            "cap": 36,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.78,
+            "framesPerUpdate": 2.2108,
+            "updatesPerSecond": 27.016,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "remilia",
+            "phase": 3,
+            "cap": 36,
+            "peak": 36,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 9,
+            "meanBullets": 31.07,
+            "framesPerUpdate": 2.8367,
+            "updatesPerSecond": 21.055,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 1,
+            "cap": 40,
+            "peak": 30,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 27.22,
+            "framesPerUpdate": 2.7029,
+            "updatesPerSecond": 22.097,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 2,
+            "cap": 40,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.91,
+            "framesPerUpdate": 2.265,
+            "updatesPerSecond": 26.37,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          },
+          {
+            "boss": "flandre",
+            "phase": 3,
+            "cap": 40,
+            "peak": 40,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 11,
+            "meanBullets": 35.43,
+            "framesPerUpdate": 2.9524,
+            "updatesPerSecond": 20.23,
+            "oneFramePercent": 0,
+            "maxFrameGap": 3
+          }
+        ]
+      },
+      {
+        "mode": "CGB",
+        "rows": [
+          {
+            "boss": "rumia",
+            "phase": 1,
+            "cap": 12,
+            "peak": 4,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 3.71,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "rumia",
+            "phase": 2,
+            "cap": 12,
+            "peak": 7,
+            "samples": 359,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.13,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "rumia",
+            "phase": 3,
+            "cap": 12,
+            "peak": 9,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.71,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 1,
+            "cap": 18,
+            "peak": 8,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 6.18,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 2,
+            "cap": 18,
+            "peak": 6,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 5.32,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "cirno",
+            "phase": 3,
+            "cap": 18,
+            "peak": 13,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.4,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 1,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.99,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 2,
+            "cap": 22,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 11.33,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "meiling",
+            "phase": 3,
+            "cap": 22,
+            "peak": 20,
+            "samples": 372,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.98,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 1,
+            "cap": 26,
+            "peak": 14,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 10.92,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 2,
+            "cap": 26,
+            "peak": 21,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 17.51,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "patchouli",
+            "phase": 3,
+            "cap": 26,
+            "peak": 23,
+            "samples": 352,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 18.6,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 1,
+            "cap": 30,
+            "peak": 23,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 21.51,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 2,
+            "cap": 30,
+            "peak": 15,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 13.54,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "sakuya",
+            "phase": 3,
+            "cap": 30,
+            "peak": 22,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.7,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "remilia",
+            "phase": 1,
+            "cap": 36,
+            "peak": 25,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 20.85,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "remilia",
+            "phase": 2,
+            "cap": 36,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.78,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "remilia",
+            "phase": 3,
+            "cap": 36,
+            "peak": 36,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 9,
+            "meanBullets": 31.07,
+            "framesPerUpdate": 1.0091,
+            "updatesPerSecond": 59.191,
+            "oneFramePercent": 99.09,
+            "maxFrameGap": 2
+          },
+          {
+            "boss": "flandre",
+            "phase": 1,
+            "cap": 40,
+            "peak": 30,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 27.22,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "flandre",
+            "phase": 2,
+            "cap": 40,
+            "peak": 21,
+            "samples": 351,
+            "playerShotPeak": 3,
+            "spawnDrops": 0,
+            "meanBullets": 16.91,
+            "framesPerUpdate": 1,
+            "updatesPerSecond": 59.727,
+            "oneFramePercent": 100,
+            "maxFrameGap": 1
+          },
+          {
+            "boss": "flandre",
+            "phase": 3,
+            "cap": 40,
+            "peak": 40,
+            "samples": 441,
+            "playerShotPeak": 3,
+            "spawnDrops": 11,
+            "meanBullets": 35.43,
+            "framesPerUpdate": 1.0227,
+            "updatesPerSecond": 58.403,
+            "oneFramePercent": 97.73,
+            "maxFrameGap": 2
+          }
+        ]
+      }
+    ]
+  },
+  "preserved": {
+    "gameplaySettingsUnchanged": true,
+    "previousPngFiles": 75,
+    "previousImageFrames": 75,
+    "newAssets": [
+      "ending-marisa"
+    ],
+    "changedProjectFields": [
+      "ending"
+    ],
+    "revision": "cb9337132ea356e5d89593a38c54a6e5816f43cb12356a75d68383e707b560ea"
+  },
+  "engine": [
+    {
+      "file": "engine/caravan/music.c",
+      "sha256": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995"
+    },
+    {
+      "file": "engine/caravan/music.h",
+      "sha256": "a64560d5934f6763d9e24ff5573435b4fc04c762ed2c0d4f0ccc9d830323a87c"
+    },
+    {
+      "file": "engine/caravan/flow.c",
+      "sha256": "38c6088adde703efccc2b827a21c2fb0f4808bb08551f9530d7097a109623a1b"
+    },
+    {
+      "file": "engine/caravan/mainloop.c",
+      "sha256": "bcf8ce68f88a84980145db26f5fccb52f7e11cdfc1240c23bf729b65a5ebe8f9"
+    },
+    {
+      "file": "engine/caravan/caravan.h",
+      "sha256": "3c5f5a6684ab76671336f8821a222bfc7b35aca01619a0132e26229ff70996b6"
+    },
+    {
+      "file": "engine/caravan/assets-src/kouma-score.json",
+      "sha256": "09d257ff5a545d4e16cd243753976bfb0ff769c26b64ff7a277247184e855493"
+    },
+    {
+      "file": "editor/src/node/compiler.ts",
+      "sha256": "85a8a01c968740a7125140f99649be5c4045264c118ad0d6f69b7c01cfad0b0f"
+    },
+    {
+      "file": "editor/src/node/music-data.ts",
+      "sha256": "4846d352cb0b80ad26f4005f60ef5497e5730ab8c64cef6069021d0c8806ea5a"
+    },
+    {
+      "file": "editor/src/shared/model.ts",
+      "sha256": "314edd73b2cfa9b94d0a7c78bc43c26c64e815c46beef4daefd789b2ee739b96"
+    },
+    {
+      "file": "editor/src/shared/presentation.ts",
+      "sha256": "1174ea868bf3cccef0fecbd251903117e05728da17aa74db7332e55b0e40109a"
+    },
+    {
+      "file": "editor/src/renderer/fields.tsx",
+      "sha256": "6b567a842e3375ed6824e34f8fd165b29a66a9a80439141d9effe54a7f653945"
+    },
+    {
+      "file": "editor/src/renderer/player-presentation-canvas.tsx",
+      "sha256": "d8bcabab780da5d1e88fcd06c90f6f91d5b7e2485c0c494d371600cea6043769"
+    }
+  ],
+  "emulicious": {
+    "initialize": true,
+    "launch": false,
+    "reason": "Remote-debug launch response timed out after 60 seconds; no execution claim."
+  },
+  "limits": [
+    "Full-campaign dialogue test accelerates entry/HP; not a normal-difficulty full clear.",
+    "GBC is not locked to 60 fps; DMG slowdown remains.",
+    "No physical hardware or human listening/difficulty assessment."
+  ],
+  "media": [
+    {
+      "file": "verification-v13/CGB-marisa-auto-5.png",
+      "sha256": "6b60dce7bf565f16eb0ee15df7340fa371ecd2b2ac98d7ec891887d5dddc4cc8"
+    },
+    {
+      "file": "verification-v13/CGB-reimu-auto-5.png",
+      "sha256": "33c9163161368e5c2f53019e755353a04266b6abb034fdb16e4fb71e4fa3f5ae"
+    },
+    {
+      "file": "verification-v13/DMG-marisa-auto-5.png",
+      "sha256": "a145c782950c6833b4a1ee65665c4a69c4f0321ec48fe8269772d2e72432a98f"
+    },
+    {
+      "file": "verification-v13/DMG-reimu-auto-5.png",
+      "sha256": "6c044f90a69e5310c138bdb20bc73f1c1ebfc8f711741a73a79369b68b04ff67"
+    },
+    {
+      "file": "verification-v13/editor-ending.png",
+      "sha256": "f678458ecba41f4143aee847f3568c4a690f3f1a412069c31a4feca446fefa3e"
+    }
+  ],
+  "audition": [
+    {
+      "file": "music-v13/audition/16-kouma_title.wav",
+      "sha256": "8f7a2a6b72ac0d02bae6803ab5cbeadabc008133b728f99aa5abc8fadcee4ca0"
+    },
+    {
+      "file": "music-v13/audition/18-kouma_meiling.wav",
+      "sha256": "ef380602da46010db321cf0796a3d2ea32a3452bc81cdc93ab859f7cd34b026c"
+    },
+    {
+      "file": "music-v13/audition/34-kouma_ending.wav",
+      "sha256": "5f9301578db0b81b47e1f79ae4122620712a33ebf3cbf9fbd54f2e5b37d6cb69"
+    }
+  ]
+}
