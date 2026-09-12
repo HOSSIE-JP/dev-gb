@@ -1,4 +1,24 @@
-import type {Game, Presentation, Stage} from "./model";
+import type {Game, Presentation, Stage, Screen} from "./model";
+
+/** The portrait remains above the reserved three-row continue menu. */
+export function gameOverPresentation(game: Game, character = 0) {
+    const player = character ? game.player.characters![character - 1] : game.player;
+    const base = game.screens.find(s => s.id === "gameover")!;
+    const background = player.gameoverBackground || base.background;
+    const asset = game.assets.find(a => a.id === background);
+    let screen: Screen = {...base, background};
+    let pixels: number[] | undefined;
+    if (game.continue?.enabled) {
+        pixels = asset ? [...asset.frames[0].pixels] : Array(160 * 144).fill(0);
+        pixels.fill(0, 160 * 104);
+        const palette = asset?.palette ?? base.palette;
+        screen = {...screen, palette, items:[...base.items.filter(i => i.y < 13 && i.binding !== "highscores"),
+            {id:"continue-score",text:"SCORE ",x:4,y:13,palette,binding:"score",digits:5},
+            {id:"continue-time",text:"CONTINUE? ",x:4,y:15,palette,binding:"time",digits:2},
+            {id:"continue-input",text:"A:つづける B:おわる",x:2,y:17,palette,binding:"none"}]};
+    }
+    return {screen, pixels};
+}
 
 /** Shared epilogue pictures can be reused, with a route keyed by stable player ID. */
 export function resolveEnding(game: Game, character = 0) {

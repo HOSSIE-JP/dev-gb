@@ -1,6 +1,6 @@
 import React,{useEffect,useRef,useState} from "react";
 import type {Game,Screen} from "../shared/model";
-import {resolveEnding} from "../shared/presentation";
+import {resolveEnding,gameOverPresentation} from "../shared/presentation";
 import {drawScreen} from "./canvases";
 
 export function PlayerPresentationCanvas({game,glyphs,dmg}:{game:Game;glyphs:Record<string,number[]>;dmg:boolean}){
@@ -9,11 +9,12 @@ export function PlayerPresentationCanvas({game,glyphs,dmg}:{game:Game;glyphs:Rec
     const players=[{...game.player,name:game.player.name??"PLAYER 1"},...(game.player.characters??[])],p=players[Math.min(character,players.length-1)];
     useEffect(()=>{
         const slides=resolveEnding(game,character),asset=game.assets.find(a=>a.id===slides[Math.min(slide,slides.length-1)]?.background);
-        const panels:[React.RefObject<HTMLCanvasElement|null>,Screen][]=[[selection,{id:"clear",name:"機体選択",background:p.selectionBackground??"",palette:0,dock:"top",items:[]}],[over,{...game.screens.find(s=>s.id==="gameover")!,background:p.gameoverBackground||game.screens.find(s=>s.id==="gameover")!.background}]];
+        const gameover=gameOverPresentation(game,Math.min(character,players.length-1));
+        const panels:[React.RefObject<HTMLCanvasElement|null>,Screen][]=[[selection,{id:"clear",name:"機体選択",background:p.selectionBackground??"",palette:0,dock:"top",items:[]}],[over,gameover.screen]];
         if(asset)panels.push([ending,{id:"clear",name:"エンディング",background:asset.id,palette:asset.palette,dock:"top",items:[]}]);
         else {const c=ending.current?.getContext("2d");if(c){c.fillStyle="#000";c.fillRect(0,0,160,144);}}
         for(const [ref,screen]of panels){
-            const c=ref.current?.getContext("2d");if(!c)continue;c.fillStyle="#000";c.fillRect(0,0,160,144);drawScreen(c,game,screen,glyphs,dmg,{score:"00000"});
+            const c=ref.current?.getContext("2d");if(!c)continue;c.fillStyle="#000";c.fillRect(0,0,160,144);drawScreen(c,game,screen,glyphs,dmg,{score:"00000",time:String(game.continue?.seconds??0)},ref===over?gameover.pixels:undefined);
         }
     },[game,glyphs,dmg,character,slide]);
     return <div className="canvas-well" style={{display:"block",textAlign:"center"}}>

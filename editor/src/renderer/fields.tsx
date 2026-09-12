@@ -13,6 +13,7 @@ const labels: Record<string, string> = {
     startStage: "開始ステージ",
     clearBonus: "クリア加点",
     startup: "起動ロゴ（タイトル前）", fadeSeconds: "フェード時間（片道・秒）",
+    continue: "コンティニュー", delaySeconds: "ゲームオーバー前の待ち時間（秒）",
     ending: "エンディング", slides: "スライド", characterSlides: "追加機体のエンディング", scoreAfter: "最終スコアをエンディング後に集計", seconds: "自動送り秒数", presentation: "会話とクリア演出", enabled: "有効", dialogueBackground: "会話の立ち絵背景",
     clearBackground: "クリアの立ち絵背景", rightPalette: "右側の立ち絵パレット",
     dialogue: "会話ページ", speaker: "話者（18文字まで）", line1: "セリフ1行目（18文字まで）", line2: "セリフ2行目（18文字まで）",
@@ -184,7 +185,7 @@ export function Form({
                 : context === "ending" ? {music: game.music?.clear ?? 0, scoreAfter:false, characterSlides:[], ...value}
                 : value.id === "hud" ? { rows: 2, ...value }
                 : "binding" in value ? { digits: 5, ...value }
-                : value.schemaVersion === 1 ? { startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
+                : value.schemaVersion === 1 ? { continue: {enabled:false,seconds:10,delaySeconds:0}, startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )
                 .filter(
@@ -300,6 +301,7 @@ export function Form({
                         key === "victoryDialogue" ? "撃破後の勝者・敗者会話" :
                         key === "pages" && context === "victoryDialogue" ? "撃破後会話ページ" :
                         key === "seconds" && context === "intro" ? "表示時間（秒）" :
+                        key === "seconds" && context === "continue" ? "コンティニュー受付時間（秒）" :
                         key === "background" && context === "battle" ? "描画方式" :
                         key === "duration" && context === "stage"
                             ? "制限時間（秒）"
@@ -349,7 +351,7 @@ export function Form({
                                             : "text"
                                     }
                                     step={
-                                        key === "fadeSeconds" || (key === "seconds" && context === "slides") ? 0.1 :
+                                        key === "delaySeconds" || key === "fadeSeconds" || (key === "seconds" && context === "slides") ? 0.1 :
                                         key === "seconds" && context === "intro" ? 0.05 :
                                         [
                                             "speed",

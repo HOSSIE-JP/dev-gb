@@ -1,0 +1,32 @@
+{
+  "version": "0.16",
+  "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2",
+  "requested": [
+    "Remove robot face from AI SLOP GAMES logo",
+    "Pause before game over",
+    "Offer continue for 10 seconds; restart current stage and reset score",
+    "Register qualifying score at game over"
+  ],
+  "implemented": {
+    "logo": "POP wordmark with hearts and stars, no robot",
+    "continue": {
+      "enabled": true,
+      "seconds": 10,
+      "delaySeconds": 1
+    },
+    "ranking": "Top-five insertion and SRAM commit before score reset"
+  },
+  "sourceArtwork": "imagegen-v16",
+  "previousArtworkRetained": "imagegen-v15",
+  "unchanged": [
+    "77 existing PNG files",
+    "Stage/enemy/bullet settings",
+    "Characters and dialogue",
+    "BGM and endings"
+  ],
+  "rom": {
+    "path": "build/Release/touhou-kouma-v16.gb",
+    "sha256": "408ccecf2ea73cd6d098642fdf4db536cfbf9034b7d43dc8df1cd51b5239f16c",
+    "bytes": 1048576
+  }
+}

@@ -8,8 +8,8 @@ static void record_score(void) {
         for (j = 4; j > i; --j) ce_scores[j] = ce_scores[j - 1u]; ce_scores[i] = ce_state.score; ce_save_scores(); break;
     }
 }
-static void start_game(void) {
-    ce_fade(1);ce_reset(ce_campaign?0u:ce_start_stage,1);ce_scene=1;ce_pause=0;ce_load_stage();ce_fade(0);
+static void start_game(uint8_t stage) {
+    ce_fade(1);ce_reset(stage,1);ce_scene=1;ce_pause=0;ce_load_stage();ce_fade(0);
 }
 void ce_mainloop(void) BANKED {
     uint8_t input, pressed, previous = 0;
@@ -43,27 +43,35 @@ void ce_mainloop(void) BANKED {
                 if (!ce_state.result) ce_render();
             }
             if (ce_state.result) {
-                record_score(); ce_scene = ce_state.result == 1u ? 2u : 3u;
-                if (ce_state.result == 2u && ce_ending_score_after) {
+                record_score();
+                if (ce_state.result == 1u) {
+                    ce_wait_gameover();
+                    if (ce_continue_frames) {
+                        if (ce_offer_continue()) start_game(ce_state.stage);
+                        else { ce_scene=0;ce_load_screen(0);ce_music_play(ce_music_title); }
+                    } else {
+                        ce_scene=2;ce_load_screen(ce_gameover_screens[ce_character]);ce_music_play(ce_music_gameover);
+                    }
+                    previous=joypad();
+                } else if (ce_ending_score_after) {
                     ce_scene = 4; ce_load_screen(3); ce_music_play(ce_music_clear);
                     previous = joypad();
-                } else if (ce_state.result == 2u && ce_ending_counts[ce_character]) {
+                } else if (ce_ending_counts[ce_character]) {
                     ce_play_ending(); ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title);
                     previous = joypad();
                 } else {
-                ce_load_screen(ce_state.result == 1u ? ce_gameover_screens[ce_character] : 2u);
-                ce_music_play(ce_state.result == 1u ? ce_music_gameover : ce_music_clear);
+                ce_scene=3;ce_load_screen(2);ce_music_play(ce_music_clear);
                 }
             }
         } else if (ce_scene == 0u) {
             if (pressed & (J_START | J_A)) {
                 if(ce_player_count>1u){ce_scene=10;ce_select_player(0);ce_load_screen(ce_select_first);}
-                else start_game();
+                else start_game(ce_campaign?0u:ce_start_stage);
             }
             else if (pressed & J_SELECT) { ce_scene = 4; ce_load_screen(3); }
         } else if (ce_scene == 10u) {
             if(pressed & J_B){ce_scene=0;ce_load_screen(0);}
-            else if(pressed & (J_A|J_START))start_game();
+            else if(pressed & (J_A|J_START))start_game(ce_campaign?0u:ce_start_stage);
             else if(pressed & (J_LEFT|J_RIGHT)){
                 ce_select_player(pressed&J_RIGHT?(ce_character+1u==ce_player_count?0u:ce_character+1u):(ce_character?ce_character-1u:ce_player_count-1u));
                 ce_load_screen(ce_select_first+ce_character);

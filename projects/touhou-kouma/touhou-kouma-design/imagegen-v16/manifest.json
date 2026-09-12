@@ -1,0 +1,19 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "prompt.txt",
+  "master": "logo-ai-slop-type-original.png",
+  "masterSha256": "457317c7f5d61cea24945dc6bdac9650bbe8e07d0545a2c0c704d665a7f5c5b9",
+  "sourceSize": [
+    1322,
+    1190
+  ],
+  "outputSize": [
+    160,
+    144
+  ],
+  "sampling": "nearest-neighbor pixel-center, alpha composited over black, luma rounded to four shades",
+  "uniqueTiles": 149,
+  "palette": 7,
+  "asset": "../../assets-src/images/logo-ai-slop.png",
+  "assetSha256": "4825182697c6d63ace5be8a845d61af11843dcc8c22dd51fd2e7cf99ec67a2ad"
+}

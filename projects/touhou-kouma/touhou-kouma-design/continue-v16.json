@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "seconds": 10,
+  "delaySeconds": 1,
+  "accept": [
+    "A",
+    "START"
+  ],
+  "cancel": "B",
+  "timeout": "title",
+  "restart": "current stage beginning",
+  "score": 0,
+  "lives": 5,
+  "bombs": 2,
+  "character": "preserved",
+  "ranking": "insert qualifying lost score into top five and save SRAM before offering continue"
+}

@@ -1,0 +1,335 @@
+{
+  "version": "0.16",
+  "date": "2026-09-12",
+  "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v16.gb",
+    "sha256": "408ccecf2ea73cd6d098642fdf4db536cfbf9034b7d43dc8df1cd51b5239f16c",
+    "bytes": 1048576
+  },
+  "build": {
+    "debugReleaseIdentical": true,
+    "ramBytes": 7006,
+    "ramCapacity": 8192,
+    "minStackReserve": 1024,
+    "spriteTiles": 80,
+    "diagnostics": []
+  },
+  "checks": {
+    "standardTests": 89,
+    "productionContinueCases": 4,
+    "laterStageFixtureCases": 12,
+    "nativeContinueFixtureCases": 2,
+    "productionStartupCases": 6,
+    "unchangedImages": 77,
+    "debugReleaseIdentical": true,
+    "editableTimingsSavedReopened": true,
+    "characterPreviews": true,
+    "rankingSRAMReload": true
+  },
+  "production": [
+    {
+      "label": "DMG-reimu",
+      "fixture": false,
+      "memoryWrites": false,
+      "lostStage": 0,
+      "lives": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "lostScore": 1200,
+      "rankingPersistedBeforeChoice": true,
+      "menuPixelMatch": true,
+      "sameCharacter": true,
+      "restartedStage": 0,
+      "restartedScore": 0,
+      "restartedLives": 5,
+      "restartedBombs": 2,
+      "frames": 4263
+    },
+    {
+      "label": "DMG-marisa",
+      "fixture": false,
+      "memoryWrites": false,
+      "lostStage": 0,
+      "lives": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "lostScore": 720,
+      "rankingPersistedBeforeChoice": true,
+      "menuPixelMatch": true,
+      "sameCharacter": true,
+      "restartedStage": 0,
+      "restartedScore": 0,
+      "restartedLives": 5,
+      "restartedBombs": 2,
+      "frames": 4747
+    },
+    {
+      "label": "CGB-reimu",
+      "fixture": false,
+      "memoryWrites": false,
+      "lostStage": 0,
+      "lives": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "lostScore": 1200,
+      "rankingPersistedBeforeChoice": true,
+      "menuPixelMatch": true,
+      "sameCharacter": true,
+      "restartedStage": 0,
+      "restartedScore": 0,
+      "restartedLives": 5,
+      "restartedBombs": 2,
+      "frames": 4321
+    },
+    {
+      "label": "CGB-marisa",
+      "fixture": false,
+      "memoryWrites": false,
+      "lostStage": 0,
+      "lives": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "lostScore": 720,
+      "rankingPersistedBeforeChoice": true,
+      "menuPixelMatch": true,
+      "sameCharacter": true,
+      "restartedStage": 0,
+      "restartedScore": 0,
+      "restartedLives": 5,
+      "restartedBombs": 2,
+      "frames": 4801
+    }
+  ],
+  "laterStageFixture": {
+    "sha256": "2dac4133e6cf08453eaa6d7f9f1004c5d496df9c905a5e7d27c29689dd80af4a",
+    "description": "Two short stages, one life, stationary scoring/contact enemies. No ROM or RAM patching.",
+    "results": [
+      {
+        "label": "DMG-0-continue",
+        "character": 0,
+        "action": "continue",
+        "score": 222,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": true,
+        "zeroScoreNotInserted": true,
+        "frames": 1321
+      },
+      {
+        "label": "DMG-0-timeout",
+        "character": 0,
+        "action": "timeout",
+        "score": 222,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": false,
+        "zeroScoreNotInserted": false,
+        "frames": 1177
+      },
+      {
+        "label": "DMG-0-cancel",
+        "character": 0,
+        "action": "cancel",
+        "score": 222,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": false,
+        "zeroScoreNotInserted": false,
+        "frames": 610
+      },
+      {
+        "label": "DMG-1-continue",
+        "character": 1,
+        "action": "continue",
+        "score": 555,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": true,
+        "zeroScoreNotInserted": true,
+        "frames": 1332
+      },
+      {
+        "label": "DMG-1-timeout",
+        "character": 1,
+        "action": "timeout",
+        "score": 555,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": false,
+        "zeroScoreNotInserted": false,
+        "frames": 1189
+      },
+      {
+        "label": "DMG-1-cancel",
+        "character": 1,
+        "action": "cancel",
+        "score": 555,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": false,
+        "zeroScoreNotInserted": false,
+        "frames": 622
+      },
+      {
+        "label": "CGB-0-continue",
+        "character": 0,
+        "action": "continue",
+        "score": 222,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": true,
+        "zeroScoreNotInserted": true,
+        "frames": 1371
+      },
+      {
+        "label": "CGB-0-timeout",
+        "character": 0,
+        "action": "timeout",
+        "score": 222,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": false,
+        "zeroScoreNotInserted": false,
+        "frames": 1234
+      },
+      {
+        "label": "CGB-0-cancel",
+        "character": 0,
+        "action": "cancel",
+        "score": 222,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": false,
+        "zeroScoreNotInserted": false,
+        "frames": 667
+      },
+      {
+        "label": "CGB-1-continue",
+        "character": 1,
+        "action": "continue",
+        "score": 555,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": true,
+        "zeroScoreNotInserted": true,
+        "frames": 1381
+      },
+      {
+        "label": "CGB-1-timeout",
+        "character": 1,
+        "action": "timeout",
+        "score": 555,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": false,
+        "zeroScoreNotInserted": false,
+        "frames": 1244
+      },
+      {
+        "label": "CGB-1-cancel",
+        "character": 1,
+        "action": "cancel",
+        "score": 555,
+        "rankingPersisted": true,
+        "deathDelay": true,
+        "portraitPixels": true,
+        "heldGuard": true,
+        "stageRestart": false,
+        "zeroScoreNotInserted": false,
+        "frames": 677
+      }
+    ]
+  },
+  "bgb": {
+    "rom": "See verification-v16/bgb-results.json for fixture path",
+    "sha256": "2dac4133e6cf08453eaa6d7f9f1004c5d496df9c905a5e7d27c29689dd80af4a",
+    "emulator": "BGB 1.6.6",
+    "fixture": true,
+    "results": [
+      {
+        "resume": false,
+        "cgb": true,
+        "deathSamples": 60,
+        "menuSamples": 600,
+        "score": 222,
+        "rankingBeforeReset": true,
+        "currentStageRestart": false
+      },
+      {
+        "resume": true,
+        "cgb": true,
+        "deathSamples": 60,
+        "menuSamples": 280,
+        "score": 222,
+        "rankingBeforeReset": true,
+        "currentStageRestart": true
+      }
+    ]
+  },
+  "editor": [
+    {
+      "editableTiming": true,
+      "savedAndReloaded": true,
+      "characterPreviews": true,
+      "buildFree": true
+    }
+  ],
+  "sourcePreservation": {
+    "unchangedImages": 77,
+    "onlyLogoAndContinueChanged": true
+  },
+  "environmentWarnings": [
+    "Git could not read the user-level .config/git/ignore file; builds/tests completed."
+  ],
+  "pending": [
+    "Physical hardware has not been verified.",
+    "No new normal-difficulty full-campaign clear.",
+    "Emulicious initialize succeeded, but ROM launch timed out after 60 seconds.",
+    "No new performance or human audio assessment."
+  ],
+  "evidence": "verification-v16",
+  "report": "../../../docs/touhou-kouma-v16.md"
+}

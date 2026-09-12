@@ -197,6 +197,13 @@ export class Simulation {
     }
     dropped = 0;
     result = 0;
+    gameOverState: "delay" | "continue" | "done" | undefined;
+    deathLeft = 0;
+    continueLeft = 0;
+    highscores = [0, 0, 0, 0, 0];
+    private resultInput = 0;
+    readonly sourceGame: Game;
+    readonly character: number;
     bossDefeated = false;
     stage: Stage;
     input = 0;
@@ -208,6 +215,7 @@ export class Simulation {
             : game.startStage,
         character=0,
     ) {
+        this.sourceGame = game; this.character = character;
         const extra=character ? game.player.characters?.[character-1] : undefined;
         this.bombBackground=extra?.bombBackground || game.player.bomb?.background || "";this.bombStyle=extra?.bombStyle ?? "orb";
         game=this.game={...game,player:{...game.player,...extra}};
@@ -474,8 +482,37 @@ export class Simulation {
             damage: 0,
         });
     }
+    private gameOverStep(input: number) {
+        const pressed = input & ~this.resultInput; this.resultInput = input;
+        if (!this.gameOverState) {
+            const index = this.highscores.findIndex(score => this.score > score);
+            if (index >= 0) { this.highscores.splice(index, 0, this.score); this.highscores.length = 5; }
+            this.deathLeft = Math.round((this.game.continue?.delaySeconds ?? 0) * 60);
+            this.gameOverState = "delay";
+            if (!this.lives) this.respawn = 1;
+            return;
+        }
+        if (this.gameOverState === "delay") {
+            if (this.deathLeft) {
+                for (const e of this.entities) if (e.kind === "fx") { ++e.age; --e.lifetime; }
+                this.entities = this.entities.filter(e => e.kind !== "fx" || e.lifetime > 0);
+                if (--this.deathLeft) return;
+            }
+            this.continueLeft = this.game.continue?.enabled ? this.game.continue.seconds * 60 : 0;
+            this.gameOverState = this.continueLeft ? "continue" : "done";
+            return;
+        }
+        if (this.gameOverState !== "continue") return;
+        if (!--this.continueLeft || pressed & 32) { this.continueLeft = 0; this.gameOverState = "done"; return; }
+        if (pressed & (16 | 128)) {
+            const scores = this.highscores;
+            Object.assign(this, new Simulation(this.sourceGame, this.stage.id, this.character));
+            this.highscores = scores; this.resultInput = input;
+        }
+    }
     step(input = this.input) {
-        if (this.result) return;
+        if (this.result) { if (this.result === 1) this.gameOverStep(input); return; }
+        this.resultInput = input;
         if(this.bombLeft){--this.bombLeft;return;}
         if (this.transition) {
             const t = this.transition, b = this.game.bosses.find(b => b.id === t.boss.ref)!;

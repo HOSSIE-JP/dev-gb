@@ -1,0 +1,244 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v16\\production\\touhou-kouma.gb",
+  "sha256": "408ccecf2ea73cd6d098642fdf4db536cfbf9034b7d43dc8df1cd51b5239f16c",
+  "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2",
+  "fixture": false,
+  "memoryWrites": false,
+  "results": [
+    {
+      "label": "DMG-auto",
+      "skipPage": -1,
+      "titleFrame": 692,
+      "skipFrame": -1,
+      "heldInputGuard": true,
+      "characterSelect": true,
+      "noReplay": true,
+      "pages": [
+        {
+          "index": 0,
+          "hold": 150,
+          "fadesIn": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "fadesOut": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pixels": true
+        },
+        {
+          "index": 1,
+          "hold": 300,
+          "fadesIn": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "fadesOut": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pixels": true
+        }
+      ]
+    },
+    {
+      "label": "DMG-skip-0",
+      "skipPage": 0,
+      "titleFrame": 248,
+      "skipFrame": 232,
+      "heldInputGuard": true,
+      "characterSelect": true,
+      "noReplay": true,
+      "pages": [
+        {
+          "index": 0,
+          "hold": 92,
+          "fadesIn": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "fadesOut": [],
+          "pixels": true
+        },
+        {
+          "index": 1,
+          "hold": 0,
+          "fadesIn": [],
+          "fadesOut": [
+            0
+          ],
+          "pixels": false
+        }
+      ]
+    },
+    {
+      "label": "DMG-skip-1",
+      "skipPage": 1,
+      "titleFrame": 610,
+      "skipFrame": 594,
+      "heldInputGuard": true,
+      "characterSelect": true,
+      "noReplay": true,
+      "pages": [
+        {
+          "index": 0,
+          "hold": 150,
+          "fadesIn": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "fadesOut": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pixels": true
+        },
+        {
+          "index": 1,
+          "hold": 242,
+          "fadesIn": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "fadesOut": [],
+          "pixels": true
+        }
+      ]
+    },
+    {
+      "label": "CGB-auto",
+      "skipPage": -1,
+      "titleFrame": 761,
+      "skipFrame": -1,
+      "heldInputGuard": true,
+      "characterSelect": true,
+      "noReplay": true,
+      "pages": [
+        {
+          "index": 0,
+          "hold": 150,
+          "fadesIn": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "fadesOut": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pixels": true
+        },
+        {
+          "index": 1,
+          "hold": 300,
+          "fadesIn": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "fadesOut": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pixels": true
+        }
+      ]
+    },
+    {
+      "label": "CGB-skip-0",
+      "skipPage": 0,
+      "titleFrame": 322,
+      "skipFrame": 310,
+      "heldInputGuard": true,
+      "characterSelect": true,
+      "noReplay": true,
+      "pages": [
+        {
+          "index": 0,
+          "hold": 92,
+          "fadesIn": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "fadesOut": [],
+          "pixels": true
+        },
+        {
+          "index": 1,
+          "hold": 0,
+          "fadesIn": [],
+          "fadesOut": [
+            0,
+            4
+          ],
+          "pixels": false
+        }
+      ]
+    },
+    {
+      "label": "CGB-skip-1",
+      "skipPage": 1,
+      "titleFrame": 679,
+      "skipFrame": 667,
+      "heldInputGuard": true,
+      "characterSelect": true,
+      "noReplay": true,
+      "pages": [
+        {
+          "index": 0,
+          "hold": 150,
+          "fadesIn": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "fadesOut": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "pixels": true
+        },
+        {
+          "index": 1,
+          "hold": 242,
+          "fadesIn": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "fadesOut": [],
+          "pixels": true
+        }
+      ]
+    }
+  ]
+}

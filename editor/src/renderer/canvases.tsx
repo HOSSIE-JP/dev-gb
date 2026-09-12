@@ -744,12 +744,13 @@ export function drawScreen(
     glyphs: Record<string, number[]>,
     dmg: boolean,
     values: Record<string, string> = {},
+    backgroundPixels?: number[],
 ) {
     const colors = dmg ? dmgColors(g) : g.palettes[s.palette].colors;
     c.fillStyle = colors[0];
     c.fillRect(0, 0, 160, s.id === "hud" ? (s.rows ?? 2) * 8 : 144);
     const background = g.assets.find((a) => a.id === s.background);
-    if (background) drawAsset(c, g, background, 0, 0, 0, dmg);
+    if (background) drawAsset(c, g, backgroundPixels ? {...background, frames:[{...background.frames[0], pixels:backgroundPixels}]} : background, 0, 0, 0, dmg);
     for (const item of s.items) {
         const palette = dmg ? dmgColors(g) : g.palettes[item.palette].colors,
             text =

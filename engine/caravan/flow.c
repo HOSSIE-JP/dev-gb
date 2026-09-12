@@ -12,6 +12,7 @@ uint16_t ce_intro_left, ce_clear_wait_left;
 uint16_t ce_bonus_values[4];
 static uint16_t bonus_targets[3];
 static uint8_t scene_previous;
+uint16_t ce_continue_left, ce_death_left;
 uint8_t ce_ending_slide;
 uint16_t ce_ending_left;
 static uint8_t scene_input(void) {
@@ -22,6 +23,46 @@ static uint8_t scene_input(void) {
 }
 static uint16_t sum_score(uint16_t a, uint16_t b) {
     return 65535u - a < b ? 65535u : a + b;
+}
+/* Freeze stage progression after the last hit, but finish the death burst.
+ * All timing uses display VBlanks so a busy boss cannot stretch the menu. */
+void ce_wait_gameover(void) BANKED {
+    uint16_t start, now, elapsed, previous = 0, delta;
+    uint8_t i;
+    if (!ce_death_delay) return;
+    ce_scene = 14; ce_death_left = ce_death_delay;
+    if (!ce_state.lives) ce_respawn = 1;
+    ce_hud(); CRITICAL { start = sys_time; }
+    do {
+        ce_render(); ce_audio_sync();
+        CRITICAL { now = sys_time; }
+        elapsed = now - start; delta = elapsed - previous; previous = elapsed;
+        for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_FX) {
+            ce_entities[i].age += delta;
+            if (delta >= ce_entities[i].lifetime) release(i);
+            else ce_entities[i].lifetime -= delta;
+        }
+        ce_death_left = elapsed >= ce_death_delay ? 0 : ce_death_delay - elapsed;
+        ce_trace_write();
+    } while (ce_death_left);
+}
+uint8_t ce_offer_continue(void) BANKED {
+    uint16_t start, now, elapsed, seconds;
+    uint8_t pressed, displayed;
+    ce_scene = 13; ce_continue_left = ce_continue_frames;
+    ce_load_screen(ce_gameover_screens[ce_character]); ce_music_play(ce_music_gameover);
+    scene_previous = joypad(); displayed = (ce_continue_left + 59u) / 60u;
+    CRITICAL { start = sys_time; }
+    for (;;) {
+        pressed = scene_input();
+        CRITICAL { now = sys_time; }
+        elapsed = now - start;
+        ce_continue_left = elapsed >= ce_continue_frames ? 0 : ce_continue_frames - elapsed;
+        if (!ce_continue_left || (pressed & J_B)) { ce_continue_left = 0; return 0; }
+        if (pressed & (J_A | J_START)) { ce_continue_left = 0; return 1; }
+        seconds = (ce_continue_left + 59u) / 60u;
+        if (seconds != displayed) { displayed = seconds; ce_hud(); }
+    }
 }
 /* Only startup uses this scene. Input is also latched during black VRAM loads. */
 uint8_t ce_logo_page, ce_logo_phase, ce_logo_skip;

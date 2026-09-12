@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import {gameOverPresentation} from "../shared/presentation";
 import { type Game, clone, assetById } from "../shared/model";
 import { Simulation, drawSimulation, drawAsset } from "../shared/simulation";
 import { drawScreen } from "./canvases";
@@ -115,6 +116,9 @@ export function Preview({
                 s.tick,
                 dmg,
             );
+        } else if (s.gameOverState === "continue" || s.gameOverState === "done") {
+            const over = gameOverPresentation(s.gameOverState === "continue" ? s.game : {...s.game,continue:undefined});
+            drawScreen(c,s.game,over.screen,glyphs,dmg,{score:String(s.score).padStart(5,"0"),time:String(Math.ceil(s.continueLeft/60))},over.pixels);
         } else if (s.intro) {
             const name = [...s.intro.spellName];
             drawScreen(c,s.game,{id: "clear", name: "Cut-in", background: s.intro.background, palette:0, dock:"top", items:[

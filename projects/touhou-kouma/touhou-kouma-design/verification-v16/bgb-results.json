@@ -1,0 +1,26 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v16\\continue\\fixture\\projects\\continue-test\\build\\Debug\\continue-test.gb",
+  "sha256": "2dac4133e6cf08453eaa6d7f9f1004c5d496df9c905a5e7d27c29689dd80af4a",
+  "emulator": "BGB 1.6.6",
+  "fixture": true,
+  "results": [
+    {
+      "resume": false,
+      "cgb": true,
+      "deathSamples": 60,
+      "menuSamples": 600,
+      "score": 222,
+      "rankingBeforeReset": true,
+      "currentStageRestart": false
+    },
+    {
+      "resume": true,
+      "cgb": true,
+      "deathSamples": 60,
+      "menuSamples": 280,
+      "score": 222,
+      "rankingBeforeReset": true,
+      "currentStageRestart": true
+    }
+  ]
+}

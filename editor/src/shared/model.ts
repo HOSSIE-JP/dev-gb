@@ -183,6 +183,7 @@ export type Game = {
         x: number;
         y: number;
     };
+    continue?: { enabled: boolean; seconds: number; delaySeconds: number };
     startup?: { enabled: boolean; fadeSeconds: number; slides: {id: string; background: string; seconds: number}[] };
     ending?: { seconds: number; slides: { id: string; background: string }[];
         music?: number; scoreAfter?: boolean;
@@ -450,6 +451,7 @@ export function validateShape(
             x: "number",
             y: "number",
         },
+        "continue?": {enabled:"boolean", seconds:"number", delaySeconds:"number"},
         "startup?": {enabled:"boolean", fadeSeconds:"number", slides:[{id:"string",background:"string",seconds:"number"}]},
         "ending?": { seconds: "number", slides: [{id: "string", background: "string"}], "music?":"number", "scoreAfter?":"boolean",
             "characterSlides?":[{id:"string",character:"string",slides:[{id:"string",background:"string"}]}] },
@@ -769,6 +771,10 @@ export function validate(value: unknown): Diagnostic[] {
     patternRef(game.player.weapon, "player");
     if (game.player.focusWeapon) patternRef(game.player.focusWeapon, "player");
     if (game.player.focusSpeed !== undefined) finite(game.player.focusSpeed, 0.0625, 8, "player");
+    if (game.continue) {
+        integer(game.continue.seconds, 1, 60, "continue");
+        finite(game.continue.delaySeconds, 0, 5, "continue");
+    }
     if (game.startup) {
         const p = game.startup;
         finite(p.fadeSeconds, 0.1, 3, "startup"); integer(p.slides.length, 0, 16, "startup"); uniqueIds(p.slides, "startup");

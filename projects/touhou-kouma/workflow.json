@@ -1,15 +1,24 @@
 {
-  "version": "0.15-pop-brand-startup",
+  "version": "0.16-continue-and-type-logo",
   "updatedAt": "2026-09-12",
   "status": "playtest-ready",
   "approved": false,
-  "projectRevision": "6a380276c9aa030a4f7d0d0a4d01796fdac4bb39e4474fe3d0a548da537a545a",
+  "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2",
   "rom": {
-    "path": "build/Release/touhou-kouma-v15.gb",
-    "sha256": "ef365100ce9f2891c18d88360081dbdc92337ced00634a2421f32e524311402a",
+    "path": "build/Release/touhou-kouma-v16.gb",
+    "sha256": "408ccecf2ea73cd6d098642fdf4db536cfbf9034b7d43dc8df1cd51b5239f16c",
     "bytes": 1048576
   },
   "previous": [
+    {
+      "version": "0.15-pop-brand-startup",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v15.gb",
+        "sha256": "ef365100ce9f2891c18d88360081dbdc92337ced00634a2421f32e524311402a",
+        "bytes": 1048576
+      },
+      "projectRevision": "6a380276c9aa030a4f7d0d0a4d01796fdac4bb39e4474fe3d0a548da537a545a"
+    },
     {
       "version": "0.14-optional-startup-logos",
       "rom": {
@@ -93,17 +102,22 @@
     }
   ],
   "checks": {
-    "standardTests": 86,
+    "standardTests": 89,
+    "productionContinueCases": 4,
+    "laterStageFixtureCases": 12,
+    "nativeContinueFixtureCases": 2,
     "productionStartupCases": 6,
-    "nativeStartupCases": 2,
-    "unchangedImages": 76,
+    "unchangedImages": 77,
     "debugReleaseIdentical": true,
-    "saveReopen": true
+    "editableTimingsSavedReopened": true,
+    "characterPreviews": true,
+    "rankingSRAMReload": true
   },
   "pending": [
     "Physical hardware has not been verified.",
     "No new normal-difficulty full-campaign clear.",
-    "Emulicious launch timed out; not counted as execution evidence."
+    "Emulicious initialize succeeded, but ROM launch timed out after 60 seconds.",
+    "No new performance or human audio assessment."
   ],
-  "evidence": "../../docs/touhou-kouma-v15.md"
+  "evidence": "../../docs/touhou-kouma-v16.md"
 }

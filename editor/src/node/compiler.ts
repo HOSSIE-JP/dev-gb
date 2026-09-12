@@ -14,7 +14,7 @@ import {
     q4,
 } from "../shared/model";
 import { angleStep, shotAngles, SIN, COS } from "../shared/simulation";
-import {resolvePresentation, resolveEnding, dialoguePixels} from "../shared/presentation";
+import {resolvePresentation, resolveEnding, dialoguePixels, gameOverPresentation} from "../shared/presentation";
 import {generateMusic} from "./music-data";
 import {
     safePath,
@@ -556,12 +556,14 @@ export function generate(
         const text = (id:string,t:string,x:number,y:number) => ({id,text:t,x,y,palette:a.palette,binding:"none" as const});
         compileScreen({id:"clear",name:"機体選択",background:"",palette:a.palette,dock:"top",items:[text("title","PLAYER SELECT",3,1),text("name",p.name,Math.floor((20-p.name.length)/2),3),text("index",`${i+1}/${players.length}`,9,13),text("speed",`SPEED ${p.speed.toFixed(2)} / ${(p.focusSpeed ?? p.speed).toFixed(2)}`,1,14),text("select","LEFT/RIGHT  A:OK",2,16),text("back","B:BACK",6,17)]},screenRows.length,undefined,"",pixels);
     }
-    const gameover = game.screens.find(s=>s.id==="gameover")!, gameoverScreens:number[]=[];
-    for(const p of players){
-        gameoverScreens.push(p.gameoverBackground ? screenRows.length : 1);
-        if(p.gameoverBackground)compileScreen({...gameover,name:`${p.name}のゲームオーバー`,background:p.gameoverBackground},screenRows.length);
+    const gameoverScreens:number[]=[];
+    for(const [i,p] of players.entries()){
+        const custom = !!p.gameoverBackground || game.continue?.enabled;
+        gameoverScreens.push(custom ? screenRows.length : 1);
+        if(custom){const over=gameOverPresentation(game,i);compileScreen({...over.screen,name:`${p.name}のゲームオーバー`},screenRows.length,undefined,"",over.pixels);}
     }
     config.push(`const uint8_t ce_gameover_screens[]={${gameoverScreens}};`);
+    config.push(`const uint16_t ce_continue_frames=${game.continue?.enabled ? game.continue.seconds*60 : 0},ce_death_delay=${Math.round((game.continue?.delaySeconds??0)*60)};`);
     const bomb=game.player.bomb,bombScreens:number[]=[];
     for(const p of players){
         bombScreens.push(bomb?.enabled?screenRows.length:255);

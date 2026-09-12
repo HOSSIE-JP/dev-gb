@@ -85,6 +85,10 @@ extern const uint8_t ce_palette_count, ce_sprite_tiles, ce_campaign, ce_start_st
 extern const CE_Player ce_players[];
 extern const uint8_t ce_player_count, ce_select_first, ce_player_lives;
 extern const uint8_t ce_gameover_screens[];
+extern const uint16_t ce_continue_frames, ce_death_delay;
+extern uint16_t ce_continue_left, ce_death_left;
+void ce_wait_gameover(void) BANKED;
+uint8_t ce_offer_continue(void) BANKED;
 extern uint8_t ce_player_asset, ce_player_weapon, ce_player_speed, ce_player_focus_weapon, ce_player_focus_speed, ce_character;
 extern const uint8_t ce_bomb_stock, ce_bomb_damage, ce_bomb_frames, ce_bomb_period, ce_bomb_screens[], ce_bomb_styles[];
 extern uint8_t ce_bombs, ce_bomb_latch, ce_bomb_left;

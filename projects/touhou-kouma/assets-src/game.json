@@ -78617,5 +78617,10 @@
         "seconds": 5
       }
     ]
+  },
+  "continue": {
+    "enabled": true,
+    "seconds": 10,
+    "delaySeconds": 1
   }
 }
