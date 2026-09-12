@@ -22,6 +22,8 @@ import { StartupPreview } from "./startup-preview";
 import { Preview, RomPreview } from "./preview";
 import { Timeline } from "./timeline";
 import { createEntity } from "./entity-defaults";
+import { resizeStage } from "../shared/stage-space";
+import { PowerUpFields, DestructibleFields } from "./shooter-fields";
 import {
     categories,
     type Selection,
@@ -498,17 +500,9 @@ function App() {
             }
             if (
                 selection.kind === "stages" &&
-                list[i].height !== value.height
+                (list[i].height !== value.height || list[i].width !== value.width || list[i].scrollAxis !== value.scrollAxis)
             ) {
-                value.height = Math.max(18, Math.min(512, value.height));
-                value.tiles = Array.from(
-                    { length: value.height * 20 },
-                    (_, n) => value.tiles[n] ?? 0,
-                );
-                value.walls = Array.from(
-                    { length: value.height * 20 },
-                    (_, n) => value.walls[n] ?? 0,
-                );
+                value = {...value, ...resizeStage({...value,width:list[i].width,height:list[i].height}, Math.max(20,Math.min(512,Math.round(value.width))), Math.max(18,Math.min(512,Math.round(value.height))))};
             }
             list[i] = value;
         });
@@ -553,6 +547,7 @@ function App() {
         const entity = createEntity(game, selection.kind);
         if (!entity) return;
         change((g) => {
+            if (!Array.isArray((g as any)[selection.kind])) (g as any)[selection.kind] = [];
             collection(g).push(entity);
             if (selection.kind === "stages") g.stageOrder.push(entity.id);
         });
@@ -565,10 +560,11 @@ function App() {
             frame: 0,
             kind: "enemy",
             ref: game.enemies[0]?.id ?? "",
-            x: 80,
-            y: 0,
+            x: stage.scrollAxis === "horizontal" ? 168 : 80,
+            y: stage.scrollAxis === "horizontal" ? 72 : 0,
             count: 1,
             spacing: 16,
+            spacingY: 0,
             interval: 0,
             value: 1,
         };
@@ -617,7 +613,7 @@ function App() {
     };
     const locate = (id: string) => {
         const path =
-            /^(assets|stages|screens|enemies|bosses|patterns|palettes)\[(\d+)\]/.exec(
+            /^(assets|stages|screens|enemies|bosses|patterns|palettes|items)\[(\d+)\]/.exec(
                 id,
             );
         if (path) {
@@ -638,7 +634,9 @@ function App() {
                 (o) =>
                     o.id === id ||
                     o.items?.some((t: any) => t.id === id) ||
-                    o.events?.some((e: any) => e.id === id),
+                    o.events?.some((e: any) => e.id === id) ||
+                    o.destructibles?.types.some((t: any) => t.id === id) ||
+                    o.destructibles?.objects.some((o: any) => o.id === id),
             );
             if (o) {
                 choose(kind, o.id);
@@ -1323,7 +1321,7 @@ function App() {
                                             ? "pattern"
                                             : selection.kind === "player"
                                               ? "player"
-                                              : ""
+                                              : selection.kind === "items" ? "item" : ["enemies","bosses"].includes(selection.kind) ? "actor" : ""
                                 }
                                 omit={
                                     selection.kind === "project"
@@ -1337,6 +1335,7 @@ function App() {
                                               "screens",
                                               "palettes",
                                               "player",
+                                              "items",
                                           ]
                                         : asset
                                           ? ["kind"]
@@ -1347,6 +1346,8 @@ function App() {
                             />
                         )}
                     </Boundary>
+                    {selection.kind === "player" && <PowerUpFields game={game} onChange={replace}/>}
+                    {stage && <DestructibleFields game={game} stage={stage} onChange={replace}/>}
                     {stage && (
                         <details open>
                             <summary>
@@ -1379,6 +1380,8 @@ function App() {
                                                     v.kind === "boss"
                                                         ? (game.bosses[0]?.id ??
                                                           "")
+                                                        : v.kind === "item" ? (game.items?.[0]?.id ?? "")
+                                                        : v.kind === "scroll" || v.kind === "end" ? ""
                                                         : (game.enemies[0]
                                                               ?.id ?? "");
                                             replace({
@@ -1540,15 +1543,15 @@ function App() {
                                 </button>
                                 <button
                                     className="danger"
-                                    disabled={collection(game).length <= 1}
+                                    disabled={selection.kind !== "items" && collection(game).length <= 1}
                                     title={
-                                        collection(game).length <= 1
+                                        selection.kind !== "items" && collection(game).length <= 1
                                             ? "各種類に最低 1 件必要です"
                                             : "対象を削除"
                                     }
-                                    onClick={() => {
+                                    onClick={async () => {
                                         if (
-                                            !confirm(
+                                            !await window.caravan.confirm(
                                                 "この対象を削除しますか？参照先が残る場合はビルドエラーになります。",
                                             )
                                         )
@@ -1561,6 +1564,7 @@ function App() {
                                                 );
                                             if (i >= 0) a.splice(i, 1);
                                         });
+                                        choose(selection.kind, collection(gameRef.current!)[0]?.id ?? "");
                                     }}
                                 >
                                     対象を削除
@@ -1739,6 +1743,7 @@ function App() {
                                     <select aria-label="新規作品テンプレート" value={newTemplate} disabled={busy} onChange={e => setNewTemplate(e.target.value)}>
                                         <option value="nova-spear">NOVA SPEAR：3面・時間制限なし・撃破演出</option>
                                         <option value="star-caravan">STAR CARAVAN：時間制キャラバン</option>
+                                        <option value="side-caravan">SIDE CARAVAN：横STG・アイテム・破壊BG</option>
                                     </select>
                                     <p>選んだ作品の素材・ステージ・ゲーム設定を引き継ぎます。復帰待ち、時間制限、撃破演出は作成後も編集できます。</p>
                                 </Field>}

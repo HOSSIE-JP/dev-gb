@@ -314,7 +314,8 @@ export function generate(
             `static const int8_t pattern_${i}_angles[] = {${offsets}};`,
         );
         const l = p.launch, h = p.guidance;
-        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral", "homing"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)},${[l ? ["actor", "left", "right", "alternate", "both", "fixed"].indexOf(l.kind) : 0,l?.x ?? 80,l?.y ?? 32,l?.step ?? 0,l?.lanes ?? 1,h?.frames ?? 48,(h?.period ?? 16)-1]}}`;
+        if (p.emitterOffsets) config.push(`static const int8_t pattern_${i}_emitters[]={${p.emitterOffsets.flatMap(e => [e.x,e.y])}};`);
+        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral", "homing"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)},${[l ? ["actor", "left", "right", "alternate", "both", "fixed"].indexOf(l.kind) : 0,l?.x ?? 80,l?.y ?? 32,l?.step ?? 0,l?.lanes ?? 1,h?.frames ?? 48,(h?.period ?? 16)-1]},${p.emitterOffsets?.length ?? 0},${p.emitterOffsets ? `pattern_${i}_emitters` : "0"}}`;
     });
     config.push(
         `const CE_Pattern ce_patterns[]={${patternRows}};`,
@@ -334,12 +335,21 @@ export function generate(
         });
         config.push(
             `static const CE_Point ${name}_points[]={${points}};`,
-            `static const CE_Motion ${name}={${["straight", "bounce", "wave", "path"].indexOf(m.kind)},${q4(m.vx)},${q4(m.vy)},${m.amplitude},${m.period},${+m.loop},${points.length},${name}_points};`,
+            `static const CE_Motion ${name}={${["straight", "bounce", "wave", "path"].indexOf(m.kind)},${q4(m.vx)},${q4(m.vy)},${m.amplitude},${m.period},${+m.loop},${points.length},${name}_points,${+(m.oscillationAxis === "y")}};`,
         );
         const pointer = `&${name}`;
         motionCache.set(key, pointer);
         return pointer;
     }
+    const itemId = (id?: string) => id ? (game.items ?? []).findIndex(i => i.id === id) : 255;
+    const itemRows = (game.items ?? []).map((item,i) => {
+        config.push(`static const CE_ItemEffect item_${i}_effects[]={${item.effects.map(e => `{${["shot","speed","bomb","life","score"].indexOf(e.kind)+1},${e.amount}}`)}};`);
+        return `{${assetId(item.asset)},${motion(item.motion)},${item.lifetime},${item.effects.length},item_${i}_effects}`;
+    });
+    config.push(`const CE_Item ce_items[]={${itemRows.join(",") || "{0,0,0,0,0}"}};`,`const uint8_t ce_item_count=${itemRows.length};`);
+    const power = game.player.powerUps;
+    config.push(`const uint8_t ce_power_weapons[]={${power?.shotWeapons.map(patternId).join(",") || "255"}},ce_power_speeds[]={${power?.speedLevels.map(q4).join(",") || "0"}};`,
+        `const uint8_t ce_power_weapon_count=${power?.shotWeapons.length ?? 0},ce_power_speed_count=${power?.speedLevels.length ?? 0},ce_power_shot_miss=${["keep","down","reset"].indexOf(power?.shotOnMiss ?? "keep")},ce_power_speed_miss=${["keep","down","reset"].indexOf(power?.speedOnMiss ?? "keep")},ce_max_lives=${game.player.maxLives ?? 9},ce_atomic_volleys=${+!!game.player.atomicVolleys};`);
     let attackSerial = 0;
     const attackList = (items: { pattern: string }[] = []) => {
         if (!items.length) return "0,0";
@@ -358,7 +368,7 @@ export function generate(
     },0), 0) + endingAssets.length;
     const enemies = game.enemies.map(
         (a) =>
-            `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},0,0,${attackList(a.attacks)},0,0,0,0}`,
+            `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},0,0,${attackList(a.attacks)},0,0,0,0,${itemId(a.dropItem)}}`,
     );
     const bosses = game.bosses.map((a, i) => {
         const phases = a.phases.map(
@@ -366,7 +376,7 @@ export function generate(
                 `{${p.until === "hp" ? 1 : 0},${p.threshold},${patternId(p.pattern)},${motion(p.motion)},${attackList(p.attacks)},${p.intro?.enabled ? introFirst + intros.indexOf(p) : 255},${p.intro?.enabled ? Math.round(p.intro.seconds * 60) : 0},${p.hp ?? 0}}`,
         );
         config.push(`static const CE_Phase boss_${i}_phases[]={${phases}};`);
-        return `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},${phases.length},boss_${i}_phases,${attackList(a.attacks)},${["stage", "blank", "bg-bullets"].indexOf(a.battle?.background ?? "stage")},${a.battle?.maxBullets ?? 64},${a.battle?.returnX ?? 80},${a.battle?.returnY ?? 36}}`;
+        return `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},${phases.length},boss_${i}_phases,${attackList(a.attacks)},${["stage", "blank", "bg-bullets"].indexOf(a.battle?.background ?? "stage")},${a.battle?.maxBullets ?? 64},${a.battle?.returnX ?? 80},${a.battle?.returnY ?? 36},${itemId(a.dropItem)}}`;
     });
     config.push(
         `const CE_Actor ce_enemies[]={${enemies}};`,
@@ -418,7 +428,7 @@ export function generate(
             });
             if (item.binding !== "none") {
                 bindings.push(
-                    `{${["none", "score", "lives", "time", "boss", "highscores", "bombs"].indexOf(item.binding)},${item.x + labelLength},${item.y},${item.digits ?? 5}}`,
+                    `{${["none", "score", "lives", "time", "boss", "highscores", "bombs", "shotLevel", "speedLevel"].indexOf(item.binding)},${item.x + labelLength},${item.y},${item.digits ?? 5}}`,
                 );
                 const count = item.binding === "highscores" ? 9 : (item.digits ?? 5);
                 for (let n = 0; n < count; n++)
@@ -515,16 +525,21 @@ export function generate(
             const tileData = converted.get(asset.frames[0].image)!;
             const source = tileData.slice(par.firstTile * 16, (par.firstTile + par.width * par.height) * 16);
             const phases: number[] = [];
-            for (let shift = 0; shift < par.height * 8; shift++) {
+            const horizontal = stage.scrollAxis === "horizontal", phaseCount = (horizontal ? par.width : par.height) * 8;
+            for (let shift = 0; shift < phaseCount; shift++) {
                 for (let tile = 0; tile < par.width * par.height; tile++) {
                     for (let line = 0; line < 8; line++) {
-                        const y = (Math.floor(tile / par.width) * 8 + line + shift) % (par.height * 8);
-                        const src = (Math.floor(y / 8) * par.width + tile % par.width) * 16 + (y % 8) * 2;
-                        phases.push(source[src], source[src + 1]);
+                        let lo=0,hi=0;
+                        for(let pixel=0;pixel<8;pixel++){
+                            const x=(tile%par.width*8+pixel+(horizontal?shift:0))%(par.width*8),y=(Math.floor(tile/par.width)*8+line+(horizontal?0:shift))%(par.height*8);
+                            const src=(Math.floor(y/8)*par.width+Math.floor(x/8))*16+(y%8)*2, bit=7-(x%8);
+                            lo=(lo<<1)|((source[src]>>bit)&1);hi=(hi<<1)|((source[src+1]>>bit)&1);
+                        }
+                        phases.push(lo,hi);
                     }
                 }
             }
-            parallaxRows.push(`{${par.firstTile},${par.width * par.height},${par.height * 8},${par.divisor},${blob(phases)}}`);
+            parallaxRows.push(`{${par.firstTile},${par.width * par.height},${phaseCount},${par.divisor},${blob(phases)}}`);
         } else parallaxRows.push("{0,0,1,2,{0,0,0}}");
     }
     const endingFirst = screenRows.length;
@@ -570,6 +585,7 @@ export function generate(
         if(bomb?.enabled)compileScreen({id:"clear",name:`${p.name}のボム（スプライト領域を保持）`,background:p.bombBackground||bomb.background,palette:0,dock:"top",items:[]},screenRows.length,undefined,"",undefined,128);
     }
     config.push(`const uint8_t ce_bomb_stock=${bomb?.enabled ? bomb.stock : 0},ce_bomb_damage=${bomb?.damage ?? 30},ce_bomb_frames=${bomb?.frames ?? 48},ce_bomb_period=${bomb?.flashPeriod ?? 2};`,
+        `const uint8_t ce_bomb_button=${+(bomb?.button === "b")},ce_bomb_background=${+!!bomb?.destroyBackground},ce_bomb_max=${bomb?.maxStock ?? 9};`,
         `const uint8_t ce_bomb_screens[]={${bombScreens}},ce_bomb_styles[]={${players.map(p=>+(p.bombStyle==="beam"))}};`);
     const logos = game.startup?.enabled ? game.startup.slides : [], logoRows: string[] = [], logoScreens = new Map<string,number>();
     for (const slide of logos) {
@@ -600,7 +616,7 @@ export function generate(
                 Array.from(
                     {
                         length:
-                            e.kind === "enemy" || e.kind === "boss"
+                            e.kind === "enemy" || e.kind === "boss" || e.kind === "item"
                                 ? e.count
                                 : 1,
                     },
@@ -608,6 +624,7 @@ export function generate(
                         ...e,
                         frame: e.frame + n * e.interval,
                         x: e.x + n * e.spacing,
+                        y: e.y + n * (e.spacingY ?? 0),
                     }),
                 ),
             )
@@ -616,21 +633,33 @@ export function generate(
         for (const e of events)
             eventData.push(
                 ...word(e.frame),
-                ["enemy", "boss", "scroll", "end"].indexOf(e.kind) + 1,
+                ["enemy", "boss", "scroll", "end", "item"].indexOf(e.kind) + 1,
                 e.kind === "enemy"
                     ? game.enemies.findIndex((a) => a.id === e.ref)
                     : e.kind === "boss"
                       ? game.bosses.findIndex((a) => a.id === e.ref)
-                      : 0,
+                      : e.kind === "item" ? itemId(e.ref) : 0,
                 ...word(e.x),
                 ...word(e.y),
                 q4(e.value),
             );
         if (events.length > 1024)
             throw new Error(`${s.name}: 展開後のイベントは1024個までです`);
-        const map = pages(s.tiles, `stage_${i}_map`),
-            walls = pages(s.walls, `stage_${i}_walls`);
-        return `{${s.height},${s.duration * 60},${events.length},${q4(s.scrollSpeed)},${+s.loopMap},${+s.clearOnBoss},${+s.walls.some(Boolean)},${blob(tiles)},${tileCount},${tileAsset.palette},${map},${walls},${blob(eventData)},${+(s.requireBoss ?? false)},${s.music ?? 0},${+(s.scrollDown ?? false)},${s.bossMusic ?? 0}}`;
+        const horizontal = s.scrollAxis === "horizontal", order = (data:number[]) => horizontal ? Array.from({length:data.length},(_,n)=>data[(n%s.height)*s.width+Math.floor(n/s.height)]) : data;
+        const map = pages(order(s.tiles), `stage_${i}_map`), walls = pages(order(s.walls), `stage_${i}_walls`);
+        const terrain = s.destructibles, objects = terrain?.objects ?? [];
+        let ids = "0", objectData = "0", types = "0";
+        if (objects.length) {
+            const macroWidth = Math.ceil(s.width / 2), macroHeight = Math.ceil(s.height / 2), plane = Array(macroWidth * macroHeight * 2).fill(0), records:number[]=[];
+            objects.forEach((object,j) => {
+                const offset = (horizontal ? (object.x / 2) * macroHeight + object.y / 2 : (object.y / 2) * macroWidth + object.x / 2) * 2;
+                plane[offset]=(j+1)&255;plane[offset+1]=(j+1)>>8;
+                records.push(...word(object.x),...word(object.y),terrain!.types.findIndex(t=>t.id===object.type));
+            });
+            ids=pages(plane,`stage_${i}_object_ids`);objectData=pages(records,`stage_${i}_objects`);types=`stage_${i}_object_types`;
+            config.push(`static const CE_TerrainType ${types}[]={${terrain!.types.map(t=>`{{${t.tiles}},${t.hp},${t.score},${+t.solid},${itemId(t.dropItem)}}`)}};`);
+        }
+        return `{${s.height},${s.duration * 60},${events.length},${q4(s.scrollSpeed)},${+s.loopMap},${+s.clearOnBoss},${+(s.walls.some(Boolean)||!!s.destructibles?.types.some(t=>t.solid))},${blob(tiles)},${tileCount},${tileAsset.palette},${map},${walls},${blob(eventData)},${+(s.requireBoss ?? false)},${s.music ?? 0},${+(s.scrollDown ?? false)},${s.bossMusic ?? 0},${s.width},${+horizontal},${objects.length},${ids},${objectData},${types}}`;
     });
     config.push(
         `const CE_Stage ce_stages[]={${stageRows}};`,
@@ -659,7 +688,7 @@ export function generate(
     config.push(
         `const uint8_t ce_player_lives=${game.player.lives};`,
         `const uint8_t ce_music_title=${game.music?.title ?? 0},ce_music_boss=${game.music?.boss ?? 0},ce_music_clear=${game.music?.clear ?? 0},ce_music_gameover=${game.music?.gameover ?? 0},ce_music_victory=${game.music?.victory ?? 8};`,
-        `const uint8_t ce_entity_limits[6]={0,${game.performance?.enemies ?? 12},1,${game.performance?.playerShots ?? 6},${game.performance?.enemyShots ?? 32},${game.performance?.effects ?? 4}};`,
+        `const uint8_t ce_entity_limits[7]={0,${game.performance?.enemies ?? 12},1,${game.performance?.playerShots ?? 6},${game.performance?.enemyShots ?? 32},${game.performance?.effects ?? 4},${game.items?.length ? 4 : 0}};`,
     );
     config.push(
         `const uint16_t ce_player_invulnerability=${game.player.invulnerability},ce_clear_bonus=${game.clearBonus},ce_player_respawn_delay=${game.player.respawnDelay ?? 0};`,
@@ -760,7 +789,7 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "mainloop.c", "flow.c", "special.c", "bg-bullets.c", "render.c", "music.c", "save.c"]
+        const inputs = ["runtime.c", "mainloop.c", "flow.c", "special.c", "terrain.c", "items.c", "bg-bullets.c", "render.c", "music.c", "save.c"]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [

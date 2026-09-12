@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "name": "side-caravan",
+  "title": "SIDE CARAVAN",
+  "target": "gb",
+  "cgbCompatibility": "dual",
+  "toolchain": "gbdk",
+  "output": "side-caravan.gb",
+  "sources": [
+    "generated/caravan_main.c"
+  ],
+  "lccFlags": [
+    "-Wm-yc"
+  ],
+  "editor": {
+    "type": "caravan",
+    "source": "assets-src/game.json"
+  }
+}

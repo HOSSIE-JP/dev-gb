@@ -8,6 +8,7 @@ on:
       - 'scripts/**'
       - 'config/**'
       - 'engine/**'
+      - 'projects/side-caravan/**'
   workflow_dispatch:
 permissions:
   contents: write
@@ -60,6 +61,8 @@ jobs:
           if (Test-Path "$testRoot/editor/node_modules") { throw 'Unexpected source-build dependency' }
           & "$testRoot/.tools/node/node.exe" "$testRoot/resources/app/build/compiler.cjs" $testRoot star-caravan Release
           if ($LASTEXITCODE -ne 0) { throw 'Packaged ROM build failed' }
+          & "$testRoot/.tools/node/node.exe" "$testRoot/resources/app/build/compiler.cjs" $testRoot side-caravan Release
+          if ($LASTEXITCODE -ne 0) { throw 'Packaged horizontal template ROM build failed' }
       - name: Archive and publish
         shell: powershell
         env:

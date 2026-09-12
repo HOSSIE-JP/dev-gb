@@ -1,0 +1,680 @@
+{
+  "date": "2026-09-12",
+  "baseCommit": "31219c7a212a0c5b0f503bb5a37b8a9ff780fd35",
+  "projectRevision": "b92c0fdc34fff3ddfc3ff80084e05a826e47c82a39acc2521abee0248852ffd5",
+  "builds": [
+    {
+      "configuration": "Debug",
+      "path": "projects/side-caravan/build/Debug/side-caravan.gb",
+      "sha256": "ade8bbd3f4f3bd39315f697cd653db90e0dd0d3a6cc4eb97bbe08d148c393096",
+      "bytes": 131072,
+      "ramBytes": 7066,
+      "spriteTiles": 26
+    },
+    {
+      "configuration": "Release",
+      "path": "projects/side-caravan/build/Release/side-caravan.gb",
+      "sha256": "ade8bbd3f4f3bd39315f697cd653db90e0dd0d3a6cc4eb97bbe08d148c393096",
+      "bytes": 131072,
+      "ramBytes": 7066,
+      "spriteTiles": 26
+    }
+  ],
+  "engineHashes": [
+    {
+      "path": "engine/caravan/caravan.h",
+      "sha256": "60143481eed2bf11eb771525dcdd05425338b9ea876a560983fc22593b119f74"
+    },
+    {
+      "path": "engine/caravan/runtime.c",
+      "sha256": "24832a6ef81283e3685192fa4cf948b45f4d40e61c7e1a9532f5289abf31f2d9"
+    },
+    {
+      "path": "engine/caravan/flow.c",
+      "sha256": "070d8df4a9603b56e64f86029fa37cf8c611240eaaa98b278084b69e93edaf63"
+    },
+    {
+      "path": "engine/caravan/special.c",
+      "sha256": "e258b956948a9cd66df02fa669c46c1312aacdc08a31816f36ae1f9e564b9bb7"
+    },
+    {
+      "path": "engine/caravan/items.c",
+      "sha256": "07c202865789ed8d23ba6cad21eb8f46aacbe48f1c932c2c8fa4eb8f9b39bcf4"
+    },
+    {
+      "path": "engine/caravan/render.c",
+      "sha256": "acb02b8c6944e3fc112baf3467b4af939e28136c0cda45060fe3f026916ef350"
+    },
+    {
+      "path": "engine/caravan/terrain.c",
+      "sha256": "7115edd66f4338172fe2cf974910cf4ba53b5ab43c91e6afbc8b25754f3c9d98"
+    },
+    {
+      "path": "engine/caravan/bg-bullets.c",
+      "sha256": "8b3b321889b2dd157dd2e54717cc7e74c3a9f4af07c9d85d6de0e211603e7fbf"
+    }
+  ],
+  "sourceHashes": [
+    {
+      "path": "projects/side-caravan/assets-src/game.json",
+      "sha256": "ce2bc8e2fc2f216737c2ee989a3f87a00528b49b307c8b70fb776367420bf46c"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/bomb-art-0.png",
+      "sha256": "300dc4d466eec5ffd7ba7d4c52526f7518e6eba652436a1b93c51f4d1ffded36"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/burst-0.png",
+      "sha256": "83ce915d3678d893b28bb24da1f016e172e353bba49c7b18f2ce787c88d15b3f"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/burst-1.png",
+      "sha256": "22f5e03f9ec19fb7518aae2f280cf9762f55069a4ff15f1314628c887488654f"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/burst-2.png",
+      "sha256": "f4685ee3755c3d62f1d762c8cd96cd0e5c55ee3e5a0c19fe71d174212adf037f"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/carrier-0.png",
+      "sha256": "42a054b704384b669deebd00679bdacf896503a17ff2d1fe05d8795959024bcc"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/clear-art-0.png",
+      "sha256": "93008a06e564652a44b61552f9db3f3343d9d39d8042f86a0e759a3e35b4ea79"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/core-0.png",
+      "sha256": "ea88645404ce40b1518edd63e837273771a4e7928a26415f21207f9b7e4f5ae5"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/drone-0.png",
+      "sha256": "f9222e7fb9877e706a78fe4a2d6d2750b6012ae163aa996883c7f30d23f62992"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/drone-1.png",
+      "sha256": "4abe4db385c77d774579b85f9d33a1721bc3dcea502dcb0df789a14ec083049f"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/facility-0.png",
+      "sha256": "a4b02accc99992bd3bf4a9e1acc897322e5ffc1c07ae5c2112b9877fbb7444e6"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-bomb-0.png",
+      "sha256": "17b53bc85fce6ca4f6d3216c1fab02b9975b18a098206a8a1cdfffde78fd0dea"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-life-0.png",
+      "sha256": "7e57d60c22653a05e177338caa495f2f4f72aa15e46fcce3a0ab0f69d6463e83"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-power-0.png",
+      "sha256": "f91cea13ba21d357f76e65f60393fa998110a5eaaa51f5cea0a17643ac38210a"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-score-0.png",
+      "sha256": "8ace6b0c8a9a4f12a6bbdde38009101ec52670ef507310d7dc4bc19bfb929cc7"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-speed-0.png",
+      "sha256": "cf1ffd6b55f8d3168bd4b91cd652ea155dd53c05cf466ccfcc707269de046dec"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/orb-0.png",
+      "sha256": "8ad650e33c7b4ad8525a4162e427a8f909d94344d512f8273735c2942154b368"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/over-art-0.png",
+      "sha256": "45481a0f0451596b0952a067b5fc5be9c55f545b836be8c3de15c475b9491a0f"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/pulse-0.png",
+      "sha256": "e5c07dc6f54dbb9b869078552c7c7b0f91d2b3076e887d4c331393dc8d10aef3"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/ship-0.png",
+      "sha256": "108c5f13210dfcb5668543402715bddbec43ce2d5734831194c86bd03e87debc"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/ship-1.png",
+      "sha256": "38598c9d3ac46d29754f666a82cc626519cf58ee729bee22ec92526e2d143fd9"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/sweeper-0.png",
+      "sha256": "d844741e3d5a0cc88b6ba3ef687033ca97a171d69fc8517f4fa3177fa77bf787"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/title-art-0.png",
+      "sha256": "eb7eb2c96ef1f1eaa356eb7cb3dea40f7ab1d639d982777ae79255984b3695ab"
+    }
+  ],
+  "standard": {
+    "doctor": "PASS 0 warnings",
+    "hello": "clean/Debug PASS",
+    "initialAll": "test.cmd stopped on ROM0 overflow, subsequently repaired",
+    "editorAll": {
+      "pass": 109,
+      "fail": 0,
+      "skip": 0
+    },
+    "finalRecovery": {
+      "command": "test.cmd touhou-kouma",
+      "pass": 105,
+      "fail": 0,
+      "skip": 0
+    },
+    "finalStar": {
+      "pass": 3,
+      "fail": 0,
+      "skip": 0,
+      "romSha256": "504a9788b2ec4953154509e80c0700600a2d595336ad62b004da9dd5501acd48"
+    }
+  },
+  "editorUi": {
+    "horizontal": {
+      "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\horizontal-ui-JDr2Dk",
+      "checks": [
+        "horizontal resize preserves row-major content",
+        "16x16 stamp drag, erase, undo and redo persist",
+        "horizontal map pans with native pointer input",
+        "item authoring exposes all five effects",
+        "five item effects, power-up levels, miss behavior, atomic volleys and B bomb save",
+        "enemy drop and origin-relative emitter offsets save",
+        "item timeline event and vertical formation spacing save",
+        "saved horizontal project reopens; vertical project and Explorer controls still work; no ROM build",
+        "item and destructible-type diagnostics navigate to the correct authoring controls",
+        "last optional item: native cancel/confirm, delete, Undo/Redo, save and reopen",
+        "PASS"
+      ]
+    },
+    "project": {
+      "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\project-ui-QeeYlI",
+      "checks": [
+        "renderer loaded",
+        "project keyboard selection switches renderer and backend",
+        "folder selection cancellation keeps active project",
+        "folder picker opens project added after startup",
+        "folder icon targets current project",
+        "inspector BGM selection changes the in-memory draft",
+        "dirty switch cancellation preserves edits and releases controls",
+        "dirty project list cancellation restores the displayed selection",
+        "dirty switch keeps recovery copy",
+        "reopening restores the recovery draft",
+        "invalid folder preserves active project and releases controls",
+        "PASS"
+      ]
+    }
+  },
+  "horizontalRom": {
+    "fixture": true,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\horizontal-rom-uj8sg4\\projects\\horizontal-test\\build\\Debug\\horizontal-test.gb",
+    "sha256": "947bda28f43c7e65b5b668892e22f04809419f7dd3b28a80e18cad4742b80a80",
+    "ramBytes": 7066,
+    "results": [
+      {
+        "mode": "DMG",
+        "paritySnapshots": 731,
+        "wrapped": true,
+        "peakShots": 10,
+        "combinedEffectsAtCaps": true,
+        "finalScore": 65535,
+        "ordinaryScrollPixels": 21760,
+        "bombDestroyed": 88,
+        "postBombBackgroundPixels": 21760,
+        "highestObjectDestroyed": true
+      },
+      {
+        "mode": "CGB",
+        "paritySnapshots": 604,
+        "wrapped": true,
+        "peakShots": 10,
+        "combinedEffectsAtCaps": true,
+        "finalScore": 65535,
+        "ordinaryScrollPixels": 21760,
+        "bombDestroyed": 88,
+        "postBombBackgroundPixels": 21760,
+        "highestObjectDestroyed": true
+      }
+    ],
+    "report": ".cache/horizontal-rom-uj8sg4/results.json",
+    "source": "final16:21freeze"
+  },
+  "shortLoopRom": {
+    "fixture": true,
+    "realInput": true,
+    "memoryWrites": false,
+    "results": [
+      {
+        "axis": "horizontal",
+        "mode": "horizontal-DMG",
+        "sha256": "c29e38be8f574e260a2891a4bbfa1dbc3ca123c816b129d5ee2969f47a10d048",
+        "checkedPixels": 65280,
+        "peakChangedBgCellsPerUpdate": 8,
+        "killedAt": 63
+      },
+      {
+        "axis": "horizontal",
+        "mode": "horizontal-CGB",
+        "sha256": "c29e38be8f574e260a2891a4bbfa1dbc3ca123c816b129d5ee2969f47a10d048",
+        "checkedPixels": 65280,
+        "peakChangedBgCellsPerUpdate": 8,
+        "killedAt": 65
+      },
+      {
+        "axis": "vertical",
+        "mode": "vertical-DMG",
+        "sha256": "585b6ff847eb4cab80c4ecf5851c58bfe4498e3715f9e7dddfaa7dd89e2bd578",
+        "checkedPixels": 65280,
+        "peakChangedBgCellsPerUpdate": 8,
+        "killedAt": 50
+      },
+      {
+        "axis": "vertical",
+        "mode": "vertical-CGB",
+        "sha256": "585b6ff847eb4cab80c4ecf5851c58bfe4498e3715f9e7dddfaa7dd89e2bd578",
+        "checkedPixels": 65280,
+        "peakChangedBgCellsPerUpdate": 8,
+        "killedAt": 51
+      }
+    ]
+  },
+  "normalRom": {
+    "fixture": false,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\side-caravan\\build\\Release\\side-caravan.gb",
+    "sha256": "ade8bbd3f4f3bd39315f697cd653db90e0dd0d3a6cc4eb97bbe08d148c393096",
+    "results": [
+      {
+        "mode": "DMG",
+        "clear": true,
+        "last": {
+          "tick": 14265,
+          "stage": 0,
+          "score": 31340,
+          "lives": 3,
+          "x": 416,
+          "y": 396,
+          "bossHp": 0,
+          "entities": 0,
+          "dropped": 0,
+          "result": 2,
+          "scene": 3,
+          "stageTick": 14265,
+          "bossPhase": 0
+        },
+        "acquired": [
+          "power",
+          "speed",
+          "bomb",
+          "score",
+          "life"
+        ],
+        "phases": [
+          0,
+          1,
+          2
+        ],
+        "misses": 1,
+        "bombUsed": 8,
+        "pauseSeen": true,
+        "peakOam": 23,
+        "peakScanline": 10,
+        "peakShots": 13,
+        "peakItems": 2,
+        "peakBg": 68,
+        "peakPower": 3,
+        "peakSpeed": 3,
+        "remainingBg": 4,
+        "frameGaps": {
+          "samples": 14141,
+          "mean": 2.1692949579237677,
+          "max": 7
+        },
+        "regions": [
+          {
+            "samples": 3476,
+            "mean": 1.76409666283084,
+            "max": 5
+          },
+          {
+            "samples": 3600,
+            "mean": 2.226111111111111,
+            "max": 6
+          },
+          {
+            "samples": 3601,
+            "mean": 2.2352124409886143,
+            "max": 7
+          },
+          {
+            "samples": 3464,
+            "mean": 2.448325635103926,
+            "max": 5
+          }
+        ],
+        "dropEvents": [],
+        "peakPendingObjects": 0,
+        "maxPendingAfterPublicationTicks": 0,
+        "bombDisplayFrames": [
+          85,
+          75,
+          76,
+          75,
+          75,
+          69,
+          68,
+          63
+        ],
+        "musicCues": {
+          "title": 1,
+          "approach": 2,
+          "deck": 2,
+          "reactor": 2,
+          "boss-0": 5,
+          "boss-1": 5,
+          "boss-2": 5
+        },
+        "titlePcm": true,
+        "sramReboot": true,
+        "ranking": [
+          31340,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "mode": "CGB",
+        "clear": true,
+        "last": {
+          "tick": 14265,
+          "stage": 0,
+          "score": 31340,
+          "lives": 3,
+          "x": 416,
+          "y": 396,
+          "bossHp": 0,
+          "entities": 0,
+          "dropped": 0,
+          "result": 2,
+          "scene": 3,
+          "stageTick": 14265,
+          "bossPhase": 0
+        },
+        "acquired": [
+          "power",
+          "speed",
+          "bomb",
+          "score",
+          "life"
+        ],
+        "phases": [
+          0,
+          1,
+          2
+        ],
+        "misses": 1,
+        "bombUsed": 8,
+        "pauseSeen": true,
+        "peakOam": 23,
+        "peakScanline": 10,
+        "peakShots": 13,
+        "peakItems": 2,
+        "peakBg": 68,
+        "peakPower": 3,
+        "peakSpeed": 3,
+        "remainingBg": 4,
+        "frameGaps": {
+          "samples": 14141,
+          "mean": 1.2271409376988898,
+          "max": 3
+        },
+        "regions": [
+          {
+            "samples": 3476,
+            "mean": 1.0799769850402763,
+            "max": 2
+          },
+          {
+            "samples": 3600,
+            "mean": 1.2216666666666667,
+            "max": 3
+          },
+          {
+            "samples": 3601,
+            "mean": 1.219105803943349,
+            "max": 3
+          },
+          {
+            "samples": 3464,
+            "mean": 1.3888568129330254,
+            "max": 2
+          }
+        ],
+        "dropEvents": [],
+        "peakPendingObjects": 0,
+        "maxPendingAfterPublicationTicks": 0,
+        "bombDisplayFrames": [
+          72,
+          68,
+          68,
+          68,
+          67,
+          65,
+          64,
+          62
+        ],
+        "musicCues": {
+          "title": 1,
+          "approach": 2,
+          "deck": 2,
+          "reactor": 2,
+          "boss-0": 5,
+          "boss-1": 5,
+          "boss-2": 5
+        },
+        "titlePcm": true,
+        "sramReboot": true,
+        "ranking": [
+          31340,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "nativeBgb": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\side-caravan\\build\\Release\\side-caravan.gb",
+    "loadedRom": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-final\\bgb\\side-caravan-ade8bbd3f4f3.gb",
+    "sha256": "ade8bbd3f4f3bd39315f697cd653db90e0dd0d3a6cc4eb97bbe08d148c393096",
+    "emulator": "BGB 1.6.6",
+    "fixture": false,
+    "readOnlyBreakpoint": true,
+    "inputFile": "input.dem per mode",
+    "results": [
+      {
+        "mode": "DMG",
+        "gameplaySamples": 632,
+        "lastTick": 2522,
+        "score": 4360,
+        "shotLevel": 3,
+        "speedLevel": 1,
+        "bombSamples": 24,
+        "bombStocks": [
+          1,
+          0
+        ],
+        "bombStockBefore": [
+          2,
+          1
+        ],
+        "heldBombIntervals": 2,
+        "oamPeak": 16,
+        "cameraPositions": 632,
+        "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-final\\bgb\\dmg-GYZ3M7\\screen.bmp"
+      },
+      {
+        "mode": "CGB",
+        "gameplaySamples": 990,
+        "lastTick": 3955,
+        "score": 5250,
+        "shotLevel": 3,
+        "speedLevel": 2,
+        "bombSamples": 24,
+        "bombStocks": [
+          2,
+          1
+        ],
+        "bombStockBefore": [
+          3,
+          2
+        ],
+        "heldBombIntervals": 2,
+        "oamPeak": 16,
+        "cameraPositions": 990,
+        "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-final\\bgb\\cgb-5fEtPD\\screen.bmp"
+      }
+    ]
+  },
+  "performance": {
+    "sampleProfile": {
+      "sourceRevision": "33681566a687c45fe353eef7cc66a490fb0d88593649d46a34ba9f3d770c4a47",
+      "diagnosticChanges": "initial max five-way weapon and invulnerability1024; source revision identical before/after",
+      "tickRange": [
+        120,
+        360
+      ],
+      "before": ".cache/horizontal-performance/side-profile/profile-before.json",
+      "after": ".cache/horizontal-performance/side-profile/profile-after.json",
+      "DMG": {
+        "beforeFramesPerUpdate": 2.92116061935,
+        "afterFramesPerUpdate": 2.12951768626,
+        "elapsedReductionPercent": 27.1003
+      },
+      "CGB": {
+        "beforeFramesPerUpdate": 1.79185048322,
+        "afterFramesPerUpdate": 1.10016684704,
+        "elapsedReductionPercent": 38.6016
+      },
+      "chronology": "Profiles precede final short-loop alias fix, HUD dispatch optimization, and cold helper banking"
+    },
+    "stress": {
+      "originalBudgets": {
+        "DMG": 2.9,
+        "CGB": 1.85
+      },
+      "HEAD": "31219c7a212a0c5b0f503bb5a37b8a9ff780fd35",
+      "HEADMeans": {
+        "DMG": 2.91700843016631,
+        "CGB": 1.8618375484164942
+      },
+      "finalHudMeans": {
+        "DMG": 2.9353417634996437,
+        "CGB": 1.886837548416495
+      },
+      "gateResult": "FAIL at HEAD and current; thresholds unchanged",
+      "parity": "720 C/TS snapshots per mode; HEAD/current game-state hashes identical",
+      "reports": [
+        ".cache/horizontal-performance/head-stress/stress.json",
+        ".cache/horizontal-performance/stress-hud-control/stress.json"
+      ],
+      "chronology": "Final HUD control includes short-loop fix, precedes cold-only ROM0 relocation"
+    },
+    "stressAttribution": {
+      "method": "Read-only CPU stepping between validated CALL instruction boundaries on existing HEAD and final-HUD fixture ROMs; no builds or source edits",
+      "fixture": {
+        "axis": "vertical",
+        "scrollSpeed": 1,
+        "loopMap": true,
+        "terrainObjects": 0,
+        "items": 0,
+        "enemyActors": 3,
+        "enemyShotsPeak": 32
+      },
+      "semanticParity": "Prior full benchmark verified720 C/TS publications per mode; HEAD/final-HUD state hashes including OAM are identical",
+      "authoritativeFullUpdateMeans": {
+        "HEAD": {
+          "DMG": 2.91700843016631,
+          "CGB": 1.8618375484164942
+        },
+        "finalHUD": {
+          "DMG": 2.9353417634996437,
+          "CGB": 1.886837548416495
+        },
+        "originalBudgets": {
+          "DMG": 2.9,
+          "CGB": 1.85
+        },
+        "result": "Both HEAD and final fail unchanged gates"
+      },
+      "measuredExtraCpuTCycles": {
+        "stepSetup": 52,
+        "playerInput": 92,
+        "cameraEvents": 56,
+        "postEventCollisionFlags": 100,
+        "steeringBody": 0,
+        "threeEnemyActorPathsLowerBound": 384,
+        "playerCollisionMedian": 600,
+        "bulletLoopPerLiveShot": 4,
+        "bulletLoopExplanation": "SM83 and immediate costs8 Tcycles versus prior or a4 Tcycles; maximum128 extra with32 live shots"
+      },
+      "interpretation": "About1.4k extra CPU Tcycles/update across input/axis/item-aware paths and collision flags; VBlank quantization can amplify the CPU increment into additional displayed frames. No terrain API is called per update in this fixture. scrollSpeed0 bypass is inapplicable.",
+      "measurementLimit": "Fine-grained step_to probes redistribute interrupt/wait timing and their aggregate cadence differs slightly from the original single-boundary benchmark. Use original stress.json means as the performance gate; use stable per-call increments, lower bounds and explicit opcode timing for attribution.",
+      "tinyUnappliedCandidates": [
+        "Cache stage collision flags once in ce_reset (1 byte WRAM) instead of reconstructing has_walls|object_count twice per update; optional reuse in collide_player. No schema change; requires measurement and final-ROM regression after any application.",
+        "ASM low-bit test: replace and #1 / jr nz with rrca / jr c. Low bit moves into carry, A is overwritten on both subsequent paths; saves4 Tcycles per surviving bullet. This candidate alone cannot establish full HEAD performance parity."
+      ],
+      "data": ".cache/horizontal-performance/stress-boundary-control.json",
+      "noSourceChanges": true
+    },
+    "BGCluster64": {
+      "pixelCollisionOamVBlank": "PASS at HEAD and optimized HUD control",
+      "strictOneCgbFrameGate": "FAIL at HEAD and current; original threshold unchanged",
+      "HEADAndFinalHudFramesPerUpdate": {
+        "DMG": 3,
+        "CGB": 1.75
+      },
+      "full512UpdateCadence": "HEAD and final HUD control ranges match exactly",
+      "renderBodyTCycles": {
+        "HEAD": 11628,
+        "beforeHudFix": 12216,
+        "afterHudFix": 11032
+      },
+      "reports": [
+        ".cache/horizontal-performance/bg-cadence-control.json",
+        ".cache/horizontal-performance/bg-phase-control.json",
+        ".cache/horizontal-performance/bg-long-control.json"
+      ],
+      "chronology": "Diagnostic mainloop; final HUD control precedes cold-only ROM0 relocation"
+    },
+    "otherBenchmarks": {
+      "cases": [
+        "animation",
+        "enemies",
+        "boss-0",
+        "boss-1",
+        "boss-2"
+      ],
+      "gateResult": "PASS all five cases on DMG and CGB",
+      "reportsRoot": ".cache/horizontal-performance",
+      "chronology": "Before measured runtime optimization/final fixes; final semantic suite is separate"
+    }
+  },
+  "limits": {
+    "performanceGates": "Stress and strict BG64 CGB cadence targets remain unmet; see report for HEAD controls and residual differences",
+    "emulicious": "DAPDebugger.evaluate NullPointerException on final SIDE/STAR; boot and gameplay unverified",
+    "humanController": false,
+    "manualListening": false,
+    "physicalDmg": false,
+    "physicalCgb": false,
+    "publicRelease": false
+  },
+  "evidence": {
+    "editor": ".cache/editor-validation-summary.json",
+    "runtime": ".cache/runtime-validation-summary.json",
+    "side": ".cache/side-final/validation-summary.json",
+    "emulicious": ".cache/side-final/emulicious/results.json"
+  }
+}

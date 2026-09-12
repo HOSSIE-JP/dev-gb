@@ -24,6 +24,7 @@ export type Palette = {
     colors: [string, string, string, string];
 };
 export type Motion = {
+    oscillationAxis?: "x" | "y";
     kind: "straight" | "bounce" | "wave" | "path";
     vx: number;
     vy: number;
@@ -33,6 +34,8 @@ export type Motion = {
     points: (Point & { frame: number })[];
 };
 export type Pattern = {
+    /** Signed pixel offsets from the firing actor origin. Omitted: asset emitters. */
+    emitterOffsets?: Point[];
     id: string;
     name: string;
     asset: string;
@@ -51,6 +54,7 @@ export type Pattern = {
     damage: number;
 };
 export type Actor = {
+    dropItem?: string;
     id: string;
     name: string;
     asset: string;
@@ -78,12 +82,13 @@ export type Boss = Actor & {
 export type StageEvent = {
     id: string;
     frame: number;
-    kind: "enemy" | "boss" | "scroll" | "end";
+    kind: "enemy" | "boss" | "scroll" | "end" | "item";
     ref: string;
     x: number;
     y: number;
     count: number;
     spacing: number;
+    spacingY?: number;
     interval: number;
     value: number;
 };
@@ -106,7 +111,14 @@ export type Presentation = {
     victoryDialogue?: DialogueScene;
 };
 export type Parallax = { enabled: boolean; firstTile: number; width: number; height: number; divisor: number };
+export type ItemEffect = { kind: "shot" | "speed" | "bomb" | "life" | "score"; amount: number };
+export type Item = { id: string; name: string; asset: string; motion: Motion; lifetime: number; effects: ItemEffect[] };
+export type PowerUps = { shotWeapons: string[]; speedLevels: number[]; shotOnMiss: "down" | "reset" | "keep"; speedOnMiss: "down" | "reset" | "keep" };
+export type DestructibleType = { id: string; name: string; tiles: number[]; hp: number; score: number; solid: boolean; dropItem?: string };
+export type DestructibleObject = { id: string; type: string; x: number; y: number };
 export type Stage = {
+    scrollAxis?: "vertical" | "horizontal";
+    destructibles?: { types: DestructibleType[]; objects: DestructibleObject[] };
     id: string;
     name: string;
     tileset: string;
@@ -134,7 +146,7 @@ export type TextItem = {
     y: number;
     palette: number;
     digits?: number;
-    binding: "none" | "score" | "lives" | "time" | "boss" | "highscores" | "bombs";
+    binding: "none" | "score" | "lives" | "time" | "boss" | "highscores" | "bombs" | "shotLevel" | "speedLevel";
 };
 export type Screen = {
     id: "title" | "gameover" | "clear" | "scores" | "hud";
@@ -148,7 +160,7 @@ export type Screen = {
 export const hudHeight = (game: Game) => (game.screens.find(s => s.id === "hud")?.rows ?? 2) * 8;
 
 export type PlayerCharacter = { id: string; name: string; asset: string; speed: number; weapon: string; focusWeapon?: string; focusSpeed?: number; bombBackground?: string; bombStyle?: "orb" | "beam"; selectionBackground?: string; gameoverBackground?: string };
-export type Bomb = { enabled: boolean; stock: number; damage: number; frames: number; flashPeriod: number; background: string };
+export type Bomb = { enabled: boolean; stock: number; damage: number; frames: number; flashPeriod: number; background: string; button?: "a+b" | "b"; destroyBackground?: boolean; maxStock?: number };
 export type Game = {
     schemaVersion: 1;
     name: string;
@@ -163,10 +175,14 @@ export type Game = {
     assets: Asset[];
     patterns: Pattern[];
     enemies: Actor[];
+    items?: Item[];
     bosses: Boss[];
     stages: Stage[];
     screens: Screen[];
     player: {
+        powerUps?: PowerUps;
+        maxLives?: number;
+        atomicVolleys?: boolean;
         name?: string;
         selectionBackground?: string;
         gameoverBackground?: string;
@@ -280,6 +296,7 @@ export function validateShape(
     const diagnostics: Diagnostic[] = [];
     const point: Shape = { x: "number", y: "number" };
     const motion: Shape = {
+        "oscillationAxis?": "string",
         kind: "string",
         vx: "number",
         vy: "number",
@@ -292,6 +309,7 @@ export function validateShape(
     const dialoguePage: Shape = {id: "string", speaker: "string", line1: "string", line2: "string"};
     const dialogueScene: Shape = {enabled: "boolean", background: "string", "portrait?": "string", pages: [dialoguePage]};
     const actor = {
+        "dropItem?": "string",
         id: "string",
         name: "string",
         asset: "string",
@@ -334,6 +352,7 @@ export function validateShape(
         ],
         patterns: [
             {
+                "emitterOffsets?": [point],
                 id: "string",
                 name: "string",
                 asset: "string",
@@ -353,6 +372,7 @@ export function validateShape(
             },
         ],
         enemies: [actor],
+        "items?": [{id: "string", name: "string", asset: "string", motion, lifetime: "number", effects: [{kind: "string", amount: "number"}]}],
         bosses: [
             {
                 ...actor,
@@ -374,6 +394,8 @@ export function validateShape(
         ],
         stages: [
             {
+                "scrollAxis?": "string",
+                "destructibles?": {types: [{id: "string", name: "string", tiles: ["number"], hp: "number", score: "number", solid: "boolean", "dropItem?": "string"}], objects: [{id: "string", type: "string", x: "number", y: "number"}]},
                 id: "string",
                 name: "string",
                 tileset: "string",
@@ -408,6 +430,7 @@ export function validateShape(
                         y: "number",
                         count: "number",
                         spacing: "number",
+                        "spacingY?": "number",
                         interval: "number",
                         value: "number",
                     },
@@ -436,10 +459,12 @@ export function validateShape(
             },
         ],
         player: {
+            "powerUps?": {shotWeapons: ["string"], speedLevels: ["number"], shotOnMiss: "string", speedOnMiss: "string"},
+            "maxLives?": "number", "atomicVolleys?": "boolean",
             "name?": "string",
             "selectionBackground?": "string", "gameoverBackground?": "string",
             "characters?": [{id: "string", name: "string", asset: "string", speed: "number", weapon: "string", "focusWeapon?": "string", "focusSpeed?": "number", "bombBackground?": "string", "bombStyle?": "string", "selectionBackground?": "string", "gameoverBackground?": "string"}],
-            "bomb?": {enabled: "boolean", stock: "number", damage: "number", frames: "number", flashPeriod: "number", background: "string"},
+            "bomb?": {enabled: "boolean", stock: "number", damage: "number", frames: "number", flashPeriod: "number", background: "string", "button?": "string", "destroyBackground?": "boolean", "maxStock?": "number"},
             asset: "string",
             speed: "number",
             lives: "number",
@@ -562,6 +587,11 @@ export function validate(value: unknown): Diagnostic[] {
         uniqueIds(game[name], name);
     const assets = new Map(game.assets.map((a) => [a.id, a]));
     const patterns = new Set(game.patterns.map((p) => p.id));
+    const itemRef = (id: string | undefined, owner: string) => {
+        if (id && !game.items?.some(item => item.id === id)) err(owner, `アイテム「${id}」が見つかりません`);
+    };
+    uniqueIds(game.items ?? [], "items");
+    integer(game.items?.length ?? 0, 0, 32, "items");
     const assetRef = (id: string, owner: string, kind = "sprite") => {
         if (!assets.has(id) || assets.get(id)?.kind !== kind)
             err(owner, `${kind}素材「${id}」が見つかりません`);
@@ -681,6 +711,7 @@ export function validate(value: unknown): Diagnostic[] {
         }
     }
     const motion = (m: Motion, owner: string) => {
+        if (m.oscillationAxis !== undefined && !["x", "y"].includes(m.oscillationAxis)) err(owner, "振動軸はxまたはyです");
         if (!["straight", "bounce", "wave", "path"].includes(m.kind))
             err(owner, "移動方式が不正です");
         finite(m.vx, -8, 8, owner);
@@ -701,6 +732,10 @@ export function validate(value: unknown): Diagnostic[] {
         if (m.points[0]?.frame !== 0) err(owner, "経路の最初の時刻は0です");
     };
     for (const p of game.patterns) {
+        if (p.emitterOffsets) {
+            integer(p.emitterOffsets.length, 1, 4, p.id);
+            for (const point of p.emitterOffsets) { integer(point.x, -32, 32, p.id); integer(point.y, -32, 32, p.id); }
+        }
         assetRef(p.asset, p.id);
         if (!["straight", "aimed", "fan", "ring", "spiral", "homing"].includes(p.kind))
             err(p.id, "弾幕方式が不正です");
@@ -727,6 +762,7 @@ export function validate(value: unknown): Diagnostic[] {
         integer(p.damage, 1, 255, p.id);
     }
     for (const a of [...game.enemies, ...game.bosses]) {
+        itemRef(a.dropItem, a.id);
         attacks(a.attacks, a.id);
         assetRef(a.asset, a.id);
         patternRef(a.pattern, a.id);
@@ -739,7 +775,7 @@ export function validate(value: unknown): Diagnostic[] {
             if (!["stage", "blank", "bg-bullets"].includes(b.battle.background)) err(b.id, "ボス背景モードが不正です");
             integer(b.battle.maxBullets, 1, 64, b.id);
             if (b.battle.returnX !== undefined) integer(b.battle.returnX, 16, 144, b.id);
-            if (b.battle.returnY !== undefined) integer(b.battle.returnY, 24, 64, b.id);
+            if (b.battle.returnY !== undefined) integer(b.battle.returnY, 24, 128, b.id);
         }
         uniqueIds(b.phases, b.id);
         integer(b.phases.length, 1, 8, b.id);
@@ -803,7 +839,7 @@ export function validate(value: unknown): Diagnostic[] {
         err("music", "撃破ファンファーレはループしない曲または無音を選択してください");
     if (game.performance) {
         integer(game.performance.enemies, 1, 12, "performance");
-        integer(game.performance.playerShots, 1, 6, "performance");
+        integer(game.performance.playerShots, 1, 24, "performance");
         integer(game.performance.enemyShots, 1, 32, "performance");
         integer(game.performance.effects, 1, 4, "performance");
     }
@@ -823,19 +859,51 @@ export function validate(value: unknown): Diagnostic[] {
         if (p.focusWeapon) patternRef(p.focusWeapon, "player");
         finite(p.speed, 0.0625, 8, "player");
         if (p.focusSpeed !== undefined) finite(p.focusSpeed, 0.0625, 8, "player");
-        for (const id of [p.weapon, p.focusWeapon]) {
+        for (const id of [p.weapon, p.focusWeapon, ...(game.player.powerUps?.shotWeapons ?? [])]) {
             const shot = game.patterns.find(s => s.id === id);
             if (shot && (shot.kind === "homing" || shot.launch && shot.launch.kind !== "actor")) err("player", "自機ショットは機体起点・誘導なしで設定してください");
+            if (shot && game.player.atomicVolleys) {
+                const art=assets.get(p.asset),bullet=assets.get(shot.asset),emitters=shot.emitterOffsets?.length??(art?.emitters.length||1),count=emitters*(["straight","aimed","homing"].includes(shot.kind)?1:shot.count),reserve=game.items?.length?4:0;
+                if(count>(game.performance?.playerShots??6)||count>39-reserve||(art&&bullet&&art.width*art.height/64+count*bullet.width*bullet.height/64>40-reserve))err("player",`一斉射撃「${shot.id}」の全弾が弾数・OAM上限に入りません`);
+            }
         }
     }
     if (game.player.bomb) {
         const b = game.player.bomb;
+        if (b.button !== undefined && !["a+b", "b"].includes(b.button)) err("player", "ボムの操作が不正です");
+        integer(b.maxStock ?? 9, 1, 9, "player");
+        if (b.stock > (b.maxStock ?? 9)) err("player", "初期ボム数が上限を超えています");
         integer(b.stock, 1, 9, "player"); integer(b.damage, 1, 255, "player");
         integer(b.frames, 12, 120, "player"); integer(b.flashPeriod, 1, 8, "player");
         if (b.enabled && !game.assets.some(a => a.id === b.background && a.kind === "screen")) err("player", "ボムの背景画像を選択してください");
     }
     finite(game.player.speed, 0.0625, 8, "player");
     integer(game.player.lives, 1, 9, "player");
+    integer(game.player.maxLives ?? 9, 1, 9, "player");
+    if (game.player.lives > (game.player.maxLives ?? 9)) err("player", "初期残機が上限を超えています");
+    const power = game.player.powerUps;
+    if (power) {
+        integer(power.shotWeapons.length, 1, 8, "player"); integer(power.speedLevels.length, 1, 8, "player");
+        for (const id of power.shotWeapons) {
+            patternRef(id, "player");
+            const shot = game.patterns.find(p => p.id === id);
+            if (!id || shot?.kind === "homing" || shot?.launch && shot.launch.kind !== "actor") err("player", "強化武器は機体起点・誘導なしで指定してください");
+        }
+        for (const speed of power.speedLevels) finite(speed, 0.0625, 8, "player");
+        for (const policy of [power.shotOnMiss, power.speedOnMiss]) if (!["down", "reset", "keep"].includes(policy)) err("player", "ミス時の強化状態が不正です");
+    }
+    for (const item of game.items ?? []) {
+        assetRef(item.asset, item.id); motion(item.motion, item.id);
+        const art = assets.get(item.asset);
+        if (art && (art.width !== 8 || art.height !== 8)) err(item.id, "アイテムは8×8スプライトで指定してください（4枠を予約）");
+        integer(item.lifetime, 1, 2048, item.id); integer(item.effects.length, 1, 5, item.id);
+        for (const effect of item.effects) {
+            if (!["shot", "speed", "bomb", "life", "score"].includes(effect.kind)) err(item.id, "取得効果が不正です");
+            integer(effect.amount, 1, effect.kind === "score" ? 65535 : 8, item.id);
+            if ((effect.kind === "shot" || effect.kind === "speed") && !power) err(item.id, "自機の強化段階を設定してください");
+            if (effect.kind === "bomb" && !game.player.bomb?.enabled) err(item.id, "ボム取得にはボムを有効にしてください");
+        }
+    }
     integer(game.player.invulnerability, 0, 1024, "player");
     if (game.player.respawnDelay !== undefined) integer(game.player.respawnDelay, 0, 600, "player");
     integer(game.player.x, 0, 159, "player");
@@ -843,8 +911,11 @@ export function validate(value: unknown): Diagnostic[] {
     for (const stage of game.stages) {
         uniqueIds(stage.events, stage.id);
         assetRef(stage.tileset, stage.id, "tileset");
-        integer(stage.width, 20, 20, stage.id);
-        integer(stage.height, 18, 512, stage.id);
+        if (stage.scrollAxis !== undefined && !["vertical", "horizontal"].includes(stage.scrollAxis)) err(stage.id, "スクロール軸が不正です");
+        const horizontal = stage.scrollAxis === "horizontal";
+        integer(stage.width, 20, horizontal ? 512 : 20, stage.id);
+        integer(stage.height, 18, horizontal ? 18 : 512, stage.id);
+        if (horizontal && stage.scrollDown) err(stage.id, "横スクロールは右方向への進行です");
         integer(stage.duration, 1, 600, stage.id);
         if (stage.music !== undefined) integer(stage.music, 0, 34, stage.id);
         if (stage.bossMusic !== undefined) integer(stage.bossMusic, 0, 34, stage.id);
@@ -904,6 +975,26 @@ export function validate(value: unknown): Diagnostic[] {
         integer(stage.events.length, 0, 256, stage.id);
         const set = assets.get(stage.tileset),
             tileCount = set ? (set.width / 8) * (set.height / 8) : 0;
+        if (stage.destructibles) {
+            const {types, objects} = stage.destructibles;
+            uniqueIds(types, stage.id); uniqueIds(objects, stage.id);
+            integer(types.length, 0, 32, stage.id); integer(objects.length, 0, 512, stage.id);
+            const cells = new Set<string>();
+            for (const type of types) {
+                integer(type.hp, 1, 15, type.id); integer(type.score, 0, 65535, type.id);
+                integer(type.tiles.length, 4, 4, type.id);
+                for (const tile of type.tiles) integer(tile, 0, tileCount - 1, type.id);
+                itemRef(type.dropItem, type.id);
+            }
+            for (const object of objects) {
+                integer(object.x, 0, stage.width - 2, object.id); integer(object.y, 0, stage.height - 2, object.id);
+                if (object.x % 2 || object.y % 2) err(object.id, "破壊物は16pxグリッド（偶数タイル座標）へ配置してください");
+                if (!types.some(t => t.id === object.type)) err(object.id, "破壊物の種類が見つかりません");
+                const cell = `${object.x},${object.y}`;
+                if (cells.has(cell)) err(object.id, "破壊物が重複しています");
+                cells.add(cell);
+            }
+        }
         if (
             stage.tiles.length !== stage.width * stage.height ||
             stage.walls.length !== stage.tiles.length
@@ -925,15 +1016,17 @@ export function validate(value: unknown): Diagnostic[] {
             integer(e.y, -32, 176, stage.id);
             integer(e.count, 1, 8, stage.id);
             integer(e.spacing, -64, 64, stage.id);
+            if (e.spacingY !== undefined) integer(e.spacingY, -64, 64, stage.id);
             integer(e.interval, 0, 1024, stage.id);
             finite(e.value, 0, 4, stage.id);
             if (e.kind === "enemy" && !game.enemies.some((a) => a.id === e.ref))
                 err(e.id, "参照先の敵がありません");
             if (e.kind === "boss" && !game.bosses.some((a) => a.id === e.ref))
                 err(e.id, "参照先のボスがありません");
-            if (!["enemy", "boss", "scroll", "end"].includes(e.kind))
+            if (e.kind === "item") { itemRef(e.ref, e.id); if (!e.ref) err(e.id, "アイテムを選択してください"); }
+            if (!["enemy", "boss", "scroll", "end", "item"].includes(e.kind))
                 err(e.id, "イベント種別が不正です");
-            const spawn = e.kind === "enemy" || e.kind === "boss";
+            const spawn = e.kind === "enemy" || e.kind === "boss" || e.kind === "item";
             expandedEvents += spawn ? e.count : 1;
             if (
                 spawn &&
@@ -995,6 +1088,7 @@ export function validate(value: unknown): Diagnostic[] {
                     "boss",
                     "highscores",
                     "bombs",
+                    "shotLevel", "speedLevel",
                 ].includes(text.binding)
             )
                 err(text.id, "動的表示の種類が不正です");
@@ -1017,7 +1111,7 @@ export function validate(value: unknown): Diagnostic[] {
 
 /** One boss can exist at a time. Exclusive boss art shares a reloadable VRAM slot. */
 export function spriteLayout(game: Game) {
-    const resident = new Set([game.player.asset, ...(game.player.characters ?? []).map(p => p.asset), ...game.enemies.map(a => a.asset), ...game.patterns.map(p => p.asset), game.effects.explosion]);
+    const resident = new Set([game.player.asset, ...(game.player.characters ?? []).map(p => p.asset), ...game.enemies.map(a => a.asset), ...(game.items ?? []).map(i => i.asset), ...game.patterns.map(p => p.asset), game.effects.explosion]);
     const overlay = new Set(game.bosses.map(b => b.asset).filter(id => !resident.has(id)));
     const assets = game.assets.filter(a => a.kind === "sprite");
     let base = 0, size = 0;

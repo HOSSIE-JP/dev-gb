@@ -52,7 +52,7 @@ export function Preview({
         stageId = s.id;
         if (
             scope === "selection" &&
-            ["patterns", "enemies", "bosses"].includes(kind)
+            ["patterns", "enemies", "bosses", "items"].includes(kind)
         ) {
             s.events = [];
             s.duration = 600;
@@ -87,7 +87,7 @@ export function Preview({
                 s.events.push({
                     id: "preview-event",
                     frame: 0,
-                    kind: kind === "bosses" ? "boss" : "enemy",
+                    kind: kind === "bosses" ? "boss" : kind === "items" ? "item" : "enemy",
                     ref: id,
                     x: 80,
                     y: 32,
@@ -142,6 +142,7 @@ export function Preview({
                 ).padStart(5, "0"),
                 boss: String(s.bossHp).padStart(5, "0"),
                 bombs: String(s.bombs).padStart(5,"0"),
+                shotLevel: String(s.shotLevel+1), speedLevel: String(s.speedLevel+1),
             });
             c.restore();
             }
@@ -230,7 +231,7 @@ export function Preview({
                     <option value={0}>{game.player.name??"PLAYER 1"}</option>
                     {(game.player.characters??[]).map((p,i)=><option key={p.id} value={i+1}>{p.name}</option>)}
                 </select>
-                {game.player.bomb?.enabled && <span>ボム {bombs} · Z＋X</span>}
+                {game.player.bomb?.enabled && <span>ボム {bombs} · {game.player.bomb.button === "b" ? "X" : "Z＋X"}</span>}
                 <select
                     value={scope}
                     onChange={(e) => setScope(e.target.value)}

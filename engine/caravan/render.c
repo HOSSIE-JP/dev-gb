@@ -87,20 +87,30 @@ static void screen_map(uint8_t index, uint8_t window) {
     if (window) { set_win_tiles(20, 0, 12, 1, buffer); set_win_tiles(20, 1, 12, 1, buffer); }
 }
 static void map_row(uint16_t row) {
-    const CE_Stage *s = &ce_stages[ce_state.stage]; uint16_t world = row, offset; uint8_t i, n, target = row & 31u;
-    if (s->loop) world %= s->height;
-    if (world < s->height) {
-        offset = world * 20u;
-        n = (offset & 4095u) > 4076u ? 4096u - (offset & 4095u) : 20u;
-        ce_copy(buffer, &s->map[offset >> 12], offset & 4095u, n);
-        if (n != 20u) ce_copy(buffer + n, &s->map[(offset >> 12) + 1u], 0, 20u - n);
-        for (i = 0; i != 20u; ++i) buffer[i] += ce_screens[4].tile_count;
-    } else for (i = 0; i != 20u; ++i) buffer[i] = 0;
-    set_bkg_tiles(0, target, 20, 1, buffer);
+    const CE_Stage *s = ce_stage;
+    uint16_t world = row, length = s->horizontal ? s->width : s->height;
+    uint8_t i, count = s->horizontal ? s->height : s->width, target = row & 31u;
+    if (s->loop) world %= length;
+    if (world < length) {
+        ce_map_copy(buffer, s->map, world * count, count);
+        for (i = 0; i != count; ++i) {
+            if (s->object_count) buffer[i] = ce_terrain_tile(s->horizontal ? world : i, s->horizontal ? i : world, buffer[i]);
+            buffer[i] += ce_screens[4].tile_count;
+        }
+    } else for (i = 0; i != count; ++i) buffer[i] = 0;
+    if (s->horizontal) set_bkg_tiles(target, 0, 1, count, buffer);
+    else set_bkg_tiles(0, target, count, 1, buffer);
     if (ce_is_cgb) {
-        for (i = 0; i != 20u; ++i) buffer[i] = s->palette;
-        VBK_REG = 1; set_bkg_tiles(0, target, 20, 1, buffer); VBK_REG = 0;
+        for (i = 0; i != count; ++i) buffer[i] = s->palette;
+        VBK_REG = 1;
+        if (s->horizontal) set_bkg_tiles(target, 0, 1, count, buffer);
+        else set_bkg_tiles(0, target, count, 1, buffer);
+        VBK_REG = 0;
     }
+}
+static void move_camera(void) {
+    if (ce_stage->horizontal) move_bkg(ce_state.camera >> 4, ce_hud_bottom ? 0u : -ce_hud_height);
+    else move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
 }
 static void load_screen(uint8_t screen, uint8_t black) {
     ce_trace[22] = 1;
@@ -154,7 +164,7 @@ void ce_bomb_draw(uint8_t visible) BANKED {
     if(visible)LCDC_REG&=~8u;else LCDC_REG|=8u;
 }
 void ce_load_stage(void) BANKED {
-    uint8_t row; uint16_t start = ce_state.camera >> 7; const CE_Stage *s = &ce_stages[ce_state.stage];
+    uint8_t row; uint16_t start = ce_state.camera >> 7; const CE_Stage *s = ce_stage;
     if (ce_battle_mode == 2u) {
         /* A cut-in replaced only the arena. Reload its HUD/sprites/bullet tiles,
          * without uploading the scrolling stage map that stays invisible. */
@@ -169,8 +179,9 @@ void ce_load_stage(void) BANKED {
     tiles(&s->tiles, ce_screens[4].tile_count, s->tile_count, 0);
     tiles(&ce_sprite_data, 128, ce_sprite_tiles, 1); SPRITES_8x8;
     for (row = 0; row != 32u; ++row) map_row(start + row);
+    ce_terrain_clean();
     screen_map(4, 1); move_win(7, ce_hud_bottom ? 144u - ce_hud_height : 0);
-    parallax_phase = 255u; previous_row = start; move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height));
+    parallax_phase = 255u; previous_row = start; move_camera();
     if (ce_battle_mode) ce_battle_setup(); else if (ce_battle_asset != CE_NONE) ce_load_boss(ce_battle_asset);
     ce_hud(); SHOW_BKG; if (ce_battle_mode != 2u) SHOW_WIN; SHOW_SPRITES; DISPLAY_ON;
 }
@@ -188,13 +199,15 @@ void ce_hud(void) BANKED {
         b = &s->binding[i]; value = 0;
         if (b->kind == 5u) { for (j = 0; j != 5u; ++j) { number(b->x, b->y + j * 2u, j + 1u, 1); number(b->x + 3u, b->y + j * 2u, ce_scores[j], 5); } continue; }
         if (b->kind == 1u) value = ce_scene == 6u && i < 4u ? ce_bonus_values[i] : ce_state.score;
-        if (b->kind == 2u) value = ce_state.lives;
-        if (b->kind == 3u) {
+        else if (b->kind == 2u) value = ce_state.lives;
+        else if (b->kind == 3u) {
             if (ce_scene == 13u) value = (ce_continue_left + 59u) / 60u;
-            else if (ce_time_limit && ce_state.stage_tick < ce_stages[ce_state.stage].duration) value = (ce_stages[ce_state.stage].duration - ce_state.stage_tick + 59u) / 60u;
+            else if (ce_time_limit && ce_state.stage_tick < ce_stage->duration) value = (ce_stage->duration - ce_state.stage_tick + 59u) / 60u;
         }
-        if (b->kind == 4u) value = ce_boss_hp();
-        if (b->kind == 6u) value = ce_bombs;
+        else if (b->kind == 4u) value = ce_boss_hp();
+        else if (b->kind == 6u) value = ce_bombs;
+        else if (b->kind == 7u) value = ce_shot_level + 1u;
+        else if (b->kind == 8u) value = ce_speed_level + 1u;
         if (ce_active_screen == 4u) {
             if (hud_valid && hud_values[i] == value) continue;
             hud_values[i] = value;
@@ -556,7 +569,8 @@ static void parallax(void) {
     uint16_t camera = ce_state.camera >> 4;
     uint8_t phase;
     if (!p->count) return;
-    phase = ((p->divisor == 2u ? camera >> 1 : camera / p->divisor) - camera) & (p->phases - 1u);
+    if (!(p->phases & (p->phases - 1u))) phase = ((p->divisor == 2u ? camera >> 1 : camera / p->divisor) - camera) & (p->phases - 1u);
+    else phase = (p->phases - (camera - camera / p->divisor) % p->phases) % p->phases;
     if (phase == parallax_phase) return;
     ce_copy(buffer, &p->frames, (uint16_t)phase * p->count * 16u, (uint16_t)p->count * 16u);
     set_bkg_data(ce_screens[4].tile_count + p->first, p->count, buffer);
@@ -564,12 +578,17 @@ static void parallax(void) {
 }
 void ce_render(void) BANKED {
     uint8_t i; uint16_t row = ce_state.camera >> 7;
+    uint16_t length;
     if (!ce_battle_mode) {
-    if (row + 1u == previous_row || (ce_stages[ce_state.stage].loop && !(ce_stages[ce_state.stage].height & 31u) && previous_row == 0u && row + 1u == ce_stages[ce_state.stage].height)) map_row(row);
-    else if (ce_stages[ce_state.stage].loop && !(ce_stages[ce_state.stage].height & 31u) && row == 0u && previous_row + 1u == ce_stages[ce_state.stage].height) map_row(31u);
+    if (row != previous_row) {
+    length = ce_stage->horizontal ? ce_stage->width : ce_stage->height;
+    if (row + 1u == previous_row || (ce_stage->loop && !(length & 31u) && previous_row == 0u && row + 1u == length)) map_row(row);
+    else if (ce_stage->loop && !(length & 31u) && row == 0u && previous_row + 1u == length) map_row(31u);
     else if (row != previous_row && row != previous_row + 1u) { DISPLAY_OFF; for (i = 0; i != 32u; ++i) map_row(row + i); DISPLAY_ON; }
     else if (row != previous_row) map_row(row + 31u);
     previous_row = row;
+    }
+    if (ce_stage->object_count) ce_terrain_flush(ce_screens[4].tile_count);
     }
     pose_slot = 0;
     emit_top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
@@ -598,7 +617,7 @@ void ce_render(void) BANKED {
      * can overwrite it. Repeated display frames under load are intentional. */
     vsync();
     if (ce_battle_mode == 2u) ce_bg_publish();
-    else if (!ce_battle_mode) { move_bkg(0, (ce_state.camera >> 4) - (ce_hud_bottom ? 0u : ce_hud_height)); parallax(); }
+    else if (!ce_battle_mode) { move_camera(); parallax(); }
 }
 
 void ce_get_presentation(CE_Presentation *dest, uint8_t stage) BANKED { *dest = ce_presentations[(uint16_t)stage * ce_player_count + ce_character]; }

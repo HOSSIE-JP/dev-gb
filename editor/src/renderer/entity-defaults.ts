@@ -5,6 +5,8 @@ export function createEntity(game: Game, kind: string) {
     const sprite = game.assets.find((a) => a.kind === "sprite")?.id ?? "";
     const motion = normalMotion();
     switch (kind) {
+        case "items":
+            return {id: uid("item"), name: "新しいアイテム", asset: game.assets.find(a=>a.kind==="sprite"&&a.width===8&&a.height===8)?.id??"", motion: {...motion, vx: -0.5, vy: 0}, lifetime: 600, effects: [{kind: "score", amount: 100}]};
         case "patterns":
             return {
                 id: uid("pattern"),

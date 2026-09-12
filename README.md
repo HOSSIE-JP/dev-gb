@@ -1,6 +1,6 @@
 # Game Boy Development Kit / Caravan Editor
 
-Game Boy／Game Boy Color向けのゲームを制作する、Windows 10/11 x64用のポータブル開発環境です。日本語GUIの **Caravan Editor** で縦スクロールSTGを編集し、GBDK-2020でROMをビルドして、内蔵エミュレーターでプレイできます。Cで直接開発するプロジェクトと、独立したRGBDSアセンブリプロジェクトにも対応します。
+Game Boy／Game Boy Color向けのゲームを制作する、Windows 10/11 x64用のポータブル開発環境です。日本語GUIの **Caravan Editor** で縦・横スクロールSTGを編集し、GBDK-2020でROMをビルドして、内蔵エミュレーターでプレイできます。取得アイテム、段階強化、破壊可能BGにも対応します。Cで直接開発するプロジェクトと、独立したRGBDSアセンブリプロジェクトにも対応します。
 
 ## Windowsアプリを使う
 
@@ -47,6 +47,7 @@ editor.cmd star-caravan
 
 | プロジェクト | 内容 |
 | --- | --- |
+| [SIDE CARAVAN](projects/side-caravan/README.md) | 約3分の横スクロール道中＋ボス、4段階ショット、5種類のアイテム、281個の破壊BG。 |
 | [NOVA SPEAR](projects/nova-spear/README.md) | 3ステージ、2種類のショット、多段階ボス、撃破演出・ファンファーレ、SRAMランキング。時間制限のないSTGテンプレート。 |
 | [STAR CARAVAN](projects/star-caravan/README.md) | 1ステージ・2分制のキャラバンSTGテンプレート。SRAMランキングに対応。 |
 | [CARAVAN LAB](projects/caravan-lab/README.md) | 地形・敵・自機設定を試せる編集サンプル。 |
@@ -85,6 +86,7 @@ Debugはデバッグ用シンボルを生成します。Releaseは配布用の�
 人が編集するデータは`projects/<作品ID>/assets-src`、共通ランタイムは`engine/caravan`、エディターは`editor`です。ツールの版・URL・SHA-256は`config/tools.lock.json`、npm依存は`editor/package-lock.json`で固定します。ツール本体、キャッシュ、ROM、セーブ、生成CはGit管理しません。
 
 - [構成と設計](docs/architecture.md)
+- [横スクロール・取得アイテム・破壊BG](docs/horizontal-stg.md)
 - [アセット制作](docs/asset-pipeline.md)
 - [デバッグ](docs/debugging.md)・[自動検証と受入確認](docs/caravan-editor-validation.md)
 - [SRAM仕様](docs/caravan-sram.md)・[性能測定](docs/nova-spear-performance.md)

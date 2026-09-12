@@ -15,12 +15,14 @@
 #define CE_PSHOT 3u
 #define CE_ESHOT 4u
 #define CE_FX 5u
+#define CE_ITEM 6u
+#define CE_MAX_OBJECTS 512u
 
 typedef struct { uint8_t bank; const uint8_t *data; uint16_t length; } CE_Data;
 typedef struct { uint16_t frame; int16_t x, y, vx, vy; } CE_Point;
 typedef struct {
     uint8_t kind; int16_t vx, vy; uint8_t amplitude; uint16_t period;
-    uint8_t loop, count; const CE_Point *points;
+    uint8_t loop, count; const CE_Point *points; uint8_t axis;
 } CE_Motion;
 typedef struct {
     /* 16 bytes on SM83: cheap indexed lookup, no duplicate hitbox fields.
@@ -33,16 +35,24 @@ typedef struct {
     uint8_t asset, kind, speed, angle, count, rotation, repeats;
     uint16_t interval, delay, lifetime; uint8_t damage; const int8_t *angles; const int16_t *velocity;
     uint8_t launch, launch_x, launch_y, launch_step, launch_lanes, guide_frames, guide_mask;
+    uint8_t emitters; const int8_t *emitter_xy;
 } CE_Pattern;
 typedef struct { uint8_t asset, weapon, speed, focus_weapon, focus_speed; } CE_Player;
 typedef struct { uint8_t until; uint16_t threshold; uint8_t pattern; const CE_Motion *motion; uint8_t layers; const uint8_t *layer; uint8_t intro_screen; uint16_t intro_frames; uint8_t hp; } CE_Phase;
-typedef struct { uint8_t asset, hp; uint16_t score; uint8_t pattern; const CE_Motion *motion; uint8_t phases; const CE_Phase *phase; uint8_t layers; const uint8_t *layer; uint8_t background, bg_limit, return_x, return_y; } CE_Actor;
+typedef struct { uint8_t asset, hp; uint16_t score; uint8_t pattern; const CE_Motion *motion; uint8_t phases; const CE_Phase *phase; uint8_t layers; const uint8_t *layer; uint8_t background, bg_limit, return_x, return_y, drop_item; } CE_Actor;
+
+typedef struct { uint8_t kind; uint16_t amount; } CE_ItemEffect;
+typedef struct { uint8_t asset; const CE_Motion *motion; uint16_t lifetime; uint8_t effects; const CE_ItemEffect *effect; } CE_Item;
+typedef struct { uint8_t tiles[4], hp; uint16_t score; uint8_t solid, drop_item; } CE_TerrainType;
+typedef struct { uint16_t x, y; uint8_t type; } CE_TerrainObject;
 typedef struct { uint16_t frame; uint8_t kind, ref; int16_t x, y; uint8_t value; } CE_Event;
 typedef struct {
     uint16_t height, duration, event_count; uint8_t scroll, loop, clear_boss, has_walls;
     CE_Data tiles; uint8_t tile_count, palette;
     const CE_Data *map; const CE_Data *walls; CE_Data events;
     uint8_t require_boss, music, scroll_down, boss_music;
+    uint16_t width; uint8_t horizontal; uint16_t object_count;
+    const CE_Data *object_ids, *objects; const CE_TerrainType *object_types;
 } CE_Stage;
 typedef struct { uint8_t kind, x, y, digits; } CE_Binding;
 typedef struct {
@@ -67,6 +77,7 @@ extern const CE_Hitbox ce_hitboxes[];
 extern const CE_Pattern ce_patterns[];
 extern const CE_Actor ce_enemies[], ce_bosses[];
 extern const CE_Stage ce_stages[];
+extern const CE_Stage *ce_stage;
 /* Screen metadata is bank 1, consumed only by bank-1 render/scene routines. */
 typedef struct { uint8_t first, count, clear; uint16_t base, life, no_miss, clear_wait; uint8_t victory_first, victory_count; } CE_Presentation;
 typedef struct { uint8_t first, count, phases, divisor; CE_Data frames; } CE_Parallax;
@@ -92,7 +103,7 @@ uint8_t ce_offer_continue(void) BANKED;
 extern uint8_t ce_player_asset, ce_player_weapon, ce_player_speed, ce_player_focus_weapon, ce_player_focus_speed, ce_character;
 extern const uint8_t ce_bomb_stock, ce_bomb_damage, ce_bomb_frames, ce_bomb_period, ce_bomb_screens[], ce_bomb_styles[];
 extern uint8_t ce_bombs, ce_bomb_latch, ce_bomb_left;
-void ce_select_player(uint8_t index) NONBANKED;
+void ce_select_player(uint8_t index) BANKED;
 void ce_bomb_effect(void) BANKED;
 void ce_bomb_apply(void) BANKED;
 void ce_damage_actor(uint8_t slot,uint8_t damage) BANKED;
@@ -103,7 +114,28 @@ void ce_bomb_setup(void) BANKED;
 uint8_t ce_aim(int16_t dx, int16_t dy) NONBANKED;
 uint8_t ce_home(uint8_t angle, int16_t x, int16_t y) BANKED;
 extern const uint8_t ce_music_title, ce_music_boss, ce_music_clear, ce_music_gameover, ce_music_victory;
-extern const uint8_t ce_entity_limits[6];
+extern const uint8_t ce_entity_limits[7];
+extern uint8_t ce_pool_counts[7], ce_pool_oam;
+extern const CE_Item ce_items[];
+extern const uint8_t ce_item_count, ce_power_weapons[], ce_power_speeds[];
+extern const uint8_t ce_power_weapon_count, ce_power_speed_count, ce_power_shot_miss, ce_power_speed_miss;
+extern const uint8_t ce_max_lives, ce_atomic_volleys, ce_bomb_button, ce_bomb_background, ce_bomb_max;
+extern uint8_t ce_shot_level, ce_speed_level;
+void ce_spawn_item(uint8_t ref, int16_t x, int16_t y) BANKED;
+void ce_collect_item(uint8_t slot) BANKED;
+void ce_power_reset(void) BANKED;
+void ce_power_miss(void) BANKED;
+void ce_add_score(uint16_t value) BANKED;
+void ce_map_copy(uint8_t *dest, const CE_Data *data, uint16_t offset, uint8_t length) NONBANKED;
+uint16_t ce_map_index(uint16_t x, uint16_t y) NONBANKED;
+uint16_t ce_camera_limit(void) BANKED;
+extern uint8_t ce_object_hp[CE_MAX_OBJECTS / 2u], ce_object_dirty[CE_MAX_OBJECTS / 8u];
+void ce_terrain_reset(void) BANKED;
+uint8_t ce_terrain_tile(uint16_t x, uint16_t y, uint8_t base) BANKED;
+uint8_t ce_terrain_collision(CE_Box *b, uint8_t damage, uint8_t shots) BANKED;
+void ce_terrain_bomb(void) BANKED;
+void ce_terrain_flush(uint8_t tile_base) BANKED;
+void ce_terrain_clean(void) BANKED;
 extern const uint16_t ce_player_invulnerability, ce_clear_bonus, ce_player_respawn_delay;
 extern const uint8_t ce_stage_fade, ce_time_limit, ce_boss_celebration;
 extern uint8_t ce_victory_frame;

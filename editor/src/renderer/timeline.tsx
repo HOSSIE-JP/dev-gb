@@ -28,7 +28,7 @@ export function Timeline({
         events: source.events.map((event) => {
             if (event.id !== id) return event;
             const tail =
-                event.kind === "enemy" || event.kind === "boss"
+                event.kind === "enemy" || event.kind === "boss" || event.kind === "item"
                     ? Math.max(0, event.count - 1) * event.interval
                     : 0;
             return {
@@ -44,7 +44,7 @@ export function Timeline({
         const c = canvas.current?.getContext("2d");
         if (!c) return;
         c.fillStyle = "#131d28";
-        c.fillRect(0, 0, width, 110);
+        c.fillRect(0, 0, width, 130);
         c.font = "11px sans-serif";
         for (let sec = 0; sec <= stage.duration; sec += 10) {
             const x = (sec / stage.duration) * width;
@@ -57,7 +57,7 @@ export function Timeline({
             const x = (e.frame / (stage.duration * 60)) * width,
                 y =
                     30 +
-                    ["enemy", "boss", "scroll", "end"].indexOf(e.kind) * 19;
+                    ["enemy", "boss", "item", "scroll", "end"].indexOf(e.kind) * 19;
             c.fillStyle =
                 e.id === selected
                     ? "#ffbd66"
@@ -74,14 +74,14 @@ export function Timeline({
             <div className="panel-title">
                 ステージ・タイムライン{" "}
                 <span>
-                    敵 / ボス / 速度 /
+                    敵 / ボス / アイテム / 速度 /
                     終了　·　クリックで選択、ドラッグで時刻変更
                 </span>
             </div>
             <div className="timeline-scroll">
                 <canvas
                     width={width}
-                    height={110}
+                    height={130}
                     ref={canvas}
                     tabIndex={0}
                     aria-label="ステージタイムライン。選択後、左右キーで15フレーム、Shift併用で60フレーム移動"
@@ -134,7 +134,7 @@ export function Timeline({
                             )
                             .find(
                                 (v) =>
-                                    ["enemy", "boss", "scroll", "end"].indexOf(
+                                    ["enemy", "boss", "item", "scroll", "end"].indexOf(
                                         v.kind,
                                     ) === kind &&
                                     Math.abs(

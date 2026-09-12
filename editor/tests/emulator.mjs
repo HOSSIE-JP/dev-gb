@@ -107,7 +107,7 @@ export function entityState(gb, symbolsOrAddress, game, capacity = 39) {
         const coordinate = (field, offset) => ram.readInt16LE(shot ? syms['_ce_shot_' + field] - 0xc000 + slot * 2 : p + offset);
         result.push({
             slot,
-            kind: ["", "enemy", "boss", "pshot", "eshot", "fx"][kind],
+            kind: ["", "enemy", "boss", "pshot", "eshot", "fx", "item"][kind],
             asset: assets[ram[p + 2]].id,
             hp: kind === 5 ? 0 : ram[p + 3],
             phase: ram[p + 4],
@@ -144,7 +144,10 @@ export function assertPublishedOam(gb, syms, game, mode) {
     assert.deepEqual(oam,ram.subarray(syms._shadow_OAM-0xc000,syms._shadow_OAM-0xc000+160),"completed shadow OAM reached hardware before publication");
     const hud=game.screens.find(s=>s.id==='hud'),height=(hud.rows??2)*8,bottom=hud.dock==='bottom';
     const battle=syms._ce_battle_mode?ram[syms._ce_battle_mode-0xc000]:0;
-    assert.equal(io[0x42],battle?0:((ram.readUInt16LE(state+4)>>4)-(bottom?0:height))&255);
+    const stage=game.stages.find(s=>s.id===game.stageOrder[ram[state+18]])??game.stages[ram[state+18]], horizontal=stage?.scrollAxis==='horizontal';
+    const camera=ram.readUInt16LE(state+4)>>4;
+    assert.equal(io[0x42],battle?0:((horizontal?0:camera)-(bottom?0:height))&255);
+    assert.equal(io[0x43],!battle&&horizontal?camera&255:0);
     const assets=new Map(),layout=spriteLayout(game);
     for(const a of game.assets.filter(a=>a.kind==='sprite'))assets.set(a.id,{...a,first:(battle===2?0:128)+layout.offsets.get(a.id)});
     let slot=0;

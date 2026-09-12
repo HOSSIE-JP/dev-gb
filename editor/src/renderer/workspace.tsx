@@ -6,6 +6,7 @@ export const categories = [
     ["project", "プロジェクト", "◈"],
     ["stages", "ステージ", "▤"],
     ["player", "自機", "△"],
+    ["items", "アイテム", "◆"],
     ["enemies", "敵キャラクター", "◇"],
     ["patterns", "弾幕", "✳"],
     ["bosses", "ボス", "⬡"],

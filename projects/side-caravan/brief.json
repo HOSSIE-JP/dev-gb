@@ -1,0 +1,19 @@
+{
+  "id": "side-caravan",
+  "title": "SIDE CARAVAN",
+  "template": "original",
+  "stageCount": 1,
+  "mode": "campaign",
+  "timeLimit": false,
+  "lives": 3,
+  "creative": {
+    "theme": "宇宙施設への接近、戦艦甲板、炉心区画",
+    "weapons": "通常・2連・3方向・5方向",
+    "controls": "A射撃 Bボム",
+    "destructibles": 281
+  },
+  "constraints": {
+    "maxScore": 34320,
+    "durationGameSeconds": 180
+  }
+}

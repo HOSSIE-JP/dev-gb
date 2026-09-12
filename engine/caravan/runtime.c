@@ -11,6 +11,8 @@ typedef char ce_shot_layout_check[(CE_MAX_ENTITIES <= 64u && sizeof(OAM_item_t) 
 
 CE_Entity ce_entities[CE_MAX_ENTITIES];
 CE_State ce_state;
+/* Title-screen time bindings are legal before the first gameplay reset. */
+const CE_Stage *ce_stage = ce_stages;
 int16_t ce_shot_x[CE_MAX_ENTITIES], ce_shot_y[CE_MAX_ENTITIES];
 int16_t ce_shot_vx[CE_MAX_ENTITIES], ce_shot_vy[CE_MAX_ENTITIES];
 uint16_t ce_shot_age[CE_MAX_ENTITIES], ce_shot_lifetime[CE_MAX_ENTITIES];
@@ -23,17 +25,11 @@ static uint8_t shot_frames[CE_MAX_ENTITIES], shot_frame[CE_MAX_ENTITIES], shot_l
 static uint8_t shot_top, shot_bottom;
 uint8_t ce_is_cgb, ce_scene, ce_pause, ce_active_screen;
 uint8_t ce_used;
-uint8_t ce_pool_counts[6], ce_pool_oam;
+uint8_t ce_pool_counts[7], ce_pool_oam;
 static uint8_t free_slots[CE_FREE_GROUPS];
 uint16_t ce_scores[5], ce_respawn;
 uint8_t ce_character, ce_player_asset, ce_player_weapon, ce_player_speed, ce_player_focus_weapon, ce_player_focus_speed;
 uint8_t ce_bombs, ce_bomb_latch, ce_bomb_left;
-void ce_select_player(uint8_t index) NONBANKED {
-    const CE_Player *p;
-    ce_character = index < ce_player_count ? index : 0; p = &ce_players[ce_character];
-    ce_player_asset=p->asset;ce_player_weapon=p->weapon;ce_player_speed=p->speed;
-    ce_player_focus_weapon=p->focus_weapon;ce_player_focus_speed=p->focus_speed;
-}
 uint16_t ce_music_time;
 static uint8_t hit_sound_wait;
 volatile uint8_t ce_trace[24];
@@ -110,6 +106,18 @@ uint8_t ce_read(const CE_Data *source, uint16_t offset) NONBANKED {
     SWITCH_ROM(source_bank); value = data[offset]; SWITCH_ROM(bank);
     return value;
 }
+void ce_map_copy(uint8_t *dest, const CE_Data *data, uint16_t offset, uint8_t length) NONBANKED {
+    uint8_t n;
+    while (length) {
+        n = (offset & 4095u) + length > 4096u ? 4096u - (offset & 4095u) : length;
+        ce_copy(dest, &data[offset >> 12], offset & 4095u, n);
+        dest += n; offset += n; length -= n;
+    }
+}
+uint16_t ce_map_index(uint16_t x, uint16_t y) NONBANKED {
+    const CE_Stage *s = ce_stage;
+    return s->horizontal ? x * s->height + y : y * s->width + x;
+}
 void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     if (new_game) { ce_select_player(ce_character); ce_bombs=ce_bomb_stock; ce_bomb_left=0; ce_respawn = 0; memset(&ce_state, 0, sizeof(ce_state)); ce_state.lives = ce_player_lives; }
     ce_bomb_latch=1;
@@ -121,7 +129,8 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     ce_pool_oam = ce_assets[ce_player_asset].tiles;
     shot_top = ce_hud_bottom ? 9u : ce_hud_height + 9u;
     shot_bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
-    ce_state.stage = stage; ce_state.stage_tick = 0; ce_state.camera = ce_stages[stage].scroll_down ? ce_stages[stage].height * 128u - (144u - ce_hud_height) * 16u : 0;
+    ce_state.stage = stage; ce_stage = &ce_stages[stage]; ce_state.stage_tick = 0; ce_state.camera = ce_stages[stage].scroll_down ? ce_camera_limit() : 0;
+    ce_terrain_reset();
     ce_stage_misses = 0; ce_state.scroll = ce_stages[stage].scroll; ce_state.boss_defeated = 0;
     ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
     ce_state.invulnerable = ce_respawn ? 0 : ce_player_invulnerability; event_cursor = 0; ce_read_event();
@@ -131,8 +140,10 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     ce_music_play(ce_stages[stage].music);
 }
 uint8_t allocate(uint8_t kind, uint8_t asset) {
-    uint8_t group, bit = 1u, slot; CE_Entity *e;
-    if (ce_pool_oam + ce_assets[asset].tiles > 40u || ce_pool_counts[kind] >= ce_entity_limits[kind]) {
+    uint8_t group, bit = 1u, slot, reserve = kind == CE_ITEM ? 0u : ce_entity_limits[CE_ITEM] - ce_pool_counts[CE_ITEM]; CE_Entity *e;
+    /* Ordinary one-at-a-time allocation keeps the original short path. The
+     * free bitmap enforces entity capacity; only atomic volleys need preflight. */
+    if (ce_pool_oam + ce_assets[asset].tiles + reserve > 40u || ce_pool_counts[kind] >= ce_entity_limits[kind]) {
         ++ce_state.dropped; return CE_NONE;
     }
     for (group = 0; group != CE_FREE_GROUPS && !free_slots[group]; ++group) {}
@@ -370,28 +381,12 @@ static uint8_t overlap(void) __naked {
     __endasm;
 }
 #include "shot-kernels.h"
-static uint8_t wall(CE_Box *b) {
-    const CE_Stage *s = &ce_stages[ce_state.stage];
-    int16_t right = b->right - 129, bottom = b->bottom - 129, bx = b->left - 128, by = b->top - 128;
-    uint8_t top = ce_hud_bottom ? 0u : ce_hud_height, x, x1, x2;
-    uint16_t row, last, world, index, camera = ce_state.camera >> 4;
-    if (!s->has_walls || right < 0 || bx >= 160 || bottom < top) return 0;
-    x1 = bx < 0 ? 0u : (uint16_t)bx >> 3;
-    x2 = right >= 160 ? 19u : (uint16_t)right >> 3;
-    row = ((uint16_t)(by < top ? 0 : by - top) + camera) >> 3;
-    last = ((uint16_t)(bottom - top) + camera) >> 3;
-    for (; row <= last; ++row) {
-        world = s->loop && row >= s->height ? row % s->height : row; if (world >= s->height) continue;
-        index = world * 20u + x1;
-        for (x = x1; x <= x2; ++x, ++index) if (ce_read(&s->walls[index >> 12], index & 4095u)) return 1;
-    }
-    return 0;
-}
 static void hit_player(void) {
     uint8_t i;
     if (ce_respawn || ce_state.invulnerable || ce_state.result) return;
     explode(ce_state.player_x, ce_state.player_y);
     ce_sound(2); if (ce_stage_misses != 255u) ++ce_stage_misses; --ce_state.lives;
+    ce_power_miss();
     if (!ce_state.lives) ce_state.result = 1;
     else {
         ce_bombs=ce_bomb_stock;ce_bomb_latch=1;
@@ -433,24 +428,26 @@ static void move_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) {
             e->x += m->vx; e->y += m->vy;
             if (!(age & 7u)) {
                 i = (uint8_t)(age & 127u) >> 3;
-                e->x += (int16_t)(ce_sin[i] - ce_sin[(i - 1u) & 15u]) * m->amplitude;
+                if (m->axis) e->y += (int16_t)(ce_sin[i] - ce_sin[(i - 1u) & 15u]) * m->amplitude;
+                else e->x += (int16_t)(ce_sin[i] - ce_sin[(i - 1u) & 15u]) * m->amplitude;
             }
             return;
         }
         i = (age % m->period) * 16u / m->period;
-        e->x = e->base_x + m->vx * age + (int16_t)ce_sin[i] * m->amplitude;
-        e->y = e->base_y + m->vy * age; return;
+        offset = (int16_t)ce_sin[i] * m->amplitude;
+        e->x = e->base_x + m->vx * age + (m->axis ? 0 : offset);
+        e->y = e->base_y + m->vy * age + (m->axis ? offset : 0); return;
     }
     if (m->kind == 1u) {
         quarter = m->period >> 2; phase = (age % (quarter * 4u)) / quarter; part = age % quarter;
         span = part * m->amplitude / quarter;
         offset = phase == 0u ? span : phase == 1u ? m->amplitude - span : phase == 2u ? -span : -m->amplitude + span;
     }
-    e->x = e->base_x + m->vx * age + offset * 16; e->y = e->base_y + m->vy * age;
+    e->x = e->base_x + m->vx * age + (m->axis ? 0 : offset * 16); e->y = e->base_y + m->vy * age + (m->axis ? offset * 16 : 0);
 }
 static void step_player(uint8_t input) {
     uint8_t top = ce_hud_bottom ? 0u : ce_hud_height;
-    uint8_t mode = (input & J_B) && ce_player_focus_weapon != CE_NONE;
+    uint8_t mode = !ce_bomb_button && (input & J_B) && ce_player_focus_weapon != CE_NONE;
     uint8_t pattern = mode ? ce_player_focus_weapon : ce_player_weapon;
     uint8_t speed = mode ? ce_player_focus_speed : ce_player_speed;
     int16_t limit; const CE_Asset *player = &ce_assets[ce_player_asset];
@@ -470,7 +467,7 @@ static void step_player(uint8_t input) {
     limit = (160 - player->width + player->ox) * 16; if (ce_state.player_x > limit) ce_state.player_x = limit;
     limit = (top + player->oy) * 16; if (ce_state.player_y < limit) ce_state.player_y = limit;
     limit = (top + 144u - ce_hud_height - player->height + player->oy) * 16u; if (ce_state.player_y > limit) ce_state.player_y = limit;
-    if (!(input & (J_A | J_B))) { ce_state.cooldown = weapon->delay; ce_state.player_sequence = 0; }
+    if (!(input & (ce_bomb_button ? J_A : J_A | J_B))) { ce_state.cooldown = weapon->delay; ce_state.player_sequence = 0; }
     else if (ce_state.cooldown) --ce_state.cooldown;
     else if (!weapon->repeats || ce_state.player_sequence < weapon->repeats) {
         ce_shoot(pattern, ce_player_asset, ce_state.player_x, ce_state.player_y, 1, ce_state.player_sequence++);
@@ -525,13 +522,17 @@ static void step_nonbullet(uint8_t slot) {
     static CE_Entity *e;
     e = &ce_entities[slot];
     if (e->kind == CE_FX) { ++e->age; if (e->age >= e->lifetime) release(slot); }
+    else if (e->kind == CE_ITEM) {
+        move_actor(e, ce_items[e->ref].motion, e->age++); box(&boxes[slot], e);
+        if (e->age >= e->lifetime) release(slot);
+    }
     else { step_actor(e, slot); box(&boxes[slot], e); }
     if ((uint16_t)(e->x + 512) > 3584u || (uint16_t)(e->y + 512) > 3328u) release(slot);
 }
 static void step_shot_box(uint8_t slot) {
     static CE_Box *b;
     b = &boxes[slot]; box_out = b; shot_box(slot);
-    if (step_walls && wall(b)) release(slot);
+    if (step_walls && ce_terrain_collision(b, ce_entities[slot].damage, ce_entities[slot].kind == CE_PSHOT ? 1u : 2u)) release(slot);
 }
 /* Snapshot eligibility, visit the original global slots in order, then call
  * the actor path only for actors. Register save/restore is once per traversal,
@@ -584,7 +585,7 @@ static void step_entities(void) __naked {
         cp #3
         jr c, 104$
         cp #5
-        jr z, 104$
+        jr nc, 104$
         ld a, (_step_slot)
         call _ce_step_bullet_body
         or a
@@ -594,7 +595,7 @@ static void step_entities(void) __naked {
         jr 105$
 103$:
         ld a, (_step_walls)
-        or a
+        and #1
         jr nz, 107$
         ld a, (_step_entity)
         ld l, a
@@ -668,27 +669,33 @@ static void collide_player(void) {
     box(&player_box, &player_collision_pose); box_a = &player_box;
     player_delta_x = 128 - ce_state.player_x / 16;
     player_delta_y = 128 - ce_state.player_y / 16;
-    if (!ce_battle_mode && ce_stages[ce_state.stage].has_walls && wall(box_a)) hit_player();
+    if (!ce_battle_mode && (ce_stage->has_walls || ce_stage->object_count) && ce_terrain_collision(box_a, 0, 0)) hit_player();
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) {
         if (!e->kind || e->kind == CE_PSHOT || e->kind == CE_FX) continue;
         if (e->kind == CE_ESHOT) hit = bullet_overlaps(i);
-        else { box_b = &boxes[i]; hit = overlap(); }
-        if (hit) { hit_player(); if (e->kind == CE_ESHOT) release(i); }
+        else { if (e->kind == CE_ITEM) box(&boxes[i], e); box_b = &boxes[i]; hit = overlap(); }
+        if (hit) { if (e->kind == CE_ITEM) ce_collect_item(i); else { hit_player(); if (e->kind == CE_ESHOT) release(i); } }
     }
 }
 void ce_step(uint8_t input) NONBANKED {
-    uint8_t finish; const CE_Stage *stage = &ce_stages[ce_state.stage];
+    uint8_t finish, bomb_pressed; const CE_Stage *stage = ce_stage;
     if (ce_state.result) return;
     ce_trace[22] = 1; /* Keep entity RAM and the public trace in the same snapshot. */
-    if(!(input&(J_A|J_B)))ce_bomb_latch=0;
-    if((input&(J_A|J_B))==(J_A|J_B) && !ce_bomb_latch && ce_bombs && !ce_respawn){
+    if (ce_bomb_button) {
+        bomb_pressed = (input & J_B) && !ce_bomb_latch;
+        ce_bomb_latch = !!(input & J_B);
+    } else {
+        if (!(input & (J_A|J_B))) ce_bomb_latch = 0;
+        bomb_pressed = (input & (J_A|J_B)) == (J_A|J_B) && !ce_bomb_latch;
+    }
+    if(bomb_pressed && ce_bombs && !ce_respawn){
         ce_bomb_latch=1;--ce_bombs;
         if(ce_state.invulnerable<90u)ce_state.invulnerable=90u;
         ce_bomb_apply();ce_bomb_effect();return;
     }
-    step_walls = ce_battle_mode ? 0 : stage->has_walls;
+    step_walls = ce_battle_mode ? 0 : stage->has_walls | (stage->object_count ? 2u : 0u);
     step_player(input); if (ce_battle_mode == 2u) ce_bg_update();
-    finish = ce_stage_events(); step_walls = ce_battle_mode ? 0 : stage->has_walls;
+    finish = ce_stage_events(); step_walls = ce_battle_mode ? 0 : stage->has_walls | (stage->object_count ? 2u : 0u);
     if(ce_pool_counts[CE_ESHOT])steer_sprite_shots();
     step_entities(); collide_shots(); collide_player();
     if (ce_bg_hit) hit_player();
@@ -725,7 +732,9 @@ void ce_trace_write(void) NONBANKED {
     ce_trace[22] = 0;
 }
 void ce_sound(uint8_t effect) NONBANKED {
-    if (effect == 5u) {
+    if (effect == 6u) {
+        NR10_REG = 0x16; NR11_REG = 0x80; NR12_REG = 0x92; NR13_REG = 0xa0; NR14_REG = 0x87;
+    } else if (effect == 5u) {
         /* Bright pulse plus a noise crash; ~0.9s / ~0.75s hardware decay.
          * BGM retains pulse 2 and wave 3 throughout the announcement. */
         NR10_REG = 0; NR11_REG = 0x40; NR12_REG = 0xf4; NR13_REG = 0x83; NR14_REG = 0x87;

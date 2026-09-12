@@ -20,7 +20,8 @@ static uint8_t compound_count, flush_left;
 static uint8_t map[360], hud[40], tile_buffer[16], hud_tiles, static_tiles;
 /* With an ordinary HUD the CGB tile budget also holds every two-dot pattern.
  * Three or more distinct dots still use dynamically composed tiles. */
-static uint16_t static_masks[136];
+/* Immutable mask order is also consumed by the SM83 composition kernel. */
+static const uint16_t static_masks[136] = {1u,2u,4u,8u,16u,32u,64u,128u,256u,512u,1024u,2048u,4096u,8192u,16384u,32768u,3u,5u,9u,17u,33u,65u,129u,257u,513u,1025u,2049u,4097u,8193u,16385u,32769u,6u,10u,18u,34u,66u,130u,258u,514u,1026u,2050u,4098u,8194u,16386u,32770u,12u,20u,36u,68u,132u,260u,516u,1028u,2052u,4100u,8196u,16388u,32772u,24u,40u,72u,136u,264u,520u,1032u,2056u,4104u,8200u,16392u,32776u,48u,80u,144u,272u,528u,1040u,2064u,4112u,8208u,16400u,32784u,96u,160u,288u,544u,1056u,2080u,4128u,8224u,16416u,32800u,192u,320u,576u,1088u,2112u,4160u,8256u,16448u,32832u,384u,640u,1152u,2176u,4224u,8320u,16512u,32896u,768u,1280u,2304u,4352u,8448u,16640u,33024u,1536u,2560u,4608u,8704u,16896u,33280u,3072u,5120u,9216u,17408u,33792u,6144u,10240u,18432u,34816u,12288u,20480u,36864u,24576u,40960u,49152u};
 static const uint8_t pair_base[16]={0,14,27,39,50,60,69,77,84,90,95,99,102,104,105,105};
 static uint16_t next_tile;
 static uint8_t top, bottom, slot, px, py, spawn_next;
@@ -47,13 +48,11 @@ void ce_bg_palette(void) BANKED {
     if(ce_is_cgb){for(i=0;i!=4u;++i)colors[i]=!ce_fade_level&&(i&(1u<<ce_bg_plane))?RGB(31,31,31):0;set_bkg_palette(0,1,colors);}
 }
 void ce_bg_setup(void) BANKED {
-    uint8_t t,y,bit,a,b;uint16_t word;
+    uint8_t t,y,bit;uint16_t word;
     dma_tiles=(uint8_t *)(((uint16_t)dma_tile_storage+15u)&0xfff0u);
     dma_map=(uint8_t *)(((uint16_t)cells+15u)&0xfff0u);
     ce_get_screen(&screen,4);hud_tiles=screen.tile_count;ce_bg_plane=0;ce_bg_map_front=0;ce_bg_tile_drops=0;ce_bg_peak_tiles=0;
     static_tiles=ce_is_cgb&&hud_tiles<=80u?136u:16u;
-    for(t=0;t!=16u;++t)static_masks[t]=1u<<t;
-    if(static_tiles==136u)for(a=0;a!=15u;++a)for(b=a+1u;b!=16u;++b)static_masks[t++]=(1u<<a)|(1u<<b);
     top=ce_hud_bottom?0u:ce_hud_height;bottom=ce_hud_bottom?144u-ce_hud_height:144u;
     for(t=0;t!=hud_tiles;++t){
         ce_copy(tile_buffer,&screen.tiles,(uint16_t)t*16u,16);

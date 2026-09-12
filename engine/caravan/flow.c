@@ -6,6 +6,11 @@ extern uint8_t allocate(uint8_t kind, uint8_t asset);
 extern void release(uint8_t slot);
 extern void explode(int16_t x, int16_t y);
 
+uint16_t ce_camera_limit(void) BANKED {
+    const CE_Stage *s = ce_stage;
+    return ((s->horizontal ? s->width : s->height) * 8u - (s->horizontal ? 160u : 144u - ce_hud_height)) * 16u;
+}
+
 /* Presentation runs with gameplay frozen. Only real button edges advance pages. */
 uint8_t ce_stage_misses, ce_dialogue_page, ce_boss_invulnerable;
 uint16_t ce_intro_left, ce_clear_wait_left;
@@ -292,10 +297,9 @@ void ce_celebrate_boss(void) BANKED {
 
 extern uint16_t event_cursor;
 extern CE_Event next_event;
-extern uint8_t ce_pool_counts[6];
 void ce_read_event(void) BANKED {
-    if (event_cursor < ce_stages[ce_state.stage].event_count)
-        ce_copy((uint8_t *)&next_event, &ce_stages[ce_state.stage].events, event_cursor * 9u, 9u);
+    if (event_cursor < ce_stage->event_count)
+        ce_copy((uint8_t *)&next_event, &ce_stage->events, event_cursor * 9u, 9u);
 }
 /* Local call stays in this auto-assigned bank. A static BANKED function would
  * bake the placeholder bank 255 into SDCC's call instead of the linker bank. */
@@ -310,7 +314,7 @@ static void spawn_actor(uint8_t kind, uint8_t ref, int16_t x, int16_t y) {
     e->x = e->base_x = x * 16; e->y = e->base_y = y * 16;
     /* Actors are updated (and boxed) immediately after stage events. */
     if (kind == CE_BOSS) {
-        uint8_t track = ce_stages[ce_state.stage].boss_music;
+        uint8_t track = ce_stage->boss_music;
         ce_battle_mode = actor->background; ce_battle_asset = actor->asset; ce_bg_limit = actor->bg_limit;
         if (actor->phase[0].hp) e->hp = actor->phase[0].hp;
         if (ce_battle_mode) { ce_state.scroll = 0; ce_battle_setup(); }
@@ -322,22 +326,23 @@ static void spawn_actor(uint8_t kind, uint8_t ref, int16_t x, int16_t y) {
 }
 uint8_t ce_stage_events(void) BANKED {
     uint16_t end, before; uint8_t finish = 0;
-    const CE_Stage *stage = &ce_stages[ce_state.stage];
+    const CE_Stage *stage = ce_stage;
     before = ce_state.camera;
-    end = stage->height * 128u;
+    end = (stage->horizontal ? stage->width : stage->height) * 128u;
     if (stage->scroll_down) {
         if (before >= ce_state.scroll) ce_state.camera -= ce_state.scroll;
         else ce_state.camera = stage->loop ? end - (ce_state.scroll - before) : 0;
     } else {
         ce_state.camera += ce_state.scroll;
         if (stage->loop) { if (end && ce_state.camera >= end) ce_state.camera -= end; }
-        else { end -= (144u - ce_hud_height) * 16u; if (ce_state.camera < before || ce_state.camera > end) ce_state.camera = end; }
+        else { end -= (stage->horizontal ? 160u : 144u - ce_hud_height) * 16u; if (ce_state.camera < before || ce_state.camera > end) ce_state.camera = end; }
     }
     while (event_cursor < stage->event_count && next_event.frame <= ce_state.stage_tick) {
         if (next_event.kind == 2u) ce_dialogue();
         if (next_event.kind <= 2u && (!ce_battle_mode || next_event.kind == 2u)) spawn_actor(next_event.kind, next_event.ref, next_event.x, next_event.y);
         else if (next_event.kind == 3u) { if (!ce_battle_mode) ce_state.scroll = next_event.value; }
-        else if (next_event.kind > 3u) finish = 1;
+        else if (next_event.kind == 4u) finish = 1;
+        else if (next_event.kind == 5u && !ce_battle_mode) ce_spawn_item(next_event.ref, next_event.x * 16, next_event.y * 16);
         ++event_cursor; ce_read_event();
     }
     return finish;

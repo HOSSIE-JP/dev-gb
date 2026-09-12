@@ -6,6 +6,14 @@
 uint8_t ce_home(uint8_t angle, int16_t x, int16_t y) BANKED {
     int16_t dx=ce_state.player_x/16-x,dy=ce_state.player_y/16-y;
     uint8_t target=ce_aim(dx,dy);
+    if (ce_stage->horizontal) {
+        /* Rotate the left-facing semicircle into the legacy ordered 4..12 range. */
+        target = (target + 12u) & 15u; angle = (angle + 12u) & 15u;
+        if(target<4u || target>12u)target=dy<0?12u:4u;
+        if(angle<4u)angle=4u;if(angle>12u)angle=12u;
+        if(target>angle)++angle;else if(target<angle)--angle;
+        return (angle + 4u) & 15u;
+    }
     if(target<4u || target>12u)target=dx<0?12u:4u;
     if(angle<4u)angle=4u;if(angle>12u)angle=12u;
     if(target>angle)++angle;else if(target<angle)--angle;
@@ -27,15 +35,28 @@ extern void explode(int16_t x,int16_t y);
 extern uint8_t defeated_asset;
 extern int16_t defeated_x,defeated_y;
 
+/* Only this bank's atomic volley path needs the complete admission check. */
+static uint8_t ce_can_allocate(uint8_t kind, uint8_t asset, uint8_t count) {
+    uint8_t i, total = 0, reserve = kind == CE_ITEM ? 0u : ce_entity_limits[CE_ITEM] - ce_pool_counts[CE_ITEM];
+    if ((uint16_t)ce_pool_counts[kind] + count > ce_entity_limits[kind] ||
+        (uint16_t)ce_pool_oam + (uint16_t)ce_assets[asset].tiles * count + reserve > 40u) return 0;
+    for (i = 1; i != 7u; ++i) total += ce_pool_counts[i];
+    return (uint16_t)total + count + reserve <= CE_MAX_ENTITIES;
+}
+
 void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t friendly, uint8_t sequence) BANKED {
-    const CE_Pattern *p; const CE_Asset *a; uint8_t emitter, n, base, angle, slot, emitters, origin;
+    const CE_Pattern *p; const CE_Asset *a; const int8_t *offsets; uint8_t emitter, n, base, angle, slot, emitters, origin;
     int16_t px, py; CE_Entity *e;
     if (pattern == CE_NONE) return;
     p = &ce_patterns[pattern]; a = &ce_assets[source];
-    origin=friendly?0:p->launch;emitters=origin?(origin==4u?2u:1u):a->emitters;
+    origin=friendly?0:p->launch;emitters=origin?(origin==4u?2u:1u):(p->emitters?p->emitters:a->emitters);
+    offsets=p->emitters?p->emitter_xy:a->emitter_xy;
+    if (friendly && ce_atomic_volleys && !ce_can_allocate(CE_PSHOT, p->asset, emitters * p->count)) {
+        ce_state.dropped += emitters * p->count; return;
+    }
     for (emitter = 0; emitter != emitters; ++emitter) {
-        px = origin ? (int16_t)p->launch_x*16 : x + (int16_t)a->emitter_xy[emitter * 2u] * 16;
-        py = origin ? ((int16_t)p->launch_y+(sequence%p->launch_lanes)*p->launch_step)*16 : y + (int16_t)a->emitter_xy[emitter * 2u + 1u] * 16;
+        px = origin ? (int16_t)p->launch_x*16 : x + (int16_t)offsets[emitter * 2u] * 16;
+        py = origin ? ((int16_t)p->launch_y+(sequence%p->launch_lanes)*p->launch_step)*16 : y + (int16_t)offsets[emitter * 2u + 1u] * 16;
         base = p->angle;
         if(origin && origin!=5u){
             uint8_t right=origin==2u||(origin==3u&&(sequence&1u))||(origin==4u&&emitter);
@@ -64,7 +85,7 @@ void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t fri
     }
 }
 
-static void add_score(uint16_t value) {
+void ce_add_score(uint16_t value) BANKED {
     ce_state.score = 65535u - ce_state.score < value ? 65535u : ce_state.score + value;
 }
 
@@ -82,13 +103,14 @@ void ce_damage_actor(uint8_t slot, uint8_t damage) BANKED {
     }
     if(target->hp<=damage){
         int16_t x=target->x,y=target->y;
-        add_score(actor->score);if(target->kind==CE_BOSS){ce_state.boss_defeated=1;defeated_asset=target->asset;defeated_x=x;defeated_y=y;}
-        release(slot);ce_sound(1);explode(x,y);
+        ce_add_score(actor->score);if(target->kind==CE_BOSS){ce_state.boss_defeated=1;defeated_asset=target->asset;defeated_x=x;defeated_y=y;}
+        release(slot);ce_spawn_item(actor->drop_item,x,y);ce_sound(1);explode(x,y);
     }else{target->hp-=damage;if(target->kind==CE_BOSS)ce_sound(4);}
 }
 void ce_bomb_apply(void) BANKED {
     uint8_t i, n=ce_used; CE_Entity *e;
     ce_clear_combat(0);
+    if (ce_bomb_background && !ce_battle_mode) ce_terrain_bomb();
     for(i=0;i<n;++i){
         e=&ce_entities[i];
         if((e->kind==CE_ENEMY||e->kind==CE_BOSS)&& e->x>=0 && e->x<2560 && e->y>=0 && e->y<2304)ce_damage_actor(i,ce_bomb_damage);

@@ -1,0 +1,37 @@
+{
+  "version": "0.1-horizontal-stg",
+  "updatedAt": "2026-09-12",
+  "projectId": "side-caravan",
+  "status": "playtest-ready-with-known-limits",
+  "approved": false,
+  "projectRevision": "b92c0fdc34fff3ddfc3ff80084e05a826e47c82a39acc2521abee0248852ffd5",
+  "rom": {
+    "path": "build/Release/side-caravan.gb",
+    "sha256": "ade8bbd3f4f3bd39315f697cd653db90e0dd0d3a6cc4eb97bbe08d148c393096",
+    "bytes": 131072
+  },
+  "debug": {
+    "path": "build/Debug/side-caravan.gb",
+    "sha256": "ade8bbd3f4f3bd39315f697cd653db90e0dd0d3a6cc4eb97bbe08d148c393096",
+    "bytes": 131072
+  },
+  "validationReport": "../../docs/side-caravan-validation.md",
+  "validationData": "../../docs/side-caravan-validation-results.json",
+  "automated": {
+    "dmgFullRoute": true,
+    "cgbFullRoute": true,
+    "bgbDmg": true,
+    "bgbCgb": true,
+    "sramReboot": true
+  },
+  "knownLimits": {
+    "performanceGates": "Stress and strict BG64 CGB cadence targets remain unmet; see report for HEAD controls and residual differences",
+    "emulicious": "DAPDebugger.evaluate NullPointerException on final SIDE/STAR; boot and gameplay unverified",
+    "humanController": false,
+    "manualListening": false,
+    "physicalDmg": false,
+    "physicalCgb": false,
+    "publicRelease": false
+  },
+  "feedback": []
+}

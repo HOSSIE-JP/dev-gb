@@ -387,9 +387,11 @@ main {
 .canvas-well.map {
     display: block;
     max-height: 440px;
-    text-align: center;
+    text-align: left;
     padding: 24px;
 }
+.map-tools { flex-wrap: wrap; }
+.stamp-tile-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .canvas-well.map canvas {
     display: inline-block;
 }
