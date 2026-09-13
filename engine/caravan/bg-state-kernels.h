@@ -76,6 +76,9 @@ _draw_xy:
         ld (_ce_bg_hit), a
         jp 030$
 010$:
+        ld a, (_ce_battle_mode)
+        cp #3
+        ret z
         ld a, (_py)
         and #0xf8
         ld l, a

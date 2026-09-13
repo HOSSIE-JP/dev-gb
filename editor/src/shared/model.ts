@@ -24,6 +24,7 @@ export type Palette = {
     colors: [string, string, string, string];
 };
 export type Motion = {
+    smooth?: boolean;
     oscillationAxis?: "x" | "y";
     kind: "straight" | "bounce" | "wave" | "path";
     vx: number;
@@ -39,7 +40,7 @@ export type Pattern = {
     id: string;
     name: string;
     asset: string;
-    kind: "straight" | "aimed" | "fan" | "ring" | "spiral" | "homing";
+    kind: "straight" | "aimed" | "fan" | "ring" | "spiral" | "homing" | "laser";
     launch?: { kind: "actor" | "left" | "right" | "alternate" | "both" | "fixed"; x: number; y: number; step: number; lanes: number };
     guidance?: { frames: number; period: number };
     speed: number;
@@ -76,8 +77,10 @@ export type BossPhase = {
     intro?: { enabled: boolean; background: string; spellName: string; seconds: number };
 };
 export type Boss = Actor & {
+    /** Player contact only, relative to the actor origin. Omitted/empty uses the weakpoint. */
+    contactBoxes?: Rect[];
     phases: BossPhase[];
-    battle?: { background: "stage" | "blank" | "bg-bullets"; maxBullets: number; returnX?: number; returnY?: number };
+    battle?: { background: "stage" | "blank" | "bg-bullets" | "bg-boss"; maxBullets: number; graphic?: string; returnX?: number; returnY?: number };
 };
 export type StageEvent = {
     id: string;
@@ -111,7 +114,7 @@ export type Presentation = {
     victoryDialogue?: DialogueScene;
 };
 export type Parallax = { enabled: boolean; firstTile: number; width: number; height: number; divisor: number };
-export type ItemEffect = { kind: "shot" | "speed" | "bomb" | "life" | "score"; amount: number };
+export type ItemEffect = { kind: "shot" | "speed" | "bomb" | "life" | "score" | "barrier" | "weapon"; amount: number; weapon?: string };
 export type Item = { id: string; name: string; asset: string; motion: Motion; lifetime: number; effects: ItemEffect[] };
 export type PowerUps = { shotWeapons: string[]; speedLevels: number[]; shotOnMiss: "down" | "reset" | "keep"; speedOnMiss: "down" | "reset" | "keep" };
 export type DestructibleType = { id: string; name: string; tiles: number[]; hp: number; score: number; solid: boolean; dropItem?: string };
@@ -146,7 +149,7 @@ export type TextItem = {
     y: number;
     palette: number;
     digits?: number;
-    binding: "none" | "score" | "lives" | "time" | "boss" | "highscores" | "bombs" | "shotLevel" | "speedLevel";
+    binding: "none" | "score" | "lives" | "time" | "boss" | "highscores" | "bombs" | "shotLevel" | "speedLevel" | "barrier";
 };
 export type Screen = {
     id: "title" | "gameover" | "clear" | "scores" | "hud";
@@ -160,7 +163,7 @@ export type Screen = {
 export const hudHeight = (game: Game) => (game.screens.find(s => s.id === "hud")?.rows ?? 2) * 8;
 
 export type PlayerCharacter = { id: string; name: string; asset: string; speed: number; weapon: string; focusWeapon?: string; focusSpeed?: number; bombBackground?: string; bombStyle?: "orb" | "beam"; selectionBackground?: string; gameoverBackground?: string };
-export type Bomb = { enabled: boolean; stock: number; damage: number; frames: number; flashPeriod: number; background: string; button?: "a+b" | "b"; destroyBackground?: boolean; maxStock?: number };
+export type Bomb = { enabled: boolean; stock: number; damage: number; frames: number; flashPeriod: number; background: string; button?: "a+b" | "b"; destroyBackground?: boolean; maxStock?: number; live?: boolean };
 export type Game = {
     schemaVersion: 1;
     name: string;
@@ -180,6 +183,9 @@ export type Game = {
     stages: Stage[];
     screens: Screen[];
     player: {
+        barrierMax?: number;
+        barrierFrames?: number;
+        barrierAsset?: string;
         powerUps?: PowerUps;
         maxLives?: number;
         atomicVolleys?: boolean;
@@ -296,7 +302,7 @@ export function validateShape(
     const diagnostics: Diagnostic[] = [];
     const point: Shape = { x: "number", y: "number" };
     const motion: Shape = {
-        "oscillationAxis?": "string",
+        "oscillationAxis?": "string", "smooth?": "boolean",
         kind: "string",
         vx: "number",
         vy: "number",
@@ -372,11 +378,12 @@ export function validateShape(
             },
         ],
         enemies: [actor],
-        "items?": [{id: "string", name: "string", asset: "string", motion, lifetime: "number", effects: [{kind: "string", amount: "number"}]}],
+        "items?": [{id: "string", name: "string", asset: "string", motion, lifetime: "number", effects: [{kind: "string", amount: "number", "weapon?": "string"}]}],
         bosses: [
             {
                 ...actor,
-                "battle?": {background: "string", maxBullets: "number", "returnX?": "number", "returnY?": "number"},
+                "contactBoxes?": [{x:"number",y:"number",w:"number",h:"number"}],
+                "battle?": {"graphic?": "string", background: "string", maxBullets: "number", "returnX?": "number", "returnY?": "number"},
                 phases: [
                     {
                         id: "string",
@@ -460,11 +467,11 @@ export function validateShape(
         ],
         player: {
             "powerUps?": {shotWeapons: ["string"], speedLevels: ["number"], shotOnMiss: "string", speedOnMiss: "string"},
-            "maxLives?": "number", "atomicVolleys?": "boolean",
+            "barrierMax?": "number", "barrierFrames?": "number", "barrierAsset?": "string", "maxLives?": "number", "atomicVolleys?": "boolean",
             "name?": "string",
             "selectionBackground?": "string", "gameoverBackground?": "string",
             "characters?": [{id: "string", name: "string", asset: "string", speed: "number", weapon: "string", "focusWeapon?": "string", "focusSpeed?": "number", "bombBackground?": "string", "bombStyle?": "string", "selectionBackground?": "string", "gameoverBackground?": "string"}],
-            "bomb?": {enabled: "boolean", stock: "number", damage: "number", frames: "number", flashPeriod: "number", background: "string", "button?": "string", "destroyBackground?": "boolean", "maxStock?": "number"},
+            "bomb?": {"live?": "boolean", enabled: "boolean", stock: "number", damage: "number", frames: "number", flashPeriod: "number", background: "string", "button?": "string", "destroyBackground?": "boolean", "maxStock?": "number"},
             asset: "string",
             speed: "number",
             lives: "number",
@@ -657,7 +664,7 @@ export function validate(value: unknown): Diagnostic[] {
             err(a.id, "画面背景は160×144です");
         integer(a.palette, 0, game.palettes.length - 1, a.id);
         integer(a.frames.length, 1, 16, a.id);
-        if (a.kind !== "sprite" && a.frames.length > 1)
+        if (a.kind !== "sprite" && a.frames.length > 1 && !game.bosses.some(b=>b.battle?.background==="bg-boss"&&b.battle.graphic===a.id))
             warn(a.id, "背景素材は最初のフレームだけをROMに使用します");
         integer(a.origin.x, 0, a.width, a.id);
         integer(a.origin.y, 0, a.height, a.id);
@@ -737,7 +744,7 @@ export function validate(value: unknown): Diagnostic[] {
             for (const point of p.emitterOffsets) { integer(point.x, -32, 32, p.id); integer(point.y, -32, 32, p.id); }
         }
         assetRef(p.asset, p.id);
-        if (!["straight", "aimed", "fan", "ring", "spiral", "homing"].includes(p.kind))
+        if (!["straight", "aimed", "fan", "ring", "spiral", "homing", "laser"].includes(p.kind))
             err(p.id, "弾幕方式が不正です");
         if (p.launch) {
             const l = p.launch;
@@ -771,9 +778,19 @@ export function validate(value: unknown): Diagnostic[] {
         motion(a.motion, a.id);
     }
     for (const b of game.bosses) {
+        if (b.contactBoxes !== undefined) {
+            if (!Array.isArray(b.contactBoxes)) err(b.id, "胴体判定は矩形の配列にしてください");
+            else { integer(b.contactBoxes.length, 0, 8, b.id); for (const r of b.contactBoxes) { if(!r || typeof r !== "object") {err(b.id,"胴体判定はX/Y/幅/高さの矩形にしてください");continue;} integer(r.x,-128,127,b.id); integer(r.y,-128,127,b.id); integer(r.w,1,160,b.id); integer(r.h,1,144,b.id); } }
+        }
         if (b.battle) {
-            if (!["stage", "blank", "bg-bullets"].includes(b.battle.background)) err(b.id, "ボス背景モードが不正です");
-            integer(b.battle.maxBullets, 1, 64, b.id);
+            if (!["stage", "blank", "bg-bullets", "bg-boss"].includes(b.battle.background)) err(b.id, "ボス背景モードが不正です");
+            integer(b.battle.maxBullets, 1, b.battle.background === "bg-boss" ? 32 : 64, b.id);
+            if (b.battle.background === "bg-boss") {
+                const art = assets.get(b.battle.graphic ?? "");
+                if (!art || art.kind !== "screen" || art.width !== 160 || art.height !== 144) err(b.id, "巨大BGボスは160×144の画面画像を指定してください（原点が弱点位置）");
+                if (art && art.frames.length > 1 && (art.frames.length > 8 || ![1,2,4,8,16,32,64,128].includes(art.frames[0].duration) || art.frames.some(f => f.duration !== art.frames[0].duration))) err(b.id,"巨大BGアニメは8枚まで・全コマ共通の2の累乗更新数にしてください");
+                if (b.phases.some(p => p.intro?.enabled)) err(b.id, "巨大BGボスではフェーズ間カットインを無効にしてください");
+            }
             if (b.battle.returnX !== undefined) integer(b.battle.returnX, 16, 144, b.id);
             if (b.battle.returnY !== undefined) integer(b.battle.returnY, 24, 128, b.id);
         }
@@ -803,6 +820,14 @@ export function validate(value: unknown): Diagnostic[] {
             );
         }
     }
+    integer(game.player.barrierMax ?? 3, 1, 9, "player");
+    integer(game.player.barrierFrames ?? 45, 1, 255, "player");
+    if (game.player.barrierAsset) {
+        assetRef(game.player.barrierAsset, "player");
+        const shield = assets.get(game.player.barrierAsset), player = assets.get(game.player.asset);
+        if (shield && player && (shield.width !== player.width || shield.height !== player.height || shield.origin.x !== player.origin.x || shield.origin.y !== player.origin.y)) err("player", "バリア表示画像は自機と同じ寸法・原点にしてください");
+        if (game.player.characters?.length) err("player", "バリア表示画像は単一機体の作品で使用できます");
+    }
     assetRef(game.player.asset, "player");
     patternRef(game.player.weapon, "player");
     if (game.player.focusWeapon) patternRef(game.player.focusWeapon, "player");
@@ -821,7 +846,7 @@ export function validate(value: unknown): Diagnostic[] {
     }
     if (game.ending) {
         integer(game.ending.seconds, 1, 60, "ending");
-        if (game.ending.music !== undefined) integer(game.ending.music, 0, 34, "ending");
+        if (game.ending.music !== undefined) integer(game.ending.music, 0, 37, "ending");
         const variants = game.ending.characterSlides ?? [], seen = new Set<string>();
         integer(variants.length, 0, 3, "ending"); uniqueIds(variants, "ending");
         for (const v of variants) {
@@ -834,7 +859,7 @@ export function validate(value: unknown): Diagnostic[] {
             for (const slide of slides) if (!game.assets.some(a => a.id === slide.background && a.kind === "screen" && a.width === 160 && a.height === 144)) err("ending", "160x144の画面画像を指定してください");
         }
     }
-    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 34, "music");
+    if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 37, "music");
     if (game.bossCelebration && game.music?.victory !== undefined && ![0, 6, 7, 8, 14, 15, 29].includes(game.music.victory))
         err("music", "撃破ファンファーレはループしない曲または無音を選択してください");
     if (game.performance) {
@@ -863,7 +888,7 @@ export function validate(value: unknown): Diagnostic[] {
             const shot = game.patterns.find(s => s.id === id);
             if (shot && (shot.kind === "homing" || shot.launch && shot.launch.kind !== "actor")) err("player", "自機ショットは機体起点・誘導なしで設定してください");
             if (shot && game.player.atomicVolleys) {
-                const art=assets.get(p.asset),bullet=assets.get(shot.asset),emitters=shot.emitterOffsets?.length??(art?.emitters.length||1),count=emitters*(["straight","aimed","homing"].includes(shot.kind)?1:shot.count),reserve=game.items?.length?4:0;
+                const art=assets.get(p.asset),bullet=assets.get(shot.asset),emitters=shot.emitterOffsets?.length??(art?.emitters.length||1),count=emitters*(["straight","aimed","homing","laser"].includes(shot.kind)?1:shot.count),reserve=game.items?.length?4:0;
                 if(count>(game.performance?.playerShots??6)||count>39-reserve||(art&&bullet&&art.width*art.height/64+count*bullet.width*bullet.height/64>40-reserve))err("player",`一斉射撃「${shot.id}」の全弾が弾数・OAM上限に入りません`);
             }
         }
@@ -898,7 +923,12 @@ export function validate(value: unknown): Diagnostic[] {
         if (art && (art.width !== 8 || art.height !== 8)) err(item.id, "アイテムは8×8スプライトで指定してください（4枠を予約）");
         integer(item.lifetime, 1, 2048, item.id); integer(item.effects.length, 1, 5, item.id);
         for (const effect of item.effects) {
-            if (!["shot", "speed", "bomb", "life", "score"].includes(effect.kind)) err(item.id, "取得効果が不正です");
+            if (!["shot", "speed", "bomb", "life", "score", "barrier", "weapon"].includes(effect.kind)) err(item.id, "取得効果が不正です");
+            if (effect.kind === "weapon") {
+                patternRef(effect.weapon ?? "", item.id);
+                const weapon = game.patterns.find(p => p.id === effect.weapon);
+                if (!weapon || weapon.kind === "homing" || weapon.launch && weapon.launch.kind !== "actor") err(item.id, "切替武器は機体起点・誘導なしで指定してください");
+            }
             integer(effect.amount, 1, effect.kind === "score" ? 65535 : 8, item.id);
             if ((effect.kind === "shot" || effect.kind === "speed") && !power) err(item.id, "自機の強化段階を設定してください");
             if (effect.kind === "bomb" && !game.player.bomb?.enabled) err(item.id, "ボム取得にはボムを有効にしてください");
@@ -917,8 +947,8 @@ export function validate(value: unknown): Diagnostic[] {
         integer(stage.height, 18, horizontal ? 18 : 512, stage.id);
         if (horizontal && stage.scrollDown) err(stage.id, "横スクロールは右方向への進行です");
         integer(stage.duration, 1, 600, stage.id);
-        if (stage.music !== undefined) integer(stage.music, 0, 34, stage.id);
-        if (stage.bossMusic !== undefined) integer(stage.bossMusic, 0, 34, stage.id);
+        if (stage.music !== undefined) integer(stage.music, 0, 37, stage.id);
+        if (stage.bossMusic !== undefined) integer(stage.bossMusic, 0, 37, stage.id);
         finite(stage.scrollSpeed, 0, 4, stage.id);
         const presentation = stage.presentation;
         if (presentation) {
@@ -1088,7 +1118,7 @@ export function validate(value: unknown): Diagnostic[] {
                     "boss",
                     "highscores",
                     "bombs",
-                    "shotLevel", "speedLevel",
+                    "shotLevel", "speedLevel", "barrier",
                 ].includes(text.binding)
             )
                 err(text.id, "動的表示の種類が不正です");
@@ -1111,7 +1141,7 @@ export function validate(value: unknown): Diagnostic[] {
 
 /** One boss can exist at a time. Exclusive boss art shares a reloadable VRAM slot. */
 export function spriteLayout(game: Game) {
-    const resident = new Set([game.player.asset, ...(game.player.characters ?? []).map(p => p.asset), ...game.enemies.map(a => a.asset), ...(game.items ?? []).map(i => i.asset), ...game.patterns.map(p => p.asset), game.effects.explosion]);
+    const resident = new Set([game.player.asset, game.player.barrierAsset, ...(game.player.characters ?? []).map(p => p.asset), ...game.enemies.map(a => a.asset), ...(game.items ?? []).map(i => i.asset), ...game.patterns.map(p => p.asset), game.effects.explosion]);
     const overlay = new Set(game.bosses.map(b => b.asset).filter(id => !resident.has(id)));
     const assets = game.assets.filter(a => a.kind === "sprite");
     let base = 0, size = 0;

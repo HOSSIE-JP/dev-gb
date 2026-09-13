@@ -1,0 +1,136 @@
+{
+  "generator": "OpenAI built-in Image Gen",
+  "date": "2026-09-12",
+  "palette": [
+    "#0b1228",
+    "#276382",
+    "#77d5d7",
+    "#fff3c4"
+  ],
+  "conversion": "editor/scripts/revise-side-caravan-v03.cjs",
+  "masters": [
+    {
+      "id": "player",
+      "master": "masters/player.png",
+      "sha256": "9c54e27c9d620c132a7360efa437f9589b931333c86621b0293e2c3b576e7a20",
+      "width": 2048,
+      "height": 768
+    },
+    {
+      "id": "drone",
+      "master": "masters/drone.png",
+      "sha256": "97dadf5609a1b8d388d6ecdd21388c50c1e9e7d35a5aaa90efff2133591ae082",
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "sweeper",
+      "master": "masters/sweeper.png",
+      "sha256": "d89494bf0ce7be075139580842571c27a2bd01add4c2619e633af1f831f00a7a",
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "carrier",
+      "master": "masters/carrier.png",
+      "sha256": "89a179dd90b5166a0572882da73f212dfa839fda80dd094230efbc978b5aa367",
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "facility",
+      "master": "masters/facility.png",
+      "sha256": "3dfc8b0ecd3743cca6ae91fada3982d582c9ebdb8c5423af7cb5ca96f66df222",
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "boss",
+      "master": "masters/boss.png",
+      "sha256": "66f4de715979f9c5d8673c49b4c0492346b87a1016adb494022200afc45cce27",
+      "width": 1774,
+      "height": 887
+    }
+  ],
+  "tileSelection": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    80,
+    81,
+    96,
+    97,
+    84,
+    85,
+    100,
+    101,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119
+  ],
+  "bossAnimationRegions": [
+    {
+      "x": 10,
+      "y": 32,
+      "w": 16,
+      "h": 16
+    },
+    {
+      "x": 70,
+      "y": 20,
+      "w": 10,
+      "h": 40
+    }
+  ],
+  "projectRevision": "e3dc4fd5f86ae8a6fa496d768d34b5fdcd694923c730f4db43120784d559724d"
+}

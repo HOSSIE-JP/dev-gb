@@ -315,7 +315,7 @@ export function generate(
         );
         const l = p.launch, h = p.guidance;
         if (p.emitterOffsets) config.push(`static const int8_t pattern_${i}_emitters[]={${p.emitterOffsets.flatMap(e => [e.x,e.y])}};`);
-        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral", "homing"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)},${[l ? ["actor", "left", "right", "alternate", "both", "fixed"].indexOf(l.kind) : 0,l?.x ?? 80,l?.y ?? 32,l?.step ?? 0,l?.lanes ?? 1,h?.frames ?? 48,(h?.period ?? 16)-1]},${p.emitterOffsets?.length ?? 0},${p.emitterOffsets ? `pattern_${i}_emitters` : "0"}}`;
+        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral", "homing", "laser"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)},${[l ? ["actor", "left", "right", "alternate", "both", "fixed"].indexOf(l.kind) : 0,l?.x ?? 80,l?.y ?? 32,l?.step ?? 0,l?.lanes ?? 1,h?.frames ?? 48,(h?.period ?? 16)-1]},${p.emitterOffsets?.length ?? 0},${p.emitterOffsets ? `pattern_${i}_emitters` : "0"}}`;
     });
     config.push(
         `const CE_Pattern ce_patterns[]={${patternRows}};`,
@@ -335,7 +335,7 @@ export function generate(
         });
         config.push(
             `static const CE_Point ${name}_points[]={${points}};`,
-            `static const CE_Motion ${name}={${["straight", "bounce", "wave", "path"].indexOf(m.kind)},${q4(m.vx)},${q4(m.vy)},${m.amplitude},${m.period},${+m.loop},${points.length},${name}_points,${+(m.oscillationAxis === "y")}};`,
+            `static const CE_Motion ${name}={${["straight", "bounce", "wave", "path"].indexOf(m.kind)},${q4(m.vx)},${q4(m.vy)},${m.amplitude},${m.period},${+m.loop},${points.length},${name}_points,${+(m.oscillationAxis === "y") | (m.smooth ? 2 : 0)}};`,
         );
         const pointer = `&${name}`;
         motionCache.set(key, pointer);
@@ -343,10 +343,11 @@ export function generate(
     }
     const itemId = (id?: string) => id ? (game.items ?? []).findIndex(i => i.id === id) : 255;
     const itemRows = (game.items ?? []).map((item,i) => {
-        config.push(`static const CE_ItemEffect item_${i}_effects[]={${item.effects.map(e => `{${["shot","speed","bomb","life","score"].indexOf(e.kind)+1},${e.amount}}`)}};`);
+        config.push(`static const CE_ItemEffect item_${i}_effects[]={${item.effects.map(e => `{${["shot","speed","bomb","life","score","barrier","weapon"].indexOf(e.kind)+1},${e.kind === "weapon" ? patternId(e.weapon!) : e.amount}}`)}};`);
         return `{${assetId(item.asset)},${motion(item.motion)},${item.lifetime},${item.effects.length},item_${i}_effects}`;
     });
     config.push(`const CE_Item ce_items[]={${itemRows.join(",") || "{0,0,0,0,0}"}};`,`const uint8_t ce_item_count=${itemRows.length};`);
+    config.push(`const uint8_t ce_barrier_max=${game.player.barrierMax ?? 3},ce_barrier_frames=${game.player.barrierFrames ?? 45},ce_barrier_asset=${game.player.barrierAsset ? assetId(game.player.barrierAsset) : 255};`);
     const power = game.player.powerUps;
     config.push(`const uint8_t ce_power_weapons[]={${power?.shotWeapons.map(patternId).join(",") || "255"}},ce_power_speeds[]={${power?.speedLevels.map(q4).join(",") || "0"}};`,
         `const uint8_t ce_power_weapon_count=${power?.shotWeapons.length ?? 0},ce_power_speed_count=${power?.speedLevels.length ?? 0},ce_power_shot_miss=${["keep","down","reset"].indexOf(power?.shotOnMiss ?? "keep")},ce_power_speed_miss=${["keep","down","reset"].indexOf(power?.speedOnMiss ?? "keep")},ce_max_lives=${game.player.maxLives ?? 9},ce_atomic_volleys=${+!!game.player.atomicVolleys};`);
@@ -376,7 +377,7 @@ export function generate(
                 `{${p.until === "hp" ? 1 : 0},${p.threshold},${patternId(p.pattern)},${motion(p.motion)},${attackList(p.attacks)},${p.intro?.enabled ? introFirst + intros.indexOf(p) : 255},${p.intro?.enabled ? Math.round(p.intro.seconds * 60) : 0},${p.hp ?? 0}}`,
         );
         config.push(`static const CE_Phase boss_${i}_phases[]={${phases}};`);
-        return `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},${phases.length},boss_${i}_phases,${attackList(a.attacks)},${["stage", "blank", "bg-bullets"].indexOf(a.battle?.background ?? "stage")},${a.battle?.maxBullets ?? 64},${a.battle?.returnX ?? 80},${a.battle?.returnY ?? 36},${itemId(a.dropItem)}}`;
+        return `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},${phases.length},boss_${i}_phases,${attackList(a.attacks)},${["stage", "blank", "bg-bullets", "bg-boss"].indexOf(a.battle?.background ?? "stage")},${a.battle?.maxBullets ?? 64},${a.battle?.returnX ?? 80},${a.battle?.returnY ?? 36},${itemId(a.dropItem)}}`;
     });
     config.push(
         `const CE_Actor ce_enemies[]={${enemies}};`,
@@ -428,7 +429,7 @@ export function generate(
             });
             if (item.binding !== "none") {
                 bindings.push(
-                    `{${["none", "score", "lives", "time", "boss", "highscores", "bombs", "shotLevel", "speedLevel"].indexOf(item.binding)},${item.x + labelLength},${item.y},${item.digits ?? 5}}`,
+                    `{${["none", "score", "lives", "time", "boss", "highscores", "bombs", "shotLevel", "speedLevel", "barrier"].indexOf(item.binding)},${item.x + labelLength},${item.y},${item.digits ?? 5}}`,
                 );
                 const count = item.binding === "highscores" ? 9 : (item.digits ?? 5);
                 for (let n = 0; n < count; n++)
@@ -585,7 +586,7 @@ export function generate(
         if(bomb?.enabled)compileScreen({id:"clear",name:`${p.name}のボム（スプライト領域を保持）`,background:p.bombBackground||bomb.background,palette:0,dock:"top",items:[]},screenRows.length,undefined,"",undefined,128);
     }
     config.push(`const uint8_t ce_bomb_stock=${bomb?.enabled ? bomb.stock : 0},ce_bomb_damage=${bomb?.damage ?? 30},ce_bomb_frames=${bomb?.frames ?? 48},ce_bomb_period=${bomb?.flashPeriod ?? 2};`,
-        `const uint8_t ce_bomb_button=${+(bomb?.button === "b")},ce_bomb_background=${+!!bomb?.destroyBackground},ce_bomb_max=${bomb?.maxStock ?? 9};`,
+        `const uint8_t ce_bomb_live=${+!!bomb?.live},ce_bomb_button=${+(bomb?.button === "b")},ce_bomb_background=${+!!bomb?.destroyBackground},ce_bomb_max=${bomb?.maxStock ?? 9};`,
         `const uint8_t ce_bomb_screens[]={${bombScreens}},ce_bomb_styles[]={${players.map(p=>+(p.bombStyle==="beam"))}};`);
     const logos = game.startup?.enabled ? game.startup.slides : [], logoRows: string[] = [], logoScreens = new Map<string,number>();
     for (const slide of logos) {
@@ -599,6 +600,27 @@ export function generate(
     config.push(`const CE_Logo ce_logos[]={${logoRows.join(",")||"{0,0}"}};`,
         `const uint8_t ce_logo_count=${logos.length},ce_logo_fade_step=${Math.max(1,Math.round((game.startup?.fadeSeconds??0.4)*60/4))};`);
     if (screenRows.length > 255) throw new Error("会話を含む画面は255枚までです");
+    game.bosses.forEach((b,i)=>{if(b.contactBoxes?.length)config.push(`const CE_Hitbox boss_${i}_body[]={${b.contactBoxes.map(r=>`{${r.x},${r.y},${r.w},${r.h}}`).join(',')}};`);});
+    config.push(`const CE_Body ce_boss_bodies[]={${game.bosses.map((b,i)=>b.contactBoxes?.length?`{${b.contactBoxes.length},boss_${i}_body}`:'{0,0}').join(',')||'{0,0}'}};`);
+    const giants = game.bosses.map(b => {
+        if (b.battle?.background !== "bg-boss") return "{{0,0,0},{0,0,0},{0,0,0},0,0,0,0,1,0,0}";
+        const art=game.assets.find(a => a.id === b.battle!.graphic)!;
+        const tiles=Array(16).fill(0), dictionary=new Map([[tiles.join(','),0]]), maps:number[][]=[];
+        for(const frame of art.frames){
+            const raw=converted.get(frame.image)!, map=Array(1024).fill(hudTileCount);
+            for(let y=0;y<18;y++)for(let x=0;x<20;x++){
+                const tile=raw.slice((y*20+x)*16,(y*20+x+1)*16), key=tile.join(',');
+                let id=dictionary.get(key);if(id===undefined){id=tiles.length/16;dictionary.set(key,id);tiles.push(...tile);}
+                map[y*32+x]=hudTileCount+id;
+            }
+            maps.push(map);
+        }
+        const changes=maps[0].flatMap((v,i)=>maps.some(m=>m[i]!==v)?[i]:[]);
+        if(changes.length>32)throw Error(b.name+": 巨大BGアニメの差分は32タイルまでです");
+        if(hudTileCount+tiles.length/16+64>256)throw Error(b.name+": 巨大BG画像・HUD・弾合成64タイルの合計が256を超えます");
+        return `{${blob(tiles)},${blob(maps.flat())},${blob(changes.flatMap(i=>[i&255,i>>8]))},${tiles.length/16},${art.origin.x},${art.origin.y},${art.palette},${art.frames.length},${art.frames.length>1?Math.log2(art.frames[0].duration):0},${changes.length}}`;
+    });
+    sceneConfig.push(`const CE_Giant ce_giants[]={${giants.join(',') || "{{0,0,0},{0,0,0},{0,0,0},0,0,0,0,1,0,0}"}};`);
     sceneConfig.push(`const CE_Screen ce_screens[]={${screenRows}};`,
         `const CE_Presentation ce_presentations[]={${presentationRows}};`,
         `const CE_Parallax ce_parallaxes[]={${parallaxRows}};`);

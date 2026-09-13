@@ -145,7 +145,9 @@ const field = (label, scope = "document") =>
     `[...${scope}.querySelectorAll('label.field')].find(e=>e.querySelector(':scope > span')?.textContent===${JSON.stringify(label)})?.querySelector('input,select')`;
 async function text(expression, value) {
     await js(`(${expression}).focus()`);
+    await wait(30);
     key("A", ["control"]);
+    await wait(30);
     await win.webContents.insertText(String(value));
     await until(`(${expression}).value===${JSON.stringify(String(value))}`);
 }
@@ -466,6 +468,59 @@ electron.app
         record(
             "item and destructible-type diagnostics navigate to the correct authoring controls",
         );
+        await category("自機");
+        await click('document.querySelector(\'.form[data-context="bomb"] input[aria-label="ゲームを動かしながら点滅"]\')');
+        await text(field("バリアの上限"), 2);
+        await text(field("バリア被弾後の無敵（更新数）"), 60);
+        await select(field("バリア装着時の自機画像"), original.player.asset);
+        await category("アイテム");
+        await select('document.querySelector(\'.form[data-context="effects"] select\')', "barrier");
+        await category("敵キャラクター");
+        await click('document.querySelector(\'.form[data-context="motion"] input[aria-label="滑らかに補間する（Q4）"]\')');
+        await category("弾幕");
+        await select("[...document.querySelectorAll('.form[data-context=\"pattern\"] > label.field')].find(e=>e.querySelector(':scope > span').textContent==='種類').querySelector('select')", "laser");
+        saved = await save();
+        assert.equal(saved.player.bomb.live, true);
+        assert.equal(saved.player.barrierMax, 2);
+        assert.equal(saved.player.barrierFrames, 60);
+        assert.equal(saved.player.barrierAsset, original.player.asset);
+        assert.equal(saved.items[0].effects[0].kind, "barrier");
+        assert.equal(saved.enemies[0].motion.smooth, true);
+        assert.equal(saved.patterns[0].kind, "laser");
+        await select("document.querySelector('.project-picker select')", "second");
+        await select("document.querySelector('.project-picker select')", "first");
+        await category("自機");
+        assert.equal(await js('document.querySelector(\'.form[data-context="bomb"] input[aria-label="ゲームを動かしながら点滅"]\').checked'), true);
+        assert.equal(await js(`(${field("バリアの上限")}).value`), "2");
+        record("live bomb, barrier configuration, barrier pickup, laser and smooth motion save and reopen through native input");
+        await category("アイテム");
+        const effectScope = "document.querySelector('.form[data-context=\"effects\"]')";
+        await select(field("種類", effectScope), "weapon");
+        await select(field("自機の弾幕", effectScope), saved.player.weapon);
+        await category("ボス");
+        const battleScope = "document.querySelector('.form[data-context=\"battle\"]')";
+        await select(field("描画方式", battleScope), "bg-boss");
+        await text(field("BG敵弾の上限（1〜64）", battleScope), 32);
+        await select(field("巨大BG画像（原点＝弱点）", battleScope), "test-bomb");
+        const bodyScope = "[...document.querySelectorAll('details')].find(e=>e.querySelector(':scope > summary')?.textContent.startsWith('胴体の接触判定'))";
+        await click(`${bodyScope}.querySelector(':scope > button')`);
+        const rectScope = "document.querySelector('.form[data-context=\"contactBoxes\"]')";
+        await text(field("X", rectScope), -30);
+        await text(field("幅", rectScope), 60);
+        saved = await save();
+        assert.deepEqual(saved.bosses[0].contactBoxes,[{x:-30,y:-24,w:60,h:48}]);
+        assert.equal(saved.items[0].effects[0].kind, "weapon");
+        assert.equal(saved.items[0].effects[0].weapon, saved.player.weapon);
+        assert.equal(saved.bosses[0].battle.background, "bg-boss");
+        assert.equal(saved.bosses[0].battle.graphic, "test-bomb");
+        assert.equal(saved.bosses[0].battle.maxBullets, 32);
+        await select("document.querySelector('.project-picker select')", "second");
+        await select("document.querySelector('.project-picker select')", "first");
+        await category("ボス");
+        assert.equal(await js(`(${field("描画方式", battleScope)}).value`), "bg-boss");
+        assert.equal(await js(`(${field("幅", rectScope)}).value`), "60");
+        record("boss contact body edits independently from weakpoint and survives save/reopen");
+        record("weapon pickup reference and giant BG boss mode/image/cap save and reopen through native input");
         // Items are optional: a last unreferenced pickup can be removed after a reopen.
         await select(
             "document.querySelector('.project-picker select')",

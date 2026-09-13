@@ -50,6 +50,7 @@ const addresses = [
     state + 5,
     syms._ce_is_cgb,
     syms._ce_pool_oam,
+    syms._ce_bomb_left,
 ];
 assert.ok(addresses.every(Number.isInteger), "required native symbols exist");
 const hex = (n) => n.toString(16),
@@ -116,11 +117,11 @@ for (const mode of ["DMG", "CGB"]) {
                 .map((v) => parseInt(v, 16)),
         );
     assert.ok(
-        rows.every((r) => r.length === 12 && r.every(Number.isFinite)),
+        rows.every((r) => r.length === 13 && r.every(Number.isFinite)),
         "native trace records are complete",
     );
     const gameplay = rows.filter((r) => r[0] === 1),
-        bomb = rows.filter((r) => r[0] === 11),
+        bomb = rows.filter((r) => r[12] > 0),
         u16 = (row, i) => row[i] + 256 * row[i + 1];
     assert.ok(gameplay.length > 250, "real input reaches sustained gameplay");
     assert.ok(
@@ -151,12 +152,12 @@ for (const mode of ["DMG", "CGB"]) {
         new Set(gameplay.map((r) => u16(r, 8))).size > 100,
         "horizontal world camera advances",
     );
-    assert.ok(bomb.length > 10, "B input activates bomb scene");
+    assert.ok(bomb.length > 10, "B input activates a live bomb");
     const bombGroups = [],
         bombStockBefore = [];
     for (let i = 0; i < rows.length; i++) {
-        if (rows[i][0] !== 11) continue;
-        if (!i || rows[i - 1][0] !== 11) {
+        if (!rows[i][12]) continue;
+        if (!i || !rows[i - 1][12]) {
             assert.equal(
                 rows[i - 1]?.[0],
                 1,
@@ -179,14 +180,11 @@ for (const mode of ["DMG", "CGB"]) {
         bombStockBefore.map((stock) => stock - 1),
         "each press consumes one bomb from the current stock",
     );
-    for (const group of bombGroups)
-        assert.ok(
-            group.every(
-                (row) =>
-                    u16(row, 1) === u16(group[0], 1) && row[5] === group[0][5],
-            ),
-            "bomb clock and stock stay fixed throughout the effect",
-        );
+    for (const group of bombGroups) {
+        assert.ok(group.every(row=>row[0]===1), 'gameplay remains active throughout the bomb');
+        assert.ok(new Set(group.map(row=>u16(row,1))).size>10, 'game clock advances during the bomb');
+        assert.ok(new Set(group.map(row=>u16(row,8))).size>10, 'world scroll advances during the bomb');
+    }
     const bmp = fs.readFileSync(path.join(dir, "screen.bmp"));
     assert.equal(bmp.toString("ascii", 0, 2), "BM");
     assert.equal(bmp.readInt32LE(18), 160);

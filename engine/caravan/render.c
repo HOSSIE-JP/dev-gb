@@ -7,7 +7,7 @@ typedef char ce_sprite_layout_check[(sizeof(CE_Asset) == 16u && offsetof(CE_Asse
 static uint8_t buffer[128];
 static uint16_t previous_row;
 static uint16_t hud_values[32];
-static uint8_t hud_valid, previous_slots, parallax_phase;
+static uint8_t hud_valid, previous_slots, parallax_phase, live_flash;
 static CE_Entity player_pose;
 static CE_Entity shot_pose;
 static CE_Entity *entity_pose;
@@ -54,6 +54,23 @@ void ce_fade(uint8_t out) BANKED {
             palettes();
         }
         ce_audio_sync();
+    }
+}
+/* The live bomb changes only the BG palette: the scrolling map, sprites,
+ * collision, firing and stage clock continue through both flash phases. */
+static void live_bomb_palette(void) {
+    uint8_t i, flash = ce_bomb_left && ((ce_bomb_frames - ce_bomb_left) / ce_bomb_period & 1u);
+    if (!flash) { if (live_flash) palettes(); live_flash = 0; return; }
+    live_flash = 1;
+    BGP_REG = (ce_battle_mode == 2u ? (ce_bg_plane ? 15u : 51u) : ce_dmg_palette) ^ 255u;
+    if (ce_is_cgb) {
+        if (ce_battle_mode == 2u) {
+            for (i = 0; i != 4u; ++i) fade_colors[i] = i & (1u << ce_bg_plane) ? 0 : RGB(31,31,31);
+            set_bkg_palette(0, 1, fade_colors);
+        } else {
+            for (i = 0; i != ce_palette_count * 4u; ++i) fade_colors[i] = ce_palettes[i] ^ 32767u;
+            set_bkg_palette(0, ce_palette_count, fade_colors);
+        }
     }
 }
 static void tiles(const CE_Data *data, uint8_t first, uint8_t count, uint8_t sprite) {
@@ -165,7 +182,7 @@ void ce_bomb_draw(uint8_t visible) BANKED {
 }
 void ce_load_stage(void) BANKED {
     uint8_t row; uint16_t start = ce_state.camera >> 7; const CE_Stage *s = ce_stage;
-    if (ce_battle_mode == 2u) {
+    if (ce_battle_mode >= 2u) {
         /* A cut-in replaced only the arena. Reload its HUD/sprites/bullet tiles,
          * without uploading the scrolling stage map that stays invisible. */
         ce_active_screen = 4; hide_all(); SPRITES_8x8; ce_battle_setup();
@@ -188,7 +205,8 @@ void ce_load_stage(void) BANKED {
 static void number(uint8_t x, uint8_t y, uint16_t value, uint8_t digits) {
     uint8_t i = digits; const CE_Screen *s = &ce_screens[ce_active_screen];
     while (i) { --i; buffer[i] = s->digits[value % 10u]; value /= 10u; }
-    if (ce_active_screen == 4u && ce_battle_mode == 2u) ce_bg_hud(x, y, digits, buffer);
+    if (ce_active_screen == 4u && ce_battle_mode == 3u) ce_giant_hud(x, y, digits, buffer);
+    else if (ce_active_screen == 4u && ce_battle_mode == 2u) ce_bg_hud(x, y, digits, buffer);
     else if (ce_active_screen == 4u) set_win_tiles(x, y, digits, 1, buffer);
     else set_bkg_tiles(x, y, digits, 1, buffer);
 }
@@ -208,6 +226,7 @@ void ce_hud(void) BANKED {
         else if (b->kind == 6u) value = ce_bombs;
         else if (b->kind == 7u) value = ce_shot_level + 1u;
         else if (b->kind == 8u) value = ce_speed_level + 1u;
+        else if (b->kind == 9u) value = ce_barrier;
         if (ce_active_screen == 4u) {
             if (hud_valid && hud_values[i] == value) continue;
             hud_values[i] = value;
@@ -595,7 +614,7 @@ void ce_render(void) BANKED {
     emit_bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
     DISABLE_OAM_DMA;
     if (!ce_respawn && (ce_bomb_left || !ce_state.invulnerable || !(ce_state.invulnerable & 4u))) {
-        player_pose.asset = ce_player_asset; player_pose.x = ce_state.player_x;
+        player_pose.asset = ce_barrier && ce_barrier_asset != CE_NONE ? ce_barrier_asset : ce_player_asset; player_pose.x = ce_state.player_x;
         player_pose.y = ce_state.player_y; player_pose.age = ce_state.tick;
         animation_slot = 0; pose = &player_pose; sprite();
     }
@@ -604,34 +623,39 @@ void ce_render(void) BANKED {
          * cannot be occluded by the boss's earlier OAM entries on DMG or CGB. */
         for (i = ce_used, animation_slot = 1, pose = ce_entities; i; --i, ++pose, ++animation_slot)
             if (pose->kind && pose->kind != CE_BOSS) sprite();
-    } else for (i = ce_used, animation_slot = 1, pose = ce_entities; i; --i, ++pose, ++animation_slot) if (pose->kind) sprite();
+    } else for (i = ce_used, animation_slot = 1, pose = ce_entities; i; --i, ++pose, ++animation_slot) if (pose->kind && !(ce_battle_mode == 3u && pose->kind == CE_BOSS)) sprite();
     /* Do not DMA a partially written metasprite list. */
     i = pose_slot;
     while (pose_slot < previous_slots) shadow_OAM[pose_slot++].y = 0;
     previous_slots = i;
-    if (ce_battle_mode == 2u) for (i = 0; i != previous_slots; ++i) shadow_OAM[i].tile -= 128u;
+    if (ce_battle_mode >= 2u) for (i = 0; i != previous_slots; ++i) shadow_OAM[i].tile -= 128u;
     if (!(ce_state.tick & 7u)) ce_hud();
     if (ce_battle_mode == 2u) ce_bg_flush();
+    else if (ce_battle_mode == 3u) ce_giant_flush();
     ENABLE_OAM_DMA;
     /* Publish every completed pose through VBlank DMA before another update
      * can overwrite it. Repeated display frames under load are intentional. */
     vsync();
     if (ce_battle_mode == 2u) ce_bg_publish();
+    else if (ce_battle_mode == 3u) ce_giant_publish();
     else if (!ce_battle_mode) { move_camera(); parallax(); }
+    if (ce_bomb_live) live_bomb_palette();
 }
 
 void ce_get_presentation(CE_Presentation *dest, uint8_t stage) BANKED { *dest = ce_presentations[(uint16_t)stage * ce_player_count + ce_character]; }
 
 void ce_get_screen(CE_Screen *dest, uint8_t index) BANKED { *dest = ce_screens[index]; }
+void ce_get_giant(CE_Giant *dest) BANKED { *dest = ce_giants[ce_giant_ref]; }
 void ce_load_boss(uint8_t asset) BANKED {
+    if (ce_battle_mode == 3u) return;
     if (asset == CE_NONE || !ce_boss_graphics[asset].length) return;
     tiles(&ce_boss_graphics[asset], ce_assets[asset].first_tile - (ce_battle_mode == 2u ? 128u : 0u), ce_boss_graphics[asset].length / 16u, 1);
 }
 void ce_battle_setup(void) BANKED {
     uint8_t i;
     HIDE_SPRITES; HIDE_WIN; ce_fade_level = 4; palettes();
-    if (ce_battle_mode == 2u) {
-        tiles(&ce_sprite_data, 0, ce_sprite_tiles, 1); ce_bg_setup();
+    if (ce_battle_mode >= 2u) {
+        tiles(&ce_sprite_data, 0, ce_sprite_tiles, 1); if (ce_battle_mode == 3u) ce_giant_setup(); else ce_bg_setup();
     } else {
         for (i = 0; i != 32u; ++i) buffer[i] = 0;
         for (i = 0; i != 32u; ++i) set_bkg_tiles(0,i,32,1,buffer);

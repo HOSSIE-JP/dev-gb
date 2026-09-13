@@ -1,37 +1,101 @@
 {
-  "version": "0.1-horizontal-stg",
+  "version": "0.3-orbital-run",
   "updatedAt": "2026-09-12",
   "projectId": "side-caravan",
-  "status": "playtest-ready-with-known-limits",
+  "status": "tested-with-known-limits",
   "approved": false,
-  "projectRevision": "b92c0fdc34fff3ddfc3ff80084e05a826e47c82a39acc2521abee0248852ffd5",
-  "rom": {
-    "path": "build/Release/side-caravan.gb",
-    "sha256": "ade8bbd3f4f3bd39315f697cd653db90e0dd0d3a6cc4eb97bbe08d148c393096",
-    "bytes": 131072
-  },
-  "debug": {
-    "path": "build/Debug/side-caravan.gb",
-    "sha256": "ade8bbd3f4f3bd39315f697cd653db90e0dd0d3a6cc4eb97bbe08d148c393096",
-    "bytes": 131072
-  },
-  "validationReport": "../../docs/side-caravan-validation.md",
-  "validationData": "../../docs/side-caravan-validation-results.json",
+  "projectRevision": "e3dc4fd5f86ae8a6fa496d768d34b5fdcd694923c730f4db43120784d559724d",
+  "validationReport": "../../docs/side-caravan-v03-validation.md",
+  "validationData": "../../docs/side-caravan-v03-validation-results.json",
   "automated": {
-    "dmgFullRoute": true,
-    "cgbFullRoute": true,
-    "bgbDmg": true,
-    "bgbCgb": true,
-    "sramReboot": true
+    "doctorWarnings": 0,
+    "standardTests": 122,
+    "electron": true,
+    "normalRomDmgCgb": true,
+    "allSevenItems": true,
+    "bodyContactParity": true,
+    "bgAnimationPixelComparisons": 522240,
+    "musicAllBarsAndLoops": true,
+    "bgb": true
   },
   "knownLimits": {
-    "performanceGates": "Stress and strict BG64 CGB cadence targets remain unmet; see report for HEAD controls and residual differences",
-    "emulicious": "DAPDebugger.evaluate NullPointerException on final SIDE/STAR; boot and gameplay unverified",
+    "stress": {
+      "passed": false,
+      "limits": {
+        "DMG": 2.9,
+        "CGB": 1.85
+      },
+      "actual": [
+        {
+          "mode": "DMG",
+          "framesPerUpdate": 2.953675096832976
+        },
+        {
+          "mode": "CGB",
+          "framesPerUpdate": 1.9318375484164956
+        }
+      ]
+    },
+    "emulicious": "SIDE/STAR: DAPDebugger.evaluate NullPointerException; playback not verified",
+    "bg64Performance": "Not remeasured in this revision",
     "humanController": false,
-    "manualListening": false,
+    "humanListening": false,
     "physicalDmg": false,
     "physicalCgb": false,
     "publicRelease": false
   },
-  "feedback": []
+  "feedback": [
+    {
+      "date": "2026-09-12",
+      "request": "背景加速、動作を続けるボム、バリア、3方向密度と集中レーザー、滑らかな移動、BGスクロール巨大ボス＋BG弾幕",
+      "status": "implemented-and-tested-with-known-limits"
+    },
+    {
+      "date": "2026-09-12",
+      "request": "途中の面切替と長い道中、ボス縮小と胴体判定、Image Genによるアニメ付きGB素材、長く展開するBGM",
+      "status": "implemented-and-tested-with-known-limits"
+    }
+  ],
+  "history": [
+    {
+      "version": "0.1-horizontal-stg",
+      "projectRevision": "b92c0fdc34fff3ddfc3ff80084e05a826e47c82a39acc2521abee0248852ffd5",
+      "rom": {
+        "path": "build/Release/side-caravan.gb",
+        "sha256": "ade8bbd3f4f3bd39315f697cd653db90e0dd0d3a6cc4eb97bbe08d148c393096",
+        "bytes": 131072
+      },
+      "debug": {
+        "path": "build/Debug/side-caravan.gb",
+        "sha256": "ade8bbd3f4f3bd39315f697cd653db90e0dd0d3a6cc4eb97bbe08d148c393096",
+        "bytes": 131072
+      },
+      "validationReport": "../../docs/side-caravan-validation.md"
+    },
+    {
+      "version": "0.2-live-bomb-bg-boss",
+      "projectRevision": "3c09967e89e4a89924956938d5be7d95987ede4600563ff9f47423ac29300ee0",
+      "rom": {
+        "path": "build/Release/side-caravan.gb",
+        "sha256": "34800fab78fe5f204c9335e2650c91c0f7034b4ef576bc0cc5fe86efe1f22c9b",
+        "bytes": 262144
+      },
+      "debug": {
+        "path": "build/Debug/side-caravan.gb",
+        "sha256": "34800fab78fe5f204c9335e2650c91c0f7034b4ef576bc0cc5fe86efe1f22c9b",
+        "bytes": 262144
+      },
+      "validationReport": "../../docs/side-caravan-v02-validation.md"
+    }
+  ],
+  "rom": {
+    "path": "build/Release/side-caravan.gb",
+    "sha256": "a564989d4fb91d0f3728d7ca7cd965fd707c69ccda31fc35e5f2cce827252f62",
+    "bytes": 131072
+  },
+  "debug": {
+    "path": "build/Debug/side-caravan.gb",
+    "sha256": "a564989d4fb91d0f3728d7ca7cd965fd707c69ccda31fc35e5f2cce827252f62",
+    "bytes": 131072
+  }
 }

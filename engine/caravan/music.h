@@ -39,7 +39,10 @@
 #define CE_MUSIC_KOUMA_FOREST 32u
 #define CE_MUSIC_KOUMA_RUMIA 33u
 #define CE_MUSIC_KOUMA_ENDING 34u
-#define CE_MUSIC_MAX 34u
+#define CE_MUSIC_SIDE_TITLE 35u
+#define CE_MUSIC_SIDE_STAGE 36u
+#define CE_MUSIC_SIDE_BOSS 37u
+#define CE_MUSIC_MAX 37u
 
 /* A streamed bar is 3 instrument bytes + 16 lead + 16 accompaniment steps.
  * Its ROM bank is switched only once per bar; effects keep channels 1 and 4. */

@@ -9,7 +9,7 @@ import {capture} from './presentation-qa.mjs';
 const require=createRequire(import.meta.url),lib=require('../build/library.cjs'),root=path.resolve(import.meta.dirname,'../..');
 const normal=()=>lib.normalMotion();
 function makeFixture(){
- const game=lib.readGame(root,'side-caravan');game.stageFade=false;game.bossCelebration=false;game.player.invulnerability=1024;
+ const game=structuredClone(require('../scripts/create-side-caravan.cjs').game);game.stageFade=false;game.bossCelebration=false;game.player.invulnerability=1024;
  game.player.respawnDelay=12;game.player.bomb.flashPeriod=4;game.performance.enemies=8;
  for(const item of game.items){item.motion=normal();item.lifetime=240;}
  const s=game.stages[0];s.width=512;s.height=18;s.tiles=Array.from({length:512*18},(_,i)=>(i%512+Math.floor(i/512))%4);s.walls=Array(s.tiles.length).fill(0);

@@ -315,7 +315,7 @@ static void spawn_actor(uint8_t kind, uint8_t ref, int16_t x, int16_t y) {
     /* Actors are updated (and boxed) immediately after stage events. */
     if (kind == CE_BOSS) {
         uint8_t track = ce_stage->boss_music;
-        ce_battle_mode = actor->background; ce_battle_asset = actor->asset; ce_bg_limit = actor->bg_limit;
+        ce_giant_ref = ref; ce_battle_mode = actor->background; ce_battle_asset = actor->asset; ce_bg_limit = actor->bg_limit;
         if (actor->phase[0].hp) e->hp = actor->phase[0].hp;
         if (ce_battle_mode) { ce_state.scroll = 0; ce_battle_setup(); }
         else ce_load_boss(actor->asset);

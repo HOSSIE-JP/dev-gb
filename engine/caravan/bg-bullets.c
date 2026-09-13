@@ -30,13 +30,24 @@ static uint8_t hit_width, hit_height;
 static CE_Screen screen;
 CE_BGSpawn ce_bg_request;
 static const uint8_t expand[16]={0,192,48,240,12,204,60,252,3,195,51,243,15,207,63,255};
+uint8_t ce_giant_ref;
+volatile uint8_t ce_giant_x, ce_giant_y;
+static CE_Giant giant;
+static uint8_t giant_frames[2], giant_frame;
+static uint8_t giant_counts[2], giant_next_x, giant_next_y, giant_first;
+/* Mutually exclusive with the monochrome renderer: reuse its DMA scratch.
+ * No extra tile/map/HP arrays are allocated in scarce WRAM. */
+#define GIANT_OLD ((uint16_t *)dma_tile_storage)
+#define GIANT_BASE (dma_tile_storage + 128u)
+#define GIANT_CELLS ((uint16_t *)(dma_tile_storage + 192u))
+#define GIANT_MASKS ((uint16_t *)(dma_tile_storage + 256u))
 #include "bg-kernels.h"
 void ce_bg_clear(void) BANKED {memset(ce_bg_life,0,sizeof(ce_bg_life));ce_bg_count=0;ce_bg_hit=0;spawn_next=0;has_guidance=0;}
 void ce_bg_begin(void) BANKED {
     ce_bg_back=ce_is_cgb?0u:ce_bg_plane^1u;next_tile=hud_tiles+static_tiles;compound_count=0;
     /* Singleton masks are reconstructed on their first overlap. Every compound
      * cell is initialized before use, so only the map needs clearing. */
-    memset(map,0,sizeof(map));
+    if (ce_battle_mode != 3u) memset(map,0,sizeof(map));
     left=ce_state.player_x/16+ce_hitboxes[ce_player_asset].x-1;right=left+ce_hitboxes[ce_player_asset].w;
     player_top=ce_state.player_y/16+ce_hitboxes[ce_player_asset].y-1;player_bottom=player_top+ce_hitboxes[ce_player_asset].h;
     if(left<0)left=0;if(player_top<0)player_top=0;ce_bg_hit=0;
@@ -142,3 +153,4 @@ void ce_bg_publish(void) BANKED {
     ce_bg_plane=ce_bg_back;ce_bg_map_front^=1u;
     if(ce_bg_map_front)LCDC_REG|=8u;else LCDC_REG&=~8u;ce_bg_palette();move_bkg(0,0);
 }
+#include "giant-render.h"

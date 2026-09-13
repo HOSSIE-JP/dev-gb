@@ -1,0 +1,817 @@
+{
+  "date": "2026-09-12",
+  "version": "0.2-live-bomb-bg-boss",
+  "baseCommit": "9a8251c1093e362bf7bffc4fea5af67dde5aaf80",
+  "projectRevision": "3c09967e89e4a89924956938d5be7d95987ede4600563ff9f47423ac29300ee0",
+  "builds": [
+    {
+      "configuration": "Debug",
+      "path": "projects/side-caravan/build/Debug/side-caravan.gb",
+      "sha256": "34800fab78fe5f204c9335e2650c91c0f7034b4ef576bc0cc5fe86efe1f22c9b",
+      "bytes": 262144,
+      "ramBytes": 7091,
+      "spriteTiles": 33
+    },
+    {
+      "configuration": "Release",
+      "path": "projects/side-caravan/build/Release/side-caravan.gb",
+      "sha256": "34800fab78fe5f204c9335e2650c91c0f7034b4ef576bc0cc5fe86efe1f22c9b",
+      "bytes": 262144,
+      "ramBytes": 7091,
+      "spriteTiles": 33
+    }
+  ],
+  "engineHashes": [
+    {
+      "path": "engine/caravan/bg-bullets.c",
+      "sha256": "8eb8323dda7428f0fedcebe6649d6d6c2a59e8e1aabef102f5cfd23e2b1996e4",
+      "bytes": 9429
+    },
+    {
+      "path": "engine/caravan/bg-kernels.h",
+      "sha256": "81f8b2c3bc12eb7b46deedb40e21d7c84a79a514f6df4c3e684a1afe553de9bd",
+      "bytes": 3773
+    },
+    {
+      "path": "engine/caravan/bg-state-kernels.h",
+      "sha256": "c69c65f8b8817decd8c961b7134555a238224f4afd7fcda0be5fb50ef3f1e716",
+      "bytes": 5224
+    },
+    {
+      "path": "engine/caravan/bg-update-kernel.h",
+      "sha256": "22a41a5bf20e94bc55bbaf4ba6eef0133409cd6e2a96b8ba4534c1872fb120a0",
+      "bytes": 1363
+    },
+    {
+      "path": "engine/caravan/caravan.h",
+      "sha256": "759c1a72b49b67d6c63ab2af29008303ca6ce5148c0ad8b966e3534c5638de08",
+      "bytes": 12145
+    },
+    {
+      "path": "engine/caravan/flow.c",
+      "sha256": "dd3bd2c89a73bddcf11394f76f872a96c8c4105bb54f3371e8eab2d0d1d17aa9",
+      "bytes": 16697
+    },
+    {
+      "path": "engine/caravan/giant-render.h",
+      "sha256": "0a36f7ada9ccc0d462c6f13ad7532c1fa4409843b6caca6c92187d4a14d67341",
+      "bytes": 4497
+    },
+    {
+      "path": "engine/caravan/items.c",
+      "sha256": "364179a5396ed41f65fcf223d4c937f980429f47fe27db13d62ef104537eb0eb",
+      "bytes": 8322
+    },
+    {
+      "path": "engine/caravan/mainloop.c",
+      "sha256": "7143ccbf074c4dee5ff4bfac1e203d8535e0e68a635087db6fd26bdbbf1d7a75",
+      "bytes": 3890
+    },
+    {
+      "path": "engine/caravan/mainloop.h",
+      "sha256": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+      "bytes": 337
+    },
+    {
+      "path": "engine/caravan/music.c",
+      "sha256": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995",
+      "bytes": 13374
+    },
+    {
+      "path": "engine/caravan/music.h",
+      "sha256": "a64560d5934f6763d9e24ff5573435b4fc04c762ed2c0d4f0ccc9d830323a87c",
+      "bytes": 1945
+    },
+    {
+      "path": "engine/caravan/render.c",
+      "sha256": "9eadf39e67e2c3d9f0803e780e2df22877cce0d0e17ddf57210d086b23f871ed",
+      "bytes": 24765
+    },
+    {
+      "path": "engine/caravan/runtime.c",
+      "sha256": "11d37670cff6fa01f38808b2870e5693282e41be8bfd91c34e01255a2b60fcb0",
+      "bytes": 28655
+    },
+    {
+      "path": "engine/caravan/save.c",
+      "sha256": "90a38d56ff4d765ef767742b6d922a97037860f3775e69e99e1880413fcf5cc3",
+      "bytes": 2488
+    },
+    {
+      "path": "engine/caravan/shot-kernels.h",
+      "sha256": "1bb0e9c880ec287579862b7ded78006b1057a1cb197da090ed199e5bcd636f7d",
+      "bytes": 6629
+    },
+    {
+      "path": "engine/caravan/special.c",
+      "sha256": "4280ce234c1d18aaa313f51a168a8510d06127dec4dc91d230e191d9679ebe8b",
+      "bytes": 6371
+    },
+    {
+      "path": "engine/caravan/terrain.c",
+      "sha256": "7115edd66f4338172fe2cf974910cf4ba53b5ab43c91e6afbc8b25754f3c9d98",
+      "bytes": 8516
+    }
+  ],
+  "sourceHashes": [
+    {
+      "path": "projects/side-caravan/assets-src/game.json",
+      "sha256": "9850dfa43fbfc5d62486ff8724aa088d604ae5ddcc3bd4f7ae3433146fd560f7",
+      "bytes": 711063
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/bomb-art-0.png",
+      "sha256": "300dc4d466eec5ffd7ba7d4c52526f7518e6eba652436a1b93c51f4d1ffded36",
+      "bytes": 7338
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/burst-0.png",
+      "sha256": "83ce915d3678d893b28bb24da1f016e172e353bba49c7b18f2ce787c88d15b3f",
+      "bytes": 97
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/burst-1.png",
+      "sha256": "22f5e03f9ec19fb7518aae2f280cf9762f55069a4ff15f1314628c887488654f",
+      "bytes": 135
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/burst-2.png",
+      "sha256": "f4685ee3755c3d62f1d762c8cd96cd0e5c55ee3e5a0c19fe71d174212adf037f",
+      "bytes": 130
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/carrier-0.png",
+      "sha256": "42a054b704384b669deebd00679bdacf896503a17ff2d1fe05d8795959024bcc",
+      "bytes": 160
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/clear-art-0.png",
+      "sha256": "93008a06e564652a44b61552f9db3f3343d9d39d8042f86a0e759a3e35b4ea79",
+      "bytes": 1391
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/core-0.png",
+      "sha256": "ea88645404ce40b1518edd63e837273771a4e7928a26415f21207f9b7e4f5ae5",
+      "bytes": 256
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/drone-0.png",
+      "sha256": "f9222e7fb9877e706a78fe4a2d6d2750b6012ae163aa996883c7f30d23f62992",
+      "bytes": 176
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/drone-1.png",
+      "sha256": "4abe4db385c77d774579b85f9d33a1721bc3dcea502dcb0df789a14ec083049f",
+      "bytes": 166
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/facility-0.png",
+      "sha256": "a4b02accc99992bd3bf4a9e1acc897322e5ffc1c07ae5c2112b9877fbb7444e6",
+      "bytes": 1154
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/giant-core-0.png",
+      "sha256": "f899c455543845a3582a440385ae170d49f61df24670264e8c3308a3dfc5bb2b",
+      "bytes": 1624
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-barrier-0.png",
+      "sha256": "e859fae586a0f2446db7ced97543fbcaf61b22c0e6ec594a4085f6728e609214",
+      "bytes": 118
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-bomb-0.png",
+      "sha256": "17b53bc85fce6ca4f6d3216c1fab02b9975b18a098206a8a1cdfffde78fd0dea",
+      "bytes": 127
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-laser-0.png",
+      "sha256": "45501f5352eaaa12ff13a5b08728453961340561f94ecb27379db06b335a1281",
+      "bytes": 115
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-life-0.png",
+      "sha256": "7e57d60c22653a05e177338caa495f2f4f72aa15e46fcce3a0ab0f69d6463e83",
+      "bytes": 121
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-power-0.png",
+      "sha256": "f91cea13ba21d357f76e65f60393fa998110a5eaaa51f5cea0a17643ac38210a",
+      "bytes": 121
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-score-0.png",
+      "sha256": "8ace6b0c8a9a4f12a6bbdde38009101ec52670ef507310d7dc4bc19bfb929cc7",
+      "bytes": 126
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/item-speed-0.png",
+      "sha256": "cf1ffd6b55f8d3168bd4b91cd652ea155dd53c05cf466ccfcc707269de046dec",
+      "bytes": 130
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/laser-pulse-0.png",
+      "sha256": "605586d7fe203fc9c76ebbda1c7915d4272550cd6f25df4a835f5d359ef7a95a",
+      "bytes": 98
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/orb-0.png",
+      "sha256": "8ad650e33c7b4ad8525a4162e427a8f909d94344d512f8273735c2942154b368",
+      "bytes": 135
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/over-art-0.png",
+      "sha256": "45481a0f0451596b0952a067b5fc5be9c55f545b836be8c3de15c475b9491a0f",
+      "bytes": 1043
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/pulse-0.png",
+      "sha256": "e5c07dc6f54dbb9b869078552c7c7b0f91d2b3076e887d4c331393dc8d10aef3",
+      "bytes": 108
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/ship-0.png",
+      "sha256": "108c5f13210dfcb5668543402715bddbec43ce2d5734831194c86bd03e87debc",
+      "bytes": 174
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/ship-1.png",
+      "sha256": "38598c9d3ac46d29754f666a82cc626519cf58ee729bee22ec92526e2d143fd9",
+      "bytes": 173
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/ship-barrier-0.png",
+      "sha256": "e4a19cc9ab052241f32cfcfb2fdcd58060757cc2ef9b05cddd122aa46f49429c",
+      "bytes": 183
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/ship-barrier-1.png",
+      "sha256": "c4229c18e531c7d361275a694dd0a9ba97bbf655c7f05b3c8768b320a632e518",
+      "bytes": 182
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/sweeper-0.png",
+      "sha256": "d844741e3d5a0cc88b6ba3ef687033ca97a171d69fc8517f4fa3177fa77bf787",
+      "bytes": 156
+    },
+    {
+      "path": "projects/side-caravan/assets-src/images/title-art-0.png",
+      "sha256": "eb7eb2c96ef1f1eaa356eb7cb3dea40f7ab1d639d982777ae79255984b3695ab",
+      "bytes": 1212
+    }
+  ],
+  "editorHashes": [
+    {
+      "path": "editor/src/shared/model.ts",
+      "sha256": "32c0b07e514ad9402a26367df86424347ce1e390199204e8ef2292ce4561dc1f",
+      "bytes": 55138
+    },
+    {
+      "path": "editor/src/shared/simulation.ts",
+      "sha256": "0be7222c4e5034489ea8704b24ea5fa6206d14c0ff8e45a1791d2d5bcedf36c7",
+      "bytes": 47843
+    },
+    {
+      "path": "editor/src/node/compiler.ts",
+      "sha256": "88df20b0cf1b5ae2549c5d6da82e5fd566cf4b9c4fd69a47e381c28ec78eeded",
+      "bytes": 49289
+    },
+    {
+      "path": "editor/src/renderer/fields.tsx",
+      "sha256": "ac43b0e23481fb201c150d5b64a966d198e5bb8435ef0b91f9456ac5c48ea0ac",
+      "bytes": 33456
+    },
+    {
+      "path": "editor/src/renderer/preview.tsx",
+      "sha256": "28c3390b1dee54d876fa6edf9ac990388ea3f7d23698ec3062a81bc420c987b5",
+      "bytes": 15461
+    }
+  ],
+  "source": {
+    "assets": 23,
+    "pngs": 28,
+    "pixelIndices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "stages": [
+      {
+        "id": "side-1",
+        "width": 512,
+        "height": 18,
+        "scrollSpeed": 0.75,
+        "destructibles": 85
+      },
+      {
+        "id": "side-2",
+        "width": 512,
+        "height": 18,
+        "scrollSpeed": 0.875,
+        "destructibles": 94
+      },
+      {
+        "id": "side-3",
+        "width": 512,
+        "height": 18,
+        "scrollSpeed": 1,
+        "destructibles": 102
+      }
+    ],
+    "spriteTiles": 33,
+    "scoreCeiling": 38320
+  },
+  "validation": {
+    "standard": {
+      "passed": 116,
+      "failed": 0,
+      "skipped": 0,
+      "allDebugProjects": [
+        "caravan-lab",
+        "hello-gb",
+        "nova-spear",
+        "side-caravan",
+        "star-caravan",
+        "touhou-kouma"
+      ]
+    },
+    "finalCore": {
+      "passed": 111,
+      "failed": 0,
+      "skipped": 0
+    },
+    "typecheck": "PASS",
+    "editorBuild": "PASS",
+    "shortRom": {
+      "fixture": true,
+      "results": [
+        {
+          "mode": "DMG",
+          "checked": 701,
+          "live": 96,
+          "peakBarrier": 3,
+          "phases": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "mode": "CGB",
+          "checked": 701,
+          "live": 96,
+          "peakBarrier": 3,
+          "phases": [
+            0,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    "productionPlay": {
+      "fixture": false,
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\side-caravan\\build\\Debug\\side-caravan.gb",
+      "sha256": "34800fab78fe5f204c9335e2650c91c0f7034b4ef576bc0cc5fe86efe1f22c9b",
+      "results": [
+        {
+          "mode": "DMG",
+          "clear": true,
+          "last": {
+            "tick": 11053,
+            "stage": 2,
+            "score": 29970,
+            "lives": 3,
+            "x": 380,
+            "y": 1288,
+            "bossHp": 0,
+            "entities": 0,
+            "dropped": 0,
+            "result": 2,
+            "scene": 3,
+            "stageTick": 3853,
+            "bossPhase": 0
+          },
+          "acquired": [
+            "power",
+            "barrier",
+            "speed",
+            "bomb",
+            "laser",
+            "score",
+            "life"
+          ],
+          "phases": [
+            0,
+            1,
+            2
+          ],
+          "misses": 1,
+          "bombUsed": 6,
+          "pauseSeen": true,
+          "peakOam": 15,
+          "peakScanline": 9,
+          "peakShots": 9,
+          "peakItems": 3,
+          "peakBg": 68,
+          "peakPower": 2,
+          "peakSpeed": 3,
+          "peakBarrier": 1,
+          "bgPixels": 326400,
+          "bombMotionTicks": 288,
+          "remainingBg": 38,
+          "frameGaps": {
+            "samples": 10929,
+            "mean": 2.136151523469668,
+            "max": 24
+          },
+          "regions": [
+            {
+              "samples": 3476,
+              "mean": 1.8647871116225547,
+              "max": 13
+            },
+            {
+              "samples": 3600,
+              "mean": 2.1683333333333334,
+              "max": 6
+            },
+            {
+              "samples": 3601,
+              "mean": 2.336295473479589,
+              "max": 6
+            },
+            {
+              "samples": 252,
+              "mean": 2.5595238095238093,
+              "max": 24
+            }
+          ],
+          "dropEvents": [],
+          "peakPendingObjects": 46,
+          "maxPendingAfterPublicationTicks": 23,
+          "bombDisplayFrames": [
+            125,
+            100,
+            64,
+            98,
+            107,
+            97
+          ],
+          "musicCues": {
+            "title": 1,
+            "approach": 2,
+            "deck": 2,
+            "reactor": 2,
+            "boss-0": 5,
+            "boss-1": 5,
+            "boss-2": 5
+          },
+          "titlePcm": true,
+          "sramReboot": true,
+          "ranking": [
+            29970,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "mode": "CGB",
+          "clear": true,
+          "last": {
+            "tick": 11053,
+            "stage": 2,
+            "score": 29970,
+            "lives": 3,
+            "x": 380,
+            "y": 1288,
+            "bossHp": 0,
+            "entities": 0,
+            "dropped": 0,
+            "result": 2,
+            "scene": 3,
+            "stageTick": 3853,
+            "bossPhase": 0
+          },
+          "acquired": [
+            "power",
+            "barrier",
+            "speed",
+            "bomb",
+            "laser",
+            "score",
+            "life"
+          ],
+          "phases": [
+            0,
+            1,
+            2
+          ],
+          "misses": 1,
+          "bombUsed": 6,
+          "pauseSeen": true,
+          "peakOam": 15,
+          "peakScanline": 9,
+          "peakShots": 9,
+          "peakItems": 3,
+          "peakBg": 68,
+          "peakPower": 2,
+          "peakSpeed": 3,
+          "peakBarrier": 1,
+          "bgPixels": 326400,
+          "bombMotionTicks": 288,
+          "remainingBg": 38,
+          "frameGaps": {
+            "samples": 10929,
+            "mean": 1.234788178241376,
+            "max": 27
+          },
+          "regions": [
+            {
+              "samples": 3476,
+              "mean": 1.1475834292289988,
+              "max": 6
+            },
+            {
+              "samples": 3600,
+              "mean": 1.246388888888889,
+              "max": 3
+            },
+            {
+              "samples": 3601,
+              "mean": 1.2843654540405443,
+              "max": 4
+            },
+            {
+              "samples": 252,
+              "mean": 1.5634920634920635,
+              "max": 27
+            }
+          ],
+          "dropEvents": [],
+          "peakPendingObjects": 46,
+          "maxPendingAfterPublicationTicks": 23,
+          "bombDisplayFrames": [
+            81,
+            62,
+            53,
+            61,
+            63,
+            62
+          ],
+          "musicCues": {
+            "title": 1,
+            "approach": 2,
+            "deck": 2,
+            "reactor": 2,
+            "boss-0": 5,
+            "boss-1": 5,
+            "boss-2": 5
+          },
+          "titlePcm": true,
+          "sramReboot": true,
+          "ranking": [
+            29970,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "bgb": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\side-caravan\\build\\Debug\\side-caravan.gb",
+      "loadedRom": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v02\\final-bgb\\side-caravan-34800fab78fe.gb",
+      "sha256": "34800fab78fe5f204c9335e2650c91c0f7034b4ef576bc0cc5fe86efe1f22c9b",
+      "emulator": "BGB 1.6.6",
+      "fixture": false,
+      "readOnlyBreakpoint": true,
+      "inputFile": "input.dem per mode",
+      "results": [
+        {
+          "mode": "DMG",
+          "gameplaySamples": 602,
+          "lastTick": 2404,
+          "score": 4370,
+          "shotLevel": 2,
+          "speedLevel": 1,
+          "bombSamples": 24,
+          "bombStocks": [
+            1,
+            0
+          ],
+          "bombStockBefore": [
+            2,
+            1
+          ],
+          "heldBombIntervals": 2,
+          "oamPeak": 12,
+          "cameraPositions": 602,
+          "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v02\\final-bgb\\dmg-1Z4jPM\\screen.bmp"
+        },
+        {
+          "mode": "CGB",
+          "gameplaySamples": 977,
+          "lastTick": 3905,
+          "score": 7350,
+          "shotLevel": 2,
+          "speedLevel": 2,
+          "bombSamples": 24,
+          "bombStocks": [
+            2,
+            1
+          ],
+          "bombStockBefore": [
+            3,
+            2
+          ],
+          "heldBombIntervals": 2,
+          "oamPeak": 13,
+          "cameraPositions": 977,
+          "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v02\\final-bgb\\cgb-3A4rpA\\screen.bmp"
+        }
+      ]
+    },
+    "horizontalUi": {
+      "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\horizontal-ui-Rv3Tpn",
+      "checks": [
+        "horizontal resize preserves row-major content",
+        "16x16 stamp drag, erase, undo and redo persist",
+        "horizontal map pans with native pointer input",
+        "item authoring exposes all five effects",
+        "five item effects, power-up levels, miss behavior, atomic volleys and B bomb save",
+        "enemy drop and origin-relative emitter offsets save",
+        "item timeline event and vertical formation spacing save",
+        "saved horizontal project reopens; vertical project and Explorer controls still work; no ROM build",
+        "item and destructible-type diagnostics navigate to the correct authoring controls",
+        "live bomb, barrier configuration, barrier pickup, laser and smooth motion save and reopen through native input",
+        "weapon pickup reference and giant BG boss mode/image/cap save and reopen through native input",
+        "last optional item: native cancel/confirm, delete, Undo/Redo, save and reopen",
+        "PASS"
+      ]
+    },
+    "projectUi": {
+      "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\project-ui-hdy3Sz",
+      "checks": [
+        "renderer loaded",
+        "project keyboard selection switches renderer and backend",
+        "folder selection cancellation keeps active project",
+        "folder picker opens project added after startup",
+        "folder icon targets current project",
+        "inspector BGM selection changes the in-memory draft",
+        "dirty switch cancellation preserves edits and releases controls",
+        "dirty project list cancellation restores the displayed selection",
+        "dirty switch keeps recovery copy",
+        "reopening restores the recovery draft",
+        "invalid folder preserves active project and releases controls",
+        "PASS"
+      ]
+    },
+    "stress": {
+      "case": "stress",
+      "romSha256": "c8598322cf4852d64d927588780502a34a5dc3631fcbd4fdea2426e69cfc9221",
+      "fixture": true,
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v02\\benchmark\\fixture-LNZiML\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+      "ramBytes": 7091,
+      "romBytes": 131072,
+      "modes": [
+        {
+          "mode": "DMG",
+          "gaps": {
+            "samples": 600,
+            "mean": 2.953333333333333,
+            "p95": 3,
+            "max": 4,
+            "updatesPerSecond": 20.223758465011286
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 2.953675096832976,
+            "p95": 3.0003417634996583,
+            "max": 4.000341763499658,
+            "updatesPerSecond": 20.22141841668426
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 35,
+          "peakOam": 37,
+          "peakScanline": 22,
+          "phases": [],
+          "dropped": 184,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "c579d95b9a46be3a002a8b531937ea915612415f96db56d1975f2fd70cb84f18"
+        },
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 1.9266666666666667,
+            "p95": 2,
+            "max": 2,
+            "updatesPerSecond": 31.000432525951556
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 1.9268375484164957,
+            "p95": 2.000170881749829,
+            "max": 2.000911369332422,
+            "updatesPerSecond": 30.997683249989063
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 35,
+          "peakOam": 37,
+          "peakScanline": 22,
+          "phases": [],
+          "dropped": 184,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "aa4e276752d90a278ca0e27bc7fe49c844b05a7a713e8ce49bbd39973a059fe0"
+        }
+      ],
+      "budgets": {
+        "DMG": 2.9,
+        "CGB": 1.85
+      },
+      "gate": "FAIL; thresholds unchanged",
+      "previousV01DocumentedMeans": {
+        "DMG": 2.9353417634996437,
+        "CGB": 1.886837548416495
+      },
+      "previousEvidence": "docs/side-caravan-validation-results.json",
+      "previousStrictBg64Gate": "Not rerun for v0.2; v0.1 records failure"
+    },
+    "emulicious": [
+      {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\side-caravan\\build\\Debug\\side-caravan.gb",
+        "sha256": "34800fab78fe5f204c9335e2650c91c0f7034b4ef576bc0cc5fe86efe1f22c9b",
+        "emulator": "Emulicious 2026-03-27",
+        "bootExecutionVerified": false,
+        "gameplayVerified": false,
+        "error": "DAPDebugger.evaluate NullPointerException",
+        "evidence": ".cache/side-v02/emulicious/results.json"
+      },
+      {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\star-caravan\\build\\Debug\\star-caravan.gb",
+        "sha256": "800f530da721f4c2e53e71e8e32f0ebb67aadd45098ee8e655087d0056799413",
+        "emulator": "Emulicious 2026-03-27",
+        "bootExecutionVerified": false,
+        "gameplayVerified": false,
+        "error": "DAPDebugger.evaluate NullPointerException",
+        "evidence": ".cache/side-v02/emulicious-star/results.json"
+      }
+    ]
+  },
+  "otherBuilds": [
+    {
+      "project": "star-caravan",
+      "configuration": "Debug",
+      "path": "projects/star-caravan/build/Debug/star-caravan.gb",
+      "sha256": "800f530da721f4c2e53e71e8e32f0ebb67aadd45098ee8e655087d0056799413",
+      "bytes": 131072
+    },
+    {
+      "project": "star-caravan",
+      "configuration": "Release",
+      "path": "projects/star-caravan/build/Release/star-caravan.gb",
+      "sha256": "800f530da721f4c2e53e71e8e32f0ebb67aadd45098ee8e655087d0056799413",
+      "bytes": 131072
+    }
+  ],
+  "limitations": {
+    "steady60fps": false,
+    "stressGatePassed": false,
+    "emuliciousVerified": false,
+    "humanController": false,
+    "manualListening": false,
+    "physicalDmg": false,
+    "physicalCgb": false,
+    "publicRelease": false,
+    "bgBossBulletLimit": 32,
+    "bgBossMovementPixels": {
+      "x": 64,
+      "y": 32
+    },
+    "barrierAssetMultipleCharacters": false,
+    "laser": "Non-piercing pulse laser",
+    "bomb": "Live BG palette inversion; no image overlay",
+    "destructionRenderBudget": "8 tiles per update; pending states persist"
+  },
+  "evidence": {
+    "standard": ".cache/side-v02-standard-tests.log",
+    "core": ".cache/side-v02-core-final.log",
+    "play": ".cache/side-v02/final-play/results.json",
+    "bgb": ".cache/side-v02/final-bgb/results.json",
+    "shortRom": ".cache/side-upgrade-rom-kgXHGn/result.json",
+    "horizontalUi": ".cache/side-v02/horizontal-ui-result.json",
+    "projectUi": ".cache/side-v02/project-ui-result.json",
+    "stress": ".cache/side-v02/benchmark/stress.json",
+    "emulicious": ".cache/side-v02/emulicious/results.json",
+    "emuliciousStar": ".cache/side-v02/emulicious-star/results.json"
+  }
+}

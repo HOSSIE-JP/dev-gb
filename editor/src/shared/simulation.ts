@@ -49,7 +49,7 @@ export function shotAngles(
     if (pattern.kind === "spiral")
         base = (base + sequence * angleStep(pattern.rotation)) & 15;
     const count =
-        pattern.kind === "straight" || pattern.kind === "aimed" || pattern.kind === "homing"
+        pattern.kind === "laser" || pattern.kind === "straight" || pattern.kind === "aimed" || pattern.kind === "homing"
             ? 1
             : pattern.count;
     return Array.from({ length: count }, (_, i) => {
@@ -92,21 +92,22 @@ export function motionOffset(m: Motion, age: number): { x: number; y: number } {
             dt = Math.max(1, b.frame - a.frame),
             t = time - a.frame;
         return {
-            x: q4(a.x) + Math.trunc(q4(b.x - a.x) / dt) * t,
-            y: q4(a.y) + Math.trunc(q4(b.y - a.y) / dt) * t,
+            x: q4(a.x) + (m.smooth ? Math.trunc(q4(b.x - a.x) * t / dt) : Math.trunc(q4(b.x - a.x) / dt) * t),
+            y: q4(a.y) + (m.smooth ? Math.trunc(q4(b.y - a.y) * t / dt) : Math.trunc(q4(b.y - a.y) / dt) * t),
         };
     }
     let x = q4(m.vx) * age,
         y = q4(m.vy) * age;
     if (m.kind === "wave") {
-        const oscillation = SIN[Math.trunc(((age % m.period) * 16) / m.period)] * m.amplitude;
+        const phase = Math.trunc((age % m.period) * 256 / m.period), i = phase >> 4;
+        const oscillation = SIN[i] * m.amplitude + (m.smooth ? Math.trunc((SIN[(i+1)&15]-SIN[i])*m.amplitude*(phase&15)/16) : 0);
         if (m.oscillationAxis === "y") y += oscillation; else x += oscillation;
     }
     if (m.kind === "bounce") {
         const quarter = Math.max(1, Math.trunc(m.period / 4)),
             phase = Math.trunc((age % (quarter * 4)) / quarter),
             part = age % quarter;
-        const span = Math.trunc((part * m.amplitude) / quarter);
+        const span = Math.trunc((part * m.amplitude * (m.smooth ? 16 : 1)) / quarter) / (m.smooth ? 16 : 1);
         const oscillation = q4(
             phase === 0
                 ? span
@@ -158,6 +159,8 @@ export class Simulation {
     camera = 0;
     scroll = 0;
     shotLevel = 0;
+    barrier = 0;
+    weaponOverride = "";
     speedLevel = 0;
     objectHp = new Uint8Array(256);
     objectCells = new Map<number, number>();
@@ -294,7 +297,7 @@ export class Simulation {
         this.entities.push({ ...entity, slot });
         this.entities.sort((a, b) => a.slot - b.slot);
     }
-    get currentWeapon() { return this.game.player.powerUps?.shotWeapons[this.shotLevel] ?? this.game.player.weapon; }
+    get currentWeapon() { return this.weaponOverride || (this.game.player.powerUps?.shotWeapons[this.shotLevel] ?? this.game.player.weapon); }
     get currentSpeed() { return this.game.player.powerUps?.speedLevels[this.speedLevel] ?? this.game.player.speed; }
     resetObjects() {
         this.objectHp.fill(0); this.objectCells = destructibleIndex(this.stage);
@@ -348,7 +351,9 @@ export class Simulation {
         const item = this.game.items?.find(i => i.id === entity.ref); if (!item || !this.entities.includes(entity)) return;
         this.entities = this.entities.filter(e => e !== entity);
         for (const effect of item.effects) {
-            if (effect.kind === "shot") {this.shotLevel = Math.min((this.game.player.powerUps?.shotWeapons.length ?? 1) - 1, this.shotLevel + effect.amount);this.cooldown=0;this.playerSequence=0;}
+            if (effect.kind === "weapon") {this.weaponOverride=effect.weapon!;this.cooldown=0;this.playerSequence=0;}
+            if (effect.kind === "barrier") this.barrier=Math.min(this.game.player.barrierMax ?? 3,this.barrier+effect.amount);
+            if (effect.kind === "shot") {this.weaponOverride="";this.shotLevel = Math.min((this.game.player.powerUps?.shotWeapons.length ?? 1) - 1, this.shotLevel + effect.amount);this.cooldown=0;this.playerSequence=0;}
             if (effect.kind === "speed") {this.speedLevel = Math.min((this.game.player.powerUps?.speedLevels.length ?? 1) - 1, this.speedLevel + effect.amount);this.cooldown=0;this.playerSequence=0;}
             if (effect.kind === "bomb") this.bombs = Math.min(this.game.player.bomb?.maxStock ?? 9, this.bombs + effect.amount);
             if (effect.kind === "life") this.lives = Math.min(this.game.player.maxLives ?? 9, this.lives + effect.amount);
@@ -409,7 +414,7 @@ export class Simulation {
                 Math.trunc((targetY - py) / 16),
             )) {
                 const speed = q4(p.speed);
-                if (!friendly && this.battleMode === "bg-bullets") {
+                if (!friendly && ["bg-bullets","bg-boss"].includes(this.battleMode)) {
                     if (this.bgShots.length < this.bgLimit) {
                         while(this.bgShots.some(b=>b.slot===this.bgNext))this.bgNext=(this.bgNext+1)%this.bgLimit;
                         this.bgShots.push({x: px, y: py, vx: Math.trunc(SIN[angle] * speed / 16), vy: Math.trunc(-COS[angle] * speed / 16), life: p.lifetime, damage: p.damage,slot:this.bgNext,ref:p.id,angle});this.bgNext=(this.bgNext+1)%this.bgLimit;
@@ -496,6 +501,8 @@ export class Simulation {
     }
     hitPlayer() {
         if (this.respawn || this.invulnerable || this.result) return;
+        if (this.barrier) {this.barrier--;this.invulnerable=this.game.player.barrierFrames ?? 45;return;}
+        this.weaponOverride="";
         this.explode(this.playerX, this.playerY);
         this.lives--;
         const power = this.game.player.powerUps;
@@ -597,7 +604,7 @@ export class Simulation {
     step(input = this.input) {
         if (this.result) { if (this.result === 1) this.gameOverStep(input); return; }
         this.resultInput = input;
-        if(this.bombLeft){--this.bombLeft;return;}
+        if(this.bombLeft){--this.bombLeft;if (!this.game.player.bomb?.live) return;}
         if (this.transition) {
             const t = this.transition, b = this.game.bosses.find(b => b.id === t.boss.ref)!;
             if (t.stage === "break") {
@@ -628,12 +635,12 @@ export class Simulation {
         if(!(input&bombMask))this.bombLatch=false;
         const bombPressed = (input&bombMask)===bombMask && !this.bombLatch;
         if (p.bomb?.button === "b" && (input & 32)) this.bombLatch=true;
-        if(bombPressed && this.bombs && !this.respawn){
+        if(bombPressed && this.bombs && !this.respawn && !this.bombLeft){
             this.bombLatch=true;--this.bombs;this.bombLeft=p.bomb!.frames;this.invulnerable=Math.max(this.invulnerable,90);
             this.bgShots=[];this.bgNext=0;this.entities=this.entities.filter(e=>e.kind!=="pshot"&&e.kind!=="eshot");
             if(p.bomb!.destroyBackground) for(const i of this.objectsOverlapping({x:0,y:top,w:160,h:144-hudHeight(g)}).sort((a,b)=>a-b)) this.damageObject(i,15);
             for(const e of [...this.entities])if((e.kind==="enemy"||e.kind==="boss")&&e.x>=0&&e.x<2560&&e.y>=0&&e.y<2304)this.damageActor(e,p.bomb!.damage);
-            return;
+            if (!p.bomb!.live) return;
         }
         const mode = p.bomb?.button !== "b" && input & 32 && p.focusWeapon ? 1 : 0;
         const pattern = mode ? p.focusWeapon! : this.currentWeapon;
@@ -763,6 +770,11 @@ export class Simulation {
                 );
                 e.x = e.baseX + offset.x;
                 e.y = e.baseY + offset.y;
+                if (e.kind === "boss" && this.battleMode === "bg-boss") {
+                    const art=assetById(g,(actor as Boss).battle!.graphic!);
+                    e.x=clamp(e.x,q4(art.origin.x-64),q4(art.origin.x+64));
+                    e.y=clamp(e.y,q4(art.origin.y-32),q4(art.origin.y+32));
+                }
                 const age = e.kind === "boss" ? e.phaseAge : e.age;
                 for (const id of [pattern, ...attacks.map((p) => p.pattern)]) {
                     const shot = g.patterns.find((p) => p.id === id);
@@ -814,7 +826,9 @@ export class Simulation {
             if (
                 e.kind !== "pshot" &&
                 e.kind !== "fx" &&
-                this.overlap(playerBox, this.box(e.asset, e.x, e.y))
+                (e.kind === "boss" && this.game.bosses.find(b=>b.id===e.ref)?.contactBoxes?.length
+                    ? this.game.bosses.find(b=>b.id===e.ref)!.contactBoxes!.some(r=>this.overlap(playerBox,{...r,x:Math.trunc(e.x/16)+r.x,y:Math.trunc(e.y/16)+r.y}))
+                    : this.overlap(playerBox, this.box(e.asset, e.x, e.y)))
             ) {
                 if (e.kind === "item") { this.collectItem(e); continue; }
                 this.hitPlayer();
@@ -869,22 +883,30 @@ export function drawAsset(
             ctx.fillRect(Math.floor(x) + px, Math.floor(y) + py, 1, 1);
         }
 }
+/** BG/HUD use the inverted palette during a live bomb; sprites keep theirs. */
+export function backgroundPaletteGame(sim: Simulation): Game {
+    const g = sim.game, bomb = g.player.bomb;
+    if (!sim.bombLeft || !bomb?.live || !(Math.floor((bomb.frames - sim.bombLeft) / bomb.flashPeriod) & 1)) return g;
+    return {...g, dmgPalette: (g.dmgPalette ?? 0xe4) ^ 255,
+        palettes: g.palettes.map(p => ({...p, colors: p.colors.map(c =>
+            `#${(parseInt(c.slice(1), 16) ^ 0xffffff).toString(16).padStart(6, "0")}`) as typeof p.colors}))};
+}
 export function drawSimulation(
     ctx: CanvasRenderingContext2D,
     sim: Simulation,
     dmg: boolean,
     hitboxes = false,
 ) {
-    const g = sim.game,
+    const g = sim.game, bg = backgroundPaletteGame(sim),
         s = sim.stage,
         top = g.screens.find((s) => s.id === "hud")?.dock === "top" ? hudHeight(g) : 0;
-    ctx.fillStyle = dmg ? dmgColors(g)[0] : g.palettes[0].colors[0];
+    ctx.fillStyle = dmg ? dmgColors(bg)[0] : bg.palettes[0].colors[0];
     ctx.fillRect(0, 0, 160, 144);
     const tileset = assetById(g, s.tileset),
         frame = tileset?.frames[0],
         colors = dmg
-            ? dmgColors(g)
-            : g.palettes[tileset.palette].colors;
+            ? dmgColors(bg)
+            : bg.palettes[tileset.palette].colors;
     if (frame && sim.battleMode === "stage")
         for (let y = 0; y < 144 - hudHeight(g); y++)
             for (let x = 0; x < 160; x++) {
@@ -917,11 +939,24 @@ export function drawSimulation(
                     ctx.fillRect(x, y + top, 1, 1);
                 }
             }
+    if (sim.battleMode === "bg-boss") {
+        const boss=sim.entities.find(e=>e.kind==="boss");
+        const graphic = boss && g.bosses.find(b=>b.id===boss.ref)?.battle?.graphic;
+        const art = graphic ? assetById(g,graphic) : undefined;
+        const bossColors = dmg ? dmgColors(bg) : bg.palettes[art?.palette ?? 0].colors;
+        ctx.fillStyle=bossColors[0];ctx.fillRect(0,top,160,144-hudHeight(g));
+        if (boss && art) {
+            drawAsset(ctx,bg,art,Math.trunc(boss.x/16)-art.origin.x,Math.trunc(boss.y/16)-art.origin.y,boss.age,dmg);
+            const sx=art.origin.x-Math.trunc(boss.x/16),sy=art.origin.y-Math.trunc(boss.y/16);
+            ctx.fillStyle=bossColors[3];
+            for(const shot of sim.bgShots) ctx.fillRect(((Math.trunc(shot.x/16)+sx)&~1)-sx,((Math.trunc(shot.y/16)+sy)&~1)-sy,2,2);
+        }
+    }
     if (sim.battleMode === "bg-bullets") {
-        ctx.fillStyle = "#000"; ctx.fillRect(0,top,160,144-hudHeight(g)); ctx.fillStyle = "#fff";
+        ctx.fillStyle = bg === g ? "#000" : "#fff"; ctx.fillRect(0,top,160,144-hudHeight(g)); ctx.fillStyle = bg === g ? "#fff" : "#000";
         for (const b of sim.bgShots) { const x = Math.trunc(b.x/16) & ~1, y = Math.trunc(b.y/16) & ~1; ctx.fillRect(x,y,2,2); }
     }
-    if(sim.bombLeft){
+    if(sim.bombLeft && !g.player.bomb?.live){
         ctx.fillStyle="#000";ctx.fillRect(0,0,160,144);
         if(Math.floor((g.player.bomb!.frames-sim.bombLeft)/g.player.bomb!.flashPeriod)&1){
             const beam=sim.bombStyle==="beam",x=beam?Math.trunc(sim.playerX/16)-80:0,y=beam?Math.trunc(sim.playerY/16)-120:0,art=assetById(g,sim.bombBackground);
@@ -948,6 +983,11 @@ export function drawSimulation(
         }
     };
     if (!sim.respawn && (sim.bombLeft || !sim.invulnerable || (sim.invulnerable & 4) === 0))
-        draw(g.player.asset, sim.playerX, sim.playerY);
-    for (const e of sim.entities) if (!(sim.transition?.stage === "break" && e.kind === "boss")) draw(e.asset, e.x, e.y, e.age);
+        draw(sim.barrier && g.player.barrierAsset ? g.player.barrierAsset : g.player.asset, sim.playerX, sim.playerY);
+    for (const e of sim.entities) if (!((sim.transition?.stage === "break" || sim.battleMode === "bg-boss") && e.kind === "boss")) draw(e.asset, e.x, e.y, e.age);
+    if(hitboxes) for(const e of sim.entities.filter(e=>e.kind==="boss")) {
+        const weak=sim.box(e.asset,e.x,e.y);ctx.strokeStyle="#ffde59";ctx.lineWidth=0.5;ctx.strokeRect(weak.x,weak.y,weak.w,weak.h);
+        ctx.strokeStyle="#ff637d";
+        for(const r of g.bosses.find(b=>b.id===e.ref)?.contactBoxes??[])ctx.strokeRect(Math.trunc(e.x/16)+r.x,Math.trunc(e.y/16)+r.y,r.w,r.h);
+    }
 }

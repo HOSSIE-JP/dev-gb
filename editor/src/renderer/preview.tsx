@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {gameOverPresentation} from "../shared/presentation";
 import { type Game, clone, assetById } from "../shared/model";
-import { Simulation, drawSimulation, drawAsset } from "../shared/simulation";
+import { Simulation, drawSimulation, drawAsset, backgroundPaletteGame } from "../shared/simulation";
 import { drawScreen } from "./canvases";
 const inputKey: Record<string, number> = {
     ArrowRight: 1,
@@ -127,11 +127,11 @@ export function Preview({
             ]},glyphs,dmg);
         } else {
             drawSimulation(c, s, dmg, hitbox);
-            if (!s.bombLeft) {
+            if (!s.bombLeft || s.game.player.bomb?.live) {
             const hud = s.game.screens.find((s) => s.id === "hud")!;
             c.save();
             c.translate(0, hud.dock === "top" ? 0 : 144 - (hud.rows ?? 2) * 8);
-            drawScreen(c, s.game, hud, glyphs, dmg, {
+            drawScreen(c, backgroundPaletteGame(s), hud, glyphs, dmg, {
                 score: String(s.score).padStart(5, "0"),
                 lives: String(s.lives).padStart(5, "0"),
                 time: String(
@@ -142,7 +142,7 @@ export function Preview({
                 ).padStart(5, "0"),
                 boss: String(s.bossHp).padStart(5, "0"),
                 bombs: String(s.bombs).padStart(5,"0"),
-                shotLevel: String(s.shotLevel+1), speedLevel: String(s.speedLevel+1),
+                barrier: String(s.barrier), shotLevel: String(s.shotLevel+1), speedLevel: String(s.speedLevel+1),
             });
             c.restore();
             }
@@ -164,7 +164,7 @@ export function Preview({
         const lines = Array(144).fill(0),
             items = [
                 { asset: s.game.player.asset, x: s.playerX, y: s.playerY },
-                ...s.entities,
+                ...s.entities.filter(e => !(s.battleMode === "bg-boss" && e.kind === "boss")),
             ];
         for (const e of items) {
             const a = assetById(s.game, e.asset),

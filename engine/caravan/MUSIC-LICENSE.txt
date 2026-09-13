@@ -2,7 +2,8 @@ MIT License
 
 Copyright (c) 2026 NOVA SPEAR contributors
 
-Applies to music.c and music.h and the original compositions therein.
+Applies to music.c and music.h and the original compositions therein,
+and assets-src/side-score.json (SIDE CARAVAN original score, 2026-09-12).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

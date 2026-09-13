@@ -7,7 +7,7 @@ test('ending routes preserve shared epilogues and select the correct final heroi
  g.ending.characterSlides[0].slides=[];assert.deepEqual(lib.resolveEnding(g,2),[],'explicit empty route overrides fallback');delete g.ending.characterSlides;assert.equal(lib.resolveEnding(g,2),a);
 });
 test('ending settings reject bad timing, character IDs, duplicate routes and non-screen art',()=>{
- for(const edit of [g=>g.ending.seconds=0,g=>g.ending.seconds=61,g=>g.ending.music=35,g=>g.ending.characterSlides[0].character='gone',g=>g.ending.characterSlides.push({...g.ending.characterSlides[0],id:'duplicate'}),g=>g.ending.characterSlides[0].slides[0].background='reimu',g=>g.ending.characterSlides[0].slides[0].id='',g=>g.ending.scoreAfter=1]){const g=game();edit(g);assert.ok(errors(g).length);}
+ for(const edit of [g=>g.ending.seconds=0,g=>g.ending.seconds=61,g=>g.ending.music=38,g=>g.ending.characterSlides[0].character='gone',g=>g.ending.characterSlides.push({...g.ending.characterSlides[0],id:'duplicate'}),g=>g.ending.characterSlides[0].slides[0].background='reimu',g=>g.ending.characterSlides[0].slides[0].id='',g=>g.ending.scoreAfter=1]){const g=game();edit(g);assert.ok(errors(g).length);}
  const g=game();delete g.ending.music;delete g.ending.scoreAfter;delete g.ending.characterSlides;assert.deepEqual(errors(g),[],'legacy optional settings');
 });
 test('expanded screen asset capacity retains the 64 sprite-definition hardware bound',()=>{

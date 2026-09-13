@@ -1,0 +1,1540 @@
+{
+  "date": "2026-09-12",
+  "version": "0.3-orbital-run",
+  "projectRevision": "e3dc4fd5f86ae8a6fa496d768d34b5fdcd694923c730f4db43120784d559724d",
+  "builds": [
+    {
+      "ok": true,
+      "revision": "e3dc4fd5f86ae8a6fa496d768d34b5fdcd694923c730f4db43120784d559724d",
+      "configuration": "Debug",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\side-caravan\\build\\Debug\\side-caravan.gb",
+      "size": 131072,
+      "ramBytes": 7102,
+      "spriteTiles": 91,
+      "diagnostics": [],
+      "romHash": "a564989d4fb91d0f3728d7ca7cd965fd707c69ccda31fc35e5f2cce827252f62",
+      "builtAt": "2026-09-12T11:17:48.252Z",
+      "durationMs": 133175
+    },
+    {
+      "ok": true,
+      "revision": "e3dc4fd5f86ae8a6fa496d768d34b5fdcd694923c730f4db43120784d559724d",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\side-caravan\\build\\Release\\side-caravan.gb",
+      "size": 131072,
+      "ramBytes": 7102,
+      "spriteTiles": 91,
+      "diagnostics": [],
+      "romHash": "a564989d4fb91d0f3728d7ca7cd965fd707c69ccda31fc35e5f2cce827252f62",
+      "builtAt": "2026-09-12T11:30:11.632Z",
+      "durationMs": 141836
+    }
+  ],
+  "standardTests": 122,
+  "play": {
+    "fixture": false,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\side-caravan\\build\\Debug\\side-caravan.gb",
+    "sha256": "a564989d4fb91d0f3728d7ca7cd965fd707c69ccda31fc35e5f2cce827252f62",
+    "results": [
+      {
+        "mode": "DMG",
+        "clear": true,
+        "last": {
+          "tick": 3808,
+          "stage": 0,
+          "score": 20500,
+          "lives": 3,
+          "x": 448,
+          "y": 1180,
+          "bossHp": 0,
+          "entities": 0,
+          "dropped": 0,
+          "result": 2,
+          "scene": 3,
+          "stageTick": 3808,
+          "bossPhase": 0
+        },
+        "acquired": [
+          "power",
+          "speed",
+          "barrier",
+          "bomb",
+          "laser",
+          "life",
+          "score"
+        ],
+        "phases": [
+          0,
+          1,
+          2
+        ],
+        "misses": 1,
+        "bombUsed": 5,
+        "pauseSeen": true,
+        "peakOam": 23,
+        "peakScanline": 9,
+        "peakShots": 7,
+        "peakItems": 2,
+        "peakBg": 65,
+        "peakPower": 2,
+        "peakSpeed": 3,
+        "peakBarrier": 1,
+        "bgPixels": 261120,
+        "bombMotionTicks": 240,
+        "remainingBg": 110,
+        "frameGaps": {
+          "samples": 3684,
+          "mean": 2.085233441910966,
+          "max": 30
+        },
+        "regions": [
+          {
+            "samples": 1028,
+            "mean": 1.9669260700389104,
+            "max": 26
+          },
+          {
+            "samples": 1280,
+            "mean": 2.24375,
+            "max": 13
+          },
+          {
+            "samples": 1169,
+            "mean": 1.9563729683490163,
+            "max": 14
+          },
+          {
+            "samples": 207,
+            "mean": 2.420289855072464,
+            "max": 30
+          }
+        ],
+        "dropEvents": [],
+        "peakPendingObjects": 56,
+        "maxPendingAfterPublicationTicks": 28,
+        "bombDisplayFrames": [
+          101,
+          91,
+          98,
+          82,
+          101
+        ],
+        "musicCues": {
+          "title": 35,
+          "approach": 36,
+          "deck": 36,
+          "reactor": 36,
+          "boss-0": 37,
+          "boss-1": 37,
+          "boss-2": 37
+        },
+        "titlePcm": true,
+        "roadDisplayFrames": 7358,
+        "roadRealSeconds": 123.19283412163577,
+        "sramReboot": true,
+        "ranking": [
+          20500,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "mode": "CGB",
+        "clear": true,
+        "last": {
+          "tick": 3808,
+          "stage": 0,
+          "score": 20500,
+          "lives": 3,
+          "x": 448,
+          "y": 1180,
+          "bossHp": 0,
+          "entities": 0,
+          "dropped": 0,
+          "result": 2,
+          "scene": 3,
+          "stageTick": 3808,
+          "bossPhase": 0
+        },
+        "acquired": [
+          "power",
+          "speed",
+          "barrier",
+          "bomb",
+          "laser",
+          "life",
+          "score"
+        ],
+        "phases": [
+          0,
+          1,
+          2
+        ],
+        "misses": 1,
+        "bombUsed": 5,
+        "pauseSeen": true,
+        "peakOam": 23,
+        "peakScanline": 9,
+        "peakShots": 7,
+        "peakItems": 2,
+        "peakBg": 65,
+        "peakPower": 2,
+        "peakSpeed": 3,
+        "peakBarrier": 1,
+        "bgPixels": 261120,
+        "bombMotionTicks": 240,
+        "remainingBg": 110,
+        "frameGaps": {
+          "samples": 3684,
+          "mean": 1.213897937024973,
+          "max": 29
+        },
+        "regions": [
+          {
+            "samples": 1028,
+            "mean": 1.178988326848249,
+            "max": 13
+          },
+          {
+            "samples": 1280,
+            "mean": 1.23515625,
+            "max": 7
+          },
+          {
+            "samples": 1169,
+            "mean": 1.1770744225834047,
+            "max": 7
+          },
+          {
+            "samples": 207,
+            "mean": 1.463768115942029,
+            "max": 29
+          }
+        ],
+        "dropEvents": [],
+        "peakPendingObjects": 56,
+        "maxPendingAfterPublicationTicks": 28,
+        "bombDisplayFrames": [
+          65,
+          60,
+          61,
+          59,
+          65
+        ],
+        "musicCues": {
+          "title": 35,
+          "approach": 36,
+          "deck": 36,
+          "reactor": 36,
+          "boss-0": 37,
+          "boss-1": 37,
+          "boss-2": 37
+        },
+        "titlePcm": true,
+        "roadDisplayFrames": 4328,
+        "roadRealSeconds": 72.46243355238374,
+        "sramReboot": true,
+        "ranking": [
+          20500,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "native": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\side-caravan\\build\\Debug\\side-caravan.gb",
+    "loadedRom": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\bgb-final\\side-caravan-a564989d4fb9.gb",
+    "sha256": "a564989d4fb91d0f3728d7ca7cd965fd707c69ccda31fc35e5f2cce827252f62",
+    "emulator": "BGB 1.6.6",
+    "fixture": false,
+    "readOnlyBreakpoint": true,
+    "inputFile": "input.dem per mode",
+    "results": [
+      {
+        "mode": "DMG",
+        "gameplaySamples": 562,
+        "lastTick": 2244,
+        "score": 5310,
+        "shotLevel": 2,
+        "speedLevel": 2,
+        "bombSamples": 24,
+        "bombStocks": [
+          1,
+          0
+        ],
+        "bombStockBefore": [
+          2,
+          1
+        ],
+        "heldBombIntervals": 2,
+        "oamPeak": 23,
+        "cameraPositions": 562,
+        "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\bgb-final\\dmg-xIqyjc\\screen.bmp"
+      },
+      {
+        "mode": "CGB",
+        "gameplaySamples": 940,
+        "lastTick": 3757,
+        "score": 9630,
+        "shotLevel": 2,
+        "speedLevel": 3,
+        "bombSamples": 24,
+        "bombStocks": [
+          2,
+          1
+        ],
+        "bombStockBefore": [
+          3,
+          2
+        ],
+        "heldBombIntervals": 2,
+        "oamPeak": 24,
+        "cameraPositions": 901,
+        "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\bgb-final\\cgb-ANJfl8\\screen.bmp"
+      }
+    ]
+  },
+  "music": {
+    "fixture": "Music-only GBDK ROM; real joypad selection and VBlank playback. WAV listening copies normalized; raw amplitude is reported separately.",
+    "results": [
+      {
+        "mode": "DMG",
+        "id": 35,
+        "title": "STARLIGHT IGNITION",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Reprise",
+          "Turnaround"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 15,
+        "rawRms": 3.8968943779197325
+      },
+      {
+        "mode": "DMG",
+        "id": 36,
+        "title": "ORBITAL OVERDRIVE",
+        "bars": 64,
+        "sections": [
+          "Launch",
+          "Flight",
+          "Open Sky",
+          "Break",
+          "Reactor Ascent",
+          "Home Stretch",
+          "Turnaround"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 102.86718848101796,
+        "rawPeak": 16,
+        "rawRms": 3.9280547845834004
+      },
+      {
+        "mode": "DMG",
+        "id": 37,
+        "title": "REACTOR HEART",
+        "bars": 32,
+        "sections": [
+          "Warning",
+          "Pressure",
+          "Counterattack",
+          "Overdrive",
+          "Turnaround"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 42.86132853375748,
+        "rawPeak": 15,
+        "rawRms": 4.0728546254426226
+      },
+      {
+        "mode": "CGB",
+        "id": 35,
+        "title": "STARLIGHT IGNITION",
+        "bars": 32,
+        "sections": [
+          "Intro",
+          "A",
+          "B",
+          "Reprise",
+          "Turnaround"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 60.005859947260475,
+        "rawPeak": 15,
+        "rawRms": 3.8936045399348593
+      },
+      {
+        "mode": "CGB",
+        "id": 36,
+        "title": "ORBITAL OVERDRIVE",
+        "bars": 64,
+        "sections": [
+          "Launch",
+          "Flight",
+          "Open Sky",
+          "Break",
+          "Reactor Ascent",
+          "Home Stretch",
+          "Turnaround"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 102.86718848101796,
+        "rawPeak": 15,
+        "rawRms": 3.9282167797554135
+      },
+      {
+        "mode": "CGB",
+        "id": 37,
+        "title": "REACTOR HEART",
+        "bars": 32,
+        "sections": [
+          "Warning",
+          "Pressure",
+          "Counterattack",
+          "Overdrive",
+          "Turnaround"
+        ],
+        "loop": true,
+        "oneShot": false,
+        "seconds": 42.86132853375748,
+        "rawPeak": 15,
+        "rawRms": 4.069604907625928
+      }
+    ]
+  },
+  "ui": {
+    "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\horizontal-ui-nZAF9u",
+    "checks": [
+      "horizontal resize preserves row-major content",
+      "16x16 stamp drag, erase, undo and redo persist",
+      "horizontal map pans with native pointer input",
+      "item authoring exposes all five effects",
+      "five item effects, power-up levels, miss behavior, atomic volleys and B bomb save",
+      "enemy drop and origin-relative emitter offsets save",
+      "item timeline event and vertical formation spacing save",
+      "saved horizontal project reopens; vertical project and Explorer controls still work; no ROM build",
+      "item and destructible-type diagnostics navigate to the correct authoring controls",
+      "live bomb, barrier configuration, barrier pickup, laser and smooth motion save and reopen through native input",
+      "boss contact body edits independently from weakpoint and survives save/reopen",
+      "weapon pickup reference and giant BG boss mode/image/cap save and reopen through native input",
+      "last optional item: native cancel/confirm, delete, Undo/Redo, save and reopen",
+      "PASS"
+    ]
+  },
+  "stress": {
+    "case": "stress",
+    "romSha256": "a539bd1c15f7ca4340df4950e223a2ab6bbc843e24dc98a758219668c9d1d20a",
+    "fixture": true,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\stress\\fixture-0uivWZ\\projects\\stg-bench\\build\\Release\\stg-bench.gb",
+    "ramBytes": 7102,
+    "romBytes": 131072,
+    "modes": [
+      {
+        "mode": "DMG",
+        "gaps": {
+          "samples": 600,
+          "mean": 2.953333333333333,
+          "p95": 3,
+          "max": 4,
+          "updatesPerSecond": 20.223758465011286
+        },
+        "elapsedFrameBudgets": {
+          "samples": 600,
+          "mean": 2.953675096832976,
+          "p95": 3.0003417634996583,
+          "max": 4.000341763499658,
+          "updatesPerSecond": 20.22141841668426
+        },
+        "peakShots": 32,
+        "peakEnemies": 3,
+        "peakEntities": 35,
+        "peakOam": 37,
+        "peakScanline": 22,
+        "phases": [],
+        "dropped": 184,
+        "checked": 720,
+        "parity": true,
+        "stateSha256": "c579d95b9a46be3a002a8b531937ea915612415f96db56d1975f2fd70cb84f18"
+      },
+      {
+        "mode": "CGB",
+        "gaps": {
+          "samples": 600,
+          "mean": 1.9316666666666666,
+          "p95": 2,
+          "max": 2,
+          "updatesPerSecond": 30.92018981880932
+        },
+        "elapsedFrameBudgets": {
+          "samples": 600,
+          "mean": 1.9318375484164956,
+          "p95": 2.000170881749829,
+          "max": 2.000911369332422,
+          "updatesPerSecond": 30.91745475646124
+        },
+        "peakShots": 32,
+        "peakEnemies": 3,
+        "peakEntities": 35,
+        "peakOam": 37,
+        "peakScanline": 22,
+        "phases": [],
+        "dropped": 184,
+        "checked": 720,
+        "parity": true,
+        "stateSha256": "aa4e276752d90a278ca0e27bc7fe49c844b05a7a713e8ce49bbd39973a059fe0"
+      }
+    ]
+  },
+  "sourceHashes": [
+    {
+      "path": "engine/caravan/caravan.h",
+      "sha256": "6961f1fdca5647fd1ed2a183a355c2e46188e8f6eda2e61eb11cd55a5989a0ff"
+    },
+    {
+      "path": "engine/caravan/items.c",
+      "sha256": "9877c394838d7c27e9b64e8c1667431149ee8a120870c8001714149498f2ecd5"
+    },
+    {
+      "path": "engine/caravan/runtime.c",
+      "sha256": "de917f95ee21f6c990f9a7c0ca260a931cbaab5d3faa2d925e00b8395d32fcde"
+    },
+    {
+      "path": "engine/caravan/giant-render.h",
+      "sha256": "ca1eb41a7d89a87f78d4b221c8cd96de064fb163831939cefe36b7d6b43cd92f"
+    },
+    {
+      "path": "engine/caravan/bg-bullets.c",
+      "sha256": "83d6efe5f944161c6ee87e651d2f1168212adb413fcd42444395692aea211d3b"
+    },
+    {
+      "path": "engine/caravan/music.c",
+      "sha256": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995"
+    },
+    {
+      "path": "engine/caravan/music.h",
+      "sha256": "7e0f71159080d9fe7342f8cfea26b8f57d8fbbcd50f0df4248673070b93c0187"
+    },
+    {
+      "path": "editor/src/node/compiler.ts",
+      "sha256": "96d6ce1cf0bf537925946bc0a370036b32e5f3438923d9b63f546ff1d990c169"
+    },
+    {
+      "path": "editor/src/node/music-data.ts",
+      "sha256": "c43410b554ada227093d7b9e5aabd4beae6da5e28961002b9b51779ba57e98a7"
+    },
+    {
+      "path": "editor/src/shared/model.ts",
+      "sha256": "5f85078f718ddde3a2b834905e9270c9bee3364d5fcd96e6bb0015f7a921f0a0"
+    },
+    {
+      "path": "editor/src/shared/simulation.ts",
+      "sha256": "86941a59eece6a664bcbdabaa264b631850c4a2772067e54d858327f18b45bed"
+    },
+    {
+      "path": "editor/src/renderer/fields.tsx",
+      "sha256": "c6bee19b8dd852196029d1b668894cdd280ed52cd12f54df5246a95d55cbe4d4"
+    },
+    {
+      "path": "engine/caravan/assets-src/side-score.json",
+      "sha256": "4a2f21edd10c9893af34f050a1e0bb09e0e90fdba4bf62c12c87c3b317c112bf"
+    },
+    {
+      "path": "projects/side-caravan/assets-src/game.json",
+      "sha256": "6c6433c52845343e64a6eb638ced2f90f87f2b329e3a805e346b1601a0850fe5"
+    }
+  ],
+  "limitations": {
+    "stress": {
+      "passed": false,
+      "limits": {
+        "DMG": 2.9,
+        "CGB": 1.85
+      },
+      "actual": [
+        {
+          "mode": "DMG",
+          "framesPerUpdate": 2.953675096832976
+        },
+        {
+          "mode": "CGB",
+          "framesPerUpdate": 1.9318375484164956
+        }
+      ]
+    },
+    "emulicious": "SIDE/STAR: DAPDebugger.evaluate NullPointerException; playback not verified",
+    "bg64Performance": "Not remeasured in this revision",
+    "humanController": false,
+    "humanListening": false,
+    "physicalDmg": false,
+    "physicalCgb": false,
+    "publicRelease": false
+  },
+  "companionBuilds": [
+    {
+      "ok": true,
+      "revision": "07bd41dc8c3e83c9570d68d4f31d5424ad19e0286f5587d2406bd9531d443309",
+      "configuration": "Debug",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\star-caravan\\build\\Debug\\star-caravan.gb",
+      "size": 131072,
+      "ramBytes": 7102,
+      "spriteTiles": 12,
+      "diagnostics": [],
+      "romHash": "ff1706da08192bdbde055e7043471ee5fb13e825abdd88007c405e008787be30",
+      "builtAt": "2026-09-12T11:19:28.490Z",
+      "durationMs": 99841
+    },
+    {
+      "ok": true,
+      "revision": "07bd41dc8c3e83c9570d68d4f31d5424ad19e0286f5587d2406bd9531d443309",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\star-caravan\\build\\Release\\star-caravan.gb",
+      "size": 131072,
+      "ramBytes": 7102,
+      "spriteTiles": 12,
+      "diagnostics": [],
+      "romHash": "ff1706da08192bdbde055e7043471ee5fb13e825abdd88007c405e008787be30",
+      "builtAt": "2026-09-12T11:30:08.408Z",
+      "durationMs": 138312
+    }
+  ],
+  "emulicious": {
+    "side": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\side-caravan\\build\\Debug\\side-caravan.gb",
+      "sha256": "a564989d4fb91d0f3728d7ca7cd965fd707c69ccda31fc35e5f2cce827252f62",
+      "emulator": "Emulicious 2026-03-27",
+      "method": "Unchanged isolated ROM CLI startup; DAP attach, numeric-address reads only",
+      "run": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\emulicious-side-final\\direct-FWeccu",
+      "steps": [
+        {
+          "command": "initialize",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "supportsSetExpression": false,
+              "supportsDisassembleRequest": false,
+              "supportsRestartFrame": false,
+              "supportsTerminateRequest": false,
+              "supportsConfigurationDoneRequest": false,
+              "supportsRestartRequest": false,
+              "supportsGotoTargetsRequest": false,
+              "supportsConditionalBreakpoints": true,
+              "supportsModulesRequest": false,
+              "supportsCancelRequest": false,
+              "supportsHitConditionalBreakpoints": false,
+              "supportsLogPoints": true,
+              "supportsReadMemoryRequest": false,
+              "exceptionBreakpointFilters": [
+                {
+                  "filter": "Exception-5",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on inconsistent state after interrupt"
+                },
+                {
+                  "filter": "Exception-4",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on read of uninitialized memory"
+                },
+                {
+                  "filter": "Exception-3",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on execution of data"
+                },
+                {
+                  "filter": "Exception-2",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on bank swap at PC"
+                },
+                {
+                  "filter": "Exception-1",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on push to ROM"
+                }
+              ],
+              "supportsStepInTargetsRequest": false,
+              "supportsLoadedSourcesRequest": false,
+              "supportsTerminateThreadsRequest": false,
+              "supportsExceptionInfoRequest": false,
+              "supportsValueFormattingOptions": false,
+              "supportsCompletionsRequest": false,
+              "supportTerminateDebuggee": false,
+              "supportsSteppingGranularity": false,
+              "supportsDelayedStackTraceLoading": false,
+              "supportsDataBreakpoints": false,
+              "supportsEvaluateForHovers": true,
+              "supportsFunctionBreakpoints": true,
+              "supportsBreakpointLocationsRequest": false,
+              "supportsInstructionBreakpoints": false,
+              "supportsStepBack": true,
+              "supportsExceptionOptions": false,
+              "supportsSetVariable": false,
+              "supportsClipboardContext": false
+            },
+            "seq": 1,
+            "request_seq": 1,
+            "command": "initialize"
+          }
+        },
+        {
+          "event": {
+            "type": "event",
+            "event": "terminated",
+            "seq": 2
+          }
+        },
+        {
+          "command": "attach",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 3,
+            "request_seq": 2,
+            "command": "attach"
+          }
+        },
+        {
+          "command": "threads",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "threads": [
+                {
+                  "name": "Thread",
+                  "id": 1
+                }
+              ]
+            },
+            "seq": 4,
+            "request_seq": 3,
+            "command": "threads"
+          }
+        },
+        {
+          "command": "pause",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 5,
+            "request_seq": 4,
+            "command": "pause"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 6,
+            "request_seq": 5,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 7,
+            "request_seq": 6,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 8,
+            "request_seq": 7,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 9,
+            "request_seq": 8,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "continue",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "allThreadsContinued": false
+            },
+            "seq": 10,
+            "request_seq": 9,
+            "command": "continue"
+          }
+        },
+        {
+          "command": "pause",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 11,
+            "request_seq": 10,
+            "command": "pause"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 12,
+            "request_seq": 11,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 13,
+            "request_seq": 12,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 14,
+            "request_seq": 13,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 15,
+            "request_seq": 14,
+            "command": "evaluate"
+          }
+        }
+      ],
+      "stderr": "java.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\n",
+      "bootExecutionVerified": false,
+      "gameplayVerified": false,
+      "command": {
+        "executable": "C:\\homebrew\\projects\\dev-gb\\.tools\\emulicious\\java\\bin\\java.exe",
+        "args": [
+          "-Duser.home=C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\emulicious-side-final\\direct-FWeccu",
+          "-Dsun.java2d.d3d=false",
+          "-jar",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\emulicious-side-final\\direct-FWeccu\\Emulicious.jar",
+          "-remotedebug",
+          "50998",
+          "-muted",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\emulicious-side-final\\direct-FWeccu\\side-caravan.gb"
+        ]
+      },
+      "snapshots": [
+        {
+          "pc": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 6,
+            "request_seq": 5,
+            "command": "evaluate"
+          },
+          "frame": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 7,
+            "request_seq": 6,
+            "command": "evaluate"
+          },
+          "scene": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 8,
+            "request_seq": 7,
+            "command": "evaluate"
+          },
+          "cgb": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 9,
+            "request_seq": 8,
+            "command": "evaluate"
+          }
+        },
+        {
+          "pc": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 12,
+            "request_seq": 11,
+            "command": "evaluate"
+          },
+          "frame": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 13,
+            "request_seq": 12,
+            "command": "evaluate"
+          },
+          "scene": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 14,
+            "request_seq": 13,
+            "command": "evaluate"
+          },
+          "cgb": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 15,
+            "request_seq": 14,
+            "command": "evaluate"
+          }
+        }
+      ],
+      "limitation": "Connection alone is not execution evidence; inspect response errors."
+    },
+    "star": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\star-caravan\\build\\Debug\\star-caravan.gb",
+      "sha256": "ff1706da08192bdbde055e7043471ee5fb13e825abdd88007c405e008787be30",
+      "emulator": "Emulicious 2026-03-27",
+      "method": "Unchanged isolated ROM CLI startup; DAP attach, numeric-address reads only",
+      "run": "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\emulicious-star-final\\direct-hxGI9o",
+      "steps": [
+        {
+          "command": "initialize",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "supportsSetExpression": false,
+              "supportsDisassembleRequest": false,
+              "supportsRestartFrame": false,
+              "supportsTerminateRequest": false,
+              "supportsConfigurationDoneRequest": false,
+              "supportsRestartRequest": false,
+              "supportsGotoTargetsRequest": false,
+              "supportsConditionalBreakpoints": true,
+              "supportsModulesRequest": false,
+              "supportsCancelRequest": false,
+              "supportsHitConditionalBreakpoints": false,
+              "supportsLogPoints": true,
+              "supportsReadMemoryRequest": false,
+              "exceptionBreakpointFilters": [
+                {
+                  "filter": "Exception-5",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on inconsistent state after interrupt"
+                },
+                {
+                  "filter": "Exception-4",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on read of uninitialized memory"
+                },
+                {
+                  "filter": "Exception-3",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on execution of data"
+                },
+                {
+                  "filter": "Exception-2",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on bank swap at PC"
+                },
+                {
+                  "filter": "Exception-1",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on push to ROM"
+                }
+              ],
+              "supportsStepInTargetsRequest": false,
+              "supportsLoadedSourcesRequest": false,
+              "supportsTerminateThreadsRequest": false,
+              "supportsExceptionInfoRequest": false,
+              "supportsValueFormattingOptions": false,
+              "supportsCompletionsRequest": false,
+              "supportTerminateDebuggee": false,
+              "supportsSteppingGranularity": false,
+              "supportsDelayedStackTraceLoading": false,
+              "supportsDataBreakpoints": false,
+              "supportsEvaluateForHovers": true,
+              "supportsFunctionBreakpoints": true,
+              "supportsBreakpointLocationsRequest": false,
+              "supportsInstructionBreakpoints": false,
+              "supportsStepBack": true,
+              "supportsExceptionOptions": false,
+              "supportsSetVariable": false,
+              "supportsClipboardContext": false
+            },
+            "seq": 1,
+            "request_seq": 1,
+            "command": "initialize"
+          }
+        },
+        {
+          "event": {
+            "type": "event",
+            "event": "terminated",
+            "seq": 2
+          }
+        },
+        {
+          "command": "attach",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 3,
+            "request_seq": 2,
+            "command": "attach"
+          }
+        },
+        {
+          "command": "threads",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "threads": [
+                {
+                  "name": "Thread",
+                  "id": 1
+                }
+              ]
+            },
+            "seq": 4,
+            "request_seq": 3,
+            "command": "threads"
+          }
+        },
+        {
+          "command": "pause",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 5,
+            "request_seq": 4,
+            "command": "pause"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 6,
+            "request_seq": 5,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 7,
+            "request_seq": 6,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 8,
+            "request_seq": 7,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 9,
+            "request_seq": 8,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "continue",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "allThreadsContinued": false
+            },
+            "seq": 10,
+            "request_seq": 9,
+            "command": "continue"
+          }
+        },
+        {
+          "command": "pause",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 11,
+            "request_seq": 10,
+            "command": "pause"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 12,
+            "request_seq": 11,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 13,
+            "request_seq": 12,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 14,
+            "request_seq": 13,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 15,
+            "request_seq": 14,
+            "command": "evaluate"
+          }
+        }
+      ],
+      "stderr": "java.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\n",
+      "bootExecutionVerified": false,
+      "gameplayVerified": false,
+      "command": {
+        "executable": "C:\\homebrew\\projects\\dev-gb\\.tools\\emulicious\\java\\bin\\java.exe",
+        "args": [
+          "-Duser.home=C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\emulicious-star-final\\direct-hxGI9o",
+          "-Dsun.java2d.d3d=false",
+          "-jar",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\emulicious-star-final\\direct-hxGI9o\\Emulicious.jar",
+          "-remotedebug",
+          "62416",
+          "-muted",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\side-v03\\emulicious-star-final\\direct-hxGI9o\\side-caravan.gb"
+        ]
+      },
+      "snapshots": [
+        {
+          "pc": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 6,
+            "request_seq": 5,
+            "command": "evaluate"
+          },
+          "frame": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 7,
+            "request_seq": 6,
+            "command": "evaluate"
+          },
+          "scene": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 8,
+            "request_seq": 7,
+            "command": "evaluate"
+          },
+          "cgb": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 9,
+            "request_seq": 8,
+            "command": "evaluate"
+          }
+        },
+        {
+          "pc": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 12,
+            "request_seq": 11,
+            "command": "evaluate"
+          },
+          "frame": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 13,
+            "request_seq": 12,
+            "command": "evaluate"
+          },
+          "scene": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 14,
+            "request_seq": 13,
+            "command": "evaluate"
+          },
+          "cgb": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 15,
+            "request_seq": 14,
+            "command": "evaluate"
+          }
+        }
+      ],
+      "limitation": "Connection alone is not execution evidence; inspect response errors."
+    }
+  },
+  "musicRecordings": [
+    {
+      "path": ".cache/side-v03/music/35-side-title.wav",
+      "sha256": "c0574ceda43300c60ee9fa9d8902fc0ae3d8d44c74e3b8d4d9662b36e2685868"
+    },
+    {
+      "path": ".cache/side-v03/music/36-side-stage.wav",
+      "sha256": "3ec9cdc473c828a18d783ef2ba15e4fe45560310e291cd626660b1c3863c6765"
+    },
+    {
+      "path": ".cache/side-v03/music/37-side-boss.wav",
+      "sha256": "c26f900b0fe2c10224bb693143a742334f2e7a924bd8a42adc04432eb213f43d"
+    }
+  ]
+}

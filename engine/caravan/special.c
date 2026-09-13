@@ -22,6 +22,7 @@ uint8_t ce_home(uint8_t angle, int16_t x, int16_t y) BANKED {
 
 void ce_bomb_effect(void) BANKED {
     uint8_t frame=0;
+    if (ce_bomb_live) { ce_bomb_left = ce_bomb_frames; ce_sound(2); return; }
     ce_bomb_left=ce_bomb_frames;ce_render();ce_scene=11;ce_bomb_setup();ce_sound(ce_bomb_styles[ce_character]?5u:2u);
     for(ce_bomb_left=ce_bomb_frames;ce_bomb_left;--ce_bomb_left,++frame){
         vsync();ce_bomb_draw((frame/ce_bomb_period)&1u);ce_audio_sync();ce_trace_write();
@@ -66,7 +67,7 @@ void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t fri
         if (p->kind == 4u) base += sequence * p->rotation;
         for (n = 0; n != p->count; ++n) {
             angle = (base + p->angles[n]) & 15u;
-            if (!friendly && ce_battle_mode == 2u) {
+            if (!friendly && ce_battle_mode >= 2u) {
                 ce_bg_request.x = px; ce_bg_request.y = py;
                 ce_bg_request.vx = p->velocity[angle * 2u]; ce_bg_request.vy = p->velocity[angle * 2u + 1u];
                 ce_bg_request.life = p->lifetime; ce_bg_request.damage = p->damage;
@@ -98,7 +99,7 @@ void ce_damage_actor(uint8_t slot, uint8_t damage) BANKED {
         const CE_Phase *p=&actor->phase[target->phase];
         if(p->until && (p->hp || actor->phase[target->phase+1u].intro_frames) && target->hp <= (p->hp?0u:p->threshold)+damage){
             target->hp=p->hp?0u:p->threshold;ce_boss_invulnerable=1;ce_clear_combat(0);
-            if(ce_battle_mode==2u)ce_bg_begin();ce_hud();return;
+            if(ce_battle_mode>=2u)ce_bg_begin();ce_hud();return;
         }
     }
     if(target->hp<=damage){
@@ -115,5 +116,5 @@ void ce_bomb_apply(void) BANKED {
         e=&ce_entities[i];
         if((e->kind==CE_ENEMY||e->kind==CE_BOSS)&& e->x>=0 && e->x<2560 && e->y>=0 && e->y<2304)ce_damage_actor(i,ce_bomb_damage);
     }
-    if(ce_battle_mode==2u)ce_bg_begin();
+    if(ce_battle_mode>=2u)ce_bg_begin();
 }

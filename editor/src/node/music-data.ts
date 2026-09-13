@@ -28,11 +28,13 @@ export function generateMusic(root: string, target: string): string[] {
             "utf8",
         ),
     );
-    const tracks: ArrangedSong[] = score.tracks;
+    const side = JSON.parse(fs.readFileSync(path.join(root,"engine/caravan/assets-src/side-score.json"),"utf8"));
+    if(side.format !== "caravan-banked-score-v1" || !Array.isArray(side.tracks) || side.tracks.length !== 3) throw Error("Invalid SIDE CARAVAN soundtrack");
+    const tracks: ArrangedSong[] = [...score.tracks, ...side.tracks];
     if (
         score.format !== "caravan-banked-score-v1" ||
         !Array.isArray(tracks) ||
-        tracks.length !== 19
+        tracks.length !== 22
     )
         throw Error("Invalid banked soundtrack");
     const sources: string[] = [],

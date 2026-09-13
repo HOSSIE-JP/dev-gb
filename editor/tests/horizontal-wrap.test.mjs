@@ -19,7 +19,7 @@ const root = path.resolve(import.meta.dirname, "../.."),
     lib = createRequire(import.meta.url)("../build/library.cjs");
 
 function fixture(axis) {
-    const game = lib.readGame(root, "side-caravan"),
+    const game = structuredClone(createRequire(import.meta.url)("../scripts/create-side-caravan.cjs").game),
         horizontal = axis === "horizontal";
     game.stageFade = false;
     game.timeLimit = false;

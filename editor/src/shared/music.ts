@@ -35,6 +35,9 @@ export const MUSIC_TRACKS = [
     {id: 32, label: "紅魔・宵闇の森：宵闇の散歩道"},
     {id: 33, label: "紅魔・ルーミア：月を隠すリボン"},
     {id: 34, label: "紅魔巡礼 · おかえり、夜明けの空（エンディング）"},
+    {id:35,label:"SIDE CARAVAN · STARLIGHT IGNITION"},
+    {id:36,label:"SIDE CARAVAN · ORBITAL OVERDRIVE"},
+    {id:37,label:"SIDE CARAVAN · REACTOR HEART"},
 ] as const;
 
 export type MusicTrack = (typeof MUSIC_TRACKS)[number]["id"];

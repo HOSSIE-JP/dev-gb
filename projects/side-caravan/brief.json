@@ -7,13 +7,17 @@
   "timeLimit": false,
   "lives": 3,
   "creative": {
-    "theme": "宇宙施設への接近、戦艦甲板、炉心区画",
-    "weapons": "通常・2連・3方向・5方向",
+    "theme": "1面内で宇宙施設→戦艦甲板→炉心へ連続進行",
+    "weapons": "通常・2連・高密度3方向、Lで集中パルスレーザー、Hでバリア",
     "controls": "A射撃 Bボム",
-    "destructibles": 281
+    "destructibles": 285,
+    "scrollSpeeds": [
+      1
+    ],
+    "boss": "80×80デザイン、160×144 BGキャンバス、2コマアニメ、胴体4矩形、弱点別、BG弾32発"
   },
   "constraints": {
-    "maxScore": 34320,
-    "durationGameSeconds": 180
+    "maxScore": 29040,
+    "durationGameSeconds": 60
   }
 }
