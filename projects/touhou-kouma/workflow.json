@@ -1,15 +1,25 @@
 {
-  "version": "0.16-continue-and-type-logo",
-  "updatedAt": "2026-09-12",
+  "version": "0.17-current-engine-rebuild",
+  "updatedAt": "2026-09-13",
   "status": "playtest-ready",
   "approved": false,
   "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2",
+  "engineRevision": "28c239642274150b5e5d48dc4afc0e5416149a12",
   "rom": {
-    "path": "build/Release/touhou-kouma-v16.gb",
-    "sha256": "408ccecf2ea73cd6d098642fdf4db536cfbf9034b7d43dc8df1cd51b5239f16c",
+    "path": "build/Release/touhou-kouma-v17.gb",
+    "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
     "bytes": 1048576
   },
   "previous": [
+    {
+      "version": "0.16-continue-and-type-logo",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v16.gb",
+        "sha256": "408ccecf2ea73cd6d098642fdf4db536cfbf9034b7d43dc8df1cd51b5239f16c",
+        "bytes": 1048576
+      },
+      "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2"
+    },
     {
       "version": "0.15-pop-brand-startup",
       "rom": {
@@ -102,22 +112,18 @@
     }
   ],
   "checks": {
-    "standardTests": 89,
+    "standardTests": 122,
+    "productionRoadBombCases": 4,
+    "productionBossBombCases": 4,
     "productionContinueCases": 4,
-    "laterStageFixtureCases": 12,
-    "nativeContinueFixtureCases": 2,
-    "productionStartupCases": 6,
-    "unchangedImages": 77,
-    "debugReleaseIdentical": true,
-    "editableTimingsSavedReopened": true,
-    "characterPreviews": true,
-    "rankingSRAMReload": true
+    "nativeBombCases": 4,
+    "unchangedSourceFiles": 79,
+    "debugReleaseIdentical": true
   },
   "pending": [
-    "Physical hardware has not been verified.",
-    "No new normal-difficulty full-campaign clear.",
-    "Emulicious initialize succeeded, but ROM launch timed out after 60 seconds.",
-    "No new performance or human audio assessment."
+    "Physical DMG/CGB hardware was not tested.",
+    "Emulicious connected but evaluate failed with NullPointerException; execution remains unverified.",
+    "No new full-campaign clear, human audio assessment or performance benchmark."
   ],
-  "evidence": "../../docs/touhou-kouma-v16.md"
+  "evidence": "../../docs/touhou-kouma-v17.md"
 }

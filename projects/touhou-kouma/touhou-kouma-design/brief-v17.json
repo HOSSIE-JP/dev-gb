@@ -1,0 +1,25 @@
+{
+  "request": "Rebuild Touhou Kouma with the updated engine, checking bomb presentation compatibility.",
+  "projectId": "touhou-kouma",
+  "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2",
+  "engineRevision": "28c239642274150b5e5d48dc4afc0e5416149a12",
+  "gameSourceChanged": false,
+  "bomb": {
+    "live": false,
+    "reason": "Omitted optional live setting retains the authored character-specific image bomb.",
+    "button": "A+B",
+    "frames": 48,
+    "flashPeriod": 2,
+    "stock": 2,
+    "damage": 30,
+    "images": [
+      "bomb-yinyang",
+      "bomb-spark"
+    ]
+  },
+  "rom": {
+    "path": "build/Release/touhou-kouma-v17.gb",
+    "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+    "bytes": 1048576
+  }
+}

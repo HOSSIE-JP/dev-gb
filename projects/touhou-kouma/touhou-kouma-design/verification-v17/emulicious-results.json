@@ -1,0 +1,455 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\initial\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+  "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+  "emulator": "Emulicious 2026-03-27",
+  "method": "Unchanged isolated ROM CLI startup; DAP attach, numeric-address reads only",
+  "run": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\emulicious\\direct-tAwG1s",
+  "steps": [
+    {
+      "command": "initialize",
+      "response": {
+        "success": true,
+        "type": "response",
+        "body": {
+          "supportsSetExpression": false,
+          "supportsDisassembleRequest": false,
+          "supportsRestartFrame": false,
+          "supportsTerminateRequest": false,
+          "supportsConfigurationDoneRequest": false,
+          "supportsRestartRequest": false,
+          "supportsGotoTargetsRequest": false,
+          "supportsConditionalBreakpoints": true,
+          "supportsModulesRequest": false,
+          "supportsCancelRequest": false,
+          "supportsHitConditionalBreakpoints": false,
+          "supportsLogPoints": true,
+          "supportsReadMemoryRequest": false,
+          "exceptionBreakpointFilters": [
+            {
+              "filter": "Exception-5",
+              "default": true,
+              "supportsCondition": false,
+              "label": "Break on inconsistent state after interrupt"
+            },
+            {
+              "filter": "Exception-4",
+              "default": true,
+              "supportsCondition": false,
+              "label": "Break on read of uninitialized memory"
+            },
+            {
+              "filter": "Exception-3",
+              "default": true,
+              "supportsCondition": false,
+              "label": "Break on execution of data"
+            },
+            {
+              "filter": "Exception-2",
+              "default": true,
+              "supportsCondition": false,
+              "label": "Break on bank swap at PC"
+            },
+            {
+              "filter": "Exception-1",
+              "default": true,
+              "supportsCondition": false,
+              "label": "Break on push to ROM"
+            }
+          ],
+          "supportsStepInTargetsRequest": false,
+          "supportsLoadedSourcesRequest": false,
+          "supportsTerminateThreadsRequest": false,
+          "supportsExceptionInfoRequest": false,
+          "supportsValueFormattingOptions": false,
+          "supportsCompletionsRequest": false,
+          "supportTerminateDebuggee": false,
+          "supportsSteppingGranularity": false,
+          "supportsDelayedStackTraceLoading": false,
+          "supportsDataBreakpoints": false,
+          "supportsEvaluateForHovers": true,
+          "supportsFunctionBreakpoints": true,
+          "supportsBreakpointLocationsRequest": false,
+          "supportsInstructionBreakpoints": false,
+          "supportsStepBack": true,
+          "supportsExceptionOptions": false,
+          "supportsSetVariable": false,
+          "supportsClipboardContext": false
+        },
+        "seq": 1,
+        "request_seq": 1,
+        "command": "initialize"
+      }
+    },
+    {
+      "event": {
+        "type": "event",
+        "event": "terminated",
+        "seq": 2
+      }
+    },
+    {
+      "command": "attach",
+      "response": {
+        "success": true,
+        "type": "response",
+        "seq": 3,
+        "request_seq": 2,
+        "command": "attach"
+      }
+    },
+    {
+      "command": "threads",
+      "response": {
+        "success": true,
+        "type": "response",
+        "body": {
+          "threads": [
+            {
+              "name": "Thread",
+              "id": 1
+            }
+          ]
+        },
+        "seq": 4,
+        "request_seq": 3,
+        "command": "threads"
+      }
+    },
+    {
+      "command": "pause",
+      "response": {
+        "success": true,
+        "type": "response",
+        "seq": 5,
+        "request_seq": 4,
+        "command": "pause"
+      }
+    },
+    {
+      "command": "evaluate",
+      "response": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 6,
+        "request_seq": 5,
+        "command": "evaluate"
+      }
+    },
+    {
+      "command": "evaluate",
+      "response": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 7,
+        "request_seq": 6,
+        "command": "evaluate"
+      }
+    },
+    {
+      "command": "evaluate",
+      "response": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 8,
+        "request_seq": 7,
+        "command": "evaluate"
+      }
+    },
+    {
+      "command": "evaluate",
+      "response": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 9,
+        "request_seq": 8,
+        "command": "evaluate"
+      }
+    },
+    {
+      "command": "continue",
+      "response": {
+        "success": true,
+        "type": "response",
+        "body": {
+          "allThreadsContinued": false
+        },
+        "seq": 10,
+        "request_seq": 9,
+        "command": "continue"
+      }
+    },
+    {
+      "command": "pause",
+      "response": {
+        "success": true,
+        "type": "response",
+        "seq": 11,
+        "request_seq": 10,
+        "command": "pause"
+      }
+    },
+    {
+      "command": "evaluate",
+      "response": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 12,
+        "request_seq": 11,
+        "command": "evaluate"
+      }
+    },
+    {
+      "command": "evaluate",
+      "response": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 13,
+        "request_seq": 12,
+        "command": "evaluate"
+      }
+    },
+    {
+      "command": "evaluate",
+      "response": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 14,
+        "request_seq": 13,
+        "command": "evaluate"
+      }
+    },
+    {
+      "command": "evaluate",
+      "response": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 15,
+        "request_seq": 14,
+        "command": "evaluate"
+      }
+    }
+  ],
+  "stderr": "java.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\n",
+  "bootExecutionVerified": false,
+  "gameplayVerified": false,
+  "command": {
+    "executable": "C:\\homebrew\\projects\\dev-gb\\.tools\\emulicious\\java\\bin\\java.exe",
+    "args": [
+      "-Duser.home=C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\emulicious\\direct-tAwG1s",
+      "-Dsun.java2d.d3d=false",
+      "-jar",
+      "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\emulicious\\direct-tAwG1s\\Emulicious.jar",
+      "-remotedebug",
+      "52332",
+      "-muted",
+      "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\emulicious\\direct-tAwG1s\\side-caravan.gb"
+    ]
+  },
+  "snapshots": [
+    {
+      "pc": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 6,
+        "request_seq": 5,
+        "command": "evaluate"
+      },
+      "frame": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 7,
+        "request_seq": 6,
+        "command": "evaluate"
+      },
+      "scene": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 8,
+        "request_seq": 7,
+        "command": "evaluate"
+      },
+      "cgb": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 9,
+        "request_seq": 8,
+        "command": "evaluate"
+      }
+    },
+    {
+      "pc": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 12,
+        "request_seq": 11,
+        "command": "evaluate"
+      },
+      "frame": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 13,
+        "request_seq": 12,
+        "command": "evaluate"
+      },
+      "scene": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 14,
+        "request_seq": 13,
+        "command": "evaluate"
+      },
+      "cgb": {
+        "success": false,
+        "type": "response",
+        "message": "exception",
+        "body": {
+          "error": {
+            "showUser": true,
+            "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+            "id": 1,
+            "sendTelemetry": false
+          }
+        },
+        "seq": 15,
+        "request_seq": 14,
+        "command": "evaluate"
+      }
+    }
+  ],
+  "limitation": "Connection alone is not execution evidence; inspect response errors."
+}

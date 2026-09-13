@@ -1,0 +1,91 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\initial\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+  "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+  "fixture": false,
+  "results": [
+    {
+      "label": "DMG-reimu",
+      "character": 0,
+      "speed": 2.25,
+      "bombFramesObserved": 41,
+      "visible": 21,
+      "blank": 20,
+      "bitmapLitPixels": 2585,
+      "blankLitPixels": 76,
+      "spriteTilesPreserved": true,
+      "stockSequence": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "heldChordSingleActivation": true,
+      "zeroStockRejected": true,
+      "menuCancelAndWrap": true,
+      "refillAfterRealCollision": true
+    },
+    {
+      "label": "DMG-marisa",
+      "character": 1,
+      "speed": 3.25,
+      "bombFramesObserved": 41,
+      "visible": 21,
+      "blank": 20,
+      "bitmapLitPixels": 3776,
+      "blankLitPixels": 69,
+      "spriteTilesPreserved": true,
+      "stockSequence": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "heldChordSingleActivation": true,
+      "zeroStockRejected": true,
+      "menuCancelAndWrap": true,
+      "refillAfterRealCollision": true
+    },
+    {
+      "label": "CGB-reimu",
+      "character": 0,
+      "speed": 2.25,
+      "bombFramesObserved": 41,
+      "visible": 21,
+      "blank": 20,
+      "bitmapLitPixels": 2585,
+      "blankLitPixels": 76,
+      "spriteTilesPreserved": true,
+      "stockSequence": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "heldChordSingleActivation": true,
+      "zeroStockRejected": true,
+      "menuCancelAndWrap": true,
+      "refillAfterRealCollision": true
+    },
+    {
+      "label": "CGB-marisa",
+      "character": 1,
+      "speed": 3.25,
+      "bombFramesObserved": 41,
+      "visible": 21,
+      "blank": 20,
+      "bitmapLitPixels": 3776,
+      "blankLitPixels": 69,
+      "spriteTilesPreserved": true,
+      "stockSequence": [
+        2,
+        1,
+        0,
+        2
+      ],
+      "heldChordSingleActivation": true,
+      "zeroStockRejected": true,
+      "menuCancelAndWrap": true,
+      "refillAfterRealCollision": true
+    }
+  ]
+}

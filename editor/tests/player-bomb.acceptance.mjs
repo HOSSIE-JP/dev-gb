@@ -10,7 +10,8 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb])for(const character of [0,1]
  const until=(f,n=1200)=>{for(let i=0;i<n;i++){const s=snapshot();if(f(s))return s;frames(gb,1);}const s=snapshot();fs.writeFileSync(path.join(out,label+'-failure.png'),screenshot(gb));console.log({scene:s.scene,shown:s.shown,tick:s.tick,x:s.x,bombs:s.bombs,pause:s.byte('_ce_pause')});throw Error(label+' timeout '+f);};
  const tap=k=>{gb.key_press(k);frames(gb,2);gb.key_lift(k);frames(gb,2);};
  try{
-  frames(gb,240);tap(PadKey.Start);until(s=>s.shown===10);frames(gb,2);
+  // Startup logos can precede the title; wait for their normal completion.
+  frames(gb,240);until(s=>s.scene===0&&s.shown===0);tap(PadKey.Start);until(s=>s.shown===10);frames(gb,2);
   fs.writeFileSync(path.join(out,label+'-select-default.png'),screenshot(gb));
   // Wrap left to the last choice and cancel; reopening must default to Reimu.
   tap(PadKey.Left);until(s=>s.byte('_ce_character')===1&&s.shown===10);tap(PadKey.B);until(s=>s.shown===0);

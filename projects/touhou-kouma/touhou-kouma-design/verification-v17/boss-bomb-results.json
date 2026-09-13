@@ -1,0 +1,66 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\initial\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+  "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+  "results": [
+    {
+      "label": "DMG-reimu",
+      "fixture": false,
+      "memoryWrites": false,
+      "phase": 1,
+      "hpBefore": 100,
+      "hpAfter": 70,
+      "bulletsCleared": 2,
+      "stockBefore": 2,
+      "stockAfter": 1,
+      "spriteAtlasPreserved": true,
+      "visible": 23,
+      "blank": 22,
+      "bgArenaResumed": true
+    },
+    {
+      "label": "DMG-marisa",
+      "fixture": false,
+      "memoryWrites": false,
+      "phase": 1,
+      "hpBefore": 100,
+      "hpAfter": 70,
+      "bulletsCleared": 2,
+      "stockBefore": 2,
+      "stockAfter": 1,
+      "spriteAtlasPreserved": true,
+      "visible": 23,
+      "blank": 22,
+      "bgArenaResumed": true
+    },
+    {
+      "label": "CGB-reimu",
+      "fixture": false,
+      "memoryWrites": false,
+      "phase": 1,
+      "hpBefore": 100,
+      "hpAfter": 70,
+      "bulletsCleared": 2,
+      "stockBefore": 2,
+      "stockAfter": 1,
+      "spriteAtlasPreserved": true,
+      "visible": 23,
+      "blank": 22,
+      "bgArenaResumed": true
+    },
+    {
+      "label": "CGB-marisa",
+      "fixture": false,
+      "memoryWrites": false,
+      "phase": 1,
+      "hpBefore": 100,
+      "hpAfter": 70,
+      "bulletsCleared": 2,
+      "stockBefore": 2,
+      "stockAfter": 1,
+      "spriteAtlasPreserved": true,
+      "visible": 23,
+      "blank": 22,
+      "bgArenaResumed": true
+    }
+  ]
+}

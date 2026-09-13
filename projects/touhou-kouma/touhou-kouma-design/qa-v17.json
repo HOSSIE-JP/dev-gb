@@ -1,0 +1,380 @@
+{
+  "date": "2026-09-13",
+  "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2",
+  "engineRevision": "28c239642274150b5e5d48dc4afc0e5416149a12",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v17.gb",
+    "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+    "bytes": 1048576
+  },
+  "checks": {
+    "standardTests": 122,
+    "productionRoadBombCases": 4,
+    "productionBossBombCases": 4,
+    "productionContinueCases": 4,
+    "nativeBombCases": 4,
+    "unchangedSourceFiles": 79,
+    "debugReleaseIdentical": true
+  },
+  "build": {
+    "ramBytes": 7102,
+    "ramCapacity": 8192,
+    "minStackReserve": 1024,
+    "spriteTiles": 80,
+    "diagnostics": []
+  },
+  "sourcePreservation": {
+    "gameJsonAndAllImagesUnchanged": true,
+    "files": 79
+  },
+  "production": {
+    "player-bomb": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\initial\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+      "fixture": false,
+      "results": [
+        {
+          "label": "DMG-reimu",
+          "character": 0,
+          "speed": 2.25,
+          "bombFramesObserved": 41,
+          "visible": 21,
+          "blank": 20,
+          "bitmapLitPixels": 2585,
+          "blankLitPixels": 76,
+          "spriteTilesPreserved": true,
+          "stockSequence": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "heldChordSingleActivation": true,
+          "zeroStockRejected": true,
+          "menuCancelAndWrap": true,
+          "refillAfterRealCollision": true
+        },
+        {
+          "label": "DMG-marisa",
+          "character": 1,
+          "speed": 3.25,
+          "bombFramesObserved": 41,
+          "visible": 21,
+          "blank": 20,
+          "bitmapLitPixels": 3776,
+          "blankLitPixels": 69,
+          "spriteTilesPreserved": true,
+          "stockSequence": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "heldChordSingleActivation": true,
+          "zeroStockRejected": true,
+          "menuCancelAndWrap": true,
+          "refillAfterRealCollision": true
+        },
+        {
+          "label": "CGB-reimu",
+          "character": 0,
+          "speed": 2.25,
+          "bombFramesObserved": 41,
+          "visible": 21,
+          "blank": 20,
+          "bitmapLitPixels": 2585,
+          "blankLitPixels": 76,
+          "spriteTilesPreserved": true,
+          "stockSequence": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "heldChordSingleActivation": true,
+          "zeroStockRejected": true,
+          "menuCancelAndWrap": true,
+          "refillAfterRealCollision": true
+        },
+        {
+          "label": "CGB-marisa",
+          "character": 1,
+          "speed": 3.25,
+          "bombFramesObserved": 41,
+          "visible": 21,
+          "blank": 20,
+          "bitmapLitPixels": 3776,
+          "blankLitPixels": 69,
+          "spriteTilesPreserved": true,
+          "stockSequence": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "heldChordSingleActivation": true,
+          "zeroStockRejected": true,
+          "menuCancelAndWrap": true,
+          "refillAfterRealCollision": true
+        }
+      ]
+    },
+    "boss-bomb": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\initial\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+      "results": [
+        {
+          "label": "DMG-reimu",
+          "fixture": false,
+          "memoryWrites": false,
+          "phase": 1,
+          "hpBefore": 100,
+          "hpAfter": 70,
+          "bulletsCleared": 2,
+          "stockBefore": 2,
+          "stockAfter": 1,
+          "spriteAtlasPreserved": true,
+          "visible": 23,
+          "blank": 22,
+          "bgArenaResumed": true
+        },
+        {
+          "label": "DMG-marisa",
+          "fixture": false,
+          "memoryWrites": false,
+          "phase": 1,
+          "hpBefore": 100,
+          "hpAfter": 70,
+          "bulletsCleared": 2,
+          "stockBefore": 2,
+          "stockAfter": 1,
+          "spriteAtlasPreserved": true,
+          "visible": 23,
+          "blank": 22,
+          "bgArenaResumed": true
+        },
+        {
+          "label": "CGB-reimu",
+          "fixture": false,
+          "memoryWrites": false,
+          "phase": 1,
+          "hpBefore": 100,
+          "hpAfter": 70,
+          "bulletsCleared": 2,
+          "stockBefore": 2,
+          "stockAfter": 1,
+          "spriteAtlasPreserved": true,
+          "visible": 23,
+          "blank": 22,
+          "bgArenaResumed": true
+        },
+        {
+          "label": "CGB-marisa",
+          "fixture": false,
+          "memoryWrites": false,
+          "phase": 1,
+          "hpBefore": 100,
+          "hpAfter": 70,
+          "bulletsCleared": 2,
+          "stockBefore": 2,
+          "stockAfter": 1,
+          "spriteAtlasPreserved": true,
+          "visible": 23,
+          "blank": 22,
+          "bgArenaResumed": true
+        }
+      ]
+    },
+    "continue": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\initial\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+      "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2",
+      "results": [
+        {
+          "label": "DMG-reimu",
+          "fixture": false,
+          "memoryWrites": false,
+          "lostStage": 0,
+          "lives": [
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "lostScore": 1200,
+          "rankingPersistedBeforeChoice": true,
+          "menuPixelMatch": true,
+          "sameCharacter": true,
+          "restartedStage": 0,
+          "restartedScore": 0,
+          "restartedLives": 5,
+          "restartedBombs": 2,
+          "frames": 4266
+        },
+        {
+          "label": "DMG-marisa",
+          "fixture": false,
+          "memoryWrites": false,
+          "lostStage": 0,
+          "lives": [
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "lostScore": 720,
+          "rankingPersistedBeforeChoice": true,
+          "menuPixelMatch": true,
+          "sameCharacter": true,
+          "restartedStage": 0,
+          "restartedScore": 0,
+          "restartedLives": 5,
+          "restartedBombs": 2,
+          "frames": 4750
+        },
+        {
+          "label": "CGB-reimu",
+          "fixture": false,
+          "memoryWrites": false,
+          "lostStage": 0,
+          "lives": [
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "lostScore": 1200,
+          "rankingPersistedBeforeChoice": true,
+          "menuPixelMatch": true,
+          "sameCharacter": true,
+          "restartedStage": 0,
+          "restartedScore": 0,
+          "restartedLives": 5,
+          "restartedBombs": 2,
+          "frames": 4324
+        },
+        {
+          "label": "CGB-marisa",
+          "fixture": false,
+          "memoryWrites": false,
+          "lostStage": 0,
+          "lives": [
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "lostScore": 720,
+          "rankingPersistedBeforeChoice": true,
+          "menuPixelMatch": true,
+          "sameCharacter": true,
+          "restartedStage": 0,
+          "restartedScore": 0,
+          "restartedLives": 5,
+          "restartedBombs": 2,
+          "frames": 4804
+        }
+      ]
+    },
+    "bgb": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\initial\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+      "emulator": "BGB 1.6.6",
+      "results": [
+        {
+          "mode": "DMG",
+          "character": 0,
+          "fixture": false,
+          "bombIntervals": 2,
+          "framesPerBomb": [
+            48,
+            48
+          ],
+          "stockSequence": [
+            2,
+            1,
+            0
+          ],
+          "stageClockFrozen": true,
+          "gameplayResumed": true,
+          "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\bgb\\DMG-0-K8HHtg\\debugmsg.txt",
+          "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\bgb\\DMG-0-K8HHtg\\screen.bmp"
+        },
+        {
+          "mode": "DMG",
+          "character": 1,
+          "fixture": false,
+          "bombIntervals": 2,
+          "framesPerBomb": [
+            48,
+            48
+          ],
+          "stockSequence": [
+            2,
+            1,
+            0
+          ],
+          "stageClockFrozen": true,
+          "gameplayResumed": true,
+          "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\bgb\\DMG-1-gqXB2f\\debugmsg.txt",
+          "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\bgb\\DMG-1-gqXB2f\\screen.bmp"
+        },
+        {
+          "mode": "CGB",
+          "character": 0,
+          "fixture": false,
+          "bombIntervals": 2,
+          "framesPerBomb": [
+            48,
+            48
+          ],
+          "stockSequence": [
+            2,
+            1,
+            0
+          ],
+          "stageClockFrozen": true,
+          "gameplayResumed": true,
+          "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\bgb\\CGB-0-0JovsX\\debugmsg.txt",
+          "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\bgb\\CGB-0-0JovsX\\screen.bmp"
+        },
+        {
+          "mode": "CGB",
+          "character": 1,
+          "fixture": false,
+          "bombIntervals": 2,
+          "framesPerBomb": [
+            48,
+            48
+          ],
+          "stockSequence": [
+            2,
+            1,
+            0
+          ],
+          "stageClockFrozen": true,
+          "gameplayResumed": true,
+          "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\bgb\\CGB-1-7rvY3A\\debugmsg.txt",
+          "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v17\\bgb\\CGB-1-7rvY3A\\screen.bmp"
+        }
+      ]
+    }
+  },
+  "pending": [
+    "Physical DMG/CGB hardware was not tested.",
+    "Emulicious connected but evaluate failed with NullPointerException; execution remains unverified.",
+    "No new full-campaign clear, human audio assessment or performance benchmark."
+  ],
+  "environmentWarnings": [
+    "Git could not read the user-level .config/git/ignore file. Builds and tests completed."
+  ],
+  "evidence": "verification-v17"
+}
