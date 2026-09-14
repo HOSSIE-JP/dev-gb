@@ -1,16 +1,16 @@
 import React,{useEffect,useRef,useState} from "react";
 import type {Game,Screen} from "../shared/model";
-import {resolveEnding,gameOverPresentation} from "../shared/presentation";
+import {resolveEnding,gameOverPresentation,selectionPresentation} from "../shared/presentation";
 import {drawScreen} from "./canvases";
 
 export function PlayerPresentationCanvas({game,glyphs,dmg}:{game:Game;glyphs:Record<string,number[]>;dmg:boolean}){
     const [slide,setSlide]=useState(0),ending=useRef<HTMLCanvasElement>(null);
     const [character,setCharacter]=useState(0),selection=useRef<HTMLCanvasElement>(null),over=useRef<HTMLCanvasElement>(null);
-    const players=[{...game.player,name:game.player.name??"PLAYER 1"},...(game.player.characters??[])],p=players[Math.min(character,players.length-1)];
+    const players=[{...game.player,name:game.player.name??"PLAYER 1"},...(game.player.characters??[])];
     useEffect(()=>{
         const slides=resolveEnding(game,character),asset=game.assets.find(a=>a.id===slides[Math.min(slide,slides.length-1)]?.background);
         const gameover=gameOverPresentation(game,Math.min(character,players.length-1));
-        const panels:[React.RefObject<HTMLCanvasElement|null>,Screen][]=[[selection,{id:"clear",name:"機体選択",background:p.selectionBackground??"",palette:0,dock:"top",items:[]}],[over,gameover.screen]];
+        const panels:[React.RefObject<HTMLCanvasElement|null>,Screen][]=[[selection,selectionPresentation(game,Math.min(character,players.length-1))],[over,gameover.screen]];
         if(asset)panels.push([ending,{id:"clear",name:"エンディング",background:asset.id,palette:asset.palette,dock:"top",items:[]}]);
         else {const c=ending.current?.getContext("2d");if(c){c.fillStyle="#000";c.fillRect(0,0,160,144);}}
         for(const [ref,screen]of panels){

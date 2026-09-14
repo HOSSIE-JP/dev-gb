@@ -1,16 +1,52 @@
 {
-  "version": "0.17-current-engine-rebuild",
-  "updatedAt": "2026-09-13",
+  "version": "0.21-gbc-color",
+  "updatedAt": "2026-09-14T09:10:50.464Z",
   "status": "playtest-ready",
   "approved": false,
-  "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2",
-  "engineRevision": "28c239642274150b5e5d48dc4afc0e5416149a12",
+  "projectRevision": "4fb8c3174cf972659ba02a70eda41700b9f7bb48f0805d0edb15be545f108104",
+  "engineRevision": "7195c5309f7c1284faa8b228d1ed8bc7fa2670e3",
   "rom": {
-    "path": "build/Release/touhou-kouma-v17.gb",
-    "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+    "path": "build/Release/touhou-kouma-v21.gb",
+    "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
     "bytes": 1048576
   },
   "previous": [
+    {
+      "version": "0.20-laser-and-aimed-shots",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v20.gb",
+        "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+        "bytes": 1048576
+      },
+      "projectRevision": "65ee603697e903283b86b626627b1d08b18670945d67e8ceeec10c467a3e6c1b"
+    },
+    {
+      "version": "0.19-bomb-entry-stage-select",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v19.gb",
+        "sha256": "ce938c9d0b255e1ca5cc2265c534eea4e25db17f7c2d3780a1505ed3425e3aab",
+        "bytes": 1048576
+      },
+      "projectRevision": "a3aad8ff578d77f515241f63dba2b3550ac7a07b9596dd88e27ae9141d6369ee"
+    },
+    {
+      "version": "0.18-live-image-bomb-local-collision",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v18.gb",
+        "sha256": "06a0ec4c3090dca1c2255eba3035a1ff17f1d1dd93438b56e2852816f00be30e",
+        "bytes": 1048576
+      },
+      "projectRevision": "f6a0f07883c28b414f40753d02e76468e1f8375dad670141f31d42ea234c290f"
+    },
+    {
+      "version": "0.17-current-engine-rebuild",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v17.gb",
+        "sha256": "875cb1b95f467426222ba016d8b0adacd3fee36185ef54ac62b752e8f91ed340",
+        "bytes": 1048576
+      },
+      "projectRevision": "e078d167f048334e40b2d410f848710e55c5c8b5ca42114d48ab458eb7c53cb2"
+    },
     {
       "version": "0.16-continue-and-type-logo",
       "rom": {
@@ -112,18 +148,71 @@
     }
   ],
   "checks": {
-    "standardTests": 122,
-    "productionRoadBombCases": 4,
-    "productionBossBombCases": 4,
-    "productionContinueCases": 4,
-    "nativeBombCases": 4,
-    "unchangedSourceFiles": 79,
+    "standardTests": 139,
+    "standardPassed": true,
+    "assets": 68,
+    "colorFrames": 79,
+    "unchangedOriginalPngs": 88,
+    "productionMenu": 28,
+    "productionWeapons": 12,
+    "productionUpperTarget": 2,
+    "productionBomb": 8,
+    "productionContinue": 4,
+    "productionOam": 4,
+    "nativeBgb": 4,
+    "editorColorImportExport": true,
+    "tour": [
+      {
+        "label": "DMG-reimu-auto",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 6
+      },
+      {
+        "label": "DMG-marisa-auto",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 6
+      },
+      {
+        "label": "CGB-reimu-auto",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 6
+      },
+      {
+        "label": "CGB-reimu-buttons",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 2
+      },
+      {
+        "label": "CGB-marisa-auto",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 6
+      },
+      {
+        "label": "CGB-marisa-buttons",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 2
+      }
+    ],
     "debugReleaseIdentical": true
   },
   "pending": [
-    "Physical DMG/CGB hardware was not tested.",
-    "Emulicious connected but evaluate failed with NullPointerException; execution remains unverified.",
-    "No new full-campaign clear, human audio assessment or performance benchmark."
+    "Physical DMG/CGB hardware, human audio/controller assessment and full campaign difficulty remain unverified.",
+    "Emulicious DAP evaluate still fails with NullPointerException and is not counted as execution evidence.",
+    "GBC is not fixed 60fps: the measured stage-1 route is 58.73 updates/s for Reimu and 54.64 for Marisa; color rendering has a measured cost."
   ],
-  "evidence": "../../docs/touhou-kouma-v17.md"
+  "evidence": "../../docs/touhou-kouma-v21.md",
+  "engineWorkingTreeChanges": true,
+  "validation": "touhou-kouma-design/qa-v21.json"
 }

@@ -27,6 +27,11 @@ static uint16_t next_tile;
 static uint8_t top, bottom, slot, px, py, spawn_next;
 static int16_t left, right, player_top, player_bottom;
 static uint8_t hit_width, hit_height;
+/* Newly spawned shots retain their immediate collision/retirement ordering.
+ * Moving monochrome shots first build occupancy, then query only nearby cells. */
+static uint8_t direct_collision;
+static uint8_t query_count;
+static uint16_t query_cells[4];
 static CE_Screen screen;
 CE_BGSpawn ce_bg_request;
 static const uint8_t expand[16]={0,192,48,240,12,204,60,252,3,195,51,243,15,207,63,255};
@@ -93,8 +98,29 @@ static void guide(void) {
         ce_bg_vx[s]=(uint16_t)p->velocity[angle*2u]<<4;ce_bg_vy[s]=(uint16_t)p->velocity[angle*2u+1u]<<4;
     }
 }
-void ce_bg_update(void) BANKED {if(has_guidance)guide();ce_bg_begin();update_all();}
+#include "bg-query-kernel.h"
+void ce_bg_update(void) BANKED {
+    uint8_t n,kept,x0,x1,y0,y1;
+    if(has_guidance)guide();ce_bg_begin();direct_collision=ce_battle_mode==3u||hit_width!=4u||hit_height!=4u||right>=160||player_bottom>=144;
+    if(direct_collision)update_all();else update_all_local();
+    if(!direct_collision && occupied_player()){
+        /* Rare impact: retire overlapping shots and rebuild without advancing
+         * motion/lifetime. Slot order preserves damage and allocation behavior. */
+        direct_collision=1;
+        /* Only the (at most four) queried tiles need rebuilding. Preserve all
+         * other composed cells and avoid redrawing the complete bullet field. */
+        for(n=0;n!=query_count;++n)map[query_cells[n]]=0;
+        for(n=0,kept=0;n!=compound_count;++n)if(map[compound_cells[n]>>1]==255u)compound_cells[kept++]=compound_cells[n];
+        compound_count=kept;x0=(uint8_t)(left+1u)>>3;x1=(uint8_t)right>>3;y0=(uint8_t)(player_top+1u)>>3;y1=(uint8_t)player_bottom>>3;
+        for(slot=0;slot<ce_bg_limit;++slot)if(ce_bg_life[slot]){
+            n=(uint16_t)ce_bg_x[slot]>>11;if(n<x0||n>x1)continue;
+            n=(uint16_t)ce_bg_y[slot]>>11;if(n>=y0&&n<=y1)draw_shot();
+        }
+    }
+    direct_collision=1;
+}
 void ce_bg_spawn(void) BANKED {
+    if(ce_bomb_image)return;
     if(ce_bg_count>=ce_bg_limit){++ce_state.dropped;return;}
     /* Continue after the preceding allocation instead of rescanning the same
      * live prefix for every bullet of a volley. A full pool rejects in O(1). */
@@ -102,7 +128,7 @@ void ce_bg_spawn(void) BANKED {
     while(ce_bg_life[slot]){if(++slot==ce_bg_limit)slot=0;}
     spawn_next=slot+1u;if(spawn_next==ce_bg_limit)spawn_next=0;
     ce_bg_x[slot]=(uint16_t)ce_bg_request.x<<4;ce_bg_y[slot]=(uint16_t)ce_bg_request.y<<4;ce_bg_vx[slot]=(uint16_t)ce_bg_request.vx<<4;ce_bg_vy[slot]=(uint16_t)ce_bg_request.vy<<4;
-    ce_bg_life[slot]=ce_bg_request.life;damage[slot]=ce_bg_request.damage;++ce_bg_count;draw_shot();
+    ce_bg_life[slot]=ce_bg_request.life;damage[slot]=ce_bg_request.damage;++ce_bg_count;direct_collision=1;draw_shot();
     guide_pattern[slot]=CE_NONE;
     if(ce_bg_request.pattern!=CE_NONE){
         guide_pattern[slot]=ce_bg_request.pattern;guide_angle[slot]=ce_bg_request.angle;has_guidance=1;

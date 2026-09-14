@@ -1,0 +1,17 @@
+{
+  "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\menu-ui-GlZbl7",
+  "checks": [
+    {
+      "headingToggle": true,
+      "bothCharacters": true,
+      "titleToggle": true,
+      "sevenStagePreview": true,
+      "nativeInput": true,
+      "savedAndReloaded": true,
+      "stagePresentationPreserved": true,
+      "bombSettingsPreserved": true,
+      "aimedDownChoiceSaved": true,
+      "buildFree": true
+    }
+  ]
+}

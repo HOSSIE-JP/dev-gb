@@ -1,0 +1,99 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+  "sha256": "06a0ec4c3090dca1c2255eba3035a1ff17f1d1dd93438b56e2852816f00be30e",
+  "projectRevision": "f6a0f07883c28b414f40753d02e76468e1f8375dad670141f31d42ea234c290f",
+  "results": [
+    {
+      "label": "DMG-reimu",
+      "fixture": false,
+      "memoryWrites": false,
+      "lostStage": 0,
+      "lives": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "lostScore": 1200,
+      "rankingPersistedBeforeChoice": true,
+      "menuPixelMatch": true,
+      "sameCharacter": true,
+      "restartedStage": 0,
+      "restartedScore": 0,
+      "restartedLives": 5,
+      "restartedBombs": 2,
+      "frames": 4266
+    },
+    {
+      "label": "DMG-marisa",
+      "fixture": false,
+      "memoryWrites": false,
+      "lostStage": 0,
+      "lives": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "lostScore": 720,
+      "rankingPersistedBeforeChoice": true,
+      "menuPixelMatch": true,
+      "sameCharacter": true,
+      "restartedStage": 0,
+      "restartedScore": 0,
+      "restartedLives": 5,
+      "restartedBombs": 2,
+      "frames": 4750
+    },
+    {
+      "label": "CGB-reimu",
+      "fixture": false,
+      "memoryWrites": false,
+      "lostStage": 0,
+      "lives": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "lostScore": 1200,
+      "rankingPersistedBeforeChoice": true,
+      "menuPixelMatch": true,
+      "sameCharacter": true,
+      "restartedStage": 0,
+      "restartedScore": 0,
+      "restartedLives": 5,
+      "restartedBombs": 2,
+      "frames": 4324
+    },
+    {
+      "label": "CGB-marisa",
+      "fixture": false,
+      "memoryWrites": false,
+      "lostStage": 0,
+      "lives": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "lostScore": 720,
+      "rankingPersistedBeforeChoice": true,
+      "menuPixelMatch": true,
+      "sameCharacter": true,
+      "restartedStage": 0,
+      "restartedScore": 0,
+      "restartedLives": 5,
+      "restartedBombs": 2,
+      "frames": 4804
+    }
+  ]
+}

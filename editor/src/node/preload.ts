@@ -13,7 +13,7 @@ const api: Bridge = {
         ipcRenderer.invoke("ce:create", name, title, game),
     importPng: (asset, colors, transparent) =>
         ipcRenderer.invoke("ce:import", asset, colors, transparent),
-    exportPng: (asset, frame) => ipcRenderer.invoke("ce:export", asset, frame),
+    exportPng: (asset, frame, color) => ipcRenderer.invoke("ce:export", asset, frame, color),
     build: (name, game, config, revision) =>
         ipcRenderer.invoke("ce:build", name, game, config, revision),
     cancelBuild: () => ipcRenderer.invoke("ce:cancel-build"),

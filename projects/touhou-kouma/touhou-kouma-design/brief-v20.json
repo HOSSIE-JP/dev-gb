@@ -1,0 +1,33 @@
+{
+  "baseline": "0.19",
+  "request": [
+    "Faster laser-like Marisa shots",
+    "Larger Reimu shot hitboxes",
+    "Effective aimed enemy shots and distinct move/fire rhythms"
+  ],
+  "decisions": {
+    "marisa": "8x16 laser segments, normal interval 8 to 4, focus 10 to 6; speed remains supported maximum 8; no penetration",
+    "reimu": "Normal hitbox 4x4 to 8x8; focus 4x4 to 6x8; player hurtboxes unchanged",
+    "enemies": "Fairies stop at age 32, aim once at 44, depart at 64. Moving fairy keeps wave motion. Bats aim once at 24. Books fan at 64 after stop at 48. Unarmed raids and boss patterns unchanged.",
+    "budget": "Existing 6 player shots, 12 road enemy shots, boss limits unchanged",
+    "enemySpeeds": {
+      "fairy": 2.5,
+      "bat": 2.75,
+      "book": 2
+    },
+    "aimedDown": "Added aimed-down kind to preserve downward/horizontal-only enemy rounds even when player moves above shooter. Full aimed kind unchanged."
+  },
+  "art": {
+    "tool": "built-in image_gen",
+    "master": "marisa-laser-v20-master.png",
+    "derived": "marisa-laser-v20-gb.png",
+    "prompt": "Create a minimal Game Boy pixel art sprite asset: exactly one vertical thin laser bolt pointing UP, isolated centered on a pure black background. Portrait canvas. Bolt consists of a straight bright white narrow core, pale gray hard pixel edge, a tiny pointed tip at top and squared tail at bottom. No star, no gun, no character, no text, no sparkles, no shadow, no glow gradient. Deliberately simple 8 by 16 logical pixel design, enlarged nearest-neighbor with large square pixels; bolt fills full height, only central 4 of 8 logical columns, other columns black. Strict four colors black, dark gray, light gray, white. Production sprite sheet containing just this single sprite.",
+    "conversion": "Center crop width480, y50..height-50; 8x16 grid with 8x8 samples per cell, 90th percentile brightness. Black<40 transparent0, >210 white1, >120 gray2, remaining3.",
+    "sha256": {
+      "marisa-laser-v20-master.png": "ae0fc8358abe760e3a84bf9e7d9a299fa23563f78149e7960e2b3032aff722bb",
+      "marisa-laser-v20-gb.png": "5965f83d394cccaac93017c661e9705afe303e19179db33abfa7ba07f71e8d65"
+    },
+    "provenance": "Generated with the built-in image_gen tool for this project; no sprite extracted from the reference ROMs."
+  },
+  "revision": "65ee603697e903283b86b626627b1d08b18670945d67e8ceeec10c467a3e6c1b"
+}

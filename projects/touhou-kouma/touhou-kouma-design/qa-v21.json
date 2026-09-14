@@ -1,0 +1,260 @@
+{
+  "date": "2026-09-14T09:10:50.464Z",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v21.gb",
+    "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+    "bytes": 1048576
+  },
+  "projectRevision": "4fb8c3174cf972659ba02a70eda41700b9f7bb48f0805d0edb15be545f108104",
+  "ramBytes": 7151,
+  "checks": {
+    "standardTests": 139,
+    "standardPassed": true,
+    "assets": 68,
+    "colorFrames": 79,
+    "unchangedOriginalPngs": 88,
+    "productionMenu": 28,
+    "productionWeapons": 12,
+    "productionUpperTarget": 2,
+    "productionBomb": 8,
+    "productionContinue": 4,
+    "productionOam": 4,
+    "nativeBgb": 4,
+    "editorColorImportExport": true,
+    "tour": [
+      {
+        "label": "DMG-reimu-auto",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 6
+      },
+      {
+        "label": "DMG-marisa-auto",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 6
+      },
+      {
+        "label": "CGB-reimu-auto",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 6
+      },
+      {
+        "label": "CGB-reimu-buttons",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 2
+      },
+      {
+        "label": "CGB-marisa-auto",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 6
+      },
+      {
+        "label": "CGB-marisa-buttons",
+        "stages": 7,
+        "dialogueImages": 56,
+        "cutinImages": 21,
+        "slides": 2
+      }
+    ],
+    "debugReleaseIdentical": true
+  },
+  "performance": [
+    {
+      "file": ".cache/kouma-v21/build/Debug/touhou-kouma.gb",
+      "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+      "mode": "DMG",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1159,
+      "updates": 880,
+      "updatesPerSecond": 45.34961173425366,
+      "maxGap": 3,
+      "peakOam": 25,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": ".cache/kouma-v21/build/Debug/touhou-kouma.gb",
+      "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+      "mode": "DMG",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1576,
+      "updates": 880,
+      "updatesPerSecond": 33.3503807106599,
+      "maxGap": 3,
+      "peakOam": 29,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 3
+    },
+    {
+      "file": ".cache/kouma-v21/build/Debug/touhou-kouma.gb",
+      "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+      "mode": "CGB",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 885,
+      "updates": 880,
+      "updatesPerSecond": 59.390056497175145,
+      "maxGap": 2,
+      "peakOam": 25,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": ".cache/kouma-v21/build/Debug/touhou-kouma.gb",
+      "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+      "mode": "CGB",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 920,
+      "updates": 880,
+      "updatesPerSecond": 57.13065217391304,
+      "maxGap": 2,
+      "peakOam": 29,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 3
+    },
+    {
+      "file": ".cache/kouma-v21/final-debug/touhou-kouma.gb",
+      "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+      "mode": "DMG",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1269,
+      "updates": 880,
+      "updatesPerSecond": 41.41859732072498,
+      "maxGap": 3,
+      "peakOam": 25,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": ".cache/kouma-v21/final-debug/touhou-kouma.gb",
+      "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+      "mode": "DMG",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1591,
+      "updates": 880,
+      "updatesPerSecond": 33.03595223130107,
+      "maxGap": 3,
+      "peakOam": 29,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 3
+    },
+    {
+      "file": ".cache/kouma-v21/final-debug/touhou-kouma.gb",
+      "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+      "mode": "CGB",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 895,
+      "updates": 880,
+      "updatesPerSecond": 58.72648044692737,
+      "maxGap": 2,
+      "peakOam": 25,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": ".cache/kouma-v21/final-debug/touhou-kouma.gb",
+      "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+      "mode": "CGB",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 962,
+      "updates": 880,
+      "updatesPerSecond": 54.636382536382534,
+      "maxGap": 3,
+      "peakOam": 29,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 3
+    }
+  ],
+  "sourceHashes": {
+    "engine/caravan/bg-bullets.c": "baf3eeb3c49625987ffc4a85ae110b9f011ea1fa3bcff7b8815832f5e0c128c0",
+    "engine/caravan/bg-kernels.h": "81f8b2c3bc12eb7b46deedb40e21d7c84a79a514f6df4c3e684a1afe553de9bd",
+    "engine/caravan/bg-query-kernel.h": "441986ed74075d6deeb087e5a4e540c64b95e7ca082f6af1d09a36ac840fc335",
+    "engine/caravan/bg-state-kernels.h": "8bd0902b64d67757563c29a568e2c02d7f1c55074adc9a5e2c622588ff986511",
+    "engine/caravan/bg-update-kernel.h": "9822a1ec983b3dd447c49637539e709202c94e42c80d7b53c81eedce61b3feae",
+    "engine/caravan/caravan.h": "e6cbf12427b02c63381649305ee57bcbf1a022a33c67a3ce2df69ce494bf6482",
+    "engine/caravan/flow.c": "d15411c9f0a3d906143fb81751cc0c8230dfee1fbadbf5126d9cc13263115af9",
+    "engine/caravan/giant-render.h": "ca1eb41a7d89a87f78d4b221c8cd96de064fb163831939cefe36b7d6b43cd92f",
+    "engine/caravan/items.c": "b5f426f6d8b2df18a8c20eab1572014c77a4d5f1c646b1ad5039c63067c1d565",
+    "engine/caravan/mainloop.c": "cb4d91c93da486a0b5ea3a9d735ed424bfb88709817ffcd0af5ed260b7e314dc",
+    "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+    "engine/caravan/music.c": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995",
+    "engine/caravan/music.h": "7e0f71159080d9fe7342f8cfea26b8f57d8fbbcd50f0df4248673070b93c0187",
+    "engine/caravan/render.c": "985ce0af5d5182df608454e608507322900dec2385cf0a3243d4efec4e049f27",
+    "engine/caravan/runtime.c": "6e2ac8659c7119ac46ac29a5441adcb6b988bb29ffbeb0b333acf613047ab224",
+    "engine/caravan/save.c": "d6ae608b7d8e24d1cc2e80481403140e2f7f6f92d026808823344e564cb99d29",
+    "engine/caravan/shot-kernels.h": "1bb0e9c880ec287579862b7ded78006b1057a1cb197da090ed199e5bcd636f7d",
+    "engine/caravan/special.c": "4814198feb2cd8e70eec109d151b8f4fd8f2ef4cd0c7f66d7aa7e9360b551645",
+    "engine/caravan/terrain.c": "7115edd66f4338172fe2cf974910cf4ba53b5ab43c91e6afbc8b25754f3c9d98",
+    "editor/src/shared/color.ts": "2f4f820e4d3da17ad90fa2f7de643fa99e44fbc31ea6000592140f10e7b72dbe",
+    "editor/src/shared/model.ts": "9575eec31ca783f6fe578ca181dd78a26d1c73fb83b7eb595e0b42dfdaaac5cd",
+    "editor/src/shared/bridge.ts": "dd4158d81d1718e0be198b68f85c56e27693ed7082ebc268237d93817bb12ce0",
+    "editor/src/shared/simulation.ts": "d17fa7a3144d170187538a61837eaf45912bfb7874772d8e8e9aa179fcc81bf4",
+    "editor/src/node/compiler.ts": "4dc851f07116d63e9f11c9c36bbe51f7a9769b8571600f8f969bbbc6e7dc25b0",
+    "editor/src/node/project-store.ts": "84c3f0407a53fbb8a95e8c67dab923ab6bd0f32d893da0b86f7dcdd0348a9bd5",
+    "editor/src/node/main.ts": "d871b64bac6a76e4918d954071e7808e246793f917e6f9b8b9e488c107a0f7c0",
+    "editor/src/node/preload.ts": "eac474db2a1d090cf89f289628d41e9574a861bb9e7216d944bdfd6422a6e7da",
+    "editor/src/renderer/canvases.tsx": "077ca408c3bab3c931bc33e23ee657988e0d7b9e00e21898907ab12e1e8bf088",
+    "editor/src/renderer/stage-canvas.tsx": "e9e3a1cfdf423df8f62b0f3ea0623d51df19d793d9549383ccb29003527df516",
+    "editor/src/renderer/tile-palette.tsx": "518f5b5745ccef82ee021e82f98de80b2e87c2d607069ba9edc9c5500d5f5f72",
+    "editor/src/renderer/victory-dialogue-canvas.tsx": "342b90342f4e69225b8b483c0c21b410b622b999a7469d47e42a107d4f0c7331",
+    "projects/touhou-kouma/assets-src/game.json": "1d390b1b3dcbe635b1475216435c40e9dc134c1e98de40becd9392bcc4e9ddab"
+  },
+  "changedDmgImages": [
+    "images\\ending-marisa.png",
+    "images\\ending-rumia.png",
+    "images\\screen-clear-0.png"
+  ],
+  "pending": [
+    "Physical DMG/CGB hardware, human audio/controller assessment and full campaign difficulty remain unverified.",
+    "Emulicious DAP evaluate still fails with NullPointerException and is not counted as execution evidence.",
+    "GBC is not fixed 60fps: the measured stage-1 route is 58.73 updates/s for Reimu and 54.64 for Marisa; color rendering has a measured cost."
+  ]
+}

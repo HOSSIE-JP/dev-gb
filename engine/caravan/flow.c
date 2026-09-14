@@ -338,6 +338,8 @@ uint8_t ce_stage_events(void) BANKED {
         else { end -= (stage->horizontal ? 160u : 144u - ce_hud_height) * 16u; if (ce_state.camera < before || ce_state.camera > end) ce_state.camera = end; }
     }
     while (event_cursor < stage->event_count && next_event.frame <= ce_state.stage_tick) {
+        /* Keep this event pending until the live image releases the BG. */
+        if (ce_bomb_image && next_event.kind == 2u) break;
         if (next_event.kind == 2u) ce_dialogue();
         if (next_event.kind <= 2u && (!ce_battle_mode || next_event.kind == 2u)) spawn_actor(next_event.kind, next_event.ref, next_event.x, next_event.y);
         else if (next_event.kind == 3u) { if (!ce_battle_mode) ce_state.scroll = next_event.value; }

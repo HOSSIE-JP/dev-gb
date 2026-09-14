@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-13T23:20:51.705Z",
+  "projectId": "touhou-kouma",
+  "baseline": "0.18",
+  "request": [
+    "Bomb damage also applies to enemies entering during the live display.",
+    "Add キャラクター選択 heading to both portraits.",
+    "Title START / STAGE SELECT with left/right stage choice."
+  ],
+  "decisions": {
+    "bomb": "One existing-strength damage packet per target per bomb, including new or newly visible enemies; slot reuse resets eligibility. No damage outside the active interval.",
+    "title": "Up/down chooses START or STAGE SELECT; left/right wraps all seven stages; A/START opens character selection; B returns with selection preserved; START begins at the first campaign stage.",
+    "art": "Existing PNG assets unchanged; headings and menu are shared editor/compiler UI composition."
+  },
+  "projectRevision": "a3aad8ff578d77f515241f63dba2b3550ac7a07b9596dd88e27ae9141d6369ee"
+}

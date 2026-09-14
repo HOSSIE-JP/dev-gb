@@ -13,6 +13,7 @@ import {
     worldToScreen,
 } from "../shared/stage-space";
 import { linePoints } from "../shared/pixel-tools";
+import {colorPreview,colorHex} from "../shared/color";
 import { dmgColors } from "../shared/palette";
 import { TilePalette } from "./tile-palette";
 
@@ -87,13 +88,14 @@ export function MapCanvas({
         if (!c || !a) return;
         const colors = dmg ? dmgColors(game) : game.palettes[a.palette].colors,
             pixels = a.frames[0].pixels;
+        const rgb=dmg?undefined:colorPreview(game,a);
         const drawTile = (tile: number, x: number, y: number) => {
             const tx = (tile % (a.width / 8)) * 8,
                 ty = Math.floor(tile / (a.width / 8)) * 8;
             for (let py = 0; py < 8; py++)
                 for (let px = 0; px < 8; px++) {
                     c.fillStyle =
-                        colors[pixels[(ty + py) * a.width + tx + px] ?? 0];
+                        rgb?colorHex(rgb[(ty+py)*a.width+tx+px]):colors[pixels[(ty + py) * a.width + tx + px] ?? 0];
                     c.fillRect(x + px, y + py, 1, 1);
                 }
         };

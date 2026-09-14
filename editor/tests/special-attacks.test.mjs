@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 const lib=createRequire(import.meta.url)('../build/library.cjs');
-const game=()=>{const g=lib.readGame(process.cwd(),'touhou-kouma');g.timeLimit=false;g.stageFade=false;g.stages.forEach(s=>{s.events=[];s.requireBoss=false;s.clearOnBoss=false;});return g;};
+const game=()=>{const g=lib.readGame(process.cwd(),'touhou-kouma');g.player.bomb.live=false;g.timeLimit=false;g.stageFade=false;g.stages.forEach(s=>{s.events=[];s.requireBoss=false;s.clearOnBoss=false;});return g;};
 
 test('edge and fixed launch sites do not inherit actor position or emitter count',()=>{
  const g=game(),a=g.assets.find(a=>a.id==='reimu'),p=g.patterns[0];

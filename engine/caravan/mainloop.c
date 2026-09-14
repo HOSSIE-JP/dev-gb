@@ -3,6 +3,15 @@
 #include "music.h"
 #include "mainloop.h"
 
+uint8_t ce_title_choice, ce_title_stage;
+static void title_screen(void) {
+    ce_title_choice=0;ce_title_stage=ce_campaign?0u:ce_start_stage;
+    ce_scene=0;ce_load_screen(0);ce_title_draw();ce_music_play(ce_music_title);
+}
+static uint8_t selected_stage(void) {
+    return ce_title_select && ce_title_choice ? ce_title_stage : (ce_campaign?0u:ce_start_stage);
+}
+
 static void record_score(void) {
     uint8_t i, j; for (i = 0; i != 5u; ++i) if (ce_state.score > ce_scores[i]) {
         for (j = 4; j > i; --j) ce_scores[j] = ce_scores[j - 1u]; ce_scores[i] = ce_state.score; ce_save_scores(); break;
@@ -24,7 +33,7 @@ void ce_mainloop(void) BANKED {
     ce_save_load();
     ce_select_player(0);
     ce_play_logos();
-    ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title);
+    title_screen();
     if (ce_logo_count) previous = joypad();
     CRITICAL { ce_music_time = sys_time; }
     for (;;) {
@@ -48,7 +57,7 @@ void ce_mainloop(void) BANKED {
                     ce_wait_gameover();
                     if (ce_continue_frames) {
                         if (ce_offer_continue()) start_game(ce_state.stage);
-                        else { ce_scene=0;ce_load_screen(0);ce_music_play(ce_music_title); }
+                        else title_screen();
                     } else {
                         ce_scene=2;ce_load_screen(ce_gameover_screens[ce_character]);ce_music_play(ce_music_gameover);
                     }
@@ -57,7 +66,7 @@ void ce_mainloop(void) BANKED {
                     ce_scene = 4; ce_load_screen(3); ce_music_play(ce_music_clear);
                     previous = joypad();
                 } else if (ce_ending_counts[ce_character]) {
-                    ce_play_ending(); ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title);
+                    ce_play_ending(); title_screen();
                     previous = joypad();
                 } else {
                 ce_scene=3;ce_load_screen(2);ce_music_play(ce_music_clear);
@@ -66,17 +75,24 @@ void ce_mainloop(void) BANKED {
         } else if (ce_scene == 0u) {
             if (pressed & (J_START | J_A)) {
                 if(ce_player_count>1u){ce_scene=10;ce_select_player(0);ce_load_screen(ce_select_first);}
-                else start_game(ce_campaign?0u:ce_start_stage);
+                else start_game(selected_stage());
             }
             else if (pressed & J_SELECT) { ce_scene = 4; ce_load_screen(3); }
+            else if (ce_title_select) {
+                if (pressed & (J_UP|J_DOWN)) { ce_title_choice=!ce_title_choice;ce_title_draw(); }
+                else if (ce_title_choice && (pressed & (J_LEFT|J_RIGHT))) {
+                    ce_title_stage=pressed&J_RIGHT?(ce_title_stage+1u==ce_stage_count?0u:ce_title_stage+1u):(ce_title_stage?ce_title_stage-1u:ce_stage_count-1u);
+                    ce_title_draw();
+                }
+            }
         } else if (ce_scene == 10u) {
-            if(pressed & J_B){ce_scene=0;ce_load_screen(0);}
-            else if(pressed & (J_A|J_START))start_game(ce_campaign?0u:ce_start_stage);
+            if(pressed & J_B){ce_scene=0;ce_load_screen(0);ce_title_draw();}
+            else if(pressed & (J_A|J_START))start_game(selected_stage());
             else if(pressed & (J_LEFT|J_RIGHT)){
                 ce_select_player(pressed&J_RIGHT?(ce_character+1u==ce_player_count?0u:ce_character+1u):(ce_character?ce_character-1u:ce_player_count-1u));
                 ce_load_screen(ce_select_first+ce_character);
             }
-        } else if (pressed & (J_START | J_A | J_B | J_SELECT)) { ce_scene = 0; ce_load_screen(0); ce_music_play(ce_music_title); }
+        } else if (pressed & (J_START | J_A | J_B | J_SELECT)) title_screen();
         ce_trace_write();
     }
 }

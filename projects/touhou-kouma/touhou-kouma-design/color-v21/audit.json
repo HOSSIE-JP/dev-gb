@@ -1,0 +1,1300 @@
+{
+  "revision": "4fb8c3174cf972659ba02a70eda41700b9f7bb48f0805d0edb15be545f108104",
+  "assets": 68,
+  "frames": 79,
+  "reservedPalette": 0,
+  "objPalettes": [
+    0,
+    8341,
+    23031,
+    29534,
+    0,
+    9449,
+    28267,
+    28538,
+    0,
+    2878,
+    32682,
+    29662,
+    0,
+    19531,
+    29079,
+    16222,
+    0,
+    12777,
+    6813,
+    28606,
+    0,
+    7324,
+    7720,
+    25502,
+    0,
+    5356,
+    6298,
+    21342
+  ],
+  "objMeanError": 46.97155172413793,
+  "rows": [
+    {
+      "id": "reimu",
+      "frame": "reimu-0",
+      "width": 16,
+      "height": 24,
+      "source": "images/reimu-0-cgb.png",
+      "palettes": [
+        7,
+        1
+      ],
+      "colors": 7
+    },
+    {
+      "id": "reimu",
+      "frame": "reimu-1",
+      "width": 16,
+      "height": 24,
+      "source": "images/reimu-1-cgb.png",
+      "palettes": [
+        7,
+        1
+      ],
+      "colors": 7
+    },
+    {
+      "id": "meiling",
+      "frame": "meiling-0",
+      "width": 24,
+      "height": 24,
+      "source": "images/meiling-0-cgb.png",
+      "palettes": [
+        7,
+        6,
+        2,
+        5
+      ],
+      "colors": 12
+    },
+    {
+      "id": "patchouli",
+      "frame": "patchouli-0",
+      "width": 24,
+      "height": 24,
+      "source": "images/patchouli-0-cgb.png",
+      "palettes": [
+        4,
+        1,
+        2
+      ],
+      "colors": 10
+    },
+    {
+      "id": "sakuya",
+      "frame": "sakuya-0",
+      "width": 24,
+      "height": 24,
+      "source": "images/sakuya-0-cgb.png",
+      "palettes": [
+        2,
+        7,
+        5,
+        1
+      ],
+      "colors": 12
+    },
+    {
+      "id": "remilia",
+      "frame": "remilia-0",
+      "width": 24,
+      "height": 24,
+      "source": "images/remilia-0-cgb.png",
+      "palettes": [
+        1,
+        7
+      ],
+      "colors": 6
+    },
+    {
+      "id": "remilia",
+      "frame": "remilia-1",
+      "width": 24,
+      "height": 24,
+      "source": "images/remilia-1-cgb.png",
+      "palettes": [
+        1,
+        7,
+        2
+      ],
+      "colors": 9
+    },
+    {
+      "id": "flandre",
+      "frame": "flandre-0",
+      "width": 24,
+      "height": 24,
+      "source": "images/flandre-0-cgb.png",
+      "palettes": [
+        4,
+        1,
+        7,
+        6
+      ],
+      "colors": 13
+    },
+    {
+      "id": "flandre",
+      "frame": "flandre-1",
+      "width": 24,
+      "height": 24,
+      "source": "images/flandre-1-cgb.png",
+      "palettes": [
+        4,
+        5,
+        7,
+        3
+      ],
+      "colors": 10
+    },
+    {
+      "id": "fairy",
+      "frame": "fairy-0",
+      "width": 16,
+      "height": 16,
+      "source": "images/fairy-0-cgb.png",
+      "palettes": [
+        3
+      ],
+      "colors": 4
+    },
+    {
+      "id": "fairy",
+      "frame": "fairy-1",
+      "width": 16,
+      "height": 16,
+      "source": "images/fairy-1-cgb.png",
+      "palettes": [
+        3
+      ],
+      "colors": 4
+    },
+    {
+      "id": "bat",
+      "frame": "bat-0",
+      "width": 16,
+      "height": 8,
+      "source": "images/bat-0-cgb.png",
+      "palettes": [
+        4
+      ],
+      "colors": 4
+    },
+    {
+      "id": "bat",
+      "frame": "bat-1",
+      "width": 16,
+      "height": 8,
+      "source": "images/bat-1-cgb.png",
+      "palettes": [
+        4
+      ],
+      "colors": 4
+    },
+    {
+      "id": "book",
+      "frame": "book-0",
+      "width": 8,
+      "height": 8,
+      "source": "images/book-0-cgb.png",
+      "palettes": [
+        4
+      ],
+      "colors": 4
+    },
+    {
+      "id": "book",
+      "frame": "book-1",
+      "width": 8,
+      "height": 8,
+      "source": "images/book-1-cgb.png",
+      "palettes": [
+        4
+      ],
+      "colors": 4
+    },
+    {
+      "id": "shot-ofuda",
+      "frame": "shot-ofuda-0",
+      "width": 8,
+      "height": 8,
+      "source": "images/shot-ofuda-0-cgb.png",
+      "palettes": [
+        6
+      ],
+      "colors": 3
+    },
+    {
+      "id": "shot-focus",
+      "frame": "shot-focus-0",
+      "width": 8,
+      "height": 8,
+      "source": "images/shot-focus-0-cgb.png",
+      "palettes": [
+        1
+      ],
+      "colors": 4
+    },
+    {
+      "id": "shot-orb",
+      "frame": "shot-orb-0",
+      "width": 8,
+      "height": 8,
+      "source": "images/shot-orb-0-cgb.png",
+      "palettes": [
+        3
+      ],
+      "colors": 2
+    },
+    {
+      "id": "shot-knife",
+      "frame": "shot-knife-0",
+      "width": 8,
+      "height": 8,
+      "source": "images/shot-knife-0-cgb.png",
+      "palettes": [
+        2
+      ],
+      "colors": 3
+    },
+    {
+      "id": "shot-star",
+      "frame": "shot-star-0",
+      "width": 8,
+      "height": 8,
+      "source": "images/shot-star-0-cgb.png",
+      "palettes": [
+        3
+      ],
+      "colors": 3
+    },
+    {
+      "id": "shot-diamond",
+      "frame": "shot-diamond-0",
+      "width": 8,
+      "height": 8,
+      "source": "images/shot-diamond-0-cgb.png",
+      "palettes": [
+        6
+      ],
+      "colors": 3
+    },
+    {
+      "id": "burst",
+      "frame": "burst-0",
+      "width": 16,
+      "height": 16,
+      "source": "images/burst-0-cgb.png",
+      "palettes": [
+        5,
+        3
+      ],
+      "colors": 5
+    },
+    {
+      "id": "burst",
+      "frame": "burst-1",
+      "width": 16,
+      "height": 16,
+      "source": "images/burst-1-cgb.png",
+      "palettes": [
+        3
+      ],
+      "colors": 3
+    },
+    {
+      "id": "burst",
+      "frame": "burst-2",
+      "width": 16,
+      "height": 16,
+      "source": "images/burst-2-cgb.png",
+      "palettes": [
+        3
+      ],
+      "colors": 3
+    },
+    {
+      "id": "burst",
+      "frame": "burst-3",
+      "width": 16,
+      "height": 16,
+      "source": "images/burst-3-cgb.png",
+      "palettes": [
+        3
+      ],
+      "colors": 3
+    },
+    {
+      "id": "burst",
+      "frame": "burst-4",
+      "width": 16,
+      "height": 16,
+      "source": "images/burst-4-cgb.png",
+      "palettes": [
+        3
+      ],
+      "colors": 3
+    },
+    {
+      "id": "burst",
+      "frame": "burst-5",
+      "width": 16,
+      "height": 16,
+      "source": "images/burst-5-cgb.png",
+      "palettes": [
+        3
+      ],
+      "colors": 3
+    },
+    {
+      "id": "map-1",
+      "frame": "map-1-0",
+      "width": 104,
+      "height": 64,
+      "source": "images/map-1-0-cgb.png",
+      "palettes": [
+        4,
+        1,
+        2,
+        6,
+        3,
+        7
+      ],
+      "colors": 23,
+      "error": 32.69516225961539,
+      "singlePaletteError": 48.3125
+    },
+    {
+      "id": "map-2",
+      "frame": "map-2-0",
+      "width": 104,
+      "height": 64,
+      "source": "images/map-2-0-cgb.png",
+      "palettes": [
+        7,
+        6,
+        2,
+        4,
+        1,
+        3,
+        5
+      ],
+      "colors": 24,
+      "error": 20.434044471153847,
+      "singlePaletteError": 34.53470552884615
+    },
+    {
+      "id": "map-3",
+      "frame": "map-3-0",
+      "width": 104,
+      "height": 64,
+      "source": "images/map-3-0-cgb.png",
+      "palettes": [
+        4,
+        1,
+        5,
+        6,
+        3,
+        2,
+        7
+      ],
+      "colors": 26,
+      "error": 27.376502403846153,
+      "singlePaletteError": 63.02704326923077
+    },
+    {
+      "id": "map-4",
+      "frame": "map-4-0",
+      "width": 104,
+      "height": 64,
+      "source": "images/map-4-0-cgb.png",
+      "palettes": [
+        5,
+        3,
+        2,
+        4,
+        6,
+        7,
+        1
+      ],
+      "colors": 25,
+      "error": 25.120192307692307,
+      "singlePaletteError": 49.23377403846154
+    },
+    {
+      "id": "map-5",
+      "frame": "map-5-0",
+      "width": 104,
+      "height": 64,
+      "source": "images/map-5-0-cgb.png",
+      "palettes": [
+        3,
+        6,
+        1,
+        4,
+        7,
+        5,
+        2
+      ],
+      "colors": 26,
+      "error": 39.82331730769231,
+      "singlePaletteError": 80.18734975961539
+    },
+    {
+      "id": "screen-title",
+      "frame": "screen-title-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/screen-title-0-cgb.png",
+      "palettes": [
+        3,
+        1,
+        6,
+        4,
+        5,
+        7,
+        2
+      ],
+      "colors": 27,
+      "error": 24.308680555555554,
+      "singlePaletteError": 72.43572048611111
+    },
+    {
+      "id": "screen-clear",
+      "frame": "screen-clear-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/screen-clear-0-cgb.png",
+      "palettes": [
+        3,
+        5,
+        7,
+        1,
+        6,
+        2,
+        4
+      ],
+      "colors": 26,
+      "error": 37.08841145833333,
+      "singlePaletteError": 81.08224826388889
+    },
+    {
+      "id": "screen-over",
+      "frame": "screen-over-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/screen-over-0-cgb.png",
+      "palettes": [
+        1
+      ],
+      "colors": 4,
+      "error": 0,
+      "singlePaletteError": 0
+    },
+    {
+      "id": "screen-scores",
+      "frame": "screen-scores-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/screen-scores-0-cgb.png",
+      "palettes": [
+        1
+      ],
+      "colors": 4,
+      "error": 0,
+      "singlePaletteError": 0
+    },
+    {
+      "id": "dialogue-1",
+      "frame": "dialogue-1-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/dialogue-1-0-cgb.png",
+      "palettes": [
+        1,
+        4,
+        7,
+        2,
+        5,
+        3,
+        6
+      ],
+      "colors": 24,
+      "error": 11.244661458333333,
+      "singlePaletteError": 21.016232638888887
+    },
+    {
+      "id": "result-1",
+      "frame": "result-1-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/result-1-0-cgb.png",
+      "palettes": [
+        1,
+        5,
+        4,
+        6,
+        2,
+        7,
+        3
+      ],
+      "colors": 26,
+      "error": 12.063975694444444,
+      "singlePaletteError": 20.213541666666668
+    },
+    {
+      "id": "dialogue-2",
+      "frame": "dialogue-2-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/dialogue-2-0-cgb.png",
+      "palettes": [
+        1,
+        2,
+        5,
+        6,
+        7,
+        3,
+        4
+      ],
+      "colors": 26,
+      "error": 11.208506944444444,
+      "singlePaletteError": 21.898567708333335
+    },
+    {
+      "id": "result-2",
+      "frame": "result-2-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/result-2-0-cgb.png",
+      "palettes": [
+        1,
+        2,
+        7,
+        6,
+        3,
+        4,
+        5
+      ],
+      "colors": 26,
+      "error": 11.483463541666667,
+      "singlePaletteError": 22.451258680555554
+    },
+    {
+      "id": "dialogue-3",
+      "frame": "dialogue-3-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/dialogue-3-0-cgb.png",
+      "palettes": [
+        1,
+        5,
+        4,
+        3,
+        2
+      ],
+      "colors": 18,
+      "error": 8.561328125,
+      "singlePaletteError": 14.60763888888889
+    },
+    {
+      "id": "result-3",
+      "frame": "result-3-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/result-3-0-cgb.png",
+      "palettes": [
+        1,
+        6,
+        7,
+        3,
+        5,
+        4,
+        2
+      ],
+      "colors": 25,
+      "error": 8.189192708333334,
+      "singlePaletteError": 16.843055555555555
+    },
+    {
+      "id": "dialogue-4",
+      "frame": "dialogue-4-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/dialogue-4-0-cgb.png",
+      "palettes": [
+        1,
+        6,
+        5,
+        3,
+        7,
+        4,
+        2
+      ],
+      "colors": 24,
+      "error": 11.418967013888889,
+      "singlePaletteError": 21.865104166666665
+    },
+    {
+      "id": "result-4",
+      "frame": "result-4-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/result-4-0-cgb.png",
+      "palettes": [
+        1,
+        4,
+        7,
+        6,
+        5,
+        3,
+        2
+      ],
+      "colors": 26,
+      "error": 11.563845486111111,
+      "singlePaletteError": 21.023046875
+    },
+    {
+      "id": "dialogue-5",
+      "frame": "dialogue-5-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/dialogue-5-0-cgb.png",
+      "palettes": [
+        1,
+        5,
+        6,
+        4,
+        2,
+        7,
+        3
+      ],
+      "colors": 23,
+      "error": 11.141796875,
+      "singlePaletteError": 20.325390625
+    },
+    {
+      "id": "result-5",
+      "frame": "result-5-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/result-5-0-cgb.png",
+      "palettes": [
+        1,
+        5,
+        7,
+        3,
+        6,
+        2,
+        4
+      ],
+      "colors": 25,
+      "error": 11.278211805555555,
+      "singlePaletteError": 19.12065972222222
+    },
+    {
+      "id": "cirno",
+      "frame": "cirno-0",
+      "width": 24,
+      "height": 24,
+      "source": "images/cirno-0-cgb.png",
+      "palettes": [
+        2
+      ],
+      "colors": 4
+    },
+    {
+      "id": "dialogue-cirno",
+      "frame": "dialogue-cirno-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/dialogue-cirno-0-cgb.png",
+      "palettes": [
+        1,
+        4,
+        5,
+        6,
+        2,
+        7,
+        3
+      ],
+      "colors": 24,
+      "error": 10.065625,
+      "singlePaletteError": 22.672960069444443
+    },
+    {
+      "id": "result-cirno",
+      "frame": "result-cirno-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/result-cirno-0-cgb.png",
+      "palettes": [
+        1,
+        7,
+        6,
+        4,
+        5,
+        3,
+        2
+      ],
+      "colors": 23,
+      "error": 7.911892361111111,
+      "singlePaletteError": 16.5125
+    },
+    {
+      "id": "ending-cirno",
+      "frame": "ending-cirno-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/ending-cirno-0-cgb.png",
+      "palettes": [
+        5,
+        1,
+        4,
+        7,
+        6,
+        3,
+        2
+      ],
+      "colors": 26,
+      "error": 28.795095486111112,
+      "singlePaletteError": 79.40946180555555
+    },
+    {
+      "id": "ending-meiling-patchouli",
+      "frame": "ending-meiling-patchouli-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/ending-meiling-patchouli-0-cgb.png",
+      "palettes": [
+        1,
+        2,
+        6,
+        7,
+        3,
+        5,
+        4
+      ],
+      "colors": 26,
+      "error": 31.525477430555554,
+      "singlePaletteError": 103.89361979166667
+    },
+    {
+      "id": "ending-sakuya-remilia",
+      "frame": "ending-sakuya-remilia-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/ending-sakuya-remilia-0-cgb.png",
+      "palettes": [
+        1,
+        5,
+        3,
+        2,
+        4,
+        6,
+        7
+      ],
+      "colors": 28,
+      "error": 22.880772569444446,
+      "singlePaletteError": 75.81853298611111
+    },
+    {
+      "id": "ending-flandre",
+      "frame": "ending-flandre-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/ending-flandre-0-cgb.png",
+      "palettes": [
+        2,
+        5,
+        3,
+        7,
+        6,
+        1,
+        4
+      ],
+      "colors": 24,
+      "error": 25.269574652777777,
+      "singlePaletteError": 61.084722222222226
+    },
+    {
+      "id": "map-lake",
+      "frame": "map-lake-0",
+      "width": 104,
+      "height": 64,
+      "source": "images/map-lake-0-cgb.png",
+      "palettes": [
+        5,
+        2,
+        3,
+        1,
+        6,
+        7,
+        4
+      ],
+      "colors": 24,
+      "error": 15.711538461538462,
+      "singlePaletteError": 29.180438701923077
+    },
+    {
+      "id": "rumia",
+      "frame": "rumia-frame",
+      "width": 24,
+      "height": 24,
+      "source": "images/rumia-0-cgb.png",
+      "palettes": [
+        5,
+        7,
+        2
+      ],
+      "colors": 9
+    },
+    {
+      "id": "map-forest",
+      "frame": "map-forest-frame",
+      "width": 64,
+      "height": 32,
+      "source": "images/map-forest-0-cgb.png",
+      "palettes": [
+        4,
+        7,
+        2,
+        5,
+        3,
+        1,
+        6
+      ],
+      "colors": 22,
+      "error": 3.92138671875,
+      "singlePaletteError": 7.78125
+    },
+    {
+      "id": "dialogue-rumia",
+      "frame": "dialogue-rumia-frame",
+      "width": 160,
+      "height": 144,
+      "source": "images/dialogue-rumia-0-cgb.png",
+      "palettes": [
+        1,
+        6,
+        5,
+        4,
+        2,
+        3
+      ],
+      "colors": 20,
+      "error": 8.78732638888889,
+      "singlePaletteError": 15.64470486111111
+    },
+    {
+      "id": "ending-rumia",
+      "frame": "ending-rumia-frame",
+      "width": 160,
+      "height": 144,
+      "source": "images/ending-rumia-0-cgb.png",
+      "palettes": [
+        2,
+        5,
+        6,
+        7,
+        3,
+        4,
+        1
+      ],
+      "colors": 27,
+      "error": 21.227864583333332,
+      "singlePaletteError": 67.69904513888889
+    },
+    {
+      "id": "result-rumia",
+      "frame": "result-rumia-frame",
+      "width": 160,
+      "height": 144,
+      "source": "images/result-rumia-0-cgb.png",
+      "palettes": [
+        1,
+        3,
+        6,
+        4,
+        7,
+        5,
+        2
+      ],
+      "colors": 25,
+      "error": 8.3984375,
+      "singlePaletteError": 16.795616319444445
+    },
+    {
+      "id": "cutin-meiling",
+      "frame": "cutin-meiling-frame",
+      "width": 160,
+      "height": 144,
+      "source": "images/cutin-meiling-0-cgb.png",
+      "palettes": [
+        3,
+        4,
+        1,
+        5,
+        7,
+        6,
+        2
+      ],
+      "colors": 25,
+      "error": 18.949739583333333,
+      "singlePaletteError": 50.37404513888889
+    },
+    {
+      "id": "cutin-patchouli",
+      "frame": "cutin-patchouli-frame",
+      "width": 160,
+      "height": 144,
+      "source": "images/cutin-patchouli-0-cgb.png",
+      "palettes": [
+        1,
+        6,
+        5,
+        4,
+        2,
+        7,
+        3
+      ],
+      "colors": 25,
+      "error": 14.65217013888889,
+      "singlePaletteError": 36.71471354166667
+    },
+    {
+      "id": "cutin-sakuya",
+      "frame": "cutin-sakuya-frame",
+      "width": 160,
+      "height": 144,
+      "source": "images/cutin-sakuya-0-cgb.png",
+      "palettes": [
+        1,
+        6,
+        3,
+        5,
+        7,
+        2,
+        4
+      ],
+      "colors": 23,
+      "error": 14.130815972222223,
+      "singlePaletteError": 25.040972222222223
+    },
+    {
+      "id": "cutin-remilia",
+      "frame": "cutin-remilia-frame",
+      "width": 160,
+      "height": 144,
+      "source": "images/cutin-remilia-0-cgb.png",
+      "palettes": [
+        1,
+        3,
+        6,
+        7,
+        5,
+        4,
+        2
+      ],
+      "colors": 23,
+      "error": 10.971137152777779,
+      "singlePaletteError": 38.81497395833333
+    },
+    {
+      "id": "cutin-flandre",
+      "frame": "cutin-flandre-frame",
+      "width": 160,
+      "height": 144,
+      "source": "images/cutin-flandre-0-cgb.png",
+      "palettes": [
+        1,
+        4,
+        3,
+        6,
+        7,
+        5,
+        2
+      ],
+      "colors": 23,
+      "error": 20.561892361111113,
+      "singlePaletteError": 57.35572916666667
+    },
+    {
+      "id": "cutin-cirno",
+      "frame": "cutin-cirno-frame",
+      "width": 160,
+      "height": 144,
+      "source": "images/cutin-cirno-0-cgb.png",
+      "palettes": [
+        1,
+        2,
+        5,
+        7,
+        6,
+        4,
+        3
+      ],
+      "colors": 23,
+      "error": 16.986371527777777,
+      "singlePaletteError": 56.553211805555556
+    },
+    {
+      "id": "cutin-rumia",
+      "frame": "cutin-rumia-frame",
+      "width": 160,
+      "height": 144,
+      "source": "images/cutin-rumia-0-cgb.png",
+      "palettes": [
+        1,
+        4,
+        6,
+        2,
+        3,
+        5,
+        7
+      ],
+      "colors": 23,
+      "error": 12.678038194444444,
+      "singlePaletteError": 49.12430555555556
+    },
+    {
+      "id": "marisa",
+      "frame": "marisa-0",
+      "width": 16,
+      "height": 24,
+      "source": "images/marisa-0-cgb.png",
+      "palettes": [
+        2,
+        5,
+        7
+      ],
+      "colors": 9
+    },
+    {
+      "id": "bomb-yinyang",
+      "frame": "bomb-yinyang-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/bomb-yinyang-0-cgb.png",
+      "palettes": [
+        1,
+        5,
+        7,
+        4,
+        2,
+        6,
+        3
+      ],
+      "colors": 19,
+      "error": 2.6756944444444444,
+      "singlePaletteError": 7.658333333333333
+    },
+    {
+      "id": "bomb-spark",
+      "frame": "bomb-spark-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/bomb-spark-0-cgb.png",
+      "palettes": [
+        1,
+        7,
+        5,
+        6,
+        2,
+        3,
+        4
+      ],
+      "colors": 19,
+      "error": 2.020746527777778,
+      "singlePaletteError": 15.081901041666667
+    },
+    {
+      "id": "select-reimu",
+      "frame": "select-reimu-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/select-reimu-0-cgb.png",
+      "palettes": [
+        1,
+        4,
+        6,
+        7,
+        2,
+        3,
+        5
+      ],
+      "colors": 23,
+      "error": 16.184461805555557,
+      "singlePaletteError": 35.96510416666667
+    },
+    {
+      "id": "select-marisa",
+      "frame": "select-marisa-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/select-marisa-0-cgb.png",
+      "palettes": [
+        5,
+        2,
+        6,
+        7,
+        1,
+        3,
+        4
+      ],
+      "colors": 23,
+      "error": 15.933550347222223,
+      "singlePaletteError": 44.744053819444446
+    },
+    {
+      "id": "gameover-reimu",
+      "frame": "gameover-reimu-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/gameover-reimu-0-cgb.png",
+      "palettes": [
+        1,
+        5,
+        4,
+        7,
+        2,
+        3,
+        6
+      ],
+      "colors": 24,
+      "error": 12.194140625,
+      "singlePaletteError": 26.037196180555554
+    },
+    {
+      "id": "gameover-marisa",
+      "frame": "gameover-marisa-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/gameover-marisa-0-cgb.png",
+      "palettes": [
+        1,
+        6,
+        5,
+        2,
+        4,
+        3,
+        7
+      ],
+      "colors": 23,
+      "error": 12.063194444444445,
+      "singlePaletteError": 22.716840277777777
+    },
+    {
+      "id": "dialogue-marisa-before",
+      "frame": "dialogue-marisa-before-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/dialogue-marisa-before-0-cgb.png",
+      "palettes": [
+        1,
+        2,
+        5,
+        4,
+        7,
+        3,
+        6
+      ],
+      "colors": 25,
+      "error": 3.3930555555555557,
+      "singlePaletteError": 6.116102430555555
+    },
+    {
+      "id": "dialogue-marisa-after",
+      "frame": "dialogue-marisa-after-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/dialogue-marisa-after-0-cgb.png",
+      "palettes": [
+        1,
+        3,
+        5,
+        7,
+        4,
+        6,
+        2
+      ],
+      "colors": 23,
+      "error": 3.387456597222222,
+      "singlePaletteError": 6.636631944444445
+    },
+    {
+      "id": "ending-marisa",
+      "frame": "ending-marisa-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/ending-marisa-0-cgb.png",
+      "palettes": [
+        5,
+        3,
+        7,
+        1,
+        6,
+        2,
+        4
+      ],
+      "colors": 27,
+      "error": 46.324869791666664,
+      "singlePaletteError": 86.775390625
+    },
+    {
+      "id": "logo-ai-slop",
+      "frame": "logo-ai-slop-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/logo-ai-slop-0-cgb.png",
+      "palettes": [
+        1,
+        7,
+        6,
+        3,
+        4,
+        5,
+        2
+      ],
+      "colors": 19,
+      "error": 3.5663628472222224,
+      "singlePaletteError": 26.34995659722222
+    },
+    {
+      "id": "logo-touhou-notice",
+      "frame": "logo-touhou-notice-0",
+      "width": 160,
+      "height": 144,
+      "source": "images/logo-touhou-notice-0-cgb.png",
+      "palettes": [
+        1,
+        4,
+        6,
+        7,
+        2,
+        5,
+        3
+      ],
+      "colors": 19,
+      "error": 5.1754340277777775,
+      "singlePaletteError": 26.025
+    },
+    {
+      "id": "shot-marisa-laser",
+      "frame": "shot-marisa-laser-0",
+      "width": 8,
+      "height": 16,
+      "source": "images/shot-marisa-laser-0-cgb.png",
+      "palettes": [
+        5
+      ],
+      "colors": 3
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "request": "Continue gameplay during existing character-specific image bombs and implement local BG-bullet collision with measured parity.",
+  "projectId": "touhou-kouma",
+  "projectRevision": "f6a0f07883c28b414f40753d02e76468e1f8375dad670141f31d42ea234c290f",
+  "bomb": {
+    "enabled": true,
+    "stock": 2,
+    "damage": 30,
+    "frames": 48,
+    "flashPeriod": 2,
+    "background": "bomb-yinyang",
+    "live": true,
+    "presentation": "image"
+  },
+  "unchangedArt": 90,
+  "rom": {
+    "path": "build/Release/touhou-kouma-v18.gb",
+    "sha256": "06a0ec4c3090dca1c2255eba3035a1ff17f1d1dd93438b56e2852816f00be30e",
+    "bytes": 1048576
+  }
+}

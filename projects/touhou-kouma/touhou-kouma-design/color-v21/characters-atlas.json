@@ -1,0 +1,115 @@
+{
+  "width": 192,
+  "height": 144,
+  "scale": 4,
+  "records": [
+    {
+      "asset": "reimu",
+      "frame": 0,
+      "x": 16,
+      "y": 12,
+      "width": 16,
+      "height": 24,
+      "cell": 0
+    },
+    {
+      "asset": "reimu",
+      "frame": 1,
+      "x": 64,
+      "y": 12,
+      "width": 16,
+      "height": 24,
+      "cell": 1
+    },
+    {
+      "asset": "meiling",
+      "frame": 0,
+      "x": 108,
+      "y": 12,
+      "width": 24,
+      "height": 24,
+      "cell": 2
+    },
+    {
+      "asset": "patchouli",
+      "frame": 0,
+      "x": 156,
+      "y": 12,
+      "width": 24,
+      "height": 24,
+      "cell": 3
+    },
+    {
+      "asset": "sakuya",
+      "frame": 0,
+      "x": 12,
+      "y": 60,
+      "width": 24,
+      "height": 24,
+      "cell": 4
+    },
+    {
+      "asset": "remilia",
+      "frame": 0,
+      "x": 60,
+      "y": 60,
+      "width": 24,
+      "height": 24,
+      "cell": 5
+    },
+    {
+      "asset": "remilia",
+      "frame": 1,
+      "x": 108,
+      "y": 60,
+      "width": 24,
+      "height": 24,
+      "cell": 6
+    },
+    {
+      "asset": "flandre",
+      "frame": 0,
+      "x": 156,
+      "y": 60,
+      "width": 24,
+      "height": 24,
+      "cell": 7
+    },
+    {
+      "asset": "flandre",
+      "frame": 1,
+      "x": 12,
+      "y": 108,
+      "width": 24,
+      "height": 24,
+      "cell": 8
+    },
+    {
+      "asset": "cirno",
+      "frame": 0,
+      "x": 60,
+      "y": 108,
+      "width": 24,
+      "height": 24,
+      "cell": 9
+    },
+    {
+      "asset": "rumia",
+      "frame": 0,
+      "x": 108,
+      "y": 108,
+      "width": 24,
+      "height": 24,
+      "cell": 10
+    },
+    {
+      "asset": "marisa",
+      "frame": 0,
+      "x": 160,
+      "y": 108,
+      "width": 16,
+      "height": 24,
+      "cell": 11
+    }
+  ]
+}

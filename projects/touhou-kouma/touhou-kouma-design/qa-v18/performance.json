@@ -1,0 +1,58 @@
+[
+  {
+    "variant": "baseline",
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bg-local-small\\baseline\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+    "sourceRevision": "33439f4a725793825c48e7b2f8fe222a0c94412147a5b491ef22c97d3c0474cc",
+    "sha256": "856d7ae0680e03e78eb9b497d4f2c26bbad994b91d8bfe838142bffc1cc00a21",
+    "modes": [
+      {
+        "mode": "DMG",
+        "peak": 40,
+        "hits": 4,
+        "meanBgUpdateCycles": 53175.11511511511,
+        "meanDisplayFrames": 2.6940362269309817,
+        "updatesPerSecond": 22.17026608734247,
+        "p95": 3.000911369332422,
+        "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+      },
+      {
+        "mode": "CGB",
+        "peak": 40,
+        "hits": 4,
+        "meanBgUpdateCycles": 51267.667667667665,
+        "meanDisplayFrames": 1.0811090225563753,
+        "updatesPerSecond": 55.24650960619049,
+        "p95": 2.000427204374573,
+        "hash": "d6d758baed1c6245efee11313c34828d2450e9cfaf12c589a160eb7238285177"
+      }
+    ]
+  },
+  {
+    "variant": "current",
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bg-local-small\\current\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+    "sourceRevision": "33439f4a725793825c48e7b2f8fe222a0c94412147a5b491ef22c97d3c0474cc",
+    "sha256": "b0feaed08aeb501090671755d2120f419c257cc7907ff850ce2eee5698d5ed0b",
+    "modes": [
+      {
+        "mode": "DMG",
+        "peak": 40,
+        "hits": 4,
+        "meanBgUpdateCycles": 51769.00900900901,
+        "meanDisplayFrames": 2.6099453178400753,
+        "updatesPerSecond": 22.884579072112118,
+        "p95": 3.000911369332422,
+        "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+      },
+      {
+        "mode": "CGB",
+        "peak": 40,
+        "hits": 4,
+        "meanBgUpdateCycles": 49853.565565565565,
+        "meanDisplayFrames": 1.082245386192739,
+        "updatesPerSecond": 55.18850046579272,
+        "p95": 2.000427204374573,
+        "hash": "d6d758baed1c6245efee11313c34828d2450e9cfaf12c589a160eb7238285177"
+      }
+    ]
+  }
+]

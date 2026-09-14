@@ -1,0 +1,16 @@
+{
+  "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\menu-ui-08RObQ",
+  "checks": [
+    {
+      "headingToggle": true,
+      "bothCharacters": true,
+      "titleToggle": true,
+      "sevenStagePreview": true,
+      "nativeInput": true,
+      "savedAndReloaded": true,
+      "stagePresentationPreserved": true,
+      "bombSettingsPreserved": true,
+      "buildFree": true
+    }
+  ]
+}

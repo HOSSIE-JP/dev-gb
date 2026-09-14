@@ -1,0 +1,259 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v21\\final-debug\\touhou-kouma.gb",
+  "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+  "results": [
+    {
+      "label": "DMG-0-stage1",
+      "selectedStage": 1,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-0-stage2",
+      "selectedStage": 2,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-0-stage3",
+      "selectedStage": 3,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": true,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-0-stage4",
+      "selectedStage": 4,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-0-stage5",
+      "selectedStage": 5,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-0-stage6",
+      "selectedStage": 6,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-0-stage7",
+      "selectedStage": 7,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-1-stage1",
+      "selectedStage": 1,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-1-stage2",
+      "selectedStage": 2,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-1-stage3",
+      "selectedStage": 3,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-1-stage4",
+      "selectedStage": 4,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-1-stage5",
+      "selectedStage": 5,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-1-stage6",
+      "selectedStage": 6,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "DMG-1-stage7",
+      "selectedStage": 7,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-0-stage1",
+      "selectedStage": 1,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-0-stage2",
+      "selectedStage": 2,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-0-stage3",
+      "selectedStage": 3,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": true,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-0-stage4",
+      "selectedStage": 4,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-0-stage5",
+      "selectedStage": 5,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-0-stage6",
+      "selectedStage": 6,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-0-stage7",
+      "selectedStage": 7,
+      "character": 0,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-1-stage1",
+      "selectedStage": 1,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-1-stage2",
+      "selectedStage": 2,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-1-stage3",
+      "selectedStage": 3,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-1-stage4",
+      "selectedStage": 4,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-1-stage5",
+      "selectedStage": 5,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-1-stage6",
+      "selectedStage": 6,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    },
+    {
+      "label": "CGB-1-stage7",
+      "selectedStage": 7,
+      "character": 1,
+      "exactTitlePixels": true,
+      "exactPortraitPixels": true,
+      "cancelPreserved": false,
+      "gameStarted": true
+    }
+  ],
+  "startAndRankingRegression": 2
+}

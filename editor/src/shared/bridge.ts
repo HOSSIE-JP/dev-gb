@@ -1,6 +1,7 @@
 import type { Asset, BuildResult, Game, ProjectInfo } from "./model";
 export type ImportResult = {
     pixels: number[];
+    cgbPixels: number[];
     sourceWidth: number;
     sourceHeight: number;
     uniqueColors: number;
@@ -52,7 +53,7 @@ export interface Bridge {
         colors: string[],
         transparent: number,
     ): Promise<ImportResult | null>;
-    exportPng(asset: Asset, frame: number): Promise<boolean>;
+    exportPng(asset: Asset, frame: number, color?: boolean): Promise<boolean>;
     build(
         name: string,
         game: Game,

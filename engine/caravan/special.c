@@ -22,7 +22,11 @@ uint8_t ce_home(uint8_t angle, int16_t x, int16_t y) BANKED {
 
 void ce_bomb_effect(void) BANKED {
     uint8_t frame=0;
-    if (ce_bomb_live) { ce_bomb_left = ce_bomb_frames; ce_sound(2); return; }
+    if (ce_bomb_live) {
+        ce_bomb_left = ce_bomb_frames;
+        if (ce_bomb_live == 2u) { ce_render(); ce_bomb_setup(); ce_bomb_image = 1; }
+        ce_sound(ce_bomb_live == 2u && ce_bomb_styles[ce_character] ? 5u : 2u); return;
+    }
     ce_bomb_left=ce_bomb_frames;ce_render();ce_scene=11;ce_bomb_setup();ce_sound(ce_bomb_styles[ce_character]?5u:2u);
     for(ce_bomb_left=ce_bomb_frames;ce_bomb_left;--ce_bomb_left,++frame){
         vsync();ce_bomb_draw((frame/ce_bomb_period)&1u);ce_audio_sync();ce_trace_write();
@@ -48,7 +52,7 @@ static uint8_t ce_can_allocate(uint8_t kind, uint8_t asset, uint8_t count) {
 void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t friendly, uint8_t sequence) BANKED {
     const CE_Pattern *p; const CE_Asset *a; const int8_t *offsets; uint8_t emitter, n, base, angle, slot, emitters, origin;
     int16_t px, py; CE_Entity *e;
-    if (pattern == CE_NONE) return;
+    if (pattern == CE_NONE || (!friendly && ce_bomb_image)) return;
     p = &ce_patterns[pattern]; a = &ce_assets[source];
     origin=friendly?0:p->launch;emitters=origin?(origin==4u?2u:1u):(p->emitters?p->emitters:a->emitters);
     offsets=p->emitters?p->emitter_xy:a->emitter_xy;
@@ -63,7 +67,14 @@ void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t fri
             uint8_t right=origin==2u||(origin==3u&&(sequence&1u))||(origin==4u&&emitter);
             px=right?2528:16;base=right?12u:4u;
         }
-        if (p->kind == 1u) base = p->angle + ce_aim((ce_state.player_x - px) / 16, (ce_state.player_y - py) / 16);
+        if (p->kind == 1u || p->kind == 7u) base = p->angle + ce_aim((ce_state.player_x - px) / 16, (ce_state.player_y - py) / 16);
+        /* Downward aimed shots keep their horizontal boundary when the target
+         * moves above the emitter. Ordinary aimed shots retain all directions. */
+        if (p->kind == 7u) {
+            base &= 15u;
+            if (base < 4u) base = 4u;
+            else if (base > 12u) base = 12u;
+        }
         if (p->kind == 4u) base += sequence * p->rotation;
         for (n = 0; n != p->count; ++n) {
             angle = (base + p->angles[n]) & 15u;
@@ -108,13 +119,28 @@ void ce_damage_actor(uint8_t slot, uint8_t damage) BANKED {
         release(slot);ce_spawn_item(actor->drop_item,x,y);ce_sound(1);explode(x,y);
     }else{target->hp-=damage;if(target->kind==CE_BOSS)ce_sound(4);}
 }
-void ce_bomb_apply(void) BANKED {
-    uint8_t i, n=ce_used; CE_Entity *e;
-    ce_clear_combat(0);
-    if (ce_bomb_background && !ce_battle_mode) ce_terrain_bomb();
+/* One damage packet per target per bomb, including later arrivals. Test the
+ * visible sprite extent so entry from any edge responds on its first pixels. */
+void ce_bomb_sweep(void) BANKED {
+    uint8_t i, bit, n=ce_used; CE_Entity *e; const CE_Asset *a;
     for(i=0;i<n;++i){
         e=&ce_entities[i];
-        if((e->kind==CE_ENEMY||e->kind==CE_BOSS)&& e->x>=0 && e->x<2560 && e->y>=0 && e->y<2304)ce_damage_actor(i,ce_bomb_damage);
+        if(e->kind!=CE_ENEMY && e->kind!=CE_BOSS)continue;
+        bit=1u<<(i&7u);
+        if(ce_bomb_hits[i>>3]&bit)continue;
+        if(e->kind==CE_BOSS && ce_boss_invulnerable)continue;
+        a=&ce_assets[e->asset];
+        if(e->x+(int16_t)(a->width-a->ox)*16<=0 || e->x-(int16_t)a->ox*16>=2560 ||
+           e->y+(int16_t)(a->height-a->oy)*16<=0 || e->y-(int16_t)a->oy*16>=2304)continue;
+        ce_bomb_hits[i>>3]|=bit;
+        ce_damage_actor(i,ce_bomb_damage);
     }
+}
+void ce_bomb_apply(void) BANKED {
+    uint8_t i;
+    ce_clear_combat(0);
+    for(i=0;i!=CE_FREE_GROUPS;++i)ce_bomb_hits[i]=0;
+    if (ce_bomb_background && !ce_battle_mode) ce_terrain_bomb();
+    ce_bomb_sweep();
     if(ce_battle_mode>=2u)ce_bg_begin();
 }

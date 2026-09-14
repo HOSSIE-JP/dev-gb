@@ -5,6 +5,9 @@ export type Frame = {
     image: string;
     duration: number;
     pixels: number[];
+    /** Independent RGB source for CGB; DMG pixels remain the fallback. */
+    cgbImage?: string;
+    cgbPixels?: number[];
 };
 export type Asset = {
     id: string;
@@ -40,7 +43,7 @@ export type Pattern = {
     id: string;
     name: string;
     asset: string;
-    kind: "straight" | "aimed" | "fan" | "ring" | "spiral" | "homing" | "laser";
+    kind: "straight" | "aimed" | "fan" | "ring" | "spiral" | "homing" | "laser" | "aimed-down";
     launch?: { kind: "actor" | "left" | "right" | "alternate" | "both" | "fixed"; x: number; y: number; step: number; lanes: number };
     guidance?: { frames: number; period: number };
     speed: number;
@@ -158,12 +161,14 @@ export type Screen = {
     palette: number;
     dock: "top" | "bottom";
     rows?: number;
+    /** Title only: reserve the bottom four rows for START / STAGE SELECT. */
+    stageSelect?: boolean;
     items: TextItem[];
 };
 export const hudHeight = (game: Game) => (game.screens.find(s => s.id === "hud")?.rows ?? 2) * 8;
 
 export type PlayerCharacter = { id: string; name: string; asset: string; speed: number; weapon: string; focusWeapon?: string; focusSpeed?: number; bombBackground?: string; bombStyle?: "orb" | "beam"; selectionBackground?: string; gameoverBackground?: string };
-export type Bomb = { enabled: boolean; stock: number; damage: number; frames: number; flashPeriod: number; background: string; button?: "a+b" | "b"; destroyBackground?: boolean; maxStock?: number; live?: boolean };
+export type Bomb = { enabled: boolean; stock: number; damage: number; frames: number; flashPeriod: number; background: string; button?: "a+b" | "b"; destroyBackground?: boolean; maxStock?: number; live?: boolean; presentation?: "palette" | "image" };
 export type Game = {
     schemaVersion: 1;
     name: string;
@@ -191,6 +196,7 @@ export type Game = {
         atomicVolleys?: boolean;
         name?: string;
         selectionBackground?: string;
+        selectionHeading?: boolean;
         gameoverBackground?: string;
         characters?: PlayerCharacter[];
         bomb?: Bomb;
@@ -352,6 +358,7 @@ export function validateShape(
                         image: "string",
                         duration: "number",
                         [requirePixels ? "pixels" : "pixels?"]: ["number"],
+                        "cgbImage?": "string", "cgbPixels?": ["number"],
                     },
                 ],
             },
@@ -452,6 +459,7 @@ export function validateShape(
                 palette: "number",
                 dock: "string",
                 "rows?": "number",
+                "stageSelect?": "boolean",
                 items: [
                     {
                         id: "string",
@@ -469,9 +477,9 @@ export function validateShape(
             "powerUps?": {shotWeapons: ["string"], speedLevels: ["number"], shotOnMiss: "string", speedOnMiss: "string"},
             "barrierMax?": "number", "barrierFrames?": "number", "barrierAsset?": "string", "maxLives?": "number", "atomicVolleys?": "boolean",
             "name?": "string",
-            "selectionBackground?": "string", "gameoverBackground?": "string",
+            "selectionBackground?": "string", "selectionHeading?": "boolean", "gameoverBackground?": "string",
             "characters?": [{id: "string", name: "string", asset: "string", speed: "number", weapon: "string", "focusWeapon?": "string", "focusSpeed?": "number", "bombBackground?": "string", "bombStyle?": "string", "selectionBackground?": "string", "gameoverBackground?": "string"}],
-            "bomb?": {"live?": "boolean", enabled: "boolean", stock: "number", damage: "number", frames: "number", flashPeriod: "number", background: "string", "button?": "string", "destroyBackground?": "boolean", "maxStock?": "number"},
+            "bomb?": {"live?": "boolean", "presentation?": "string", enabled: "boolean", stock: "number", damage: "number", frames: "number", flashPeriod: "number", background: "string", "button?": "string", "destroyBackground?": "boolean", "maxStock?": "number"},
             asset: "string",
             speed: "number",
             lives: "number",
@@ -642,6 +650,7 @@ export function validate(value: unknown): Diagnostic[] {
         )
             err(pal.id, "4色のRGBパレットが必要です");
     const images = new Map<string, { asset: Asset; frame: Frame }>();
+    const colorImages = new Map<string, { asset: Asset; frame: Frame }>();
     for (const a of game.assets) {
         uniqueIds(a.frames, a.id);
         if (!["sprite", "tileset", "screen"].includes(a.kind))
@@ -683,6 +692,13 @@ export function validate(value: unknown): Diagnostic[] {
             integer(e.y, -32, 64, a.id);
         }
         for (const f of a.frames) {
+            if (f.cgbImage !== undefined) {
+                const key=f.cgbImage.toLowerCase(), previous=colorImages.get(key);
+                if(previous&&(previous.asset.width!==a.width||previous.asset.height!==a.height||JSON.stringify(previous.frame.cgbPixels)!==JSON.stringify(f.cgbPixels)))err(a.id,`GBC画像パス「${f.cgbImage}」が異なる画像データで重複しています`);
+                else colorImages.set(key,{asset:a,frame:f});
+                if (!/^images\/[A-Za-z0-9._-]+\.png$/.test(f.cgbImage) || game.assets.some(a=>a.frames.some(other=>other.image.toLowerCase()===f.cgbImage!.toLowerCase()))) err(a.id,"GBC画像にはDMG画像と異なるimages内のPNGを指定してください");
+                if (!f.cgbPixels || f.cgbPixels.length!==a.width*a.height || f.cgbPixels.some(p=>!Number.isInteger(p)||p<(a.kind==="sprite"?-1:0)||p>0xffffff)) err(a.id,"GBC画像は寸法と一致するRGBデータが必要です");
+            } else if (f.cgbPixels !== undefined) err(a.id,"GBC画像の保存先がありません");
             integer(f.duration, 1, 255, a.id);
             if (!/^images\/[A-Za-z0-9._-]+\.png$/.test(f.image))
                 err(a.id, "画像パスはimages内のPNGにしてください");
@@ -744,7 +760,7 @@ export function validate(value: unknown): Diagnostic[] {
             for (const point of p.emitterOffsets) { integer(point.x, -32, 32, p.id); integer(point.y, -32, 32, p.id); }
         }
         assetRef(p.asset, p.id);
-        if (!["straight", "aimed", "fan", "ring", "spiral", "homing", "laser"].includes(p.kind))
+        if (!["straight", "aimed", "fan", "ring", "spiral", "homing", "laser", "aimed-down"].includes(p.kind))
             err(p.id, "弾幕方式が不正です");
         if (p.launch) {
             const l = p.launch;
@@ -888,13 +904,14 @@ export function validate(value: unknown): Diagnostic[] {
             const shot = game.patterns.find(s => s.id === id);
             if (shot && (shot.kind === "homing" || shot.launch && shot.launch.kind !== "actor")) err("player", "自機ショットは機体起点・誘導なしで設定してください");
             if (shot && game.player.atomicVolleys) {
-                const art=assets.get(p.asset),bullet=assets.get(shot.asset),emitters=shot.emitterOffsets?.length??(art?.emitters.length||1),count=emitters*(["straight","aimed","homing","laser"].includes(shot.kind)?1:shot.count),reserve=game.items?.length?4:0;
+                const art=assets.get(p.asset),bullet=assets.get(shot.asset),emitters=shot.emitterOffsets?.length??(art?.emitters.length||1),count=emitters*(["straight","aimed","homing","laser","aimed-down"].includes(shot.kind)?1:shot.count),reserve=game.items?.length?4:0;
                 if(count>(game.performance?.playerShots??6)||count>39-reserve||(art&&bullet&&art.width*art.height/64+count*bullet.width*bullet.height/64>40-reserve))err("player",`一斉射撃「${shot.id}」の全弾が弾数・OAM上限に入りません`);
             }
         }
     }
     if (game.player.bomb) {
         const b = game.player.bomb;
+        if (b.presentation !== undefined && !["palette", "image"].includes(b.presentation)) err("player", "ボムの表示方式が不正です");
         if (b.button !== undefined && !["a+b", "b"].includes(b.button)) err("player", "ボムの操作が不正です");
         integer(b.maxStock ?? 9, 1, 9, "player");
         if (b.stock > (b.maxStock ?? 9)) err("player", "初期ボム数が上限を超えています");
@@ -1095,6 +1112,7 @@ export function validate(value: unknown): Diagnostic[] {
         integer(screen.palette, 0, game.palettes.length - 1, screen.id);
         integer(screen.items.length, 0, 32, screen.id);
         if (screen.rows !== undefined) integer(screen.rows, 1, 2, screen.id);
+        if (screen.stageSelect && screen.id !== "title") err(screen.id, "ステージ選択メニューはタイトル画面専用です");
         for (const text of screen.items) {
             integer(text.x, 0, 19, screen.id);
             integer(text.y, 0, screen.id === "hud" ? (screen.rows ?? 2) - 1 : 17, screen.id);

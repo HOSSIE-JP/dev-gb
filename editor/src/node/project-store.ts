@@ -116,6 +116,16 @@ export function atomicWrite(target: string, data: string | Buffer) {
         if (fs.existsSync(temp)) fs.unlinkSync(temp);
     }
 }
+export function encodeColorPng(width:number,height:number,pixels:number[]) {
+    const p=new PNG({width,height});
+    pixels.forEach((v,i)=>{p.data[i*4]=v>>16;p.data[i*4+1]=v>>8;p.data[i*4+2]=v;p.data[i*4+3]=v<0?0:255;});
+    return PNG.sync.write(p,{colorType:6});
+}
+export function decodeColorPng(bytes:Buffer,width:number,height:number) {
+    const p=PNG.sync.read(bytes);
+    if(p.width!==width||p.height!==height)throw Error('GBC画像の寸法が素材と一致しません');
+    return Array.from({length:width*height},(_,i)=>p.data[i*4+3]<128?-1:(p.data[i*4]<<16)|(p.data[i*4+1]<<8)|p.data[i*4+2]);
+}
 export function rollbackInterruptedSave(root: string, name: string) {
     const dir = projectDir(root, name),
         journal = safePath(root, ".cache/editor/transactions", `${name}.json`);
@@ -185,6 +195,10 @@ export function readGame(root: string, name: string): Game {
                 asset.width,
                 asset.height,
             );
+            if(frame.cgbImage){
+                if(!/^images\/[A-Za-z0-9._-]+\.png$/.test(frame.cgbImage))throw Error('GBC画像パスが不正です');
+                frame.cgbPixels=decodeColorPng(fs.readFileSync(safePath(dir,'assets-src',frame.cgbImage)),asset.width,asset.height);
+            }
         }
     const errors = validate(game).filter(
         (diagnostic) => diagnostic.severity === "error",
@@ -235,6 +249,11 @@ export function saveGame(
                 throw new Error("複数フレームが同じ画像パスを参照しています");
             files.set(target, bytes);
             delete (f as Partial<Frame>).pixels;
+            if(f.cgbImage){
+                const colorTarget=safePath(dir,'assets-src',f.cgbImage),colorBytes=encodeColorPng(a.width,a.height,f.cgbPixels!);
+                if(files.has(colorTarget)&&!files.get(colorTarget)!.equals(colorBytes))throw Error('複数画像が同じGBC画像パスを参照しています');
+                files.set(colorTarget,colorBytes);delete f.cgbPixels;
+            }
         }
     files.set(
         safePath(dir, "assets-src/game.json"),
@@ -431,6 +450,7 @@ export function importPng(
         parseInt(c.slice(5, 7), 16),
     ]);
     const pixels = Array(asset.width * asset.height).fill(0);
+    const cgbPixels = Array(asset.width * asset.height).fill(asset.kind === "sprite" ? -1 : 0);
     let reduced = 0;
     const unique = new Set<string>();
     for (let y = 0; y < asset.height; y++)
@@ -453,9 +473,11 @@ export function importPng(
             const color = distances.indexOf(Math.min(...distances));
             if (distances[color] !== 0) reduced++;
             pixels[y * asset.width + x] = color;
+            cgbPixels[y * asset.width + x] = (rgba[0]<<16)|(rgba[1]<<8)|rgba[2];
         }
     return {
         pixels,
+        cgbPixels,
         sourceWidth: png.width,
         sourceHeight: png.height,
         uniqueColors: unique.size,

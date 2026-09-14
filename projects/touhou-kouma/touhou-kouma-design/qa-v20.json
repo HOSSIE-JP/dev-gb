@@ -1,0 +1,184 @@
+{
+  "date": "2026-09-14T06:38:42.627Z",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v20.gb",
+    "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+    "bytes": 1048576
+  },
+  "projectRevision": "65ee603697e903283b86b626627b1d08b18670945d67e8ceeec10c467a3e6c1b",
+  "checks": {
+    "standardTests": 134,
+    "productionWeapons": 12,
+    "nativeBgbWeapons": 4,
+    "productionBomb": 8,
+    "productionMenu": 28,
+    "productionContinueStage3": 4,
+    "editor": true,
+    "debugReleaseIdentical": true,
+    "unchangedPngFiles": 90,
+    "productionUpperTarget": 2
+  },
+  "evidence": {
+    "weapons": 12,
+    "bgb-weapons": 4,
+    "live-bomb": 8,
+    "continue": 4,
+    "menu": 28,
+    "menu-ui": 1,
+    "emulicious": "attempted"
+  },
+  "performance": [
+    {
+      "file": ".cache/kouma-v20/build/Release/touhou-kouma.gb",
+      "sha256": "ce938c9d0b255e1ca5cc2265c534eea4e25db17f7c2d3780a1505ed3425e3aab",
+      "mode": "DMG",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1268,
+      "updates": 880,
+      "updatesPerSecond": 41.451261829653,
+      "maxGap": 3,
+      "peakOam": 31,
+      "peakScanline": 7,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": ".cache/kouma-v20/build/Release/touhou-kouma.gb",
+      "sha256": "ce938c9d0b255e1ca5cc2265c534eea4e25db17f7c2d3780a1505ed3425e3aab",
+      "mode": "DMG",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1412,
+      "updates": 880,
+      "updatesPerSecond": 37.223937677053826,
+      "maxGap": 2,
+      "peakOam": 27,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 5
+    },
+    {
+      "file": ".cache/kouma-v20/build/Release/touhou-kouma.gb",
+      "sha256": "ce938c9d0b255e1ca5cc2265c534eea4e25db17f7c2d3780a1505ed3425e3aab",
+      "mode": "CGB",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 890,
+      "updates": 880,
+      "updatesPerSecond": 59.056404494382015,
+      "maxGap": 3,
+      "peakOam": 31,
+      "peakScanline": 7,
+      "dropped": 1,
+      "lives": 4
+    },
+    {
+      "file": ".cache/kouma-v20/build/Release/touhou-kouma.gb",
+      "sha256": "ce938c9d0b255e1ca5cc2265c534eea4e25db17f7c2d3780a1505ed3425e3aab",
+      "mode": "CGB",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 888,
+      "updates": 880,
+      "updatesPerSecond": 59.189414414414415,
+      "maxGap": 2,
+      "peakOam": 27,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 5
+    },
+    {
+      "file": ".cache/kouma-v20/candidate/touhou-kouma.gb",
+      "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+      "mode": "DMG",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1159,
+      "updates": 880,
+      "updatesPerSecond": 45.34961173425366,
+      "maxGap": 3,
+      "peakOam": 25,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": ".cache/kouma-v20/candidate/touhou-kouma.gb",
+      "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+      "mode": "DMG",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1576,
+      "updates": 880,
+      "updatesPerSecond": 33.3503807106599,
+      "maxGap": 3,
+      "peakOam": 29,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 3
+    },
+    {
+      "file": ".cache/kouma-v20/candidate/touhou-kouma.gb",
+      "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+      "mode": "CGB",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 885,
+      "updates": 880,
+      "updatesPerSecond": 59.390056497175145,
+      "maxGap": 2,
+      "peakOam": 25,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": ".cache/kouma-v20/candidate/touhou-kouma.gb",
+      "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+      "mode": "CGB",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 920,
+      "updates": 880,
+      "updatesPerSecond": 57.13065217391304,
+      "maxGap": 2,
+      "peakOam": 29,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 3
+    }
+  ],
+  "wramBytes": 7126,
+  "spriteTiles": 82,
+  "assetCount": 68,
+  "limitations": [
+    "Physical DMG/CGB hardware, human audio/controller assessment and full campaign difficulty remain unverified.",
+    "Emulicious DAP evaluate fails with NullPointerException; not counted as execution evidence.",
+    "Marisa rapid laser fire increases load: measured stage-1 route is 33.35 updates/s DMG and 57.13 CGB, not constant 60fps."
+  ]
+}

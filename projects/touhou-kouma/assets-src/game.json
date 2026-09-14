@@ -19,7 +19,7 @@
       "id": "pal-0",
       "name": "霊夢",
       "colors": [
-        "#101421",
+        "#000000",
         "#35273f",
         "#d85068",
         "#fff4dd"
@@ -125,12 +125,14 @@
         {
           "id": "reimu-0",
           "image": "images/reimu-0.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/reimu-0-cgb.png"
         },
         {
           "id": "reimu-1",
           "image": "images/reimu-1.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/reimu-1-cgb.png"
         }
       ]
     },
@@ -161,7 +163,8 @@
         {
           "id": "meiling-0",
           "image": "images/meiling-0.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/meiling-0-cgb.png"
         }
       ]
     },
@@ -192,7 +195,8 @@
         {
           "id": "patchouli-0",
           "image": "images/patchouli-0.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/patchouli-0-cgb.png"
         }
       ]
     },
@@ -223,7 +227,8 @@
         {
           "id": "sakuya-0",
           "image": "images/sakuya-0.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/sakuya-0-cgb.png"
         }
       ]
     },
@@ -254,12 +259,14 @@
         {
           "id": "remilia-0",
           "image": "images/remilia-0.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/remilia-0-cgb.png"
         },
         {
           "id": "remilia-1",
           "image": "images/remilia-1.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/remilia-1-cgb.png"
         }
       ]
     },
@@ -290,12 +297,14 @@
         {
           "id": "flandre-0",
           "image": "images/flandre-0.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/flandre-0-cgb.png"
         },
         {
           "id": "flandre-1",
           "image": "images/flandre-1.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/flandre-1-cgb.png"
         }
       ]
     },
@@ -326,12 +335,14 @@
         {
           "id": "fairy-0",
           "image": "images/fairy-0.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/fairy-0-cgb.png"
         },
         {
           "id": "fairy-1",
           "image": "images/fairy-1.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/fairy-1-cgb.png"
         }
       ]
     },
@@ -362,12 +373,14 @@
         {
           "id": "bat-0",
           "image": "images/bat-0.png",
-          "duration": 6
+          "duration": 6,
+          "cgbImage": "images/bat-0-cgb.png"
         },
         {
           "id": "bat-1",
           "image": "images/bat-1.png",
-          "duration": 6
+          "duration": 6,
+          "cgbImage": "images/bat-1-cgb.png"
         }
       ]
     },
@@ -398,12 +411,14 @@
         {
           "id": "book-0",
           "image": "images/book-0.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/book-0-cgb.png"
         },
         {
           "id": "book-1",
           "image": "images/book-1.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/book-1-cgb.png"
         }
       ]
     },
@@ -419,17 +434,18 @@
         "y": 4
       },
       "hitbox": {
-        "x": 2,
-        "y": 2,
-        "w": 4,
-        "h": 4
+        "x": 0,
+        "y": 0,
+        "w": 8,
+        "h": 8
       },
       "emitters": [],
       "frames": [
         {
           "id": "shot-ofuda-0",
           "image": "images/shot-ofuda-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/shot-ofuda-0-cgb.png"
         }
       ]
     },
@@ -445,17 +461,18 @@
         "y": 4
       },
       "hitbox": {
-        "x": 2,
-        "y": 2,
-        "w": 4,
-        "h": 4
+        "x": 1,
+        "y": 0,
+        "w": 6,
+        "h": 8
       },
       "emitters": [],
       "frames": [
         {
           "id": "shot-focus-0",
           "image": "images/shot-focus-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/shot-focus-0-cgb.png"
         }
       ]
     },
@@ -481,7 +498,8 @@
         {
           "id": "shot-orb-0",
           "image": "images/shot-orb-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/shot-orb-0-cgb.png"
         }
       ]
     },
@@ -507,7 +525,8 @@
         {
           "id": "shot-knife-0",
           "image": "images/shot-knife-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/shot-knife-0-cgb.png"
         }
       ]
     },
@@ -533,7 +552,8 @@
         {
           "id": "shot-star-0",
           "image": "images/shot-star-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/shot-star-0-cgb.png"
         }
       ]
     },
@@ -559,7 +579,8 @@
         {
           "id": "shot-diamond-0",
           "image": "images/shot-diamond-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/shot-diamond-0-cgb.png"
         }
       ]
     },
@@ -585,32 +606,38 @@
         {
           "id": "burst-0",
           "image": "images/burst-0.png",
-          "duration": 3
+          "duration": 3,
+          "cgbImage": "images/burst-0-cgb.png"
         },
         {
           "id": "burst-1",
           "image": "images/burst-1.png",
-          "duration": 3
+          "duration": 3,
+          "cgbImage": "images/burst-1-cgb.png"
         },
         {
           "id": "burst-2",
           "image": "images/burst-2.png",
-          "duration": 3
+          "duration": 3,
+          "cgbImage": "images/burst-2-cgb.png"
         },
         {
           "id": "burst-3",
           "image": "images/burst-3.png",
-          "duration": 3
+          "duration": 3,
+          "cgbImage": "images/burst-3-cgb.png"
         },
         {
           "id": "burst-4",
           "image": "images/burst-4.png",
-          "duration": 3
+          "duration": 3,
+          "cgbImage": "images/burst-4-cgb.png"
         },
         {
           "id": "burst-5",
           "image": "images/burst-5.png",
-          "duration": 3
+          "duration": 3,
+          "cgbImage": "images/burst-5-cgb.png"
         }
       ]
     },
@@ -636,7 +663,8 @@
         {
           "id": "map-1-0",
           "image": "images/map-1-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/map-1-0-cgb.png"
         }
       ]
     },
@@ -662,7 +690,8 @@
         {
           "id": "map-2-0",
           "image": "images/map-2-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/map-2-0-cgb.png"
         }
       ]
     },
@@ -688,7 +717,8 @@
         {
           "id": "map-3-0",
           "image": "images/map-3-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/map-3-0-cgb.png"
         }
       ]
     },
@@ -714,7 +744,8 @@
         {
           "id": "map-4-0",
           "image": "images/map-4-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/map-4-0-cgb.png"
         }
       ]
     },
@@ -740,7 +771,8 @@
         {
           "id": "map-5-0",
           "image": "images/map-5-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/map-5-0-cgb.png"
         }
       ]
     },
@@ -766,7 +798,8 @@
         {
           "id": "screen-title-0",
           "image": "images/screen-title-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/screen-title-0-cgb.png"
         }
       ]
     },
@@ -792,7 +825,8 @@
         {
           "id": "screen-clear-0",
           "image": "images/screen-clear-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/screen-clear-0-cgb.png"
         }
       ]
     },
@@ -818,7 +852,8 @@
         {
           "id": "screen-over-0",
           "image": "images/screen-over-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/screen-over-0-cgb.png"
         }
       ]
     },
@@ -844,7 +879,8 @@
         {
           "id": "screen-scores-0",
           "image": "images/screen-scores-0.png",
-          "duration": 10
+          "duration": 10,
+          "cgbImage": "images/screen-scores-0-cgb.png"
         }
       ]
     },
@@ -870,7 +906,8 @@
         {
           "id": "dialogue-1-0",
           "image": "images/dialogue-1.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/dialogue-1-0-cgb.png"
         }
       ]
     },
@@ -896,7 +933,8 @@
         {
           "id": "result-1-0",
           "image": "images/result-1.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/result-1-0-cgb.png"
         }
       ]
     },
@@ -922,7 +960,8 @@
         {
           "id": "dialogue-2-0",
           "image": "images/dialogue-2.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/dialogue-2-0-cgb.png"
         }
       ]
     },
@@ -948,7 +987,8 @@
         {
           "id": "result-2-0",
           "image": "images/result-2.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/result-2-0-cgb.png"
         }
       ]
     },
@@ -974,7 +1014,8 @@
         {
           "id": "dialogue-3-0",
           "image": "images/dialogue-3.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/dialogue-3-0-cgb.png"
         }
       ]
     },
@@ -1000,7 +1041,8 @@
         {
           "id": "result-3-0",
           "image": "images/result-3.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/result-3-0-cgb.png"
         }
       ]
     },
@@ -1026,7 +1068,8 @@
         {
           "id": "dialogue-4-0",
           "image": "images/dialogue-4.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/dialogue-4-0-cgb.png"
         }
       ]
     },
@@ -1052,7 +1095,8 @@
         {
           "id": "result-4-0",
           "image": "images/result-4.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/result-4-0-cgb.png"
         }
       ]
     },
@@ -1078,7 +1122,8 @@
         {
           "id": "dialogue-5-0",
           "image": "images/dialogue-5.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/dialogue-5-0-cgb.png"
         }
       ]
     },
@@ -1104,7 +1149,8 @@
         {
           "id": "result-5-0",
           "image": "images/result-5.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/result-5-0-cgb.png"
         }
       ]
     },
@@ -1135,7 +1181,8 @@
         {
           "id": "cirno-0",
           "image": "images/cirno.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/cirno-0-cgb.png"
         }
       ]
     },
@@ -1161,7 +1208,8 @@
         {
           "id": "dialogue-cirno-0",
           "image": "images/dialogue-cirno.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/dialogue-cirno-0-cgb.png"
         }
       ]
     },
@@ -1187,7 +1235,8 @@
         {
           "id": "result-cirno-0",
           "image": "images/result-cirno.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/result-cirno-0-cgb.png"
         }
       ]
     },
@@ -1213,7 +1262,8 @@
         {
           "id": "ending-cirno-0",
           "image": "images/ending-cirno.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/ending-cirno-0-cgb.png"
         }
       ]
     },
@@ -1239,7 +1289,8 @@
         {
           "id": "ending-meiling-patchouli-0",
           "image": "images/ending-meiling-patchouli.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/ending-meiling-patchouli-0-cgb.png"
         }
       ]
     },
@@ -1265,7 +1316,8 @@
         {
           "id": "ending-sakuya-remilia-0",
           "image": "images/ending-sakuya-remilia.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/ending-sakuya-remilia-0-cgb.png"
         }
       ]
     },
@@ -1291,7 +1343,8 @@
         {
           "id": "ending-flandre-0",
           "image": "images/ending-flandre.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/ending-flandre-0-cgb.png"
         }
       ]
     },
@@ -1317,7 +1370,8 @@
         {
           "id": "map-lake-0",
           "image": "images/map-lake.png",
-          "duration": 12
+          "duration": 12,
+          "cgbImage": "images/map-lake-0-cgb.png"
         }
       ]
     },
@@ -1348,7 +1402,8 @@
         {
           "id": "rumia-frame",
           "image": "images/rumia.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/rumia-0-cgb.png"
         }
       ]
     },
@@ -1374,7 +1429,8 @@
         {
           "id": "map-forest-frame",
           "image": "images/map-forest.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/map-forest-0-cgb.png"
         }
       ]
     },
@@ -1400,7 +1456,8 @@
         {
           "id": "dialogue-rumia-frame",
           "image": "images/dialogue-rumia.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/dialogue-rumia-0-cgb.png"
         }
       ]
     },
@@ -1426,7 +1483,8 @@
         {
           "id": "ending-rumia-frame",
           "image": "images/ending-rumia.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/ending-rumia-0-cgb.png"
         }
       ]
     },
@@ -1452,7 +1510,8 @@
         {
           "id": "result-rumia-frame",
           "image": "images/result-rumia.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/result-rumia-0-cgb.png"
         }
       ]
     },
@@ -1478,7 +1537,8 @@
         {
           "id": "cutin-meiling-frame",
           "image": "images/cutin-meiling.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/cutin-meiling-0-cgb.png"
         }
       ]
     },
@@ -1504,7 +1564,8 @@
         {
           "id": "cutin-patchouli-frame",
           "image": "images/cutin-patchouli.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/cutin-patchouli-0-cgb.png"
         }
       ]
     },
@@ -1530,7 +1591,8 @@
         {
           "id": "cutin-sakuya-frame",
           "image": "images/cutin-sakuya.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/cutin-sakuya-0-cgb.png"
         }
       ]
     },
@@ -1556,7 +1618,8 @@
         {
           "id": "cutin-remilia-frame",
           "image": "images/cutin-remilia.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/cutin-remilia-0-cgb.png"
         }
       ]
     },
@@ -1582,7 +1645,8 @@
         {
           "id": "cutin-flandre-frame",
           "image": "images/cutin-flandre.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/cutin-flandre-0-cgb.png"
         }
       ]
     },
@@ -1608,7 +1672,8 @@
         {
           "id": "cutin-cirno-frame",
           "image": "images/cutin-cirno.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/cutin-cirno-0-cgb.png"
         }
       ]
     },
@@ -1634,7 +1699,8 @@
         {
           "id": "cutin-rumia-frame",
           "image": "images/cutin-rumia.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/cutin-rumia-0-cgb.png"
         }
       ]
     },
@@ -1665,7 +1731,8 @@
         {
           "id": "marisa-0",
           "image": "images/marisa.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/marisa-0-cgb.png"
         }
       ]
     },
@@ -1691,7 +1758,8 @@
         {
           "id": "bomb-yinyang-0",
           "image": "images/bomb-yinyang.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/bomb-yinyang-0-cgb.png"
         }
       ]
     },
@@ -1717,7 +1785,8 @@
         {
           "id": "bomb-spark-0",
           "image": "images/bomb-spark.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/bomb-spark-0-cgb.png"
         }
       ]
     },
@@ -1743,7 +1812,8 @@
         {
           "id": "select-reimu-0",
           "image": "images/select-reimu.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/select-reimu-0-cgb.png"
         }
       ]
     },
@@ -1769,7 +1839,8 @@
         {
           "id": "select-marisa-0",
           "image": "images/select-marisa.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/select-marisa-0-cgb.png"
         }
       ]
     },
@@ -1795,7 +1866,8 @@
         {
           "id": "gameover-reimu-0",
           "image": "images/gameover-reimu.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/gameover-reimu-0-cgb.png"
         }
       ]
     },
@@ -1821,7 +1893,8 @@
         {
           "id": "gameover-marisa-0",
           "image": "images/gameover-marisa.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/gameover-marisa-0-cgb.png"
         }
       ]
     },
@@ -1847,7 +1920,8 @@
         {
           "id": "dialogue-marisa-before-0",
           "image": "images/dialogue-marisa-before.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/dialogue-marisa-before-0-cgb.png"
         }
       ]
     },
@@ -1873,7 +1947,8 @@
         {
           "id": "dialogue-marisa-after-0",
           "image": "images/dialogue-marisa-after.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/dialogue-marisa-after-0-cgb.png"
         }
       ]
     },
@@ -1899,7 +1974,8 @@
         {
           "id": "ending-marisa-0",
           "image": "images/ending-marisa.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/ending-marisa-0-cgb.png"
         }
       ]
     },
@@ -1925,7 +2001,8 @@
         {
           "id": "logo-ai-slop-0",
           "image": "images/logo-ai-slop.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/logo-ai-slop-0-cgb.png"
         }
       ]
     },
@@ -1951,7 +2028,35 @@
         {
           "id": "logo-touhou-notice-0",
           "image": "images/logo-touhou-notice.png",
-          "duration": 8
+          "duration": 8,
+          "cgbImage": "images/logo-touhou-notice-0-cgb.png"
+        }
+      ]
+    },
+    {
+      "id": "shot-marisa-laser",
+      "name": "魔理沙・レーザー",
+      "kind": "sprite",
+      "width": 8,
+      "height": 16,
+      "palette": 7,
+      "origin": {
+        "x": 4,
+        "y": 8
+      },
+      "hitbox": {
+        "x": 3,
+        "y": 0,
+        "w": 2,
+        "h": 16
+      },
+      "emitters": [],
+      "frames": [
+        {
+          "id": "shot-marisa-laser-0",
+          "image": "images/shot-marisa-laser-v20.png",
+          "duration": 10,
+          "cgbImage": "images/shot-marisa-laser-0-cgb.png"
         }
       ]
     }
@@ -1959,7 +2064,7 @@
   "patterns": [
     {
       "id": "reimu-shot",
-      "name": "通常・三方向拡散札",
+      "name": "霊夢・広域二方向札",
       "asset": "shot-ofuda",
       "kind": "fan",
       "speed": 8,
@@ -1991,50 +2096,50 @@
     },
     {
       "id": "fairy-aim",
-      "name": "妖精・下向きの灯",
+      "name": "妖精・一拍置いて自機狙い",
       "asset": "shot-orb",
-      "kind": "straight",
-      "speed": 1.25,
-      "angle": 180,
+      "kind": "aimed-down",
+      "speed": 2.5,
+      "angle": 0,
       "count": 1,
       "spread": 0,
       "interval": 100,
       "rotation": 0,
       "repeats": 1,
-      "delay": 35,
-      "lifetime": 130,
+      "delay": 44,
+      "lifetime": 88,
       "damage": 1
     },
     {
       "id": "bat-drop",
-      "name": "使い魔・落下弾",
+      "name": "使い魔・交差する自機狙い",
       "asset": "shot-diamond",
-      "kind": "straight",
-      "speed": 1.5,
-      "angle": 180,
+      "kind": "aimed-down",
+      "speed": 2.75,
+      "angle": 0,
       "count": 1,
       "spread": 0,
       "interval": 90,
       "rotation": 0,
       "repeats": 1,
-      "delay": 30,
-      "lifetime": 120,
+      "delay": 24,
+      "lifetime": 80,
       "damage": 1
     },
     {
       "id": "book-fan",
-      "name": "魔導書・二方向",
+      "name": "魔導書・停止後の二方向弾",
       "asset": "shot-star",
       "kind": "fan",
-      "speed": 1,
+      "speed": 2,
       "angle": 180,
       "count": 2,
       "spread": 45,
       "interval": 140,
       "rotation": 0,
       "repeats": 1,
-      "delay": 32,
-      "lifetime": 130,
+      "delay": 64,
+      "lifetime": 88,
       "damage": 1
     },
     {
@@ -2422,14 +2527,14 @@
     },
     {
       "id": "marisa-shot",
-      "name": "魔理沙・星の直進連射",
-      "asset": "shot-star",
-      "kind": "straight",
+      "name": "魔理沙・高速レーザー連射",
+      "asset": "shot-marisa-laser",
+      "kind": "laser",
       "speed": 8,
       "angle": 0,
       "count": 1,
       "spread": 0,
-      "interval": 8,
+      "interval": 4,
       "rotation": 0,
       "repeats": 0,
       "delay": 0,
@@ -2438,14 +2543,14 @@
     },
     {
       "id": "marisa-focus",
-      "name": "魔理沙・正面集中光弾",
-      "asset": "shot-focus",
-      "kind": "straight",
+      "name": "魔理沙・集中レーザー",
+      "asset": "shot-marisa-laser",
+      "kind": "laser",
       "speed": 8,
       "angle": 0,
       "count": 1,
       "spread": 0,
-      "interval": 10,
+      "interval": 6,
       "rotation": 0,
       "repeats": 0,
       "delay": 0,
@@ -2461,22 +2566,32 @@
       "hp": 2,
       "score": 80,
       "motion": {
-        "kind": "straight",
+        "kind": "path",
         "vx": 0,
-        "vy": 1.25,
+        "vy": 0,
         "amplitude": 0,
-        "period": 240,
+        "period": 144,
         "loop": false,
         "points": [
           {
-            "x": -72,
-            "y": -20,
+            "x": 0,
+            "y": 0,
             "frame": 0
           },
           {
-            "x": 65,
-            "y": 159,
-            "frame": 240
+            "x": 0,
+            "y": 48,
+            "frame": 32
+          },
+          {
+            "x": 0,
+            "y": 48,
+            "frame": 64
+          },
+          {
+            "x": 0,
+            "y": 208,
+            "frame": 144
           }
         ]
       },
@@ -2490,12 +2605,12 @@
       "hp": 2,
       "score": 80,
       "motion": {
-        "kind": "straight",
-        "vx": -0.3125,
-        "vy": 1.375,
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
         "amplitude": 0,
-        "period": 240,
-        "loop": true,
+        "period": 144,
+        "loop": false,
         "points": [
           {
             "x": 0,
@@ -2503,9 +2618,19 @@
             "frame": 0
           },
           {
-            "x": 0,
-            "y": 0,
-            "frame": 240
+            "x": -12,
+            "y": 48,
+            "frame": 32
+          },
+          {
+            "x": -12,
+            "y": 48,
+            "frame": 64
+          },
+          {
+            "x": -24,
+            "y": 208,
+            "frame": 144
           }
         ]
       },
@@ -2519,12 +2644,12 @@
       "hp": 2,
       "score": 80,
       "motion": {
-        "kind": "straight",
-        "vx": 0.3125,
-        "vy": 1.375,
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
         "amplitude": 0,
-        "period": 240,
-        "loop": true,
+        "period": 144,
+        "loop": false,
         "points": [
           {
             "x": 0,
@@ -2532,9 +2657,19 @@
             "frame": 0
           },
           {
-            "x": 0,
-            "y": 0,
-            "frame": 240
+            "x": 12,
+            "y": 48,
+            "frame": 32
+          },
+          {
+            "x": 12,
+            "y": 48,
+            "frame": 64
+          },
+          {
+            "x": 24,
+            "y": 208,
+            "frame": 144
           }
         ]
       },
@@ -2579,7 +2714,7 @@
       "motion": {
         "kind": "straight",
         "vx": 0,
-        "vy": 1.125,
+        "vy": 0.75,
         "amplitude": 0,
         "period": 240,
         "loop": true,
@@ -78336,26 +78471,8 @@
       "background": "screen-title",
       "palette": 0,
       "dock": "top",
-      "items": [
-        {
-          "id": "begin",
-          "text": "START",
-          "x": 7,
-          "y": 15,
-          "palette": 0,
-          "binding": "none",
-          "digits": 5
-        },
-        {
-          "id": "scores-hint",
-          "text": "SELECT: SCORE",
-          "x": 3,
-          "y": 17,
-          "palette": 0,
-          "binding": "none",
-          "digits": 1
-        }
-      ]
+      "items": [],
+      "stageSelect": true
     },
     {
       "id": "gameover",
@@ -78508,10 +78625,13 @@
       "damage": 30,
       "frames": 48,
       "flashPeriod": 2,
-      "background": "bomb-yinyang"
+      "background": "bomb-yinyang",
+      "live": true,
+      "presentation": "image"
     },
     "selectionBackground": "select-reimu",
-    "gameoverBackground": "gameover-reimu"
+    "gameoverBackground": "gameover-reimu",
+    "selectionHeading": true
   },
   "clearBonus": 500,
   "stageFade": true,

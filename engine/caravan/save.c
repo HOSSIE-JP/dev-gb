@@ -1,4 +1,4 @@
-#pragma bank 1
+#pragma bank 255
 #include "caravan.h"
 
 /* Two independent 32-byte records in bank 0. Byte 0 commits the record last.

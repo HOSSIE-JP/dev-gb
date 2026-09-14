@@ -1,0 +1,872 @@
+{
+  "before": "65ee603697e903283b86b626627b1d08b18670945d67e8ceeec10c467a3e6c1b",
+  "after": "4fb8c3174cf972659ba02a70eda41700b9f7bb48f0805d0edb15be545f108104",
+  "provenance": "AI-assisted recoloring of the existing project artwork. Touhou characters belong to Team Shanghai Alice. No reference ROM material copied.",
+  "sources": {
+    "ending-rumia": {
+      "file": "ending-rumia-master.png",
+      "sha256": "833fc9d56dbb0d5748dc52f3085fbf74d6c7adf8e775ae6718f5ba9394af8eb1"
+    },
+    "ending-cirno": {
+      "file": "ending-cirno-master.png",
+      "sha256": "207304973ef1f2871ae08c409fc062ad905a1fe310309179c9e4d1aac703ba57"
+    },
+    "ending-meiling-patchouli": {
+      "file": "ending-meiling-patchouli-master.png",
+      "sha256": "f7ed4b079adfcae78269722c9a26aa02656feaa4e6c49d07b3a16a2bead8d7c3"
+    },
+    "ending-sakuya-remilia": {
+      "file": "ending-sakuya-remilia-master.png",
+      "sha256": "586fc5c72668a814e57ddd53ca7a916a136b24be5e08482c6916d0f6ad54873d"
+    },
+    "ending-flandre": {
+      "file": "ending-flandre-master.png",
+      "sha256": "5ad5fc3aa2f5315440cee8fa5377547b51045240e9519a3ad9c3959b281f018d"
+    },
+    "ending-marisa": {
+      "file": "ending-marisa-master.png",
+      "sha256": "5af962459edb35cb193a2cebe0fe1e4bcd8b495a9e9dd4ea5028eda316d1bfd7"
+    },
+    "screen-title": {
+      "file": "screen-title-master.png",
+      "sha256": "f1835b9c481543a2cca6f22cec09015612213a0d1c4e3624edf3ef1dc76277d0"
+    },
+    "select-reimu": {
+      "file": "select-reimu-master.png",
+      "sha256": "5f304f0a487146d96d30ada93b8bfc9c28615eb27087ff93a3b471eb8a6470f7"
+    },
+    "select-marisa": {
+      "file": "select-marisa-master.png",
+      "sha256": "5baaea4c5053ffe9fb0e2b58391f6476611e26a61f2a1532d8a453c69e3c7959"
+    },
+    "gameover-reimu": {
+      "file": "gameover-reimu-master.png",
+      "sha256": "82e7e33c3a0f0516268852c18f4e3c7bdf6588125d57e295b290558ce2d2743d"
+    },
+    "gameover-marisa": {
+      "file": "gameover-marisa-master.png",
+      "sha256": "d99bdf03b28916825c7b7ac0f07cd314add559830291a6c0f00814db7011b26e"
+    },
+    "logo-ai-slop": {
+      "file": "logo-ai-slop-master.png",
+      "sha256": "4134d7ff36a07ea32bc228f6f4c4ea9032ae4b7a70a0a0efb0ee36d75c7f1efb"
+    },
+    "logo-touhou-notice": {
+      "file": "logo-touhou-notice-master.png",
+      "sha256": "6b59ac8fbdac5aecb42a82728e11bea36a9b5318e9de6f184e99b15e9275b56f"
+    },
+    "cutin-meiling": {
+      "file": "cutin-meiling-master.png",
+      "sha256": "3d4501855de5cd3fa1653aec73dc4e291c8b7db2e61e329f0e138a52ea9187c5"
+    },
+    "cutin-patchouli": {
+      "file": "cutin-patchouli-master.png",
+      "sha256": "80327c2485fe8f141ee2122854df386bc9a09d6f06c0ae761a95c283bb8a69f3"
+    },
+    "cutin-sakuya": {
+      "file": "cutin-sakuya-master.png",
+      "sha256": "b1d83167e49f978c9bfcd89adf83e645ab5b01af91b2adb5a5af83d4a547de61"
+    },
+    "cutin-remilia": {
+      "file": "cutin-remilia-master.png",
+      "sha256": "d0737a6761e9be511dd2d06424d4a5c6a09f44d9238a112a134a8e1ac2d20c96"
+    },
+    "cutin-flandre": {
+      "file": "cutin-flandre-master.png",
+      "sha256": "ccfc6205618cc31840050bed50ccefaa638eb4f64aada313e91c41c0864e7861"
+    },
+    "cutin-cirno": {
+      "file": "cutin-cirno-master.png",
+      "sha256": "fb9a3a5aeec1d02ac8510c04e9578d414c4441b4c63ea54472352140efc8af6e"
+    },
+    "cutin-rumia": {
+      "file": "cutin-rumia-master.png",
+      "sha256": "f6ee281c3a2469236d4568ab756bd03691e7d36d5df205c088d881f5fbe4e68a"
+    },
+    "ending-reimu": {
+      "file": "ending-reimu-master.png",
+      "sha256": "bf00ca1d6adc0a4b47d1e174b8227243b14a2b861f56325d76a0b101ecafae62"
+    },
+    "bomb-yinyang": {
+      "file": "bomb-yinyang-master.png",
+      "sha256": "d7a3637348eee35f3e7719e4c5fdad312cdb5017497c8d532734b82a16a0048d"
+    },
+    "bomb-spark": {
+      "file": "bomb-spark-master.png",
+      "sha256": "85e651ac2caa7a6af447b18bcc406123534cf100b3c6201d7be7364b50c84a75"
+    },
+    "reimu-sheet": {
+      "file": "reimu-sheet-master.png",
+      "sha256": "5210226609d99c2651851a706ebd97c10b0d6e217e1d7a4f53509dd73541e566"
+    },
+    "meiling-sheet": {
+      "file": "meiling-sheet-master.png",
+      "sha256": "b394f155d65ced218cbe6d1bf8127efbb2d4ce4bb72b461440fc26289a298b7f"
+    },
+    "patchouli-sheet": {
+      "file": "patchouli-sheet-master.png",
+      "sha256": "aa1ab14ae225c61d044b79e2924d0ab413a81dcb4f383b47e0a17a42acf2cddf"
+    },
+    "sakuya-sheet": {
+      "file": "sakuya-sheet-master.png",
+      "sha256": "f520e93c42eb2ca08577584e9fcc492e7362b4028d105cf7c2cb0d9a46d81037"
+    },
+    "remilia-sheet": {
+      "file": "remilia-sheet-master.png",
+      "sha256": "26532e92e3f9f04de7b0c966d106e8381ac12281ef73f07bd55a34851e339091"
+    },
+    "flandre-sheet": {
+      "file": "flandre-sheet-master.png",
+      "sha256": "f266fead931db55e7cff6f7af5cbb8a8c93056ef1bdace123b692143584be4ab"
+    },
+    "cirno-sheet": {
+      "file": "cirno-sheet-master.png",
+      "sha256": "f91cbf6ad40bcf4ccc4dd8357ad179837853405fa6517e22f559aac601948412"
+    },
+    "rumia-sheet": {
+      "file": "rumia-sheet-master.png",
+      "sha256": "0382d63409c7616420bd2fbb042b8f897f5c967c3c56836dbbdaf7df55bbd9a9"
+    },
+    "dialogue-marisa-before": {
+      "file": "dialogue-marisa-before-master.png",
+      "sha256": "723272c96e32e7826026877bf626d09afc92b1381bfcefc0e054c3b39f18e52f"
+    },
+    "dialogue-marisa-after": {
+      "file": "dialogue-marisa-after-master.png",
+      "sha256": "33ca6e81d058d19ad34fbc83aac1e8da70ddabdd8b6ad6a718c3be83b368c546"
+    },
+    "characters": {
+      "file": "characters-master.png",
+      "sha256": "e1a298cf831f4855a218401a0e075f8193eb3de87d691368d49d2829101ef4ee"
+    },
+    "objects": {
+      "file": "objects-master.png",
+      "sha256": "48c26218b0e9c357f986ef9926f2ddbdab35775635a64380b510dd1d3f0d53ea"
+    },
+    "stage-forest": {
+      "file": "stage-forest-master.png",
+      "sha256": "d0b1644cb32db007796a067e03d98278068032e88f4f6de7dcba002ef97dd11a"
+    },
+    "stage-lake": {
+      "file": "stage-lake-master.png",
+      "sha256": "24a63225ed6515f43aead7402541f2f4b2642fac84285ea1954d2988f86ac814"
+    },
+    "stage-1": {
+      "file": "stage-1-master.png",
+      "sha256": "eaa91c4e3f5f55c6e61a2dc103afec22e8f64d90daadc19c5a21ec57ae23172c"
+    },
+    "stage-2": {
+      "file": "stage-2-master.png",
+      "sha256": "3a9ef84d28e97489b548aa62ec2ba3d3dd9d0a6dfa53d8e9d87f2440b7a1f0b2"
+    },
+    "stage-3": {
+      "file": "stage-3-master.png",
+      "sha256": "0a46f7578e6326b53b71a4cbf0c4111b29c7103383572a305c5ff64c08610cc1"
+    },
+    "stage-4": {
+      "file": "stage-4-master.png",
+      "sha256": "0cdd7eec07e8ead33c01c939a5903089a738a62e22cbcf9f6c8cc48d96c3847d"
+    },
+    "stage-5": {
+      "file": "stage-5-master.png",
+      "sha256": "27deb07c3835671f2fe1cf5ed8743c364b1ceb6f93586737a2bdfba494d32345"
+    }
+  },
+  "assets": [
+    {
+      "id": "ending-rumia",
+      "frame": 0,
+      "source": "ending-rumia",
+      "image": "images/ending-rumia-0-cgb.png",
+      "width": 160,
+      "height": 144,
+      "dmg": {
+        "layout": [
+          128,
+          112
+        ],
+        "tiles": 216
+      }
+    },
+    {
+      "id": "ending-cirno",
+      "frame": 0,
+      "source": "ending-cirno",
+      "image": "images/ending-cirno-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "ending-meiling-patchouli",
+      "frame": 0,
+      "source": "ending-meiling-patchouli",
+      "image": "images/ending-meiling-patchouli-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "ending-sakuya-remilia",
+      "frame": 0,
+      "source": "ending-sakuya-remilia",
+      "image": "images/ending-sakuya-remilia-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "ending-flandre",
+      "frame": 0,
+      "source": "ending-flandre",
+      "image": "images/ending-flandre-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "ending-marisa",
+      "frame": 0,
+      "source": "ending-marisa",
+      "image": "images/ending-marisa-0-cgb.png",
+      "width": 160,
+      "height": 144,
+      "dmg": {
+        "layout": [
+          128,
+          112
+        ],
+        "tiles": 223
+      }
+    },
+    {
+      "id": "screen-title",
+      "frame": 0,
+      "source": "screen-title",
+      "image": "images/screen-title-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "select-reimu",
+      "frame": 0,
+      "source": "select-reimu",
+      "image": "images/select-reimu-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "select-marisa",
+      "frame": 0,
+      "source": "select-marisa",
+      "image": "images/select-marisa-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "gameover-reimu",
+      "frame": 0,
+      "source": "gameover-reimu",
+      "image": "images/gameover-reimu-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "gameover-marisa",
+      "frame": 0,
+      "source": "gameover-marisa",
+      "image": "images/gameover-marisa-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "logo-ai-slop",
+      "frame": 0,
+      "source": "logo-ai-slop",
+      "image": "images/logo-ai-slop-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "logo-touhou-notice",
+      "frame": 0,
+      "source": "logo-touhou-notice",
+      "image": "images/logo-touhou-notice-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "cutin-meiling",
+      "frame": 0,
+      "source": "cutin-meiling",
+      "image": "images/cutin-meiling-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "cutin-patchouli",
+      "frame": 0,
+      "source": "cutin-patchouli",
+      "image": "images/cutin-patchouli-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "cutin-sakuya",
+      "frame": 0,
+      "source": "cutin-sakuya",
+      "image": "images/cutin-sakuya-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "cutin-remilia",
+      "frame": 0,
+      "source": "cutin-remilia",
+      "image": "images/cutin-remilia-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "cutin-flandre",
+      "frame": 0,
+      "source": "cutin-flandre",
+      "image": "images/cutin-flandre-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "cutin-cirno",
+      "frame": 0,
+      "source": "cutin-cirno",
+      "image": "images/cutin-cirno-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "cutin-rumia",
+      "frame": 0,
+      "source": "cutin-rumia",
+      "image": "images/cutin-rumia-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "screen-clear",
+      "frame": 0,
+      "source": "ending-reimu",
+      "image": "images/screen-clear-0-cgb.png",
+      "width": 160,
+      "height": 144,
+      "dmg": {
+        "layout": [
+          128,
+          112
+        ],
+        "tiles": 225
+      }
+    },
+    {
+      "id": "bomb-yinyang",
+      "frame": 0,
+      "source": "bomb-yinyang",
+      "image": "images/bomb-yinyang-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "bomb-spark",
+      "frame": 0,
+      "source": "bomb-spark",
+      "image": "images/bomb-spark-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "dialogue-1",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "meiling-sheet"
+      ],
+      "image": "images/dialogue-1-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "result-1",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "meiling-sheet"
+      ],
+      "image": "images/result-1-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "dialogue-2",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "patchouli-sheet"
+      ],
+      "image": "images/dialogue-2-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "result-2",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "patchouli-sheet"
+      ],
+      "image": "images/result-2-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "dialogue-3",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "sakuya-sheet"
+      ],
+      "image": "images/dialogue-3-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "result-3",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "sakuya-sheet"
+      ],
+      "image": "images/result-3-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "dialogue-4",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "remilia-sheet"
+      ],
+      "image": "images/dialogue-4-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "result-4",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "remilia-sheet"
+      ],
+      "image": "images/result-4-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "dialogue-5",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "flandre-sheet"
+      ],
+      "image": "images/dialogue-5-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "result-5",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "flandre-sheet"
+      ],
+      "image": "images/result-5-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "dialogue-cirno",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "cirno-sheet"
+      ],
+      "image": "images/dialogue-cirno-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "result-cirno",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "cirno-sheet"
+      ],
+      "image": "images/result-cirno-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "dialogue-rumia",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "rumia-sheet"
+      ],
+      "image": "images/dialogue-rumia-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "result-rumia",
+      "frame": 0,
+      "source": [
+        "reimu-sheet",
+        "rumia-sheet"
+      ],
+      "image": "images/result-rumia-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "dialogue-marisa-before",
+      "frame": 0,
+      "source": "dialogue-marisa-before",
+      "image": "images/dialogue-marisa-before-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "dialogue-marisa-after",
+      "frame": 0,
+      "source": "dialogue-marisa-after",
+      "image": "images/dialogue-marisa-after-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "reimu",
+      "frame": 0,
+      "source": "characters",
+      "image": "images/reimu-0-cgb.png",
+      "width": 16,
+      "height": 24
+    },
+    {
+      "id": "reimu",
+      "frame": 1,
+      "source": "characters",
+      "image": "images/reimu-1-cgb.png",
+      "width": 16,
+      "height": 24
+    },
+    {
+      "id": "meiling",
+      "frame": 0,
+      "source": "characters",
+      "image": "images/meiling-0-cgb.png",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "id": "patchouli",
+      "frame": 0,
+      "source": "characters",
+      "image": "images/patchouli-0-cgb.png",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "id": "sakuya",
+      "frame": 0,
+      "source": "characters",
+      "image": "images/sakuya-0-cgb.png",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "id": "remilia",
+      "frame": 0,
+      "source": "characters",
+      "image": "images/remilia-0-cgb.png",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "id": "remilia",
+      "frame": 1,
+      "source": "characters",
+      "image": "images/remilia-1-cgb.png",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "id": "flandre",
+      "frame": 0,
+      "source": "characters",
+      "image": "images/flandre-0-cgb.png",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "id": "flandre",
+      "frame": 1,
+      "source": "characters",
+      "image": "images/flandre-1-cgb.png",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "id": "cirno",
+      "frame": 0,
+      "source": "characters",
+      "image": "images/cirno-0-cgb.png",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "id": "rumia",
+      "frame": 0,
+      "source": "characters",
+      "image": "images/rumia-0-cgb.png",
+      "width": 24,
+      "height": 24
+    },
+    {
+      "id": "marisa",
+      "frame": 0,
+      "source": "characters",
+      "image": "images/marisa-0-cgb.png",
+      "width": 16,
+      "height": 24
+    },
+    {
+      "id": "fairy",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/fairy-0-cgb.png",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "id": "fairy",
+      "frame": 1,
+      "source": "objects",
+      "image": "images/fairy-1-cgb.png",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "id": "bat",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/bat-0-cgb.png",
+      "width": 16,
+      "height": 8
+    },
+    {
+      "id": "bat",
+      "frame": 1,
+      "source": "objects",
+      "image": "images/bat-1-cgb.png",
+      "width": 16,
+      "height": 8
+    },
+    {
+      "id": "book",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/book-0-cgb.png",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "id": "book",
+      "frame": 1,
+      "source": "objects",
+      "image": "images/book-1-cgb.png",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "id": "shot-ofuda",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/shot-ofuda-0-cgb.png",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "id": "shot-focus",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/shot-focus-0-cgb.png",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "id": "shot-orb",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/shot-orb-0-cgb.png",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "id": "shot-knife",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/shot-knife-0-cgb.png",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "id": "shot-star",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/shot-star-0-cgb.png",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "id": "shot-diamond",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/shot-diamond-0-cgb.png",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "id": "burst",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/burst-0-cgb.png",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "id": "burst",
+      "frame": 1,
+      "source": "objects",
+      "image": "images/burst-1-cgb.png",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "id": "burst",
+      "frame": 2,
+      "source": "objects",
+      "image": "images/burst-2-cgb.png",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "id": "burst",
+      "frame": 3,
+      "source": "objects",
+      "image": "images/burst-3-cgb.png",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "id": "burst",
+      "frame": 4,
+      "source": "objects",
+      "image": "images/burst-4-cgb.png",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "id": "burst",
+      "frame": 5,
+      "source": "objects",
+      "image": "images/burst-5-cgb.png",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "id": "shot-marisa-laser",
+      "frame": 0,
+      "source": "objects",
+      "image": "images/shot-marisa-laser-0-cgb.png",
+      "width": 8,
+      "height": 16
+    },
+    {
+      "id": "map-forest",
+      "frame": 0,
+      "source": "stage-forest",
+      "image": "images/map-forest-0-cgb.png",
+      "width": 64,
+      "height": 32
+    },
+    {
+      "id": "map-lake",
+      "frame": 0,
+      "source": "stage-lake",
+      "image": "images/map-lake-0-cgb.png",
+      "width": 104,
+      "height": 64
+    },
+    {
+      "id": "map-1",
+      "frame": 0,
+      "source": "stage-1",
+      "image": "images/map-1-0-cgb.png",
+      "width": 104,
+      "height": 64
+    },
+    {
+      "id": "map-2",
+      "frame": 0,
+      "source": "stage-2",
+      "image": "images/map-2-0-cgb.png",
+      "width": 104,
+      "height": 64
+    },
+    {
+      "id": "map-3",
+      "frame": 0,
+      "source": "stage-3",
+      "image": "images/map-3-0-cgb.png",
+      "width": 104,
+      "height": 64
+    },
+    {
+      "id": "map-4",
+      "frame": 0,
+      "source": "stage-4",
+      "image": "images/map-4-0-cgb.png",
+      "width": 104,
+      "height": 64
+    },
+    {
+      "id": "map-5",
+      "frame": 0,
+      "source": "stage-5",
+      "image": "images/map-5-0-cgb.png",
+      "width": 104,
+      "height": 64
+    },
+    {
+      "id": "screen-over",
+      "frame": 0,
+      "source": "existing procedural UI backplate",
+      "image": "images/screen-over-0-cgb.png",
+      "width": 160,
+      "height": 144
+    },
+    {
+      "id": "screen-scores",
+      "frame": 0,
+      "source": "existing procedural UI backplate",
+      "image": "images/screen-scores-0-cgb.png",
+      "width": 160,
+      "height": 144
+    }
+  ]
+}

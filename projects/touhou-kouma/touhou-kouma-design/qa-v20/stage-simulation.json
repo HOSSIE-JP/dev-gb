@@ -1,0 +1,55 @@
+{
+  "projectRevision": "65ee603697e903283b86b626627b1d08b18670945d67e8ceeec10c467a3e6c1b",
+  "method": "Simulation with invulnerability reset each step, Reimu A held; fixture only, not a full-game clear",
+  "results": [
+    {
+      "stage": "stage-forest",
+      "peakEnemyShots": 3,
+      "peakEnemies": 5,
+      "dropped": 0,
+      "tick": 2281
+    },
+    {
+      "stage": "stage-lake",
+      "peakEnemyShots": 3,
+      "peakEnemies": 5,
+      "dropped": 0,
+      "tick": 2461
+    },
+    {
+      "stage": "stage-1",
+      "peakEnemyShots": 4,
+      "peakEnemies": 4,
+      "dropped": 0,
+      "tick": 2761
+    },
+    {
+      "stage": "stage-2",
+      "peakEnemyShots": 4,
+      "peakEnemies": 5,
+      "dropped": 0,
+      "tick": 3061
+    },
+    {
+      "stage": "stage-3",
+      "peakEnemyShots": 4,
+      "peakEnemies": 5,
+      "dropped": 0,
+      "tick": 3481
+    },
+    {
+      "stage": "stage-4",
+      "peakEnemyShots": 4,
+      "peakEnemies": 6,
+      "dropped": 0,
+      "tick": 3781
+    },
+    {
+      "stage": "stage-5",
+      "peakEnemyShots": 4,
+      "peakEnemies": 6,
+      "dropped": 0,
+      "tick": 4141
+    }
+  ]
+}

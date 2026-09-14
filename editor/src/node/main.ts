@@ -14,6 +14,7 @@ import {
     createProject,
     importPng,
     encodePng,
+    encodeColorPng,
     atomicWrite,
 } from "./project-store";
 import { readFont } from "./compiler";
@@ -195,10 +196,10 @@ handle(
         return importPng(fs.readFileSync(file), asset, colors, transparent);
     },
 );
-handle("export", async (asset: Asset, frame: number) => {
+handle("export", async (asset: Asset, frame: number, color = false) => {
     if (!asset.frames[frame]) throw new Error("フレームがありません");
     const result = await dialog.showSaveDialog(win, {
-        title: "4階調PNGを書き出す",
+        title: color ? "GBCカラー元画像を書き出す" : "4階調PNGを書き出す",
         defaultPath: safePath(root, ".cache/editor", `${asset.id}.png`),
         filters: [{ name: "PNG", extensions: ["png"] }],
     });
@@ -206,7 +207,7 @@ handle("export", async (asset: Asset, frame: number) => {
     // The user explicitly selects the export destination in a native Save dialog.
     atomicWrite(
         result.filePath,
-        encodePng(
+        color && asset.frames[frame].cgbPixels ? encodeColorPng(asset.width,asset.height,asset.frames[frame].cgbPixels!) : encodePng(
             asset.width,
             asset.height,
             asset.frames[frame].pixels,

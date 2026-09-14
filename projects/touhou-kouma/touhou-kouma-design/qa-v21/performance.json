@@ -1,0 +1,146 @@
+[
+  {
+    "file": ".cache/kouma-v21/build/Debug/touhou-kouma.gb",
+    "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+    "mode": "DMG",
+    "character": 0,
+    "range": [
+      120,
+      1000
+    ],
+    "ppuFrames": 1159,
+    "updates": 880,
+    "updatesPerSecond": 45.34961173425366,
+    "maxGap": 3,
+    "peakOam": 25,
+    "peakScanline": 6,
+    "dropped": 0,
+    "lives": 4
+  },
+  {
+    "file": ".cache/kouma-v21/build/Debug/touhou-kouma.gb",
+    "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+    "mode": "DMG",
+    "character": 1,
+    "range": [
+      120,
+      1000
+    ],
+    "ppuFrames": 1576,
+    "updates": 880,
+    "updatesPerSecond": 33.3503807106599,
+    "maxGap": 3,
+    "peakOam": 29,
+    "peakScanline": 6,
+    "dropped": 0,
+    "lives": 3
+  },
+  {
+    "file": ".cache/kouma-v21/build/Debug/touhou-kouma.gb",
+    "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+    "mode": "CGB",
+    "character": 0,
+    "range": [
+      120,
+      1000
+    ],
+    "ppuFrames": 885,
+    "updates": 880,
+    "updatesPerSecond": 59.390056497175145,
+    "maxGap": 2,
+    "peakOam": 25,
+    "peakScanline": 6,
+    "dropped": 0,
+    "lives": 4
+  },
+  {
+    "file": ".cache/kouma-v21/build/Debug/touhou-kouma.gb",
+    "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+    "mode": "CGB",
+    "character": 1,
+    "range": [
+      120,
+      1000
+    ],
+    "ppuFrames": 920,
+    "updates": 880,
+    "updatesPerSecond": 57.13065217391304,
+    "maxGap": 2,
+    "peakOam": 29,
+    "peakScanline": 6,
+    "dropped": 0,
+    "lives": 3
+  },
+  {
+    "file": ".cache/kouma-v21/final-debug/touhou-kouma.gb",
+    "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+    "mode": "DMG",
+    "character": 0,
+    "range": [
+      120,
+      1000
+    ],
+    "ppuFrames": 1269,
+    "updates": 880,
+    "updatesPerSecond": 41.41859732072498,
+    "maxGap": 3,
+    "peakOam": 25,
+    "peakScanline": 6,
+    "dropped": 0,
+    "lives": 4
+  },
+  {
+    "file": ".cache/kouma-v21/final-debug/touhou-kouma.gb",
+    "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+    "mode": "DMG",
+    "character": 1,
+    "range": [
+      120,
+      1000
+    ],
+    "ppuFrames": 1591,
+    "updates": 880,
+    "updatesPerSecond": 33.03595223130107,
+    "maxGap": 3,
+    "peakOam": 29,
+    "peakScanline": 6,
+    "dropped": 0,
+    "lives": 3
+  },
+  {
+    "file": ".cache/kouma-v21/final-debug/touhou-kouma.gb",
+    "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+    "mode": "CGB",
+    "character": 0,
+    "range": [
+      120,
+      1000
+    ],
+    "ppuFrames": 895,
+    "updates": 880,
+    "updatesPerSecond": 58.72648044692737,
+    "maxGap": 2,
+    "peakOam": 25,
+    "peakScanline": 6,
+    "dropped": 0,
+    "lives": 4
+  },
+  {
+    "file": ".cache/kouma-v21/final-debug/touhou-kouma.gb",
+    "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+    "mode": "CGB",
+    "character": 1,
+    "range": [
+      120,
+      1000
+    ],
+    "ppuFrames": 962,
+    "updates": 880,
+    "updatesPerSecond": 54.636382536382534,
+    "maxGap": 3,
+    "peakOam": 29,
+    "peakScanline": 6,
+    "dropped": 0,
+    "lives": 3
+  }
+]

@@ -1,0 +1,99 @@
+{
+  "date": "2026-09-13T14:53:43.358Z",
+  "projectRevision": "f6a0f07883c28b414f40753d02e76468e1f8375dad670141f31d42ea234c290f",
+  "engineBaseRevision": "7195c5309f7c1284faa8b228d1ed8bc7fa2670e3",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v18.gb",
+    "sha256": "06a0ec4c3090dca1c2255eba3035a1ff17f1d1dd93438b56e2852816f00be30e",
+    "bytes": 1048576
+  },
+  "build": {
+    "ok": true,
+    "revision": "f6a0f07883c28b414f40753d02e76468e1f8375dad670141f31d42ea234c290f",
+    "configuration": "Release",
+    "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+    "size": 1048576,
+    "ramBytes": 7119,
+    "spriteTiles": 80,
+    "diagnostics": [],
+    "romHash": "06a0ec4c3090dca1c2255eba3035a1ff17f1d1dd93438b56e2852816f00be30e",
+    "builtAt": "2026-09-13T14:53:25.725Z",
+    "durationMs": 211045
+  },
+  "checks": {
+    "standardTests": 126,
+    "productionBomb": 8,
+    "nativeBgbBomb": 4,
+    "productionContinue": 4,
+    "transitionFixture": 4,
+    "collisionParityUpdatesPerMode": 1000,
+    "debugReleaseIdentical": true,
+    "editor": true
+  },
+  "unchangedPngFiles": 90,
+  "performance": [
+    {
+      "variant": "baseline",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bg-local-small\\baseline\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "33439f4a725793825c48e7b2f8fe222a0c94412147a5b491ef22c97d3c0474cc",
+      "sha256": "856d7ae0680e03e78eb9b497d4f2c26bbad994b91d8bfe838142bffc1cc00a21",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 53175.11511511511,
+          "meanDisplayFrames": 2.6940362269309817,
+          "updatesPerSecond": 22.17026608734247,
+          "p95": 3.000911369332422,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 51267.667667667665,
+          "meanDisplayFrames": 1.0811090225563753,
+          "updatesPerSecond": 55.24650960619049,
+          "p95": 2.000427204374573,
+          "hash": "d6d758baed1c6245efee11313c34828d2450e9cfaf12c589a160eb7238285177"
+        }
+      ]
+    },
+    {
+      "variant": "current",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bg-local-small\\current\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "33439f4a725793825c48e7b2f8fe222a0c94412147a5b491ef22c97d3c0474cc",
+      "sha256": "b0feaed08aeb501090671755d2120f419c257cc7907ff850ce2eee5698d5ed0b",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 51769.00900900901,
+          "meanDisplayFrames": 2.6099453178400753,
+          "updatesPerSecond": 22.884579072112118,
+          "p95": 3.000911369332422,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 49853.565565565565,
+          "meanDisplayFrames": 1.082245386192739,
+          "updatesPerSecond": 55.18850046579272,
+          "p95": 2.000427204374573,
+          "hash": "d6d758baed1c6245efee11313c34828d2450e9cfaf12c589a160eb7238285177"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Image entry/exit still upload BG data and briefly wait; gameplay continues through the active image interval.",
+    "40-shot stress fixture averages about 55 updates/sec on CGB; constant 60fps is not achieved.",
+    "3x3 player hitboxes use local occupancy; other hitbox sizes, screen-edge clipping and giant BG bosses retain the legacy collision path.",
+    "Newly spawned shots are checked immediately; a detected collision scans for retirement and rebuilds only nearby tiles.",
+    "Emulicious DAP evaluate fails with NullPointerException; physical hardware, human feel/listening and full campaign clear not verified."
+  ]
+}

@@ -127,7 +127,7 @@ export function Preview({
             ]},glyphs,dmg);
         } else {
             drawSimulation(c, s, dmg, hitbox);
-            if (!s.bombLeft || s.game.player.bomb?.live) {
+            if (!s.bombLeft || (s.game.player.bomb?.live && !s.bombImage)) {
             const hud = s.game.screens.find((s) => s.id === "hud")!;
             c.save();
             c.translate(0, hud.dock === "top" ? 0 : 144 - (hud.rows ?? 2) * 8);

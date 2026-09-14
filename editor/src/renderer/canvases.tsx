@@ -10,10 +10,12 @@ import {
     clamp,
 } from "../shared/model";
 import { dmgColors } from "../shared/palette";
+import {colorPreview,colorHex,quantizeColorTiles} from "../shared/color";
 import { drawAsset } from "../shared/simulation";
 import { TilePalette } from "./tile-palette";
 import { type ImportResult } from "../shared/bridge";
 import { linePoints, paintStroke } from "../shared/pixel-tools";
+import {titlePresentation} from "../shared/presentation";
 
 const pos = (
     event: React.PointerEvent<HTMLCanvasElement>,
@@ -64,6 +66,7 @@ export function AssetCanvas({
             h: number;
         } | null>(null),
         [imported, setImported] = useState<ImportResult | null>(null),
+        [importColor,setImportColor] = useState(false),
         [transparent, setTransparent] = useState("");
     const drawing = useRef(false),
         importGeneration = useRef(0),
@@ -86,16 +89,17 @@ export function AssetCanvas({
         const c = ref.current?.getContext("2d");
         if (!c) return;
         const data = imported?.pixels ?? draft ?? f.pixels;
+        const rgb = imported && importColor ? quantizeColorTiles(asset.width,asset.height,imported.cgbPixels,asset.kind==="sprite"?imported.cgbPixels.map(v=>+(v>=0)):undefined).preview : !dmg&&!draft&&!imported ? colorPreview(game,asset,f) : undefined;
         c.clearRect(0, 0, asset.width, asset.height);
         for (let y = 0; y < asset.height; y++)
             for (let x = 0; x < asset.width; x++) {
                 const v = data[y * asset.width + x];
                 c.fillStyle =
-                    asset.kind === "sprite" && !v
+                    asset.kind === "sprite" && (rgb&&(imported&&importColor?imported.cgbPixels:f.cgbPixels) ? (imported&&importColor?imported.cgbPixels:f.cgbPixels)![y*asset.width+x]<0 : !v)
                         ? (x + y) % 2
                             ? "#26333e"
                             : "#1b2630"
-                        : colors[v];
+                        : rgb ? colorHex(rgb[y*asset.width+x]) : colors[v];
                 c.fillRect(x, y, 1, 1);
             }
         if (grid) {
@@ -151,7 +155,7 @@ export function AssetCanvas({
                 c.fillRect(p.x - 0.5, p.y - 0.5, 1, 1),
             );
         }
-    }, [asset, f, draft, colors, grid, selection, tool, imported]);
+    }, [asset, f, draft, colors, grid, selection, tool, imported, importColor, dmg, game]);
     const commit = (pixels: number[]) =>
         onChange({
             ...asset,
@@ -174,7 +178,7 @@ export function AssetCanvas({
         setDraft([...working.current]);
     };
     const down = (e: React.PointerEvent<HTMLCanvasElement>) => {
-        if (e.button !== 0 || imported) return;
+        if (e.button !== 0 || imported || (!dmg && f.cgbPixels && ["pencil","erase","line","rectangle"].includes(tool))) return;
         const p = pos(e, asset.width, asset.height);
         previous.current = p;
         start.current = p;
@@ -357,8 +361,10 @@ export function AssetCanvas({
                 >
                     PNG書出
                 </button>
+                {f.cgbPixels&&<button onClick={()=>window.caravan.exportPng(asset,frame,true).catch(e=>error(e.message))}>GBCカラーPNG書出</button>}
                 <button
                     onClick={() => {
+                        setImportColor(false);
                         const generation = ++importGeneration.current;
                         void window.caravan
                             .importPng(
@@ -377,6 +383,7 @@ export function AssetCanvas({
                 >
                     PNG取込
                 </button>
+                <button onClick={()=>{setImportColor(true);const generation=++importGeneration.current;void window.caravan.importPng(asset,game.palettes[asset.palette].colors,transparent?parseInt(transparent.replace("#",""),16):-1).then(result=>{if(generation===importGeneration.current)setImported(result);}).catch(e=>error(e.message));}}>GBC用カラーPNG取込</button>
                 <input
                     title="透明にするRGB色（空欄ならアルファのみ）"
                     placeholder="透明色 #RRGGBB"
@@ -388,15 +395,15 @@ export function AssetCanvas({
             {imported && (
                 <div className="notice">
                     取込プレビュー：{imported.sourceWidth}×
-                    {imported.sourceHeight} / {imported.uniqueColors}色 → 4色 /
-                    減色{imported.reduced}画素。
+                    {imported.sourceHeight} / {imported.uniqueColors}色 → {importColor ? "GBC タイルごと4色・7パレット" : `4色 / 減色${imported.reduced}画素`}。
                     {imported.cropped
                         ? "右端・下端を切り取ります。"
                         : "不足領域は色0です。"}{" "}
                     8×8タイル {asset.width / 8}×{asset.height / 8}
                     <button
                         onClick={() => {
-                            commit(imported.pixels);
+                            if(importColor)onChange({...asset,frames:asset.frames.map(x=>x.id===f.id?{...x,cgbImage:x.cgbImage??`images/${asset.id}-${frame}-cgb.png`,cgbPixels:imported.cgbPixels}:x)});
+                            else commit(imported.pixels);
                             setImported(null);
                         }}
                     >
@@ -409,6 +416,7 @@ export function AssetCanvas({
             )}
             <p className="hint">
                 色0はスプライトでは透明。鉛筆・直線・矩形はドラッグで描画します。1回の描画は1回の元に戻す操作で取り消せます。矩形選択でコピー／反転、原点・発射位置はクリックで配置します。
+                {f.cgbPixels&&" GBCカラーは別の元画像です。カラー修正はPNG取込で反映し、4階調の編集はDMG表示で確認してください。"}
             </p>
         </>
     );
@@ -431,12 +439,14 @@ export function ScreenCanvas({
     selected: string;
     onSelect: (id: string) => void;
 }) {
+    const [menuChoice,setMenuChoice]=useState(0),[menuStage,setMenuStage]=useState(0);
+    const stageIds=[...game.stageOrder,...game.stages.map(s=>s.id).filter(id=>!game.stageOrder.includes(id))];
     const ref = useRef<HTMLCanvasElement>(null),
         height = screen.id === "hud" ? (screen.rows ?? 2) * 8 : 144;
     useEffect(() => {
         const c = ref.current?.getContext("2d");
         if (!c) return;
-        drawScreen(c, game, screen, glyphs, dmg);
+        drawScreen(c, game, screen, glyphs, dmg, {titleChoice:String(menuChoice),titleStage:String(menuStage)});
         c.strokeStyle = "#7f90a344";
         c.lineWidth = 0.3;
         for (let x = 0; x <= 160; x += 8) {
@@ -456,7 +466,7 @@ export function ScreenCanvas({
             c.strokeStyle = "#ffbd66";
             c.strokeRect(t.x * 8, t.y * 8, Math.max(8, t.text.length * 8), 8);
         }
-    }, [game, screen, glyphs, dmg, selected]);
+    }, [game, screen, glyphs, dmg, selected, menuChoice, menuStage]);
     const dragging = useRef(""),
         grab = useRef({ x: 0, y: 0 });
     return (
@@ -525,6 +535,11 @@ export function ScreenCanvas({
             <p className="hint">
                 文字をドラッグして8px単位で配置。英数字・ひらがな・カタカナを使用できます。
             </p>
+            {screen.id === "title" && screen.stageSelect && <div>
+                <label>メニュープレビュー <select aria-label="タイトルメニューのプレビュー" value={menuChoice} onChange={e=>setMenuChoice(Number(e.target.value))}><option value={0}>START</option><option value={1}>STAGE SELECT</option></select></label>
+                <label> ステージ <select aria-label="タイトル選択ステージのプレビュー" value={Math.min(menuStage,stageIds.length-1)} onChange={e=>{setMenuStage(Number(e.target.value));setMenuChoice(1);}}>{stageIds.map((id,i)=><option key={id} value={i}>{i+1}: {game.stages.find(s=>s.id===id)?.name}</option>)}</select></label>
+                <p className="hint">実機では上下でメニュー、左右でステージ、A／STARTで決定。下4行はメニュー専用です。</p>
+            </div>}
         </>
     );
 }
@@ -536,12 +551,23 @@ export function drawScreen(
     dmg: boolean,
     values: Record<string, string> = {},
     backgroundPixels?: number[],
+    portraitId?: string,
 ) {
+    if (s.id === "title" && s.stageSelect) {
+        const title=titlePresentation(g,s,Number(values.titleChoice??0),Number(values.titleStage??0));
+        s=title.screen;backgroundPixels=title.pixels;
+    }
     const colors = dmg ? dmgColors(g) : g.palettes[s.palette].colors;
     c.fillStyle = colors[0];
     c.fillRect(0, 0, 160, s.id === "hud" ? (s.rows ?? 2) * 8 : 144);
     const background = g.assets.find((a) => a.id === s.background);
-    if (background) drawAsset(c, g, backgroundPixels ? {...background, frames:[{...background.frames[0], pixels:backgroundPixels}]} : background, 0, 0, 0, dmg);
+    if (background) {
+        const f=background.frames[0];
+        const portrait=g.assets.find(a=>a.id===portraitId);
+        const cgbPixels=backgroundPixels&&f.cgbPixels?f.cgbPixels.map((v,i)=>portrait&&i%160<80&&i<160*96?(portrait.frames[0].cgbPixels?.[i]??Number.parseInt(colors[backgroundPixels[i]].slice(1),16)):backgroundPixels[i]!==f.pixels[i]?Number.parseInt(colors[backgroundPixels[i]].slice(1),16):v):f.cgbPixels;
+        drawAsset(c,g,backgroundPixels?{...background,frames:[{...f,pixels:backgroundPixels,cgbPixels}]}:background,0,0,0,dmg);
+        if(!dmg&&cgbPixels&&backgroundPixels&&(s.id==="title"||s.id==="gameover")){c.fillStyle=colors[0];c.fillRect(0,s.id==="title"?112:104,160,s.id==="title"?32:40);}
+    }
     for (const item of s.items) {
         const palette = dmg ? dmgColors(g) : g.palettes[item.palette].colors,
             text =

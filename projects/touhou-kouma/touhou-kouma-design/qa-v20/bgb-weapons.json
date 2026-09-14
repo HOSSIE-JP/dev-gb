@@ -1,0 +1,98 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v20\\candidate\\touhou-kouma.gb",
+  "sha256": "4213826de76a53d133ed893f26fc7ce8da6915ea4e4586149d9a59e163d55bd2",
+  "emulator": "BGB 1.6.6",
+  "results": [
+    {
+      "mode": "DMG",
+      "character": 0,
+      "intervals": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12
+      ],
+      "assetVerified": true,
+      "maxShots": 4,
+      "log": "bgb-DMG-0.log"
+    },
+    {
+      "mode": "DMG",
+      "character": 1,
+      "intervals": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "assetVerified": true,
+      "maxShots": 5,
+      "log": "bgb-DMG-1.log"
+    },
+    {
+      "mode": "CGB",
+      "character": 0,
+      "intervals": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12
+      ],
+      "assetVerified": true,
+      "maxShots": 4,
+      "log": "bgb-CGB-0.log"
+    },
+    {
+      "mode": "CGB",
+      "character": 1,
+      "intervals": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "assetVerified": true,
+      "maxShots": 5,
+      "log": "bgb-CGB-1.log"
+    }
+  ]
+}

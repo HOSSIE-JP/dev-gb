@@ -1,0 +1,25 @@
+{
+  "baseline": "0.20",
+  "request": [
+    "Colorize every image, sprite animation and stage background for GBC",
+    "Optimize each 8x8 tile for four BG colors or three opaque OBJ colors, using seven artwork palettes and one reserved system palette",
+    "Use independent color sources without sacrificing color quality for shared DMG data",
+    "Make Rumia, Reimu and Marisa ending illustrations full screen on GBC"
+  ],
+  "decisions": {
+    "sources": "68 assets / 79 frames with separate cgbImage PNG paths",
+    "palettes": "RGB555; palette 0 reserved, BG palettes optimized per image/stage, OBJ palettes optimized jointly across all characters and effects",
+    "animation": "Per-tile OBJ attributes follow the existing tile/frame layout; cyclic BG texture groups share their palette",
+    "screenMemory": "Two GBC VRAM banks; banked color screen descriptors with a one-screen RAM cache",
+    "endings": "160x144 on GBC; the three requested DMG endings reduced to fit the existing 255-tile budget",
+    "editor": "Independent color PNG import/export and quantized previews; DMG sources remain separately editable",
+    "scope": "Gameplay rules, bullet counts, character parameters, dialogue text and BGM remain unchanged"
+  },
+  "art": {
+    "directory": "color-v21",
+    "tool": "built-in image_gen",
+    "manifest": "color-v21/manifest.json",
+    "conversion": "color-v21/convert.cjs",
+    "audit": "color-v21/audit.json"
+  }
+}

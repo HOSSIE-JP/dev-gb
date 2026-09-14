@@ -1,0 +1,41 @@
+{
+  "date": "2026-09-13T23:58:40.623Z",
+  "projectRevision": "a3aad8ff578d77f515241f63dba2b3550ac7a07b9596dd88e27ae9141d6369ee",
+  "engineBaseRevision": "7195c5309f7c1284faa8b228d1ed8bc7fa2670e3",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v19.gb",
+    "sha256": "ce938c9d0b255e1ca5cc2265c534eea4e25db17f7c2d3780a1505ed3425e3aab",
+    "bytes": 1048576
+  },
+  "build": {
+    "ok": true,
+    "revision": "a3aad8ff578d77f515241f63dba2b3550ac7a07b9596dd88e27ae9141d6369ee",
+    "configuration": "Release",
+    "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+    "size": 1048576,
+    "ramBytes": 7126,
+    "spriteTiles": 80,
+    "diagnostics": [],
+    "romHash": "ce938c9d0b255e1ca5cc2265c534eea4e25db17f7c2d3780a1505ed3425e3aab",
+    "builtAt": "2026-09-13T23:57:58.406Z",
+    "durationMs": 226367
+  },
+  "checks": {
+    "standardTests": 130,
+    "productionMenu": 28,
+    "productionBomb": 8,
+    "nativeBgbMenu": 4,
+    "nativeBgbBomb": 4,
+    "productionContinueStage3": 4,
+    "bombEntryFixture": 4,
+    "transitionFixture": 4,
+    "editor": true,
+    "debugReleaseIdentical": true,
+    "unchangedPngFiles": 90
+  },
+  "limits": [
+    "Physical DMG/CGB hardware, human audio/controller assessment and a full campaign clear are unverified.",
+    "Emulicious DAP evaluate fails with NullPointerException; connection is not execution evidence.",
+    "Existing bomb entry/exit BG upload waits remain. Constant 60fps is not claimed; see the v18 measurement report."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\menu-ui-LHjqZC",
+  "checks": [
+    {
+      "colorImport": true,
+      "colorExport": true,
+      "dmgSourcePreserved": true,
+      "colorSourceSaved": true
+    },
+    {
+      "headingToggle": true,
+      "bothCharacters": true,
+      "titleToggle": true,
+      "sevenStagePreview": true,
+      "nativeInput": true,
+      "savedAndReloaded": true,
+      "stagePresentationPreserved": true,
+      "bombSettingsPreserved": true,
+      "aimedDownChoiceSaved": true,
+      "buildFree": true
+    }
+  ]
+}

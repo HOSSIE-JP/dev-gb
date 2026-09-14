@@ -24,25 +24,47 @@ static void draw_shot(void) __naked {
         pop de
         pop bc
         ret
-_draw_xy:
+_draw_local_xy:
         ld a, (_px)
         and #0xfe
         cp #160
-        jp nc, 030$
+        jp nc, _bg_xy_030
         ld (_px), a
         ld a, (_py)
         and #0xfe
         ld d, a
         ld a, (_top)
         cp d
-        jr z, 006$
-        jp nc, 030$
-006$:
+        jr z, _bg_xy_106
+        jp nc, _bg_xy_030
+_bg_xy_106:
         ld a, (_bottom)
         dec a
         cp d
-        jp c, 030$
-        jp z, 030$
+        jp c, _bg_xy_030
+        jp z, _bg_xy_030
+        ld a, d
+        ld (_py), a
+        jp _bg_xy_plot
+_draw_xy:
+        ld a, (_px)
+        and #0xfe
+        cp #160
+        jp nc, _bg_xy_030
+        ld (_px), a
+        ld a, (_py)
+        and #0xfe
+        ld d, a
+        ld a, (_top)
+        cp d
+        jr z, _bg_xy_006
+        jp nc, _bg_xy_030
+_bg_xy_006:
+        ld a, (_bottom)
+        dec a
+        cp d
+        jp c, _bg_xy_030
+        jp z, _bg_xy_030
         ld a, d
         ld (_py), a
         ld a, (_player_top)
@@ -52,8 +74,8 @@ _draw_xy:
         ld d, a
         ld a, (_hit_height)
         cp d
-        jr c, 010$
-        jr z, 010$
+        jr c, _bg_xy_010
+        jr z, _bg_xy_010
         ld a, (_left)
         ld d, a
         ld a, (_px)
@@ -61,12 +83,12 @@ _draw_xy:
         ld d, a
         ld a, (_hit_width)
         cp d
-        jr c, 010$
-        jr z, 010$
+        jr c, _bg_xy_010
+        jr z, _bg_xy_010
         ld a, (_ce_respawn)
         ld hl, #_ce_respawn + 1
         or (hl)
-        jr nz, 010$
+        jr nz, _bg_xy_010
         ld a, (_slot)
         ld l, a
         ld h, #0
@@ -74,11 +96,12 @@ _draw_xy:
         add hl, de
         ld a, (hl)
         ld (_ce_bg_hit), a
-        jp 030$
-010$:
+        jp _bg_xy_030
+_bg_xy_010:
         ld a, (_ce_battle_mode)
         cp #3
         ret z
+_bg_xy_plot:
         ld a, (_py)
         and #0xf8
         ld l, a
@@ -116,36 +139,36 @@ _draw_xy:
         ld e, a
         ld a, (hl)
         or a
-        jr nz, 007$
+        jr nz, _bg_xy_007
         ld a, (_hud_tiles)
         add e
         ld (hl), a
-        jp 031$
-007$:
+        jp _bg_xy_031
+_bg_xy_007:
         cp #255
-        jr z, 009$
+        jr z, _bg_xy_009
         ld d, a
         ld a, (_hud_tiles)
         ld b, a
         ld a, d
         sub b
         cp e
-        jp z, 031$
+        jp z, _bg_xy_031
         cp #16
-        jr nc, 008$
+        jr nc, _bg_xy_008
         ld d, a
         ld a, (_static_tiles)
         cp #136
         ld a, d
-        jr nz, 008$
+        jr nz, _bg_xy_008
         ; Sorted pair index: 16 + sum(15-k, k<min) + max-min-1.
         ; Every two-position tile is resident on CGB when the HUD permits it.
         cp e
-        jr c, 015$
+        jr c, _bg_xy_015
         ld a, e
         ld e, d
         ld d, a
-015$:
+_bg_xy_015:
         push hl
         ld l, d
         ld h, #0
@@ -159,8 +182,8 @@ _draw_xy:
         add d
         pop hl
         ld (hl), a
-        jp 031$
-008$:
+        jp _bg_xy_031
+_bg_xy_008:
         ; Reconstruct a resident singleton/pair mask on its first composite.
         ld l, a
         ld h, #0
@@ -179,7 +202,7 @@ _draw_xy:
         ld a, c
         ld (hl+), a
         ld (hl), b
-009$:
+_bg_xy_009:
         ld a, (_cell_index)
         ld l, a
         ld a, (_cell_index + 1)
@@ -199,7 +222,7 @@ _draw_xy:
         ld l, a
         ld h, #0
         add hl, hl
-        ld bc, #050$
+        ld bc, #_bg_xy_050
         add hl, bc
         ld a, (hl+)
         ld c, a
@@ -209,20 +232,20 @@ _draw_xy:
         ld d, a
         ld a, (hl)
         or d
-        jr z, 011$
+        jr z, _bg_xy_011
         ld a, (hl)
         cp b
-        jr nz, 012$
+        jr nz, _bg_xy_012
         ld a, d
         cp c
-        jr nz, 012$
-011$:
+        jr nz, _bg_xy_012
+_bg_xy_011:
         ld a, (_hud_tiles)
         add e
-        jr 013$
-012$:
+        jr _bg_xy_013
+_bg_xy_012:
         ld a, #255
-013$:
+_bg_xy_013:
         push af
         ld a, (hl)
         or b
@@ -240,10 +263,10 @@ _draw_xy:
         add hl, bc
         pop af
         cp #255
-        jr nz, 014$
+        jr nz, _bg_xy_014
         ld a, (hl)
         cp #255
-        jr z, 014$
+        jr z, _bg_xy_014
         push hl
         ld hl, #_compound_count
         ld a, (hl)
@@ -259,14 +282,14 @@ _draw_xy:
         ld (hl), a
         pop hl
         ld a, #255
-014$:
+_bg_xy_014:
         ld (hl), a
-        jr 031$
-030$:
+        jr _bg_xy_031
+_bg_xy_030:
         call _retire
-031$:
+_bg_xy_031:
         ret
-050$:
+_bg_xy_050:
         .dw 1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768
     __endasm;
 }

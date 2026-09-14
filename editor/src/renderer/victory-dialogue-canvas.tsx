@@ -16,10 +16,10 @@ export function VictoryDialogueCanvas({game, stage, glyphs, dmg, before=false}: 
             {id:"line1",text:page.line1,x:1,y:14,palette:0,binding:"none"},
             {id:"line2",text:page.line2,x:1,y:15,palette:0,binding:"none"},
             {id:"next",text:"A:つぎ START:スキップ",x:1,y:17,palette:0,binding:"none"}
-        ]},glyphs,dmg);
+        ]},glyphs,dmg,{},dialoguePixels(game,dialogue.background,dialogue.portrait),dialogue.portrait);
         const art=game.assets.find(a=>a.id===dialogue.background),left=game.assets.find(a=>a.id===dialogue.portrait);
-        if(art&&!dmg){c.save();c.beginPath();c.rect(80,0,80,96);c.clip();drawAsset(c,game,{...art,palette:p?.rightPalette??0},0,0,0,false);c.restore();}
-        if(art&&left){const pixels=dialoguePixels(game,dialogue.background,dialogue.portrait)!;c.save();c.beginPath();c.rect(0,0,80,96);c.clip();drawAsset(c,game,{...art,palette:left.palette,frames:[{...art.frames[0],pixels}]},0,0,0,dmg);c.restore();}
+        if(art&&!dmg&&!art.frames[0].cgbPixels){c.save();c.beginPath();c.rect(80,0,80,96);c.clip();drawAsset(c,game,{...art,palette:p?.rightPalette??0},0,0,0,false);c.restore();}
+        if(art&&left&&(dmg||!art.frames[0].cgbPixels)){const pixels=dialoguePixels(game,dialogue.background,dialogue.portrait)!;c.save();c.beginPath();c.rect(0,0,80,96);c.clip();drawAsset(c,game,{...art,palette:left.palette,frames:[{...art.frames[0],pixels}]},0,0,0,dmg);c.restore();}
     },[game,stage,glyphs,dmg,character,selected,before]);
     if(!stage.presentation)return null;
     return <details className="canvas-well" style={{display:"block",textAlign:"center",minHeight:0}}><summary>{title}プレビュー</summary>

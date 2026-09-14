@@ -1,5 +1,27 @@
 import type {Game, Presentation, Stage, Screen} from "./model";
 
+/** A shared, tile-aligned UI composition; source illustrations stay untouched. */
+export function titlePresentation(game: Game, base: Screen, choice = 0, stage = 0) {
+    if (base.id !== "title" || !base.stageSelect) return {screen: base, pixels: undefined};
+    const art = game.assets.find(a => a.id === base.background);
+    const pixels = art ? [...art.frames[0].pixels] : Array(160 * 144).fill(0);
+    pixels.fill(0, 160 * 112);
+    const text = (id: string, text: string, x: number, y: number) => ({id, text, x, y, palette:base.palette, binding:"none" as const});
+    const index = Math.max(0, Math.min(game.stages.length - 1, stage));
+    const screen: Screen = {...base, stageSelect:false, items:[...base.items.filter(i => i.y < 14 && (i.binding !== "highscores" || i.y < 5)),
+        text("menu-start", `${choice ? " " : ">"}START`, 1, 14),
+        text("menu-stage", `${choice ? ">" : " "}STAGE SELECT <${String(index + 1).padStart(2,"0")}>`, 1, 16)]};
+    return {screen, pixels};
+}
+
+export function selectionPresentation(game: Game, character = 0) {
+    const p = character ? game.player.characters![character - 1] : game.player;
+    const palette = game.assets.find(a => a.id === p.selectionBackground)?.palette ?? 0;
+    const screen: Screen = {id:"clear", name:"機体選択", background:p.selectionBackground ?? "", palette, dock:"top", items:[]};
+    if (game.player.selectionHeading) screen.items.push({id:"selection-heading", text:"      キャラクター選択      ", x:0, y:0, palette, binding:"none"});
+    return screen;
+}
+
 /** The portrait remains above the reserved three-row continue menu. */
 export function gameOverPresentation(game: Game, character = 0) {
     const player = character ? game.player.characters![character - 1] : game.player;

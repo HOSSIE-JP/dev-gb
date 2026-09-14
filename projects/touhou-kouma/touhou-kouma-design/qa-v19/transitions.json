@@ -1,0 +1,42 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\transitions\\fixture\\projects\\live-bomb-test\\build\\Debug\\live-bomb-test.gb",
+  "fixture": "Rumia at tick 0, stationary, entry plus two 20HP phases; startup/ending disabled; no runtime/RAM patching",
+  "results": [
+    {
+      "label": "DMG-0",
+      "phaseWait": true,
+      "cutInHp": 20,
+      "heldChordSingleActivation": true,
+      "victoryWait": true,
+      "victoryPages": 5,
+      "scoreAfterDialogue": true
+    },
+    {
+      "label": "DMG-1",
+      "phaseWait": true,
+      "cutInHp": 20,
+      "heldChordSingleActivation": true,
+      "victoryWait": true,
+      "victoryPages": 5,
+      "scoreAfterDialogue": true
+    },
+    {
+      "label": "CGB-0",
+      "phaseWait": true,
+      "cutInHp": 20,
+      "heldChordSingleActivation": true,
+      "victoryWait": true,
+      "victoryPages": 5,
+      "scoreAfterDialogue": true
+    },
+    {
+      "label": "CGB-1",
+      "phaseWait": true,
+      "cutInHp": 20,
+      "heldChordSingleActivation": true,
+      "victoryWait": true,
+      "victoryPages": 5,
+      "scoreAfterDialogue": true
+    }
+  ]
+}

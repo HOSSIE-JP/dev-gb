@@ -1,0 +1,47 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\candidate\\touhou-kouma.gb",
+  "sha256": "ce938c9d0b255e1ca5cc2265c534eea4e25db17f7c2d3780a1505ed3425e3aab",
+  "emulator": "BGB 1.6.6",
+  "results": [
+    {
+      "mode": "DMG",
+      "character": 0,
+      "stage": 7,
+      "cancelPreserved": true,
+      "wrapFromFirstToLast": true,
+      "startedAtZeroScore": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-menu\\DMG-0-sbkEUI\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-menu\\DMG-0-sbkEUI\\screen.bmp"
+    },
+    {
+      "mode": "DMG",
+      "character": 1,
+      "stage": 7,
+      "cancelPreserved": true,
+      "wrapFromFirstToLast": true,
+      "startedAtZeroScore": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-menu\\DMG-1-6rM9bV\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-menu\\DMG-1-6rM9bV\\screen.bmp"
+    },
+    {
+      "mode": "CGB",
+      "character": 0,
+      "stage": 7,
+      "cancelPreserved": true,
+      "wrapFromFirstToLast": true,
+      "startedAtZeroScore": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-menu\\CGB-0-vc49EF\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-menu\\CGB-0-vc49EF\\screen.bmp"
+    },
+    {
+      "mode": "CGB",
+      "character": 1,
+      "stage": 7,
+      "cancelPreserved": true,
+      "wrapFromFirstToLast": true,
+      "startedAtZeroScore": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-menu\\CGB-1-X4gYWd\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-menu\\CGB-1-X4gYWd\\screen.bmp"
+    }
+  ]
+}

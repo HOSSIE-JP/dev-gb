@@ -1,0 +1,178 @@
+{
+  "width": 192,
+  "height": 240,
+  "scale": 4,
+  "records": [
+    {
+      "asset": "fairy",
+      "frame": 0,
+      "x": 16,
+      "y": 16,
+      "width": 16,
+      "height": 16,
+      "cell": 0
+    },
+    {
+      "asset": "fairy",
+      "frame": 1,
+      "x": 64,
+      "y": 16,
+      "width": 16,
+      "height": 16,
+      "cell": 1
+    },
+    {
+      "asset": "bat",
+      "frame": 0,
+      "x": 112,
+      "y": 20,
+      "width": 16,
+      "height": 8,
+      "cell": 2
+    },
+    {
+      "asset": "bat",
+      "frame": 1,
+      "x": 160,
+      "y": 20,
+      "width": 16,
+      "height": 8,
+      "cell": 3
+    },
+    {
+      "asset": "book",
+      "frame": 0,
+      "x": 20,
+      "y": 68,
+      "width": 8,
+      "height": 8,
+      "cell": 4
+    },
+    {
+      "asset": "book",
+      "frame": 1,
+      "x": 68,
+      "y": 68,
+      "width": 8,
+      "height": 8,
+      "cell": 5
+    },
+    {
+      "asset": "shot-ofuda",
+      "frame": 0,
+      "x": 116,
+      "y": 68,
+      "width": 8,
+      "height": 8,
+      "cell": 6
+    },
+    {
+      "asset": "shot-focus",
+      "frame": 0,
+      "x": 164,
+      "y": 68,
+      "width": 8,
+      "height": 8,
+      "cell": 7
+    },
+    {
+      "asset": "shot-orb",
+      "frame": 0,
+      "x": 20,
+      "y": 116,
+      "width": 8,
+      "height": 8,
+      "cell": 8
+    },
+    {
+      "asset": "shot-knife",
+      "frame": 0,
+      "x": 68,
+      "y": 116,
+      "width": 8,
+      "height": 8,
+      "cell": 9
+    },
+    {
+      "asset": "shot-star",
+      "frame": 0,
+      "x": 116,
+      "y": 116,
+      "width": 8,
+      "height": 8,
+      "cell": 10
+    },
+    {
+      "asset": "shot-diamond",
+      "frame": 0,
+      "x": 164,
+      "y": 116,
+      "width": 8,
+      "height": 8,
+      "cell": 11
+    },
+    {
+      "asset": "burst",
+      "frame": 0,
+      "x": 16,
+      "y": 160,
+      "width": 16,
+      "height": 16,
+      "cell": 12
+    },
+    {
+      "asset": "burst",
+      "frame": 1,
+      "x": 64,
+      "y": 160,
+      "width": 16,
+      "height": 16,
+      "cell": 13
+    },
+    {
+      "asset": "burst",
+      "frame": 2,
+      "x": 112,
+      "y": 160,
+      "width": 16,
+      "height": 16,
+      "cell": 14
+    },
+    {
+      "asset": "burst",
+      "frame": 3,
+      "x": 160,
+      "y": 160,
+      "width": 16,
+      "height": 16,
+      "cell": 15
+    },
+    {
+      "asset": "burst",
+      "frame": 4,
+      "x": 16,
+      "y": 208,
+      "width": 16,
+      "height": 16,
+      "cell": 16
+    },
+    {
+      "asset": "burst",
+      "frame": 5,
+      "x": 64,
+      "y": 208,
+      "width": 16,
+      "height": 16,
+      "cell": 17
+    },
+    {
+      "asset": "shot-marisa-laser",
+      "frame": 0,
+      "x": 116,
+      "y": 208,
+      "width": 8,
+      "height": 16,
+      "cell": 18
+    }
+  ]
+}

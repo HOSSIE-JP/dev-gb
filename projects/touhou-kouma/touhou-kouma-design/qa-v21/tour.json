@@ -1,0 +1,332 @@
+{
+  "authoredRevision": "4fb8c3174cf972659ba02a70eda41700b9f7bb48f0805d0edb15be545f108104",
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v21\\tour\\fixture\\projects\\ending-test\\build\\Debug\\ending-test.gb",
+  "sha256": "675c1dc4c12cb74839c78299477f7504918f23ab0a8cee57a79e2f5e2938e3df",
+  "fixture": "All stages, instant stationary HP 1 bosses, fast player shots, invulnerability 1024, no fades or victory explosion. Original engine, art, dialogue and ten-second ending; real joypad inputs only.",
+  "results": [
+    {
+      "label": "DMG-reimu-auto",
+      "cutinImages": 21,
+      "dialogueImages": 56,
+      "stageCount": 7,
+      "slides": [
+        [
+          0,
+          {
+            "first": 6378,
+            "last": 6972,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          1,
+          {
+            "first": 6991,
+            "last": 7585,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          2,
+          {
+            "first": 7604,
+            "last": 8198,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          3,
+          {
+            "first": 8217,
+            "last": 8811,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          4,
+          {
+            "first": 8830,
+            "last": 9424,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          5,
+          {
+            "first": 9442,
+            "last": 10036,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ]
+      ],
+      "postbattlePages": 4,
+      "finalBonusAfterEnding": true,
+      "rankingReached": true,
+      "buttonAdvanceAndSkip": false
+    },
+    {
+      "label": "DMG-marisa-auto",
+      "cutinImages": 21,
+      "dialogueImages": 56,
+      "stageCount": 7,
+      "slides": [
+        [
+          0,
+          {
+            "first": 6586,
+            "last": 7180,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          1,
+          {
+            "first": 7199,
+            "last": 7793,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          2,
+          {
+            "first": 7812,
+            "last": 8406,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          3,
+          {
+            "first": 8425,
+            "last": 9019,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          4,
+          {
+            "first": 9038,
+            "last": 9632,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          5,
+          {
+            "first": 9650,
+            "last": 10244,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ]
+      ],
+      "postbattlePages": 4,
+      "finalBonusAfterEnding": true,
+      "rankingReached": true,
+      "buttonAdvanceAndSkip": false
+    },
+    {
+      "label": "CGB-reimu-auto",
+      "cutinImages": 21,
+      "dialogueImages": 56,
+      "stageCount": 7,
+      "slides": [
+        [
+          0,
+          {
+            "first": 5787,
+            "last": 6381,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          1,
+          {
+            "first": 6400,
+            "last": 6994,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          2,
+          {
+            "first": 7013,
+            "last": 7607,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          3,
+          {
+            "first": 7625,
+            "last": 8219,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          4,
+          {
+            "first": 8238,
+            "last": 8832,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          5,
+          {
+            "first": 8851,
+            "last": 9445,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ]
+      ],
+      "postbattlePages": 4,
+      "finalBonusAfterEnding": true,
+      "rankingReached": true,
+      "buttonAdvanceAndSkip": false
+    },
+    {
+      "label": "CGB-reimu-buttons",
+      "cutinImages": 21,
+      "dialogueImages": 56,
+      "stageCount": 7,
+      "slides": [
+        [
+          0,
+          {
+            "first": 5787,
+            "last": 5823,
+            "firstLeft": 595,
+            "lastLeft": 559
+          }
+        ],
+        [
+          1,
+          {
+            "first": 5842,
+            "last": 5948,
+            "firstLeft": 595,
+            "lastLeft": 489
+          }
+        ]
+      ],
+      "postbattlePages": 4,
+      "finalBonusAfterEnding": true,
+      "rankingReached": true,
+      "buttonAdvanceAndSkip": true
+    },
+    {
+      "label": "CGB-marisa-auto",
+      "cutinImages": 21,
+      "dialogueImages": 56,
+      "stageCount": 7,
+      "slides": [
+        [
+          0,
+          {
+            "first": 5787,
+            "last": 6381,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          1,
+          {
+            "first": 6400,
+            "last": 6994,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          2,
+          {
+            "first": 7013,
+            "last": 7607,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          3,
+          {
+            "first": 7625,
+            "last": 8219,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          4,
+          {
+            "first": 8238,
+            "last": 8832,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ],
+        [
+          5,
+          {
+            "first": 8851,
+            "last": 9445,
+            "firstLeft": 595,
+            "lastLeft": 1
+          }
+        ]
+      ],
+      "postbattlePages": 4,
+      "finalBonusAfterEnding": true,
+      "rankingReached": true,
+      "buttonAdvanceAndSkip": false
+    },
+    {
+      "label": "CGB-marisa-buttons",
+      "cutinImages": 21,
+      "dialogueImages": 56,
+      "stageCount": 7,
+      "slides": [
+        [
+          0,
+          {
+            "first": 5787,
+            "last": 5823,
+            "firstLeft": 595,
+            "lastLeft": 559
+          }
+        ],
+        [
+          1,
+          {
+            "first": 5842,
+            "last": 5948,
+            "firstLeft": 595,
+            "lastLeft": 489
+          }
+        ]
+      ],
+      "postbattlePages": 4,
+      "finalBonusAfterEnding": true,
+      "rankingReached": true,
+      "buttonAdvanceAndSkip": true
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+  "sha256": "06a0ec4c3090dca1c2255eba3035a1ff17f1d1dd93438b56e2852816f00be30e",
+  "emulator": "BGB 1.6.6",
+  "results": [
+    {
+      "mode": "DMG",
+      "character": 0,
+      "fixture": false,
+      "bombIntervals": 2,
+      "framesPerBomb": [
+        48,
+        48
+      ],
+      "stockSequence": [
+        2,
+        1,
+        0
+      ],
+      "stageClockContinues": true,
+      "gameplayResumed": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bgb-final\\DMG-0-rhuVds\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bgb-final\\DMG-0-rhuVds\\screen.bmp"
+    },
+    {
+      "mode": "DMG",
+      "character": 1,
+      "fixture": false,
+      "bombIntervals": 2,
+      "framesPerBomb": [
+        48,
+        48
+      ],
+      "stockSequence": [
+        2,
+        1,
+        0
+      ],
+      "stageClockContinues": true,
+      "gameplayResumed": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bgb-final\\DMG-1-4cfNy7\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bgb-final\\DMG-1-4cfNy7\\screen.bmp"
+    },
+    {
+      "mode": "CGB",
+      "character": 0,
+      "fixture": false,
+      "bombIntervals": 2,
+      "framesPerBomb": [
+        48,
+        48
+      ],
+      "stockSequence": [
+        2,
+        1,
+        0
+      ],
+      "stageClockContinues": true,
+      "gameplayResumed": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bgb-final\\CGB-0-eXDuG6\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bgb-final\\CGB-0-eXDuG6\\screen.bmp"
+    },
+    {
+      "mode": "CGB",
+      "character": 1,
+      "fixture": false,
+      "bombIntervals": 2,
+      "framesPerBomb": [
+        48,
+        48
+      ],
+      "stockSequence": [
+        2,
+        1,
+        0
+      ],
+      "stageClockContinues": true,
+      "gameplayResumed": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bgb-final\\CGB-1-y8dusO\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v18\\bgb-final\\CGB-1-y8dusO\\screen.bmp"
+    }
+  ]
+}

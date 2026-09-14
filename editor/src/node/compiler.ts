@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import {quantizeColorTiles, quantizeSpriteAssets} from "../shared/color";
 import { numericGlyphs } from "../shared/numeric-font";
 import path from "node:path";
 import zlib from "node:zlib";
@@ -14,7 +15,7 @@ import {
     q4,
 } from "../shared/model";
 import { angleStep, shotAngles, SIN, COS } from "../shared/simulation";
-import {resolvePresentation, resolveEnding, dialoguePixels, gameOverPresentation} from "../shared/presentation";
+import {resolvePresentation, resolveEnding, dialoguePixels, gameOverPresentation, titlePresentation, selectionPresentation} from "../shared/presentation";
 import {generateMusic} from "./music-data";
 import {
     safePath,
@@ -183,7 +184,10 @@ export function generate(
         config: string[] = ['#include "caravan.h"'];
     const png2asset = gbdkExecutable(root, "png2asset");
     let serial = 0;
+    const blobs = new Map<string,string>();
     function blob(data: number[] | Uint8Array) {
+        const key=crypto.createHash("sha256").update(Buffer.from(data)).digest("hex");
+        if(blobs.has(key))return blobs.get(key)!;
         const name = `ce_blob_${serial++}`,
             values = data.length ? Array.from(data) : [0],
             file = `${name}.c`;
@@ -193,7 +197,7 @@ export function generate(
         );
         sources.push(file);
         decls.push(`BANKREF_EXTERN(${name})\nextern const uint8_t ${name}[];`);
-        return `{BANK(${name}),${name},${values.length}}`;
+        const ref=`{BANK(${name}),${name},${values.length}}`;blobs.set(key,ref);return ref;
     }
     function pages(data: number[], name: string) {
         const refs = [];
@@ -270,6 +274,7 @@ export function generate(
         id ? game.patterns.findIndex((p) => p.id === id) : 255;
     const layout = spriteLayout(game);
     const spriteTiles = layout.tiles;
+    const spriteColor=quantizeSpriteAssets(game), colorSpriteData=Array(spriteTiles*16).fill(0), colorBossGraphics:string[]=[];
     const spriteData: number[] = Array(spriteTiles * 16).fill(0), bossGraphics: string[] = [],
         assetRows: string[] = [];
     spriteAssets.forEach((a, i) => {
@@ -291,6 +296,10 @@ export function generate(
             `{${[a.width, a.height, a.origin.x, a.origin.y, a.palette, first, tileCount, a.frames.length, duration, animationShift]},asset_${i}_durations,${emitters.length},asset_${i}_emitters}`,
         );
         const data = a.frames.flatMap(f => converted.get(f.image)!);
+        const colorData=a.frames.flatMap(f=>packTiles(a.width,a.height,spriteColor.frames.get(a.id+"/"+f.id)!.pixels));
+        config.push(`static const uint8_t asset_${i}_color_attrs[]={${a.frames.flatMap(f=>spriteColor.frames.get(a.id+"/"+f.id)!.attributes)}};`);
+        if(layout.overlay.has(a.id))colorBossGraphics.push(blob(colorData));
+        else {colorSpriteData.splice((first-128)*16,colorData.length,...colorData);colorBossGraphics.push("{0,0,0}");}
         if (layout.overlay.has(a.id)) bossGraphics.push(blob(data));
         else { spriteData.splice((first - 128) * 16, data.length, ...data); bossGraphics.push("{0,0,0}"); }
     });
@@ -299,13 +308,18 @@ export function generate(
         `const CE_Hitbox ce_hitboxes[]={${spriteAssets.map((a) => `{${a.hitbox.x - a.origin.x},${a.hitbox.y - a.origin.y},${a.hitbox.w},${a.hitbox.h}}`)}};`,
         `const uint8_t ce_asset_count=${spriteAssets.length}, ce_sprite_tiles=${spriteTiles};`,
         `const CE_Data ce_sprite_data=${blob(spriteData)};`,
+        `const uint8_t ce_color_sprites=${+spriteColor.enabled};`,
+        `const CE_Data ce_color_sprite_data=${blob(colorSpriteData)};`,
+        `const CE_Data ce_color_boss_graphics[]={${colorBossGraphics}};`,
+        `const uint8_t * const ce_color_asset_attrs[]={${spriteAssets.map((a,i)=>`asset_${i}_color_attrs`)}};`,
+        `const palette_color_t ce_color_obj_palettes[]={${spriteColor.palettes}};`,
         `const CE_Data ce_boss_graphics[]={${bossGraphics}};`,
     );
     const speeds = [...new Set(game.patterns.map(p => q4(p.speed)))];
     for (const speed of speeds) config.push(`static const int16_t velocity_${speed}[]={${SIN.flatMap((s, i) => [Math.trunc(s * speed / 16), Math.trunc(-COS[i] * speed / 16)])}};`);
     const patternRows = game.patterns.map((p, i) => {
         const offsets = shotAngles(
-            { ...p, angle: 0, kind: p.kind === "spiral" ? "fan" : p.kind },
+            { ...p, angle: 0, kind: p.kind === "spiral" ? "fan" : p.kind === "aimed-down" ? "straight" : p.kind },
             0,
             0,
             -1,
@@ -315,7 +329,7 @@ export function generate(
         );
         const l = p.launch, h = p.guidance;
         if (p.emitterOffsets) config.push(`static const int8_t pattern_${i}_emitters[]={${p.emitterOffsets.flatMap(e => [e.x,e.y])}};`);
-        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral", "homing", "laser"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)},${[l ? ["actor", "left", "right", "alternate", "both", "fixed"].indexOf(l.kind) : 0,l?.x ?? 80,l?.y ?? 32,l?.step ?? 0,l?.lanes ?? 1,h?.frames ?? 48,(h?.period ?? 16)-1]},${p.emitterOffsets?.length ?? 0},${p.emitterOffsets ? `pattern_${i}_emitters` : "0"}}`;
+        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral", "homing", "laser", "aimed-down"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)},${[l ? ["actor", "left", "right", "alternate", "both", "fixed"].indexOf(l.kind) : 0,l?.x ?? 80,l?.y ?? 32,l?.step ?? 0,l?.lanes ?? 1,h?.frames ?? 48,(h?.period ?? 16)-1]},${p.emitterOffsets?.length ?? 0},${p.emitterOffsets ? `pattern_${i}_emitters` : "0"}}`;
     });
     config.push(
         `const CE_Pattern ce_patterns[]={${patternRows}};`,
@@ -385,9 +399,10 @@ export function generate(
         `const uint8_t ce_enemy_count=${enemies.length},ce_boss_count=${bosses.length};`,
     );
     const glyphs = readFont(root),
-        screenRows: string[] = [], sceneConfig: string[] = [];
+        screenRows: string[] = [], colorScreenRows: string[] = [], sceneConfig: string[] = [];
     let hudTileCount = 0;
-    function compileScreen(s: Screen, index: number, rightPalette?: number, sharedChars = "", pixels?: number[], tileBudget = 255) {
+    function compileScreen(s: Screen, index: number, rightPalette?: number, sharedChars = "", pixels?: number[], tileBudget = 255, portraitId?: string) {
+        if (s.id === "title" && s.stageSelect) { const title = titlePresentation(game,s); s = title.screen; pixels = title.pixels; }
         const width = 20,
             height = s.id === "hud" ? (s.rows ?? 2) : 18,
             tileBytes = Array(16).fill(0),
@@ -451,6 +466,7 @@ export function generate(
             ? [..."0123456789"].map(charTile)
             : Array(10).fill(0);
         if (bindings.length) charTile(" ");
+        if (index === 0) sceneConfig.push(`const uint8_t ce_title_tiles[]={${game.screens.find(s=>s.id==="title")?.stageSelect ? [..." >0123456789"].map(charTile) : "0"}};`);
         const count = tileBytes.length / 16;
         // Full-screen scenes hide sprites and reload their tiles on stage entry.
         // They may use both halves of the BG tile area; gameplay/HUD still share
@@ -468,6 +484,41 @@ export function generate(
         screenRows.push(
             `{${blob(tileBytes)},${blob(tileMap)},${blob(attrs)},${count},${s.palette},${bindings.length},screen_${index}_bindings,screen_${index}_digits}`,
         );
+        const sourceAsset = game.assets.find(a=>a.id===s.background);
+        if (s.id !== "hud" && sourceAsset?.frames[0].cgbPixels) {
+            const rgb = [...sourceAsset.frames[0].cgbPixels];
+            // Presentation helpers erase menu bands or substitute a portrait.
+            // Copy matching source regions in RGB, keeping the DMG composition.
+            if (pixels) {
+                const base = sourceAsset.frames[0].pixels;
+                const portrait = game.assets.find(a=>a.id===portraitId);
+                for(let y=0;y<144;y++)for(let x=0;x<160;x++) {
+                    const i=y*160+x;
+                    if(portrait && x<80 && y<96) rgb[i]=portrait.frames[0].cgbPixels?.[i] ?? Number.parseInt(game.palettes[portrait.palette].colors[pixels[i]].slice(1),16);
+                    else if(pixels[i]!==base[i]) rgb[i] = Number.parseInt(game.palettes[s.palette].colors[pixels[i]].slice(1),16);
+                }
+                if(s.id==="title")rgb.fill(Number.parseInt(game.palettes[0].colors[0].slice(1),16),160*112);
+                if(s.id==="gameover")rgb.fill(Number.parseInt(game.palettes[0].colors[0].slice(1),16),160*104);
+            }
+            const q=quantizeColorTiles(160,144,rgb), raw=packTiles(160,144,q.pixels);
+            const atlas:number[][]=Array.from({length:512},()=>Array(16).fill(0)), used=new Set<number>([0,...Object.values(chars)]);
+            for(const id of used)atlas[id]=tileBytes.slice(id*16,id*16+16);
+            const dictionary=new Map<string,number>(), map:number[]=[], attributes:number[]=[];
+            let next=1;
+            for(let i=0;i<360;i++) {
+                const tile=raw.slice(i*16,i*16+16), key=tile.join(',');let id=dictionary.get(key);
+                if(id===undefined){while(used.has(next)||(tileBudget===128&&next>=128&&next<256))next++;if(next>=512)throw Error(`${s.name}: GBCの512タイルを超えました`);id=next++;used.add(id);atlas[id]=tile;dictionary.set(key,id);}
+                map[i]=id&255;attributes[i]=q.attributes[i]|(id>=256?8:0);
+            }
+            // A glyph may deduplicate with image data; identify text by position.
+            for(const item of s.items){
+                for(let n=0;n<item.text.normalize("NFC").length;n++){const i=item.y*20+item.x+n;map[i]=tileMap[i];attributes[i]=0;}
+                if(item.binding!=="none")for(let row=0;row<(item.binding==="highscores"?5:1);row++)for(let n=0;n<(item.binding==="highscores"?9:item.digits??5);n++){const x=item.x+item.text.length+n;if(x<20)attributes[(item.y+row*2)*20+x]=0;}
+            }
+            if(index===0&&s.stageSelect)for(const i of [281,321,336,337])attributes[i]=0;
+            const colorCount=Math.max(...used)+1;
+            colorScreenRows.push(`{${blob(atlas.slice(0,colorCount).flat())},${blob(map)},${blob(attributes)},${blob(q.palettes.flatMap(c=>[c&255,c>>8]))},${colorCount}}`);
+        } else colorScreenRows.push("{{0,0,0},{0,0,0},{0,0,0},{0,0,0},0}");
     }
     ["title", "gameover", "clear", "scores", "hud"].forEach((id, i) =>
         compileScreen(
@@ -476,13 +527,19 @@ export function generate(
         ),
     );
 
+    config.push(`const uint8_t ce_title_select=${+(game.screens.find(s=>s.id==="title")?.stageSelect ?? false)};`);
+
     const ordered = game.stageOrder.map((id) =>
         game.stages.find((s) => s.id === id)!,
     );
     // Unordered stages remain selectable in caravan mode and by the preview.
     for (const stage of game.stages)
         if (!ordered.includes(stage)) ordered.push(stage);
-    const presentationRows: string[] = [], parallaxRows: string[] = [];
+    const presentationRows: string[] = [], parallaxRows: string[] = [], colorParallaxRows: string[] = [], colorStageRows:string[]=[];
+    const stageColors=ordered.map(stage=>{
+        const a=game.assets.find(a=>a.id===stage.tileset)!,p=stage.parallax;
+        return a.frames[0].cgbPixels ? quantizeColorTiles(a.width,a.height,a.frames[0].cgbPixels,undefined,p?.enabled?[Array.from({length:p.width*p.height},(_,i)=>p.firstTile+i)]:[]) : undefined;
+    });
     for (const stage of ordered) {
         for (const [character] of players.entries()) {
         const p = resolvePresentation(game,stage,character);
@@ -495,7 +552,7 @@ export function generate(
                 {id: "line1", text: page.line1, x: 1, y: 14, palette: 0, binding: "none"},
                 {id: "line2", text: page.line2, x: 1, y: 15, palette: 0, binding: "none"},
                 {id: "next", text: "A:つぎ START:スキップ", x: 1, y: 17, palette: 0, binding: "none"}
-            ]}, screenRows.length, p.rightPalette, dialogueChars, dialoguePixels(game,p.dialogueBackground,p.dialoguePortrait));
+            ]}, screenRows.length, p.rightPalette, dialogueChars, dialoguePixels(game,p.dialogueBackground,p.dialoguePortrait),255,p.dialoguePortrait);
         }
         if (p?.clearEnabled) {
         clear = screenRows.length;
@@ -506,7 +563,7 @@ export function generate(
             {id: "miss", text: "ノーミス     ", x: 1, y: 14, palette: 0, binding: "score"},
             {id: "total", text: "ごうけい     ", x: 1, y: 15, palette: 0, binding: "score"},
             {id: "next", text: "A:つぎへ", x: 10, y: 17, palette: 0, binding: "none"}
-        ]}, screenRows.length, p.rightPalette, "", dialoguePixels(game,p.clearBackground,p.victoryDialogue?.portrait));
+        ]}, screenRows.length, p.rightPalette, "", dialoguePixels(game,p.clearBackground,p.victoryDialogue?.portrait),255,p.victoryDialogue?.portrait);
         }
         const victoryFirst = screenRows.length, victory = p?.victoryDialogue;
         if (victory?.enabled) {
@@ -516,14 +573,16 @@ export function generate(
                 {id: "line1", text: page.line1, x: 1, y: 14, palette: 0, binding: "none"},
                 {id: "line2", text: page.line2, x: 1, y: 15, palette: 0, binding: "none"},
                 {id: "next", text: "A:つぎ START:スキップ", x: 1, y: 17, palette: 0, binding: "none"}
-            ]}, screenRows.length, p!.rightPalette, chars, dialoguePixels(game,victory.background,victory.portrait));
+            ]}, screenRows.length, p!.rightPalette, chars, dialoguePixels(game,victory.background,victory.portrait),255,victory.portrait);
         }
         presentationRows.push(`{${first},${p?.enabled ? p.dialogue.length : 0},${p?.clearEnabled ? clear : 255},${p?.baseBonus ?? game.clearBonus},${p?.lifeBonus ?? 0},${p?.noMissBonus ?? 0},${(p?.clearWaitSeconds ?? 2) * 60},${victoryFirst},${victory?.enabled ? victory.pages.length : 0}}`);
         }
         const par = stage.parallax;
         if (par?.enabled) {
             const asset = game.assets.find(a => a.id === stage.tileset)!;
-            const tileData = converted.get(asset.frames[0].image)!;
+            for(const colorMode of [false,true]) {
+            const q=stageColors[ordered.indexOf(stage)];
+            const tileData = colorMode && q ? packTiles(asset.width,asset.height,q.pixels) : converted.get(asset.frames[0].image)!;
             const source = tileData.slice(par.firstTile * 16, (par.firstTile + par.width * par.height) * 16);
             const phases: number[] = [];
             const horizontal = stage.scrollAxis === "horizontal", phaseCount = (horizontal ? par.width : par.height) * 8;
@@ -540,8 +599,10 @@ export function generate(
                     }
                 }
             }
-            parallaxRows.push(`{${par.firstTile},${par.width * par.height},${phaseCount},${par.divisor},${blob(phases)}}`);
-        } else parallaxRows.push("{0,0,1,2,{0,0,0}}");
+            if(colorMode)colorParallaxRows.push(blob(phases));
+            else parallaxRows.push(`{${par.firstTile},${par.width * par.height},${phaseCount},${par.divisor},${blob(phases)}}`);
+            }
+        } else {parallaxRows.push("{0,0,1,2,{0,0,0}}");colorParallaxRows.push("{0,0,0}");}
     }
     const endingFirst = screenRows.length;
     for (const background of endingAssets) compileScreen({id: "clear", name: "Ending", background, palette: game.assets.find(a=>a.id===background)!.palette, dock: "top", items: []}, screenRows.length);
@@ -563,7 +624,7 @@ export function generate(
         `const uint8_t ce_player_count=${players.length},ce_select_first=${screenRows.length};`);
     if (players.length > 1) for (const [i,p] of players.entries()) {
         if (p.selectionBackground) {
-            compileScreen({id:"clear",name:`${p.name}の機体選択`,background:p.selectionBackground,palette:0,dock:"top",items:[]},screenRows.length);
+            compileScreen(selectionPresentation(game,i),screenRows.length);
             continue;
         }
         const a = game.assets.find(a => a.id === p.asset)!, pixels = Array(160*144).fill(0), scale = Math.min(3, Math.floor(64/a.width), Math.floor(72/a.height));
@@ -586,7 +647,7 @@ export function generate(
         if(bomb?.enabled)compileScreen({id:"clear",name:`${p.name}のボム（スプライト領域を保持）`,background:p.bombBackground||bomb.background,palette:0,dock:"top",items:[]},screenRows.length,undefined,"",undefined,128);
     }
     config.push(`const uint8_t ce_bomb_stock=${bomb?.enabled ? bomb.stock : 0},ce_bomb_damage=${bomb?.damage ?? 30},ce_bomb_frames=${bomb?.frames ?? 48},ce_bomb_period=${bomb?.flashPeriod ?? 2};`,
-        `const uint8_t ce_bomb_live=${+!!bomb?.live},ce_bomb_button=${+(bomb?.button === "b")},ce_bomb_background=${+!!bomb?.destroyBackground},ce_bomb_max=${bomb?.maxStock ?? 9};`,
+        `const uint8_t ce_bomb_live=${bomb?.live ? bomb.presentation === "image" ? 2 : 1 : 0},ce_bomb_button=${+(bomb?.button === "b")},ce_bomb_background=${+!!bomb?.destroyBackground},ce_bomb_max=${bomb?.maxStock ?? 9};`,
         `const uint8_t ce_bomb_screens[]={${bombScreens}},ce_bomb_styles[]={${players.map(p=>+(p.bombStyle==="beam"))}};`);
     const logos = game.startup?.enabled ? game.startup.slides : [], logoRows: string[] = [], logoScreens = new Map<string,number>();
     for (const slide of logos) {
@@ -624,6 +685,13 @@ export function generate(
     sceneConfig.push(`const CE_Screen ce_screens[]={${screenRows}};`,
         `const CE_Presentation ce_presentations[]={${presentationRows}};`,
         `const CE_Parallax ce_parallaxes[]={${parallaxRows}};`);
+    ordered.forEach((stage,i)=>{
+        const q=stageColors[i],a=game.assets.find(a=>a.id===stage.tileset)!;
+        if(!q){colorStageRows.push("{{0,0,0},{0,0,0},0}");return;}
+        sceneConfig.push(`static const uint8_t stage_${i}_color_attrs[]={${q.attributes}};`);
+        colorStageRows.push(`{${blob(packTiles(a.width,a.height,q.pixels))},${blob(q.palettes.flatMap(c=>[c&255,c>>8]))},stage_${i}_color_attrs}`);
+    });
+    sceneConfig.push(`const CE_ColorStage ce_color_stages[]={${colorStageRows}};`,`const CE_Data ce_color_parallaxes[]={${colorParallaxRows}};`);
     const stageRows = ordered.map((s, i) => {
         const tileAsset = game.assets.find((a) => a.id === s.tileset)!,
             tiles = converted.get(tileAsset.frames[0].image)!,
@@ -722,6 +790,8 @@ export function generate(
     atomicWrite(path.join(target, "caravan_scenes.c"),
         ['#pragma bank 1', '#include "caravan.h"', ...decls, ...sceneConfig].join("\n") + "\n");
     sources.push("caravan_scenes.c");
+    atomicWrite(path.join(target,"caravan_color_screens.c"),['#pragma bank 255','#include "caravan.h"',...decls,`static const CE_ColorScreen screens[]={${colorScreenRows}};`,`void ce_get_color_screen(CE_ColorScreen *dest,uint8_t index) BANKED { *dest=screens[index]; }`].join('\n')+'\n');
+    sources.push("caravan_color_screens.c");
     atomicWrite(
         path.join(target, "caravan_data.c"),
         [config[0], ...decls, ...config.slice(1)].join("\n") + "\n",

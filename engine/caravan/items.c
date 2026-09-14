@@ -100,7 +100,7 @@ void ce_smooth_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) BANKED {
 extern void explode(int16_t x, int16_t y);
 void ce_hit_player(void) BANKED {
     uint8_t i;
-    if (ce_respawn || ce_state.invulnerable || ce_state.result) return;
+    if (ce_respawn || ce_state.invulnerable || ce_state.result || ce_bomb_image) return;
     if (ce_barrier) { --ce_barrier; ce_state.invulnerable = ce_barrier_frames; ce_sound(6); return; }
     explode(ce_state.player_x, ce_state.player_y);
     ce_sound(2); if (ce_stage_misses != 255u) ++ce_stage_misses; --ce_state.lives;

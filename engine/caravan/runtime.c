@@ -29,7 +29,9 @@ uint8_t ce_pool_counts[7], ce_pool_oam;
 static uint8_t free_slots[CE_FREE_GROUPS];
 uint16_t ce_scores[5], ce_respawn;
 uint8_t ce_character, ce_player_asset, ce_player_weapon, ce_player_speed, ce_player_focus_weapon, ce_player_focus_speed;
-uint8_t ce_bombs, ce_bomb_latch, ce_bomb_left;
+uint8_t ce_bombs, ce_bomb_latch, ce_bomb_left, ce_bomb_image;
+uint8_t ce_bomb_hits[CE_FREE_GROUPS];
+static uint8_t deferred_finish;
 uint16_t ce_music_time;
 static uint8_t hit_sound_wait;
 volatile uint8_t ce_trace[24];
@@ -68,6 +70,7 @@ void ce_init_shot_visual(uint8_t slot) NONBANKED {
     shot_ox[slot] = 8u - a->ox; shot_oy[slot] = 16u - a->oy;
     ce_shot_oam[slot].tile = a->first_tile;
     ce_shot_oam[slot].prop = ce_is_cgb ? a->palette : 0u;
+    if (ce_is_cgb && ce_color_sprites) ce_shot_oam[slot].prop = ce_color_asset_attrs[ce_entities[slot].asset][0];
     ce_shot_simple[slot] = a->tiles == 1u;
     shot_range_index[slot] = ce_entities[slot].asset * 4u;
     shot_frames[slot] = a->tiles == 1u ? a->frames : 1u;
@@ -86,6 +89,7 @@ static void advance_shot_animation(uint8_t slot) {
     a = &ce_assets[ce_entities[slot].asset];
     shot_frame[slot] = frame; shot_left[slot] = a->durations[frame];
     ce_shot_oam[slot].tile = a->first_tile + frame;
+    if (ce_is_cgb && ce_color_sprites) ce_shot_oam[slot].prop = ce_color_asset_attrs[ce_entities[slot].asset][frame];
 }
 void ce_count_frame(void) NONBANKED {
     if ((ce_scene == 1u || ce_scene == 8u) && ce_battle_mode == 3u) {
@@ -130,6 +134,7 @@ uint16_t ce_map_index(uint16_t x, uint16_t y) NONBANKED {
     return s->horizontal ? x * s->height + y : y * s->width + x;
 }
 void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
+    ce_bomb_image = 0; deferred_finish = 0;
     if (new_game) { ce_select_player(ce_character); ce_bombs=ce_bomb_stock; ce_bomb_left=0; ce_respawn = 0; memset(&ce_state, 0, sizeof(ce_state)); ce_state.lives = ce_player_lives; }
     ce_bomb_latch=1;
     ce_battle_mode = 0; ce_battle_asset = CE_NONE; ce_boss_invulnerable = 0; ce_transition_state = 0; ce_bg_clear();
@@ -162,6 +167,8 @@ uint8_t allocate(uint8_t kind, uint8_t asset) {
     slot = group << 3;
     while (!(free_slots[group] & bit)) { bit <<= 1; ++slot; }
     free_slots[group] &= ~bit;
+    /* Reused actor slots belong to a new target, even during the same bomb. */
+    if (kind == CE_ENEMY || kind == CE_BOSS) ce_bomb_hits[group] &= ~bit;
     e = &ce_entities[slot]; memset(e, 0, sizeof(CE_Entity));
     e->kind = kind; e->asset = asset;
     ++ce_pool_counts[kind]; ce_pool_oam += ce_assets[asset].tiles;
@@ -438,7 +445,7 @@ static void step_actor(CE_Entity *e, uint8_t slot) {
             layers = actor->layer; layer_count = actor->layers;
             if (e->kind == CE_BOSS) {
                 phase = &actor->phase[e->phase];
-                if (e->phase + 1u < actor->phases && (phase->until ? e->hp <= (phase->hp ? 0u : phase->threshold) : e->phase_age >= phase->threshold)) {
+                if (!ce_bomb_image && e->phase + 1u < actor->phases && (phase->until ? e->hp <= (phase->hp ? 0u : phase->threshold) : e->phase_age >= phase->threshold)) {
                     if (phase->hp || actor->phase[e->phase + 1u].hp) ce_change_phase(e, phase->until);
                     else {
                         ++e->phase; e->phase_age = 0; e->sequence = 0; e->base_x = e->x; e->base_y = e->y;
@@ -635,8 +642,10 @@ static void collide_player(void) {
 void ce_step(uint8_t input) NONBANKED {
     uint8_t finish, bomb_pressed; const CE_Stage *stage = ce_stage;
     if (ce_state.result) return;
-    if (ce_bomb_live && ce_bomb_left) --ce_bomb_left;
     ce_trace[22] = 1; /* Keep entity RAM and the public trace in the same snapshot. */
+    if (ce_bomb_live && ce_bomb_left && !--ce_bomb_left && ce_bomb_image) {
+        ce_bomb_image = 0; ce_load_stage();
+    }
     if (ce_bomb_button) {
         bomb_pressed = (input & J_B) && !ce_bomb_latch;
         ce_bomb_latch = !!(input & J_B);
@@ -650,19 +659,23 @@ void ce_step(uint8_t input) NONBANKED {
         ce_bomb_apply();ce_bomb_effect();if (!ce_bomb_live) return;
     }
     step_walls = ce_battle_mode ? 0 : stage->has_walls | (stage->object_count ? 2u : 0u);
-    step_player(input); if (ce_battle_mode >= 2u) ce_bg_update();
+    step_player(input); if (ce_battle_mode >= 2u && !ce_bomb_image) ce_bg_update();
     finish = ce_stage_events(); step_walls = ce_battle_mode ? 0 : stage->has_walls | (stage->object_count ? 2u : 0u);
+    finish |= deferred_finish; deferred_finish = 0;
+    if (ce_bomb_image) { deferred_finish = finish; finish = 0; }
     if(ce_pool_counts[CE_ESHOT])steer_sprite_shots();
-    step_entities(); collide_shots(); collide_player();
+    step_entities();
+    if (ce_bomb_live && ce_bomb_left) ce_bomb_sweep();
+    collide_shots(); collide_player();
     if (ce_bg_hit) ce_hit_player();
-    if (ce_state.boss_defeated && ce_battle_mode && !stage->clear_boss) {
+    if (!ce_bomb_image && ce_state.boss_defeated && ce_battle_mode && !stage->clear_boss) {
         ce_bg_clear(); ce_battle_mode = 0; ce_battle_asset = CE_NONE; ce_state.scroll = stage->scroll; ce_load_stage();
     }
     while (ce_used && !ce_entities[ce_used - 1u].kind) --ce_used;
     ++ce_state.tick; if (ce_state.stage_tick != 65535u) ++ce_state.stage_tick;
-    if (!ce_state.result && stage->require_boss && !ce_state.boss_defeated && (finish || (ce_time_limit && ce_state.stage_tick >= stage->duration)))
+    if (!ce_bomb_image && !ce_state.result && stage->require_boss && !ce_state.boss_defeated && (finish || (ce_time_limit && ce_state.stage_tick >= stage->duration)))
         ce_state.result = 1;
-    if (!ce_state.result && (finish || (ce_state.boss_defeated && stage->clear_boss) || (ce_time_limit && ce_state.stage_tick >= stage->duration))) {
+    if (!ce_bomb_image && !ce_state.result && (finish || (ce_state.boss_defeated && stage->clear_boss) || (ce_time_limit && ce_state.stage_tick >= stage->duration))) {
         if (ce_state.boss_defeated && ce_boss_celebration) ce_celebrate_boss();
         else ce_sound(3);
         if (ce_state.boss_defeated) ce_victory_dialogue();

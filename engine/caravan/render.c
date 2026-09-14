@@ -22,6 +22,15 @@ static uint8_t animation_left[CE_MAX_ENTITIES + 1u];
 
 uint8_t ce_fade_level;
 static palette_color_t fade_colors[32];
+static CE_ColorScreen color_screen_data;
+static uint8_t color_screen_index = 255u;
+static const CE_ColorScreen *color_screen(uint8_t index) {
+    if (color_screen_index != index) {
+        ce_get_color_screen(&color_screen_data, index);
+        color_screen_index = index;
+    }
+    return &color_screen_data;
+}
 static void palettes(void) {
     uint8_t i, shade, reg = 0, factor = 4u - ce_fade_level;
     uint16_t rgb;
@@ -40,6 +49,25 @@ static void palettes(void) {
         }
         set_bkg_palette(0, ce_palette_count, fade_colors);
         set_sprite_palette(0, ce_palette_count, fade_colors);
+        if (ce_color_sprites) {
+            for (i = 0; i != 28u; ++i) {
+                rgb = ce_color_obj_palettes[i];
+                fade_colors[i + 4u] = (((rgb & 31u) * factor) >> 2) |
+                    (((((rgb >> 5) & 31u) * factor) >> 2) << 5) |
+                    (((((rgb >> 10) & 31u) * factor) >> 2) << 10);
+            }
+            set_sprite_palette(1, 7, fade_colors + 4);
+        }
+        if ((*color_screen(ce_active_screen)).tile_count || (ce_active_screen == 4u && ce_color_stages[ce_state.stage].attrs)) {
+            ce_copy((uint8_t *)(fade_colors + 4), ce_active_screen == 4u ? &ce_color_stages[ce_state.stage].palettes : &(*color_screen(ce_active_screen)).palettes, 0, 56);
+            for (i = 4; i != 32u; ++i) {
+                rgb = fade_colors[i];
+                fade_colors[i] = (((rgb & 31u) * factor) >> 2) |
+                    (((((rgb >> 5) & 31u) * factor) >> 2) << 5) |
+                    (((((rgb >> 10) & 31u) * factor) >> 2) << 10);
+            }
+            set_bkg_palette(1, 7, fade_colors + 4);
+        }
     }
     if (ce_active_screen == 4u && ce_battle_mode == 2u) ce_bg_palette();
 }
@@ -70,6 +98,11 @@ static void live_bomb_palette(void) {
         } else {
             for (i = 0; i != ce_palette_count * 4u; ++i) fade_colors[i] = ce_palettes[i] ^ 32767u;
             set_bkg_palette(0, ce_palette_count, fade_colors);
+            if (ce_color_stages[ce_state.stage].attrs) {
+                ce_copy((uint8_t *)(fade_colors + 4), &ce_color_stages[ce_state.stage].palettes, 0, 56);
+                for (i = 4; i != 32u; ++i) fade_colors[i] ^= 32767u;
+                set_bkg_palette(1, 7, fade_colors + 4);
+            }
         }
     }
 }
@@ -87,14 +120,28 @@ static void hide_all(void) {
     for (i = 0; i != 40u; ++i) hide_sprite(i);
     for (i = 0; i != CE_MAX_ENTITIES + 1u; ++i) animation_asset[i] = CE_NONE;
 }
+static void screen_tiles(uint8_t index) {
+    const CE_ColorScreen *c = &(*color_screen(index));
+    uint16_t tile = 0; uint8_t n;
+    if (!ce_is_cgb || !c->tile_count) { tiles(&ce_screens[index].tiles, 0, ce_screens[index].tile_count, 0); return; }
+    while (tile < c->tile_count) {
+        /* Live bombs retain the OBJ tiles in bank zero's upper half. */
+        if (ce_bomb_live == 2u && ce_bomb_left && tile == 128u) { tile = 256u; continue; }
+        n = c->tile_count - tile > 8u ? 8u : c->tile_count - tile;
+        ce_copy(buffer, &c->tiles, tile * 16u, (uint16_t)n * 16u);
+        VBK_REG = tile >= 256u; set_bkg_data((uint8_t)tile, n, buffer); VBK_REG = 0;
+        tile += n;
+        if (ce_scene == 12u) ce_logo_skip |= joypad();
+    }
+}
 static void screen_map(uint8_t index, uint8_t window) {
     const CE_Screen *s = &ce_screens[index]; uint8_t row, n, height = window ? ce_hud_height >> 3 : 18u;
     for (row = 0; row != height; ++row) {
         if (ce_scene == 12u) ce_logo_skip |= joypad();
-        ce_copy(buffer, &s->map, (uint16_t)row * 20u, 20u);
+        ce_copy(buffer, ce_is_cgb && (*color_screen(index)).tile_count ? &(*color_screen(index)).map : &s->map, (uint16_t)row * 20u, 20u);
         if (window) set_win_tiles(0, row, 20, 1, buffer); else set_bkg_tiles(0, row, 20, 1, buffer);
         if (ce_is_cgb) {
-            ce_copy(buffer, &s->attrs, (uint16_t)row * 20u, 20u); VBK_REG = 1;
+            ce_copy(buffer, (*color_screen(index)).tile_count ? &(*color_screen(index)).attrs : &s->attrs, (uint16_t)row * 20u, 20u); VBK_REG = 1;
             if (window) set_win_tiles(0, row, 20, 1, buffer); else set_bkg_tiles(0, row, 20, 1, buffer);
             VBK_REG = 0;
         }
@@ -112,13 +159,14 @@ static void map_row(uint16_t row) {
         ce_map_copy(buffer, s->map, world * count, count);
         for (i = 0; i != count; ++i) {
             if (s->object_count) buffer[i] = ce_terrain_tile(s->horizontal ? world : i, s->horizontal ? i : world, buffer[i]);
+            if (ce_is_cgb && ce_color_stages[ce_state.stage].attrs) buffer[64u+i] = ce_color_stages[ce_state.stage].attrs[buffer[i]];
             buffer[i] += ce_screens[4].tile_count;
         }
-    } else for (i = 0; i != count; ++i) buffer[i] = 0;
+    } else for (i = 0; i != count; ++i) { buffer[i] = 0; buffer[64u+i] = 0; }
     if (s->horizontal) set_bkg_tiles(target, 0, 1, count, buffer);
     else set_bkg_tiles(0, target, count, 1, buffer);
     if (ce_is_cgb) {
-        for (i = 0; i != count; ++i) buffer[i] = s->palette;
+        for (i = 0; i != count; ++i) buffer[i] = ce_color_stages[ce_state.stage].attrs ? buffer[64u+i] : s->palette;
         VBK_REG = 1;
         if (s->horizontal) set_bkg_tiles(target, 0, 1, count, buffer);
         else set_bkg_tiles(0, target, count, 1, buffer);
@@ -135,22 +183,30 @@ static void load_screen(uint8_t screen, uint8_t black) {
     ce_active_screen = screen; LCDC_REG &= ~8u;
     ce_fade_level = 4; palettes();
     HIDE_WIN; HIDE_SPRITES; hide_all(); ce_active_screen = screen;
-    tiles(&ce_screens[screen].tiles, 0, ce_screens[screen].tile_count, 0);
+    screen_tiles(screen);
     screen_map(screen, 0); move_bkg(0, 0); ce_hud(); SHOW_BKG; DISPLAY_ON;
     vsync(); ce_fade_level = black ? 4 : 0; palettes();
 }
 void ce_load_screen(uint8_t screen) BANKED { load_screen(screen, 0); }
 void ce_load_logo(uint8_t screen) BANKED { load_screen(screen, 1); }
+extern const uint8_t ce_title_tiles[];
+void ce_title_draw(void) BANKED {
+    if (!ce_title_select) return;
+    buffer[0]=ce_title_tiles[!ce_title_choice];set_bkg_tiles(1,14,1,1,buffer);
+    buffer[0]=ce_title_tiles[ce_title_choice];set_bkg_tiles(1,16,1,1,buffer);
+    buffer[0]=ce_title_tiles[2u+(ce_title_stage+1u)/10u];
+    buffer[1]=ce_title_tiles[2u+(ce_title_stage+1u)%10u];set_bkg_tiles(16,16,2,1,buffer);
+}
 void ce_dialogue_update(uint8_t screen) BANKED {
     uint8_t row;
     /* Compiler shares the complete glyph atlas across this conversation.
      * Portrait tiles and their map never change; only the six text rows do. */
     ce_trace[22] = 1; ce_active_screen = screen;
     for (row = 12; row != 18; ++row) {
-        ce_copy(buffer, &ce_screens[screen].map, (uint16_t)row * 20u, 20u);
+        ce_copy(buffer, ce_is_cgb && (*color_screen(screen)).tile_count ? &(*color_screen(screen)).map : &ce_screens[screen].map, (uint16_t)row * 20u, 20u);
         vsync(); set_bkg_tiles(0, row, 20, 1, buffer);
         if (ce_is_cgb) {
-            ce_copy(buffer, &ce_screens[screen].attrs, (uint16_t)row * 20u, 20u);
+            ce_copy(buffer, (*color_screen(screen)).tile_count ? &(*color_screen(screen)).attrs : &ce_screens[screen].attrs, (uint16_t)row * 20u, 20u);
             VBK_REG = 1; set_bkg_tiles(0, row, 20, 1, buffer); VBK_REG = 0;
         }
         ce_audio_sync();
@@ -163,11 +219,11 @@ void ce_bomb_setup(void) BANKED {
     for(row=0;row!=32u;++row)buffer[row]=0;
     LCDC_REG&=~8u;
     for(row=0;row!=32u;++row){set_bkg_tiles(0,row,32,1,buffer);if(ce_is_cgb){VBK_REG=1;set_bkg_tiles(0,row,32,1,buffer);VBK_REG=0;}}
-    tiles(&s->tiles,0,s->tile_count,0);screen_map(screen,0);
-    if(ce_bomb_styles[ce_character] && ce_state.player_y>1920){
+    screen_tiles(screen);screen_map(screen,0);
+    if(ce_bomb_styles[ce_character]){
         /* Continue the beam through the wrapped top edge when fired near the bottom. */
-        ce_copy(buffer,&s->map,0,20);set_bkg_tiles(0,30,20,1,buffer);set_bkg_tiles(0,31,20,1,buffer);
-        if(ce_is_cgb){ce_copy(buffer,&s->attrs,0,20);VBK_REG=1;set_bkg_tiles(0,30,20,1,buffer);set_bkg_tiles(0,31,20,1,buffer);VBK_REG=0;}
+        ce_copy(buffer,ce_is_cgb&&(*color_screen(screen)).tile_count?&(*color_screen(screen)).map:&s->map,0,20);set_bkg_tiles(0,30,20,1,buffer);set_bkg_tiles(0,31,20,1,buffer);
+        if(ce_is_cgb){ce_copy(buffer,(*color_screen(screen)).tile_count?&(*color_screen(screen)).attrs:&s->attrs,0,20);VBK_REG=1;set_bkg_tiles(0,30,20,1,buffer);set_bkg_tiles(0,31,20,1,buffer);VBK_REG=0;}
     }
     LCDC_REG|=8u;
     for(row=0;row!=32u;++row)buffer[row]=0;
@@ -178,6 +234,7 @@ void ce_bomb_setup(void) BANKED {
     move_bkg(ce_bomb_styles[ce_character]?80-ce_state.player_x/16:0,ce_bomb_styles[ce_character]?120-ce_state.player_y/16:0);vsync();ce_fade_level=0;palettes();SHOW_BKG;SHOW_SPRITES;
 }
 void ce_bomb_draw(uint8_t visible) BANKED {
+    if(ce_bomb_styles[ce_character])move_bkg(80-ce_state.player_x/16,120-ce_state.player_y/16);
     if(visible)LCDC_REG&=~8u;else LCDC_REG|=8u;
 }
 void ce_load_stage(void) BANKED {
@@ -191,10 +248,10 @@ void ce_load_stage(void) BANKED {
     /* Preserve an enabled, black LCD during transition loading. Turning it off
      * would flash white on DMG. GBDK VRAM APIs wait for safe access windows. */
     if (!ce_battle_mode && ce_fade_level != 4u) DISPLAY_OFF;
-    LCDC_REG &= ~8u; hide_all(); palettes(); ce_active_screen = 4;
+    LCDC_REG &= ~8u; hide_all(); ce_active_screen = 4; palettes();
     tiles(&ce_screens[4].tiles, 0, ce_screens[4].tile_count, 0);
-    tiles(&s->tiles, ce_screens[4].tile_count, s->tile_count, 0);
-    tiles(&ce_sprite_data, 128, ce_sprite_tiles, 1); SPRITES_8x8;
+    tiles(ce_is_cgb && ce_color_stages[ce_state.stage].attrs ? &ce_color_stages[ce_state.stage].tiles : &s->tiles, ce_screens[4].tile_count, s->tile_count, 0);
+    tiles(ce_is_cgb && ce_color_sprites ? &ce_color_sprite_data : &ce_sprite_data, 128, ce_sprite_tiles, 1); SPRITES_8x8;
     for (row = 0; row != 32u; ++row) map_row(start + row);
     ce_terrain_clean();
     screen_map(4, 1); move_win(7, ce_hud_bottom ? 144u - ce_hud_height : 0);
@@ -240,6 +297,63 @@ void ce_hud(void) BANKED {
 static volatile OAM_item_t *emit_out;
 static uint8_t emit_left, emit_y, emit_tile, emit_prop, emit_columns, emit_rows;
 static uint8_t emit_top, emit_bottom, emit_visible_y;
+static const uint8_t *emit_colors;
+static void prepare_sprite_color(void) __naked {
+    __asm
+        ld a, (_ce_color_sprites)
+        or a
+        ret z
+        ld a, (_pose)
+        ld l, a
+        ld a, (_pose + 1)
+        ld h, a
+        inc hl
+        inc hl
+        ld l, (hl)
+        ld b, l
+        ld h, #0
+        add hl, hl
+        ld de, #_ce_color_asset_attrs
+        add hl, de
+        ld a, (hl+)
+        ld e, a
+        ld d, (hl)
+        ld l, b
+        ld h, #0
+        add hl, hl
+        add hl, hl
+        add hl, hl
+        add hl, hl
+        ld bc, #(_ce_assets + 5)
+        add hl, bc
+        ld a, e
+        sub (hl)
+        ld (_emit_colors), a
+        ld a, d
+        sbc a, #0
+        ld (_emit_colors + 1), a
+        ret
+    __endasm;
+}
+/* Read the current tile's color; preserve the OAM cursor and loop state. */
+static void sprite_color(void) __naked {
+    __asm
+        push hl
+        push de
+        ld a, (_emit_tile)
+        ld e, a
+        ld d, #0
+        ld a, (_emit_colors + 1)
+        ld h, a
+        ld a, (_emit_colors)
+        ld l, a
+        add hl, de
+        ld a, (hl)
+        pop de
+        pop hl
+        ret
+    __endasm;
+}
 static void emit_oam(void) __naked {
     __asm
         push bc
@@ -288,10 +402,14 @@ static void emit_oam(void) __naked {
         ld (hl+), a
         ld a, (_emit_tile)
         ld (hl+), a
+        ld a, (_emit_colors + 1)
+        or a
+        ld a, (_emit_prop)
+        call nz, _sprite_color
+        ld (hl+), a
+        ld a, (_emit_tile)
         inc a
         ld (_emit_tile), a
-        ld a, (_emit_prop)
-        ld (hl+), a
         ld a, e
         add #8
         ld e, a
@@ -350,6 +468,9 @@ static void actor_sprite(void) __naked {
         push de
         push hl
 _ce_actor_sprite_inner::
+        ld a, (_ce_is_cgb)
+        or a
+        call nz, _prepare_sprite_color
         ld a, (_pose)
         ld l, a
         ld a, (_pose + 1)
@@ -458,7 +579,10 @@ _ce_actor_sprite_inner::
         ld (hl+), a
         ld a, (_emit_tile)
         ld (hl+), a
+        ld a, (_emit_colors + 1)
+        or a
         ld a, (_emit_prop)
+        call nz, _sprite_color
         ld (hl), a
         jr 026$
 025$:
@@ -591,14 +715,14 @@ static void parallax(void) {
     if (!(p->phases & (p->phases - 1u))) phase = ((p->divisor == 2u ? camera >> 1 : camera / p->divisor) - camera) & (p->phases - 1u);
     else phase = (p->phases - (camera - camera / p->divisor) % p->phases) % p->phases;
     if (phase == parallax_phase) return;
-    ce_copy(buffer, &p->frames, (uint16_t)phase * p->count * 16u, (uint16_t)p->count * 16u);
+    ce_copy(buffer, ce_is_cgb && ce_color_stages[ce_state.stage].attrs ? &ce_color_parallaxes[ce_state.stage] : &p->frames, (uint16_t)phase * p->count * 16u, (uint16_t)p->count * 16u);
     set_bkg_data(ce_screens[4].tile_count + p->first, p->count, buffer);
     parallax_phase = phase;
 }
 void ce_render(void) BANKED {
     uint8_t i; uint16_t row = ce_state.camera >> 7;
     uint16_t length;
-    if (!ce_battle_mode) {
+    if (!ce_battle_mode && !ce_bomb_image) {
     if (row != previous_row) {
     length = ce_stage->horizontal ? ce_stage->width : ce_stage->height;
     if (row + 1u == previous_row || (ce_stage->loop && !(length & 31u) && previous_row == 0u && row + 1u == length)) map_row(row);
@@ -629,17 +753,20 @@ void ce_render(void) BANKED {
     while (pose_slot < previous_slots) shadow_OAM[pose_slot++].y = 0;
     previous_slots = i;
     if (ce_battle_mode >= 2u) for (i = 0; i != previous_slots; ++i) shadow_OAM[i].tile -= 128u;
-    if (!(ce_state.tick & 7u)) ce_hud();
-    if (ce_battle_mode == 2u) ce_bg_flush();
-    else if (ce_battle_mode == 3u) ce_giant_flush();
+    if (!ce_bomb_image) {
+        if (!(ce_state.tick & 7u)) ce_hud();
+        if (ce_battle_mode == 2u) ce_bg_flush();
+        else if (ce_battle_mode == 3u) ce_giant_flush();
+    }
     ENABLE_OAM_DMA;
     /* Publish every completed pose through VBlank DMA before another update
      * can overwrite it. Repeated display frames under load are intentional. */
     vsync();
-    if (ce_battle_mode == 2u) ce_bg_publish();
+    if (ce_bomb_image) ce_bomb_draw(((ce_bomb_frames-ce_bomb_left)/ce_bomb_period)&1u);
+    else if (ce_battle_mode == 2u) ce_bg_publish();
     else if (ce_battle_mode == 3u) ce_giant_publish();
     else if (!ce_battle_mode) { move_camera(); parallax(); }
-    if (ce_bomb_live) live_bomb_palette();
+    if (ce_bomb_live == 1u) live_bomb_palette();
 }
 
 void ce_get_presentation(CE_Presentation *dest, uint8_t stage) BANKED { *dest = ce_presentations[(uint16_t)stage * ce_player_count + ce_character]; }
@@ -649,13 +776,13 @@ void ce_get_giant(CE_Giant *dest) BANKED { *dest = ce_giants[ce_giant_ref]; }
 void ce_load_boss(uint8_t asset) BANKED {
     if (ce_battle_mode == 3u) return;
     if (asset == CE_NONE || !ce_boss_graphics[asset].length) return;
-    tiles(&ce_boss_graphics[asset], ce_assets[asset].first_tile - (ce_battle_mode == 2u ? 128u : 0u), ce_boss_graphics[asset].length / 16u, 1);
+    tiles(ce_is_cgb && ce_color_sprites ? &ce_color_boss_graphics[asset] : &ce_boss_graphics[asset], ce_assets[asset].first_tile - (ce_battle_mode == 2u ? 128u : 0u), ce_boss_graphics[asset].length / 16u, 1);
 }
 void ce_battle_setup(void) BANKED {
     uint8_t i;
     HIDE_SPRITES; HIDE_WIN; ce_fade_level = 4; palettes();
     if (ce_battle_mode >= 2u) {
-        tiles(&ce_sprite_data, 0, ce_sprite_tiles, 1); if (ce_battle_mode == 3u) ce_giant_setup(); else ce_bg_setup();
+        tiles(ce_is_cgb && ce_color_sprites ? &ce_color_sprite_data : &ce_sprite_data, 0, ce_sprite_tiles, 1); if (ce_battle_mode == 3u) ce_giant_setup(); else ce_bg_setup();
     } else {
         for (i = 0; i != 32u; ++i) buffer[i] = 0;
         for (i = 0; i != 32u; ++i) set_bkg_tiles(0,i,32,1,buffer);

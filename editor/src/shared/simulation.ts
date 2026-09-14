@@ -1,3 +1,4 @@
+import {colorPreview,colorHex} from "./color";
 import {
     type Game,
     type Asset,
@@ -45,11 +46,12 @@ export function shotAngles(
     dy: number,
 ): number[] {
     let base = angleStep(pattern.angle);
-    if (pattern.kind === "aimed") base = (base + aimStep(dx, dy)) & 15;
+    if (pattern.kind === "aimed" || pattern.kind === "aimed-down") base = (base + aimStep(dx, dy)) & 15;
+    if (pattern.kind === "aimed-down") base = clamp(base, 4, 12);
     if (pattern.kind === "spiral")
         base = (base + sequence * angleStep(pattern.rotation)) & 15;
     const count =
-        pattern.kind === "laser" || pattern.kind === "straight" || pattern.kind === "aimed" || pattern.kind === "homing"
+        pattern.kind === "laser" || pattern.kind === "straight" || pattern.kind === "aimed" || pattern.kind === "aimed-down" || pattern.kind === "homing"
             ? 1
             : pattern.count;
     return Array.from({ length: count }, (_, i) => {
@@ -72,7 +74,7 @@ export function launchPoints(p: Pattern, a: Asset, x: number, y: number, sequenc
     const py=q4(l.y+(sequence%l.lanes)*l.step);
     if(l.kind==="fixed")return [{x:q4(l.x),y:py,angle:p.angle}];
     const sides=l.kind==="both"?[false,true]:[l.kind==="right"||l.kind==="alternate"&&!!(sequence&1)];
-    return sides.map(right=>({x:q4(right?158:1),y:py,angle:p.kind==="aimed"?p.angle:right?270:90}));
+    return sides.map(right=>({x:q4(right?158:1),y:py,angle:p.kind==="aimed"||p.kind==="aimed-down"?p.angle:right?270:90}));
 }
 export function homingAngle(angle:number, dx:number, dy:number, horizontal=false) {
     let target=aimStep(dx,dy);
@@ -181,6 +183,12 @@ export class Simulation {
     bombLatch=true;
     bombBackground="";
     bombStyle="orb";
+    private bombHits = new Set<Entity>();
+    private eventCursor=0;
+    private eventStage?: Stage;
+    private scheduledEvents: Stage["events"]=[];
+    private deferredFinish=false;
+    get bombImage() { return !!this.bombLeft && !!this.game.player.bomb?.live && this.game.player.bomb.presentation === "image"; }
     battleMode = "stage";
     bgLimit = 64;
     intro: BossPhase["intro"] | undefined;
@@ -395,7 +403,7 @@ export class Simulation {
         sequence: number,
     ) {
         const p = this.game.patterns.find((p) => p.id === ref);
-        if (!p) return;
+        if (!p || (!friendly && this.bombImage)) return;
         const asset = assetById(this.game, sourceAsset);
         const points = launchPoints(friendly?{...p,launch:undefined}:p,asset,x,y,sequence);
         if (friendly && this.game.player.atomicVolleys) {
@@ -482,6 +490,15 @@ export class Simulation {
         }
         return false;
     }
+    sweepBomb() {
+        for (const e of [...this.entities]) {
+            if ((e.kind !== "enemy" && e.kind !== "boss") || this.bombHits.has(e) || (e.kind === "boss" && this.phaseLocked)) continue;
+            const a = assetById(this.game, e.asset);
+            if (e.x + q4(a.width - a.origin.x) <= 0 || e.x - q4(a.origin.x) >= 2560 ||
+                e.y + q4(a.height - a.origin.y) <= 0 || e.y - q4(a.origin.y) >= 2304) continue;
+            this.bombHits.add(e); this.damageActor(e, this.game.player.bomb!.damage);
+        }
+    }
     damageActor(enemy:Entity,damage:number) {
         if(enemy.kind==="boss"){
             if(this.phaseLocked)return;
@@ -500,7 +517,7 @@ export class Simulation {
         }
     }
     hitPlayer() {
-        if (this.respawn || this.invulnerable || this.result) return;
+        if (this.respawn || this.invulnerable || this.result || this.bombImage) return;
         if (this.barrier) {this.barrier--;this.invulnerable=this.game.player.barrierFrames ?? 45;return;}
         this.weaponOverride="";
         this.explode(this.playerX, this.playerY);
@@ -525,6 +542,7 @@ export class Simulation {
         }
     }
     finishStage() {
+        this.eventCursor=0;this.deferredFinish=false;
         this.battleMode = "stage"; this.bgShots = []; this.bgNext=0;this.bombLatch=true;this.intro = undefined; this.introLeft = 0; this.phaseLocked = false; this.transition = undefined;
         if (this.game.bossCelebration && this.bossDefeated) this.entities = [];
         this.score = Math.min(65535, this.score + this.game.clearBonus);
@@ -639,7 +657,7 @@ export class Simulation {
             this.bombLatch=true;--this.bombs;this.bombLeft=p.bomb!.frames;this.invulnerable=Math.max(this.invulnerable,90);
             this.bgShots=[];this.bgNext=0;this.entities=this.entities.filter(e=>e.kind!=="pshot"&&e.kind!=="eshot");
             if(p.bomb!.destroyBackground) for(const i of this.objectsOverlapping({x:0,y:top,w:160,h:144-hudHeight(g)}).sort((a,b)=>a-b)) this.damageObject(i,15);
-            for(const e of [...this.entities])if((e.kind==="enemy"||e.kind==="boss")&&e.x>=0&&e.x<2560&&e.y>=0&&e.y<2304)this.damageActor(e,p.bomb!.damage);
+            this.bombHits.clear();this.sweepBomb();
             if (!p.bomb!.live) return;
         }
         const mode = p.bomb?.button !== "b" && input & 32 && p.focusWeapon ? 1 : 0;
@@ -694,24 +712,23 @@ export class Simulation {
         }
         this.bgShots = this.bgShots.filter(b => b.life > 0);
         this.camera = advanceCamera(this.game, this.stage, this.camera, this.scroll);
-        let finish = false;
-        for (const event of this.stage.events) {
-            if (event.kind === "enemy" || event.kind === "boss" || event.kind === "item") {
-                for (let n = 0; n < event.count; n++)
-                    if (this.stageTick === event.frame + n * event.interval) {
-                        if(event.kind === "item") this.spawnItem(event.ref,event.x+n*event.spacing,event.y+n*(event.spacingY??0));
-                        else this.spawnActor(
-                            event.ref,
-                            event.kind,
-                            event.x + n * event.spacing,
-                            event.y + n * (event.spacingY ?? 0),
-                        );
-                    }
-            } else if (this.stageTick === event.frame) {
-                if (event.kind === "scroll") { if (this.battleMode === "stage") this.scroll = q4(event.value); }
-                else finish = true;
-            }
+        let finish = this.deferredFinish;this.deferredFinish=false;
+        if(this.eventStage!==this.stage){
+            this.eventStage=this.stage;
+            this.scheduledEvents=this.stage.events.flatMap(event => event.kind === "enemy" || event.kind === "boss" || event.kind === "item"
+                ? Array.from({length:event.count},(_,n)=>({...event,frame:event.frame+n*event.interval,x:event.x+n*event.spacing,y:event.y+n*(event.spacingY??0)})) : [event]).sort((a,b)=>a.frame-b.frame);
         }
+        const events=this.scheduledEvents;
+        while(this.eventCursor<events.length && events[this.eventCursor].frame<=this.stageTick){
+            const event=events[this.eventCursor];
+            if(event.kind === "boss" && this.bombImage)break;
+            if(event.kind === "boss" || event.kind === "enemy") {if(event.kind === "boss" || this.battleMode === "stage")this.spawnActor(event.ref,event.kind,event.x,event.y);}
+            else if(event.kind === "item") {if(this.battleMode === "stage")this.spawnItem(event.ref,event.x,event.y);}
+            else if(event.kind === "scroll") {if(this.battleMode === "stage")this.scroll=q4(event.value);}
+            else finish=true;
+            ++this.eventCursor;
+        }
+        if(this.bombImage){this.deferredFinish=finish;finish=false;}
         if (this.introLeft) return;
         // Stable slot order, like the fixed C entity pool. New shots move next tick.
         const active = [...this.entities];
@@ -747,7 +764,7 @@ export class Simulation {
                     const phases = (actor as Boss).phases,
                         phase = phases[e.phase];
                     if (
-                        e.phase + 1 < phases.length &&
+                        !this.bombImage && e.phase + 1 < phases.length &&
                         (phase.until === "time"
                             ? e.phaseAge >= phase.threshold
                             : e.hp <= (phase.hp ? 0 : phase.threshold))
@@ -803,6 +820,7 @@ export class Simulation {
             if (e.x < -512 || e.x > 3072 || e.y < -512 || e.y > 2816)
                 this.entities = this.entities.filter((x) => x !== e);
         }
+        if (this.bombLeft && p.bomb?.live) this.sweepBomb();
         for (const shot of [...this.entities].filter(
             (e) => e.kind === "pshot",
         )) {
@@ -843,13 +861,13 @@ export class Simulation {
             if (!this.respawn && this.overlap(pb, {x, y, w:2, h:2})) {this.hitPlayer(); return false;}
             return true;
         });
-        if (this.bossDefeated && !this.stage.clearOnBoss) {this.battleMode = "stage"; this.bgShots = []; this.scroll = q4(this.stage.scrollSpeed);}
+        if (!this.bombImage && this.bossDefeated && !this.stage.clearOnBoss) {this.battleMode = "stage"; this.bgShots = []; this.scroll = q4(this.stage.scrollSpeed);}
         this.tick++;
         this.stageTick = Math.min(65535, this.stageTick + 1);
-        if (!this.result && this.stage.requireBoss && !this.bossDefeated && (finish || (this.game.timeLimit !== false && this.stageTick >= this.stage.duration * 60)))
+        if (!this.bombImage && !this.result && this.stage.requireBoss && !this.bossDefeated && (finish || (this.game.timeLimit !== false && this.stageTick >= this.stage.duration * 60)))
             this.result = 1;
         if (
-            !this.result &&
+            !this.bombImage && !this.result &&
             (finish ||
                 (this.bossDefeated && this.stage.clearOnBoss) ||
                 (this.game.timeLimit !== false && this.stageTick >= this.stage.duration * 60))
@@ -875,18 +893,19 @@ export function drawAsset(
                 ? dmgColors(game)
                 : game.palettes[asset.palette]?.colors);
     if (!frame || !colors) return;
+    const color = !dmg ? colorPreview(game,asset,frame) : undefined;
     for (let py = 0; py < asset.height; py++)
         for (let px = 0; px < asset.width; px++) {
             const c = frame.pixels[py * asset.width + px];
-            if (asset.kind === "sprite" && c === 0) continue;
-            ctx.fillStyle = colors[c];
+            if (asset.kind === "sprite" && (color&&frame.cgbPixels ? frame.cgbPixels[py*asset.width+px]<0 : c===0)) continue;
+            ctx.fillStyle = color ? colorHex(color[py*asset.width+px]) : colors[c];
             ctx.fillRect(Math.floor(x) + px, Math.floor(y) + py, 1, 1);
         }
 }
 /** BG/HUD use the inverted palette during a live bomb; sprites keep theirs. */
 export function backgroundPaletteGame(sim: Simulation): Game {
     const g = sim.game, bomb = g.player.bomb;
-    if (!sim.bombLeft || !bomb?.live || !(Math.floor((bomb.frames - sim.bombLeft) / bomb.flashPeriod) & 1)) return g;
+    if (!sim.bombLeft || !bomb?.live || sim.bombImage || !(Math.floor((bomb.frames - sim.bombLeft) / bomb.flashPeriod) & 1)) return g;
     return {...g, dmgPalette: (g.dmgPalette ?? 0xe4) ^ 255,
         palettes: g.palettes.map(p => ({...p, colors: p.colors.map(c =>
             `#${(parseInt(c.slice(1), 16) ^ 0xffffff).toString(16).padStart(6, "0")}`) as typeof p.colors}))};
@@ -907,6 +926,7 @@ export function drawSimulation(
         colors = dmg
             ? dmgColors(bg)
             : bg.palettes[tileset.palette].colors;
+    const colorFrame = !dmg && frame ? colorPreview(g,tileset,frame) : undefined;
     if (frame && sim.battleMode === "stage")
         for (let y = 0; y < 144 - hudHeight(g); y++)
             for (let x = 0; x < 160; x++) {
@@ -923,7 +943,7 @@ export function drawSimulation(
                     const sourceTile=par.firstTile+Math.floor(py/8)*par.width+Math.floor(px/8);
                     sampleX=(sourceTile%(tileset.width/8))*8+(px&7);sampleY=Math.floor(sourceTile/(tileset.width/8))*8+(py&7);
                 }
-                ctx.fillStyle =
+                ctx.fillStyle = colorFrame ? colorHex(colorFrame[sampleY*tileset.width+sampleX]^(bg===g?0:0xffffff)) :
                     colors[
                         frame.pixels[
                             sampleY * tileset.width + sampleX
@@ -956,7 +976,7 @@ export function drawSimulation(
         ctx.fillStyle = bg === g ? "#000" : "#fff"; ctx.fillRect(0,top,160,144-hudHeight(g)); ctx.fillStyle = bg === g ? "#fff" : "#000";
         for (const b of sim.bgShots) { const x = Math.trunc(b.x/16) & ~1, y = Math.trunc(b.y/16) & ~1; ctx.fillRect(x,y,2,2); }
     }
-    if(sim.bombLeft && !g.player.bomb?.live){
+    if(sim.bombLeft && (!g.player.bomb?.live || sim.bombImage)){
         ctx.fillStyle="#000";ctx.fillRect(0,0,160,144);
         if(Math.floor((g.player.bomb!.frames-sim.bombLeft)/g.player.bomb!.flashPeriod)&1){
             const beam=sim.bombStyle==="beam",x=beam?Math.trunc(sim.playerX/16)-80:0,y=beam?Math.trunc(sim.playerY/16)-120:0,art=assetById(g,sim.bombBackground);

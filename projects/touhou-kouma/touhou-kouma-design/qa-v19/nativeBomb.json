@@ -1,0 +1,83 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\candidate\\touhou-kouma.gb",
+  "sha256": "ce938c9d0b255e1ca5cc2265c534eea4e25db17f7c2d3780a1505ed3425e3aab",
+  "emulator": "BGB 1.6.6",
+  "results": [
+    {
+      "mode": "DMG",
+      "character": 0,
+      "fixture": false,
+      "bombIntervals": 2,
+      "framesPerBomb": [
+        48,
+        48
+      ],
+      "stockSequence": [
+        2,
+        1,
+        0
+      ],
+      "stageClockContinues": true,
+      "gameplayResumed": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-bomb\\DMG-0-f07R6i\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-bomb\\DMG-0-f07R6i\\screen.bmp"
+    },
+    {
+      "mode": "DMG",
+      "character": 1,
+      "fixture": false,
+      "bombIntervals": 2,
+      "framesPerBomb": [
+        48,
+        48
+      ],
+      "stockSequence": [
+        2,
+        1,
+        0
+      ],
+      "stageClockContinues": true,
+      "gameplayResumed": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-bomb\\DMG-1-Tr3U44\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-bomb\\DMG-1-Tr3U44\\screen.bmp"
+    },
+    {
+      "mode": "CGB",
+      "character": 0,
+      "fixture": false,
+      "bombIntervals": 2,
+      "framesPerBomb": [
+        48,
+        48
+      ],
+      "stockSequence": [
+        2,
+        1,
+        0
+      ],
+      "stageClockContinues": true,
+      "gameplayResumed": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-bomb\\CGB-0-1hkGpr\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-bomb\\CGB-0-1hkGpr\\screen.bmp"
+    },
+    {
+      "mode": "CGB",
+      "character": 1,
+      "fixture": false,
+      "bombIntervals": 2,
+      "framesPerBomb": [
+        48,
+        48
+      ],
+      "stockSequence": [
+        2,
+        1,
+        0
+      ],
+      "stageClockContinues": true,
+      "gameplayResumed": true,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-bomb\\CGB-1-xZWytu\\debugmsg.txt",
+      "screenshot": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v19\\bgb-bomb\\CGB-1-xZWytu\\screen.bmp"
+    }
+  ]
+}
