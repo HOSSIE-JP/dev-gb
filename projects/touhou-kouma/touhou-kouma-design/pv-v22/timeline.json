@@ -1,0 +1,116 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "seconds": 98,
+  "sourceMode": "CGB",
+  "segments": [
+    {
+      "id": "intro",
+      "source": "reimu",
+      "start": 3.2,
+      "duration": 19,
+      "heading": "起動デモから冒険へ",
+      "detail": "ロゴ → タイトル\nキャラクター選択",
+      "at": 0
+    },
+    {
+      "id": "reimu-shot",
+      "source": "reimu",
+      "start": 22.4,
+      "duration": 8,
+      "heading": "博麗 霊夢",
+      "detail": "当てやすいお札\n広めの当たり判定",
+      "at": 19
+    },
+    {
+      "id": "reimu-bomb",
+      "source": "reimu",
+      "start": 29,
+      "duration": 5,
+      "heading": "霊夢のボム",
+      "detail": "陰陽玉\n敵弾消去 ＋ ダメージ",
+      "at": 27
+    },
+    {
+      "id": "marisa-shot",
+      "source": "marisa",
+      "start": 19.9,
+      "duration": 8,
+      "heading": "霧雨 魔理沙",
+      "detail": "レーザー風ショット\n高速移動・高速連射",
+      "at": 32
+    },
+    {
+      "id": "marisa-bomb",
+      "source": "marisa",
+      "start": 27,
+      "duration": 5,
+      "heading": "魔理沙のボム",
+      "detail": "魔理沙スパーク\n極太レーザー！",
+      "at": 40
+    },
+    {
+      "id": "compare",
+      "source": "reimu",
+      "start": 29.4,
+      "duration": 6,
+      "heading": "好みの機体で！",
+      "detail": "ボム中も\n移動・射撃が可能",
+      "at": 45
+    },
+    {
+      "id": "remilia",
+      "source": "remilia",
+      "start": 12,
+      "duration": 10,
+      "heading": "後半ボス：レミリア",
+      "detail": "広がる弾幕\n隙間を見つけて回避",
+      "at": 51
+    },
+    {
+      "id": "flandre",
+      "source": "flandre",
+      "start": 6.6,
+      "duration": 8,
+      "heading": "最終ボス：フランドール",
+      "detail": "撃ち込んで\n次の攻撃パターンへ",
+      "at": 61
+    },
+    {
+      "id": "cutin",
+      "source": "flandre",
+      "start": 14,
+      "duration": 6,
+      "heading": "弾幕が切り替わる瞬間",
+      "detail": "爆発 → カットイン\n弾幕名とともに再開",
+      "at": 69
+    },
+    {
+      "id": "phase-two",
+      "source": "flandre",
+      "start": 20,
+      "duration": 12,
+      "heading": "まだまだ続く弾幕！",
+      "detail": "キャラクター固有の\n攻撃パターン",
+      "at": 75
+    },
+    {
+      "id": "phase-three",
+      "source": "flandre",
+      "start": 35,
+      "duration": 4,
+      "heading": "そして次の弾幕へ",
+      "detail": "カットイン演出\nゲームの効果音にも注目",
+      "at": 87
+    },
+    {
+      "id": "end",
+      "source": "reimu",
+      "start": 12.94,
+      "duration": 7,
+      "heading": "東方 紅魔巡礼 GB",
+      "detail": "ゆっくり\n遊んでいってね！",
+      "at": 91
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "createdAt": "2026-09-14T10:54:53.415Z",
+  "title": "東方 紅魔巡礼 GB 紹介PV",
+  "video": "touhou-kouma-v22-pv.mp4",
+  "sha256": "af49bef2496a4388c17771180eb2f85bb915380934cc369b77ca07cbc1a3be66",
+  "bytes": 14124006,
+  "romSha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+  "durationSeconds": 98,
+  "width": 1920,
+  "height": 1080,
+  "frameRate": 60,
+  "videoCodec": "H.264",
+  "audioCodec": "AAC",
+  "approval": {
+    "romSha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+    "userDecision": "OK、これでゲームの紹介PVを作成してください。ゆっくり解説動画にしてほしいです。",
+    "messageReference": "2026-09-14 current conversation user approval after v0.22 delivery"
+  },
+  "sources": [
+    {
+      "name": "reimu",
+      "capture": "captures/reimu/capture.json",
+      "mkv": "captures/reimu/source.mkv",
+      "sha256": "0d62167d56f81a0cb8ba4c7282ef9ae3eda7cc17441faf4a3135c0ebc127cd2a",
+      "displayFrames": 2524,
+      "displayHz": 59.72750056960583,
+      "peakBullets": 0
+    },
+    {
+      "name": "marisa",
+      "capture": "captures/marisa/capture.json",
+      "mkv": "captures/marisa/source.mkv",
+      "sha256": "2ef5a2c7834eaa429ff9376471009b5fc7503cbf6b485ce2da3d0a7b36d0bf26",
+      "displayFrames": 2448,
+      "displayHz": 59.72750056960583,
+      "peakBullets": 0
+    },
+    {
+      "name": "remilia",
+      "capture": "captures/remilia/capture.json",
+      "mkv": "captures/remilia/source.mkv",
+      "sha256": "5ab46dad2383e4d8189a8e5042e9d8f9122f0145766e8e536ee465ad236d9025",
+      "displayFrames": 4861,
+      "displayHz": 59.72750056960583,
+      "peakBullets": 24
+    },
+    {
+      "name": "flandre",
+      "capture": "captures/flandre/capture.json",
+      "mkv": "captures/flandre/source.mkv",
+      "sha256": "c99cca991d0d4ac2a47fc78e381883e8f1d2dd93595a001e40d9c5d89689f51b",
+      "displayFrames": 2332,
+      "displayHz": 59.72750056960583,
+      "peakBullets": 30
+    }
+  ],
+  "voice": {
+    "status": "provisional alternative; dedicated Yukkuri voice engine not available",
+    "engine": "Windows Speech API",
+    "reimu": "Microsoft Haruka Desktop",
+    "marisa": "Microsoft Ayumi",
+    "rate": 2,
+    "userPreferenceQuestionPending": true
+  },
+  "graphics": {
+    "source": "../color-v21/logo-touhou-notice-master.png",
+    "usage": "Existing Reimu/Marisa heads cropped for commentary layout; no generated gameplay."
+  },
+  "checks": {
+    "fullDecode": true,
+    "frameCount": 5880,
+    "matchingAudioVideoDuration": true,
+    "inspectedFrames": [
+      0.5,
+      8,
+      12,
+      17,
+      22,
+      29,
+      35,
+      41.5,
+      47,
+      56,
+      65,
+      70.8,
+      80,
+      88.5,
+      94
+    ],
+    "peakDb": -0.4,
+    "meanDb": -22.6,
+    "romUnmodified": true,
+    "memoryWrites": false,
+    "inputLogs": true,
+    "originalSlowdownPreserved": true
+  },
+  "limits": [
+    "Narration is Windows speech, not AquesTalk; speaker-specific WAVs and script permit replacement.",
+    "No publishing or social upload performed.",
+    "Human listening assessment is not recorded."
+  ]
+}

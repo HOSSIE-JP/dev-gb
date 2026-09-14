@@ -1,0 +1,34 @@
+{
+  "version": "0.22-character-animation",
+  "request": "魔理沙と全ボスを最低2フレームのアニメーションにする。",
+  "newFrames": [
+    "marisa",
+    "rumia",
+    "cirno",
+    "meiling",
+    "patchouli",
+    "sakuya"
+  ],
+  "preservedAnimations": [
+    "reimu",
+    "remilia",
+    "flandre"
+  ],
+  "targets": [
+    "DMG",
+    "CGB"
+  ],
+  "preserve": [
+    "first frames",
+    "hitboxes",
+    "character performance",
+    "boss patterns",
+    "gameplay timing"
+  ],
+  "timing": {
+    "marisa": 8,
+    "newBosses": 16
+  },
+  "source": "assets-src/game.json and source PNGs",
+  "design": "touhou-kouma-design/animation-v22"
+}

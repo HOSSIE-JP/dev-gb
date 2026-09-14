@@ -1,0 +1,64 @@
+{
+  "sourceRevision": "4fb8c3174cf972659ba02a70eda41700b9f7bb48f0805d0edb15be545f108104",
+  "revision": "9d2ab3aa01dc3f532670048a531607a5828a51df8c797469d8a59b89993147de",
+  "tool": "built-in image_gen",
+  "masterSha256": "94f562143b4194a51c7519aea6f4d23b3abee6345a304bef6a983398c71eb236",
+  "processing": "Sample original pixel grid, preserve first 12 rows, remap to original RGB colors and corresponding DMG shades; original first frames preserved.",
+  "frames": [
+    {
+      "id": "marisa",
+      "changedPixels": 37,
+      "duration": 8,
+      "width": 16,
+      "height": 24,
+      "sourceFrame": "marisa-0",
+      "newFrame": "marisa-idle-1"
+    },
+    {
+      "id": "rumia",
+      "changedPixels": 35,
+      "duration": 16,
+      "width": 24,
+      "height": 24,
+      "sourceFrame": "rumia-frame",
+      "newFrame": "rumia-idle-1"
+    },
+    {
+      "id": "cirno",
+      "changedPixels": 111,
+      "duration": 16,
+      "width": 24,
+      "height": 24,
+      "sourceFrame": "cirno-0",
+      "newFrame": "cirno-idle-1"
+    },
+    {
+      "id": "meiling",
+      "changedPixels": 82,
+      "duration": 16,
+      "width": 24,
+      "height": 24,
+      "sourceFrame": "meiling-0",
+      "newFrame": "meiling-idle-1"
+    },
+    {
+      "id": "patchouli",
+      "changedPixels": 68,
+      "duration": 16,
+      "width": 24,
+      "height": 24,
+      "sourceFrame": "patchouli-0",
+      "newFrame": "patchouli-idle-1"
+    },
+    {
+      "id": "sakuya",
+      "changedPixels": 60,
+      "duration": 16,
+      "width": 24,
+      "height": 24,
+      "sourceFrame": "sakuya-0",
+      "newFrame": "sakuya-idle-1"
+    }
+  ],
+  "spriteTiles": 88
+}

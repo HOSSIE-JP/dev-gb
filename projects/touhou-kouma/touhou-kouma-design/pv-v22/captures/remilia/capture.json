@@ -1,0 +1,396 @@
+{
+  "name": "remilia",
+  "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma-v22.gb",
+  "romSha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+  "mode": "CGB",
+  "displayHz": 59.72750056960583,
+  "displayFrames": 4861,
+  "sourceDisplayFrames": 10271,
+  "firstRecorded": 5410,
+  "rate": 44100,
+  "channels": 2,
+  "peakBullets": 24,
+  "peakOam": 22,
+  "marks": [
+    {
+      "frame": 0,
+      "seconds": 0,
+      "kind": "state",
+      "ready": true,
+      "scene": 5,
+      "tick": 3780,
+      "x": 8,
+      "y": 20,
+      "lives": 5,
+      "pause": 0,
+      "battle": 0,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 0,
+      "oam": 6
+    },
+    {
+      "frame": 142,
+      "seconds": 2.3774642944335938,
+      "kind": "state",
+      "ready": true,
+      "scene": 1,
+      "tick": 3780,
+      "x": 8,
+      "y": 20,
+      "lives": 5,
+      "pause": 0,
+      "battle": 0,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 0,
+      "oam": 0
+    },
+    {
+      "frame": 169,
+      "seconds": 2.829517364501953,
+      "kind": "state",
+      "ready": true,
+      "scene": 1,
+      "tick": 3780,
+      "x": 8,
+      "y": 20,
+      "lives": 5,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 0,
+      "boss": {
+        "id": "remilia",
+        "hp": 100,
+        "phase": 0,
+        "x": 80,
+        "y": -12
+      },
+      "oam": 0
+    },
+    {
+      "frame": 249,
+      "seconds": 4.168933868408203,
+      "kind": "state",
+      "ready": true,
+      "scene": 7,
+      "tick": 3844,
+      "x": 76.25,
+      "y": 114.25,
+      "lives": 5,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 1,
+      "boss": {
+        "id": "remilia",
+        "hp": 100,
+        "phase": 1,
+        "x": 80,
+        "y": 36
+      },
+      "oam": 15
+    },
+    {
+      "frame": 346,
+      "seconds": 5.792976379394531,
+      "kind": "state",
+      "ready": true,
+      "scene": 1,
+      "tick": 3845,
+      "x": 76.25,
+      "y": 114.25,
+      "lives": 5,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 0,
+      "boss": {
+        "id": "remilia",
+        "hp": 100,
+        "phase": 1,
+        "x": 80,
+        "y": 36
+      },
+      "oam": 0
+    },
+    {
+      "frame": 1823,
+      "seconds": 30.521953582763672,
+      "kind": "state",
+      "ready": true,
+      "scene": 14,
+      "tick": 5140,
+      "x": 80,
+      "y": 120,
+      "lives": 0,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 16,
+      "bomb": 0,
+      "locked": 0,
+      "boss": {
+        "id": "remilia",
+        "hp": 28,
+        "phase": 1,
+        "x": 74.375,
+        "y": 37.875
+      },
+      "oam": 19
+    },
+    {
+      "frame": 1882,
+      "seconds": 31.50977325439453,
+      "kind": "state",
+      "ready": true,
+      "scene": 13,
+      "tick": 5140,
+      "x": 80,
+      "y": 120,
+      "lives": 0,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 16,
+      "bomb": 0,
+      "locked": 0,
+      "boss": {
+        "id": "remilia",
+        "hp": 28,
+        "phase": 1,
+        "x": 74.375,
+        "y": 37.875
+      },
+      "oam": 13
+    },
+    {
+      "frame": 2491,
+      "seconds": 41.70608139038086,
+      "kind": "state",
+      "ready": true,
+      "scene": 0,
+      "tick": 5140,
+      "x": 80,
+      "y": 120,
+      "lives": 0,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 16,
+      "bomb": 0,
+      "locked": 0,
+      "boss": {
+        "id": "remilia",
+        "hp": 28,
+        "phase": 1,
+        "x": 74.375,
+        "y": 37.875
+      },
+      "oam": 0
+    }
+  ],
+  "events": [
+    {
+      "frame": 794,
+      "keys": [
+        "Down"
+      ]
+    },
+    {
+      "frame": 798,
+      "keys": []
+    },
+    {
+      "frame": 810,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 814,
+      "keys": []
+    },
+    {
+      "frame": 826,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 830,
+      "keys": []
+    },
+    {
+      "frame": 842,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 846,
+      "keys": []
+    },
+    {
+      "frame": 858,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 862,
+      "keys": []
+    },
+    {
+      "frame": 874,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 878,
+      "keys": []
+    },
+    {
+      "frame": 890,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 894,
+      "keys": []
+    },
+    {
+      "frame": 907,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 911,
+      "keys": []
+    },
+    {
+      "frame": 933,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 937,
+      "keys": []
+    },
+    {
+      "frame": 963,
+      "keys": [
+        "A",
+        "Left",
+        "Up"
+      ]
+    },
+    {
+      "frame": 1030,
+      "keys": [
+        "A",
+        "Up"
+      ]
+    },
+    {
+      "frame": 5411,
+      "keys": []
+    },
+    {
+      "frame": 5427,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 5433,
+      "keys": []
+    },
+    {
+      "frame": 5451,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 5457,
+      "keys": []
+    },
+    {
+      "frame": 5475,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 5481,
+      "keys": []
+    },
+    {
+      "frame": 5499,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 5505,
+      "keys": []
+    },
+    {
+      "frame": 5523,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 5529,
+      "keys": []
+    },
+    {
+      "frame": 5547,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 5553,
+      "keys": [
+        "A",
+        "Up"
+      ]
+    },
+    {
+      "frame": 5580,
+      "keys": [
+        "Down",
+        "Right"
+      ]
+    },
+    {
+      "frame": 5616,
+      "keys": [
+        "Down"
+      ]
+    },
+    {
+      "frame": 5624,
+      "keys": []
+    },
+    {
+      "frame": 5844,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 7234,
+      "keys": []
+    }
+  ],
+  "note": "Approved production ROM. Ordinary controller inputs only, no ROM/RAM patches. One hardware display interval per captured frame; native slowdown preserved."
+}

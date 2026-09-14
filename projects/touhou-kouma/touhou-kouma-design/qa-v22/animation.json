@@ -1,0 +1,328 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v22\\rom\\touhou-kouma.gb",
+  "sha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+  "results": [
+    {
+      "label": "DMG-stage1",
+      "boss": "rumia",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "rumia": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 1703,
+        "rumia": 46
+      },
+      "transitions": {
+        "marisa": 261,
+        "rumia": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "DMG-stage2",
+      "boss": "cirno",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "cirno": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 1764,
+        "cirno": 46
+      },
+      "transitions": {
+        "marisa": 271,
+        "cirno": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "DMG-stage3",
+      "boss": "meiling",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "meiling": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 2306,
+        "meiling": 45
+      },
+      "transitions": {
+        "marisa": 333,
+        "meiling": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "DMG-stage4",
+      "boss": "patchouli",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "patchouli": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 2200,
+        "patchouli": 45
+      },
+      "transitions": {
+        "marisa": 360,
+        "patchouli": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "DMG-stage5",
+      "boss": "sakuya",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "sakuya": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 2696,
+        "sakuya": 45
+      },
+      "transitions": {
+        "marisa": 399,
+        "sakuya": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "DMG-stage6",
+      "boss": "remilia",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "remilia": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 2899,
+        "remilia": 26
+      },
+      "transitions": {
+        "marisa": 432,
+        "remilia": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "DMG-stage7",
+      "boss": "flandre",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "flandre": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 3812,
+        "flandre": 26
+      },
+      "transitions": {
+        "marisa": 525,
+        "flandre": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "CGB-stage1",
+      "boss": "rumia",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "rumia": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 1619,
+        "rumia": 45
+      },
+      "transitions": {
+        "marisa": 259,
+        "rumia": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "CGB-stage2",
+      "boss": "cirno",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "cirno": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 1285,
+        "cirno": 45
+      },
+      "transitions": {
+        "marisa": 267,
+        "cirno": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "CGB-stage3",
+      "boss": "meiling",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "meiling": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 1652,
+        "meiling": 45
+      },
+      "transitions": {
+        "marisa": 327,
+        "meiling": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "CGB-stage4",
+      "boss": "patchouli",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "patchouli": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 1660,
+        "patchouli": 45
+      },
+      "transitions": {
+        "marisa": 336,
+        "patchouli": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "CGB-stage5",
+      "boss": "sakuya",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "sakuya": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 1922,
+        "sakuya": 45
+      },
+      "transitions": {
+        "marisa": 389,
+        "sakuya": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "CGB-stage6",
+      "boss": "remilia",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "remilia": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 2015,
+        "remilia": 26
+      },
+      "transitions": {
+        "marisa": 396,
+        "remilia": 3
+      },
+      "vramAndPaletteVerified": true
+    },
+    {
+      "label": "CGB-stage7",
+      "boss": "flandre",
+      "frames": {
+        "marisa": [
+          0,
+          1
+        ],
+        "flandre": [
+          0,
+          1
+        ]
+      },
+      "samples": {
+        "marisa": 2877,
+        "flandre": 26
+      },
+      "transitions": {
+        "marisa": 513,
+        "flandre": 3
+      },
+      "vramAndPaletteVerified": true
+    }
+  ]
+}

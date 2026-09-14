@@ -13,6 +13,15 @@
 **/generated/*
 !**/generated/.gitkeep
 
+# Local promotional videos and raw capture intermediates
+*.mp4
+*.mkv
+*.mov
+*.avi
+*.webm
+/projects/touhou-kouma/touhou-kouma-design/pv-*/captures/*/frames.rgb
+/projects/touhou-kouma/touhou-kouma-design/pv-*/captures/*/audio.s16le
+
 # Game Boy ROMs and linker/debug output
 *.gb
 *.gbc

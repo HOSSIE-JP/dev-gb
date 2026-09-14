@@ -163,8 +163,14 @@
         {
           "id": "meiling-0",
           "image": "images/meiling-0.png",
-          "duration": 12,
+          "duration": 16,
           "cgbImage": "images/meiling-0-cgb.png"
+        },
+        {
+          "id": "meiling-idle-1",
+          "image": "images/meiling-idle-1-v22.png",
+          "duration": 16,
+          "cgbImage": "images/meiling-idle-1-v22-cgb.png"
         }
       ]
     },
@@ -195,8 +201,14 @@
         {
           "id": "patchouli-0",
           "image": "images/patchouli-0.png",
-          "duration": 12,
+          "duration": 16,
           "cgbImage": "images/patchouli-0-cgb.png"
+        },
+        {
+          "id": "patchouli-idle-1",
+          "image": "images/patchouli-idle-1-v22.png",
+          "duration": 16,
+          "cgbImage": "images/patchouli-idle-1-v22-cgb.png"
         }
       ]
     },
@@ -227,8 +239,14 @@
         {
           "id": "sakuya-0",
           "image": "images/sakuya-0.png",
-          "duration": 12,
+          "duration": 16,
           "cgbImage": "images/sakuya-0-cgb.png"
+        },
+        {
+          "id": "sakuya-idle-1",
+          "image": "images/sakuya-idle-1-v22.png",
+          "duration": 16,
+          "cgbImage": "images/sakuya-idle-1-v22-cgb.png"
         }
       ]
     },
@@ -1181,8 +1199,14 @@
         {
           "id": "cirno-0",
           "image": "images/cirno.png",
-          "duration": 12,
+          "duration": 16,
           "cgbImage": "images/cirno-0-cgb.png"
+        },
+        {
+          "id": "cirno-idle-1",
+          "image": "images/cirno-idle-1-v22.png",
+          "duration": 16,
+          "cgbImage": "images/cirno-idle-1-v22-cgb.png"
         }
       ]
     },
@@ -1402,8 +1426,14 @@
         {
           "id": "rumia-frame",
           "image": "images/rumia.png",
-          "duration": 8,
+          "duration": 16,
           "cgbImage": "images/rumia-0-cgb.png"
+        },
+        {
+          "id": "rumia-idle-1",
+          "image": "images/rumia-idle-1-v22.png",
+          "duration": 16,
+          "cgbImage": "images/rumia-idle-1-v22-cgb.png"
         }
       ]
     },
@@ -1733,6 +1763,12 @@
           "image": "images/marisa.png",
           "duration": 8,
           "cgbImage": "images/marisa-0-cgb.png"
+        },
+        {
+          "id": "marisa-idle-1",
+          "image": "images/marisa-idle-1-v22.png",
+          "duration": 8,
+          "cgbImage": "images/marisa-idle-1-v22-cgb.png"
         }
       ]
     },

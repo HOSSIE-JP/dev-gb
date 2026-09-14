@@ -1,0 +1,304 @@
+{
+  "name": "reimu",
+  "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma-v22.gb",
+  "romSha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+  "mode": "CGB",
+  "displayHz": 59.72750056960583,
+  "displayFrames": 2524,
+  "sourceDisplayFrames": 2524,
+  "firstRecorded": 0,
+  "rate": 44100,
+  "channels": 2,
+  "peakBullets": 0,
+  "peakOam": 27,
+  "marks": [
+    {
+      "frame": 0,
+      "seconds": 0,
+      "kind": "state",
+      "ready": false,
+      "scene": 0,
+      "tick": 0,
+      "x": 0,
+      "y": 0,
+      "lives": 0,
+      "pause": 0,
+      "battle": 0,
+      "bullets": 0,
+      "bomb": 0,
+      "bombs": 0,
+      "latch": 0,
+      "respawn": 0,
+      "locked": 0,
+      "oam": 0
+    },
+    {
+      "frame": 189,
+      "seconds": 3.1643714904785156,
+      "kind": "state",
+      "ready": false,
+      "scene": 12,
+      "tick": 0,
+      "x": 0,
+      "y": 0,
+      "lives": 0,
+      "pause": 0,
+      "battle": 0,
+      "bullets": 0,
+      "bomb": 0,
+      "bombs": 0,
+      "latch": 0,
+      "respawn": 0,
+      "locked": 0,
+      "oam": 0
+    },
+    {
+      "frame": 773,
+      "seconds": 12.94211196899414,
+      "kind": "state",
+      "ready": true,
+      "scene": 0,
+      "tick": 0,
+      "x": 0,
+      "y": 0,
+      "lives": 0,
+      "pause": 0,
+      "battle": 0,
+      "bullets": 0,
+      "bomb": 0,
+      "bombs": 0,
+      "latch": 0,
+      "respawn": 0,
+      "locked": 0,
+      "oam": 0
+    },
+    {
+      "frame": 924,
+      "seconds": 15.470260620117188,
+      "kind": "state",
+      "ready": true,
+      "scene": 10,
+      "tick": 0,
+      "x": 0,
+      "y": 0,
+      "lives": 0,
+      "pause": 0,
+      "battle": 0,
+      "bullets": 0,
+      "bomb": 0,
+      "bombs": 0,
+      "latch": 0,
+      "respawn": 0,
+      "locked": 0,
+      "oam": 0
+    },
+    {
+      "frame": 1262,
+      "seconds": 21.129295349121094,
+      "kind": "state",
+      "ready": true,
+      "scene": 1,
+      "tick": 0,
+      "x": 80,
+      "y": 120,
+      "lives": 5,
+      "pause": 0,
+      "battle": 0,
+      "bullets": 0,
+      "bomb": 0,
+      "bombs": 2,
+      "latch": 1,
+      "respawn": 0,
+      "locked": 0,
+      "oam": 0
+    },
+    {
+      "frame": 1817,
+      "seconds": 30.421497344970703,
+      "kind": "bomb",
+      "ready": true,
+      "scene": 1,
+      "tick": 501,
+      "x": 91.25,
+      "y": 120,
+      "lives": 4,
+      "pause": 0,
+      "battle": 0,
+      "bullets": 0,
+      "bomb": 48,
+      "bombs": 1,
+      "latch": 1,
+      "respawn": 0,
+      "locked": 0,
+      "oam": 10
+    }
+  ],
+  "events": [
+    {
+      "frame": 924,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 928,
+      "keys": []
+    },
+    {
+      "frame": 1031,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 1035,
+      "keys": []
+    },
+    {
+      "frame": 1147,
+      "keys": [
+        "Left"
+      ]
+    },
+    {
+      "frame": 1151,
+      "keys": []
+    },
+    {
+      "frame": 1233,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 1237,
+      "keys": []
+    },
+    {
+      "frame": 1293,
+      "keys": [
+        "A",
+        "Left"
+      ]
+    },
+    {
+      "frame": 1351,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 1456,
+      "keys": [
+        "A",
+        "Right"
+      ]
+    },
+    {
+      "frame": 1503,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 1613,
+      "keys": [
+        "A",
+        "Left"
+      ]
+    },
+    {
+      "frame": 1661,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 1766,
+      "keys": []
+    },
+    {
+      "frame": 1806,
+      "keys": [
+        "A",
+        "Right"
+      ]
+    },
+    {
+      "frame": 1811,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 1816,
+      "keys": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "frame": 1824,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 1948,
+      "keys": [
+        "A",
+        "Left"
+      ]
+    },
+    {
+      "frame": 1993,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 2099,
+      "keys": [
+        "A",
+        "Right"
+      ]
+    },
+    {
+      "frame": 2147,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 2253,
+      "keys": [
+        "A",
+        "Left"
+      ]
+    },
+    {
+      "frame": 2298,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 2409,
+      "keys": [
+        "A",
+        "Right"
+      ]
+    },
+    {
+      "frame": 2459,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 2464,
+      "keys": []
+    }
+  ],
+  "note": "Approved production ROM. Ordinary controller inputs only, no ROM/RAM patches. One hardware display interval per captured frame; native slowdown preserved."
+}

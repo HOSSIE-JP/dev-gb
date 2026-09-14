@@ -1,0 +1,38 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v22\\rom\\touhou-kouma.gb",
+  "results": [
+    {
+      "label": "DMG-0",
+      "checked": 5033,
+      "palettes": [
+        0
+      ]
+    },
+    {
+      "label": "DMG-1",
+      "checked": 6769,
+      "palettes": [
+        0
+      ]
+    },
+    {
+      "label": "CGB-0",
+      "checked": 4871,
+      "palettes": [
+        5,
+        4,
+        6
+      ]
+    },
+    {
+      "label": "CGB-1",
+      "checked": 6321,
+      "palettes": [
+        6,
+        2,
+        5,
+        4
+      ]
+    }
+  ]
+}

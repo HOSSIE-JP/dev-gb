@@ -1,0 +1,114 @@
+{
+  "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v22\\rom\\touhou-kouma.gb",
+  "sha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+  "emulator": "BGB 1.6.6",
+  "results": [
+    {
+      "mode": "DMG",
+      "character": 0,
+      "animationFrames": [
+        1,
+        0
+      ],
+      "intervals": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12
+      ],
+      "assetVerified": true,
+      "maxShots": 4,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v22\\native\\DMG-0-D2KBBV\\debugmsg.txt"
+    },
+    {
+      "mode": "DMG",
+      "character": 1,
+      "animationFrames": [
+        1,
+        0
+      ],
+      "intervals": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "assetVerified": true,
+      "maxShots": 5,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v22\\native\\DMG-1-AZuuxv\\debugmsg.txt"
+    },
+    {
+      "mode": "CGB",
+      "character": 0,
+      "animationFrames": [
+        0,
+        1
+      ],
+      "intervals": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12
+      ],
+      "assetVerified": true,
+      "maxShots": 4,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v22\\native\\CGB-0-BNaj5o\\debugmsg.txt"
+    },
+    {
+      "mode": "CGB",
+      "character": 1,
+      "animationFrames": [
+        0,
+        1
+      ],
+      "intervals": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "assetVerified": true,
+      "maxShots": 5,
+      "log": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v22\\native\\CGB-1-3KXWeN\\debugmsg.txt"
+    }
+  ]
+}

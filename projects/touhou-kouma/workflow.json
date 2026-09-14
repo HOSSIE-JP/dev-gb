@@ -1,16 +1,25 @@
 {
-  "version": "0.21-gbc-color",
-  "updatedAt": "2026-09-14T09:10:50.464Z",
-  "status": "playtest-ready",
-  "approved": false,
-  "projectRevision": "4fb8c3174cf972659ba02a70eda41700b9f7bb48f0805d0edb15be545f108104",
-  "engineRevision": "7195c5309f7c1284faa8b228d1ed8bc7fa2670e3",
+  "version": "0.22-character-animation",
+  "updatedAt": "2026-09-14T10:19:15.846Z",
+  "status": "approved",
+  "approved": true,
+  "projectRevision": "9d2ab3aa01dc3f532670048a531607a5828a51df8c797469d8a59b89993147de",
+  "engineRevision": "db0ca9d73054f96d8249c9fc0e1a61bd14895aa7",
   "rom": {
-    "path": "build/Release/touhou-kouma-v21.gb",
-    "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+    "path": "build/Release/touhou-kouma-v22.gb",
+    "sha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
     "bytes": 1048576
   },
   "previous": [
+    {
+      "version": "0.21-gbc-color",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v21.gb",
+        "sha256": "cd50d5eee9537c644d45a730e4785f9f01bceec37d76e9ae9921823de726562c",
+        "bytes": 1048576
+      },
+      "projectRevision": "4fb8c3174cf972659ba02a70eda41700b9f7bb48f0805d0edb15be545f108104"
+    },
     {
       "version": "0.20-laser-and-aimed-shots",
       "rom": {
@@ -149,70 +158,36 @@
   ],
   "checks": {
     "standardTests": 139,
-    "standardPassed": true,
-    "assets": 68,
-    "colorFrames": 79,
-    "unchangedOriginalPngs": 88,
-    "productionMenu": 28,
-    "productionWeapons": 12,
-    "productionUpperTarget": 2,
-    "productionBomb": 8,
-    "productionContinue": 4,
-    "productionOam": 4,
+    "animationRoutes": 14,
     "nativeBgb": 4,
-    "editorColorImportExport": true,
-    "tour": [
-      {
-        "label": "DMG-reimu-auto",
-        "stages": 7,
-        "dialogueImages": 56,
-        "cutinImages": 21,
-        "slides": 6
-      },
-      {
-        "label": "DMG-marisa-auto",
-        "stages": 7,
-        "dialogueImages": 56,
-        "cutinImages": 21,
-        "slides": 6
-      },
-      {
-        "label": "CGB-reimu-auto",
-        "stages": 7,
-        "dialogueImages": 56,
-        "cutinImages": 21,
-        "slides": 6
-      },
-      {
-        "label": "CGB-reimu-buttons",
-        "stages": 7,
-        "dialogueImages": 56,
-        "cutinImages": 21,
-        "slides": 2
-      },
-      {
-        "label": "CGB-marisa-auto",
-        "stages": 7,
-        "dialogueImages": 56,
-        "cutinImages": 21,
-        "slides": 6
-      },
-      {
-        "label": "CGB-marisa-buttons",
-        "stages": 7,
-        "dialogueImages": 56,
-        "cutinImages": 21,
-        "slides": 2
-      }
-    ],
+    "oam": 4,
+    "bomb": 8,
+    "source": {
+      "originalPngsPreserved": 158,
+      "noGameplayChanges": true,
+      "allBossesAnimated": true,
+      "frames": 85,
+      "spriteTiles": 88,
+      "legalObjPalettes": true
+    },
     "debugReleaseIdentical": true
   },
   "pending": [
-    "Physical DMG/CGB hardware, human audio/controller assessment and full campaign difficulty remain unverified.",
-    "Emulicious DAP evaluate still fails with NullPointerException and is not counted as execution evidence.",
-    "GBC is not fixed 60fps: the measured stage-1 route is 58.73 updates/s for Reimu and 54.64 for Marisa; color rendering has a measured cost."
+    "Emulicious DAP failure prevents verified execution; physical DMG/CGB hardware and human audio/controller checks remain unverified.",
+    "This release adds animation, not a fixed 60fps guarantee; normal full-campaign difficulty is not certified by the animation routes."
   ],
-  "evidence": "../../docs/touhou-kouma-v21.md",
-  "engineWorkingTreeChanges": true,
-  "validation": "touhou-kouma-design/qa-v21.json"
+  "evidence": "../../docs/touhou-kouma-v22.md",
+  "engineWorkingTreeChanges": false,
+  "validation": "touhou-kouma-design/qa-v22.json",
+  "approval": {
+    "romSha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+    "userDecision": "OK、これでゲームの紹介PVを作成してください。ゆっくり解説動画にしてほしいです。",
+    "messageReference": "2026-09-14 current conversation user approval after v0.22 delivery"
+  },
+  "promotion": {
+    "path": "touhou-kouma-design/pv-v22/touhou-kouma-v22-pv.mp4",
+    "sha256": "af49bef2496a4388c17771180eb2f85bb915380934cc369b77ca07cbc1a3be66",
+    "manifest": "touhou-kouma-design/pv-v22/manifest.json",
+    "voiceStatus": "provisional Windows narration"
+  }
 }

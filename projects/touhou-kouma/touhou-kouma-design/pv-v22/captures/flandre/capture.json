@@ -1,0 +1,498 @@
+{
+  "name": "flandre",
+  "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma-v22.gb",
+  "romSha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+  "mode": "CGB",
+  "displayHz": 59.72750056960583,
+  "displayFrames": 2332,
+  "sourceDisplayFrames": 8301,
+  "firstRecorded": 5969,
+  "rate": 44100,
+  "channels": 2,
+  "peakBullets": 30,
+  "peakOam": 22,
+  "marks": [
+    {
+      "frame": 0,
+      "seconds": 0,
+      "kind": "state",
+      "ready": true,
+      "scene": 5,
+      "tick": 4140,
+      "x": 8,
+      "y": 20,
+      "lives": 5,
+      "pause": 0,
+      "battle": 0,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 0,
+      "oam": 6
+    },
+    {
+      "frame": 151,
+      "seconds": 2.528148651123047,
+      "kind": "state",
+      "ready": true,
+      "scene": 1,
+      "tick": 4140,
+      "x": 8,
+      "y": 20,
+      "lives": 5,
+      "pause": 0,
+      "battle": 0,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 0,
+      "oam": 0
+    },
+    {
+      "frame": 178,
+      "seconds": 2.9802017211914062,
+      "kind": "state",
+      "ready": true,
+      "scene": 1,
+      "tick": 4140,
+      "x": 8,
+      "y": 20,
+      "lives": 5,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 0,
+      "boss": {
+        "id": "flandre",
+        "hp": 100,
+        "phase": 0,
+        "x": 80,
+        "y": -12
+      },
+      "oam": 0
+    },
+    {
+      "frame": 258,
+      "seconds": 4.319618225097656,
+      "kind": "state",
+      "ready": true,
+      "scene": 7,
+      "tick": 4204,
+      "x": 76.25,
+      "y": 114.25,
+      "lives": 5,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 1,
+      "boss": {
+        "id": "flandre",
+        "hp": 100,
+        "phase": 1,
+        "x": 80,
+        "y": 36
+      },
+      "oam": 15
+    },
+    {
+      "frame": 355,
+      "seconds": 5.943660736083984,
+      "kind": "state",
+      "ready": true,
+      "scene": 1,
+      "tick": 4205,
+      "x": 76.25,
+      "y": 114.25,
+      "lives": 5,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 0,
+      "boss": {
+        "id": "flandre",
+        "hp": 100,
+        "phase": 1,
+        "x": 80,
+        "y": 36
+      },
+      "oam": 0
+    },
+    {
+      "frame": 871,
+      "seconds": 14.582897186279297,
+      "kind": "state",
+      "ready": true,
+      "scene": 8,
+      "tick": 4695,
+      "x": 76.25,
+      "y": 114.25,
+      "lives": 5,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 1,
+      "boss": {
+        "id": "flandre",
+        "hp": 0,
+        "phase": 1,
+        "x": 80,
+        "y": 36
+      },
+      "oam": 10
+    },
+    {
+      "frame": 922,
+      "seconds": 15.436775207519531,
+      "kind": "state",
+      "ready": true,
+      "scene": 7,
+      "tick": 4695,
+      "x": 76.25,
+      "y": 114.25,
+      "lives": 5,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 1,
+      "boss": {
+        "id": "flandre",
+        "hp": 100,
+        "phase": 2,
+        "x": 80,
+        "y": 36
+      },
+      "oam": 15
+    },
+    {
+      "frame": 1020,
+      "seconds": 17.077560424804688,
+      "kind": "state",
+      "ready": true,
+      "scene": 1,
+      "tick": 4696,
+      "x": 76.25,
+      "y": 114.25,
+      "lives": 5,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 0,
+      "boss": {
+        "id": "flandre",
+        "hp": 100,
+        "phase": 2,
+        "x": 80,
+        "y": 36
+      },
+      "oam": 0
+    },
+    {
+      "frame": 2122,
+      "seconds": 35.52802276611328,
+      "kind": "state",
+      "ready": true,
+      "scene": 8,
+      "tick": 5726,
+      "x": 80,
+      "y": 120,
+      "lives": 1,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 1,
+      "boss": {
+        "id": "flandre",
+        "hp": 0,
+        "phase": 2,
+        "x": 80,
+        "y": 36
+      },
+      "oam": 4
+    },
+    {
+      "frame": 2173,
+      "seconds": 36.381900787353516,
+      "kind": "state",
+      "ready": true,
+      "scene": 7,
+      "tick": 5726,
+      "x": 80,
+      "y": 120,
+      "lives": 1,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 1,
+      "boss": {
+        "id": "flandre",
+        "hp": 100,
+        "phase": 3,
+        "x": 80,
+        "y": 36
+      },
+      "oam": 9
+    },
+    {
+      "frame": 2271,
+      "seconds": 38.02268600463867,
+      "kind": "state",
+      "ready": true,
+      "scene": 1,
+      "tick": 5727,
+      "x": 80,
+      "y": 120,
+      "lives": 1,
+      "pause": 0,
+      "battle": 2,
+      "bullets": 0,
+      "bomb": 0,
+      "locked": 0,
+      "boss": {
+        "id": "flandre",
+        "hp": 100,
+        "phase": 3,
+        "x": 80,
+        "y": 36
+      },
+      "oam": 0
+    }
+  ],
+  "events": [
+    {
+      "frame": 794,
+      "keys": [
+        "Down"
+      ]
+    },
+    {
+      "frame": 798,
+      "keys": []
+    },
+    {
+      "frame": 810,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 814,
+      "keys": []
+    },
+    {
+      "frame": 826,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 830,
+      "keys": []
+    },
+    {
+      "frame": 842,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 846,
+      "keys": []
+    },
+    {
+      "frame": 858,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 862,
+      "keys": []
+    },
+    {
+      "frame": 874,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 878,
+      "keys": []
+    },
+    {
+      "frame": 890,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 894,
+      "keys": []
+    },
+    {
+      "frame": 906,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 910,
+      "keys": []
+    },
+    {
+      "frame": 923,
+      "keys": [
+        "Right"
+      ]
+    },
+    {
+      "frame": 927,
+      "keys": []
+    },
+    {
+      "frame": 949,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 953,
+      "keys": []
+    },
+    {
+      "frame": 979,
+      "keys": [
+        "A",
+        "Left",
+        "Up"
+      ]
+    },
+    {
+      "frame": 1045,
+      "keys": [
+        "A",
+        "Up"
+      ]
+    },
+    {
+      "frame": 5970,
+      "keys": []
+    },
+    {
+      "frame": 5971,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 5977,
+      "keys": []
+    },
+    {
+      "frame": 5995,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 6001,
+      "keys": []
+    },
+    {
+      "frame": 6019,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 6025,
+      "keys": []
+    },
+    {
+      "frame": 6043,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 6049,
+      "keys": []
+    },
+    {
+      "frame": 6067,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 6073,
+      "keys": []
+    },
+    {
+      "frame": 6091,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 6097,
+      "keys": []
+    },
+    {
+      "frame": 6115,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 6121,
+      "keys": [
+        "A",
+        "Up"
+      ]
+    },
+    {
+      "frame": 6148,
+      "keys": [
+        "Down",
+        "Right"
+      ]
+    },
+    {
+      "frame": 6184,
+      "keys": [
+        "Down"
+      ]
+    },
+    {
+      "frame": 6192,
+      "keys": []
+    },
+    {
+      "frame": 6412,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 6839,
+      "keys": []
+    },
+    {
+      "frame": 6990,
+      "keys": [
+        "A"
+      ]
+    },
+    {
+      "frame": 8091,
+      "keys": []
+    }
+  ],
+  "note": "Approved production ROM. Ordinary controller inputs only, no ROM/RAM patches. One hardware display interval per captured frame; native slowdown preserved."
+}

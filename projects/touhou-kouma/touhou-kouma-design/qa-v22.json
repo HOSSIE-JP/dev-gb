@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-14T10:19:15.846Z",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v22.gb",
+    "sha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+    "bytes": 1048576
+  },
+  "projectRevision": "9d2ab3aa01dc3f532670048a531607a5828a51df8c797469d8a59b89993147de",
+  "ramBytes": 7151,
+  "spriteTiles": 88,
+  "checks": {
+    "standardTests": 139,
+    "animationRoutes": 14,
+    "nativeBgb": 4,
+    "oam": 4,
+    "bomb": 8,
+    "source": {
+      "originalPngsPreserved": 158,
+      "noGameplayChanges": true,
+      "allBossesAnimated": true,
+      "frames": 85,
+      "spriteTiles": 88,
+      "legalObjPalettes": true
+    },
+    "debugReleaseIdentical": true
+  },
+  "pending": [
+    "Emulicious DAP failure prevents verified execution; physical DMG/CGB hardware and human audio/controller checks remain unverified.",
+    "This release adds animation, not a fixed 60fps guarantee; normal full-campaign difficulty is not certified by the animation routes."
+  ]
+}
