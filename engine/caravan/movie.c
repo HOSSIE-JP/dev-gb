@@ -17,6 +17,7 @@ typedef struct {
     palette_color_t palettes[28];
     CE_MovieFrame data;
     uint8_t tiles[640], attributes[40];
+    uint8_t lcdc;
 } MovieWork;
 #define MOVIE ((MovieWork *)ce_entities)
 typedef char MovieFits[(sizeof(MovieWork) <= sizeof(ce_entities)) ? 1 : -1];
@@ -94,6 +95,7 @@ void ce_play_movie(void) BANKED {
     ce_scene = 15; ce_used = 0;
     memset(MOVIE, 0, sizeof(MovieWork));
     MOVIE->ie = IE_REG; MOVIE->tac = TAC_REG; MOVIE->tma = TMA_REG; MOVIE->tima = TIMA_REG;
+    MOVIE->lcdc = LCDC_REG;
     set_interrupts(VBL_IFLAG);
     DISPLAY_OFF;
     HIDE_SPRITES; HIDE_WIN;
@@ -141,6 +143,10 @@ done:
     set_interrupts(VBL_IFLAG);
     TAC_REG = 0; NR30_REG = 0;
     DISPLAY_OFF;
+    /* Movie tiles use unsigned $8000 addressing and both BG maps. Restore
+     * the game's signed $8800 tile area and independent Window map before
+     * the next screen upload, otherwise BG writes overwrite OBJ/HUD data. */
+    LCDC_REG = MOVIE->lcdc & ~LCDCF_ON;
     VBK_REG = 0; SCX_REG = SCY_REG = 0;
     NR50_REG = 0x77; NR51_REG = 0xff;
     TMA_REG = MOVIE->tma; TIMA_REG = MOVIE->tima;

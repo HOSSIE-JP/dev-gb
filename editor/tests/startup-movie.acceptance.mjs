@@ -12,16 +12,13 @@ for(const [label,mode]of[['DMG',GameBoyMode.Dmg],['CGB',GameBoyMode.Cgb]]){
   assert.ok(started);assert.equal(movieFrames,35);assert.equal(last.overruns,0,'six VBlanks per frame');assert.equal(parity,36);assert.ok(elapsed>=216&&elapsed<=221,`movie duration ${elapsed}`);assert.ok(last.blocks>=920&&last.blocks<=926,`PCM blocks ${last.blocks}`);
   assert.ok(new Set(audio).size>=8,'wave channel produces changing 4bit audio: '+new Set(audio).size+' levels / '+audio.length+' samples');
   const raw=Buffer.alloc(audio.length*2);audio.forEach((v,i)=>raw.writeInt16LE(v,i*2));fs.writeFileSync(path.join(out,label+'-audio.s16le'),raw);
-  frames(gb,120);const before=state().music;frames(gb,120);assert.notEqual(state().music,before,'title BGM resumes');assert.equal(state().io[7]&4,0,'timer disabled after movie');
+  frames(gb,120);const before=state().music;frames(gb,120);assert.notEqual(state().music,before,'title BGM resumes');assert.equal(state().io[7]&4,0,'timer disabled after movie');assert.equal(state().io[0x40]&0x50,0x40,'game tile and Window mode restored');
   gb.key_press(PadKey.Start);frames(gb,60);gb.key_lift(PadKey.Start);assert.equal(state().scene,10,'normal character select');
   results.push({mode:label,displayVBlanks:elapsed,frames:36,overruns:last.overruns,pcmBlocks:last.blocks,pixelParity:parity,titleMusic:true,normalStart:true,audioRate:gb.audio_sampling_rate(),audioChannels:gb.audio_channels()});
  }catch(e){capture(gb,path.join(out,label+'-failure.png'));fs.writeFileSync(path.join(out,label+'-failure.json'),JSON.stringify({state:state(),last,elapsed,seen:[...seen]},null,2));throw e;}finally{gb.free();}
  for(const target of [-1,0,18,35]){
-  const skip=boot(rom,mode);try{let found=false;for(let n=0;n<2000;n++){frames(skip,1);const r=memory(skip).ram,p=s._ce_entities-0xc000;if(target<0?r[s._ce_scene-0xc000]===12:(r[s._ce_scene-0xc000]===15&&r.readUInt16LE(p+4)>0&&r[p+11]>=target)){found=true;break;}}assert.ok(found);skip.key_press(PadKey.A);frames(skip,100);assert.equal(memory(skip).ram[s._ce_scene-0xc000],0,'held skip stays on title');assert.equal(memory(skip).io[7]&4,0);skip.key_lift(PadKey.A);frames(skip,2);skip.key_press(PadKey.Start);frames(skip,60);assert.equal(memory(skip).ram[s._ce_scene-0xc000],10);}finally{skip.free();}
+  const skip=boot(rom,mode);try{let found=false;for(let n=0;n<2000;n++){frames(skip,1);const r=memory(skip).ram,p=s._ce_entities-0xc000;if(target<0?r[s._ce_scene-0xc000]===12:(r[s._ce_scene-0xc000]===15&&r.readUInt16LE(p+4)>0&&r[p+11]>=target)){found=true;break;}}assert.ok(found);skip.key_press(PadKey.A);frames(skip,100);assert.equal(memory(skip).ram[s._ce_scene-0xc000],0,'held skip stays on title');assert.equal(memory(skip).io[7]&4,0);assert.equal(memory(skip).io[0x40]&0x50,0x40);skip.key_lift(PadKey.A);frames(skip,2);skip.key_press(PadKey.Start);frames(skip,60);assert.equal(memory(skip).ram[s._ce_scene-0xc000],10);}finally{skip.free();}
  }
  console.log(label,'movie and skip routes passed');
 }
 fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({sha256:crypto.createHash('sha256').update(rom).digest('hex'),results},null,2));
-
-
-
