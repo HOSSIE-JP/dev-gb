@@ -15,7 +15,7 @@ import {
     q4,
 } from "../shared/model";
 import { angleStep, shotAngles, SIN, COS } from "../shared/simulation";
-import {resolvePresentation, resolveEnding, dialoguePixels, gameOverPresentation, titlePresentation, selectionPresentation} from "../shared/presentation";
+import {resolvePresentation, resolveEnding, dialoguePixels, gameOverPresentation, titlePresentation, selectionPresentation, cutinPresentation} from "../shared/presentation";
 import {generateMusic} from "./music-data";
 import {
     safePath,
@@ -614,11 +614,7 @@ export function generate(
         `const uint16_t ce_ending_frames=${(game.ending?.seconds ?? 6) * 60};`);
     if (screenRows.length !== introFirst) throw new Error("Cut-in screen index mismatch");
     for (const phase of intros) {
-        const intro = phase.intro!, name = [...intro.spellName.normalize("NFC")];
-        compileScreen({id: "clear", name: phase.name, background: intro.background, palette: 0, dock: "top", items: [
-            {id: "spell-1", text: name.slice(0,18).join(""), x: 1, y: 14, palette: 0, binding: "none"},
-            {id: "spell-2", text: name.slice(18).join(""), x: 1, y: 16, palette: 0, binding: "none"},
-        ]}, screenRows.length);
+        compileScreen(cutinPresentation(phase.intro!), screenRows.length);
     }
     config.push(`const CE_Player ce_players[]={${players.map(p => `{${assetId(p.asset)},${patternId(p.weapon)},${q4(p.speed)},${p.focusWeapon ? patternId(p.focusWeapon) : 255},${q4(p.focusSpeed ?? p.speed)}}`)}};`,
         `const uint8_t ce_player_count=${players.length},ce_select_first=${screenRows.length};`);

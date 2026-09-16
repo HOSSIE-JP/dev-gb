@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {gameOverPresentation} from "../shared/presentation";
+import {gameOverPresentation, cutinPresentation} from "../shared/presentation";
 import { type Game, clone, assetById } from "../shared/model";
 import { Simulation, drawSimulation, drawAsset, backgroundPaletteGame } from "../shared/simulation";
 import { drawScreen } from "./canvases";
@@ -120,11 +120,7 @@ export function Preview({
             const over = gameOverPresentation(s.gameOverState === "continue" ? s.game : {...s.game,continue:undefined});
             drawScreen(c,s.game,over.screen,glyphs,dmg,{score:String(s.score).padStart(5,"0"),time:String(Math.ceil(s.continueLeft/60))},over.pixels);
         } else if (s.intro) {
-            const name = [...s.intro.spellName];
-            drawScreen(c,s.game,{id: "clear", name: "Cut-in", background: s.intro.background, palette:0, dock:"top", items:[
-                {id:"spell1",text:name.slice(0,18).join(""),x:1,y:14,palette:0,binding:"none"},
-                {id:"spell2",text:name.slice(18).join(""),x:1,y:16,palette:0,binding:"none"}
-            ]},glyphs,dmg);
+            drawScreen(c,s.game,cutinPresentation(s.intro),glyphs,dmg);
         } else {
             drawSimulation(c, s, dmg, hitbox);
             if (!s.bombLeft || (s.game.player.bomb?.live && !s.bombImage)) {

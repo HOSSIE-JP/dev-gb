@@ -2,6 +2,18 @@
 #include "caravan.h"
 #include "music.h"
 static CE_Presentation presentation;
+void ce_spell_sound(void) BANKED {
+    /* E-major rising shimmer, then a falling, quiet tail. CH2/3 stay with BGM. */
+    static const uint16_t pitch[12] = {1650,1783,1849,1890,1915,1949,1943,1915,1890,1849,1783,1849};
+    static const uint8_t volume[12] = {2,3,5,7,9,10,8,6,4,3,2,1};
+    uint8_t step = (72u - ce_spell_sound_left) / 6u;
+    uint16_t frequency;
+    if (step == ce_spell_sound_step) return;
+    ce_spell_sound_step = step; frequency = pitch[step];
+    NR10_REG = 0; NR11_REG = 0x80; NR12_REG = (volume[step] << 4) | 2u;
+    NR13_REG = (uint8_t)frequency; NR14_REG = 0x80u | (frequency >> 8);
+}
+
 extern uint8_t allocate(uint8_t kind, uint8_t asset);
 extern void release(uint8_t slot);
 extern void explode(int16_t x, int16_t y);

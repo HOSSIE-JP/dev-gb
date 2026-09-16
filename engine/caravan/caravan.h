@@ -217,6 +217,8 @@ void ce_fade(uint8_t out) BANKED;
 void ce_audio_sync(void) NONBANKED;
 void ce_hud(void) BANKED;
 void ce_sound(uint8_t effect) NONBANKED;
+extern uint8_t ce_spell_sound_left, ce_spell_sound_step;
+void ce_spell_sound(void) BANKED;
 void ce_run(void) NONBANKED;
 /* Boss presentation and monochrome BG shot renderer. */
 typedef struct { int16_t x,y,vx,vy; uint16_t life; uint8_t damage, pattern, angle; } CE_BGSpawn;

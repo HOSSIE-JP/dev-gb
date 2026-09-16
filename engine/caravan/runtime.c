@@ -34,6 +34,8 @@ uint8_t ce_bomb_hits[CE_FREE_GROUPS];
 static uint8_t deferred_finish;
 uint16_t ce_music_time;
 static uint8_t hit_sound_wait;
+uint8_t ce_spell_sound_left;
+uint8_t ce_spell_sound_step;
 volatile uint8_t ce_trace[24];
 uint16_t event_cursor;
 CE_Event next_event;
@@ -703,13 +705,13 @@ void ce_trace_write(void) NONBANKED {
     ce_trace[22] = 0;
 }
 void ce_sound(uint8_t effect) NONBANKED {
+    if (ce_spell_sound_left && effect != 5u) { ce_spell_sound_left = 0; NR42_REG = 0; }
     if (effect == 6u) {
         NR10_REG = 0x16; NR11_REG = 0x80; NR12_REG = 0x92; NR13_REG = 0xa0; NR14_REG = 0x87;
     } else if (effect == 5u) {
-        /* Bright pulse plus a noise crash; ~0.9s / ~0.75s hardware decay.
-         * BGM retains pulse 2 and wave 3 throughout the announcement. */
-        NR10_REG = 0; NR11_REG = 0x40; NR12_REG = 0xf4; NR13_REG = 0x83; NR14_REG = 0x87;
-        NR41_REG = 0; NR42_REG = 0xc4; NR43_REG = 0x43; NR44_REG = 0x80;
+        ce_spell_sound_left = 72; ce_spell_sound_step = 255; ce_spell_sound();
+        /* A faint high-frequency breath, not a percussive crash. */
+        NR41_REG = 0; NR42_REG = 0x23; NR43_REG = 0x15; NR44_REG = 0x80;
     } else if (effect == 4u) {
         if (hit_sound_wait) return;
         hit_sound_wait = 4;
@@ -720,10 +722,23 @@ void ce_sound(uint8_t effect) NONBANKED {
 }
 void ce_audio_sync(void) NONBANKED {
     uint16_t now, elapsed;
-    if (ce_demo && joypad()) ce_demo_abort = 1;
+    uint8_t input = joypad();
+    if ((input & (J_START | J_SELECT | J_A | J_B)) == (J_START | J_SELECT | J_A | J_B)) {
+        /* Restart crt0, including WRAM/ISR initialization; SRAM is untouched.
+         * Consume the chord so it cannot skip logos or retrigger after boot. */
+        DISPLAY_OFF; disable_interrupts(); TAC_REG = 0; NR52_REG = 0;
+        while (joypad() & (J_START | J_SELECT | J_A | J_B)) {}
+        if (ce_is_cgb) cpu_slow();
+        reset();
+    }
+    if (ce_demo && input) ce_demo_abort = 1;
     CRITICAL { now = sys_time; }
     elapsed = now - ce_music_time; ce_music_time = now;
     hit_sound_wait = elapsed >= hit_sound_wait ? 0 : hit_sound_wait - elapsed;
+    if (ce_spell_sound_left) {
+        if (elapsed >= ce_spell_sound_left) {ce_spell_sound_left = 0; NR12_REG = 0; NR42_REG = 0;}
+        else {ce_spell_sound_left -= elapsed; ce_spell_sound();}
+    }
     ce_music_tick(elapsed > 255u ? 255u : (uint8_t)elapsed);
 }
 void ce_run(void) NONBANKED {

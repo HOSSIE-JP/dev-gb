@@ -1,5 +1,15 @@
 import type {Game, Presentation, Stage, Screen} from "./model";
 
+/** Keep spell names in the 32px footer shared by ROM and editor previews. */
+export function cutinPresentation(intro: {background: string; spellName: string}): Screen {
+    const name = [...intro.spellName.normalize("NFC")];
+    const lines = [name.slice(0,18), name.slice(18)].filter(line => line.length);
+    return {id:"clear", name:"カットイン", background:intro.background, palette:0, dock:"top",
+        items:lines.map((line,i)=>({id:`spell-${i+1}`, text:line.join(""),
+            x:Math.floor((20-line.length)/2), y:lines.length===1?16:15+i*2,
+            palette:0, binding:"none"}))};
+}
+
 /** A shared, tile-aligned UI composition; source illustrations stay untouched. */
 export function titlePresentation(game: Game, base: Screen, choice = 0, stage = 0) {
     if (base.id !== "title" || !base.stageSelect) return {screen: base, pixels: undefined};

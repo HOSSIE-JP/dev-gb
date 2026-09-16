@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import type { Boss, Game } from "../shared/model";
 import { MotionCanvas, drawScreen } from "./canvases";
+import {cutinPresentation} from "../shared/presentation";
 export function BossCanvas({
     boss,
     onChange,
@@ -19,11 +20,7 @@ export function BossCanvas({
     useEffect(() => {
         const ctx = canvas.current?.getContext("2d"), intro = phase?.intro;
         if (!ctx || !intro?.enabled || !game.assets.some(a => a.id === intro.background)) return;
-        const name = [...intro.spellName];
-        drawScreen(ctx, game, {id:"clear",name:"カットイン",background:intro.background,palette:0,dock:"top",items:[
-            {id:"spell-1",text:name.slice(0,18).join(""),x:1,y:14,palette:0,binding:"none"},
-            {id:"spell-2",text:name.slice(18).join(""),x:1,y:16,palette:0,binding:"none"}
-        ]}, glyphs, dmg);
+        drawScreen(ctx, game, cutinPresentation(intro), glyphs, dmg);
     }, [phase, game, glyphs, dmg]);
     if (!phase)
         return (
