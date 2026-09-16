@@ -1,0 +1,233 @@
+{
+  "sha256": "e6905058e409d52273f63c18974553d3add39d256475be9554c00ab1bbe92448",
+  "results": [
+    {
+      "label": "DMG",
+      "cycles": 2,
+      "stages": [
+        6,
+        0
+      ],
+      "events": [
+        {
+          "frame": 116,
+          "scene": 12,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 676,
+          "scene": 15,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 904,
+          "scene": 0,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 1656,
+          "scene": 1,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 8856,
+          "scene": 7,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 8948,
+          "scene": 1,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 9876,
+          "scene": 4,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 10388,
+          "scene": 12,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 10956,
+          "scene": 15,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 11184,
+          "scene": 0,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 11940,
+          "scene": 1,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 15548,
+          "scene": 7,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 15640,
+          "scene": 1,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 16568,
+          "scene": 4,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 17080,
+          "scene": 12,
+          "demo": 0,
+          "stage": 0
+        }
+      ],
+      "rankingsUnchanged": true,
+      "normalStart": true,
+      "demoAndCutinCancel": true,
+      "heldInputConsumed": true,
+      "titleMusicRestarts": true
+    },
+    {
+      "label": "CGB",
+      "cycles": 2,
+      "stages": [
+        5,
+        6
+      ],
+      "events": [
+        {
+          "frame": 200,
+          "scene": 12,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 772,
+          "scene": 15,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 996,
+          "scene": 0,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 1756,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 6836,
+          "scene": 7,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 6936,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 7352,
+          "scene": 8,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 7404,
+          "scene": 7,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 7500,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 7864,
+          "scene": 4,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 8380,
+          "scene": 12,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 8964,
+          "scene": 15,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 9192,
+          "scene": 0,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 9948,
+          "scene": 1,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 14560,
+          "scene": 7,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 14656,
+          "scene": 1,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 15584,
+          "scene": 4,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 16100,
+          "scene": 12,
+          "demo": 0,
+          "stage": 6
+        }
+      ],
+      "rankingsUnchanged": true,
+      "normalStart": true,
+      "demoAndCutinCancel": true,
+      "heldInputConsumed": true,
+      "titleMusicRestarts": true
+    }
+  ]
+}

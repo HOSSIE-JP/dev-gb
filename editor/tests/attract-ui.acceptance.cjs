@@ -60,7 +60,7 @@ vm.runInNewContext(fs.readFileSync(path.join(root, 'editor/build/main.cjs'), 'ut
     require: (name) => name === 'electron' ? native : require(name),
     module: { exports: {} }, __dirname: path.join(temp, 'editor/build'),
     process: { ...process, argv: [process.execPath, 'first'], env: { ...process.env } },
-    Buffer, console, structuredClone, URL, Response, setTimeout, clearTimeout,
+    Buffer, console, structuredClone, URL, Response, atob, btoa, setTimeout, clearTimeout,
 });
 
 
@@ -73,5 +73,12 @@ electron.app.whenReady().then(async()=>{
  win.webContents.sendInputEvent({type:'keyDown',keyCode:'S',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'S',modifiers:['control']});
  for(let i=0;i<100&&lib.readGame(temp,'first').attract?.titleSeconds!==18;i++)await new Promise(r=>setTimeout(r,50));
  const saved=lib.readGame(temp,'first');assert.deepEqual(saved.attract,{enabled:true,titleSeconds:18,bossSeconds:15,rankingSeconds:8});assert.equal(fs.existsSync(path.join(temp,'projects/first/build')),false);
- record({timingEdited:true,savedAndReloaded:true,buildFree:true});clearTimeout(timer);electron.app.exit(0);
+ const movieSelector='[data-context="startupMovie"] input[type="checkbox"]';
+ await until(`!!document.querySelector(${JSON.stringify(movieSelector)})`);
+ assert.equal(await js('document.querySelectorAll(\'[data-context="startupMovie"] input\').length'),1,'hide encoded media fields');
+ await click(movieSelector);
+ win.webContents.sendInputEvent({type:'keyDown',keyCode:'S',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'S',modifiers:['control']});
+ for(let i=0;i<100&&lib.readGame(temp,'first').startupMovie.enabled;i++)await new Promise(r=>setTimeout(r,50));
+ const movie=lib.readGame(temp,'first').startupMovie;assert.equal(movie.enabled,false);assert.deepEqual(movie.frames,saved.startupMovie.frames);assert.equal(movie.pcm,saved.startupMovie.pcm);
+ record({timingEdited:true,savedAndReloaded:true,buildFree:true,movieTogglePersists:true,moviePayloadHiddenAndPreserved:true});clearTimeout(timer);electron.app.exit(0);
 }).catch(error=>{record({error:error.stack});clearTimeout(timer);electron.app.exit(1);});

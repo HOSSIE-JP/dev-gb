@@ -1,0 +1,122 @@
+[
+  {
+    "mode": 1,
+    "elapsed": 325,
+    "last": {
+      "scene": 15,
+      "frame": 35,
+      "overruns": 18,
+      "blocks": 926
+    },
+    "profile": [
+      {
+        "name": "movie_pcm",
+        "percent": 47.417670443919896
+      },
+      {
+        "name": "_vmemcpy",
+        "percent": 23.380878635810912
+      },
+      {
+        "name": "_wait_vbl_done",
+        "percent": 18.58877406889372
+      },
+      {
+        "name": "_memcpy",
+        "percent": 6.250177745489142
+      },
+      {
+        "name": "movie_chunk",
+        "percent": 0.9345319196426647
+      },
+      {
+        "name": "movie_timer",
+        "percent": 0.8108641490149237
+      },
+      {
+        "name": "ff88",
+        "percent": 0.6230787328491761
+      },
+      {
+        "name": "_ce_copy",
+        "percent": 0.26939752681694673
+      },
+      {
+        "name": "ff89",
+        "percent": 0.26870808976815097
+      },
+      {
+        "name": "__muluchar",
+        "percent": 0.2550917080544345
+      },
+      {
+        "name": "ce_play_movie",
+        "percent": 0.1671023047018745
+      },
+      {
+        "name": "_joypad",
+        "percent": 0.14590211545140458
+      }
+    ]
+  },
+  {
+    "mode": 2,
+    "elapsed": 690,
+    "last": {
+      "scene": 15,
+      "frame": 35,
+      "overruns": 35,
+      "blocks": 926
+    },
+    "profile": [
+      {
+        "name": "__moduint",
+        "percent": 34.890463446065006
+      },
+      {
+        "name": "movie_pcm",
+        "percent": 23.601944447074764
+      },
+      {
+        "name": "_vmemcpy",
+        "percent": 13.826079246462196
+      },
+      {
+        "name": "movie_chunk",
+        "percent": 11.830326591011021
+      },
+      {
+        "name": "_wait_vbl_done",
+        "percent": 8.759050571291084
+      },
+      {
+        "name": "_memcpy",
+        "percent": 3.4260248418867025
+      },
+      {
+        "name": "_set_vram_byte",
+        "percent": 1.3322234340822283
+      },
+      {
+        "name": "movie_timer",
+        "percent": 0.4678621326077094
+      },
+      {
+        "name": "ff88",
+        "percent": 0.3525967424399591
+      },
+      {
+        "name": "__moduchar",
+        "percent": 0.34657091920490124
+      },
+      {
+        "name": "__divuchar",
+        "percent": 0.31549488794981695
+      },
+      {
+        "name": "_ce_copy",
+        "percent": 0.17294112684616159
+      }
+    ]
+  }
+]

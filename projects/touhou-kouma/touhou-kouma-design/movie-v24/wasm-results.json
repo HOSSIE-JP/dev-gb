@@ -1,0 +1,29 @@
+{
+  "sha256": "e6905058e409d52273f63c18974553d3add39d256475be9554c00ab1bbe92448",
+  "results": [
+    {
+      "mode": "DMG",
+      "displayVBlanks": 217,
+      "frames": 36,
+      "overruns": 0,
+      "pcmBlocks": 926,
+      "pixelParity": 36,
+      "titleMusic": true,
+      "normalStart": true,
+      "audioRate": 44100,
+      "audioChannels": 2
+    },
+    {
+      "mode": "CGB",
+      "displayVBlanks": 217,
+      "frames": 36,
+      "overruns": 0,
+      "pcmBlocks": 926,
+      "pixelParity": 36,
+      "titleMusic": true,
+      "normalStart": true,
+      "audioRate": 44100,
+      "audioChannels": 2
+    }
+  ]
+}

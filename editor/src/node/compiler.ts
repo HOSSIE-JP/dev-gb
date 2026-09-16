@@ -650,6 +650,9 @@ export function generate(
         `const uint8_t ce_bomb_live=${bomb?.live ? bomb.presentation === "image" ? 2 : 1 : 0},ce_bomb_button=${+(bomb?.button === "b")},ce_bomb_background=${+!!bomb?.destroyBackground},ce_bomb_max=${bomb?.maxStock ?? 9};`,
         `const uint8_t ce_bomb_screens[]={${bombScreens}},ce_bomb_styles[]={${players.map(p=>+(p.bombStyle==="beam"))}};`);
     config.push(`const uint16_t ce_attract_title_frames=${game.attract?.enabled ? game.attract.titleSeconds*60 : 0},ce_attract_boss_frames=${(game.attract?.bossSeconds??15)*60},ce_attract_rank_frames=${(game.attract?.rankingSeconds??8)*60};`);
+    const movie=game.startupMovie?.enabled?game.startupMovie:undefined;
+    const movieRows=movie?.frames.map(f=>`{${blob(Buffer.from(f.dmg,'base64'))},${blob(Buffer.from(f.cgb,'base64'))},${blob(Buffer.from(f.attributes,'base64'))},${blob(Buffer.from(f.palettes,'base64'))}}`)??[];
+    config.push(`const uint8_t ce_movie_count=${movieRows.length};`, `const CE_Data ce_movie_pcm=${movie?blob(Buffer.from(movie.pcm,'base64')):'{0,0,0}'};`);
     const logos = game.startup?.enabled ? game.startup.slides : [], logoRows: string[] = [], logoScreens = new Map<string,number>();
     for (const slide of logos) {
         let screen = logoScreens.get(slide.background);
@@ -793,6 +796,8 @@ export function generate(
     sources.push("caravan_scenes.c");
     atomicWrite(path.join(target,"caravan_color_screens.c"),['#pragma bank 255','#include "caravan.h"',...decls,`static const CE_ColorScreen screens[]={${colorScreenRows}};`,`void ce_get_color_screen(CE_ColorScreen *dest,uint8_t index) BANKED { *dest=screens[index]; }`].join('\n')+'\n');
     sources.push("caravan_color_screens.c");
+    atomicWrite(path.join(target,"caravan_movie.c"),['#pragma bank 255','#include "caravan.h"',...decls,`static const CE_MovieFrame frames[]={${movieRows.join(',')||'{{0,0,0},{0,0,0},{0,0,0},{0,0,0}}'}};`,`void ce_get_movie_frame(CE_MovieFrame *dest,uint8_t index) BANKED { *dest=frames[index]; }`].join('\n')+'\n');
+    sources.push("caravan_movie.c");
     atomicWrite(
         path.join(target, "caravan_data.c"),
         [config[0], ...decls, ...config.slice(1)].join("\n") + "\n",
@@ -882,7 +887,7 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "mainloop.c", "flow.c", "special.c", "terrain.c", "items.c", "bg-bullets.c", "render.c", "music.c", "save.c"]
+        const inputs = ["runtime.c", "mainloop.c", "flow.c", "movie.c", "special.c", "terrain.c", "items.c", "bg-bullets.c", "render.c", "music.c", "save.c"]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [

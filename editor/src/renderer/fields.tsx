@@ -15,7 +15,7 @@ const labels: Record<string, string> = {
     startStage: "開始ステージ",
     clearBonus: "クリア加点",
     attract: "展示用オートプレイデモ", titleSeconds: "タイトル待機時間（秒）", bossSeconds: "カットイン後の戦闘時間（秒）", rankingSeconds: "ランキング表示時間（秒）",
-    startup: "起動ロゴ（タイトル前）", fadeSeconds: "フェード時間（片道・秒）",
+    startup: "起動ロゴ（タイトル前）", startupMovie: "起動動画（ロゴの後）", fadeSeconds: "フェード時間（片道・秒）",
     continue: "コンティニュー", delaySeconds: "ゲームオーバー前の待ち時間（秒）",
     ending: "エンディング", slides: "スライド", characterSlides: "追加機体のエンディング", scoreAfter: "最終スコアをエンディング後に集計", seconds: "自動送り秒数", presentation: "会話とクリア演出", enabled: "有効", dialogueBackground: "会話の立ち絵背景",
     clearBackground: "クリアの立ち絵背景", rightPalette: "右側の立ち絵パレット",
@@ -217,7 +217,7 @@ export function Form({
                             "stageOrder",
                             "destructibles", "powerUps",
                             "schemaVersion",
-                        ].includes(key) && !(key==="frames"&&Array.isArray(value.frames)) && !omit.includes(key),
+                        ].includes(key) && !(key==="frames"&&Array.isArray(value.frames)) && !(context === "startupMovie" && key === "pcm") && !omit.includes(key),
                 )
                 .map(([key, v]: [string, any]) => {
                     if (context === "effects" && ((key === "weapon" && value.kind !== "weapon") || (key === "amount" && value.kind === "weapon"))) return null;

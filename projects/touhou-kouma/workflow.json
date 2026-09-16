@@ -1,16 +1,26 @@
 {
-  "version": "0.23-attract-demo",
-  "updatedAt": "2026-09-16T15:35:49.527Z",
+  "version": "0.24-startup-movie",
+  "updatedAt": "2026-09-16T16:36:06.145Z",
   "status": "awaiting-playtest",
   "approved": false,
-  "projectRevision": "3079bc5286dc0107c570c069d4b4e96b8d5cce01a59244af5fbb99691af6e7b1",
-  "engineRevision": "4f7704d026941b2a026973af85978214945868d1",
+  "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
+  "engineRevision": "cef82394e1386e90dc953f19e2b9857b80d1587a",
   "rom": {
-    "path": "build/Release/touhou-kouma-v23.gb",
-    "sha256": "d6388fd757f6e4faeb9f5b2100552ab1144e5e437857a620dcdc0bf3a3d68418",
-    "bytes": 1048576
+    "path": "build/Release/touhou-kouma-v24.gb",
+    "sha256": "e6905058e409d52273f63c18974553d3add39d256475be9554c00ab1bbe92448",
+    "bytes": 2097152
   },
   "previous": [
+    {
+      "version": "0.23-attract-demo",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v23.gb",
+        "sha256": "d6388fd757f6e4faeb9f5b2100552ab1144e5e437857a620dcdc0bf3a3d68418",
+        "bytes": 1048576
+      },
+      "projectRevision": "3079bc5286dc0107c570c069d4b4e96b8d5cce01a59244af5fbb99691af6e7b1",
+      "validation": "touhou-kouma-design/qa-v23.json"
+    },
     {
       "version": "0.22-character-animation",
       "rom": {
@@ -172,73 +182,73 @@
     }
   ],
   "checks": {
-    "standardTests": 140,
+    "standardTests": 141,
     "debugReleaseIdentical": true,
-    "exhibition": [
+    "movie": [
       {
         "mode": "DMG",
-        "cycles": 13,
-        "stageIndices": [
-          1,
-          3,
-          4,
-          5,
-          6,
-          4,
-          5,
-          0,
-          5,
-          0,
-          1,
-          4,
-          2
-        ],
-        "allSevenStages": true,
-        "displayFrames": 115124,
-        "rankingsUnchanged": true,
+        "displayVBlanks": 217,
+        "frames": 36,
+        "overruns": 0,
+        "pcmBlocks": 926,
+        "pixelParity": 36,
+        "titleMusic": true,
         "normalStart": true,
-        "cancel": true,
-        "heldInputConsumed": true,
-        "titleMusicRestarts": true
+        "audioRate": 44100,
+        "audioChannels": 2
       },
       {
         "mode": "CGB",
-        "cycles": 13,
+        "displayVBlanks": 217,
+        "frames": 36,
+        "overruns": 0,
+        "pcmBlocks": 926,
+        "pixelParity": 36,
+        "titleMusic": true,
+        "normalStart": true,
+        "audioRate": 44100,
+        "audioChannels": 2
+      }
+    ],
+    "exhibition": [
+      {
+        "mode": "DMG",
+        "cycles": 2,
         "stageIndices": [
           6,
-          3,
-          4,
-          5,
-          6,
-          3,
-          0,
-          3,
-          4,
-          2,
-          4,
-          2,
-          1
+          0
         ],
-        "allSevenStages": true,
-        "displayFrames": 89232,
         "rankingsUnchanged": true,
         "normalStart": true,
-        "cancel": true,
-        "heldInputConsumed": true,
-        "titleMusicRestarts": true
+        "demoAndCutinCancel": true,
+        "titleMusicRestarts": true,
+        "movieVisits": 2
+      },
+      {
+        "mode": "CGB",
+        "cycles": 2,
+        "stageIndices": [
+          5,
+          6
+        ],
+        "rankingsUnchanged": true,
+        "normalStart": true,
+        "demoAndCutinCancel": true,
+        "titleMusicRestarts": true,
+        "movieVisits": 2
       }
     ],
     "nativeBgb": [
       {
         "mode": "DMG",
-        "rankingVisits": 3,
-        "logoVisits": 3,
+        "rankingVisits": 2,
+        "movieVisits": 3,
         "rankingsUnchanged": true
       },
       {
         "mode": "CGB",
         "rankingVisits": 3,
-        "logoVisits": 4,
+        "movieVisits": 4,
         "rankingsUnchanged": true
       }
     ],
@@ -246,19 +256,20 @@
       {
         "timingEdited": true,
         "savedAndReloaded": true,
-        "buildFree": true
+        "buildFree": true,
+        "movieTogglePersists": true,
+        "moviePayloadHiddenAndPreserved": true
       }
     ]
   },
   "pending": [
-    "User playtest of v0.23.",
-    "Emulicious DAP EvaluateRequest throws NullPointerException; not verified.",
-    "Physical DMG/CGB hardware and human audio/controller checks not performed.",
-    "Movie playback is not integrated in the ROM."
+    "User playtest of v0.24",
+    "Physical DMG/CGB hardware and human audio/controller checks",
+    "Emulicious playback verification"
   ],
-  "evidence": "../../docs/touhou-kouma-v23.md",
+  "evidence": "../../docs/touhou-kouma-v24.md",
   "engineWorkingTreeChanges": true,
-  "validation": "touhou-kouma-design/qa-v23.json",
+  "validation": "touhou-kouma-design/qa-v24.json",
   "approval": null,
   "promotion": {
     "path": "touhou-kouma-design/pv-v22/touhou-kouma-v22-pv.mp4",

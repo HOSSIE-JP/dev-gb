@@ -1,0 +1,13 @@
+{
+  "originalPath": "C:/homebrew/AI-Stack/ComfyUI_windows_portable/ComfyUI/output/video/MiniMax_H3_00407_.mp4",
+  "originalSha256": "97d5e196f7bc48087bac21ed58c93c970d76f30c11e23d593ac8bd809ce43a12",
+  "source": "User-supplied video",
+  "license": "No redistribution license specified; no external publication performed",
+  "originalModified": false,
+  "selection": {"startSeconds": 0, "durationSeconds": 3.6, "description": "Nonsexual face closeup only; later footage excluded"},
+  "metadataCopied": false,
+  "excerptCommand": "ffmpeg -i INPUT -t 3.6 -map_metadata -1 -c:v libx264 -crf 18 -c:a aac source-excerpt.mp4",
+  "importScript": "editor/scripts/import-startup-movie.cjs",
+  "encodedSettings": "encoding.json",
+  "editableGame": "../../assets-src/game.json#startupMovie"
+}

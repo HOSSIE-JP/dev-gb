@@ -1,0 +1,24 @@
+{
+  "source": "source-excerpt.mp4",
+  "sourceSha256": "d743137527169fa8f811a9d1424be515470b732ba5d14b91181468b3975aa480",
+  "seconds": 3.6,
+  "frames": 36,
+  "displaySeconds": 3.616424560546875,
+  "cgb": {
+    "width": 160,
+    "height": 96,
+    "palettes": 7
+  },
+  "dmg": {
+    "width": 112,
+    "height": 64,
+    "shades": 4
+  },
+  "pcm": {
+    "sampleRate": 8192,
+    "bits": 4,
+    "channels": 1,
+    "bytes": 14816,
+    "gain": 5.6
+  }
+}

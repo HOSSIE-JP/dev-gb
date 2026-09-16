@@ -1,0 +1,122 @@
+[
+  {
+    "mode": 1,
+    "elapsed": 217,
+    "last": {
+      "scene": 15,
+      "frame": 35,
+      "overruns": 0,
+      "blocks": 926
+    },
+    "profile": [
+      {
+        "name": "_vmemcpy",
+        "percent": 48.75469043758453
+      },
+      {
+        "name": "_wait_vbl_done",
+        "percent": 24.89007157308204
+      },
+      {
+        "name": "_memcpy",
+        "percent": 16.447499424605176
+      },
+      {
+        "name": "movie_pcm",
+        "percent": 3.5458975426546435
+      },
+      {
+        "name": "movie_chunk",
+        "percent": 1.7607512630670656
+      },
+      {
+        "name": "movie_timer",
+        "percent": 0.8112420511467813
+      },
+      {
+        "name": "ff88",
+        "percent": 0.6981457201400256
+      },
+      {
+        "name": "_ce_copy",
+        "percent": 0.6596136622436691
+      },
+      {
+        "name": "__muluchar",
+        "percent": 0.5452243091598546
+      },
+      {
+        "name": "_joypad",
+        "percent": 0.35523626530399377
+      },
+      {
+        "name": "ce_play_movie",
+        "percent": 0.3357547326763057
+      },
+      {
+        "name": "ff89",
+        "percent": 0.16231737140679942
+      }
+    ]
+  },
+  {
+    "mode": 2,
+    "elapsed": 216,
+    "last": {
+      "scene": 15,
+      "frame": 35,
+      "overruns": 0,
+      "blocks": 925
+    },
+    "profile": [
+      {
+        "name": "_vmemcpy",
+        "percent": 58.814782652145226
+      },
+      {
+        "name": "_memcpy",
+        "percent": 16.154074120020745
+      },
+      {
+        "name": "_wait_vbl_done",
+        "percent": 15.45703440659013
+      },
+      {
+        "name": "movie_chunk",
+        "percent": 4.7167129292208765
+      },
+      {
+        "name": "movie_pcm",
+        "percent": 1.806996414436674
+      },
+      {
+        "name": "_ce_copy",
+        "percent": 0.7042763140891446
+      },
+      {
+        "name": "movie_timer",
+        "percent": 0.45538894144039366
+      },
+      {
+        "name": "_set_bkg_palette",
+        "percent": 0.3842290349648422
+      },
+      {
+        "name": "ff88",
+        "percent": 0.3630361330362881
+      },
+      {
+        "name": "__muluchar",
+        "percent": 0.2883440762393109
+      },
+      {
+        "name": "_joypad",
+        "percent": 0.18565326689444728
+      },
+      {
+        "name": "ff89",
+        "percent": 0.11828396076384042
+      }
+    ]
+  }
+]

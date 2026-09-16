@@ -214,6 +214,7 @@ export type Game = {
     continue?: { enabled: boolean; seconds: number; delaySeconds: number };
     startup?: { enabled: boolean; fadeSeconds: number; slides: {id: string; background: string; seconds: number}[] };
     attract?: { enabled: boolean; titleSeconds: number; bossSeconds: number; rankingSeconds: number };
+    startupMovie?: { enabled: boolean; pcm: string; frames: {dmg: string; cgb: string; attributes: string; palettes: string}[] };
     ending?: { seconds: number; slides: { id: string; background: string }[];
         music?: number; scoreAfter?: boolean;
         characterSlides?: {id: string; character: string; slides: {id: string; background: string}[]}[] };
@@ -495,6 +496,7 @@ export function validateShape(
         "continue?": {enabled:"boolean", seconds:"number", delaySeconds:"number"},
         "startup?": {enabled:"boolean", fadeSeconds:"number", slides:[{id:"string",background:"string",seconds:"number"}]},
         "attract?": {enabled:"boolean", titleSeconds:"number", bossSeconds:"number", rankingSeconds:"number"},
+        "startupMovie?": {enabled:"boolean", pcm:"string", frames:[{dmg:"string",cgb:"string",attributes:"string",palettes:"string"}]},
         "ending?": { seconds: "number", slides: [{id: "string", background: "string"}], "music?":"number", "scoreAfter?":"boolean",
             "characterSlides?":[{id:"string",character:"string",slides:[{id:"string",background:"string"}]}] },
         clearBonus: "number",
@@ -858,6 +860,23 @@ export function validate(value: unknown): Diagnostic[] {
         integer(game.attract.titleSeconds, 3, 120, "attract");
         integer(game.attract.bossSeconds, 3, 60, "attract");
         integer(game.attract.rankingSeconds, 3, 60, "attract");
+    }
+    if (game.startupMovie) {
+        const movie=game.startupMovie;
+        integer(movie.frames.length,1,36,"startupMovie");
+        const decode=(s:string,n:number):string|undefined=>{
+            if(s.length!==4*Math.ceil(n/3)||!/^[A-Za-z0-9+/]*={0,2}$/.test(s))return;
+            try {const b=atob(s);if(b.length===n&&btoa(b)===s)return b;}catch{}
+        };
+        for(const f of movie.frames) {
+            const attrs=decode(f.attributes,240),palettes=decode(f.palettes,56);
+            if(!decode(f.dmg,1792)||!decode(f.cgb,3840)||!attrs||!palettes||
+                [...attrs].some(c=>c.charCodeAt(0)<1||c.charCodeAt(0)>7)||
+                [...palettes].some((c,i)=>i%2===1&&c.charCodeAt(0)>127))
+                err("startupMovie","動画フレームの形式が不正です。変換スクリプトから再取り込みしてください");
+        }
+        const pcmBytes=Math.ceil(movie.frames.length*6*70224/4194304*8192/32)*16;
+        if(!decode(movie.pcm,pcmBytes))err("startupMovie","動画音声の長さが一致しません");
     }
     if (game.startup) {
         const p = game.startup;

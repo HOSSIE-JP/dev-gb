@@ -71,8 +71,9 @@ void ce_mainloop(void) BANKED {
     ce_save_load();
     ce_select_player(0);
     ce_play_logos();
+    if (!ce_logo_skip) ce_play_movie();
     title_screen();
-    if (ce_logo_count) previous = joypad();
+    if (ce_logo_count || ce_movie_count) previous = joypad();
     CRITICAL { ce_music_time = sys_time; }
     for (;;) {
         /* If work already crossed VBlank, do not throw away another frame.
@@ -144,7 +145,7 @@ void ce_mainloop(void) BANKED {
             }
         } else if (pressed & (J_START | J_A | J_B | J_SELECT)) title_screen();
         else if (ce_scene==4u && ce_attract_title_frames && (uint16_t)(clock_now()-attract_clock)>=ce_attract_rank_frames) {
-            ce_music_play(0);ce_fade(1);ce_play_logos();title_screen();previous=joypad();
+            ce_music_play(0);ce_fade(1);ce_play_logos();if(!ce_logo_skip)ce_play_movie();title_screen();previous=joypad();
         }
         ce_trace_write();
     }

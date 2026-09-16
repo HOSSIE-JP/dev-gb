@@ -1,0 +1,11 @@
+{
+  "version": "0.24-startup-movie",
+  "intent": "Play converted supplied video inside the GB/GBC ROM after logos and on each exhibition loop",
+  "source": "C:/homebrew/AI-Stack/ComfyUI_windows_portable/ComfyUI/output/video/MiniMax_H3_00407_.mp4",
+  "excerpt": {"startSeconds": 0, "seconds": 3.6, "content": "Nonsexual fully clothed face closeup only; later footage excluded", "metadataRemoved": true},
+  "video": {"frames": 36, "vblanksPerFrame": 6, "cgb": [160,96], "dmg": [112,64], "cgbImagePalettes": 7},
+  "audio": {"channels": 1, "sampleRate": 8192, "bits": 4},
+  "loop": ["logos", "movie", "title", "random-stage-autoplay", "rankings", "logos"],
+  "skip": "Any button during logos or movie goes to title; held input does not start game",
+  "approval": false
+}
