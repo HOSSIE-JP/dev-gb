@@ -659,6 +659,7 @@ void ce_step(uint8_t input) NONBANKED {
         ce_bomb_apply();ce_bomb_effect();if (!ce_bomb_live) return;
     }
     step_walls = ce_battle_mode ? 0 : stage->has_walls | (stage->object_count ? 2u : 0u);
+    if (ce_demo) ce_state.invulnerable = 2;
     step_player(input); if (ce_battle_mode >= 2u && !ce_bomb_image) ce_bg_update();
     finish = ce_stage_events(); step_walls = ce_battle_mode ? 0 : stage->has_walls | (stage->object_count ? 2u : 0u);
     finish |= deferred_finish; deferred_finish = 0;
@@ -676,6 +677,7 @@ void ce_step(uint8_t input) NONBANKED {
     if (!ce_bomb_image && !ce_state.result && stage->require_boss && !ce_state.boss_defeated && (finish || (ce_time_limit && ce_state.stage_tick >= stage->duration)))
         ce_state.result = 1;
     if (!ce_bomb_image && !ce_state.result && (finish || (ce_state.boss_defeated && stage->clear_boss) || (ce_time_limit && ce_state.stage_tick >= stage->duration))) {
+        if (ce_demo) { ce_state.result = 2; return; }
         if (ce_state.boss_defeated && ce_boss_celebration) ce_celebrate_boss();
         else ce_sound(3);
         if (ce_state.boss_defeated) ce_victory_dialogue();
@@ -718,6 +720,7 @@ void ce_sound(uint8_t effect) NONBANKED {
 }
 void ce_audio_sync(void) NONBANKED {
     uint16_t now, elapsed;
+    if (ce_demo && joypad()) ce_demo_abort = 1;
     CRITICAL { now = sys_time; }
     elapsed = now - ce_music_time; ce_music_time = now;
     hit_sound_wait = elapsed >= hit_sound_wait ? 0 : hit_sound_wait - elapsed;

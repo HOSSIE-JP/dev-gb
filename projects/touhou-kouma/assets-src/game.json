@@ -78778,5 +78778,11 @@
     "enabled": true,
     "seconds": 10,
     "delaySeconds": 1
+  },
+  "attract": {
+    "enabled": true,
+    "titleSeconds": 12,
+    "bossSeconds": 15,
+    "rankingSeconds": 8
   }
 }

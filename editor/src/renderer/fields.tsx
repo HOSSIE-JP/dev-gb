@@ -14,6 +14,7 @@ const labels: Record<string, string> = {
     seed: "乱数シード",
     startStage: "開始ステージ",
     clearBonus: "クリア加点",
+    attract: "展示用オートプレイデモ", titleSeconds: "タイトル待機時間（秒）", bossSeconds: "カットイン後の戦闘時間（秒）", rankingSeconds: "ランキング表示時間（秒）",
     startup: "起動ロゴ（タイトル前）", fadeSeconds: "フェード時間（片道・秒）",
     continue: "コンティニュー", delaySeconds: "ゲームオーバー前の待ち時間（秒）",
     ending: "エンディング", slides: "スライド", characterSlides: "追加機体のエンディング", scoreAfter: "最終スコアをエンディング後に集計", seconds: "自動送り秒数", presentation: "会話とクリア演出", enabled: "有効", dialogueBackground: "会話の立ち絵背景",
@@ -199,7 +200,7 @@ export function Form({
                 : value.id === "hud" ? { rows: 2, ...value }
                 : value.id === "title" && "dock" in value && Array.isArray(value.items) ? { stageSelect:false, ...value }
                 : "binding" in value ? { digits: 5, ...value }
-                : value.schemaVersion === 1 ? { performance:{enemies:12,playerShots:6,enemyShots:32,effects:4}, continue: {enabled:false,seconds:10,delaySeconds:0}, startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
+                : value.schemaVersion === 1 ? { attract:{enabled:false,titleSeconds:12,bossSeconds:15,rankingSeconds:8}, performance:{enemies:12,playerShots:6,enemyShots:32,effects:4}, continue: {enabled:false,seconds:10,delaySeconds:0}, startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )
                 .filter(

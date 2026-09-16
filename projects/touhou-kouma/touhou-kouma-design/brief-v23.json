@@ -1,0 +1,34 @@
+{
+  "version": "0.23",
+  "intent": "Event exhibition loop",
+  "loop": [
+    "logos",
+    "title",
+    "random-stage-autoplay",
+    "rankings",
+    "logos"
+  ],
+  "timings": {
+    "enabled": true,
+    "titleSeconds": 12,
+    "bossSeconds": 15,
+    "rankingSeconds": 8
+  },
+  "demo": {
+    "invulnerable": true,
+    "saveScores": false,
+    "avoidConsecutiveStage": true,
+    "realStageProgression": true,
+    "showBossCutin": true,
+    "inputReturnsToTitle": true
+  },
+  "movie": {
+    "scope": "feasibility investigation and offline preview",
+    "userSourcePreference": "Existing PV excerpt, 10-15 seconds",
+    "chosenExcerpt": {
+      "start": 61,
+      "seconds": 14
+    },
+    "integrated": false
+  }
+}

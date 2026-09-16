@@ -1,0 +1,1155 @@
+{
+  "sha256": "d6388fd757f6e4faeb9f5b2100552ab1144e5e437857a620dcdc0bf3a3d68418",
+  "results": [
+    {
+      "label": "DMG",
+      "cycles": 13,
+      "stages": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        4,
+        5,
+        0,
+        5,
+        0,
+        1,
+        4,
+        2
+      ],
+      "events": [
+        {
+          "frame": 116,
+          "scene": 12,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 676,
+          "scene": 0,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 1432,
+          "scene": 1,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 6916,
+          "scene": 7,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 7012,
+          "scene": 1,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 7840,
+          "scene": 8,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 7892,
+          "scene": 7,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 7984,
+          "scene": 1,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 8012,
+          "scene": 4,
+          "demo": 0,
+          "stage": 1
+        },
+        {
+          "frame": 8520,
+          "scene": 12,
+          "demo": 0,
+          "stage": 1
+        },
+        {
+          "frame": 9092,
+          "scene": 0,
+          "demo": 0,
+          "stage": 1
+        },
+        {
+          "frame": 9848,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 16952,
+          "scene": 7,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 17048,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 17972,
+          "scene": 4,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 18484,
+          "scene": 12,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 19052,
+          "scene": 0,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 19812,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 26060,
+          "scene": 7,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 26152,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 27080,
+          "scene": 4,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 27592,
+          "scene": 12,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 28160,
+          "scene": 0,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 28920,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 35604,
+          "scene": 7,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 35696,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 36624,
+          "scene": 4,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 37132,
+          "scene": 12,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 37704,
+          "scene": 0,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 38460,
+          "scene": 1,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 45660,
+          "scene": 7,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 45752,
+          "scene": 1,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 46680,
+          "scene": 4,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 47192,
+          "scene": 12,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 47764,
+          "scene": 0,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 48520,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 54768,
+          "scene": 7,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 54864,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 55788,
+          "scene": 4,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 56300,
+          "scene": 12,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 56872,
+          "scene": 0,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 57628,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 64312,
+          "scene": 7,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 64404,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 65332,
+          "scene": 4,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 65844,
+          "scene": 12,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 66412,
+          "scene": 0,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 67172,
+          "scene": 1,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 70780,
+          "scene": 7,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 70872,
+          "scene": 1,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 71800,
+          "scene": 4,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 72312,
+          "scene": 12,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 72880,
+          "scene": 0,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 73640,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 82032,
+          "scene": 7,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 82124,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 83052,
+          "scene": 4,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 83564,
+          "scene": 12,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 84132,
+          "scene": 0,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 84892,
+          "scene": 1,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 88500,
+          "scene": 7,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 88596,
+          "scene": 1,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 89520,
+          "scene": 4,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 90032,
+          "scene": 12,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 90600,
+          "scene": 0,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 91360,
+          "scene": 1,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 96844,
+          "scene": 7,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 96936,
+          "scene": 1,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 97764,
+          "scene": 8,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 97816,
+          "scene": 7,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 97908,
+          "scene": 1,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 97936,
+          "scene": 4,
+          "demo": 0,
+          "stage": 1
+        },
+        {
+          "frame": 98448,
+          "scene": 12,
+          "demo": 0,
+          "stage": 1
+        },
+        {
+          "frame": 99016,
+          "scene": 0,
+          "demo": 0,
+          "stage": 1
+        },
+        {
+          "frame": 99776,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 106024,
+          "scene": 7,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 106116,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 107044,
+          "scene": 4,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 107556,
+          "scene": 12,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 108124,
+          "scene": 0,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 108884,
+          "scene": 1,
+          "demo": 1,
+          "stage": 2
+        },
+        {
+          "frame": 113592,
+          "scene": 7,
+          "demo": 1,
+          "stage": 2
+        },
+        {
+          "frame": 113684,
+          "scene": 1,
+          "demo": 1,
+          "stage": 2
+        },
+        {
+          "frame": 114612,
+          "scene": 4,
+          "demo": 0,
+          "stage": 2
+        },
+        {
+          "frame": 115124,
+          "scene": 12,
+          "demo": 0,
+          "stage": 2
+        }
+      ],
+      "rankingsUnchanged": true,
+      "normalStart": true,
+      "demoAndCutinCancel": true,
+      "heldInputConsumed": true,
+      "titleMusicRestarts": true
+    },
+    {
+      "label": "CGB",
+      "cycles": 13,
+      "stages": [
+        6,
+        3,
+        4,
+        5,
+        6,
+        3,
+        0,
+        3,
+        4,
+        2,
+        4,
+        2,
+        1
+      ],
+      "events": [
+        {
+          "frame": 200,
+          "scene": 12,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 772,
+          "scene": 0,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 1532,
+          "scene": 1,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 6144,
+          "scene": 7,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 6240,
+          "scene": 1,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 7168,
+          "scene": 4,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 7684,
+          "scene": 12,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 8272,
+          "scene": 0,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 9032,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 13536,
+          "scene": 7,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 13632,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 14040,
+          "scene": 8,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 14092,
+          "scene": 7,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 14188,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 14560,
+          "scene": 4,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 15076,
+          "scene": 12,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 15660,
+          "scene": 0,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 16424,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 20260,
+          "scene": 8,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 20264,
+          "scene": 7,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 20360,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 21288,
+          "scene": 4,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 21804,
+          "scene": 12,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 22388,
+          "scene": 0,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 23152,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 27316,
+          "scene": 7,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 27416,
+          "scene": 1,
+          "demo": 1,
+          "stage": 5
+        },
+        {
+          "frame": 28344,
+          "scene": 4,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 28860,
+          "scene": 12,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 29444,
+          "scene": 0,
+          "demo": 0,
+          "stage": 5
+        },
+        {
+          "frame": 30208,
+          "scene": 1,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 34816,
+          "scene": 7,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 34916,
+          "scene": 1,
+          "demo": 1,
+          "stage": 6
+        },
+        {
+          "frame": 35844,
+          "scene": 4,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 36360,
+          "scene": 12,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 36944,
+          "scene": 0,
+          "demo": 0,
+          "stage": 6
+        },
+        {
+          "frame": 37704,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 42208,
+          "scene": 7,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 42304,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 42712,
+          "scene": 8,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 42764,
+          "scene": 7,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 42860,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 43236,
+          "scene": 4,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 43752,
+          "scene": 12,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 44336,
+          "scene": 0,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 45096,
+          "scene": 1,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 48016,
+          "scene": 7,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 48116,
+          "scene": 1,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 48520,
+          "scene": 8,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 48572,
+          "scene": 7,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 48672,
+          "scene": 1,
+          "demo": 1,
+          "stage": 0
+        },
+        {
+          "frame": 49044,
+          "scene": 4,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 49560,
+          "scene": 12,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 50144,
+          "scene": 0,
+          "demo": 0,
+          "stage": 0
+        },
+        {
+          "frame": 50904,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 55408,
+          "scene": 7,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 55504,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 55912,
+          "scene": 8,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 55964,
+          "scene": 7,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 56060,
+          "scene": 1,
+          "demo": 1,
+          "stage": 3
+        },
+        {
+          "frame": 56436,
+          "scene": 4,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 56952,
+          "scene": 12,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 57536,
+          "scene": 0,
+          "demo": 0,
+          "stage": 3
+        },
+        {
+          "frame": 58296,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 62884,
+          "scene": 7,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 62980,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 63572,
+          "scene": 8,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 63624,
+          "scene": 7,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 63720,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 63912,
+          "scene": 4,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 64428,
+          "scene": 12,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 65012,
+          "scene": 0,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 65772,
+          "scene": 1,
+          "demo": 1,
+          "stage": 2
+        },
+        {
+          "frame": 68784,
+          "scene": 7,
+          "demo": 1,
+          "stage": 2
+        },
+        {
+          "frame": 68880,
+          "scene": 1,
+          "demo": 1,
+          "stage": 2
+        },
+        {
+          "frame": 69812,
+          "scene": 4,
+          "demo": 0,
+          "stage": 2
+        },
+        {
+          "frame": 70328,
+          "scene": 12,
+          "demo": 0,
+          "stage": 2
+        },
+        {
+          "frame": 70912,
+          "scene": 0,
+          "demo": 0,
+          "stage": 2
+        },
+        {
+          "frame": 71672,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 75512,
+          "scene": 7,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 75608,
+          "scene": 1,
+          "demo": 1,
+          "stage": 4
+        },
+        {
+          "frame": 76540,
+          "scene": 4,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 77056,
+          "scene": 12,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 77640,
+          "scene": 0,
+          "demo": 0,
+          "stage": 4
+        },
+        {
+          "frame": 78400,
+          "scene": 1,
+          "demo": 1,
+          "stage": 2
+        },
+        {
+          "frame": 81412,
+          "scene": 7,
+          "demo": 1,
+          "stage": 2
+        },
+        {
+          "frame": 81508,
+          "scene": 1,
+          "demo": 1,
+          "stage": 2
+        },
+        {
+          "frame": 82436,
+          "scene": 4,
+          "demo": 0,
+          "stage": 2
+        },
+        {
+          "frame": 82952,
+          "scene": 12,
+          "demo": 0,
+          "stage": 2
+        },
+        {
+          "frame": 83536,
+          "scene": 0,
+          "demo": 0,
+          "stage": 2
+        },
+        {
+          "frame": 84300,
+          "scene": 1,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 87692,
+          "scene": 7,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 87788,
+          "scene": 1,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 88196,
+          "scene": 8,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 88248,
+          "scene": 7,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 88344,
+          "scene": 1,
+          "demo": 1,
+          "stage": 1
+        },
+        {
+          "frame": 88716,
+          "scene": 4,
+          "demo": 0,
+          "stage": 1
+        },
+        {
+          "frame": 89232,
+          "scene": 12,
+          "demo": 0,
+          "stage": 1
+        }
+      ],
+      "rankingsUnchanged": true,
+      "normalStart": true,
+      "demoAndCutinCancel": true,
+      "heldInputConsumed": true,
+      "titleMusicRestarts": true
+    }
+  ]
+}

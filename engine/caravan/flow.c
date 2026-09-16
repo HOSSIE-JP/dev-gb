@@ -24,6 +24,7 @@ static uint8_t scene_input(void) {
     uint8_t input, pressed;
     vsync(); ce_audio_sync(); ce_trace_write();
     input = joypad(); pressed = input & ~scene_previous; scene_previous = input;
+    if (ce_demo && input) ce_demo_abort = 1;
     return pressed;
 }
 static uint16_t sum_score(uint16_t a, uint16_t b) {
@@ -134,6 +135,7 @@ void ce_play_ending(void) BANKED {
 void ce_dialogue(void) BANKED {
     const CE_Presentation *p = &presentation;
     uint8_t pressed;
+    if (ce_demo) return;
     ce_get_presentation(&presentation, ce_state.stage);
     if (!p->count) return;
     ce_fade(1); ce_scene = 5; scene_previous = joypad();
@@ -205,7 +207,8 @@ void ce_phase_intro(const CE_Phase *phase) BANKED {
     ce_boss_invulnerable = 1; ce_clear_combat(0);
     ce_scene = 7; ce_load_screen(phase->intro_screen); ce_sound(5);
     ce_intro_left = phase->intro_frames;
-    while (ce_intro_left) { scene_input(); --ce_intro_left; }
+    while (ce_intro_left) { scene_input(); --ce_intro_left; if (ce_demo_abort) break; }
+    if (ce_demo) ce_demo_cutin = 1;
     ce_load_stage(); ce_scene = 1; ce_bomb_latch=1;
     ce_boss_invulnerable = 0;
 }

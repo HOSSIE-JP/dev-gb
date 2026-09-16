@@ -213,6 +213,7 @@ export type Game = {
     };
     continue?: { enabled: boolean; seconds: number; delaySeconds: number };
     startup?: { enabled: boolean; fadeSeconds: number; slides: {id: string; background: string; seconds: number}[] };
+    attract?: { enabled: boolean; titleSeconds: number; bossSeconds: number; rankingSeconds: number };
     ending?: { seconds: number; slides: { id: string; background: string }[];
         music?: number; scoreAfter?: boolean;
         characterSlides?: {id: string; character: string; slides: {id: string; background: string}[]}[] };
@@ -493,6 +494,7 @@ export function validateShape(
         },
         "continue?": {enabled:"boolean", seconds:"number", delaySeconds:"number"},
         "startup?": {enabled:"boolean", fadeSeconds:"number", slides:[{id:"string",background:"string",seconds:"number"}]},
+        "attract?": {enabled:"boolean", titleSeconds:"number", bossSeconds:"number", rankingSeconds:"number"},
         "ending?": { seconds: "number", slides: [{id: "string", background: "string"}], "music?":"number", "scoreAfter?":"boolean",
             "characterSlides?":[{id:"string",character:"string",slides:[{id:"string",background:"string"}]}] },
         clearBonus: "number",
@@ -851,6 +853,11 @@ export function validate(value: unknown): Diagnostic[] {
     if (game.continue) {
         integer(game.continue.seconds, 1, 60, "continue");
         finite(game.continue.delaySeconds, 0, 5, "continue");
+    }
+    if (game.attract) {
+        integer(game.attract.titleSeconds, 3, 120, "attract");
+        integer(game.attract.bossSeconds, 3, 60, "attract");
+        integer(game.attract.rankingSeconds, 3, 60, "attract");
     }
     if (game.startup) {
         const p = game.startup;

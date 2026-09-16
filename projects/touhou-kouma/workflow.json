@@ -1,16 +1,31 @@
 {
-  "version": "0.22-character-animation",
-  "updatedAt": "2026-09-14T10:19:15.846Z",
-  "status": "approved",
-  "approved": true,
-  "projectRevision": "9d2ab3aa01dc3f532670048a531607a5828a51df8c797469d8a59b89993147de",
-  "engineRevision": "db0ca9d73054f96d8249c9fc0e1a61bd14895aa7",
+  "version": "0.23-attract-demo",
+  "updatedAt": "2026-09-16T15:35:49.527Z",
+  "status": "awaiting-playtest",
+  "approved": false,
+  "projectRevision": "3079bc5286dc0107c570c069d4b4e96b8d5cce01a59244af5fbb99691af6e7b1",
+  "engineRevision": "4f7704d026941b2a026973af85978214945868d1",
   "rom": {
-    "path": "build/Release/touhou-kouma-v22.gb",
-    "sha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+    "path": "build/Release/touhou-kouma-v23.gb",
+    "sha256": "d6388fd757f6e4faeb9f5b2100552ab1144e5e437857a620dcdc0bf3a3d68418",
     "bytes": 1048576
   },
   "previous": [
+    {
+      "version": "0.22-character-animation",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v22.gb",
+        "sha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+        "bytes": 1048576
+      },
+      "projectRevision": "9d2ab3aa01dc3f532670048a531607a5828a51df8c797469d8a59b89993147de",
+      "approval": {
+        "romSha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
+        "userDecision": "OK、これでゲームの紹介PVを作成してください。ゆっくり解説動画にしてほしいです。",
+        "messageReference": "2026-09-14 current conversation user approval after v0.22 delivery"
+      },
+      "validation": "touhou-kouma-design/qa-v22.json"
+    },
     {
       "version": "0.21-gbc-color",
       "rom": {
@@ -157,37 +172,99 @@
     }
   ],
   "checks": {
-    "standardTests": 139,
-    "animationRoutes": 14,
-    "nativeBgb": 4,
-    "oam": 4,
-    "bomb": 8,
-    "source": {
-      "originalPngsPreserved": 158,
-      "noGameplayChanges": true,
-      "allBossesAnimated": true,
-      "frames": 85,
-      "spriteTiles": 88,
-      "legalObjPalettes": true
-    },
-    "debugReleaseIdentical": true
+    "standardTests": 140,
+    "debugReleaseIdentical": true,
+    "exhibition": [
+      {
+        "mode": "DMG",
+        "cycles": 13,
+        "stageIndices": [
+          1,
+          3,
+          4,
+          5,
+          6,
+          4,
+          5,
+          0,
+          5,
+          0,
+          1,
+          4,
+          2
+        ],
+        "allSevenStages": true,
+        "displayFrames": 115124,
+        "rankingsUnchanged": true,
+        "normalStart": true,
+        "cancel": true,
+        "heldInputConsumed": true,
+        "titleMusicRestarts": true
+      },
+      {
+        "mode": "CGB",
+        "cycles": 13,
+        "stageIndices": [
+          6,
+          3,
+          4,
+          5,
+          6,
+          3,
+          0,
+          3,
+          4,
+          2,
+          4,
+          2,
+          1
+        ],
+        "allSevenStages": true,
+        "displayFrames": 89232,
+        "rankingsUnchanged": true,
+        "normalStart": true,
+        "cancel": true,
+        "heldInputConsumed": true,
+        "titleMusicRestarts": true
+      }
+    ],
+    "nativeBgb": [
+      {
+        "mode": "DMG",
+        "rankingVisits": 3,
+        "logoVisits": 3,
+        "rankingsUnchanged": true
+      },
+      {
+        "mode": "CGB",
+        "rankingVisits": 3,
+        "logoVisits": 4,
+        "rankingsUnchanged": true
+      }
+    ],
+    "editor": [
+      {
+        "timingEdited": true,
+        "savedAndReloaded": true,
+        "buildFree": true
+      }
+    ]
   },
   "pending": [
-    "Emulicious DAP failure prevents verified execution; physical DMG/CGB hardware and human audio/controller checks remain unverified.",
-    "This release adds animation, not a fixed 60fps guarantee; normal full-campaign difficulty is not certified by the animation routes."
+    "User playtest of v0.23.",
+    "Emulicious DAP EvaluateRequest throws NullPointerException; not verified.",
+    "Physical DMG/CGB hardware and human audio/controller checks not performed.",
+    "Movie playback is not integrated in the ROM."
   ],
-  "evidence": "../../docs/touhou-kouma-v22.md",
-  "engineWorkingTreeChanges": false,
-  "validation": "touhou-kouma-design/qa-v22.json",
-  "approval": {
-    "romSha256": "819244d4a8bba1f72b012b08b97f03e6104173c4c88f94707d6a3cac7543b55c",
-    "userDecision": "OK、これでゲームの紹介PVを作成してください。ゆっくり解説動画にしてほしいです。",
-    "messageReference": "2026-09-14 current conversation user approval after v0.22 delivery"
-  },
+  "evidence": "../../docs/touhou-kouma-v23.md",
+  "engineWorkingTreeChanges": true,
+  "validation": "touhou-kouma-design/qa-v23.json",
+  "approval": null,
   "promotion": {
     "path": "touhou-kouma-design/pv-v22/touhou-kouma-v22-pv.mp4",
     "sha256": "af49bef2496a4388c17771180eb2f85bb915380934cc369b77ca07cbc1a3be66",
     "manifest": "touhou-kouma-design/pv-v22/manifest.json",
-    "voiceStatus": "provisional Windows narration"
+    "voiceStatus": "provisional Windows narration",
+    "sourceVersion": "0.22-character-animation"
   }
 }

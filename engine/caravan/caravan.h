@@ -159,6 +159,8 @@ extern const uint16_t ce_player_invulnerability, ce_clear_bonus, ce_player_respa
 extern const uint8_t ce_stage_fade, ce_time_limit, ce_boss_celebration;
 extern uint8_t ce_victory_frame;
 extern uint16_t ce_respawn;
+extern const uint16_t ce_attract_title_frames, ce_attract_boss_frames, ce_attract_rank_frames;
+extern uint8_t ce_demo, ce_demo_abort, ce_demo_cutin;
 extern uint8_t ce_fade_level;
 extern const uint8_t ce_explosion_asset, ce_explosion_duration;
 extern const int16_t ce_player_start_x, ce_player_start_y;
