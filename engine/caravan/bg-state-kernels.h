@@ -1,4 +1,7 @@
-/* Allocation/culling/collision for the BG-only shot planes. */
+/* Allocation/culling/collision for the BG-only shot planes.
+ * Private entry ABI: D=X, E=Y; clobbers AF/BC/DE/HL. The public C wrapper
+ * preserves registers. Cell-index RAM is needed only for dynamic composites;
+ * singleton/pair cells finish without spilling their index or coordinates. */
 static uint16_t cell_index;
 static void draw_shot(void) __naked {
     __asm
@@ -13,76 +16,72 @@ static void draw_shot(void) __naked {
         add hl, bc
         inc hl
         ld a, (hl)
-        ld (_px), a
+        ld d, a
         ld hl, #_ce_bg_y
         add hl, bc
         inc hl
         ld a, (hl)
-        ld (_py), a
+        ld e, a
         call _draw_xy
         pop hl
         pop de
         pop bc
         ret
 _draw_local_xy:
-        ld a, (_px)
+        ld a, d
         and #0xfe
         cp #160
         jp nc, _bg_xy_030
-        ld (_px), a
-        ld a, (_py)
-        and #0xfe
         ld d, a
+        ld a, e
+        and #0xfe
+        ld e, a
         ld a, (_top)
-        cp d
+        cp e
         jr z, _bg_xy_106
         jp nc, _bg_xy_030
 _bg_xy_106:
         ld a, (_bottom)
         dec a
-        cp d
+        cp e
         jp c, _bg_xy_030
         jp z, _bg_xy_030
-        ld a, d
-        ld (_py), a
         jp _bg_xy_plot
 _draw_xy:
-        ld a, (_px)
+        ld a, d
         and #0xfe
         cp #160
         jp nc, _bg_xy_030
-        ld (_px), a
-        ld a, (_py)
-        and #0xfe
         ld d, a
+        ld a, e
+        and #0xfe
+        ld e, a
         ld a, (_top)
-        cp d
+        cp e
         jr z, _bg_xy_006
         jp nc, _bg_xy_030
 _bg_xy_006:
         ld a, (_bottom)
         dec a
-        cp d
+        cp e
         jp c, _bg_xy_030
         jp z, _bg_xy_030
-        ld a, d
-        ld (_py), a
         ld a, (_player_top)
-        ld d, a
-        ld a, (_py)
-        sub d
-        ld d, a
+        ld c, a
+        ld a, e
+        sub c
+        ld c, a
         ld a, (_hit_height)
-        cp d
+        cp c
         jr c, _bg_xy_010
         jr z, _bg_xy_010
         ld a, (_left)
-        ld d, a
-        ld a, (_px)
-        sub d
-        ld d, a
+        ld c, a
+        ld a, d
+        sub c
+        ld c, a
         ld a, (_hit_width)
-        cp d
+        cp c
         jr c, _bg_xy_010
         jr z, _bg_xy_010
         ld a, (_ce_respawn)
@@ -102,7 +101,22 @@ _bg_xy_010:
         cp #3
         ret z
 _bg_xy_plot:
-        ld a, (_py)
+        ; Compute the sub-tile position once, while D/E still hold X/Y.
+        ld a, d
+        and #6
+        srl a
+        ld c, a
+        ld a, e
+        and #6
+        add a
+        or c
+        ld c, a
+        ld a, d
+        srl a
+        srl a
+        srl a
+        ld b, a
+        ld a, e
         and #0xf8
         ld l, a
         ld h, #0
@@ -111,32 +125,17 @@ _bg_xy_plot:
         add hl, hl
         add hl, hl
         add hl, de
-        ld a, (_px)
-        srl a
-        srl a
-        srl a
+        ld a, b
         add a
         ld e, a
         add hl, de
-        ld a, l
-        ld (_cell_index), a
-        ld a, h
-        ld (_cell_index + 1), a
         ; Empty cells need only a map entry. Defer the occupancy mask until a
         ; second distinct bullet actually touches the same tile.
         srl h
         rr l
-        ld bc, #_map
-        add hl, bc
-        ld a, (_px)
-        and #6
-        srl a
-        ld d, a
-        ld a, (_py)
-        and #6
-        add a
-        or d
-        ld e, a
+        ld de, #_map
+        add hl, de
+        ld e, c
         ld a, (hl)
         or a
         jr nz, _bg_xy_007
@@ -146,7 +145,7 @@ _bg_xy_plot:
         jp _bg_xy_031
 _bg_xy_007:
         cp #255
-        jr z, _bg_xy_009
+        jp z, _bg_xy_existing
         ld d, a
         ld a, (_hud_tiles)
         ld b, a
@@ -185,7 +184,9 @@ _bg_xy_015:
         jp _bg_xy_031
 _bg_xy_008:
         ; Reconstruct a resident singleton/pair mask on its first composite.
-        ld l, a
+        ld d, a
+        call _bg_xy_save_cell
+        ld l, d
         ld h, #0
         add hl, hl
         ld bc, #_static_masks
@@ -197,11 +198,16 @@ _bg_xy_008:
         ld l, a
         ld a, (_cell_index + 1)
         ld h, a
+        push de
         ld de, #_cells
         add hl, de
         ld a, c
         ld (hl+), a
         ld (hl), b
+        pop de
+        jr _bg_xy_009
+_bg_xy_existing:
+        call _bg_xy_save_cell
 _bg_xy_009:
         ld a, (_cell_index)
         ld l, a
@@ -210,16 +216,7 @@ _bg_xy_009:
         ld bc, #_cells
         add hl, bc
         push hl
-        ld a, (_px)
-        and #6
-        srl a
-        ld d, a
-        ld a, (_py)
-        and #6
-        add a
-        or d
-        ld e, a
-        ld l, a
+        ld l, e
         ld h, #0
         add hl, hl
         ld bc, #_bg_xy_050
@@ -288,6 +285,21 @@ _bg_xy_014:
 _bg_xy_030:
         call _retire
 _bg_xy_031:
+        ret
+_bg_xy_save_cell:
+        ; HL is the map entry. DE (old tile / new dot) must survive.
+        ld bc, #_map
+        ld a, l
+        sub c
+        ld l, a
+        ld a, h
+        sbc b
+        ld h, a
+        add hl, hl
+        ld a, l
+        ld (_cell_index), a
+        ld a, h
+        ld (_cell_index + 1), a
         ret
 _bg_xy_050:
         .dw 1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768

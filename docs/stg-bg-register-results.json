@@ -1,0 +1,926 @@
+{
+  "date": "2026-09-17",
+  "baseCommit": "e22cc52dfeeb18061bfe1d92fbd218bc5b3cab58",
+  "scope": "main BG bullet assembly only; no v27/v28 design changes",
+  "toolchain": "GBDK 4.5.0",
+  "emulator": "Boytacean 0.13.2",
+  "before": {
+    "diagnostic": true,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\bg-registers\\before\\fixture-wPIvxj\\projects\\bg-registers\\build\\Debug\\bg-registers.gb",
+    "sha256": "720a8c4545bf22e8b8a0adff61f57057a342ea0f00d5559f2ab24263288f6136",
+    "harnessSha256": "f6e76bafe1b783a7747767e424ec36a7fab7786b848b5da4a6f6d8004b7bc287",
+    "ramBytes": 7150,
+    "sourceHashes": {
+      "bg-bullets.c": "8a7ae4180f78e13ef3e94407eee217650167ed3f6efe84e905f613c029192552",
+      "bg-state-kernels.h": "8bd0902b64d67757563c29a568e2c02d7f1c55074adc9a5e2c622588ff986511",
+      "bg-update-kernel.h": "9822a1ec983b3dd447c49637539e709202c94e42c80d7b53c81eedce61b3feae"
+    },
+    "modes": [
+      {
+        "mode": "DMG",
+        "hitPublications": 90,
+        "cases": [
+          {
+            "case": 0,
+            "samples": 64,
+            "mean": 72932.6875,
+            "max": 102712
+          },
+          {
+            "case": 1,
+            "samples": 64,
+            "mean": 78739.25,
+            "max": 102032
+          },
+          {
+            "case": 2,
+            "samples": 64,
+            "mean": 70761.5,
+            "max": 100492
+          },
+          {
+            "case": 3,
+            "samples": 64,
+            "mean": 81827.875,
+            "max": 99352
+          },
+          {
+            "case": 4,
+            "samples": 64,
+            "mean": 77563,
+            "max": 104376
+          },
+          {
+            "case": 5,
+            "samples": 64,
+            "mean": 62437.3125,
+            "max": 82040
+          },
+          {
+            "case": 6,
+            "samples": 64,
+            "mean": 90019.1875,
+            "max": 137576
+          },
+          {
+            "case": 7,
+            "samples": 64,
+            "mean": 74376.5625,
+            "max": 99356
+          },
+          {
+            "case": 8,
+            "samples": 64,
+            "mean": 41003.0625,
+            "max": 52972
+          }
+        ],
+        "publications": 576,
+        "stateSequenceSha256": "32df876efb9c949e80ea3d981c7445ee7edc8da289b6961303f9367a506cb1e6"
+      },
+      {
+        "mode": "CGB",
+        "hitPublications": 90,
+        "cases": [
+          {
+            "case": 0,
+            "samples": 64,
+            "mean": 64452.1875,
+            "max": 92252
+          },
+          {
+            "case": 1,
+            "samples": 64,
+            "mean": 68939.625,
+            "max": 90708
+          },
+          {
+            "case": 2,
+            "samples": 64,
+            "mean": 63532.25,
+            "max": 90056
+          },
+          {
+            "case": 3,
+            "samples": 64,
+            "mean": 74945.125,
+            "max": 92364
+          },
+          {
+            "case": 4,
+            "samples": 64,
+            "mean": 75827.125,
+            "max": 103724
+          },
+          {
+            "case": 5,
+            "samples": 64,
+            "mean": 59083.8125,
+            "max": 75204
+          },
+          {
+            "case": 6,
+            "samples": 64,
+            "mean": 86905.9375,
+            "max": 132548
+          },
+          {
+            "case": 7,
+            "samples": 64,
+            "mean": 71984.8125,
+            "max": 97848
+          },
+          {
+            "case": 8,
+            "samples": 64,
+            "mean": 40956.3125,
+            "max": 52008
+          }
+        ],
+        "publications": 576,
+        "stateSequenceSha256": "b0795a95309326b1a81e1174738e8253ae6f7a7ced7e783b8acaa13fbd0e0a84"
+      }
+    ]
+  },
+  "after": {
+    "diagnostic": true,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\bg-registers\\after-fixed\\fixture-KO5jeq\\projects\\bg-registers\\build\\Debug\\bg-registers.gb",
+    "sha256": "aa385e38f8d55fc446b76859abde065645d1b38381e32dfcb9f0721a56df4547",
+    "harnessSha256": "f6e76bafe1b783a7747767e424ec36a7fab7786b848b5da4a6f6d8004b7bc287",
+    "ramBytes": 7150,
+    "sourceHashes": {
+      "bg-bullets.c": "8a7ae4180f78e13ef3e94407eee217650167ed3f6efe84e905f613c029192552",
+      "bg-state-kernels.h": "807e3fcc7d930cc3f83056f941e941d1e73c7ea13439cf58d1dddb1f0fcceca4",
+      "bg-update-kernel.h": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b"
+    },
+    "modes": [
+      {
+        "mode": "DMG",
+        "hitPublications": 90,
+        "cases": [
+          {
+            "case": 0,
+            "samples": 64,
+            "mean": 68720,
+            "max": 99208
+          },
+          {
+            "case": 1,
+            "samples": 64,
+            "mean": 73624.875,
+            "max": 97204
+          },
+          {
+            "case": 2,
+            "samples": 64,
+            "mean": 66301.25,
+            "max": 95616
+          },
+          {
+            "case": 3,
+            "samples": 64,
+            "mean": 76948.5,
+            "max": 94336
+          },
+          {
+            "case": 4,
+            "samples": 64,
+            "mean": 73967.0625,
+            "max": 101048
+          },
+          {
+            "case": 5,
+            "samples": 64,
+            "mean": 56937.125,
+            "max": 75004
+          },
+          {
+            "case": 6,
+            "samples": 64,
+            "mean": 86382.4375,
+            "max": 132264
+          },
+          {
+            "case": 7,
+            "samples": 64,
+            "mean": 70764.1875,
+            "max": 94440
+          },
+          {
+            "case": 8,
+            "samples": 64,
+            "mean": 38199.3125,
+            "max": 49096
+          }
+        ],
+        "publications": 576,
+        "stateSequenceSha256": "32df876efb9c949e80ea3d981c7445ee7edc8da289b6961303f9367a506cb1e6"
+      },
+      {
+        "mode": "CGB",
+        "hitPublications": 90,
+        "cases": [
+          {
+            "case": 0,
+            "samples": 64,
+            "mean": 59141.625,
+            "max": 85964
+          },
+          {
+            "case": 1,
+            "samples": 64,
+            "mean": 62484.5,
+            "max": 83148
+          },
+          {
+            "case": 2,
+            "samples": 64,
+            "mean": 58165.125,
+            "max": 83508
+          },
+          {
+            "case": 3,
+            "samples": 64,
+            "mean": 69280.9375,
+            "max": 86372
+          },
+          {
+            "case": 4,
+            "samples": 64,
+            "mean": 72103.9375,
+            "max": 99244
+          },
+          {
+            "case": 5,
+            "samples": 64,
+            "mean": 53349,
+            "max": 68416
+          },
+          {
+            "case": 6,
+            "samples": 64,
+            "mean": 82963.25,
+            "max": 125568
+          },
+          {
+            "case": 7,
+            "samples": 64,
+            "mean": 68222.25,
+            "max": 92672
+          },
+          {
+            "case": 8,
+            "samples": 64,
+            "mean": 38135.1875,
+            "max": 48120
+          }
+        ],
+        "publications": 576,
+        "stateSequenceSha256": "b0795a95309326b1a81e1174738e8253ae6f7a7ced7e783b8acaa13fbd0e0a84"
+      }
+    ]
+  },
+  "nativeKernel": {
+    "emulator": "BGB 1.6.6",
+    "diagnostic": true,
+    "parity": true,
+    "vblankDmaPassed": true,
+    "results": [
+      {
+        "variant": "before",
+        "mode": "DMG",
+        "sha256": "720a8c4545bf22e8b8a0adff61f57057a342ea0f00d5559f2ab24263288f6136",
+        "cases": [
+          {
+            "case": 0,
+            "cycles": {
+              "samples": 64,
+              "mean": 72932.6875,
+              "max": 102712
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.7301596342949725,
+              "max": 5.999943039416723
+            }
+          },
+          {
+            "case": 1,
+            "cycles": {
+              "samples": 64,
+              "mean": 78739.25,
+              "max": 102032
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.920635824771163,
+              "max": 7.999943039416723
+            }
+          },
+          {
+            "case": 2,
+            "cycles": {
+              "samples": 64,
+              "mean": 70761.5,
+              "max": 100492
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.7301596342949725,
+              "max": 6.999943039416723
+            }
+          },
+          {
+            "case": 3,
+            "cycles": {
+              "samples": 64,
+              "mean": 81827.875,
+              "max": 99352
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 3.0000009041362423,
+              "max": 8.999943039416724
+            }
+          },
+          {
+            "case": 4,
+            "cycles": {
+              "samples": 64,
+              "mean": 77563,
+              "max": 104376
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.5873024914378298,
+              "max": 5.999943039416723
+            }
+          },
+          {
+            "case": 5,
+            "cycles": {
+              "samples": 64,
+              "mean": 62437.0625,
+              "max": 82040
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.523810427945766,
+              "max": 8.999943039416724
+            }
+          },
+          {
+            "case": 6,
+            "cycles": {
+              "samples": 64,
+              "mean": 90019.1875,
+              "max": 137576
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.8412707454060837,
+              "max": 5.999943039416723
+            }
+          },
+          {
+            "case": 7,
+            "cycles": {
+              "samples": 64,
+              "mean": 74376.3125,
+              "max": 99356
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.523810427945766,
+              "max": 5.999943039416723
+            }
+          },
+          {
+            "case": 8,
+            "cycles": {
+              "samples": 64,
+              "mean": 41003.0625,
+              "max": 52972
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.1428571428571428,
+              "max": 4
+            }
+          }
+        ],
+        "publications": 576,
+        "peak": 64,
+        "dmaEndLines": [
+          0
+        ]
+      },
+      {
+        "variant": "before",
+        "mode": "CGB",
+        "sha256": "720a8c4545bf22e8b8a0adff61f57057a342ea0f00d5559f2ab24263288f6136",
+        "cases": [
+          {
+            "case": 0,
+            "cycles": {
+              "samples": 64,
+              "mean": 64452.1875,
+              "max": 92252
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.0952380952380956,
+              "max": 3.008230804283436
+            }
+          },
+          {
+            "case": 1,
+            "cycles": {
+              "samples": 64,
+              "mean": 68939.625,
+              "max": 90708
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.126984126984127,
+              "max": 4.007775119617225
+            }
+          },
+          {
+            "case": 2,
+            "cycles": {
+              "samples": 64,
+              "mean": 63532.25,
+              "max": 90056
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.0952380952380951,
+              "max": 3.008230804283436
+            }
+          },
+          {
+            "case": 3,
+            "cycles": {
+              "samples": 64,
+              "mean": 74945.125,
+              "max": 92364
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.142763112687925,
+              "max": 4.006863750284803
+            }
+          },
+          {
+            "case": 4,
+            "cycles": {
+              "samples": 64,
+              "mean": 75844.5,
+              "max": 103724
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.095325344385495,
+              "max": 3
+            }
+          },
+          {
+            "case": 5,
+            "cycles": {
+              "samples": 64,
+              "mean": 59083.8125,
+              "max": 75204
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.1428571428571428,
+              "max": 4
+            }
+          },
+          {
+            "case": 6,
+            "cycles": {
+              "samples": 64,
+              "mean": 86905.9375,
+              "max": 132548
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.3016017677671814,
+              "max": 3.000455684666211
+            }
+          },
+          {
+            "case": 7,
+            "cycles": {
+              "samples": 64,
+              "mean": 71984.8125,
+              "max": 97848
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.095245328328035,
+              "max": 3.000455684666211
+            }
+          },
+          {
+            "case": 8,
+            "cycles": {
+              "samples": 64,
+              "mean": 40956.3125,
+              "max": 52008
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.0476190476190477,
+              "max": 2
+            }
+          }
+        ],
+        "publications": 576,
+        "peak": 64,
+        "dmaEndLines": [
+          148,
+          149,
+          150
+        ]
+      },
+      {
+        "variant": "after",
+        "mode": "DMG",
+        "sha256": "aa385e38f8d55fc446b76859abde065645d1b38381e32dfcb9f0721a56df4547",
+        "cases": [
+          {
+            "case": 0,
+            "cycles": {
+              "samples": 64,
+              "mean": 68737.375,
+              "max": 99208
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.698413602548941,
+              "max": 5.999943039416723
+            }
+          },
+          {
+            "case": 1,
+            "cycles": {
+              "samples": 64,
+              "mean": 73624.875,
+              "max": 97204
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.888889793025131,
+              "max": 7.999943039416723
+            }
+          },
+          {
+            "case": 2,
+            "cycles": {
+              "samples": 64,
+              "mean": 66301.25,
+              "max": 95616
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.650794554929893,
+              "max": 5.999943039416723
+            }
+          },
+          {
+            "case": 3,
+            "cycles": {
+              "samples": 64,
+              "mean": 76948.5,
+              "max": 94336
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.9841278882632265,
+              "max": 8.999943039416724
+            }
+          },
+          {
+            "case": 4,
+            "cycles": {
+              "samples": 64,
+              "mean": 73967.0625,
+              "max": 101048
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.539683443818782,
+              "max": 5.999943039416723
+            }
+          },
+          {
+            "case": 5,
+            "cycles": {
+              "samples": 64,
+              "mean": 56937.125,
+              "max": 75004
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.4285723327076707,
+              "max": 8.999943039416724
+            }
+          },
+          {
+            "case": 6,
+            "cycles": {
+              "samples": 64,
+              "mean": 86382.4375,
+              "max": 132264
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.761905666041004,
+              "max": 5.999943039416723
+            }
+          },
+          {
+            "case": 7,
+            "cycles": {
+              "samples": 64,
+              "mean": 70764.1875,
+              "max": 94440
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 2.4761913803267186,
+              "max": 5.999943039416723
+            }
+          },
+          {
+            "case": 8,
+            "cycles": {
+              "samples": 64,
+              "mean": 38199.3125,
+              "max": 49096
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.1428571428571428,
+              "max": 4
+            }
+          }
+        ],
+        "publications": 576,
+        "peak": 64,
+        "dmaEndLines": [
+          0
+        ]
+      },
+      {
+        "variant": "after",
+        "mode": "CGB",
+        "sha256": "aa385e38f8d55fc446b76859abde065645d1b38381e32dfcb9f0721a56df4547",
+        "cases": [
+          {
+            "case": 0,
+            "cycles": {
+              "samples": 64,
+              "mean": 59141.625,
+              "max": 85964
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.0793650793650795,
+              "max": 3.008230804283436
+            }
+          },
+          {
+            "case": 1,
+            "cycles": {
+              "samples": 64,
+              "mean": 62501.875,
+              "max": 84260
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.126984126984127,
+              "max": 4.007775119617225
+            }
+          },
+          {
+            "case": 2,
+            "cycles": {
+              "samples": 64,
+              "mean": 58165.125,
+              "max": 83508
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.0952380952380951,
+              "max": 3.008230804283436
+            }
+          },
+          {
+            "case": 3,
+            "cycles": {
+              "samples": 64,
+              "mean": 69263.5625,
+              "max": 86372
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.142763112687925,
+              "max": 4.006863750284803
+            }
+          },
+          {
+            "case": 4,
+            "cycles": {
+              "samples": 64,
+              "mean": 72103.9375,
+              "max": 99244
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.095325344385495,
+              "max": 3
+            }
+          },
+          {
+            "case": 5,
+            "cycles": {
+              "samples": 64,
+              "mean": 53314.25,
+              "max": 67304
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.1428571428571428,
+              "max": 4
+            }
+          },
+          {
+            "case": 6,
+            "cycles": {
+              "samples": 64,
+              "mean": 82963,
+              "max": 125568
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.2698557360211498,
+              "max": 3.000455684666211
+            }
+          },
+          {
+            "case": 7,
+            "cycles": {
+              "samples": 64,
+              "mean": 68222.25,
+              "max": 92672
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.095245328328035,
+              "max": 3.000455684666211
+            }
+          },
+          {
+            "case": 8,
+            "cycles": {
+              "samples": 64,
+              "mean": 38135.1875,
+              "max": 48120
+            },
+            "frames": {
+              "samples": 63,
+              "mean": 1.0476190476190477,
+              "max": 2
+            }
+          }
+        ],
+        "publications": 576,
+        "peak": 64,
+        "dmaEndLines": [
+          148,
+          149,
+          150
+        ]
+      }
+    ]
+  },
+  "gameplay": [
+    {
+      "variant": "baseline",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\bg-registers\\gameplay\\baseline\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "33439f4a725793825c48e7b2f8fe222a0c94412147a5b491ef22c97d3c0474cc",
+      "sha256": "0f577e53ec6b0bf9234353838e6db8dfaf27020d47b7709e51c96ef9d31a4766",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 51769.00900900901,
+          "meanDisplayFrames": 2.6542634996582555,
+          "updatesPerSecond": 22.50247573674961,
+          "p95": 3.000911369332422,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 49853.565565565565,
+          "meanDisplayFrames": 1.0799726589200116,
+          "updatesPerSecond": 55.304640822785615,
+          "p95": 2.000427204374573,
+          "hash": "d6d758baed1c6245efee11313c34828d2450e9cfaf12c589a160eb7238285177"
+        }
+      ]
+    },
+    {
+      "variant": "current",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\bg-registers\\gameplay\\current\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "33439f4a725793825c48e7b2f8fe222a0c94412147a5b491ef22c97d3c0474cc",
+      "sha256": "76fd5501d56ba40334ef996d28a57551675cc5157502c5778241ce96531cc02a",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 47656.78478478479,
+          "meanDisplayFrames": 2.389490772385538,
+          "updatesPerSecond": 24.995911551636294,
+          "p95": 3.000911369332422,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 45455.65965965966,
+          "meanDisplayFrames": 1.0663362952836482,
+          "updatesPerSecond": 56.01187942694226,
+          "p95": 2.000427204374573,
+          "hash": "d6d758baed1c6245efee11313c34828d2450e9cfaf12c589a160eb7238285177"
+        }
+      ]
+    }
+  ],
+  "nativeGameplay": {
+    "emulator": "BGB 1.6.6",
+    "fixture": true,
+    "input": "Start, stationary; no shots or RAM writes",
+    "results": [
+      {
+        "variant": "baseline",
+        "mode": "DMG",
+        "sha256": "0f577e53ec6b0bf9234353838e6db8dfaf27020d47b7709e51c96ef9d31a4766",
+        "samples": 880,
+        "peak": 40,
+        "meanDisplayFrames": 2.681818181818181,
+        "updatesPerSecond": 22.271271186440682,
+        "maxDisplayFrames": 3.001537935748462,
+        "stateHash": "e86859db09587480bcfdec3049a4d95bda2a43b4ab5c86c0787ddf385548c8d8"
+      },
+      {
+        "variant": "baseline",
+        "mode": "CGB",
+        "sha256": "0f577e53ec6b0bf9234353838e6db8dfaf27020d47b7709e51c96ef9d31a4766",
+        "samples": 880,
+        "peak": 40,
+        "meanDisplayFrames": 1.0818192174651509,
+        "updatesPerSecond": 55.210241263738716,
+        "maxDisplayFrames": 2.00549669628617,
+        "stateHash": "e86859db09587480bcfdec3049a4d95bda2a43b4ab5c86c0787ddf385548c8d8"
+      },
+      {
+        "variant": "current",
+        "mode": "DMG",
+        "sha256": "76fd5501d56ba40334ef996d28a57551675cc5157502c5778241ce96531cc02a",
+        "samples": 880,
+        "peak": 40,
+        "meanDisplayFrames": 2.4340909090909086,
+        "updatesPerSecond": 24.53790849673203,
+        "maxDisplayFrames": 3.001537935748462,
+        "stateHash": "e86859db09587480bcfdec3049a4d95bda2a43b4ab5c86c0787ddf385548c8d8"
+      },
+      {
+        "variant": "current",
+        "mode": "CGB",
+        "sha256": "76fd5501d56ba40334ef996d28a57551675cc5157502c5778241ce96531cc02a",
+        "samples": 880,
+        "peak": 40,
+        "meanDisplayFrames": 1.075001035646969,
+        "updatesPerSecond": 55.56041158979362,
+        "maxDisplayFrames": 2.00549669628617,
+        "stateHash": "e86859db09587480bcfdec3049a4d95bda2a43b4ab5c86c0787ddf385548c8d8"
+      }
+    ]
+  },
+  "limitations": [
+    "Synthetic 40-shot boss workload; not a complete Touhou campaign performance guarantee.",
+    "Kernel CPU savings do not imply an equal increase in game updates per second.",
+    "GBC remains below sustained 60 updates per second.",
+    "No physical hardware proof."
+  ]
+}

@@ -1,4 +1,6 @@
-/* Q8.8 motion and lifetime planes: one register save per traversal. */
+/* Q8.8 motion and lifetime planes: one register save per traversal.
+ * The private drawing entries take pixel coordinates in D/E. Only X needs
+ * temporary storage while the Y velocity uses both bytes of DE. */
 static void update_all(void) __naked {
     __asm
         push bc
@@ -57,7 +59,9 @@ static void update_all(void) __naked {
         ld a, (hl)
         adc d
         ld (hl), a
-        ld (_py), a
+        ld e, a
+        ld a, (_px)
+        ld d, a
         call _draw_xy
 005$:
         ld hl, #_slot
@@ -131,7 +135,9 @@ static void update_all_local(void) __naked {
         ld a, (hl)
         adc d
         ld (hl), a
-        ld (_py), a
+        ld e, a
+        ld a, (_px)
+        ld d, a
         call _draw_local_xy
 005$:
         ld hl, #_slot

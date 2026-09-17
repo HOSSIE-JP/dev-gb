@@ -1,16 +1,26 @@
 {
-  "version": "0.26-reset-cutin",
-  "updatedAt": "2026-09-16T17:37:28.331Z",
+  "version": "0.29-bg-registers",
+  "updatedAt": "2026-09-17T06:37:53.723Z",
   "status": "awaiting-playtest",
   "approved": false,
   "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
-  "engineRevision": "33844f6a13874b901891ee96a7511976dffe7356",
+  "engineRevision": "e22cc52dfeeb18061bfe1d92fbd218bc5b3cab58",
   "rom": {
-    "path": "build/Release/touhou-kouma-v26.gb",
-    "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+    "path": "build/Release/touhou-kouma-v29.gb",
+    "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
     "bytes": 2097152
   },
   "previous": [
+    {
+      "version": "0.26-reset-cutin",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v26.gb",
+        "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+        "bytes": 2097152
+      },
+      "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
+      "validation": "touhou-kouma-design/qa-v26.json"
+    },
     {
       "version": "0.25-display-restore",
       "rom": {
@@ -205,76 +215,13 @@
   "checks": {
     "standard": 141,
     "failed": 0,
+    "skipped": 0,
     "doctorWarnings": 0,
-    "resetCutin": [
-      {
-        "mode": "DMG",
-        "resets": [
-          "boss battle",
-          "paused gameplay",
-          "cutin"
-        ],
-        "rankingPreserved": true,
-        "heldChordConsumed": true,
-        "partialChordDoesNotReset": true,
-        "volumes": [
-          2,
-          5,
-          4,
-          3,
-          7,
-          6,
-          9,
-          8,
-          10,
-          1,
-          0
-        ],
-        "audioSamples": 147840
-      },
-      {
-        "mode": "CGB",
-        "resets": [
-          "boss battle",
-          "paused gameplay",
-          "cutin"
-        ],
-        "rankingPreserved": true,
-        "heldChordConsumed": true,
-        "partialChordDoesNotReset": true,
-        "volumes": [
-          5,
-          4,
-          3,
-          2,
-          7,
-          6,
-          9,
-          8,
-          10,
-          1,
-          0
-        ],
-        "audioSamples": 147842
-      }
-    ],
-    "native": [
-      {
-        "mode": "DMG",
-        "gameplay": true,
-        "rebootLogos": true,
-        "title": true,
-        "hardwareModePreserved": true
-      },
-      {
-        "mode": "CGB",
-        "gameplay": true,
-        "rebootLogos": true,
-        "title": true,
-        "hardwareModePreserved": true
-      }
-    ],
-    "display": [
+    "kernelParityPublications": 1152,
+    "kernelNativeParity": true,
+    "vblankDmaPassed": true,
+    "gameplayParityUpdates": 2000,
+    "productionDisplay": [
       {
         "mode": "DMG",
         "roadSamples": 3313,
@@ -322,340 +269,323 @@
         "cutin": true
       }
     ],
-    "movie": {
-      "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+    "productionNative": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
+      "frameCount": 30000,
       "results": [
         {
           "mode": "DMG",
-          "displayVBlanks": 217,
-          "frames": 36,
-          "overruns": 0,
-          "pcmBlocks": 926,
-          "pixelParity": 36,
-          "titleMusic": true,
-          "normalStart": true,
-          "audioRate": 44100,
-          "audioChannels": 2
+          "scenes": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              7,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              12,
+              4,
+              0
+            ],
+            [
+              15,
+              4,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              1,
+              6,
+              1
+            ]
+          ],
+          "displayModeRestored": true,
+          "gameplaySamples": 11657,
+          "bossSamples": 818
         },
         {
           "mode": "CGB",
-          "displayVBlanks": 217,
-          "frames": 36,
-          "overruns": 0,
-          "pcmBlocks": 926,
-          "pixelParity": 36,
-          "titleMusic": true,
-          "normalStart": true,
-          "audioRate": 44100,
-          "audioChannels": 2
+          "scenes": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              7,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              8,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              7,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              8,
+              2,
+              1
+            ],
+            [
+              7,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              4,
+              2,
+              0
+            ],
+            [
+              12,
+              2,
+              0
+            ],
+            [
+              15,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              7,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              1,
+              0
+            ],
+            [
+              12,
+              1,
+              0
+            ],
+            [
+              15,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "displayModeRestored": true,
+          "gameplaySamples": 16577,
+          "bossSamples": 3543
         }
       ]
     },
-    "layout": [
-      {
-        "boss": "rumia",
-        "phase": "rumia-phase-1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "闇符「宵闇の二灯」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "rumia",
-        "phase": "rumia-phase-2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "夜符「月隠れのリボン」",
-            "x": 4,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "rumia",
-        "phase": "rumia-phase-3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "闇夜「三つの月道」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "meiling",
-        "phase": "meiling-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "花符「五枚の花扇」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "meiling",
-        "phase": "meiling-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "華符「門番の構え」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "meiling",
-        "phase": "meiling-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "彩符「花びらの追撃」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "patchouli",
-        "phase": "patchouli-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "書符「三角の頁」",
-            "x": 6,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "patchouli",
-        "phase": "patchouli-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "月符「交わる星図」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "patchouli",
-        "phase": "patchouli-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "秘符「三重の魔導書」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "sakuya",
-        "phase": "sakuya-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "銀符「秒針の列」",
-            "x": 6,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "sakuya",
-        "phase": "sakuya-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "時符「時差の銀針」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "sakuya",
-        "phase": "sakuya-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "幻符「時計の二重扇」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "remilia",
-        "phase": "remilia-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "夜符「六枚の翼と槍」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "remilia",
-        "phase": "remilia-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "紅符「夜潮の槍」",
-            "x": 6,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "remilia",
-        "phase": "remilia-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "月符「紅月の二重冠」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "flandre",
-        "phase": "flandre-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "遊符「七枚の結晶と追奏」",
-            "x": 4,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "flandre",
-        "phase": "flandre-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "禁符「五拍のかくれんぼ」",
-            "x": 4,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "flandre",
-        "phase": "flandre-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "星符「七枚と五枚の交奏」",
-            "x": 4,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "cirno",
-        "phase": "cirno-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "氷符「三列のつらら」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "cirno",
-        "phase": "cirno-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "雪符「交互の氷柱」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "cirno",
-        "phase": "cirno-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "凍符「氷柱の行進」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      }
-    ]
+    "nativeInitialAttempt": {
+      "frames": 22000,
+      "result": "Stopped in second ranking; third-logo assertion failed. ROM reached both bosses/cutins/rankings with correct LCDC. Extended the observation window to 30000 frames and reran without changing the ROM."
+    }
   },
   "pending": [
-    "User playtest of v0.26",
-    "Physical DMG/CGB hardware and human listening not verified",
-    "Emulicious DAP EvaluateRequest NullPointerException prevents execution verification"
+    "User playtest of v0.29",
+    "GBC full-frame gain is small: +0.63% native stationary / +1.28% moving fixture. Not sustained 60 updates/second.",
+    "No complete seven-stage performance guarantee or physical hardware/human audio verification.",
+    "Emulicious DAP EvaluateRequest NullPointerException; no execution proof."
   ],
-  "evidence": "../../docs/touhou-kouma-v26.md",
+  "evidence": "../../docs/stg-bg-register-performance.md",
   "engineWorkingTreeChanges": true,
-  "validation": "touhou-kouma-design/qa-v26.json",
+  "validation": "touhou-kouma-design/qa-v29.json",
   "approval": null,
   "promotion": {
     "path": "touhou-kouma-design/pv-v22/touhou-kouma-v22-pv.mp4",
@@ -663,5 +593,14 @@
     "manifest": "touhou-kouma-design/pv-v22/manifest.json",
     "voiceStatus": "provisional Windows narration",
     "sourceVersion": "0.22-character-animation"
+  },
+  "sourceHashes": {
+    "engine/caravan/bg-state-kernels.h": "807e3fcc7d930cc3f83056f941e941d1e73c7ea13439cf58d1dddb1f0fcceca4",
+    "engine/caravan/bg-update-kernel.h": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b",
+    "editor/tests/bg-registers.acceptance.mjs": "33adbe1a1a005784f842940c5abf4057cce5f726ddbb7107e48ea4f089b0cd83",
+    "editor/tests/bg-registers-native.acceptance.mjs": "698f70902ada92f0edbbc5f0ad12601219cd20a4d3a8b565b4b0ef3998088753",
+    "editor/tests/bg-local.acceptance.mjs": "e538cb4cb9e3153651f28cd85004556f5f1798e72a355917b7b7b83c85cb8746",
+    "editor/tests/bg-local-native.acceptance.mjs": "8f4dbc453571b90e7c6774019ba4713950651adf9ac4c1c8c02edeb5ea882ddd",
+    "editor/tests/display-restore-native.acceptance.mjs": "b3c51897cdbb0e405a6200c2646cd0f38f2c2938502a3a9cb3a4d68e376ba1eb"
   }
 }

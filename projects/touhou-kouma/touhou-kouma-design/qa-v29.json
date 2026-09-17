@@ -1,0 +1,402 @@
+{
+  "version": "0.29-bg-registers",
+  "date": "2026-09-17T06:37:53.723Z",
+  "baseCommit": "e22cc52dfeeb18061bfe1d92fbd218bc5b3cab58",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v29.gb",
+    "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
+    "bytes": 2097152
+  },
+  "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
+  "sourceHashes": {
+    "engine/caravan/bg-state-kernels.h": "807e3fcc7d930cc3f83056f941e941d1e73c7ea13439cf58d1dddb1f0fcceca4",
+    "engine/caravan/bg-update-kernel.h": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b",
+    "editor/tests/bg-registers.acceptance.mjs": "33adbe1a1a005784f842940c5abf4057cce5f726ddbb7107e48ea4f089b0cd83",
+    "editor/tests/bg-registers-native.acceptance.mjs": "698f70902ada92f0edbbc5f0ad12601219cd20a4d3a8b565b4b0ef3998088753",
+    "editor/tests/bg-local.acceptance.mjs": "e538cb4cb9e3153651f28cd85004556f5f1798e72a355917b7b7b83c85cb8746",
+    "editor/tests/bg-local-native.acceptance.mjs": "8f4dbc453571b90e7c6774019ba4713950651adf9ac4c1c8c02edeb5ea882ddd",
+    "editor/tests/display-restore-native.acceptance.mjs": "b3c51897cdbb0e405a6200c2646cd0f38f2c2938502a3a9cb3a4d68e376ba1eb"
+  },
+  "builds": {
+    "debugReleaseIdentical": true,
+    "touhouDebug": true,
+    "touhouRelease": true,
+    "helloCleanDebug": true,
+    "starDebug": true,
+    "starRelease": true,
+    "staticWramBytes": 7166,
+    "rom0FreeBytes": 77
+  },
+  "tests": {
+    "standard": 141,
+    "failed": 0,
+    "skipped": 0,
+    "doctorWarnings": 0,
+    "kernelParityPublications": 1152,
+    "kernelNativeParity": true,
+    "vblankDmaPassed": true,
+    "gameplayParityUpdates": 2000,
+    "productionDisplay": [
+      {
+        "mode": "DMG",
+        "roadSamples": 3313,
+        "bossSamples": 120,
+        "cameraPositions": 3251,
+        "residentAssets": [
+          "reimu",
+          "fairy",
+          "bat",
+          "book",
+          "shot-ofuda",
+          "shot-focus",
+          "shot-orb",
+          "shot-knife",
+          "shot-star",
+          "shot-diamond",
+          "burst",
+          "marisa",
+          "shot-marisa-laser"
+        ],
+        "movie": true,
+        "cutin": true
+      },
+      {
+        "mode": "CGB",
+        "roadSamples": 1723,
+        "bossSamples": 120,
+        "cameraPositions": 1661,
+        "residentAssets": [
+          "reimu",
+          "fairy",
+          "bat",
+          "book",
+          "shot-ofuda",
+          "shot-focus",
+          "shot-orb",
+          "shot-knife",
+          "shot-star",
+          "shot-diamond",
+          "burst",
+          "marisa",
+          "shot-marisa-laser"
+        ],
+        "movie": true,
+        "cutin": true
+      }
+    ],
+    "productionNative": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
+      "frameCount": 30000,
+      "results": [
+        {
+          "mode": "DMG",
+          "scenes": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              7,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              12,
+              4,
+              0
+            ],
+            [
+              15,
+              4,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              1,
+              6,
+              1
+            ]
+          ],
+          "displayModeRestored": true,
+          "gameplaySamples": 11657,
+          "bossSamples": 818
+        },
+        {
+          "mode": "CGB",
+          "scenes": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              7,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              8,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              7,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              8,
+              2,
+              1
+            ],
+            [
+              7,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              4,
+              2,
+              0
+            ],
+            [
+              12,
+              2,
+              0
+            ],
+            [
+              15,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              7,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1
+            ],
+            [
+              4,
+              1,
+              0
+            ],
+            [
+              12,
+              1,
+              0
+            ],
+            [
+              15,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "displayModeRestored": true,
+          "gameplaySamples": 16577,
+          "bossSamples": 3543
+        }
+      ]
+    },
+    "nativeInitialAttempt": {
+      "frames": 22000,
+      "result": "Stopped in second ranking; third-logo assertion failed. ROM reached both bosses/cutins/rankings with correct LCDC. Extended the observation window to 30000 frames and reran without changing the ROM."
+    }
+  },
+  "performanceReport": "../../../docs/stg-bg-register-performance.md",
+  "performanceData": "../../../docs/stg-bg-register-results.json",
+  "limitations": [
+    "GBC full-frame gain is small: +0.63% native stationary / +1.28% moving fixture. Not sustained 60 updates/second.",
+    "No complete seven-stage performance guarantee or physical hardware/human audio verification.",
+    "Emulicious DAP EvaluateRequest NullPointerException; no execution proof."
+  ]
+}
