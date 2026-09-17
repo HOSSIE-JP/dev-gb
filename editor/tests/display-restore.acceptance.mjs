@@ -11,11 +11,16 @@ fs.mkdirSync(out,{recursive:true});
 const rom=fs.readFileSync(file),syms=symbols(file.replace(/\.gb$/,'.map'));
 const game=lib.readGame(process.cwd(),'touhou-kouma'),layout=lib.spriteLayout(game);
 const color=lib.quantizeSpriteAssets(game),results=[];
-for(const [label,mode] of [['DMG',GameBoyMode.Dmg],['CGB',GameBoyMode.Cgb]]) {
+const dense=!!game.performance?.dense;
+function spriteBytes(a,pixels){
+ if(!dense)return lib.packTiles(a.width,a.height,pixels);
+ const result=[];for(let y=0;y<a.height;y+=16)for(let x=0;x<a.width;x+=8){const cell=[];for(let j=0;j<16;j++)for(let i=0;i<8;i++)cell.push(y+j<a.height?pixels[(y+j)*a.width+x+i]:0);result.push(...lib.packTiles(8,16,cell));}return result;
+}
+for(const [label,mode] of (rom[0x143]===0xC0?[['CGB',GameBoyMode.Cgb]]:[['DMG',GameBoyMode.Dmg],['CGB',GameBoyMode.Cgb]])) {
  const gb=boot(rom,mode),cameras=new Set();let road=0,boss=0,cutin=false,labels,movie=false;
  const expected=game.assets.filter(a=>a.kind==='sprite'&&!layout.overlay.has(a.id)).map(a=>({
   id:a.id,offset:layout.offsets.get(a.id)*16,
-  bytes:Buffer.from(a.frames.flatMap(f=>lib.packTiles(a.width,a.height,mode===GameBoyMode.Cgb?color.frames.get(a.id+'/'+f.id).pixels:f.pixels)))
+  bytes:Buffer.from(a.frames.flatMap(f=>spriteBytes(a,mode===GameBoyMode.Cgb?color.frames.get(a.id+'/'+f.id).pixels:f.pixels)))
  }));
  try {
   for(let frame=0;frame<24000;frame++) {
@@ -26,15 +31,15 @@ for(const [label,mode] of [['DMG',GameBoyMode.Dmg],['CGB',GameBoyMode.Cgb]]) {
    const t=settledTrace(gb,syms._ce_trace);m=memory(gb);
    if(!t||t.scene!==1||b('_ce_scene')!==1||b('_ce_fade_level')||t.tick<30)continue;
    assert.equal(m.io[0x40]&0x50,0x40,'signed BG tiles and independent Window map restored');
-   const battle=b('_ce_battle_mode'),base=battle>=2?0:0x800;
+   const battle=b('_ce_battle_mode'),roadBg=dense&&game.stages.find(s=>s.id===game.stageOrder[t.stage])?.bgBullets&&!battle,base=battle>=2||roadBg?0:0x800;
    const start=m.state.readUInt32LE(m.core+0xa4),vram=m.state.subarray(start,start+8192);
    for(const a of expected)assert.deepEqual(vram.subarray(base+a.offset,base+a.offset+a.bytes.length),a.bytes,`${label} ${battle?'boss':'road'} sprite ${a.id}`);
    if(!battle) {
-    assert.equal(m.io[0x4a],0);assert.equal(m.io[0x4b],7);
+    if(!roadBg){assert.equal(m.io[0x4a],0);assert.equal(m.io[0x4b],7);}else {assert.equal(m.io[0x42],0);assert.equal(m.io[0x43],0);}
     // Compare Window map + glyph bytes; sprites may legitimately overlap the HUD.
     const pixels=[];
     for(const cell of [0,7,10,13,14]) {
-     const tile=vram[0x1c00+cell];pixels.push(tile);
+     const tile=vram[(roadBg?(m.io[0x40]&8?0x1c00:0x1800):0x1c00)+cell];pixels.push(tile);
      const address=tile<128?0x1000+tile*16:tile*16;
      pixels.push(...vram.subarray(address,address+16));
     }

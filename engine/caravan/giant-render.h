@@ -7,7 +7,7 @@ void ce_giant_hud(uint8_t x, uint8_t y, uint8_t count, const uint8_t *data) BANK
     }
 }
 void ce_giant_setup(void) BANKED {
-    uint8_t i, row, page; uint16_t address;
+    uint8_t i, row, page; uint16_t address;CE_BG_ENTER;
     ce_get_giant(&giant); ce_get_screen(&screen, 4);
     hud_tiles = screen.tile_count; giant_first = hud_tiles + giant.count;
     top = ce_hud_bottom ? 0 : ce_hud_height; bottom = ce_hud_bottom ? 144u - ce_hud_height : 144u;
@@ -19,8 +19,8 @@ void ce_giant_setup(void) BANKED {
     }
     for (page = 0; page != 2u; ++page) for (row = 0; row != 32u; ++row) {
         address = (page ? 0x9c00u : 0x9800u) + (uint16_t)row * 32u;
-        ce_copy(map, &giant.map, (uint16_t)row * 32u, 32);
-        for (i = 0; i != 32u; ++i) set_vram_byte((uint8_t *)(address + i), map[i]);
+        ce_copy(bg_map, &giant.map, (uint16_t)row * 32u, 32);
+        for (i = 0; i != 32u; ++i) set_vram_byte((uint8_t *)(address + i), bg_map[i]);
         if (ce_is_cgb) {
             VBK_REG = 1;
             for (i = 0; i != 32u; ++i) set_vram_byte((uint8_t *)(address + i), row >= 24u && row < 26u ? screen.palette : giant.palette);
@@ -33,11 +33,12 @@ void ce_giant_setup(void) BANKED {
     giant_counts[0] = giant_counts[1] = ce_bg_map_front = 0;
     ce_giant_x = ce_giant_y = giant_next_x = giant_next_y = 0;
     ce_bg_tile_drops = 0; ce_bg_peak_tiles = giant_first; HIDE_WIN;
-    LCDC_REG &= ~8u; ce_bg_begin();
+    memset(GIANT_INDEX, 255, sizeof(GIANT_INDEX));
+    LCDC_REG &= ~8u; ce_bg_begin();CE_BG_LEAVE;
 }
 void ce_giant_position(CE_Entity *e) BANKED {
     int16_t x = (int16_t)giant.ox * 16, y = (int16_t)giant.oy * 16;
-    /* Keep the HUD's two reserved map rows outside the scrolling playfield,
+    /* Keep the HUD's two reserved bg_map rows outside the scrolling playfield,
      * and prevent the 256px torus from exposing a duplicate of the boss. */
     if (e->x < x - 1024) e->x = x - 1024;
     if (e->x > x + 1024) e->x = x + 1024;
@@ -52,10 +53,11 @@ void ce_giant_flush(void) BANKED {
         giant_next_x = giant.ox - ce_entities[i].x / 16;
         giant_next_y = giant.oy - ce_entities[i].y / 16; break;
     }
+    CE_BG_ENTER;
     /* Restore the hidden page's previous patches, never the visible page. */
     for (i = 0; i != giant_counts[back]; ++i)
         set_vram_byte((uint8_t *)(address + GIANT_OLD[offset + i]), GIANT_BASE[offset + i]);
-    /* Only changed map cells are transferred; image tiles stay resident in VRAM. */
+    /* Only changed bg_map cells are transferred; image tiles stay resident in VRAM. */
     if (giant_frames[back] != giant_frame) {
         for (i = 0; i != giant.change_count; ++i) {
             ce_copy(tile_buffer, &giant.changes, (uint16_t)i * 2u, 2);
@@ -64,13 +66,16 @@ void ce_giant_flush(void) BANKED {
         }
         giant_frames[back] = giant_frame;
     }
+    /* Sparse clear uses the most recently published cell list. The hidden
+     * page's restoration list remains separate, including across animation. */
+    for (i = 0; i != giant_counts[ce_bg_map_front]; ++i) GIANT_INDEX[GIANT_CELLS[i]] = 255u;
     for (i = 0; i != ce_bg_limit; ++i) if (ce_bg_life[i]) {
         x = ((uint16_t)ce_bg_x[i] >> 8) + giant_next_x;
         y = ((uint16_t)ce_bg_y[i] >> 8) + giant_next_y;
         cell = (uint16_t)(y >> 3) * 32u + (x >> 3);
         mask = 1u << (((y & 6u) << 1) | ((x & 6u) >> 1));
-        for (j = 0; j != count && GIANT_CELLS[j] != cell; ++j) {}
-        if (j == count) { GIANT_CELLS[count] = cell; GIANT_MASKS[count++] = 0; }
+        j = GIANT_INDEX[cell];
+        if (j == 255u) { j = count; GIANT_INDEX[cell] = j; GIANT_CELLS[count] = cell; GIANT_MASKS[count++] = 0; }
         GIANT_MASKS[j] |= mask;
     }
     for (i = 0; i != count; ++i) {
@@ -82,12 +87,14 @@ void ce_giant_flush(void) BANKED {
             tile_buffer[row] |= bits; tile_buffer[row + 1u] |= bits;
             tile_buffer[row + 2u] |= bits; tile_buffer[row + 3u] |= bits;
         }
-        tile = giant_first + offset + i; set_bkg_data(tile, 1, tile_buffer);
+        tile = giant_first + offset + i;
+        set_bkg_data(tile, 1, tile_buffer);
         set_vram_byte((uint8_t *)(address + cell), tile);
         GIANT_OLD[offset + i] = cell; GIANT_BASE[offset + i] = base;
     }
     giant_counts[back] = count;
     if (giant_first + 32u + count > ce_bg_peak_tiles) ce_bg_peak_tiles = giant_first + 32u + count;
+    CE_BG_LEAVE;
 }
 void ce_giant_publish(void) BANKED {
     ce_giant_x = giant_next_x; ce_giant_y = giant_next_y; ce_bg_map_front ^= 1u;

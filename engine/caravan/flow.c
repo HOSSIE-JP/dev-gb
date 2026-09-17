@@ -1,6 +1,14 @@
 #pragma bank 255
 #include "caravan.h"
 #include "music.h"
+#ifdef CE_DENSE
+#define CE_ACTOR_LINKAGE
+#define CE_ACTOR_BANK BANKED
+#define move_actor ce_move_actor
+#define step_actor ce_step_actor
+static uint16_t next_attack[CE_ACTOR_SLOTS * 4u];
+#include "actor-step.h"
+#endif
 static CE_Presentation presentation;
 void ce_spell_sound(void) BANKED {
     /* E-major rising shimmer, then a falling, quiet tail. CH2/3 stay with BGM. */
@@ -247,7 +255,7 @@ void ce_change_phase(CE_Entity *boss, uint8_t damage) BANKED {
     int16_t x = boss->x, y = boss->y;
     int16_t dx = (int16_t)actor->return_x * 16 - x, dy = (int16_t)actor->return_y * 16 - y;
     ce_boss_invulnerable = 1; ce_clear_combat(0); clear_effects();
-    if (ce_battle_mode == 2u) ce_bg_begin();
+    if (CE_BG_MONO) ce_bg_begin();
     ce_scene = 8; ce_hud();
     if (damage) {
         ce_transition_state = 1; explode(x, y); ce_sound(1);
@@ -287,7 +295,7 @@ void ce_celebrate_boss(void) BANKED {
     uint8_t i, wreck, burst = 0;
     uint16_t dropped = ce_state.dropped;
     for (i = 0; i != ce_used; ++i) release(i);
-    ce_used = 0; ce_bg_clear(); if (ce_battle_mode == 2u) ce_bg_begin();
+    ce_used = 0; ce_bg_clear(); if (CE_BG_MONO) ce_bg_begin();
     wreck = allocate(CE_BOSS, defeated_asset);
     if (wreck != CE_NONE) { ce_entities[wreck].x = defeated_x; ce_entities[wreck].y = defeated_y; }
     ce_music_play(ce_music_victory); ce_hud();

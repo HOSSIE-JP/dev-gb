@@ -7,21 +7,48 @@
 /* The SM83 kernels below consume these byte offsets (GBDK/SDCC, no padding). */
 typedef char ce_entity_layout_check[(sizeof(CE_Entity) == 25u && offsetof(CE_Entity, x) == 12u && offsetof(CE_Entity, vx) == 20u) ? 1 : -1];
 typedef char ce_hitbox_layout_check[(sizeof(CE_Hitbox) == 4u && sizeof(CE_Box) == 8u) ? 1 : -1];
-typedef char ce_shot_layout_check[(CE_MAX_ENTITIES <= 64u && sizeof(OAM_item_t) == 4u) ? 1 : -1];
+typedef char ce_shot_layout_check[(CE_SHOT_CAPACITY <= 64u && sizeof(OAM_item_t) == 4u) ? 1 : -1];
+#ifdef CE_CGB
+typedef char ce_cgb_actor_bank_check[(CE_MAX_ENTITIES*sizeof(CE_Entity)<=0x300u && 0xD320u+34u*CE_SHOT_CAPACITY<=0xE000u) ? 1 : -1];
+#endif
 
+#ifndef CE_CGB
 CE_Entity ce_entities[CE_MAX_ENTITIES];
+#endif
 CE_State ce_state;
 /* Title-screen time bindings are legal before the first gameplay reset. */
 const CE_Stage *ce_stage = ce_stages;
-int16_t ce_shot_x[CE_MAX_ENTITIES], ce_shot_y[CE_MAX_ENTITIES];
-int16_t ce_shot_vx[CE_MAX_ENTITIES], ce_shot_vy[CE_MAX_ENTITIES];
-uint16_t ce_shot_age[CE_MAX_ENTITIES], ce_shot_lifetime[CE_MAX_ENTITIES];
-int16_t ce_shot_px[CE_MAX_ENTITIES], ce_shot_py[CE_MAX_ENTITIES];
-OAM_item_t ce_shot_oam[CE_MAX_ENTITIES];
-uint8_t ce_shot_simple[CE_MAX_ENTITIES];
-static uint8_t shot_ox[CE_MAX_ENTITIES], shot_oy[CE_MAX_ENTITIES];
-static uint8_t shot_range_index[CE_MAX_ENTITIES];
-static uint8_t shot_frames[CE_MAX_ENTITIES], shot_frame[CE_MAX_ENTITIES], shot_left[CE_MAX_ENTITIES];
+#ifdef CE_CGB
+CE_Entity CE_AT(0xD000) ce_entities[CE_MAX_ENTITIES];
+#endif
+int16_t CE_AT(0xD300 + 0u * CE_SHOT_CAPACITY) ce_shot_x[CE_SHOT_CAPACITY];
+int16_t CE_AT(0xD300 + 2u * CE_SHOT_CAPACITY) ce_shot_y[CE_SHOT_CAPACITY];
+int16_t CE_AT(0xD300 + 4u * CE_SHOT_CAPACITY) ce_shot_vx[CE_SHOT_CAPACITY];
+int16_t CE_AT(0xD300 + 6u * CE_SHOT_CAPACITY) ce_shot_vy[CE_SHOT_CAPACITY];
+uint16_t CE_AT(0xD300 + 8u * CE_SHOT_CAPACITY) ce_shot_age[CE_SHOT_CAPACITY];
+uint16_t CE_AT(0xD300 + 10u * CE_SHOT_CAPACITY) ce_shot_lifetime[CE_SHOT_CAPACITY];
+int16_t CE_AT(0xD300 + 12u * CE_SHOT_CAPACITY) ce_shot_px[CE_SHOT_CAPACITY];
+int16_t CE_AT(0xD300 + 14u * CE_SHOT_CAPACITY) ce_shot_py[CE_SHOT_CAPACITY];
+OAM_item_t CE_AT(0xD300 + 16u * CE_SHOT_CAPACITY) ce_shot_oam[CE_SHOT_CAPACITY];
+uint8_t CE_AT(0xD300 + 20u * CE_SHOT_CAPACITY) ce_shot_simple[CE_SHOT_CAPACITY];
+static uint8_t CE_AT(0xD300 + 21u * CE_SHOT_CAPACITY) shot_ox[CE_SHOT_CAPACITY];
+static uint8_t CE_AT(0xD300 + 22u * CE_SHOT_CAPACITY) shot_oy[CE_SHOT_CAPACITY];
+static uint8_t CE_AT(0xD300 + 23u * CE_SHOT_CAPACITY) shot_range_index[CE_SHOT_CAPACITY];
+#ifdef CE_DENSE
+uint8_t CE_AT(0xD300 + 24u * CE_SHOT_CAPACITY) ce_shot_kind[CE_SHOT_CAPACITY];
+uint8_t CE_AT(0xD300 + 25u * CE_SHOT_CAPACITY) ce_shot_asset[CE_SHOT_CAPACITY];
+uint8_t CE_AT(0xD300 + 26u * CE_SHOT_CAPACITY) ce_shot_ref[CE_SHOT_CAPACITY];
+uint8_t CE_AT(0xD300 + 27u * CE_SHOT_CAPACITY) ce_shot_sequence[CE_SHOT_CAPACITY];
+uint8_t CE_AT(0xD300 + 28u * CE_SHOT_CAPACITY) ce_shot_damage[CE_SHOT_CAPACITY];
+uint8_t CE_AT(0xD300 + 29u * CE_SHOT_CAPACITY) ce_shot_visible[CE_SHOT_CAPACITY];
+uint8_t CE_AT(0xD300 + 30u * CE_SHOT_CAPACITY) ce_actor_visible[CE_MAX_ENTITIES];
+const uint8_t ce_dense_shot_capacity=CE_SHOT_CAPACITY;
+static uint8_t CE_AT(0xD320 + 30u * CE_SHOT_CAPACITY) shot_active[CE_SHOT_CAPACITY];
+static CE_Box dense_shot_box;
+#endif
+static uint8_t CE_AT(0xD320 + 31u * CE_SHOT_CAPACITY) shot_frames[CE_SHOT_CAPACITY];
+static uint8_t CE_AT(0xD320 + 32u * CE_SHOT_CAPACITY) shot_frame[CE_SHOT_CAPACITY];
+static uint8_t CE_AT(0xD320 + 33u * CE_SHOT_CAPACITY) shot_left[CE_SHOT_CAPACITY];
 static uint8_t shot_top, shot_bottom;
 uint8_t ce_is_cgb, ce_scene, ce_pause, ce_active_screen;
 uint8_t ce_used;
@@ -40,13 +67,17 @@ volatile uint8_t ce_trace[24];
 uint16_t event_cursor;
 CE_Event next_event;
 static uint8_t active[CE_MAX_ENTITIES];
-static uint16_t next_attack[CE_MAX_ENTITIES * 4u];
+#ifndef CE_DENSE
+static uint16_t next_attack[CE_ACTOR_SLOTS * 4u];
+#endif
 uint8_t ce_victory_frame;
 uint8_t defeated_asset;
 int16_t defeated_x, defeated_y;
+#if !defined(CE_DENSE) || defined(CE_CGB)
 static CE_Entity *targets[CE_MAX_ENEMIES + 1u];
 static CE_Box *target_boxes[CE_MAX_ENEMIES + 1u];
 static uint8_t target_count, target_slots[CE_MAX_ENEMIES + 1u];
+#endif
 static CE_Box boxes[CE_MAX_ENTITIES], player_box;
 static CE_Entity player_collision_pose;
 static CE_Box *box_a, *box_b;
@@ -68,13 +99,13 @@ static void prepare_player_ranges(void) {
 static void box(CE_Box *b, const CE_Entity *e);
 static void prepare_shot(uint8_t slot);
 void ce_init_shot_visual(uint8_t slot) NONBANKED {
-    const CE_Asset *a = &ce_assets[ce_entities[slot].asset];
+    const CE_Asset *a = &ce_assets[SHOT_ASSET(slot)];
     shot_ox[slot] = 8u - a->ox; shot_oy[slot] = 16u - a->oy;
     ce_shot_oam[slot].tile = a->first_tile;
     ce_shot_oam[slot].prop = ce_is_cgb ? a->palette : 0u;
-    if (ce_is_cgb && ce_color_sprites) ce_shot_oam[slot].prop = ce_color_asset_attrs[ce_entities[slot].asset][0];
+    if (ce_is_cgb && ce_color_sprites) ce_shot_oam[slot].prop = ce_color_asset_attrs[SHOT_ASSET(slot)][0];
     ce_shot_simple[slot] = a->tiles == 1u;
-    shot_range_index[slot] = ce_entities[slot].asset * 4u;
+    shot_range_index[slot] = SHOT_ASSET(slot) * 4u;
     shot_frames[slot] = a->tiles == 1u ? a->frames : 1u;
     shot_frame[slot] = 0; shot_left[slot] = a->durations[0];
     prepare_shot(slot);
@@ -88,10 +119,10 @@ static void advance_shot_animation(uint8_t slot) {
         frame = shot_frame[slot] + 1u;
         if (frame == shot_frames[slot]) frame = 0;
     } else frame = 0;
-    a = &ce_assets[ce_entities[slot].asset];
+    a = &ce_assets[SHOT_ASSET(slot)];
     shot_frame[slot] = frame; shot_left[slot] = a->durations[frame];
-    ce_shot_oam[slot].tile = a->first_tile + frame;
-    if (ce_is_cgb && ce_color_sprites) ce_shot_oam[slot].prop = ce_color_asset_attrs[ce_entities[slot].asset][frame];
+    ce_shot_oam[slot].tile = a->first_tile + frame * CE_SPRITE_STRIDE;
+    if (ce_is_cgb && ce_color_sprites) ce_shot_oam[slot].prop = ce_color_asset_attrs[SHOT_ASSET(slot)][frame * CE_SPRITE_STRIDE];
 }
 void ce_count_frame(void) NONBANKED {
     if ((ce_scene == 1u || ce_scene == 8u) && ce_battle_mode == 3u) {
@@ -100,7 +131,7 @@ void ce_count_frame(void) NONBANKED {
         SCY_REG = ce_hud_bottom ? ce_giant_y : 192u; return;
     }
     LYC_REG = ce_hud_height;
-    if ((ce_scene == 1u || ce_scene == 8u) && ce_battle_mode != 2u) SHOW_WIN;
+    if ((ce_scene == 1u || ce_scene == 8u) && !CE_BG_MONO) SHOW_WIN;
 }
 /* A top-docked Window otherwise covers the entire playfield. */
 void ce_hud_scanline(void) NONBANKED {
@@ -117,6 +148,7 @@ void ce_copy(uint8_t *dest, const CE_Data *source, uint16_t offset, uint16_t len
     memcpy(dest, data + offset, length);
     SWITCH_ROM(bank);
 }
+
 uint8_t ce_read(const CE_Data *source, uint16_t offset) NONBANKED {
     uint8_t value, bank = CURRENT_BANK, source_bank = source->bank;
     const uint8_t *data = source->data;
@@ -141,6 +173,11 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     ce_bomb_latch=1;
     ce_battle_mode = 0; ce_battle_asset = CE_NONE; ce_boss_invulnerable = 0; ce_transition_state = 0; ce_bg_clear();
     memset(ce_entities, 0, sizeof(ce_entities));
+#ifdef CE_DENSE
+    memset(ce_shot_kind, 0, sizeof(ce_shot_kind));
+    memset(ce_shot_visible, 0, sizeof(ce_shot_visible));
+    memset(ce_actor_visible, 0, sizeof(ce_actor_visible));
+#endif
     ce_used = 0; memset(ce_pool_counts, 0, sizeof(ce_pool_counts));
     memset(free_slots, 255, sizeof(free_slots));
     free_slots[CE_FREE_GROUPS - 1u] = (CE_MAX_ENTITIES & 7u) ? (1u << (CE_MAX_ENTITIES & 7u)) - 1u : 255u;
@@ -158,6 +195,17 @@ void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED {
     ce_music_play(ce_stages[stage].music);
 }
 uint8_t allocate(uint8_t kind, uint8_t asset) {
+#ifdef CE_DENSE
+    uint8_t slot, end, first; CE_Entity *e;
+    if (ce_pool_counts[kind] >= ce_entity_limits[kind]) {++ce_state.dropped;return CE_NONE;}
+    first = kind==CE_ENEMY||kind==CE_BOSS?0u:kind==CE_FX?13u:17u;
+    end = kind==CE_ENEMY||kind==CE_BOSS?13u:kind==CE_FX?17u:21u;
+    for(slot=first;slot<end&&ce_entities[slot].kind;++slot){}
+    if(slot==end){++ce_state.dropped;return CE_NONE;}
+    e=&ce_entities[slot];memset(e,0,sizeof(*e));e->kind=kind;e->asset=asset;
+    ce_actor_visible[slot]=0;ce_bomb_hits[slot>>3]&=~(1u<<(slot&7u));
+    ++ce_pool_counts[kind];if(slot>=ce_used)ce_used=slot+1u;return slot;
+#else
     uint8_t group, bit = 1u, slot, reserve = kind == CE_ITEM ? 0u : ce_entity_limits[CE_ITEM] - ce_pool_counts[CE_ITEM]; CE_Entity *e;
     /* Ordinary one-at-a-time allocation keeps the original short path. The
      * free bitmap enforces entity capacity; only atomic volleys need preflight. */
@@ -176,17 +224,37 @@ uint8_t allocate(uint8_t kind, uint8_t asset) {
     ++ce_pool_counts[kind]; ce_pool_oam += ce_assets[asset].tiles;
     if (slot >= ce_used) ce_used = slot + 1u;
     return slot;
+#endif
 }
 void release(uint8_t slot) {
     CE_Entity *e = &ce_entities[slot];
     if (!e->kind) return;
-    --ce_pool_counts[e->kind]; ce_pool_oam -= ce_assets[e->asset].tiles;
+    --ce_pool_counts[e->kind];
+#ifndef CE_DENSE
+    ce_pool_oam -= ce_assets[e->asset].tiles;
+#endif
     e->kind = 0; active[slot] = 0;
     free_slots[slot >> 3] |= 1u << (slot & 7u);
 }
+#ifdef CE_DENSE
+uint8_t ce_allocate_shot(uint8_t kind,uint8_t asset) NONBANKED {
+    uint8_t slot=kind==CE_PSHOT?0u:CE_MAX_PSHOTS, end=kind==CE_PSHOT?CE_MAX_PSHOTS:CE_SHOT_CAPACITY;
+    if(ce_pool_counts[kind]>=ce_entity_limits[kind]){++ce_state.dropped;return CE_NONE;}
+    for(;slot<end&&ce_shot_kind[slot];++slot){}
+    if(slot==end){++ce_state.dropped;return CE_NONE;}
+    ce_shot_kind[slot]=kind;ce_shot_asset[slot]=asset;ce_shot_visible[slot]=0;++ce_pool_counts[kind];return slot;
+}
+void ce_release_shot(uint8_t slot) NONBANKED {
+    if(ce_shot_kind[slot])--ce_pool_counts[ce_shot_kind[slot]];
+    ce_shot_kind[slot]=0;shot_active[slot]=0;ce_shot_visible[slot]=0;
+}
+#endif
 void ce_clear_combat(uint8_t all) NONBANKED {
     uint8_t i;
     for (i = 0; i != ce_used; ++i) if (all || ce_entities[i].kind == CE_PSHOT || ce_entities[i].kind == CE_ESHOT) release(i);
+#ifdef CE_DENSE
+    for(i=0;i!=CE_SHOT_CAPACITY;++i)ce_release_shot(i);
+#endif
     ce_bg_clear();
 }
 void explode(int16_t x, int16_t y) {
@@ -401,12 +469,14 @@ static uint8_t overlap(void) __naked {
     __endasm;
 }
 #include "shot-kernels.h"
-static void move_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) {
-    if (!m->kind) {
-        if (age) { e->x += m->vx; e->y += m->vy; }
-        else { e->x = e->base_x; e->y = e->base_y; }
-    } else ce_move_complex(e, m, age);
-}
+#ifdef CE_DENSE
+#define move_actor ce_move_actor
+#define step_actor ce_step_actor
+#else
+#define CE_ACTOR_LINKAGE static
+#define CE_ACTOR_BANK
+#include "actor-step.h"
+#endif
 static void step_player(uint8_t input) {
     uint8_t top = ce_hud_bottom ? 0u : ce_hud_height;
     uint8_t mode = !ce_bomb_button && (input & J_B) && ce_player_focus_weapon != CE_NONE;
@@ -437,48 +507,6 @@ static void step_player(uint8_t input) {
     }
     if (ce_state.invulnerable) --ce_state.invulnerable;
 }
-static void step_actor(CE_Entity *e, uint8_t slot) {
-    static uint16_t *schedule;
-    static uint8_t k, pattern, primary, layer_count;
-    static uint16_t age, sequence; static const uint8_t *layers;
-    static const CE_Actor *actor; static const CE_Phase *phase; static const CE_Motion *motion; static const CE_Pattern *shot;
-            actor = e->kind == CE_BOSS ? &ce_bosses[e->ref] : &ce_enemies[e->ref];
-            motion = actor->motion; pattern = actor->pattern; age = e->age;
-            layers = actor->layer; layer_count = actor->layers;
-            if (e->kind == CE_BOSS) {
-                phase = &actor->phase[e->phase];
-                if (!ce_bomb_image && e->phase + 1u < actor->phases && (phase->until ? e->hp <= (phase->hp ? 0u : phase->threshold) : e->phase_age >= phase->threshold)) {
-                    if (phase->hp || actor->phase[e->phase + 1u].hp) ce_change_phase(e, phase->until);
-                    else {
-                        ++e->phase; e->phase_age = 0; e->sequence = 0; e->base_x = e->x; e->base_y = e->y;
-                        if (actor->phase[e->phase].intro_frames) ce_phase_intro(&actor->phase[e->phase]);
-                    }
-                }
-                phase = &actor->phase[e->phase]; motion = phase->motion; pattern = phase->pattern; age = e->phase_age;
-                layers = phase->layer; layer_count = phase->layers;
-            }
-            move_actor(e, motion, age);
-            if (e->kind == CE_BOSS && ce_battle_mode == 3u) ce_giant_position(e);
-            /* Unarmed formations need neither a deadline lookup nor an attack
-             * traversal. Preserve both age counters, including their wrap. */
-            if (pattern == CE_NONE && !layer_count) { ++e->age; ++e->phase_age; return; }
-            schedule = &next_attack[(uint16_t)slot << 2];
-            primary = pattern;
-            for (k = 0; k <= layer_count; ++k) {
-                pattern = k ? layers[k - 1u] : primary;
-                if (pattern == CE_NONE) continue;
-                shot = &ce_patterns[pattern];
-                /* Phase entry and 16-bit age wrap restart the same authored schedule.
-                 * Overflowed deadlines stay below age until that reset. */
-                if (!age) schedule[k] = shot->delay;
-                if (age >= shot->delay && age == schedule[k]) {
-                    schedule[k] += shot->interval;
-                    sequence = (age - shot->delay) / shot->interval;
-                    if (!shot->repeats || sequence < shot->repeats) ce_shoot(pattern, e->asset, e->x, e->y, 0, sequence);
-                }
-            }
-            ++e->age; ++e->phase_age;
-}
 static uint8_t step_slot, step_count, step_walls;
 static CE_Entity *step_entity;
 static void step_nonbullet(uint8_t slot) {
@@ -492,6 +520,9 @@ static void step_nonbullet(uint8_t slot) {
     else { step_actor(e, slot); box(&boxes[slot], e); }
     if ((uint16_t)(e->x + 512) > 3584u || (uint16_t)(e->y + 512) > 3328u) release(slot);
 }
+#ifdef CE_DENSE
+#include "dense-shots.h"
+#else
 static void step_shot_box(uint8_t slot) {
     static CE_Box *b;
     b = &boxes[slot]; box_out = b; shot_box(slot);
@@ -625,9 +656,15 @@ static void collide_shots(void) {
         }
     }
 }
+#endif
 static void collide_player(void) {
     static uint8_t i, hit; static CE_Entity *e;
     if (ce_respawn) return;
+#ifdef CE_CGB
+    /* Invulnerable bodies cannot change state. Items and sprite bullets still
+     * require overlap checks (pickup / bullet retirement), even while immune. */
+    if((ce_state.invulnerable || ce_bomb_image) && !ce_pool_counts[CE_ITEM] && !ce_pool_counts[CE_ESHOT])return;
+#endif
     player_collision_pose.asset = ce_player_asset; player_collision_pose.x = ce_state.player_x; player_collision_pose.y = ce_state.player_y;
     box(&player_box, &player_collision_pose); box_a = &player_box;
     player_delta_x = 128 - ce_state.player_x / 16;
@@ -635,11 +672,17 @@ static void collide_player(void) {
     if (!ce_battle_mode && (ce_stage->has_walls || ce_stage->object_count) && ce_terrain_collision(box_a, 0, 0)) ce_hit_player();
     for (i = 0, e = ce_entities; i != ce_used; ++i, ++e) {
         if (!e->kind || e->kind == CE_PSHOT || e->kind == CE_FX) continue;
+#ifdef CE_DENSE
+        if(!ce_actor_visible[i] && !(e->kind==CE_BOSS && ce_battle_mode==3u))continue;
+#endif
         if (e->kind == CE_ESHOT) hit = bullet_overlaps(i);
         else if (e->kind == CE_BOSS && ce_boss_bodies[e->ref].count) hit = ce_boss_contact(e, &player_box);
         else { if (e->kind == CE_ITEM) box(&boxes[i], e); box_b = &boxes[i]; hit = overlap(); }
         if (hit) { if (e->kind == CE_ITEM) ce_collect_item(i); else { ce_hit_player(); if (e->kind == CE_ESHOT) release(i); } }
     }
+#ifdef CE_DENSE
+    if(ce_pool_counts[CE_ESHOT])for(i=CE_MAX_PSHOTS;i!=CE_SHOT_CAPACITY;++i)if(ce_shot_kind[i] && ce_shot_visible[i] && bullet_overlaps(i)){ce_hit_player();ce_release_shot(i);}
+#endif
 }
 void ce_step(uint8_t input) NONBANKED {
     uint8_t finish, bomb_pressed; const CE_Stage *stage = ce_stage;
@@ -662,13 +705,16 @@ void ce_step(uint8_t input) NONBANKED {
     }
     step_walls = ce_battle_mode ? 0 : stage->has_walls | (stage->object_count ? 2u : 0u);
     if (ce_demo) ce_state.invulnerable = 2;
-    step_player(input); if (ce_battle_mode >= 2u && !ce_bomb_image) ce_bg_update();
+    step_player(input); if (CE_BG_ACTIVE && !ce_bomb_image) ce_bg_update();
     finish = ce_stage_events(); step_walls = ce_battle_mode ? 0 : stage->has_walls | (stage->object_count ? 2u : 0u);
     finish |= deferred_finish; deferred_finish = 0;
     if (ce_bomb_image) { deferred_finish = finish; finish = 0; }
     if(ce_pool_counts[CE_ESHOT])steer_sprite_shots();
     step_entities();
     if (ce_bomb_live && ce_bomb_left) ce_bomb_sweep();
+#ifdef CE_DENSE
+    ce_dense_plan();
+#endif
     collide_shots(); collide_player();
     if (ce_bg_hit) ce_hit_player();
     if (!ce_bomb_image && ce_state.boss_defeated && ce_battle_mode && !stage->clear_boss) {
@@ -695,6 +741,9 @@ void ce_trace_write(void) NONBANKED {
     uint8_t i, count = 0, hp = 0, phase = 0; CE_Entity *e = ce_entities;
     ce_trace[22] = 1; /* Diagnostic seqlock: host ignores an incomplete snapshot. */
     for (i = ce_used; i; --i, ++e) { if (e->kind) ++count; if (e->kind == CE_BOSS) { hp = e->hp; phase = e->phase; } }
+#ifdef CE_DENSE
+    count+=ce_pool_counts[CE_PSHOT]+ce_pool_counts[CE_ESHOT];
+#endif
     ce_trace[0] = 'C'; ce_trace[1] = 'E'; ce_trace[2] = ce_state.tick; ce_trace[3] = ce_state.tick >> 8;
     ce_trace[4] = ce_state.stage; ce_trace[5] = ce_state.score; ce_trace[6] = ce_state.score >> 8;
     ce_trace[7] = ce_state.lives; ce_trace[8] = ce_state.player_x; ce_trace[9] = ce_state.player_x >> 8;

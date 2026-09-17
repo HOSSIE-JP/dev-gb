@@ -20,7 +20,7 @@ assert.ok(["both", "DMG", "CGB"].includes(modeFilter), "mode must be both, DMG o
 const rom = fs.readFileSync(romPath),
     stem = romPath.replace(/\.gb$/, "");
 const syms = symbols(stem + ".map"),
-    cdb = fs.readFileSync(stem + ".cdb", "utf8");
+    cdb = fs.existsSync(stem + ".cdb") ? fs.readFileSync(stem + ".cdb", "utf8") : "";
 const ranges = [];
 for (const m of cdb.matchAll(
     /^L:((?:F[^$]+|G)\$([^$]+)\$0\$0):([0-9a-f]+)$/gim,
@@ -47,7 +47,7 @@ for (let i = 0; i < ranges.length; i++)
                 : ranges[i].start;
     }
 assert.ok(
-    ranges.some((r) => r.name === "ce_step"),
+    !cdb || ranges.some((r) => r.name === "ce_step"),
     "linked C function ranges required",
 );
 const byAddress = new Map();
@@ -91,6 +91,7 @@ function bankOf(state) {
     return lo + (hi << 8);
 }
 const results = {
+    attribution: cdb ? "C debug ranges and linker symbols" : "linker symbols only; static functions may be unnamed",
     rom: romPath,
     romSha256: crypto.createHash("sha256").update(rom).digest("hex"),
     method: "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
@@ -120,6 +121,9 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             n < 600 && memory(gb).ram[syms._ce_scene - 0xc000] !== 1;
             n++
         ) {
+            if (memory(gb).ram[syms._ce_scene - 0xc000] === 0) {
+                gb.key_press(PadKey.Start);frames(gb,3);gb.key_lift(PadKey.Start);
+            }
             if (memory(gb).ram[syms._ce_scene - 0xc000] === 10) {
                 gb.key_press(PadKey.A); frames(gb, 3); gb.key_lift(PadKey.A);
             }

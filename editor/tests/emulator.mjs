@@ -99,6 +99,7 @@ export function entityState(gb, symbolsOrAddress, game, capacity = 39) {
     const { ram } = memory(gb),
         assets = game.assets.filter((a) => a.kind === "sprite"),
         result = [];
+    if(syms?._ce_shot_kind)capacity=21;
     for (let slot = 0; slot < capacity; slot++) {
         const p = address - 0xc000 + slot * 25,
             kind = ram[p];
@@ -117,6 +118,14 @@ export function entityState(gb, symbolsOrAddress, game, capacity = 39) {
             vx: coordinate('vx', 20),
             vy: coordinate('vy', 22),
         });
+    }
+    if(syms?._ce_shot_kind){
+        const capacity=(game.performance?.playerShots??6)+(game.performance?.enemyShots??32);
+        for(let i=0;i<capacity;i++){
+            const kind=ram[syms._ce_shot_kind-0xc000+i];if(!kind)continue;
+            const value=(name)=>ram.readInt16LE(syms['_ce_shot_'+name]-0xc000+i*2);
+            result.push({slot:21+i,kind:kind===3?'pshot':'eshot',asset:assets[ram[syms._ce_shot_asset-0xc000+i]].id,hp:1,phase:0,age:value('age')&65535,x:value('x'),y:value('y'),vx:value('vx'),vy:value('vy')});
+        }
     }
     return result;
 }
@@ -145,26 +154,32 @@ export function assertPublishedOam(gb, syms, game, mode) {
     const hud=game.screens.find(s=>s.id==='hud'),height=(hud.rows??2)*8,bottom=hud.dock==='bottom';
     const battle=syms._ce_battle_mode?ram[syms._ce_battle_mode-0xc000]:0;
     const stage=game.stages.find(s=>s.id===game.stageOrder[ram[state+18]])??game.stages[ram[state+18]], horizontal=stage?.scrollAxis==='horizontal';
+    const dense=!!syms._ce_shot_kind,road=dense&&stage?.bgBullets&&!battle;
     const camera=ram.readUInt16LE(state+4)>>4;
-    assert.equal(io[0x42],battle?0:((horizontal?0:camera)-(bottom?0:height))&255);
-    assert.equal(io[0x43],!battle&&horizontal?camera&255:0);
+    assert.equal(io[0x42],battle||road?0:((horizontal?0:camera)-(bottom?0:height))&255);
+    assert.equal(io[0x43],!battle&&!road&&horizontal?camera&255:0);
+    if(dense)assert.ok(io[0x40]&4,'8x16 OBJ mode');
     const assets=new Map(),layout=spriteLayout(game);
-    for(const a of game.assets.filter(a=>a.kind==='sprite'))assets.set(a.id,{...a,first:(battle===2?0:128)+layout.offsets.get(a.id)});
+    for(const a of game.assets.filter(a=>a.kind==='sprite'))assets.set(a.id,{...a,first:(battle>=2||road?0:128)+layout.offsets.get(a.id)});
     let slot=0;
     const draw=(id,x,y,age)=>{
         const a=assets.get(id);let time=age%a.frames.reduce((n,f)=>n+f.duration,0),frame=0;
         while(frame+1<a.frames.length&&time>=a.frames[frame].duration){time-=a.frames[frame].duration;frame++;}
-        let tile=a.first+frame*a.width*a.height/64;
-        for(let row=0;row<a.height/8;row++)for(let col=0;col<a.width/8;col++){
-            const sx=(Math.trunc(x/16)-a.origin.x+8+col*8)&255,sy=(Math.trunc(y/16)-a.origin.y+16+row*8)&255;
+        const cellHeight=dense?16:8,stride=dense?2:1;
+        let tile=a.first+frame*a.width/8*Math.ceil(a.height/cellHeight)*stride;
+        for(let row=0;row<Math.ceil(a.height/cellHeight);row++)for(let col=0;col<a.width/8;col++){
+            const sx=(Math.trunc(x/16)-a.origin.x+8+col*8)&255,sy=(Math.trunc(y/16)-a.origin.y+16+row*cellHeight)&255;
             const visible=((sx-1)&255)<167&&sy>=(bottom?9:height+9)&&sy<(bottom?160-height:160);
-            assert.deepEqual([...oam.subarray(slot*4,slot*4+4)],[visible?sy:0,sx,tile++&255,mode===GameBoyMode.Cgb?a.palette:0],`metasprite tile ${slot}`);slot++;
+            assert.deepEqual([...oam.subarray(slot*4,slot*4+4)],[visible?sy:0,sx,tile&255,mode===GameBoyMode.Cgb?a.palette:0],`metasprite tile ${slot}`);tile+=stride;slot++;
         }
     };
     const immune=ram.readUInt16LE(state+8),wait=ram.readUInt16LE(syms._ce_respawn-0xc000);
     if(!wait&&(!immune||!(immune&4)))draw(game.player.asset,ram.readInt16LE(state+14),ram.readInt16LE(state+16),ram.readUInt16LE(state));
-    const capacity=(syms._ce_state-syms._ce_entities)/25;
+    const capacity=dense?21:(syms._ce_state-syms._ce_entities)/25;
     assert.ok(Number.isInteger(capacity)&&capacity>0&&capacity<=39,'linked entity pool layout');
-    for(const e of entityState(gb,syms,game,capacity))draw(e.asset,e.x,e.y,e.age);
+    for(const e of entityState(gb,syms,game,capacity)){
+        if(dense && !ram[(e.slot<21?syms._ce_actor_visible+e.slot:syms._ce_shot_visible+e.slot-21)-0xc000])continue;
+        draw(e.asset,e.x,e.y,e.age);
+    }
     for(;slot<40;slot++)assert.equal(oam[slot*4],0,'unused OAM tail stays hidden');
 }

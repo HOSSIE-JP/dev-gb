@@ -259,6 +259,15 @@ export function saveGame(
         safePath(dir, "assets-src/game.json"),
         Buffer.from(JSON.stringify(clean, null, 2) + "\n"),
     );
+    const definitionPath=safePath(dir,"project.json");
+    if(fs.existsSync(definitionPath)) {
+        const definition=JSON.parse(fs.readFileSync(definitionPath,"utf8"));
+        if(definition.editor?.type==="caravan") {
+            definition.cgbCompatibility=game.hardware==="gbc"?"gbc":"dual";
+            definition.lccFlags=[...(definition.lccFlags??[]).filter((v:string)=>v!=="-Wm-yc"&&v!=="-Wm-yC"),game.hardware==="gbc"?"-Wm-yC":"-Wm-yc"];
+            files.set(definitionPath,Buffer.from(JSON.stringify(definition,null,2)+"\n"));
+        }
+    }
     const backups = new Map<string, Buffer | null>();
     const written: string[] = [];
     for (const [target, bytes] of files) {
@@ -416,11 +425,11 @@ export function createProject(
                     name,
                     title,
                     target: "gb",
-                    cgbCompatibility: "dual",
+                    cgbCompatibility: game.hardware==="gbc"?"gbc":"dual",
                     toolchain: "gbdk",
                     output: `${name}.gb`,
                     sources: ["generated/caravan_main.c"],
-                    lccFlags: ["-Wm-yc"],
+                    lccFlags: [game.hardware==="gbc"?"-Wm-yC":"-Wm-yc"],
                     editor: { type: "caravan", source: "assets-src/game.json" },
                 },
                 null,

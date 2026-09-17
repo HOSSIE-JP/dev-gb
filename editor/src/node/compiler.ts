@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import {quantizeColorTiles, quantizeSpriteAssets} from "../shared/color";
 import { numericGlyphs } from "../shared/numeric-font";
+import { gbcBarrageDictionary } from "../shared/gbc-barrage";
 import path from "node:path";
 import zlib from "node:zlib";
 import crypto from "node:crypto";
@@ -206,6 +207,15 @@ export function generate(
         config.push(`static const CE_Data ${name}[] = {${refs.join(",")}};`);
         return name;
     }
+    if(game.hardware === "gbc") {
+        const dictionary=gbcBarrageDictionary(), refs=[];
+        if(dictionary.masks.length!==181)throw new Error("GBC barrage dictionary size");
+        for(let start=0;start<dictionary.lookup.length;start+=16384)
+            refs.push(blob(dictionary.lookup.slice(start,start+16384)));
+        config.push(`const CE_Data ce_cgb_dictionary=${blob(dictionary.tiles)};`,
+            `const CE_Data ce_cgb_lookup[8]={${refs}};`,
+            `const uint8_t ce_cgb_singleton[32]={${Array.from({length:16},(_,i)=>Array.from(dictionary.lookup.slice((1<<i)*2,(1<<i)*2+2))).flat()}};`);
+    }
     const converted = new Map<string, number[]>();
     for (const asset of game.assets)
         for (const frame of asset.frames) {
@@ -279,7 +289,7 @@ export function generate(
         assetRows: string[] = [];
     spriteAssets.forEach((a, i) => {
         const first = 128 + layout.offsets.get(a.id)!,
-            tileCount = (a.width * a.height) / 64;
+            tileCount = game.performance?.dense ? a.width / 8 * Math.ceil(a.height / 16) : (a.width * a.height) / 64;
         config.push(
             `static const uint8_t asset_${i}_durations[] = {${a.frames.map((f) => f.duration)}};`,
         );
@@ -295,9 +305,20 @@ export function generate(
         assetRows.push(
             `{${[a.width, a.height, a.origin.x, a.origin.y, a.palette, first, tileCount, a.frames.length, duration, animationShift]},asset_${i}_durations,${emitters.length},asset_${i}_emitters}`,
         );
-        const data = a.frames.flatMap(f => converted.get(f.image)!);
-        const colorData=a.frames.flatMap(f=>packTiles(a.width,a.height,spriteColor.frames.get(a.id+"/"+f.id)!.pixels));
-        config.push(`static const uint8_t asset_${i}_color_attrs[]={${a.frames.flatMap(f=>spriteColor.frames.get(a.id+"/"+f.id)!.attributes)}};`);
+        // 8x16 hardware cells require adjacent top/bottom tiles, including a
+        // transparent bottom tile for source images with an odd tile height.
+        const paired = (bytes:number[], size:number) => {
+            if(!game.performance?.dense)return bytes;
+            const result:number[]=[];
+            for(let y=0;y<a.height/8;y+=2)for(let x=0;x<a.width/8;x++)for(let dy=0;dy<2;dy++){
+                const start=((y+dy)*a.width/8+x)*size;
+                result.push(...(y+dy<a.height/8?bytes.slice(start,start+size):Array(size).fill(0)));
+            }
+            return result;
+        };
+        const data = a.frames.flatMap(f => paired(converted.get(f.image)!,16));
+        const colorData=a.frames.flatMap(f=>paired(packTiles(a.width,a.height,spriteColor.frames.get(a.id+"/"+f.id)!.pixels),16));
+        config.push(`static const uint8_t asset_${i}_color_attrs[]={${a.frames.flatMap(f=>paired(spriteColor.frames.get(a.id+"/"+f.id)!.attributes,1))}};`);
         if(layout.overlay.has(a.id))colorBossGraphics.push(blob(colorData));
         else {colorSpriteData.splice((first-128)*16,colorData.length,...colorData);colorBossGraphics.push("{0,0,0}");}
         if (layout.overlay.has(a.id)) bossGraphics.push(blob(data));
@@ -753,6 +774,7 @@ export function generate(
     });
     config.push(
         `const CE_Stage ce_stages[]={${stageRows}};`,
+        `const uint8_t ce_stage_bg[]={${ordered.map(s=>s.bgBullets?(s.bgBulletLimit??40):0)}};`,
         `const uint8_t ce_stage_count=${game.mode === "campaign" ? game.stageOrder.length : ordered.length};`,
     );
     const color = (hex: string) => {
@@ -823,7 +845,7 @@ export function generate(
 export function verifyRom(rom: Buffer) {
     if (rom.length < 32768 || (rom.length & (rom.length - 1)) !== 0)
         throw new Error("ROM容量が不正です");
-    if (rom[0x143] !== 0x80) throw new Error("DMG/CGB共通ROMではありません");
+    if (rom[0x143] !== 0x80 && rom[0x143] !== 0xc0) throw new Error("GB/CGB ROMヘッダーが不正です");
     let checksum = 0;
     for (let i = 0x134; i <= 0x14c; i++)
         checksum = (checksum - rom[i] - 1) & 255;
@@ -883,11 +905,11 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "mainloop.c", "flow.c", "movie.c", "special.c", "terrain.c", "items.c", "bg-bullets.c", "render.c", "music.c", "save.c"]
+        const inputs = ["runtime.c", ...(game.hardware === "gbc" ? ["gbc-barrage.c"] : []), ...(game.performance?.dense ? ["dense.c", "sprites.c"] : []), "mainloop.c", "flow.c", "movie.c", "special.c", "terrain.c", "items.c", "bg-bullets.c", "render.c", "music.c", "save.c"]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [
-            "-Wm-yc",
+            game.hardware === "gbc" ? "-Wm-yC" : "-Wm-yc",
             "-Wf--opt-code-speed",
             "-Wf--max-allocs-per-node50000",
             "-Wl-yt0x1B",
@@ -898,6 +920,8 @@ export function compile(
             "-Wl-j",
             "-Wl-w",
             `-I${relative(engine)}`,
+            ...(game.hardware === "gbc" ? ["-DCE_CGB=1","-Wl-g.STACK=0xD000"] : []),
+            ...(game.performance?.dense ? ["-DCE_DENSE=1", `-DCE_MAX_PSHOTS=${game.performance.playerShots}`, `-DCE_SHOT_CAPACITY=${game.performance.playerShots+game.performance.enemyShots}`] : []),
             ...(configuration === "Debug" ? ["-debug"] : []),
             "-o",
             `${name}.gb`,
@@ -916,20 +940,25 @@ export function compile(
         // Release uses compact symbol columns. Area rows are stable in both modes.
         const areas = [
             ...mapText.matchAll(
-                /^(_DATA|_INITIALIZED|_BSS)\s+[\da-fA-F]+\s+([\da-fA-F]+)\s*=/gm,
+                /^(_DATA|_INITIALIZED|_BSS)\s+([\da-fA-F]+)\s+([\da-fA-F]+)\s*=/gm,
             ),
         ];
         if (!areas.some((m) => m[1] === "_DATA"))
             throw new Error("リンクマップからWRAM容量を取得できません");
         // Long debug symbol tables repeat area headers on subsequent map pages.
         const uniqueAreas = [...new Map(areas.map(m => [m[0].replace(/\s+/g, " "), m])).values()];
-        const ram = uniqueAreas.reduce((n, m) => n + parseInt(m[2], 16), 0);
-        if (ram + 160 > 7168)
+        const ram = uniqueAreas.reduce((n, m) => n + parseInt(m[3], 16), 0);
+        if(game.hardware === "gbc") {
+            if(!/\.STACK=0xD000/i.test(mapText) || uniqueAreas.some(m=>parseInt(m[2],16)<0xC0A0 || parseInt(m[2],16)+parseInt(m[3],16)>0xCC00))
+                throw new Error("GBC固定WRAMとスタックの配置が不正です");
+            if(rom[0x143]!==0xC0)throw new Error("GBC専用ヘッダーが不正です");
+        }
+        if (ram + 160 > (game.hardware === "gbc" ? 3072 : 7168))
             throw new Error(
-                `WRAM予算超過: ${ram + 160} bytes / 7168（スタック用1024 bytesを確保）`,
+                `WRAM予算超過: ${ram + 160} bytes / ${game.hardware === "gbc" ? 3072 : 7168}（スタック用1024 bytesを確保）`,
             );
         log(
-            `[INFO] WRAM static + shadow OAM: ${ram + 160} / 8192 bytes; stack reserve >= 1024 bytes\n`,
+            `[INFO] WRAM static + shadow OAM: ${ram + 160} / ${game.hardware==="gbc"?4096:8192} bytes; stack reserve >= 1024 bytes\n`,
         );
         const out = safePath(dir, "build", configuration);
         fs.mkdirSync(out, { recursive: true });
@@ -959,6 +988,7 @@ export function compile(
             romPath: finalPath,
             size,
             ramBytes: ram + 160,
+            ...(game.hardware==="gbc"?{wramBanks:{fixedBytes:ram+160,stackTop:0xD000,actorBank:1,actorBankEnd:0xD320+34*(game.performance!.playerShots+game.performance!.enemyShots),barrageBank:2,barrageBankEnd:0xDF80}}:{}),
             spriteTiles: report.spriteTiles,
             diagnostics: report.diagnostics,
             romHash: hash(rom),

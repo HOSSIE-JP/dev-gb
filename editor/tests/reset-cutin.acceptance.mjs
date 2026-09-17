@@ -5,7 +5,7 @@ import {capture} from './presentation-qa.mjs';
 const file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]),rom=fs.readFileSync(file),s=symbols(file.replace(/\.gb$/,'.map'));
 fs.mkdirSync(out,{recursive:true});const results=[];
 function wav(gb,samples,file){const b=Buffer.alloc(44+samples.length*2),channels=gb.audio_channels(),rate=gb.audio_sampling_rate();b.write('RIFF');b.writeUInt32LE(b.length-8,4);b.write('WAVEfmt ',8);b.writeUInt32LE(16,16);b.writeUInt16LE(1,20);b.writeUInt16LE(channels,22);b.writeUInt32LE(rate,24);b.writeUInt32LE(rate*channels*2,28);b.writeUInt16LE(channels*2,32);b.writeUInt16LE(16,34);b.write('data',36);b.writeUInt32LE(samples.length*2,40);samples.forEach((v,i)=>b.writeInt16LE(v,44+i*2));fs.writeFileSync(file,b);}
-for(const [label,mode] of [['DMG',GameBoyMode.Dmg],['CGB',GameBoyMode.Cgb]]){
+for(const [label,mode] of (rom[0x143]===0xC0?[['CGB',GameBoyMode.Cgb]]:[['DMG',GameBoyMode.Dmg],['CGB',GameBoyMode.Cgb]])){
  const gb=boot(rom,mode),audio=[],volumes=new Set();let captured=false;
  const read=()=>{const m=memory(gb),b=n=>m.ram[s[n]-0xc000];return {scene:b('_ce_scene'),tick:m.ram.readUInt16LE(s._ce_state-0xc000),fade:b('_ce_fade_level'),sound:b('_ce_spell_sound_left'),left:m.ram.readUInt16LE(s._ce_intro_left-0xc000),pause:b('_ce_pause'),color:b('_ce_is_cgb'),scores:Buffer.from(m.ram.subarray(s._ce_scores-0xc000,s._ce_scores-0xc000+10)),io:m.io};};
  const until=(f,max=24000)=>{for(let i=0;i<max;i++){frames(gb,1);const t=read();gb.audio_buffer_eager(true);if(f(t))return t;}throw Error(label+' route timeout');};

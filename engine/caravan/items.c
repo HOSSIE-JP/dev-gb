@@ -113,7 +113,11 @@ void ce_hit_player(void) BANKED {
         ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
         if (ce_respawn) {
             ce_state.cooldown = 0; ce_state.player_sequence = 0;
+#ifdef CE_DENSE
+            for(i=0;i!=CE_MAX_PSHOTS;++i)ce_release_shot(i);
+#else
             for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_PSHOT) release(i);
+#endif
         }
     }
 }

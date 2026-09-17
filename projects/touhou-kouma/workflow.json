@@ -1,16 +1,43 @@
 {
-  "version": "0.26-reset-cutin",
-  "updatedAt": "2026-09-16T17:37:28.331Z",
-  "status": "awaiting-playtest",
+  "version": "0.28-gbc-experimental",
+  "updatedAt": "2026-09-17T03:59:29.570Z",
+  "status": "paused",
   "approved": false,
-  "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
-  "engineRevision": "33844f6a13874b901891ee96a7511976dffe7356",
+  "projectRevision": "0d0fd420821ff9fb0477267bb972fc4462934b7df819bb389a29381a8b934ac6",
+  "engineRevision": "e22cc52dfeeb18061bfe1d92fbd218bc5b3cab58",
   "rom": {
-    "path": "build/Release/touhou-kouma-v26.gb",
-    "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+    "path": "build/Release/touhou-kouma-v28-gbc.gb",
+    "sha256": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
     "bytes": 2097152
   },
   "previous": [
+    {
+      "version": "0.27-measured-render",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v27.gb",
+        "sha256": "ce3ca55b0099090c62dedac5cd119051bc90b44b2155b34a5cf65aaa56b09128",
+        "bytes": 2097152
+      },
+      "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
+      "validation": "touhou-kouma-design/qa-v27.json",
+      "experimental": {
+        "path": "build/Release/touhou-kouma-v27-dense-experimental.gb",
+        "sha256": "fb56c7ca3ed391f9f78cd0d24e15d4b8e4f6b206f203136cac9c2c96e5445a81",
+        "bytes": 2097152,
+        "configuration": "touhou-kouma-design/dense-experimental.json",
+        "notDefaultReason": "Production road slowdown despite improved high-load rendering"
+      }
+    },
+    {
+      "version": "0.26-reset-cutin",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v26.gb",
+        "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+        "bytes": 2097152
+      },
+      "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
+      "validation": "touhou-kouma-design/qa-v26.json"
+    },
     {
       "version": "0.25-display-restore",
       "rom": {
@@ -203,459 +230,39 @@
     }
   ],
   "checks": {
-    "standard": 141,
-    "failed": 0,
+    "debugReleaseIdentical": true,
+    "touhouDebug": true,
+    "touhouRelease": true,
+    "helloCleanDebug": true,
+    "starDebug": true,
+    "starRelease": true,
     "doctorWarnings": 0,
-    "resetCutin": [
-      {
-        "mode": "DMG",
-        "resets": [
-          "boss battle",
-          "paused gameplay",
-          "cutin"
-        ],
-        "rankingPreserved": true,
-        "heldChordConsumed": true,
-        "partialChordDoesNotReset": true,
-        "volumes": [
-          2,
-          5,
-          4,
-          3,
-          7,
-          6,
-          9,
-          8,
-          10,
-          1,
-          0
-        ],
-        "audioSamples": 147840
-      },
-      {
-        "mode": "CGB",
-        "resets": [
-          "boss battle",
-          "paused gameplay",
-          "cutin"
-        ],
-        "rankingPreserved": true,
-        "heldChordConsumed": true,
-        "partialChordDoesNotReset": true,
-        "volumes": [
-          5,
-          4,
-          3,
-          2,
-          7,
-          6,
-          9,
-          8,
-          10,
-          1,
-          0
-        ],
-        "audioSamples": 147842
-      }
-    ],
-    "native": [
-      {
-        "mode": "DMG",
-        "gameplay": true,
-        "rebootLogos": true,
-        "title": true,
-        "hardwareModePreserved": true
-      },
-      {
-        "mode": "CGB",
-        "gameplay": true,
-        "rebootLogos": true,
-        "title": true,
-        "hardwareModePreserved": true
-      }
-    ],
-    "display": [
-      {
-        "mode": "DMG",
-        "roadSamples": 3313,
-        "bossSamples": 120,
-        "cameraPositions": 3251,
-        "residentAssets": [
-          "reimu",
-          "fairy",
-          "bat",
-          "book",
-          "shot-ofuda",
-          "shot-focus",
-          "shot-orb",
-          "shot-knife",
-          "shot-star",
-          "shot-diamond",
-          "burst",
-          "marisa",
-          "shot-marisa-laser"
-        ],
-        "movie": true,
-        "cutin": true
-      },
-      {
-        "mode": "CGB",
-        "roadSamples": 1723,
-        "bossSamples": 120,
-        "cameraPositions": 1661,
-        "residentAssets": [
-          "reimu",
-          "fairy",
-          "bat",
-          "book",
-          "shot-ofuda",
-          "shot-focus",
-          "shot-orb",
-          "shot-knife",
-          "shot-star",
-          "shot-diamond",
-          "burst",
-          "marisa",
-          "shot-marisa-laser"
-        ],
-        "movie": true,
-        "cutin": true
-      }
-    ],
-    "movie": {
-      "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
-      "results": [
-        {
-          "mode": "DMG",
-          "displayVBlanks": 217,
-          "frames": 36,
-          "overruns": 0,
-          "pcmBlocks": 926,
-          "pixelParity": 36,
-          "titleMusic": true,
-          "normalStart": true,
-          "audioRate": 44100,
-          "audioChannels": 2
-        },
-        {
-          "mode": "CGB",
-          "displayVBlanks": 217,
-          "frames": 36,
-          "overruns": 0,
-          "pcmBlocks": 926,
-          "pixelParity": 36,
-          "titleMusic": true,
-          "normalStart": true,
-          "audioRate": 44100,
-          "audioChannels": 2
-        }
-      ]
-    },
-    "layout": [
-      {
-        "boss": "rumia",
-        "phase": "rumia-phase-1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "闇符「宵闇の二灯」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "rumia",
-        "phase": "rumia-phase-2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "夜符「月隠れのリボン」",
-            "x": 4,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "rumia",
-        "phase": "rumia-phase-3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "闇夜「三つの月道」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "meiling",
-        "phase": "meiling-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "花符「五枚の花扇」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "meiling",
-        "phase": "meiling-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "華符「門番の構え」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "meiling",
-        "phase": "meiling-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "彩符「花びらの追撃」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "patchouli",
-        "phase": "patchouli-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "書符「三角の頁」",
-            "x": 6,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "patchouli",
-        "phase": "patchouli-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "月符「交わる星図」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "patchouli",
-        "phase": "patchouli-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "秘符「三重の魔導書」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "sakuya",
-        "phase": "sakuya-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "銀符「秒針の列」",
-            "x": 6,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "sakuya",
-        "phase": "sakuya-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "時符「時差の銀針」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "sakuya",
-        "phase": "sakuya-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "幻符「時計の二重扇」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "remilia",
-        "phase": "remilia-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "夜符「六枚の翼と槍」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "remilia",
-        "phase": "remilia-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "紅符「夜潮の槍」",
-            "x": 6,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "remilia",
-        "phase": "remilia-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "月符「紅月の二重冠」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "flandre",
-        "phase": "flandre-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "遊符「七枚の結晶と追奏」",
-            "x": 4,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "flandre",
-        "phase": "flandre-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "禁符「五拍のかくれんぼ」",
-            "x": 4,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "flandre",
-        "phase": "flandre-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "星符「七枚と五枚の交奏」",
-            "x": 4,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "cirno",
-        "phase": "cirno-p1",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "氷符「三列のつらら」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "cirno",
-        "phase": "cirno-p2",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "雪符「交互の氷柱」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      },
-      {
-        "boss": "cirno",
-        "phase": "cirno-p3",
-        "items": [
-          {
-            "id": "spell-1",
-            "text": "凍符「氷柱の行進」",
-            "x": 5,
-            "y": 16,
-            "palette": 0,
-            "binding": "none"
-          }
-        ]
-      }
-    ]
+    "testCount": 147,
+    "testFailures": 0,
+    "typecheck": true,
+    "editorSettings": true,
+    "CGB": true,
+    "DMGSupported": false,
+    "dmgDiagnostic": true,
+    "BGB": true,
+    "Emulicious": false,
+    "physicalHardware": false,
+    "humanListening": false,
+    "fullManualCampaign": false,
+    "fixedWramBytes": 2496
   },
   "pending": [
-    "User playtest of v0.26",
-    "Physical DMG/CGB hardware and human listening not verified",
-    "Emulicious DAP EvaluateRequest NullPointerException prevents execution verification"
+    "Performance acceptance is NOT met: no universal 60 updates/s and production Reimu road is slower than v27.",
+    "96-shot native BGB fixture: 21.5234 updates/s; Boytacean reports 26.4651. Use native timing for the conservative result.",
+    "Dense compound fields may take another VBlank to publish safely. Map and attributes are still transferred in full.",
+    "Emulicious EvaluateRequest throws NullPointerException; attachment is not execution verification.",
+    "Physical CGB, human listening, manual full-campaign clear and user playtest remain unverified.",
+    "8x16 OBJ uses shared palettes for tile pairs; original art retained, packing can differ from v27.",
+    "96 is a tested BG capacity, not the authored boss count; production caps remain 12/18/22/26/30/36/40."
   ],
-  "evidence": "../../docs/touhou-kouma-v26.md",
+  "evidence": "../../docs/stg-gbc-performance.md",
   "engineWorkingTreeChanges": true,
-  "validation": "touhou-kouma-design/qa-v26.json",
+  "validation": "touhou-kouma-design/qa-v28.json",
   "approval": null,
   "promotion": {
     "path": "touhou-kouma-design/pv-v22/touhou-kouma-v22-pv.mp4",
@@ -663,5 +270,17 @@
     "manifest": "touhou-kouma-design/pv-v22/manifest.json",
     "voiceStatus": "provisional Windows narration",
     "sourceVersion": "0.22-character-animation"
+  },
+  "experimental": {
+    "target": "GBC only",
+    "performanceAccepted": false,
+    "comparisonRom": "build/Release/touhou-kouma-v27.gb",
+    "reason": "GBC WRAM and BG dictionary trial; capacity expanded but the production speed target is unmet."
+  },
+  "hold": {
+    "branch": "codex/stg-performance-hold",
+    "baseMain": "e22cc52dfeeb18061bfe1d92fbd218bc5b3cab58",
+    "reason": "User requested parking v27/v28 after insufficient performance gains; continue other work on main.",
+    "record": "../../docs/stg-performance-hold.md"
   }
 }

@@ -132,6 +132,8 @@ export type Stage = {
     height: number;
     tiles: number[];
     walls: number[];
+    bgBullets?: boolean;
+    bgBulletLimit?: number;
     scrollSpeed: number;
     loopMap: boolean;
     duration: number;
@@ -170,6 +172,7 @@ export const hudHeight = (game: Game) => (game.screens.find(s => s.id === "hud")
 export type PlayerCharacter = { id: string; name: string; asset: string; speed: number; weapon: string; focusWeapon?: string; focusSpeed?: number; bombBackground?: string; bombStyle?: "orb" | "beam"; selectionBackground?: string; gameoverBackground?: string };
 export type Bomb = { enabled: boolean; stock: number; damage: number; frames: number; flashPeriod: number; background: string; button?: "a+b" | "b"; destroyBackground?: boolean; maxStock?: number; live?: boolean; presentation?: "palette" | "image" };
 export type Game = {
+    hardware?: "dual" | "gbc";
     schemaVersion: 1;
     name: string;
     title: string;
@@ -224,7 +227,7 @@ export type Game = {
     bossCelebration?: boolean;
     music?: { title: number; boss: number; clear: number; gameover: number; victory?: number };
     /** Optional admission caps. OAM 40 and the fixed pool remain hard limits. */
-    performance?: { enemies: number; playerShots: number; enemyShots: number; effects: number };
+    performance?: { enemies: number; playerShots: number; enemyShots: number; effects: number; dense?: boolean };
     effects: { explosion: string; duration: number };
     provenance: { author: string; license: string; source: string };
 };
@@ -419,6 +422,8 @@ export function validateShape(
                 height: "number",
                 tiles: ["number"],
                 walls: ["number"],
+                "bgBullets?": "boolean",
+                "bgBulletLimit?": "number",
                 scrollSpeed: "number",
                 loopMap: "boolean",
                 duration: "number",
@@ -504,7 +509,8 @@ export function validateShape(
         "timeLimit?": "boolean",
         "bossCelebration?": "boolean",
         "music?": { title: "number", boss: "number", clear: "number", gameover: "number", "victory?": "number" },
-        "performance?": { enemies: "number", playerShots: "number", enemyShots: "number", effects: "number" },
+        "hardware?": "string",
+        "performance?": { enemies: "number", playerShots: "number", enemyShots: "number", effects: "number", "dense?":"boolean" },
         effects: { explosion: "string", duration: "number" },
         provenance: { author: "string", license: "string", source: "string" },
     };
@@ -804,7 +810,7 @@ export function validate(value: unknown): Diagnostic[] {
         }
         if (b.battle) {
             if (!["stage", "blank", "bg-bullets", "bg-boss"].includes(b.battle.background)) err(b.id, "ボス背景モードが不正です");
-            integer(b.battle.maxBullets, 1, b.battle.background === "bg-boss" ? 32 : 64, b.id);
+            integer(b.battle.maxBullets, 1, b.battle.background === "bg-boss" ? 32 : game.hardware === "gbc" ? 96 : 64, b.id);
             if (b.battle.background === "bg-boss") {
                 const art = assets.get(b.battle.graphic ?? "");
                 if (!art || art.kind !== "screen" || art.width !== 160 || art.height !== 144) err(b.id, "巨大BGボスは160×144の画面画像を指定してください（原点が弱点位置）");
@@ -904,6 +910,8 @@ export function validate(value: unknown): Diagnostic[] {
     if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 37, "music");
     if (game.bossCelebration && game.music?.victory !== undefined && ![0, 6, 7, 8, 14, 15, 29].includes(game.music.victory))
         err("music", "撃破ファンファーレはループしない曲または無音を選択してください");
+    if (game.hardware !== undefined && !["dual", "gbc"].includes(game.hardware)) err("hardware", "対応機種が不正です");
+    if (game.hardware === "gbc" && !game.performance?.dense) err("hardware", "GBC専用では高密度モードを有効にしてください");
     if (game.performance) {
         integer(game.performance.enemies, 1, 12, "performance");
         integer(game.performance.playerShots, 1, 24, "performance");
@@ -993,6 +1001,8 @@ export function validate(value: unknown): Diagnostic[] {
         if (stage.music !== undefined) integer(stage.music, 0, 37, stage.id);
         if (stage.bossMusic !== undefined) integer(stage.bossMusic, 0, 37, stage.id);
         finite(stage.scrollSpeed, 0, 4, stage.id);
+        if(stage.bgBulletLimit!==undefined)integer(stage.bgBulletLimit,1,game.hardware==="gbc"?96:64,stage.id);
+        if(stage.bgBullets && (!game.performance?.dense || stage.walls.some(Boolean) || stage.destructibles?.objects.length))err(stage.id,"道中BG弾幕は高密度モード・障害物なしのステージ専用です");
         const presentation = stage.presentation;
         if (presentation) {
             if (presentation.dialoguePortrait) assetRef(presentation.dialoguePortrait, stage.id, "screen");
@@ -1191,7 +1201,7 @@ export function spriteLayout(game: Game) {
     let base = 0, size = 0;
     const offsets = new Map<string, number>();
     for (const a of assets) {
-        const n = a.width * a.height / 64 * a.frames.length;
+        const n = a.width / 8 * (game.performance?.dense ? Math.ceil(a.height / 16) * 2 : a.height / 8) * a.frames.length;
         if (overlay.has(a.id)) size = Math.max(size, n);
         else { offsets.set(a.id, base); base += n; }
     }

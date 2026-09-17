@@ -42,16 +42,24 @@ extern int16_t defeated_x,defeated_y;
 
 /* Only this bank's atomic volley path needs the complete admission check. */
 static uint8_t ce_can_allocate(uint8_t kind, uint8_t asset, uint8_t count) {
+#ifdef CE_DENSE
+    asset;
+    return (uint16_t)ce_pool_counts[kind]+count<=ce_entity_limits[kind];
+#else
     uint8_t i, total = 0, reserve = kind == CE_ITEM ? 0u : ce_entity_limits[CE_ITEM] - ce_pool_counts[CE_ITEM];
     if ((uint16_t)ce_pool_counts[kind] + count > ce_entity_limits[kind] ||
         (uint16_t)ce_pool_oam + (uint16_t)ce_assets[asset].tiles * count + reserve > 40u) return 0;
     for (i = 1; i != 7u; ++i) total += ce_pool_counts[i];
     return (uint16_t)total + count + reserve <= CE_MAX_ENTITIES;
+#endif
 }
 
 void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t friendly, uint8_t sequence) BANKED {
     const CE_Pattern *p; const CE_Asset *a; const int8_t *offsets; uint8_t emitter, n, base, angle, slot, emitters, origin;
-    int16_t px, py; CE_Entity *e;
+    int16_t px, py;
+#ifndef CE_DENSE
+    CE_Entity *e;
+#endif
     if (pattern == CE_NONE || (!friendly && ce_bomb_image)) return;
     p = &ce_patterns[pattern]; a = &ce_assets[source];
     origin=friendly?0:p->launch;emitters=origin?(origin==4u?2u:1u):(p->emitters?p->emitters:a->emitters);
@@ -78,18 +86,23 @@ void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t fri
         if (p->kind == 4u) base += sequence * p->rotation;
         for (n = 0; n != p->count; ++n) {
             angle = (base + p->angles[n]) & 15u;
-            if (!friendly && ce_battle_mode >= 2u) {
+            if (!friendly && CE_BG_ACTIVE) {
                 ce_bg_request.x = px; ce_bg_request.y = py;
                 ce_bg_request.vx = p->velocity[angle * 2u]; ce_bg_request.vy = p->velocity[angle * 2u + 1u];
                 ce_bg_request.life = p->lifetime; ce_bg_request.damage = p->damage;
                 ce_bg_request.pattern=p->kind==5u?pattern:CE_NONE;ce_bg_request.angle=angle;ce_bg_spawn(); continue;
             }
+#ifdef CE_DENSE
+            slot = ce_allocate_shot(friendly ? CE_PSHOT : CE_ESHOT, p->asset); if(slot==CE_NONE)continue;
+            ce_shot_ref[slot]=pattern;ce_shot_sequence[slot]=angle;ce_shot_damage[slot]=p->damage;
+#else
             slot = allocate(friendly ? CE_PSHOT : CE_ESHOT, p->asset); if (slot == CE_NONE) continue;
-            e = &ce_entities[slot]; e->ref = pattern; e->sequence=angle;
+            e = &ce_entities[slot]; e->ref = pattern; e->sequence=angle;e->hp=1;e->damage=p->damage;
+#endif
             ce_shot_x[slot] = px; ce_shot_y[slot] = py; ce_shot_age[slot] = 0;
             angle <<= 1;
             ce_shot_vx[slot] = p->velocity[angle]; ce_shot_vy[slot] = p->velocity[angle + 1u];
-            e->hp = 1; ce_shot_lifetime[slot] = p->lifetime; e->damage = p->damage;
+            ce_shot_lifetime[slot] = p->lifetime;
             ce_init_shot_visual(slot);
             /* Enemy shots collide against cached center intervals, including
              * newly spawned shots that will not move until the next update. */
@@ -110,7 +123,7 @@ void ce_damage_actor(uint8_t slot, uint8_t damage) BANKED {
         const CE_Phase *p=&actor->phase[target->phase];
         if(p->until && (p->hp || actor->phase[target->phase+1u].intro_frames) && target->hp <= (p->hp?0u:p->threshold)+damage){
             target->hp=p->hp?0u:p->threshold;ce_boss_invulnerable=1;ce_clear_combat(0);
-            if(ce_battle_mode>=2u)ce_bg_begin();ce_hud();return;
+            if(CE_BG_ACTIVE)ce_bg_begin();ce_hud();return;
         }
     }
     if(target->hp<=damage){
@@ -142,5 +155,5 @@ void ce_bomb_apply(void) BANKED {
     for(i=0;i!=CE_FREE_GROUPS;++i)ce_bomb_hits[i]=0;
     if (ce_bomb_background && !ce_battle_mode) ce_terrain_bomb();
     ce_bomb_sweep();
-    if(ce_battle_mode>=2u)ce_bg_begin();
+    if(CE_BG_ACTIVE)ce_bg_begin();
 }

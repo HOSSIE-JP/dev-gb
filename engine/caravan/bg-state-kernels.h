@@ -110,7 +110,11 @@ _bg_xy_plot:
         ld d, #0
         add hl, hl
         add hl, hl
+#ifdef CE_CGB
+        add hl, hl
+#else
         add hl, de
+#endif
         ld a, (_px)
         srl a
         srl a
@@ -122,11 +126,137 @@ _bg_xy_plot:
         ld (_cell_index), a
         ld a, h
         ld (_cell_index + 1), a
-        ; Empty cells need only a map entry. Defer the occupancy mask until a
+#ifdef CE_CGB
+        ; Raw occupancy: one direct mask address, no singleton/pair searches.
+        push hl
+        srl h
+        rr l
+        ld d, h
+        ld e, l
+        ld bc, #0xd980
+        add hl, bc
+        ld a, (hl)
+        or a
+        jr nz, _cgb_plot_existing
+        ld (hl), #1
+        ld a, (_ce_cgb_cells_count)
+        add a
+        ld l, a
+        ld h, #0
+        ld bc, #_ce_cgb_cells
+        add hl, bc
+        ld a, e
+        ld (hl+), a
+        ld (hl), d
+        ld hl, #_ce_cgb_cells_count
+        inc (hl)
+        pop hl
+        push hl
+        ld bc, #0xd500
+        add hl, bc
+        xor a
+        ld (hl+), a
+        ld (hl), a
+_cgb_plot_existing:
+        ld a, (_px)
+        and #6
+        srl a
+        ld d, a
+        ld a, (_py)
+        and #6
+        add a
+        or d
+        add a
+        ld l, a
+        ld h, #0
+        ld bc, #_bg_xy_050
+        add hl, bc
+        ld a, (hl+)
+        ld c, a
+        ld b, (hl)
+        pop hl
+        ld de, #0xd500
+        add hl, de
+        ld e, (hl)
+        inc hl
+        ld d, (hl)
+        ld a, d
+        and b
+        jr nz, _cgb_plot_done
+        ld a, e
+        and c
+        jr nz, _cgb_plot_done
+        ld a, d
+        or b
+        ld (hl-), a
+        ld a, e
+        or c
+        ld (hl), a
+        ld a, d
+        or e
+        jr nz, _cgb_plot_compound
+        ; A singleton needs no banked dictionary lookup during flush.
+        ld a, (_px)
+        and #6
+        srl a
+        ld d, a
+        ld a, (_py)
+        and #6
+        add a
+        or d
+        add a
+        ld l, a
+        ld h, #0
+        ld bc, #_ce_cgb_singleton
+        add hl, bc
+        ld a, (hl+)
+        ld e, a
+        ld d, (hl)
+        ld a, (_cell_index)
+        ld c, a
+        ld a, (_cell_index + 1)
+        ld b, a
+        srl b
+        rr c
+        ld hl, #0xd980
+        add hl, bc
+        ld (hl), e
+        ld hl, #0xdbc0
+        add hl, bc
+        ld (hl), d
+        ret
+_cgb_plot_compound:
+        ld a, (_cell_index)
+        ld c, a
+        ld a, (_cell_index + 1)
+        ld b, a
+        srl b
+        rr c
+        ld hl, #0xd980
+        add hl, bc
+        ld a, (hl)
+        cp #255
+        ret z
+        ld (hl), #255
+        ld a, (_ce_cgb_compounds_count)
+        add a
+        ld l, a
+        ld h, #0
+        ld de, #_ce_cgb_compounds
+        add hl, de
+        ld a, c
+        ld (hl+), a
+        ld (hl), b
+        ld hl, #_ce_cgb_compounds_count
+        inc (hl)
+_cgb_plot_done:
+        ret
+#else
+        ; Empty cells need only a bg_map entry. Defer the occupancy mask until a
         ; second distinct bullet actually touches the same tile.
         srl h
         rr l
-        ld bc, #_map
+        ld bc, #(_ce_render_workspace + 720)
         add hl, bc
         ld a, (_px)
         and #6
@@ -197,7 +327,7 @@ _bg_xy_008:
         ld l, a
         ld a, (_cell_index + 1)
         ld h, a
-        ld de, #_cells
+        ld de, #_ce_render_workspace
         add hl, de
         ld a, c
         ld (hl+), a
@@ -207,7 +337,7 @@ _bg_xy_009:
         ld l, a
         ld a, (_cell_index + 1)
         ld h, a
-        ld bc, #_cells
+        ld bc, #_ce_render_workspace
         add hl, bc
         push hl
         ld a, (_px)
@@ -259,7 +389,7 @@ _bg_xy_013:
         ld h, a
         srl h
         rr l
-        ld bc, #_map
+        ld bc, #(_ce_render_workspace + 720)
         add hl, bc
         pop af
         cp #255
@@ -285,6 +415,7 @@ _bg_xy_013:
 _bg_xy_014:
         ld (hl), a
         jr _bg_xy_031
+#endif
 _bg_xy_030:
         call _retire
 _bg_xy_031:

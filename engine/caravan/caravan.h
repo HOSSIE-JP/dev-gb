@@ -4,10 +4,42 @@
 #include <gb/cgb.h>
 #include <stdint.h>
 
+#ifdef CE_DENSE
+#define CE_SPRITE_STRIDE 2u
+#define CE_MAX_ENTITIES 21u
+#define CE_ACTOR_SLOTS 13u
+#else
+#define CE_SPRITE_STRIDE 1u
 #define CE_MAX_ENTITIES 39u
+#define CE_ACTOR_SLOTS CE_MAX_ENTITIES
+#define CE_SHOT_CAPACITY CE_MAX_ENTITIES
+#endif
+#ifdef CE_DENSE
+extern const uint8_t ce_stage_bg[];
+#define CE_ROAD_BG (!ce_battle_mode && ce_stage_bg[ce_state.stage])
+#define CE_BG_MONO (ce_battle_mode == 2u || CE_ROAD_BG)
+#define CE_BG_ACTIVE (ce_battle_mode >= 2u || CE_ROAD_BG)
+#else
+#define CE_ROAD_BG 0u
+#define CE_BG_MONO (ce_battle_mode == 2u)
+#define CE_BG_ACTIVE (ce_battle_mode >= 2u)
+#endif
 #define CE_MAX_ENEMIES 12u
 #define CE_MAX_ESHOTS 32u
+#ifdef CE_CGB
+#ifndef CE_DENSE
+#error GBC dedicated backend requires CE_DENSE
+#endif
+#define CE_MAX_BG_SHOTS 96u
+#define CE_AT(addr) __at(addr)
+#define CE_BG_ENTER uint8_t ce_saved_wram=SVBK_REG; SVBK_REG=2u
+#define CE_BG_LEAVE SVBK_REG=ce_saved_wram
+#else
 #define CE_MAX_BG_SHOTS 64u
+#define CE_AT(addr)
+#define CE_BG_ENTER
+#define CE_BG_LEAVE
+#endif
 #define CE_FREE_GROUPS ((CE_MAX_ENTITIES + 7u) / 8u)
 #define CE_NONE 255u
 #define CE_ENEMY 1u
@@ -20,6 +52,7 @@
 
 typedef struct { uint8_t bank; const uint8_t *data; uint16_t length; } CE_Data;
 typedef struct { CE_Data dmg, cgb, attributes, palettes; } CE_MovieFrame;
+extern uint8_t CE_AT(0xD500) ce_render_workspace[1080];
 extern const uint8_t ce_movie_count;
 void ce_get_movie_frame(CE_MovieFrame *dest, uint8_t index) BANKED;
 extern const CE_Data ce_movie_pcm;
@@ -144,7 +177,7 @@ extern const CE_Item ce_items[];
 extern const uint8_t ce_item_count, ce_power_weapons[], ce_power_speeds[];
 extern const uint8_t ce_power_weapon_count, ce_power_speed_count, ce_power_shot_miss, ce_power_speed_miss;
 extern const uint8_t ce_max_lives, ce_atomic_volleys, ce_bomb_button, ce_bomb_background, ce_bomb_max;
-extern uint8_t ce_shot_level, ce_speed_level;
+
 void ce_spawn_item(uint8_t ref, int16_t x, int16_t y) BANKED;
 void ce_collect_item(uint8_t slot) BANKED;
 void ce_power_reset(void) BANKED;
@@ -170,18 +203,44 @@ extern uint8_t ce_fade_level;
 extern const uint8_t ce_explosion_asset, ce_explosion_duration;
 extern const int16_t ce_player_start_x, ce_player_start_y;
 extern const int8_t ce_sin[16], ce_cos[16];
-extern CE_Entity ce_entities[CE_MAX_ENTITIES];
+extern CE_Entity CE_AT(0xD000) ce_entities[CE_MAX_ENTITIES];
 extern CE_State ce_state;
 /* Bullet motion is canonical in these planes; entity records keep common
  * kind/asset/damage metadata and the stable allocation/draw order. */
-extern int16_t ce_shot_x[CE_MAX_ENTITIES], ce_shot_y[CE_MAX_ENTITIES];
-extern int16_t ce_shot_vx[CE_MAX_ENTITIES], ce_shot_vy[CE_MAX_ENTITIES];
-extern uint16_t ce_shot_age[CE_MAX_ENTITIES], ce_shot_lifetime[CE_MAX_ENTITIES];
-extern int16_t ce_shot_px[CE_MAX_ENTITIES], ce_shot_py[CE_MAX_ENTITIES];
-extern OAM_item_t ce_shot_oam[CE_MAX_ENTITIES];
-extern uint8_t ce_shot_simple[CE_MAX_ENTITIES];
+extern int16_t CE_AT(0xD300 + 0u * CE_SHOT_CAPACITY) ce_shot_x[CE_SHOT_CAPACITY];
+extern int16_t CE_AT(0xD300 + 2u * CE_SHOT_CAPACITY) ce_shot_y[CE_SHOT_CAPACITY];
+extern int16_t CE_AT(0xD300 + 4u * CE_SHOT_CAPACITY) ce_shot_vx[CE_SHOT_CAPACITY];
+extern int16_t CE_AT(0xD300 + 6u * CE_SHOT_CAPACITY) ce_shot_vy[CE_SHOT_CAPACITY];
+extern uint16_t CE_AT(0xD300 + 8u * CE_SHOT_CAPACITY) ce_shot_age[CE_SHOT_CAPACITY];
+extern uint16_t CE_AT(0xD300 + 10u * CE_SHOT_CAPACITY) ce_shot_lifetime[CE_SHOT_CAPACITY];
+extern int16_t CE_AT(0xD300 + 12u * CE_SHOT_CAPACITY) ce_shot_px[CE_SHOT_CAPACITY];
+extern int16_t CE_AT(0xD300 + 14u * CE_SHOT_CAPACITY) ce_shot_py[CE_SHOT_CAPACITY];
+extern OAM_item_t CE_AT(0xD300 + 16u * CE_SHOT_CAPACITY) ce_shot_oam[CE_SHOT_CAPACITY];
+extern uint8_t CE_AT(0xD300 + 20u * CE_SHOT_CAPACITY) ce_shot_simple[CE_SHOT_CAPACITY];
 extern uint8_t ce_is_cgb, ce_scene, ce_pause, ce_active_screen;
+extern uint8_t ce_shot_level, ce_speed_level;
 extern uint8_t ce_used;
+#ifdef CE_DENSE
+extern uint8_t CE_AT(0xD300 + 24u * CE_SHOT_CAPACITY) ce_shot_kind[CE_SHOT_CAPACITY];
+extern uint8_t CE_AT(0xD300 + 25u * CE_SHOT_CAPACITY) ce_shot_asset[CE_SHOT_CAPACITY];
+extern uint8_t CE_AT(0xD300 + 26u * CE_SHOT_CAPACITY) ce_shot_ref[CE_SHOT_CAPACITY];
+extern uint8_t CE_AT(0xD300 + 27u * CE_SHOT_CAPACITY) ce_shot_sequence[CE_SHOT_CAPACITY];
+extern uint8_t CE_AT(0xD300 + 28u * CE_SHOT_CAPACITY) ce_shot_damage[CE_SHOT_CAPACITY];
+extern uint8_t CE_AT(0xD300 + 29u * CE_SHOT_CAPACITY) ce_shot_visible[CE_SHOT_CAPACITY];
+extern uint8_t CE_AT(0xD300 + 30u * CE_SHOT_CAPACITY) ce_actor_visible[CE_MAX_ENTITIES];
+extern const uint8_t ce_dense_shot_capacity;
+void ce_dense_plan(void) BANKED;
+void ce_render_sprites(void) BANKED;
+void ce_reset_sprites(void) BANKED;
+extern uint8_t ce_dense_ready;
+uint8_t ce_allocate_shot(uint8_t kind, uint8_t asset) NONBANKED;
+void ce_release_shot(uint8_t slot) NONBANKED;
+void ce_move_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) BANKED;
+void ce_step_actor(CE_Entity *e, uint8_t slot) BANKED;
+#define SHOT_ASSET(slot) ce_shot_asset[slot]
+#else
+#define SHOT_ASSET(slot) ce_entities[slot].asset
+#endif
 extern uint16_t ce_scores[5];
 extern const uint8_t ce_save_id[4];
 void ce_save_load(void) BANKED;

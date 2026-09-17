@@ -1,0 +1,50 @@
+{
+  "description": "Experimental opt-in settings; slower on light production roads. Apply through readGame/saveGame, then build. Not the default production configuration.",
+  "performance": {
+    "enemies": 12,
+    "playerShots": 6,
+    "enemyShots": 12,
+    "effects": 2,
+    "dense": true
+  },
+  "stages": [
+    {
+      "id": "stage-forest",
+      "bgBullets": false,
+      "bgBulletLimit": 40
+    },
+    {
+      "id": "stage-lake",
+      "bgBullets": false,
+      "bgBulletLimit": 40
+    },
+    {
+      "id": "stage-1",
+      "bgBullets": false,
+      "bgBulletLimit": 40
+    },
+    {
+      "id": "stage-2",
+      "bgBullets": false,
+      "bgBulletLimit": 40
+    },
+    {
+      "id": "stage-3",
+      "bgBullets": true,
+      "bgBulletLimit": 40
+    },
+    {
+      "id": "stage-4",
+      "bgBullets": true,
+      "bgBulletLimit": 40
+    },
+    {
+      "id": "stage-5",
+      "bgBullets": true,
+      "bgBulletLimit": 40
+    }
+  ],
+  "rom": "build/Release/touhou-kouma-v27-dense-experimental.gb",
+  "baseProjectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
+  "experimentalRevision": "dc0f943e8744552b830ec45c6c79d9df4ade9fce535d26175482b53e995cd5ef"
+}

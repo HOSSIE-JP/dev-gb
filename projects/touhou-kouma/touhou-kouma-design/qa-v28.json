@@ -1,0 +1,3609 @@
+{
+  "version": "0.28-gbc-experimental",
+  "createdAt": "2026-09-17T03:59:29.570Z",
+  "baseCommit": "e22cc52dfeeb18061bfe1d92fbd218bc5b3cab58",
+  "projectRevision": "0d0fd420821ff9fb0477267bb972fc4462934b7df819bb389a29381a8b934ac6",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v28-gbc.gb",
+    "sha256": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
+    "bytes": 2097152
+  },
+  "status": "experimental-performance-not-accepted",
+  "sourceHashes": {
+    "engine/caravan/actor-step.h": "2ebe7d23e41210fa432d1606b0d48f1dce05c590913021e6ad80e6a39a4981fa",
+    "engine/caravan/assets-src/kouma-score.json": "09d257ff5a545d4e16cd243753976bfb0ff769c26b64ff7a277247184e855493",
+    "engine/caravan/assets-src/side-score.json": "4a2f21edd10c9893af34f050a1e0bb09e0e90fdba4bf62c12c87c3b317c112bf",
+    "engine/caravan/assets-src/side-score.md": "25a95a2a52f3fd054cfde330b5b353723461daeef48baf47a93550e78c23f775",
+    "engine/caravan/bg-bullets.c": "f8c1977252cb6f010080db87b44bf6123a7f1d21995ff4ad3cb3fcd3de456de9",
+    "engine/caravan/bg-kernels.h": "d0ce0dac33aa99842306bbc55e29d884a1a49f463dda2002bb3bef3cfb724770",
+    "engine/caravan/bg-query-kernel.h": "05aa72fb4d4dbf54f9c47be1da36135586b7f74fa26cad2e15c3616b0335f81f",
+    "engine/caravan/bg-state-kernels.h": "bf931f220c27bea24d2401e230ee5844648354ce81c3153e9905b9bcc1c6fdf5",
+    "engine/caravan/bg-update-kernel.h": "9822a1ec983b3dd447c49637539e709202c94e42c80d7b53c81eedce61b3feae",
+    "engine/caravan/caravan.h": "45f20c378300c31f786bfef58dcc7217f2ef8862b33ee6992bfae77eeca9a449",
+    "engine/caravan/dense-admit-kernel.h": "1bf751bce501b4a53539fcd7958d2d68c3b26e4cd298f84e1f14880834e7ea5f",
+    "engine/caravan/dense-render.h": "a307df0e94c94e4b6b462fcec9c83289469ce807afdba0070ceb4d428d504b9f",
+    "engine/caravan/dense-shots.h": "c011308a314af966fef36839a1d5f52a025a9323882ea0cbdd62c06fcdd8f9ce",
+    "engine/caravan/dense.c": "f353665be0f4a9a1f779fc4dfd493ebdd57c0fb77b6f1fea8aead204f16f7202",
+    "engine/caravan/flow.c": "1ef3293d0140bfc08f62dc9e8ac5e248627c63de7ca6d04282bb12f1a8898792",
+    "engine/caravan/gbc-barrage.c": "cc2e456da1e0cd1a15e38ed7e19214d7277da7c1bd79a12df9090b2ba04e1e2b",
+    "engine/caravan/gbc-barrage.h": "3a94e1ea6e08912980eba70fb2cc56f863f43296bda170c051be07ab3f9640e5",
+    "engine/caravan/gbc-render.h": "eb8ff52b7723636abdfc92e7ff36ad0dcbceba896761a52878bf1246a714c101",
+    "engine/caravan/giant-render.h": "83c44cd50d757405dd881e112bdf01d47613243713c9a83ab947c0dcddc5746c",
+    "engine/caravan/items.c": "c73329663fc6b01c993e8eefab91664c143211fdbce3b614a3ca4d9fad1a8c9f",
+    "engine/caravan/mainloop.c": "b3ab0acb22255df959f8740f7a293963aa8a259a5b6e8b41ecc6f8ee80f652e1",
+    "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+    "engine/caravan/movie.c": "9759984f2548420807132a092e24576e9127b41e6d0ce57d2f0c3f12e7167aba",
+    "engine/caravan/MUSIC-LICENSE.txt": "3a7a3e0613c1f242be385172ea9575b49e650d41bc9c8cbd6047ec5dccde29b1",
+    "engine/caravan/music.c": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995",
+    "engine/caravan/music.h": "7e0f71159080d9fe7342f8cfea26b8f57d8fbbcd50f0df4248673070b93c0187",
+    "engine/caravan/render.c": "6301a85c4fb071d75c61940b61699df8e5e3cc95ef71c942d89b2f510cb1bf4d",
+    "engine/caravan/runtime.c": "db7441169af86eeaa4000f83dfa6694bfa37a25494e064dcc1cde1a21ff60ef6",
+    "engine/caravan/save.c": "d6ae608b7d8e24d1cc2e80481403140e2f7f6f92d026808823344e564cb99d29",
+    "engine/caravan/shot-kernels.h": "1bb0e9c880ec287579862b7ded78006b1057a1cb197da090ed199e5bcd636f7d",
+    "engine/caravan/special.c": "86ee9d9c86dc1375051dd3162a3e7b7c1b9d95393780c179e9dca348d8895b0e",
+    "engine/caravan/sprite-frame.h": "c4ecb5b62fe0c6c206cac9fd0d9c1534ee247b4e6bca53641c02095924269fa0",
+    "engine/caravan/sprite-render.h": "d27521895303ab3ead61ba52a707afb62cb87214a2615952e37c766c909dd937",
+    "engine/caravan/sprites.c": "f7dce5a246611f589b9aaa6acb56a4bd624f82aa1656bb35a16c35c14a234047",
+    "engine/caravan/terrain.c": "7115edd66f4338172fe2cf974910cf4ba53b5ab43c91e6afbc8b25754f3c9d98",
+    "editor/src/node/build-workflow.ts": "c8c4fba6e514097e8721c524078570745c2e584670013c05c8924c4db08cd4ba",
+    "editor/src/node/compiler.ts": "7d4bf97f654568cadd7a2b488450c202941b1f1471627a30c2f9f5ca25888506",
+    "editor/src/node/library.ts": "964e20a36f68a17aa68fe3b39e51aef1f08da899354de01509a23d42000cfc8d",
+    "editor/src/node/main.ts": "d871b64bac6a76e4918d954071e7808e246793f917e6f9b8b9e488c107a0f7c0",
+    "editor/src/node/music-data.ts": "c43410b554ada227093d7b9e5aabd4beae6da5e28961002b9b51779ba57e98a7",
+    "editor/src/node/preload.ts": "eac474db2a1d090cf89f289628d41e9574a861bb9e7216d944bdfd6422a6e7da",
+    "editor/src/node/project-store.ts": "0663058ee5441d3e4fa641baf34e6e35d730c59cadffd7ffd42ba51b2251b312",
+    "editor/src/renderer/boss-canvas.tsx": "d25167688bae4ddf9e3c15bac8f2ade0b29e6ba4a6e988b9586acd09b5773d4a",
+    "editor/src/renderer/canvases.tsx": "077ca408c3bab3c931bc33e23ee657988e0d7b9e00e21898907ab12e1e8bf088",
+    "editor/src/renderer/column-resize.tsx": "4725244c9b1a39fba5084bf0dd078ae81ba1b0e30a5b81d96df76cc3c7b36dc4",
+    "editor/src/renderer/entity-defaults.ts": "769d17b6677de2a3654e1a5ae67b57c72251f9f4eb26b5e570bf7e56524ed132",
+    "editor/src/renderer/env.d.ts": "9be7ea778895c94059af08e9d0386027594def4a9cd488504959de7fa7bd3590",
+    "editor/src/renderer/fields.tsx": "b2cc1ca7181d4b04bcd6ebb2e96116d05575f138ac41b6c0ba7395ddd59e200f",
+    "editor/src/renderer/index.html": "d5069520f4b4b4066897395ddd08373275571bb3f1882cf5b17e61e071f80900",
+    "editor/src/renderer/index.tsx": "ed06e7e275a70c5f4fdea320b86adac0753c3a199dd12cf7f2ea2c67f54a63a6",
+    "editor/src/renderer/music-field.tsx": "8dd9019964315ecdc48fe1af8ba56d6c4e15d2dda6426651ad65ac11ac4219c5",
+    "editor/src/renderer/player-presentation-canvas.tsx": "f05b86e8356c23d65bf49a7a0d4605ffd6ffeb5b208df6a29ddb970532a44844",
+    "editor/src/renderer/preview.tsx": "afb24c6ed81dc1d81c4f8696f58953da096b51c1647bfc1c8475f3196107ed97",
+    "editor/src/renderer/rom-preview.tsx": "38a1afacb5f278150f86ee5c738c76414b6771daab7872ee7821742a8af95c88",
+    "editor/src/renderer/shooter-fields.tsx": "ed39135b73226556ee3facc9b08143ba560f700edf52b9094ea6db69bec06eb8",
+    "editor/src/renderer/stage-canvas.tsx": "e9e3a1cfdf423df8f62b0f3ea0623d51df19d793d9549383ccb29003527df516",
+    "editor/src/renderer/startup-preview.tsx": "bb64999294fdbcad8a66ae4b2a5ce9c36dfca1e1bfc9054fad93d2facf6dedea",
+    "editor/src/renderer/style.css": "ca5fe7442b0fce1e9e374300f550133903648b3cf53597ac78b41a440e6709d5",
+    "editor/src/renderer/tile-palette.tsx": "518f5b5745ccef82ee021e82f98de80b2e87c2d607069ba9edc9c5500d5f5f72",
+    "editor/src/renderer/timeline.tsx": "4dd084f981fcc23dfbfbf7d927d5dc1b54bbd929975b11b45e1af42ef7302f53",
+    "editor/src/renderer/victory-dialogue-canvas.tsx": "342b90342f4e69225b8b483c0c21b410b622b999a7469d47e42a107d4f0c7331",
+    "editor/src/renderer/workspace.css": "54ddf04d36bd6e07b90c8492db9092b3faaf5d4749937624ff9e666d7529931b",
+    "editor/src/renderer/workspace.tsx": "e2f0d6fd1a472a8c39a5fea90b89778901a3d4d3ca6a49c0e8bfc1da08ba3ac6",
+    "editor/src/shared/bridge.ts": "dd4158d81d1718e0be198b68f85c56e27693ed7082ebc268237d93817bb12ce0",
+    "editor/src/shared/color.ts": "87f49f504cabe3ae645eb06547f7bbc29867f8007c81846679b5a7526c802595",
+    "editor/src/shared/emulation.ts": "38a858f83421632301d1d771d5a2e6f118636a0a5537eaa1fe16ef07a5915201",
+    "editor/src/shared/gbc-barrage.ts": "4ef095d990e5857340ddb88acfd2914a122c4c1f73906f07033ef06926b555a8",
+    "editor/src/shared/model.ts": "c857abdbf0280d61101a6f68ace9da918de3cfb279cbdee3f864825ae70688d3",
+    "editor/src/shared/music.ts": "3426ce52e5f4f9f17b15033e525d3ce31721e13cb9e927ca9daa1f5a6b60a803",
+    "editor/src/shared/numeric-font.ts": "5bf45b2825fb4d9607f9a50faa800108b57aa5d602999eb7408be231b6a0ed7b",
+    "editor/src/shared/palette.ts": "a887c042f9179ac9bdeff43d7720499426fdb40a4696ad38ac89e2f401428033",
+    "editor/src/shared/pixel-tools.ts": "05d87244f9e05fc4211e056061d2aa82b10c8ffce86bf92a654923bafe28b11b",
+    "editor/src/shared/presentation.ts": "0a3eeb6ed373c3bc8c060d5dfb06e23cdc3454593182da1c346541f08e39c06c",
+    "editor/src/shared/simulation.ts": "29d9133a298e98b72d224028044f91672c961810550427a3acdd9bc6ac921191",
+    "editor/src/shared/stage-space.ts": "3a24b5d87262a690dc8b1d9679397503669d324f4dc652ccf30848256c0a4942",
+    "projects/touhou-kouma/assets-src/expansion-provenance.json": "8fc3d37012a27790bb4efbe078290d67dc82dcca4266f6d0934afaf4d3f0350e",
+    "projects/touhou-kouma/assets-src/game.json": "695cb725e021eeab4f74b5d08fea4aaa65eed86d87f5bfc5543ce72b54ba7dca",
+    "projects/touhou-kouma/assets-src/images/bat-0-cgb.png": "5cff3ce4437b0e7fac6043aa4b8092c6487c952f6491f4a4fdc6760f5ad7cd8e",
+    "projects/touhou-kouma/assets-src/images/bat-0.png": "1a648ccbe73a5687b8a48034388c818ac2a3759eede03c6fab26bf4f819760e0",
+    "projects/touhou-kouma/assets-src/images/bat-1-cgb.png": "86cbb52a13e39f9666fd9ee8bbb1c7c13a14cf989d52913266f1d2accf287805",
+    "projects/touhou-kouma/assets-src/images/bat-1.png": "b9c951591b8f7c87ffb29bd400256fbcc3bd79cd274fdcaccf67c08bf00a5f7f",
+    "projects/touhou-kouma/assets-src/images/bomb-spark-0-cgb.png": "1d8dc12f509898ac78d7169fd175d93d4c0314a1cfdf461becc270760aee7c3b",
+    "projects/touhou-kouma/assets-src/images/bomb-spark.png": "b2c5c03d18358b6e94f6bc95c5e2d906a030b8ac02ae9d98ec23c37b62c9ce9e",
+    "projects/touhou-kouma/assets-src/images/bomb-yinyang-0-cgb.png": "72c28dcb1ff9323b7f4e2e09350fc21b682b424e86a47428ef3004d7860475ba",
+    "projects/touhou-kouma/assets-src/images/bomb-yinyang.png": "87249448341379ee035e1ad0803fed3e44a7182e45f4f3b9f0d84e52a339defb",
+    "projects/touhou-kouma/assets-src/images/book-0-cgb.png": "1c72004858a535275ed64e070dabf7b366a82b236cd5fd0913d7a822e13a3e4d",
+    "projects/touhou-kouma/assets-src/images/book-0.png": "4aa64e043030d068c211d96371bd6825878100bf6f73f58b145cbdddce85d1d0",
+    "projects/touhou-kouma/assets-src/images/book-1-cgb.png": "2f3b30b84f36a840672602c8876311b6c378cb27cdd8dd771ab22d060f4c0266",
+    "projects/touhou-kouma/assets-src/images/book-1.png": "8357c834fb1159d48f39d321fee896086211a86eb0a4f5102d54964fd437793f",
+    "projects/touhou-kouma/assets-src/images/burst-0-cgb.png": "316c62be7158c999dd27a13da40f03c26b7fbf1bd0457a118ced64aa1271bfe7",
+    "projects/touhou-kouma/assets-src/images/burst-0.png": "a2909d5dd05efcf270a7ebea337aaf83394573fc3ee4fce103684159bf8fb2f4",
+    "projects/touhou-kouma/assets-src/images/burst-1-cgb.png": "72a287054e571eff0719d1efda2d5b6d0aa10b11ae9d9679b398bcd6a0ec719d",
+    "projects/touhou-kouma/assets-src/images/burst-1.png": "567eda2fc94c4e105a156c11238d1d637f0999d7ab417984f35f9b239f3b0a05",
+    "projects/touhou-kouma/assets-src/images/burst-2-cgb.png": "701fc22620f4847b55cdeb225a5e931ffcdeb79eea5bd5935e56988b7dda2b21",
+    "projects/touhou-kouma/assets-src/images/burst-2.png": "a64289e8fa0bc357b0a2abee63efe01f7d5592301a9ed26350093fb237e98770",
+    "projects/touhou-kouma/assets-src/images/burst-3-cgb.png": "8cd4e4ce1afd67fab45f1c55911f652a9a701b89bdd977c4021ca1da2a39d1c0",
+    "projects/touhou-kouma/assets-src/images/burst-3.png": "f6b983919efd8ebeca834a3c0d501559bfd44048ca8de86205432d313ea2812d",
+    "projects/touhou-kouma/assets-src/images/burst-4-cgb.png": "5c9da98e7e0a6a42abb2738f63e7377656af06d9feb3a77e98b259c40ec29437",
+    "projects/touhou-kouma/assets-src/images/burst-4.png": "a2ccf64b901c2ea956555d7a5222a56e8752a1c5b1fe9cfd62082e1d5d340cec",
+    "projects/touhou-kouma/assets-src/images/burst-5-cgb.png": "129b4cb4705d0257cf864c5506bc0d47f16d935878853bb804ff0b439025430d",
+    "projects/touhou-kouma/assets-src/images/burst-5.png": "ace797341dfdc9b1741e1238e706cc2e65a552a609c1bdd741a741e95b9070e3",
+    "projects/touhou-kouma/assets-src/images/cirno-0-cgb.png": "5a1730bf5e1e33425b3078af2ccc8bc3ba8fe452a190e13211801639ad86c3d9",
+    "projects/touhou-kouma/assets-src/images/cirno-idle-1-v22-cgb.png": "03e44d720a68080cd08b53d8b2fb8812b3c4883044a33b7ca86d39717bb7183f",
+    "projects/touhou-kouma/assets-src/images/cirno-idle-1-v22.png": "fc6d04da07bcef4fe484751458842f30008876c3d7cef53c6b4dd32073b641ca",
+    "projects/touhou-kouma/assets-src/images/cirno.png": "4fda1e0ddbd05e53583ac0ebfb9a7932fa0b5b1de7655a0476df37d0ddc0d4ce",
+    "projects/touhou-kouma/assets-src/images/cutin-cirno-0-cgb.png": "51ba963d2ec4eb3a57a72be0d297f0c9f870977cb4776a74f159b1a5cf983cfe",
+    "projects/touhou-kouma/assets-src/images/cutin-cirno.png": "2713ce3cc9b48560f3f8150b8331afa441a7c9fa6f5ceffa147d4ba18e79e64a",
+    "projects/touhou-kouma/assets-src/images/cutin-flandre-0-cgb.png": "89fd7dba009eb20b90790a6e947c86e1d1e52e2bb68d1f6610a3bb0751e10537",
+    "projects/touhou-kouma/assets-src/images/cutin-flandre.png": "9417ad726f8343148ca3d67bd5233da91c879d60b1c327df1b18a0305cf355cb",
+    "projects/touhou-kouma/assets-src/images/cutin-meiling-0-cgb.png": "31b7616ec3cd60bcba8816b6a61993176984f8f5f91733cc8c563a80d6ce296e",
+    "projects/touhou-kouma/assets-src/images/cutin-meiling.png": "63b47c2cd416d16fe2f266787ff7936106a9f31eabff3e29664ed98aad9c66cb",
+    "projects/touhou-kouma/assets-src/images/cutin-patchouli-0-cgb.png": "b23e9e94c2f25e72c606f67ab6fa19b8bf1fe2b7915469d71d201e7e326ef481",
+    "projects/touhou-kouma/assets-src/images/cutin-patchouli.png": "df4b2226f73eb3ce6bb622eb7108fcc022ab5d5a4dfb8c1b7a18a72e5ec23e74",
+    "projects/touhou-kouma/assets-src/images/cutin-remilia-0-cgb.png": "69ea895ef128cf620a8e4f7073d7acd16ddd20fc8bc73225092585ddec6bc2bb",
+    "projects/touhou-kouma/assets-src/images/cutin-remilia.png": "2018fc2b19f4f9de5030d425fe3dff5b536c5a7659c9f5fb039e293dfe40c88d",
+    "projects/touhou-kouma/assets-src/images/cutin-rumia-0-cgb.png": "d363663270185e8364683ec03c980e7c26c9ce549f2af115aeae7d874609df7c",
+    "projects/touhou-kouma/assets-src/images/cutin-rumia.png": "b636d8e2018c26816a57adc6e9979ab74e738f6d0886e5783bd13d7f34029ba7",
+    "projects/touhou-kouma/assets-src/images/cutin-sakuya-0-cgb.png": "ca8ced3a55b34c812f26f3ab13744809aced7336a0f37bbbbe2bc82f7a394fed",
+    "projects/touhou-kouma/assets-src/images/cutin-sakuya.png": "1bec36f1270dfb3fdaf9981d8583c39365e01289b43db9cc66e1a731726c0dfb",
+    "projects/touhou-kouma/assets-src/images/dialogue-1-0-cgb.png": "d5757a888b2593a939769c3b928c2a14110386abf90e51638e0a303a35c4ad4e",
+    "projects/touhou-kouma/assets-src/images/dialogue-1.png": "3a5991f414503b50bc9034bb101b28f3b5c880e6801345fa86698ec783234cd8",
+    "projects/touhou-kouma/assets-src/images/dialogue-2-0-cgb.png": "9662b016d7a7ccce669ce5d0a8afbcc656fcdf7a0ddd201a8f450b676a3aff72",
+    "projects/touhou-kouma/assets-src/images/dialogue-2.png": "772cd1ead3a9ded2839ec32d2cfc6e8340796ddb80b3a4b4fc277be8e3843ae5",
+    "projects/touhou-kouma/assets-src/images/dialogue-3-0-cgb.png": "fc6f86e002d2b2f1f9781e3a613571bd26e6da131e111afd861069b2cce3d3ce",
+    "projects/touhou-kouma/assets-src/images/dialogue-3.png": "ced452da4298575f9dc47ce7ecb02512786c01528dbc12b6be3238c03d0a5f7d",
+    "projects/touhou-kouma/assets-src/images/dialogue-4-0-cgb.png": "9adf64c662b90101eb90d0df8562be1de45e014302fe6324088994a20063b4ea",
+    "projects/touhou-kouma/assets-src/images/dialogue-4.png": "840241b78d3cdb7ee9137a25cf3c8b9f4c5228f91e177893b425e91898cd7bcd",
+    "projects/touhou-kouma/assets-src/images/dialogue-5-0-cgb.png": "49e94bbcf6077d1302d4f30dfd9acdc2f14598f8ac40ba66f20302d99e011f73",
+    "projects/touhou-kouma/assets-src/images/dialogue-5.png": "a3c105efd9b63d6ae57f25c9fbaa346c8a3cef52784a3cc615b1ceb9731e4683",
+    "projects/touhou-kouma/assets-src/images/dialogue-cirno-0-cgb.png": "d355821e2e9a09a27c769f146bc303d01d07d654895256652e50205b33e63920",
+    "projects/touhou-kouma/assets-src/images/dialogue-cirno.png": "10346b9e07521894c42b95c61bd45d9270795c08bb955dcd94813e8acd8ed54a",
+    "projects/touhou-kouma/assets-src/images/dialogue-marisa-after-0-cgb.png": "094e08ce70def92968ddd37f4b594b9771e3a2bd87491368c4e34b07032683ad",
+    "projects/touhou-kouma/assets-src/images/dialogue-marisa-after.png": "f02481edbe2cf666f67e4281d0308ec7711426d26537e47cd5d6a5877018bbdf",
+    "projects/touhou-kouma/assets-src/images/dialogue-marisa-before-0-cgb.png": "cd855a612cdaaf73d311907bcf0dec64b83d4c88c6ce5a4832d49098de91e971",
+    "projects/touhou-kouma/assets-src/images/dialogue-marisa-before.png": "868fd730647fc7f30073d7ab50f6a27393246c66045371ed0b68940f54535e8e",
+    "projects/touhou-kouma/assets-src/images/dialogue-rumia-0-cgb.png": "2c3094782850e66c903e04870183813173f75273790dc463dad91da7d38f8916",
+    "projects/touhou-kouma/assets-src/images/dialogue-rumia.png": "71b8a2482a34f392546d23a2e6254944afba16dc718c9c4bb0628460c2ac05f1",
+    "projects/touhou-kouma/assets-src/images/ending-cirno-0-cgb.png": "d800a62d3907ae993db2583ea0ba9206cf301480a51368cd3aafb930c00755dd",
+    "projects/touhou-kouma/assets-src/images/ending-cirno.png": "5de159008bfb48130174d3102d81126d84cc2988007addebc60101834821adb8",
+    "projects/touhou-kouma/assets-src/images/ending-flandre-0-cgb.png": "00c2f581ab8ab6b7536933141d9586280aaf743167875a7dbe69507f26445835",
+    "projects/touhou-kouma/assets-src/images/ending-flandre.png": "b1133b1066aa678931a8a99dbd22a3958ee08fbd4cd7bcfc364f4fa69d845339",
+    "projects/touhou-kouma/assets-src/images/ending-marisa-0-cgb.png": "a38ee5d8d7d93e6faa3335d1239ff7c2221ecba7145367501ce22fd5cd7b5143",
+    "projects/touhou-kouma/assets-src/images/ending-marisa.png": "35c637cf70a30cf4da97f79f67131b945a973a45c743daa754697145cf434904",
+    "projects/touhou-kouma/assets-src/images/ending-meiling-patchouli-0-cgb.png": "3bab12e48307beb845695508e41a31740e7928f71128e0cefbbd4fe526aafd91",
+    "projects/touhou-kouma/assets-src/images/ending-meiling-patchouli.png": "74b2e3a932839ce19f0229f840e6ba922e35443eadfa73fe4099a33bc2ffe692",
+    "projects/touhou-kouma/assets-src/images/ending-rumia-0-cgb.png": "5754aebc790f612da1799c3e6725cfa0b1ecdb12a1dea4392e487b4f91d44cf7",
+    "projects/touhou-kouma/assets-src/images/ending-rumia.png": "9a85c3500102776a645ef3a673b5dbfecb128dc23b53f9036ab6d0e7256400b4",
+    "projects/touhou-kouma/assets-src/images/ending-sakuya-remilia-0-cgb.png": "fe6fc494a1525d4a486a0659b295488d2fc6fd1a416ecd3ca86377fed9db0b8c",
+    "projects/touhou-kouma/assets-src/images/ending-sakuya-remilia.png": "f8801ce8ec4704d86e8487a19fed79d01b2a5d7003696c52b552fd3529bcfa5c",
+    "projects/touhou-kouma/assets-src/images/fairy-0-cgb.png": "f9ab3286c3e3cbadb0c58e84d7bb384f8e5500906a04226e3a0bec06772726e7",
+    "projects/touhou-kouma/assets-src/images/fairy-0.png": "de1ff56590af95c10dfde915123dbeea71b794e98b6fc5f2caee01f165d82d13",
+    "projects/touhou-kouma/assets-src/images/fairy-1-cgb.png": "eda0498deaafbd8c711fa993833824c375e3c1ba0600f0c8616ab9420e70eecb",
+    "projects/touhou-kouma/assets-src/images/fairy-1.png": "a4e3824fc233c5b2e80013fae4939d19960af6d3144e9305702c2d4777a34106",
+    "projects/touhou-kouma/assets-src/images/flandre-0-cgb.png": "075372c978b83c4fc55b01ad3b95a2d5e2ae7dc69a920ee3948bb92eb639de18",
+    "projects/touhou-kouma/assets-src/images/flandre-0.png": "704ab0821c2a7b78329e75003ef0c2ac5efa8558dbdddd28df9da90f9d4f69aa",
+    "projects/touhou-kouma/assets-src/images/flandre-1-cgb.png": "214efb69fe3b28777391ec1d5e767667201bfbec40fe0fb5f0fef3fa76e724cf",
+    "projects/touhou-kouma/assets-src/images/flandre-1.png": "704ab0821c2a7b78329e75003ef0c2ac5efa8558dbdddd28df9da90f9d4f69aa",
+    "projects/touhou-kouma/assets-src/images/gameover-marisa-0-cgb.png": "d2e4529012cc111a30ab946e8b56d54526ea28667a23f38c6c67a1c592961859",
+    "projects/touhou-kouma/assets-src/images/gameover-marisa.png": "f0d9839c4e487156de9350edecc881f73bec1bad498f7b2cc836ff2ceaa39095",
+    "projects/touhou-kouma/assets-src/images/gameover-reimu-0-cgb.png": "15984896f12998bca58d79c0960d5173ab17b0364ea61bcec84ef86e43e9e39d",
+    "projects/touhou-kouma/assets-src/images/gameover-reimu.png": "8fd617b66282445dd2b2865fef878b2e5b41f50382c4aaf93eb59bdd4de16aa2",
+    "projects/touhou-kouma/assets-src/images/logo-ai-slop-0-cgb.png": "3b644b107fad06d0305e2fa13a06646d302aea8896332e220814ed3fb6095419",
+    "projects/touhou-kouma/assets-src/images/logo-ai-slop.png": "4825182697c6d63ace5be8a845d61af11843dcc8c22dd51fd2e7cf99ec67a2ad",
+    "projects/touhou-kouma/assets-src/images/logo-touhou-notice-0-cgb.png": "766a62f015ee08ce1cd38c43f32dc2e8930a47459ebbe9b612d219215e1f2d45",
+    "projects/touhou-kouma/assets-src/images/logo-touhou-notice.png": "2db2a81e9e1293a690ce0634f21feac1b5da23e088f12a07b665a12d5aed0db5",
+    "projects/touhou-kouma/assets-src/images/map-1-0-cgb.png": "4c698b46aabd93a6c8d4f97fc61bfb791d691eeb65fbb9e1f2005279c5ef83af",
+    "projects/touhou-kouma/assets-src/images/map-1-0.png": "a850defccf185015d3e84ec8367a4f9445b1ad046e3163c5ee10be354ff10005",
+    "projects/touhou-kouma/assets-src/images/map-2-0-cgb.png": "3ddca86f118f622f955c7691c3886d143c2474f20a11898ba230c64313360ae5",
+    "projects/touhou-kouma/assets-src/images/map-2-0.png": "74a84a142f386ba77fd653c5790d39d67251479d0280535f0b7878cf8b19de12",
+    "projects/touhou-kouma/assets-src/images/map-3-0-cgb.png": "39f9da60dc2d64cc62bc903c919b1f50897b08f8b52362458aeb4d24afee55e2",
+    "projects/touhou-kouma/assets-src/images/map-3-0.png": "82ed19dfbc27c54e284f05094484665f61bc289d676b0ebf3e29ca125777c89f",
+    "projects/touhou-kouma/assets-src/images/map-4-0-cgb.png": "19c50686a857bdac664e0fc64ed6e183091ae0c89adba1a9e72185d46dc87c3e",
+    "projects/touhou-kouma/assets-src/images/map-4-0.png": "359b2f030ed771867d38ef66c3db3fda363a113edec876c8830aa2f47ed3896e",
+    "projects/touhou-kouma/assets-src/images/map-5-0-cgb.png": "5a50569e298321b6a85a36d3dae40ed266c4d55b6cfaad847e0960a7b9ab3978",
+    "projects/touhou-kouma/assets-src/images/map-5-0.png": "fdbe758fbb61d6f3df075f97ab59a0016db707a62b00cd20c0d4d70ebbc43f78",
+    "projects/touhou-kouma/assets-src/images/map-forest-0-cgb.png": "1345e5c17414dd8142080865d90cb4eb72c33625854b6f665c69033599549fc5",
+    "projects/touhou-kouma/assets-src/images/map-forest.png": "a4aae54149213e66fec435b88f4e73e1468045361df458eccf496662fedb264a",
+    "projects/touhou-kouma/assets-src/images/map-lake-0-cgb.png": "03e7018e60e7201554fc530ec9f7e18d9237768f0b673975f1f132473920f942",
+    "projects/touhou-kouma/assets-src/images/map-lake.png": "992fb324611f5a3f47b5f805cab04fab18850aaa332a3bdd305fc0f1bfc3bf2a",
+    "projects/touhou-kouma/assets-src/images/marisa-0-cgb.png": "20af3a71ae5801d7e7ffd1c0be56a10533061618ec7eee45303b8266013ab183",
+    "projects/touhou-kouma/assets-src/images/marisa-idle-1-v22-cgb.png": "76f7ebdcf111ebe6e9fd1fa6a10084f134dc914702b56dd40ebf777ce8956a58",
+    "projects/touhou-kouma/assets-src/images/marisa-idle-1-v22.png": "f54dc5ba3c040208a0620a1808c926c659fe0094b2d77d5ca8de0a59921acc67",
+    "projects/touhou-kouma/assets-src/images/marisa.png": "c0446fb9eba74863aff015dd05389e217cfc05bf95e94e578fa54a2e0dbf4a20",
+    "projects/touhou-kouma/assets-src/images/meiling-0-cgb.png": "6b60d5842f49324ec4c31b2cf885991987aad91fb8adc3974b8f69018cbb40a3",
+    "projects/touhou-kouma/assets-src/images/meiling-0.png": "4ef0caa6f8e90d5d9a9603d64cfafefb511a2d202b8ae24c5a35390d1d5246ab",
+    "projects/touhou-kouma/assets-src/images/meiling-idle-1-v22-cgb.png": "0e6b999a80586c949bf5c93d1a7f3b35b7f6cbdea8c26b3424f2e7f61cad2cef",
+    "projects/touhou-kouma/assets-src/images/meiling-idle-1-v22.png": "b1e263bb4dac2c2588253ad4300c9779a03c24de52c6cf6e0eaf9bc78a03909f",
+    "projects/touhou-kouma/assets-src/images/patchouli-0-cgb.png": "3bdb57ba3b0d2e95b9ca8ace847a4046e1729b7871d7f96483c2fde29732d714",
+    "projects/touhou-kouma/assets-src/images/patchouli-0.png": "ab0fbb6fbc27c78f9bfc71a0f2d9e77137b982398a0038eb35c751b69dfde8da",
+    "projects/touhou-kouma/assets-src/images/patchouli-idle-1-v22-cgb.png": "b17fd3a47f7cca76d6d66f2e7f18073793484304b7190c2a853427de4be7b473",
+    "projects/touhou-kouma/assets-src/images/patchouli-idle-1-v22.png": "ae8f32b02599c5d94ecc9012392d474e27adf7911f5e98ce5106cc3b69f90649",
+    "projects/touhou-kouma/assets-src/images/reimu-0-cgb.png": "df25115ccbe1dc473bf9a0551e9c85f26d2cf123285808867df9829aceda3b3f",
+    "projects/touhou-kouma/assets-src/images/reimu-0.png": "3ddd9f60a9012edd068ae0c2eaaf05491f944b109d018348ec69f4474acbc75d",
+    "projects/touhou-kouma/assets-src/images/reimu-1-cgb.png": "d87851b1323520b850b270b68939b26566e5cbe4bc9973eb3d649f27b1bd44d8",
+    "projects/touhou-kouma/assets-src/images/reimu-1.png": "e0140d31fdb32cfcf85bb546888e0a48bbd063d224b2dbea6f3a0e7453c4dfcf",
+    "projects/touhou-kouma/assets-src/images/remilia-0-cgb.png": "a4d5d978971fa052a5e902bc235dd0e3d346b8e72d16ace541d28d2f810ab20f",
+    "projects/touhou-kouma/assets-src/images/remilia-0.png": "be2d6e357d14080496a017e15e0ff7fca03a4e7f789eac783971f26fde479936",
+    "projects/touhou-kouma/assets-src/images/remilia-1-cgb.png": "e921ba9036bb542ee4ebb2c07f59c3d8cc0180ea1eb6636251099520faa1ff6f",
+    "projects/touhou-kouma/assets-src/images/remilia-1.png": "be2d6e357d14080496a017e15e0ff7fca03a4e7f789eac783971f26fde479936",
+    "projects/touhou-kouma/assets-src/images/result-1-0-cgb.png": "2853d2216fc2a0f03d8dc2be3e67e3012940e0b21312b4a8ef582e248b5c9689",
+    "projects/touhou-kouma/assets-src/images/result-1.png": "bc4dc4eaeb71e24271de3d35b03ebd6029b7eaf8029a3472f84f71b04dde7a49",
+    "projects/touhou-kouma/assets-src/images/result-2-0-cgb.png": "46672fc2707f3383dae8fc11838f5d777edc950b67bb3fd458da1f81ab489cff",
+    "projects/touhou-kouma/assets-src/images/result-2.png": "399f8ea424452696ebfda69a3729aa909378102806a8a159da6e8ecc2ccea9d2",
+    "projects/touhou-kouma/assets-src/images/result-3-0-cgb.png": "ef3cdb9defbd9889473382568dd5abcad37c62c7f148783d494537807335efd4",
+    "projects/touhou-kouma/assets-src/images/result-3.png": "c57fa0bab78aeac23eb74aa9bedbeda09e062ec97cc1323355bb86910349518f",
+    "projects/touhou-kouma/assets-src/images/result-4-0-cgb.png": "2f4df09953c9bbb5d49c459bcd521b2825feed319b41bd1c43f23d432dfd029e",
+    "projects/touhou-kouma/assets-src/images/result-4.png": "42463ba3a29e79bfd240fa59f04426769469c50eab5a0fdbff2d533a2975e252",
+    "projects/touhou-kouma/assets-src/images/result-5-0-cgb.png": "02e78c01763bfb79745ef442f6d39e929012f3a731f607f618e7b0735064ad6e",
+    "projects/touhou-kouma/assets-src/images/result-5.png": "fb69a6f39436f333567fb1343f8c4f4a0b87b5b5d2c8333c5808ab607598020c",
+    "projects/touhou-kouma/assets-src/images/result-cirno-0-cgb.png": "156154a945b48df4de4a3b5bb9504b8f9b18c23fb9a4752955b3a49bcd42bf9b",
+    "projects/touhou-kouma/assets-src/images/result-cirno.png": "7ea8ad38da3786c66e3afeaf7db6b8cee7aa21c9343e869a38c2a2e01bc8c504",
+    "projects/touhou-kouma/assets-src/images/result-rumia-0-cgb.png": "26457e255d63d19db4f796ee5331e022f1a06c7e5b0340f91d1cf73cf82a3582",
+    "projects/touhou-kouma/assets-src/images/result-rumia.png": "45ebabbc19db7edeb81b8a9bd68a5c66f501e6c564187c4dbe4a32fc60882ec2",
+    "projects/touhou-kouma/assets-src/images/rumia-0-cgb.png": "45427a514bce18ce3361613928b95c77358421ca7bfa640db48434001c274dc2",
+    "projects/touhou-kouma/assets-src/images/rumia-idle-1-v22-cgb.png": "7aeaf3c2a728aebe46765653c2288819ead003354b52dc1a877b40956a6810c2",
+    "projects/touhou-kouma/assets-src/images/rumia-idle-1-v22.png": "97308691c071115ecbc33a8b4c7e1a91320e28e55a2e708f27ca69fcd2c5e8c8",
+    "projects/touhou-kouma/assets-src/images/rumia.png": "fe96d33bdc52be75249423b69369e04b04d5377dbfbfaf5b440f5681c589a43f",
+    "projects/touhou-kouma/assets-src/images/sakuya-0-cgb.png": "40b3c5e63a42dfd07aeced35edbc365a03b47fe96faa066ccd7391f8e5d84010",
+    "projects/touhou-kouma/assets-src/images/sakuya-0.png": "fe91d93e50206fde6be2d9b9b4ae55bca759f781434945f7ae5186fbad3840b5",
+    "projects/touhou-kouma/assets-src/images/sakuya-idle-1-v22-cgb.png": "cbc3895afb0a27ee37c571eee57201466109f84607d7ba3551b3f1af9f2befac",
+    "projects/touhou-kouma/assets-src/images/sakuya-idle-1-v22.png": "36231b539c6964258a23e5b963fba712f079296f8de9592a8847477b4d45d789",
+    "projects/touhou-kouma/assets-src/images/screen-clear-0-cgb.png": "528dfb977b24341fad6b6def94a294ebc59288837d9e1af872a62e2a523eda26",
+    "projects/touhou-kouma/assets-src/images/screen-clear-0.png": "1e76c3ea840a1f24fb9dfe23c08183721486c8372a97361fe3d4d904ef2b54b9",
+    "projects/touhou-kouma/assets-src/images/screen-over-0-cgb.png": "4c05cce05c2fc14f9dcfd23e93a3e48abaa9adddd17427b7d26297c342b613eb",
+    "projects/touhou-kouma/assets-src/images/screen-over-0.png": "f25ce2fee262e0420481b5f62a1fdf3bb8d8a94936592df686c3ef09fa84dea9",
+    "projects/touhou-kouma/assets-src/images/screen-scores-0-cgb.png": "98fd6eea4c70843cbbf805679e29d1c8a96d622f5bfc29c18355d19099268548",
+    "projects/touhou-kouma/assets-src/images/screen-scores-0.png": "e56d616f5d40c1a4bff347d15b3d27b88a257259d1285d2ae84d4e50885dd130",
+    "projects/touhou-kouma/assets-src/images/screen-title-0-cgb.png": "326e09e43c82c87a4855c155e49ddf0c8494edef86072d0bdbd9470770173892",
+    "projects/touhou-kouma/assets-src/images/screen-title-0.png": "bfc6b15c5905c6355fee811b2860c0d5a1333436805007110bb886b3d252c096",
+    "projects/touhou-kouma/assets-src/images/select-marisa-0-cgb.png": "cf24e615121d714c79f3196f5537251ae6859a7c62dd6a781169d20d069ff71e",
+    "projects/touhou-kouma/assets-src/images/select-marisa.png": "0bfb4bb677136cabb284e74af383c8d129428a427792bada53a7f29ed9ca75fa",
+    "projects/touhou-kouma/assets-src/images/select-reimu-0-cgb.png": "cf199dc15ab6624be5227077ea75256971a22cb43b84440c250478f6be3852f3",
+    "projects/touhou-kouma/assets-src/images/select-reimu.png": "116e066d37d45f17f7f8e8a7ca5e4ed41e7238baecf63aba99dc494cb05d929d",
+    "projects/touhou-kouma/assets-src/images/shot-diamond-0-cgb.png": "70c923aca69c2d585f1e05682b576bf055d16a4eacbd1fbaf139fb01d973d607",
+    "projects/touhou-kouma/assets-src/images/shot-diamond-0.png": "335ff0741f14d206058d5f0f581d5bcf15b203f20bf84f9c343dbb7f0259a7ef",
+    "projects/touhou-kouma/assets-src/images/shot-focus-0-cgb.png": "1d0d40e4d51c0652d971461a12ace0be2d7b7dc5e0f9308307c6ad0d868b90b1",
+    "projects/touhou-kouma/assets-src/images/shot-focus-0.png": "297edb3f55fb6d0150f137862363c36e3b538eadf6c24446f048a7470f3d7b34",
+    "projects/touhou-kouma/assets-src/images/shot-knife-0-cgb.png": "7acc5437921cb8ca8ebc31d117f8746ff2624bc52a3f4cf35b3d35520f96cbba",
+    "projects/touhou-kouma/assets-src/images/shot-knife-0.png": "49e7e0f6d74c7c3bd257950fdc66b605435e01ddb4c8d2fabf95751137bf5010",
+    "projects/touhou-kouma/assets-src/images/shot-marisa-laser-0-cgb.png": "0321479c24343fe98898b26a670fa1996792e50b779b2afaac71725358dafe78",
+    "projects/touhou-kouma/assets-src/images/shot-marisa-laser-v20.png": "5965f83d394cccaac93017c661e9705afe303e19179db33abfa7ba07f71e8d65",
+    "projects/touhou-kouma/assets-src/images/shot-ofuda-0-cgb.png": "279241dd3234b1a098d3a35d731c57efd6e25c0af763b38ea28d984d5b7a602b",
+    "projects/touhou-kouma/assets-src/images/shot-ofuda-0.png": "58cf5b07bcf118411e81ae7805001b7ea5228b8c742e3a46b76169b62fac1161",
+    "projects/touhou-kouma/assets-src/images/shot-orb-0-cgb.png": "0abd319660932e033e99ecad69d3e3a46169e3e0db69b3aadf158d690f437fdf",
+    "projects/touhou-kouma/assets-src/images/shot-orb-0.png": "8ce93daca6051e65f698142fb291ee28174033bf8567ea20f668efde83cb705e",
+    "projects/touhou-kouma/assets-src/images/shot-star-0-cgb.png": "df85f1cc5ee751ffa1fadcc433223e8eb67165ccde36db86994a4246f4eb6711",
+    "projects/touhou-kouma/assets-src/images/shot-star-0.png": "6f203cb74ec1320ad0f928e4c11ae6d80aa64ad0525c97e2ce0e4b133ef62cb9",
+    "projects/touhou-kouma/assets-src/originals/cirno.png": "b16985e5bb8fbaffab53ed409461177df69b2e453f15e9664bff899bcaf7d182",
+    "projects/touhou-kouma/assets-src/originals/flandre.png": "9007686b127a9d19b62e4a9ba0c157daad87924ac8ae79adfdd93f88c88a5018",
+    "projects/touhou-kouma/assets-src/originals/forest.png": "fa373f8df60c580fe2021c0521d8977f0193ca2d08792edd10163fa0b7cdb35d",
+    "projects/touhou-kouma/assets-src/originals/meiling.png": "bc676e36c513d94923943edd4aa044f0eb13cbe6c4185085be74fc47d5db2fda",
+    "projects/touhou-kouma/assets-src/originals/patchouli.png": "4a5cf3adbfb695a265b3738ca81139457a3affa95ad61a0f1e731b4020a7236f",
+    "projects/touhou-kouma/assets-src/originals/remilia.png": "4d9b80b9426d152ff32422cab318d0732b4a3d0413cd006fd4315f4f4a75af4e",
+    "projects/touhou-kouma/assets-src/originals/rumia-dialogue.png": "ba91f054bc181b971218154aaddc1d8132b97345f15d27f157f1d46edb136c3d",
+    "projects/touhou-kouma/assets-src/originals/rumia-ending.png": "b3c160fae7c3e5a264c8eccdf0e5059b913b9b16b9603381e39fb93e47effde0",
+    "projects/touhou-kouma/assets-src/originals/rumia-result.png": "599d71411928b040e1c1b5893d65d709835b4ecfee22bebcba728dca84538324",
+    "projects/touhou-kouma/assets-src/originals/rumia-sprite.png": "4d8f4bfe9511f595df89537286edafbe3efce468761736807647a5c131426eb6",
+    "projects/touhou-kouma/assets-src/originals/rumia_cutin.png": "78636eb44246b960295d5814ecc10e04dc1b2c7e925615ac0de2ea452c9be094",
+    "projects/touhou-kouma/assets-src/originals/sakuya.png": "f0ae84abd629d01354c31fcc8c3dc996aa7436c96945e57f2fa6080b40a4e752",
+    "projects/touhou-kouma/assets-src/revision-v07-provenance.json": "93505be4e1b45c715b10cfa197f78a107c0d3ad2a02c8bcd8e8a6bc6f0f940cd",
+    "config/tools.lock.json": "f75e7cced361bcdf1494fb393734a146f5ce3668c0a43844b9307dabad934d44",
+    "editor/package-lock.json": "5ecf343fdada34b23818dadab199b9d97fe935617b25bad8f01aff1d25f0cbc0",
+    "projects/touhou-kouma/project.json": "4d433de596760e5badd5bd6f0b36d1aa2c860063437ef5cc5dd24ebf0c138925",
+    "tests/smoke-test.ps1": "6860a43c292b1238e55b52dbca5d9ac85f776e0d2a402a5f20b480a52725c514"
+  },
+  "build": {
+    "ok": true,
+    "revision": "0d0fd420821ff9fb0477267bb972fc4462934b7df819bb389a29381a8b934ac6",
+    "configuration": "Release",
+    "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+    "size": 2097152,
+    "ramBytes": 2496,
+    "wramBanks": {
+      "fixedBytes": 2496,
+      "stackTop": 53248,
+      "actorBank": 1,
+      "actorBankEnd": 54660,
+      "barrageBank": 2,
+      "barrageBankEnd": 57216
+    },
+    "spriteTiles": 114,
+    "diagnostics": [],
+    "romHash": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
+    "builtAt": "2026-09-17T03:58:42.303Z",
+    "durationMs": 325104
+  },
+  "checks": {
+    "debugReleaseIdentical": true,
+    "touhouDebug": true,
+    "touhouRelease": true,
+    "helloCleanDebug": true,
+    "starDebug": true,
+    "starRelease": true,
+    "doctorWarnings": 0,
+    "testCount": 147,
+    "testFailures": 0,
+    "typecheck": true,
+    "editorSettings": true,
+    "CGB": true,
+    "DMGSupported": false,
+    "dmgDiagnostic": true,
+    "BGB": true,
+    "Emulicious": false,
+    "physicalHardware": false,
+    "humanListening": false,
+    "fullManualCampaign": false,
+    "fixedWramBytes": 2496
+  },
+  "hardware": {
+    "target": "GBC only",
+    "header": "C0",
+    "fixedStackTop": "D000",
+    "actorBank": 1,
+    "barrageBank": 2,
+    "bgCapacity": 96,
+    "giantCapacity": 32,
+    "dictionaryTiles": 181,
+    "dictionaryMasks": 697
+  },
+  "priorTransferBug": {
+    "diagnosticSha256": "3c791a177bf6c35060a0ceb462e89ee311a083fcbb8260544177944b02728b9e",
+    "method": "24 dynamic tiles + 72 map blocks",
+    "Boytacean": "passed",
+    "BGB": "failed; DMA finished on LY 0 outside VBlank",
+    "fix": "Upload hidden tiles first and wait for another VBlank if the maps cannot start safely."
+  },
+  "evidence": {
+    "movie": {
+      "path": ".cache/gbc-only/movie-final/results.json",
+      "sha256": "c885b2303a21d34b4c7a8d4439d5a14a3948040bc1e0b19790874ada641a2104",
+      "data": {
+        "sha256": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
+        "results": [
+          {
+            "mode": "CGB",
+            "displayVBlanks": 217,
+            "frames": 36,
+            "overruns": 0,
+            "pcmBlocks": 926,
+            "pixelParity": 36,
+            "titleMusic": true,
+            "normalStart": true,
+            "audioRate": 44100,
+            "audioChannels": 2
+          }
+        ]
+      }
+    },
+    "display": {
+      "path": ".cache/gbc-only/display-final/results.json",
+      "sha256": "f12dad2a69d94921024eed3dcb47c7ab8ec2b0f8bdccbde28d2a3b9c3597fe08",
+      "data": [
+        {
+          "mode": "CGB",
+          "roadSamples": 1754,
+          "bossSamples": 120,
+          "cameraPositions": 1692,
+          "residentAssets": [
+            "reimu",
+            "fairy",
+            "bat",
+            "book",
+            "shot-ofuda",
+            "shot-focus",
+            "shot-orb",
+            "shot-knife",
+            "shot-star",
+            "shot-diamond",
+            "burst",
+            "marisa",
+            "shot-marisa-laser"
+          ],
+          "movie": true,
+          "cutin": true
+        }
+      ]
+    },
+    "reset": {
+      "path": ".cache/gbc-only/reset-final/results.json",
+      "sha256": "875baea4ff026513db96405ced337539dd0729d599e2e9f91589fbdba51d9a95",
+      "data": [
+        {
+          "mode": "CGB",
+          "resets": [
+            "boss battle",
+            "paused gameplay",
+            "cutin"
+          ],
+          "rankingPreserved": true,
+          "heldChordConsumed": true,
+          "partialChordDoesNotReset": true,
+          "volumes": [
+            5,
+            4,
+            3,
+            2,
+            7,
+            6,
+            9,
+            8,
+            10,
+            1,
+            0
+          ],
+          "audioSamples": 147842
+        }
+      ]
+    },
+    "bombs": {
+      "path": ".cache/gbc-only/bombs-final/results.json",
+      "sha256": "f0926cd88c8ed6000de8ebe7068a72152e13f88dc4666aa4ea05b7841f3dabc0",
+      "data": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+        "sha256": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
+        "results": [
+          {
+            "label": "road-CGB-reimu",
+            "fixture": false,
+            "memoryWrites": false,
+            "before": {
+              "scene": 1,
+              "ready": true,
+              "character": 0,
+              "battle": 0,
+              "locked": 0,
+              "bombs": 2,
+              "left": 0,
+              "image": 0,
+              "bullets": 0,
+              "tick": 1,
+              "x": 1280,
+              "y": 1920,
+              "camera": 17912,
+              "lives": 5,
+              "shots": 0
+            },
+            "effect": {
+              "scene": 1,
+              "ready": true,
+              "character": 0,
+              "battle": 0,
+              "locked": 0,
+              "bombs": 1,
+              "left": 47,
+              "image": 1,
+              "bullets": 0,
+              "tick": 3,
+              "x": 1280,
+              "y": 1920,
+              "camera": 17896,
+              "lives": 5,
+              "shots": 1
+            },
+            "restored": {
+              "scene": 1,
+              "ready": true,
+              "character": 0,
+              "battle": 0,
+              "locked": 0,
+              "bombs": 1,
+              "left": 0,
+              "image": 0,
+              "bullets": 0,
+              "tick": 52,
+              "x": 1008,
+              "y": 1680,
+              "camera": 17504,
+              "lives": 5,
+              "shots": 2
+            },
+            "observedUpdates": 47,
+            "positions": 47,
+            "bossPositions": 0,
+            "peakFriendlyShots": 3,
+            "visible": 24,
+            "blank": 23,
+            "beamFollows": 0,
+            "maxLit": 3803,
+            "minLit": 185
+          },
+          {
+            "label": "road-CGB-marisa",
+            "fixture": false,
+            "memoryWrites": false,
+            "before": {
+              "scene": 1,
+              "ready": true,
+              "character": 1,
+              "battle": 0,
+              "locked": 0,
+              "bombs": 2,
+              "left": 0,
+              "image": 0,
+              "bullets": 0,
+              "tick": 1,
+              "x": 1280,
+              "y": 1920,
+              "camera": 17912,
+              "lives": 5,
+              "shots": 0
+            },
+            "effect": {
+              "scene": 1,
+              "ready": true,
+              "character": 1,
+              "battle": 0,
+              "locked": 0,
+              "bombs": 1,
+              "left": 47,
+              "image": 1,
+              "bullets": 0,
+              "tick": 3,
+              "x": 1280,
+              "y": 1920,
+              "camera": 17896,
+              "lives": 5,
+              "shots": 1
+            },
+            "restored": {
+              "scene": 1,
+              "ready": true,
+              "character": 1,
+              "battle": 0,
+              "locked": 0,
+              "bombs": 1,
+              "left": 0,
+              "image": 0,
+              "bullets": 0,
+              "tick": 52,
+              "x": 872,
+              "y": 1560,
+              "camera": 17504,
+              "lives": 5,
+              "shots": 2
+            },
+            "observedUpdates": 47,
+            "positions": 47,
+            "bossPositions": 0,
+            "peakFriendlyShots": 3,
+            "visible": 24,
+            "blank": 23,
+            "beamFollows": 47,
+            "maxLit": 4172,
+            "minLit": 111
+          },
+          {
+            "label": "boss-CGB-reimu",
+            "fixture": false,
+            "memoryWrites": false,
+            "before": {
+              "scene": 1,
+              "ready": true,
+              "character": 0,
+              "battle": 2,
+              "locked": 0,
+              "bombs": 2,
+              "left": 0,
+              "image": 0,
+              "bullets": 2,
+              "tick": 2370,
+              "x": 1280,
+              "y": 1920,
+              "camera": 184,
+              "lives": 2,
+              "boss": {
+                "hp": 100,
+                "phase": 1,
+                "x": 1180,
+                "y": 576
+              },
+              "shots": 0
+            },
+            "effect": {
+              "scene": 1,
+              "ready": true,
+              "character": 0,
+              "battle": 2,
+              "locked": 0,
+              "bombs": 1,
+              "left": 47,
+              "image": 1,
+              "bullets": 0,
+              "tick": 2372,
+              "x": 1280,
+              "y": 1920,
+              "camera": 184,
+              "lives": 2,
+              "boss": {
+                "hp": 70,
+                "phase": 1,
+                "x": 1172,
+                "y": 576
+              },
+              "shots": 1
+            },
+            "restored": {
+              "scene": 1,
+              "ready": true,
+              "character": 0,
+              "battle": 2,
+              "locked": 0,
+              "bombs": 1,
+              "left": 0,
+              "image": 0,
+              "bullets": 0,
+              "tick": 2421,
+              "x": 1024,
+              "y": 1680,
+              "camera": 184,
+              "lives": 2,
+              "boss": {
+                "hp": 70,
+                "phase": 1,
+                "x": 976,
+                "y": 576
+              },
+              "shots": 2
+            },
+            "observedUpdates": 47,
+            "positions": 46,
+            "bossPositions": 47,
+            "peakFriendlyShots": 3,
+            "visible": 24,
+            "blank": 23,
+            "beamFollows": 0,
+            "maxLit": 3853,
+            "minLit": 260
+          },
+          {
+            "label": "boss-CGB-marisa",
+            "fixture": false,
+            "memoryWrites": false,
+            "before": {
+              "scene": 1,
+              "ready": true,
+              "character": 1,
+              "battle": 2,
+              "locked": 0,
+              "bombs": 2,
+              "left": 0,
+              "image": 0,
+              "bullets": 2,
+              "tick": 2370,
+              "x": 1280,
+              "y": 1920,
+              "camera": 184,
+              "lives": 2,
+              "boss": {
+                "hp": 100,
+                "phase": 1,
+                "x": 1180,
+                "y": 576
+              },
+              "shots": 0
+            },
+            "effect": {
+              "scene": 1,
+              "ready": true,
+              "character": 1,
+              "battle": 2,
+              "locked": 0,
+              "bombs": 1,
+              "left": 47,
+              "image": 1,
+              "bullets": 0,
+              "tick": 2372,
+              "x": 1280,
+              "y": 1920,
+              "camera": 184,
+              "lives": 2,
+              "boss": {
+                "hp": 70,
+                "phase": 1,
+                "x": 1172,
+                "y": 576
+              },
+              "shots": 1
+            },
+            "restored": {
+              "scene": 1,
+              "ready": true,
+              "character": 1,
+              "battle": 2,
+              "locked": 0,
+              "bombs": 1,
+              "left": 0,
+              "image": 0,
+              "bullets": 0,
+              "tick": 2421,
+              "x": 872,
+              "y": 1560,
+              "camera": 184,
+              "lives": 2,
+              "boss": {
+                "hp": 68,
+                "phase": 1,
+                "x": 976,
+                "y": 576
+              },
+              "shots": 1
+            },
+            "observedUpdates": 47,
+            "positions": 47,
+            "bossPositions": 47,
+            "peakFriendlyShots": 3,
+            "visible": 24,
+            "blank": 23,
+            "beamFollows": 47,
+            "maxLit": 4479,
+            "minLit": 183
+          }
+        ]
+      }
+    },
+    "weapons": {
+      "path": ".cache/gbc-only/weapons-final/results.json",
+      "sha256": "6fb14a516385c2c9d297a4e6d3eff213fe089d41ad01f80ef7fc5413b3d70f7e",
+      "data": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+        "sha256": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
+        "results": [
+          {
+            "label": "CGB-0-stage1",
+            "volleys": 4,
+            "intervals": [
+              12,
+              12,
+              12
+            ],
+            "peakPlayerShots": 4,
+            "aims": [
+              {
+                "tick": 125,
+                "vx": 15,
+                "vy": 37,
+                "cos": 0.9888830435903866
+              },
+              {
+                "tick": 149,
+                "vx": -15,
+                "vy": 37,
+                "cos": 0.9996518876394141
+              },
+              {
+                "tick": 173,
+                "vx": -27,
+                "vy": 27,
+                "cos": 0.9999883313204857
+              },
+              {
+                "tick": 221,
+                "vx": 15,
+                "vy": 37,
+                "cos": 0.9998008845111622
+              },
+              {
+                "tick": 245,
+                "vx": -15,
+                "vy": 37,
+                "cos": 0.9895351095119307
+              },
+              {
+                "tick": 269,
+                "vx": -27,
+                "vy": 27,
+                "cos": 0.997691742522139
+              },
+              {
+                "tick": 318,
+                "vx": 15,
+                "vy": 37,
+                "cos": 0.986171285498309
+              },
+              {
+                "tick": 343,
+                "vx": 0,
+                "vy": 40,
+                "cos": 1
+              },
+              {
+                "tick": 366,
+                "vx": -15,
+                "vy": 37,
+                "cos": 0.986171285498309
+              }
+            ],
+            "pausedSamples": 157,
+            "dropped": 0
+          },
+          {
+            "label": "CGB-0-stage3",
+            "volleys": 4,
+            "intervals": [
+              12,
+              12,
+              12
+            ],
+            "peakPlayerShots": 4,
+            "aims": [
+              {
+                "tick": 126,
+                "vx": 15,
+                "vy": 37,
+                "cos": 0.9925474035474787
+              },
+              {
+                "tick": 149,
+                "vx": -15,
+                "vy": 37,
+                "cos": 0.9986528121548055
+              },
+              {
+                "tick": 173,
+                "vx": -27,
+                "vy": 27,
+                "cos": 0.9998078216567244
+              },
+              {
+                "tick": 221,
+                "vx": 0,
+                "vy": 40,
+                "cos": 0.999567754464353
+              },
+              {
+                "tick": 269,
+                "vx": -27,
+                "vy": 27,
+                "cos": 0.9949061550359232
+              },
+              {
+                "tick": 299,
+                "vx": 16,
+                "vy": 41,
+                "cos": 0.9969440609857686
+              },
+              {
+                "tick": 322,
+                "vx": 16,
+                "vy": 41,
+                "cos": 0.9969440609857686
+              },
+              {
+                "tick": 347,
+                "vx": 16,
+                "vy": 41,
+                "cos": 0.9969440609857686
+              }
+            ],
+            "pausedSamples": 59,
+            "dropped": 0
+          },
+          {
+            "label": "CGB-0-stage7",
+            "volleys": 4,
+            "intervals": [
+              12,
+              12,
+              12
+            ],
+            "peakPlayerShots": 4,
+            "aims": [
+              {
+                "tick": 105,
+                "vx": 16,
+                "vy": 41,
+                "cos": 0.9915801400317444
+              },
+              {
+                "tick": 153,
+                "vx": -30,
+                "vy": 30,
+                "cos": 0.9980525784828885
+              },
+              {
+                "tick": 222,
+                "vx": 0,
+                "vy": 40,
+                "cos": 0.999567754464353
+              },
+              {
+                "tick": 245,
+                "vx": -15,
+                "vy": 37,
+                "cos": 0.9881931656103695
+              },
+              {
+                "tick": 269,
+                "vx": -27,
+                "vy": 27,
+                "cos": 0.9949061550359232
+              },
+              {
+                "tick": 299,
+                "vx": 16,
+                "vy": 41,
+                "cos": 0.9996337495037011
+              },
+              {
+                "tick": 322,
+                "vx": 16,
+                "vy": 41,
+                "cos": 0.9579186354664289
+              },
+              {
+                "tick": 345,
+                "vx": 16,
+                "vy": 41,
+                "cos": 0.9579186354664289
+              },
+              {
+                "tick": 607,
+                "vx": 15,
+                "vy": 37,
+                "cos": 0.9998008845111622
+              }
+            ],
+            "pausedSamples": 0,
+            "dropped": 0
+          },
+          {
+            "label": "CGB-1-stage1",
+            "volleys": 14,
+            "intervals": [
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4
+            ],
+            "peakPlayerShots": 5,
+            "aims": [
+              {
+                "tick": 125,
+                "vx": 27,
+                "vy": 27,
+                "cos": 0.998515707930946
+              },
+              {
+                "tick": 149,
+                "vx": 15,
+                "vy": 37,
+                "cos": 0.996921232993346
+              },
+              {
+                "tick": 173,
+                "vx": 0,
+                "vy": 40,
+                "cos": 0.9934089358711311
+              },
+              {
+                "tick": 221,
+                "vx": 27,
+                "vy": 27,
+                "cos": 0.9983797417031739
+              },
+              {
+                "tick": 245,
+                "vx": 15,
+                "vy": 37,
+                "cos": 0.9920238376553032
+              },
+              {
+                "tick": 269,
+                "vx": -15,
+                "vy": 37,
+                "cos": 0.9993091299884631
+              },
+              {
+                "tick": 318,
+                "vx": 27,
+                "vy": 27,
+                "cos": 0.998515707930946
+              },
+              {
+                "tick": 365,
+                "vx": -15,
+                "vy": 37,
+                "cos": 0.986171285498309
+              }
+            ],
+            "pausedSamples": 156,
+            "dropped": 0
+          },
+          {
+            "label": "CGB-1-stage3",
+            "volleys": 14,
+            "intervals": [
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4
+            ],
+            "peakPlayerShots": 5,
+            "aims": [
+              {
+                "tick": 126,
+                "vx": 27,
+                "vy": 27,
+                "cos": 0.998515707930946
+              },
+              {
+                "tick": 149,
+                "vx": 15,
+                "vy": 37,
+                "cos": 0.996921232993346
+              },
+              {
+                "tick": 173,
+                "vx": 0,
+                "vy": 40,
+                "cos": 0.9934089358711311
+              },
+              {
+                "tick": 221,
+                "vx": 27,
+                "vy": 27,
+                "cos": 0.9983797417031739
+              },
+              {
+                "tick": 269,
+                "vx": -15,
+                "vy": 37,
+                "cos": 0.9993091299884631
+              },
+              {
+                "tick": 299,
+                "vx": 30,
+                "vy": 30,
+                "cos": 0.9969106107676542
+              },
+              {
+                "tick": 322,
+                "vx": 30,
+                "vy": 30,
+                "cos": 0.9969106107676542
+              },
+              {
+                "tick": 347,
+                "vx": 30,
+                "vy": 30,
+                "cos": 0.9793666392196709
+              }
+            ],
+            "pausedSamples": 59,
+            "dropped": 0
+          },
+          {
+            "label": "CGB-1-stage7",
+            "volleys": 14,
+            "intervals": [
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              4
+            ],
+            "peakPlayerShots": 5,
+            "aims": [
+              {
+                "tick": 105,
+                "vx": 30,
+                "vy": 30,
+                "cos": 0.9999324027443713
+              },
+              {
+                "tick": 153,
+                "vx": -16,
+                "vy": 41,
+                "cos": 0.9899355231319683
+              },
+              {
+                "tick": 222,
+                "vx": 15,
+                "vy": 37,
+                "cos": 0.9998008845111622
+              },
+              {
+                "tick": 269,
+                "vx": -27,
+                "vy": 27,
+                "cos": 0.997691742522139
+              },
+              {
+                "tick": 297,
+                "vx": 16,
+                "vy": 41,
+                "cos": 0.9579186354664289
+              },
+              {
+                "tick": 322,
+                "vx": 16,
+                "vy": 41,
+                "cos": 0.9579186354664289
+              },
+              {
+                "tick": 347,
+                "vx": 16,
+                "vy": 41,
+                "cos": 0.9579186354664289
+              },
+              {
+                "tick": 607,
+                "vx": 15,
+                "vy": 37,
+                "cos": 0.9998008845111622
+              }
+            ],
+            "pausedSamples": 0,
+            "dropped": 0
+          }
+        ],
+        "upperTarget": [
+          {
+            "mode": "CGB",
+            "horizontal": 3
+          }
+        ]
+      }
+    },
+    "nativeExhibition": {
+      "path": ".cache/gbc-only/exhibition-native/results.json",
+      "sha256": "febab3a17cdd7e424730903a648ef4f10215c5e3bd445e02ac6edcd5d734b357",
+      "data": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+        "sha256": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
+        "results": [
+          {
+            "mode": "CGB",
+            "scenes": [
+              [
+                12,
+                0,
+                0
+              ],
+              [
+                15,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                5,
+                1
+              ],
+              [
+                7,
+                5,
+                1
+              ],
+              [
+                1,
+                5,
+                1
+              ],
+              [
+                4,
+                5,
+                0
+              ],
+              [
+                12,
+                5,
+                0
+              ],
+              [
+                15,
+                5,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                1,
+                4,
+                1
+              ],
+              [
+                7,
+                4,
+                1
+              ],
+              [
+                1,
+                4,
+                1
+              ],
+              [
+                8,
+                4,
+                1
+              ],
+              [
+                7,
+                4,
+                1
+              ],
+              [
+                1,
+                4,
+                1
+              ],
+              [
+                4,
+                4,
+                0
+              ],
+              [
+                12,
+                4,
+                0
+              ],
+              [
+                15,
+                4,
+                0
+              ],
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                1,
+                5,
+                1
+              ],
+              [
+                7,
+                5,
+                1
+              ],
+              [
+                1,
+                5,
+                1
+              ],
+              [
+                8,
+                5,
+                1
+              ],
+              [
+                7,
+                5,
+                1
+              ],
+              [
+                1,
+                5,
+                1
+              ],
+              [
+                4,
+                5,
+                0
+              ],
+              [
+                12,
+                5,
+                0
+              ],
+              [
+                15,
+                5,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                1,
+                6,
+                1
+              ]
+            ],
+            "displayModeRestored": true,
+            "gameplaySamples": 16072,
+            "bossSamples": 2450
+          }
+        ]
+      }
+    },
+    "nativeReset": {
+      "path": ".cache/gbc-only/reset-native-final/results.json",
+      "sha256": "ec5ac515e94a3208bb031625bc44b2a3d62cebee865371f3f4e4c5e6237ca916",
+      "data": [
+        {
+          "mode": "CGB",
+          "gameplay": true,
+          "rebootLogos": true,
+          "title": true,
+          "hardwareModePreserved": true
+        }
+      ]
+    },
+    "productionBoss": {
+      "path": ".cache/gbc-only/boss-production/results.json",
+      "sha256": "04b42d065d88a280e49f0027270215eaace7db32487c4d86c8017a6fe2a94fb1",
+      "data": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+        "sha256": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
+        "production": true,
+        "results": [
+          {
+            "mode": "CGB",
+            "stage": 6,
+            "samples": 299,
+            "peakShots": 28,
+            "cutinGapsExcluded": 0,
+            "meanFrameBudgets": 1.1406392044263882,
+            "p95": 2.006237183868763,
+            "max": 2.0824504442925496,
+            "updatesPerSecond": 52.36318352746444
+          }
+        ]
+      }
+    },
+    "productionComparison": {
+      "path": ".cache/gbc-only/kouma-safe-final.json",
+      "sha256": "27ee1af86264d56860089e84e77930146bed4172012c56ac235f2681b8fc5e8b",
+      "data": [
+        {
+          "file": "projects/touhou-kouma/build/Release/touhou-kouma-v27.gb",
+          "sha256": "ce3ca55b0099090c62dedac5cd119051bc90b44b2155b34a5cf65aaa56b09128",
+          "mode": "CGB",
+          "character": 0,
+          "fireFromTick": 60,
+          "stateSha256": "d3f2dad9044b4c6dcfd7a0896a6eed2eb8f506c050469791410905c010d17fe9",
+          "range": [
+            120,
+            1000
+          ],
+          "ppuFrames": 895,
+          "updates": 880,
+          "updatesPerSecond": 58.72648044692737,
+          "meanFrameBudgets": 1.0170454545454546,
+          "p95": 1,
+          "maxGap": 2,
+          "peakOam": 25,
+          "peakScanline": 6,
+          "dropped": 0,
+          "lives": 4
+        },
+        {
+          "file": "projects/touhou-kouma/build/Release/touhou-kouma-v27.gb",
+          "sha256": "ce3ca55b0099090c62dedac5cd119051bc90b44b2155b34a5cf65aaa56b09128",
+          "mode": "CGB",
+          "character": 1,
+          "fireFromTick": 60,
+          "stateSha256": "6ac68fb41e20e1317aa42fc15ac469c2e0d6a4d965efccdb2d11dc5e07a9b5d4",
+          "range": [
+            120,
+            1000
+          ],
+          "ppuFrames": 978,
+          "updates": 880,
+          "updatesPerSecond": 53.74253578732107,
+          "meanFrameBudgets": 1.1113636363636363,
+          "p95": 2,
+          "maxGap": 3,
+          "peakOam": 29,
+          "peakScanline": 6,
+          "dropped": 0,
+          "lives": 3
+        },
+        {
+          "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+          "sha256": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
+          "mode": "CGB",
+          "character": 0,
+          "fireFromTick": 60,
+          "stateSha256": "90090493963eace76eaf90df49ab6971bd9043d0a858418d2fa049977490e64c",
+          "range": [
+            120,
+            1000
+          ],
+          "ppuFrames": 955,
+          "updates": 880,
+          "updatesPerSecond": 55.03685863874345,
+          "meanFrameBudgets": 1.0852272727272727,
+          "p95": 2,
+          "maxGap": 2,
+          "peakOam": 18,
+          "peakScanline": 8,
+          "dropped": 0,
+          "lives": 4
+        },
+        {
+          "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+          "sha256": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
+          "mode": "CGB",
+          "character": 1,
+          "fireFromTick": 60,
+          "stateSha256": "72324cf31ac55b129f6da0d4317aa9d3fb1ed7597a9cdfdca3da71de629a3727",
+          "range": [
+            120,
+            1000
+          ],
+          "ppuFrames": 984,
+          "updates": 880,
+          "updatesPerSecond": 53.41483739837398,
+          "meanFrameBudgets": 1.1181818181818182,
+          "p95": 2,
+          "maxGap": 3,
+          "peakOam": 17,
+          "peakScanline": 7,
+          "dropped": 0,
+          "lives": 3
+        }
+      ]
+    },
+    "stress96": {
+      "path": ".cache/gbc-only/final96/stress.json",
+      "sha256": "7e2db62e7ceca34bf4a17eac4689cfc00d2658382b856c736cb9db7c55ea8727",
+      "data": {
+        "case": "stress",
+        "romSha256": "ea81aeb67e7a7cf85b7220440bfe90ea66edd3cbae2665f22cdacab0ec34bd3c",
+        "fixture": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\final96\\fixture-hYm205\\projects\\stg-bench\\build\\Debug\\stg-bench.gb",
+        "ramBytes": 2496,
+        "romBytes": 262144,
+        "modes": [
+          {
+            "mode": "CGB",
+            "gaps": {
+              "samples": 600,
+              "mean": 2.256666666666667,
+              "p95": 3,
+              "max": 3,
+              "updatesPerSecond": 26.467134416543573
+            },
+            "elapsedFrameBudgets": {
+              "samples": 600,
+              "mean": 2.2568375484164944,
+              "p95": 3.0001993620414673,
+              "max": 3.0002563226247436,
+              "updatesPerSecond": 26.46513039536571
+            },
+            "peakShots": 96,
+            "peakEnemies": 8,
+            "peakEntities": 8,
+            "peakOam": 10,
+            "peakScanline": 4,
+            "dmaEndMax": 147,
+            "bgPixelsChecked": 15956,
+            "phases": [],
+            "dropped": 337,
+            "checked": 720,
+            "parity": true,
+            "stateSha256": "4fbf0816f290bee5dee216a5bb267c792832cc96b67a4903a1c66f6bb8da7da4"
+          }
+        ]
+      }
+    },
+    "native96": {
+      "path": ".cache/gbc-only/native96/results.json",
+      "sha256": "c4cfdbd8a6618a84564098f68856f0ef644fd07e35752f02db0044d6dfe0eedc",
+      "data": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\final96\\fixture-hYm205\\projects\\stg-bench\\build\\Debug\\stg-bench.gb",
+        "sha256": "ea81aeb67e7a7cf85b7220440bfe90ea66edd3cbae2665f22cdacab0ec34bd3c",
+        "emulator": "BGB 1.6.6",
+        "method": "ordinary input and read-only breakpoint log",
+        "results": [
+          {
+            "mode": "CGB",
+            "samples": 601,
+            "peakShots": 96,
+            "peakEnemies": 8,
+            "reservedOamPeak": 10,
+            "dmaEndMax": 152,
+            "meanFrameBudgets": 2.775,
+            "updatesPerSecond": 21.523423423423424,
+            "maxGap": 3
+          }
+        ]
+      }
+    },
+    "extreme": {
+      "path": ".cache/gbc-only/extreme-safe/results.json",
+      "sha256": "825bc6c5adabb557d7da2ddb885101c39a14ce998f8f365560556319aae2eea7",
+      "data": {
+        "diagnostic": true,
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\extreme-safe\\fixture-EIXenb\\projects\\extreme\\build\\Debug\\extreme.gb",
+        "sha256": "18549d3c346046eb2faacb79b12c1b660d7f3b847ebe71a909a817b76ab74e76",
+        "checked": 1119,
+        "peakDynamicTiles": 24,
+        "peakBullets": 96,
+        "dmaMax": 146,
+        "phases": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "nativeExtreme": {
+      "path": ".cache/gbc-only/native-extreme-safe/results.json",
+      "sha256": "f93ed95164ba386f139f85a2d62bb9099d2338ecc47f8331f8445dbad2dc62d2",
+      "data": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\extreme-safe\\fixture-EIXenb\\projects\\extreme\\build\\Debug\\extreme.gb",
+        "sha256": "18549d3c346046eb2faacb79b12c1b660d7f3b847ebe71a909a817b76ab74e76",
+        "emulator": "BGB 1.6.6",
+        "method": "ordinary input and read-only breakpoint log",
+        "results": [
+          {
+            "mode": "CGB",
+            "samples": 601,
+            "peakShots": 96,
+            "peakEnemies": 0,
+            "reservedOamPeak": 0,
+            "dmaEndMax": 151,
+            "meanFrameBudgets": 6.44,
+            "updatesPerSecond": 9.274456521739129,
+            "maxGap": 9
+          }
+        ]
+      }
+    },
+    "emulicious": {
+      "path": ".cache/gbc-only/emulicious/results.json",
+      "sha256": "3c20031821f9616df981dbdf2bafc93c2aa734f225ff48b8bdb850055adeab59",
+      "data": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\final96\\fixture-hYm205\\projects\\stg-bench\\build\\Debug\\stg-bench.gb",
+        "sha256": "ea81aeb67e7a7cf85b7220440bfe90ea66edd3cbae2665f22cdacab0ec34bd3c",
+        "emulator": "Emulicious 2026-03-27",
+        "method": "Unchanged isolated ROM CLI startup; DAP attach, numeric-address reads only",
+        "run": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\emulicious\\direct-zi57O3",
+        "steps": [
+          {
+            "command": "initialize",
+            "response": {
+              "success": true,
+              "type": "response",
+              "body": {
+                "supportsSetExpression": false,
+                "supportsDisassembleRequest": false,
+                "supportsRestartFrame": false,
+                "supportsTerminateRequest": false,
+                "supportsConfigurationDoneRequest": false,
+                "supportsRestartRequest": false,
+                "supportsGotoTargetsRequest": false,
+                "supportsConditionalBreakpoints": true,
+                "supportsModulesRequest": false,
+                "supportsCancelRequest": false,
+                "supportsHitConditionalBreakpoints": false,
+                "supportsLogPoints": true,
+                "supportsReadMemoryRequest": false,
+                "exceptionBreakpointFilters": [
+                  {
+                    "filter": "Exception-5",
+                    "default": true,
+                    "supportsCondition": false,
+                    "label": "Break on inconsistent state after interrupt"
+                  },
+                  {
+                    "filter": "Exception-4",
+                    "default": true,
+                    "supportsCondition": false,
+                    "label": "Break on read of uninitialized memory"
+                  },
+                  {
+                    "filter": "Exception-3",
+                    "default": true,
+                    "supportsCondition": false,
+                    "label": "Break on execution of data"
+                  },
+                  {
+                    "filter": "Exception-2",
+                    "default": true,
+                    "supportsCondition": false,
+                    "label": "Break on bank swap at PC"
+                  },
+                  {
+                    "filter": "Exception-1",
+                    "default": true,
+                    "supportsCondition": false,
+                    "label": "Break on push to ROM"
+                  }
+                ],
+                "supportsStepInTargetsRequest": false,
+                "supportsLoadedSourcesRequest": false,
+                "supportsTerminateThreadsRequest": false,
+                "supportsExceptionInfoRequest": false,
+                "supportsValueFormattingOptions": false,
+                "supportsCompletionsRequest": false,
+                "supportTerminateDebuggee": false,
+                "supportsSteppingGranularity": false,
+                "supportsDelayedStackTraceLoading": false,
+                "supportsDataBreakpoints": false,
+                "supportsEvaluateForHovers": true,
+                "supportsFunctionBreakpoints": true,
+                "supportsBreakpointLocationsRequest": false,
+                "supportsInstructionBreakpoints": false,
+                "supportsStepBack": true,
+                "supportsExceptionOptions": false,
+                "supportsSetVariable": false,
+                "supportsClipboardContext": false
+              },
+              "seq": 1,
+              "request_seq": 1,
+              "command": "initialize"
+            }
+          },
+          {
+            "event": {
+              "type": "event",
+              "event": "terminated",
+              "seq": 2
+            }
+          },
+          {
+            "command": "attach",
+            "response": {
+              "success": true,
+              "type": "response",
+              "seq": 3,
+              "request_seq": 2,
+              "command": "attach"
+            }
+          },
+          {
+            "command": "threads",
+            "response": {
+              "success": true,
+              "type": "response",
+              "body": {
+                "threads": [
+                  {
+                    "name": "Thread",
+                    "id": 1
+                  }
+                ]
+              },
+              "seq": 4,
+              "request_seq": 3,
+              "command": "threads"
+            }
+          },
+          {
+            "command": "pause",
+            "response": {
+              "success": true,
+              "type": "response",
+              "seq": 5,
+              "request_seq": 4,
+              "command": "pause"
+            }
+          },
+          {
+            "command": "evaluate",
+            "response": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 6,
+              "request_seq": 5,
+              "command": "evaluate"
+            }
+          },
+          {
+            "command": "evaluate",
+            "response": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 7,
+              "request_seq": 6,
+              "command": "evaluate"
+            }
+          },
+          {
+            "command": "evaluate",
+            "response": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 8,
+              "request_seq": 7,
+              "command": "evaluate"
+            }
+          },
+          {
+            "command": "evaluate",
+            "response": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 9,
+              "request_seq": 8,
+              "command": "evaluate"
+            }
+          },
+          {
+            "command": "continue",
+            "response": {
+              "success": true,
+              "type": "response",
+              "body": {
+                "allThreadsContinued": false
+              },
+              "seq": 10,
+              "request_seq": 9,
+              "command": "continue"
+            }
+          },
+          {
+            "command": "pause",
+            "response": {
+              "success": true,
+              "type": "response",
+              "seq": 11,
+              "request_seq": 10,
+              "command": "pause"
+            }
+          },
+          {
+            "command": "evaluate",
+            "response": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 12,
+              "request_seq": 11,
+              "command": "evaluate"
+            }
+          },
+          {
+            "command": "evaluate",
+            "response": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 13,
+              "request_seq": 12,
+              "command": "evaluate"
+            }
+          },
+          {
+            "command": "evaluate",
+            "response": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 14,
+              "request_seq": 13,
+              "command": "evaluate"
+            }
+          },
+          {
+            "command": "evaluate",
+            "response": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 15,
+              "request_seq": 14,
+              "command": "evaluate"
+            }
+          }
+        ],
+        "stderr": "java.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\n",
+        "bootExecutionVerified": false,
+        "gameplayVerified": false,
+        "command": {
+          "executable": "C:\\homebrew\\projects\\dev-gb\\.tools\\emulicious\\java\\bin\\java.exe",
+          "args": [
+            "-Duser.home=C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\emulicious\\direct-zi57O3",
+            "-Dsun.java2d.d3d=false",
+            "-jar",
+            "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\emulicious\\direct-zi57O3\\Emulicious.jar",
+            "-remotedebug",
+            "57789",
+            "-muted",
+            "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\emulicious\\direct-zi57O3\\side-caravan.gb"
+          ]
+        },
+        "snapshots": [
+          {
+            "pc": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 6,
+              "request_seq": 5,
+              "command": "evaluate"
+            },
+            "frame": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 7,
+              "request_seq": 6,
+              "command": "evaluate"
+            },
+            "scene": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 8,
+              "request_seq": 7,
+              "command": "evaluate"
+            },
+            "cgb": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 9,
+              "request_seq": 8,
+              "command": "evaluate"
+            }
+          },
+          {
+            "pc": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 12,
+              "request_seq": 11,
+              "command": "evaluate"
+            },
+            "frame": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 13,
+              "request_seq": 12,
+              "command": "evaluate"
+            },
+            "scene": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 14,
+              "request_seq": 13,
+              "command": "evaluate"
+            },
+            "cgb": {
+              "success": false,
+              "type": "response",
+              "message": "exception",
+              "body": {
+                "error": {
+                  "showUser": true,
+                  "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                  "id": 1,
+                  "sendTelemetry": false
+                }
+              },
+              "seq": 15,
+              "request_seq": 14,
+              "command": "evaluate"
+            }
+          }
+        ],
+        "limitation": "Connection alone is not execution evidence; inspect response errors."
+      }
+    }
+  },
+  "editorUI": {
+    "path": ".cache/dense-ui-result.json",
+    "data": {
+      "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\dense-ui-ri6Orw",
+      "checks": [
+        {
+          "hardwareSelector": true,
+          "denseToggle": true,
+          "bgToggle": true,
+          "bulletLimit": true,
+          "savedAndReloaded": true,
+          "buildFree": true
+        }
+      ]
+    }
+  },
+  "finalProfiles": {
+    "profile-kouma-final": {
+      "path": ".cache/gbc-only/profile-kouma-final.json",
+      "sha256": "67934703ec33ac0a3b21b3a3d278a47b69721256622026f98d55a01db1de6132",
+      "data": {
+        "attribution": "C debug ranges and linker symbols",
+        "rom": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+        "romSha256": "07fc20c72145cdc00ca9d34a7802f8691baef60bd3cc67524c46cd6c63209b03",
+        "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+        "emulator": "Boytacean 0.13.2",
+        "fromTick": 120,
+        "toTick": 720,
+        "input": "fire",
+        "modes": [
+          {
+            "mode": "CGB",
+            "samples": 241618,
+            "totalTCycles": 93546836,
+            "functions": [
+              {
+                "name": "_wait_vbl_done",
+                "estimatedTCycles": 32654808,
+                "percent": 34.907
+              },
+              {
+                "name": "ce_dense_plan",
+                "estimatedTCycles": 4265104,
+                "percent": 4.559
+              },
+              {
+                "name": "ce_step_actor",
+                "estimatedTCycles": 3842240,
+                "percent": 4.107
+              },
+              {
+                "name": "ce_move_complex",
+                "estimatedTCycles": 3436356,
+                "percent": 3.673
+              },
+              {
+                "name": "admit_fast",
+                "estimatedTCycles": 3375452,
+                "percent": 3.608
+              },
+              {
+                "name": "dense_draw",
+                "estimatedTCycles": 2997264,
+                "percent": 3.204
+              },
+              {
+                "name": "actor_sprite",
+                "estimatedTCycles": 2465692,
+                "percent": 2.636
+              },
+              {
+                "name": "box",
+                "estimatedTCycles": 2454324,
+                "percent": 2.624
+              },
+              {
+                "name": "sprite_animation",
+                "estimatedTCycles": 2339936,
+                "percent": 2.501
+              },
+              {
+                "name": "collide_shots",
+                "estimatedTCycles": 2307900,
+                "percent": 2.467
+              },
+              {
+                "name": "collide_player",
+                "estimatedTCycles": 2100492,
+                "percent": 2.245
+              },
+              {
+                "name": "step_entities",
+                "estimatedTCycles": 1980128,
+                "percent": 2.117
+              },
+              {
+                "name": "emit_oam",
+                "estimatedTCycles": 1845080,
+                "percent": 1.972
+              },
+              {
+                "name": "prepare_shot",
+                "estimatedTCycles": 1527156,
+                "percent": 1.633
+              },
+              {
+                "name": "step_nonbullet",
+                "estimatedTCycles": 1478876,
+                "percent": 1.581
+              },
+              {
+                "name": "step_player",
+                "estimatedTCycles": 1471592,
+                "percent": 1.573
+              },
+              {
+                "name": "map_row",
+                "estimatedTCycles": 1352528,
+                "percent": 1.446
+              },
+              {
+                "name": "ce_step",
+                "estimatedTCycles": 1337136,
+                "percent": 1.429
+              },
+              {
+                "name": "overlap",
+                "estimatedTCycles": 1322220,
+                "percent": 1.413
+              },
+              {
+                "name": "__muluchar",
+                "estimatedTCycles": 1302892,
+                "percent": 1.393
+              },
+              {
+                "name": "dense_admit_shot",
+                "estimatedTCycles": 1297548,
+                "percent": 1.387
+              },
+              {
+                "name": "___sdcc_bcall_ehl",
+                "estimatedTCycles": 1261812,
+                "percent": 1.349
+              },
+              {
+                "name": "dense_step_shots",
+                "estimatedTCycles": 1233488,
+                "percent": 1.319
+              },
+              {
+                "name": "step_bullet",
+                "estimatedTCycles": 1117860,
+                "percent": 1.195
+              },
+              {
+                "name": "ce_trace_write",
+                "estimatedTCycles": 1029088,
+                "percent": 1.1
+              },
+              {
+                "name": "ce_render",
+                "estimatedTCycles": 901312,
+                "percent": 0.963
+              },
+              {
+                "name": "sprite_color",
+                "estimatedTCycles": 796284,
+                "percent": 0.851
+              },
+              {
+                "name": "ce_stage_events",
+                "estimatedTCycles": 732500,
+                "percent": 0.783
+              },
+              {
+                "name": "ce_move_actor",
+                "estimatedTCycles": 685928,
+                "percent": 0.733
+              },
+              {
+                "name": "prepare_sprite_color",
+                "estimatedTCycles": 584380,
+                "percent": 0.625
+              },
+              {
+                "name": "ce_render_sprites",
+                "estimatedTCycles": 493188,
+                "percent": 0.527
+              },
+              {
+                "name": "shot_sprite",
+                "estimatedTCycles": 478520,
+                "percent": 0.512
+              },
+              {
+                "name": "ce_shoot",
+                "estimatedTCycles": 442676,
+                "percent": 0.473
+              },
+              {
+                "name": "HRAM / DMA",
+                "estimatedTCycles": 433264,
+                "percent": 0.463
+              },
+              {
+                "name": "dense_admit",
+                "estimatedTCycles": 418428,
+                "percent": 0.447
+              },
+              {
+                "name": "_set_bkg_tiles",
+                "estimatedTCycles": 406812,
+                "percent": 0.435
+              },
+              {
+                "name": "parallax",
+                "estimatedTCycles": 381908,
+                "percent": 0.408
+              },
+              {
+                "name": "shot_box",
+                "estimatedTCycles": 370400,
+                "percent": 0.396
+              },
+              {
+                "name": "_memcpy",
+                "estimatedTCycles": 366192,
+                "percent": 0.391
+              },
+              {
+                "name": "__moduint",
+                "estimatedTCycles": 359796,
+                "percent": 0.385
+              },
+              {
+                "name": "ce_mainloop",
+                "estimatedTCycles": 342764,
+                "percent": 0.366
+              },
+              {
+                "name": "ce_audio_sync",
+                "estimatedTCycles": 309264,
+                "percent": 0.331
+              },
+              {
+                "name": "ce_hud",
+                "estimatedTCycles": 305860,
+                "percent": 0.327
+              },
+              {
+                "name": "_memset",
+                "estimatedTCycles": 300768,
+                "percent": 0.322
+              },
+              {
+                "name": "_joypad",
+                "estimatedTCycles": 262940,
+                "percent": 0.281
+              },
+              {
+                "name": "ce_count_frame",
+                "estimatedTCycles": 208584,
+                "percent": 0.223
+              },
+              {
+                "name": "ce_init_shot_visual",
+                "estimatedTCycles": 201328,
+                "percent": 0.215
+              },
+              {
+                "name": "move_camera",
+                "estimatedTCycles": 178284,
+                "percent": 0.191
+              },
+              {
+                "name": "steer_sprite_shots",
+                "estimatedTCycles": 169992,
+                "percent": 0.182
+              },
+              {
+                "name": "unmapped 20",
+                "estimatedTCycles": 156752,
+                "percent": 0.168
+              },
+              {
+                "name": "ce_music_tick",
+                "estimatedTCycles": 151116,
+                "percent": 0.162
+              },
+              {
+                "name": "bullet_overlaps",
+                "estimatedTCycles": 127316,
+                "percent": 0.136
+              },
+              {
+                "name": "ce_hud_scanline",
+                "estimatedTCycles": 119492,
+                "percent": 0.128
+              },
+              {
+                "name": "__mulint",
+                "estimatedTCycles": 91676,
+                "percent": 0.098
+              },
+              {
+                "name": "ce_allocate_shot",
+                "estimatedTCycles": 71704,
+                "percent": 0.077
+              },
+              {
+                "name": "sprite",
+                "estimatedTCycles": 54192,
+                "percent": 0.058
+              },
+              {
+                "name": "ce_boss_hp",
+                "estimatedTCycles": 50260,
+                "percent": 0.054
+              },
+              {
+                "name": "load_bar",
+                "estimatedTCycles": 49364,
+                "percent": 0.053
+              },
+              {
+                "name": "_nowait_int_handler",
+                "estimatedTCycles": 47616,
+                "percent": 0.051
+              },
+              {
+                "name": "allocate",
+                "estimatedTCycles": 43664,
+                "percent": 0.047
+              },
+              {
+                "name": "number",
+                "estimatedTCycles": 42180,
+                "percent": 0.045
+              },
+              {
+                "name": "ce_aim",
+                "estimatedTCycles": 39084,
+                "percent": 0.042
+              },
+              {
+                "name": "ce_map_copy",
+                "estimatedTCycles": 37036,
+                "percent": 0.04
+              },
+              {
+                "name": "play_row",
+                "estimatedTCycles": 31800,
+                "percent": 0.034
+              },
+              {
+                "name": "spawn_actor",
+                "estimatedTCycles": 29844,
+                "percent": 0.032
+              },
+              {
+                "name": "unmapped 82",
+                "estimatedTCycles": 29348,
+                "percent": 0.031
+              },
+              {
+                "name": "ce_copy",
+                "estimatedTCycles": 28920,
+                "percent": 0.031
+              },
+              {
+                "name": "ce_release_shot",
+                "estimatedTCycles": 27060,
+                "percent": 0.029
+              },
+              {
+                "name": "unmapped 87",
+                "estimatedTCycles": 24548,
+                "percent": 0.026
+              },
+              {
+                "name": "ce_damage_actor",
+                "estimatedTCycles": 19600,
+                "percent": 0.021
+              },
+              {
+                "name": "unmapped 8b",
+                "estimatedTCycles": 19228,
+                "percent": 0.021
+              },
+              {
+                "name": "unmapped 84",
+                "estimatedTCycles": 18820,
+                "percent": 0.02
+              },
+              {
+                "name": "ce_sound",
+                "estimatedTCycles": 16652,
+                "percent": 0.018
+              },
+              {
+                "name": "unmapped 8c",
+                "estimatedTCycles": 13804,
+                "percent": 0.015
+              },
+              {
+                "name": "unmapped 83",
+                "estimatedTCycles": 13136,
+                "percent": 0.014
+              },
+              {
+                "name": "release",
+                "estimatedTCycles": 12596,
+                "percent": 0.013
+              },
+              {
+                "name": "unmapped 86",
+                "estimatedTCycles": 12144,
+                "percent": 0.013
+              },
+              {
+                "name": "unmapped 45",
+                "estimatedTCycles": 11972,
+                "percent": 0.013
+              },
+              {
+                "name": "unmapped 88",
+                "estimatedTCycles": 11912,
+                "percent": 0.013
+              },
+              {
+                "name": "unmapped 40",
+                "estimatedTCycles": 11608,
+                "percent": 0.012
+              },
+              {
+                "name": "unmapped 48",
+                "estimatedTCycles": 11416,
+                "percent": 0.012
+              },
+              {
+                "name": "unmapped 41",
+                "estimatedTCycles": 11020,
+                "percent": 0.012
+              },
+              {
+                "name": "unmapped 9f",
+                "estimatedTCycles": 10616,
+                "percent": 0.011
+              },
+              {
+                "name": "unmapped 89",
+                "estimatedTCycles": 10616,
+                "percent": 0.011
+              },
+              {
+                "name": "unmapped 42",
+                "estimatedTCycles": 10100,
+                "percent": 0.011
+              },
+              {
+                "name": "unmapped 91",
+                "estimatedTCycles": 9976,
+                "percent": 0.011
+              },
+              {
+                "name": "unmapped 92",
+                "estimatedTCycles": 9656,
+                "percent": 0.01
+              },
+              {
+                "name": "unmapped 80",
+                "estimatedTCycles": 8832,
+                "percent": 0.009
+              },
+              {
+                "name": "unmapped 81",
+                "estimatedTCycles": 7944,
+                "percent": 0.008
+              },
+              {
+                "name": "ce_read_event",
+                "estimatedTCycles": 7824,
+                "percent": 0.008
+              },
+              {
+                "name": "unmapped a8",
+                "estimatedTCycles": 7740,
+                "percent": 0.008
+              },
+              {
+                "name": "unmapped a4",
+                "estimatedTCycles": 7704,
+                "percent": 0.008
+              },
+              {
+                "name": "unmapped 96",
+                "estimatedTCycles": 7700,
+                "percent": 0.008
+              },
+              {
+                "name": "unmapped 8d",
+                "estimatedTCycles": 7548,
+                "percent": 0.008
+              },
+              {
+                "name": "lead",
+                "estimatedTCycles": 7540,
+                "percent": 0.008
+              },
+              {
+                "name": "unmapped a0",
+                "estimatedTCycles": 7252,
+                "percent": 0.008
+              },
+              {
+                "name": "unmapped 9b",
+                "estimatedTCycles": 6240,
+                "percent": 0.007
+              },
+              {
+                "name": "explode",
+                "estimatedTCycles": 6228,
+                "percent": 0.007
+              },
+              {
+                "name": "unmapped 93",
+                "estimatedTCycles": 5996,
+                "percent": 0.006
+              },
+              {
+                "name": "unmapped 9a",
+                "estimatedTCycles": 5740,
+                "percent": 0.006
+              },
+              {
+                "name": "bass",
+                "estimatedTCycles": 5724,
+                "percent": 0.006
+              },
+              {
+                "name": "unmapped 94",
+                "estimatedTCycles": 5560,
+                "percent": 0.006
+              },
+              {
+                "name": "unmapped 8a",
+                "estimatedTCycles": 5356,
+                "percent": 0.006
+              },
+              {
+                "name": "unmapped 98",
+                "estimatedTCycles": 4524,
+                "percent": 0.005
+              },
+              {
+                "name": "unmapped a6",
+                "estimatedTCycles": 3884,
+                "percent": 0.004
+              },
+              {
+                "name": "__divuint",
+                "estimatedTCycles": 3192,
+                "percent": 0.003
+              },
+              {
+                "name": "unmapped 9c",
+                "estimatedTCycles": 3096,
+                "percent": 0.003
+              },
+              {
+                "name": "_set_win_tiles",
+                "estimatedTCycles": 1868,
+                "percent": 0.002
+              },
+              {
+                "name": "ce_add_score",
+                "estimatedTCycles": 1524,
+                "percent": 0.002
+              },
+              {
+                "name": "ce_hit_player",
+                "estimatedTCycles": 1228,
+                "percent": 0.001
+              },
+              {
+                "name": "ce_power_miss",
+                "estimatedTCycles": 404,
+                "percent": 0
+              }
+            ],
+            "hotPCs": [
+              {
+                "address": "1c6",
+                "name": "_wait_vbl_done",
+                "percent": 34.85
+              },
+              {
+                "address": "284e",
+                "name": "__muluchar",
+                "percent": 0.362
+              },
+              {
+                "address": "2849",
+                "name": "__muluchar",
+                "percent": 0.35
+              },
+              {
+                "address": "ff88",
+                "percent": 0.312
+              },
+              {
+                "address": "284a",
+                "name": "__muluchar",
+                "percent": 0.235
+              },
+              {
+                "address": "3b5e",
+                "name": "___sdcc_bcall_ehl",
+                "percent": 0.187
+              },
+              {
+                "address": "20",
+                "percent": 0.168
+              },
+              {
+                "address": "1f7e9a",
+                "name": "ce_dense_plan",
+                "percent": 0.14
+              },
+              {
+                "address": "2e7de8",
+                "name": "dense_draw",
+                "percent": 0.14
+              },
+              {
+                "address": "2028",
+                "name": "dense_step_shots",
+                "percent": 0.136
+              },
+              {
+                "address": "1f7e97",
+                "name": "ce_dense_plan",
+                "percent": 0.135
+              },
+              {
+                "address": "202c",
+                "name": "dense_step_shots",
+                "percent": 0.133
+              },
+              {
+                "address": "2e7882",
+                "name": "sprite_color",
+                "percent": 0.131
+              },
+              {
+                "address": "3b67",
+                "name": "___sdcc_bcall_ehl",
+                "percent": 0.127
+              },
+              {
+                "address": "284b",
+                "name": "__muluchar",
+                "percent": 0.126
+              },
+              {
+                "address": "3b70",
+                "name": "___sdcc_bcall_ehl",
+                "percent": 0.125
+              },
+              {
+                "address": "3b68",
+                "name": "___sdcc_bcall_ehl",
+                "percent": 0.12
+              },
+              {
+                "address": "3b61",
+                "name": "___sdcc_bcall_ehl",
+                "percent": 0.119
+              },
+              {
+                "address": "2e7e86",
+                "name": "dense_draw",
+                "percent": 0.118
+              },
+              {
+                "address": "ff89",
+                "percent": 0.113
+              },
+              {
+                "address": "284f",
+                "name": "__muluchar",
+                "percent": 0.111
+              },
+              {
+                "address": "1f7cec",
+                "name": "admit_fast",
+                "percent": 0.109
+              },
+              {
+                "address": "2025",
+                "name": "dense_step_shots",
+                "percent": 0.105
+              },
+              {
+                "address": "18c2",
+                "name": "box",
+                "percent": 0.104
+              },
+              {
+                "address": "1f7cc6",
+                "name": "admit_fast",
+                "percent": 0.104
+              },
+              {
+                "address": "3b64",
+                "name": "___sdcc_bcall_ehl",
+                "percent": 0.103
+              },
+              {
+                "address": "2059",
+                "name": "dense_step_shots",
+                "percent": 0.103
+              },
+              {
+                "address": "1f7ea1",
+                "name": "ce_dense_plan",
+                "percent": 0.101
+              },
+              {
+                "address": "2e7dea",
+                "name": "dense_draw",
+                "percent": 0.1
+              },
+              {
+                "address": "2e7ded",
+                "name": "dense_draw",
+                "percent": 0.099
+              },
+              {
+                "address": "3b60",
+                "name": "___sdcc_bcall_ehl",
+                "percent": 0.099
+              },
+              {
+                "address": "2e7c83",
+                "name": "actor_sprite",
+                "percent": 0.098
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "profile96-final": {
+      "path": ".cache/gbc-only/profile96-final.json",
+      "sha256": "70ef0774c76dfe2c01f420318deb2a7270ea45aa0f1bc7f345ab1927b52e7dda",
+      "data": {
+        "attribution": "C debug ranges and linker symbols",
+        "rom": ".cache/gbc-only/final96/fixture-hYm205/projects/stg-bench/build/Debug/stg-bench.gb",
+        "romSha256": "ea81aeb67e7a7cf85b7220440bfe90ea66edd3cbae2665f22cdacab0ec34bd3c",
+        "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+        "emulator": "Boytacean 0.13.2",
+        "fromTick": 120,
+        "toTick": 360,
+        "input": "none",
+        "modes": [
+          {
+            "mode": "CGB",
+            "samples": 194026,
+            "totalTCycles": 75281728,
+            "functions": [
+              {
+                "name": "draw_shot",
+                "estimatedTCycles": 24706600,
+                "percent": 32.819
+              },
+              {
+                "name": "update_all",
+                "estimatedTCycles": 10388408,
+                "percent": 13.799
+              },
+              {
+                "name": "_wait_vbl_done",
+                "estimatedTCycles": 7502000,
+                "percent": 9.965
+              },
+              {
+                "name": "ce_step_actor",
+                "estimatedTCycles": 5589532,
+                "percent": 7.425
+              },
+              {
+                "name": "admit_fast",
+                "estimatedTCycles": 3154732,
+                "percent": 4.191
+              },
+              {
+                "name": "actor_sprite",
+                "estimatedTCycles": 3024120,
+                "percent": 4.017
+              },
+              {
+                "name": "cgb_begin",
+                "estimatedTCycles": 2380324,
+                "percent": 3.162
+              },
+              {
+                "name": "ce_move_actor",
+                "estimatedTCycles": 1971124,
+                "percent": 2.618
+              },
+              {
+                "name": "box",
+                "estimatedTCycles": 1907172,
+                "percent": 2.533
+              },
+              {
+                "name": "step_nonbullet",
+                "estimatedTCycles": 1671200,
+                "percent": 2.22
+              },
+              {
+                "name": "ce_dense_plan",
+                "estimatedTCycles": 1574076,
+                "percent": 2.091
+              },
+              {
+                "name": "___sdcc_bcall_ehl",
+                "estimatedTCycles": 1070568,
+                "percent": 1.422
+              },
+              {
+                "name": "step_entities",
+                "estimatedTCycles": 1041252,
+                "percent": 1.383
+              },
+              {
+                "name": "dense_draw",
+                "estimatedTCycles": 858880,
+                "percent": 1.141
+              },
+              {
+                "name": "ce_cgb_resolve",
+                "estimatedTCycles": 813612,
+                "percent": 1.081
+              },
+              {
+                "name": "ce_render_sprites",
+                "estimatedTCycles": 687788,
+                "percent": 0.914
+              },
+              {
+                "name": "step_player",
+                "estimatedTCycles": 663804,
+                "percent": 0.882
+              },
+              {
+                "name": "ce_step",
+                "estimatedTCycles": 514404,
+                "percent": 0.683
+              },
+              {
+                "name": "ce_shoot",
+                "estimatedTCycles": 484052,
+                "percent": 0.643
+              },
+              {
+                "name": "ce_bg_spawn",
+                "estimatedTCycles": 477480,
+                "percent": 0.634
+              },
+              {
+                "name": "ce_trace_write",
+                "estimatedTCycles": 439656,
+                "percent": 0.584
+              },
+              {
+                "name": "dense_admit",
+                "estimatedTCycles": 412488,
+                "percent": 0.548
+              },
+              {
+                "name": "_memcpy",
+                "estimatedTCycles": 365644,
+                "percent": 0.486
+              },
+              {
+                "name": "HRAM / DMA",
+                "estimatedTCycles": 354092,
+                "percent": 0.47
+              },
+              {
+                "name": "ce_bg_begin",
+                "estimatedTCycles": 327704,
+                "percent": 0.435
+              },
+              {
+                "name": "cgb_flush",
+                "estimatedTCycles": 314916,
+                "percent": 0.418
+              },
+              {
+                "name": "ce_stage_events",
+                "estimatedTCycles": 300552,
+                "percent": 0.399
+              },
+              {
+                "name": "ce_render",
+                "estimatedTCycles": 269892,
+                "percent": 0.359
+              },
+              {
+                "name": "ce_count_frame",
+                "estimatedTCycles": 143860,
+                "percent": 0.191
+              },
+              {
+                "name": "unmapped 20",
+                "estimatedTCycles": 135896,
+                "percent": 0.181
+              },
+              {
+                "name": "cgb_publish",
+                "estimatedTCycles": 135748,
+                "percent": 0.18
+              },
+              {
+                "name": "ce_mainloop",
+                "estimatedTCycles": 134528,
+                "percent": 0.179
+              },
+              {
+                "name": "ce_audio_sync",
+                "estimatedTCycles": 127520,
+                "percent": 0.169
+              },
+              {
+                "name": "ce_hud",
+                "estimatedTCycles": 120224,
+                "percent": 0.16
+              },
+              {
+                "name": "_memset",
+                "estimatedTCycles": 113924,
+                "percent": 0.151
+              },
+              {
+                "name": "_joypad",
+                "estimatedTCycles": 103952,
+                "percent": 0.138
+              },
+              {
+                "name": "ce_hud_scanline",
+                "estimatedTCycles": 95384,
+                "percent": 0.127
+              },
+              {
+                "name": "emit_oam",
+                "estimatedTCycles": 95132,
+                "percent": 0.126
+              },
+              {
+                "name": "ce_bg_update",
+                "estimatedTCycles": 93568,
+                "percent": 0.124
+              },
+              {
+                "name": "prepare_sprite_color",
+                "estimatedTCycles": 91104,
+                "percent": 0.121
+              },
+              {
+                "name": "__moduint",
+                "estimatedTCycles": 74368,
+                "percent": 0.099
+              },
+              {
+                "name": "dma_transfer",
+                "estimatedTCycles": 71164,
+                "percent": 0.095
+              },
+              {
+                "name": "_nowait_int_handler",
+                "estimatedTCycles": 34988,
+                "percent": 0.046
+              },
+              {
+                "name": "collide_player",
+                "estimatedTCycles": 32504,
+                "percent": 0.043
+              },
+              {
+                "name": "ce_bg_flush",
+                "estimatedTCycles": 32456,
+                "percent": 0.043
+              },
+              {
+                "name": "unmapped 82",
+                "estimatedTCycles": 25672,
+                "percent": 0.034
+              },
+              {
+                "name": "ce_boss_hp",
+                "estimatedTCycles": 23952,
+                "percent": 0.032
+              },
+              {
+                "name": "ce_bg_publish",
+                "estimatedTCycles": 22040,
+                "percent": 0.029
+              },
+              {
+                "name": "unmapped 87",
+                "estimatedTCycles": 19448,
+                "percent": 0.026
+              },
+              {
+                "name": "sprite",
+                "estimatedTCycles": 18916,
+                "percent": 0.025
+              },
+              {
+                "name": "unmapped 83",
+                "estimatedTCycles": 15348,
+                "percent": 0.02
+              },
+              {
+                "name": "unmapped 84",
+                "estimatedTCycles": 14068,
+                "percent": 0.019
+              },
+              {
+                "name": "unmapped 8c",
+                "estimatedTCycles": 13684,
+                "percent": 0.018
+              },
+              {
+                "name": "unmapped 40",
+                "estimatedTCycles": 13620,
+                "percent": 0.018
+              },
+              {
+                "name": "unmapped 8b",
+                "estimatedTCycles": 12860,
+                "percent": 0.017
+              },
+              {
+                "name": "collide_shots",
+                "estimatedTCycles": 11640,
+                "percent": 0.015
+              },
+              {
+                "name": "unmapped 48",
+                "estimatedTCycles": 11276,
+                "percent": 0.015
+              },
+              {
+                "name": "unmapped 88",
+                "estimatedTCycles": 10176,
+                "percent": 0.014
+              },
+              {
+                "name": "unmapped 81",
+                "estimatedTCycles": 9892,
+                "percent": 0.013
+              },
+              {
+                "name": "unmapped 93",
+                "estimatedTCycles": 9784,
+                "percent": 0.013
+              },
+              {
+                "name": "retire",
+                "estimatedTCycles": 9228,
+                "percent": 0.012
+              },
+              {
+                "name": "unmapped 8d",
+                "estimatedTCycles": 9020,
+                "percent": 0.012
+              },
+              {
+                "name": "unmapped 42",
+                "estimatedTCycles": 8900,
+                "percent": 0.012
+              },
+              {
+                "name": "unmapped 92",
+                "estimatedTCycles": 8340,
+                "percent": 0.011
+              },
+              {
+                "name": "unmapped 41",
+                "estimatedTCycles": 8324,
+                "percent": 0.011
+              },
+              {
+                "name": "unmapped 96",
+                "estimatedTCycles": 7928,
+                "percent": 0.011
+              },
+              {
+                "name": "unmapped 80",
+                "estimatedTCycles": 7800,
+                "percent": 0.01
+              },
+              {
+                "name": "unmapped 45",
+                "estimatedTCycles": 7300,
+                "percent": 0.01
+              },
+              {
+                "name": "unmapped 9f",
+                "estimatedTCycles": 7268,
+                "percent": 0.01
+              },
+              {
+                "name": "unmapped 89",
+                "estimatedTCycles": 7228,
+                "percent": 0.01
+              },
+              {
+                "name": "unmapped 86",
+                "estimatedTCycles": 6576,
+                "percent": 0.009
+              },
+              {
+                "name": "unmapped a8",
+                "estimatedTCycles": 6548,
+                "percent": 0.009
+              },
+              {
+                "name": "unmapped a4",
+                "estimatedTCycles": 6340,
+                "percent": 0.008
+              },
+              {
+                "name": "unmapped a0",
+                "estimatedTCycles": 6148,
+                "percent": 0.008
+              },
+              {
+                "name": "unmapped a6",
+                "estimatedTCycles": 5876,
+                "percent": 0.008
+              },
+              {
+                "name": "unmapped 91",
+                "estimatedTCycles": 5652,
+                "percent": 0.008
+              },
+              {
+                "name": "unmapped 9a",
+                "estimatedTCycles": 5160,
+                "percent": 0.007
+              },
+              {
+                "name": "unmapped 94",
+                "estimatedTCycles": 4912,
+                "percent": 0.007
+              },
+              {
+                "name": "unmapped 9b",
+                "estimatedTCycles": 4168,
+                "percent": 0.006
+              },
+              {
+                "name": "ce_music_tick",
+                "estimatedTCycles": 3916,
+                "percent": 0.005
+              },
+              {
+                "name": "unmapped 98",
+                "estimatedTCycles": 3364,
+                "percent": 0.004
+              },
+              {
+                "name": "unmapped 8a",
+                "estimatedTCycles": 2980,
+                "percent": 0.004
+              },
+              {
+                "name": "unmapped 9c",
+                "estimatedTCycles": 2004,
+                "percent": 0.003
+              },
+              {
+                "name": "__divuint",
+                "estimatedTCycles": 1276,
+                "percent": 0.002
+              },
+              {
+                "name": "ce_hit_player",
+                "estimatedTCycles": 704,
+                "percent": 0.001
+              }
+            ],
+            "hotPCs": [
+              {
+                "address": "1c6",
+                "name": "_wait_vbl_done",
+                "percent": 9.929
+              },
+              {
+                "address": "24f8d",
+                "name": "draw_shot",
+                "percent": 0.717
+              },
+              {
+                "address": "24f9a",
+                "name": "draw_shot",
+                "percent": 0.509
+              },
+              {
+                "address": "2504b",
+                "name": "draw_shot",
+                "percent": 0.496
+              },
+              {
+                "address": "25149",
+                "name": "update_all",
+                "percent": 0.494
+              },
+              {
+                "address": "25153",
+                "name": "update_all",
+                "percent": 0.492
+              },
+              {
+                "address": "24f90",
+                "name": "draw_shot",
+                "percent": 0.491
+              },
+              {
+                "address": "25135",
+                "name": "update_all",
+                "percent": 0.49
+              },
+              {
+                "address": "24fac",
+                "name": "draw_shot",
+                "percent": 0.49
+              },
+              {
+                "address": "24fc4",
+                "name": "draw_shot",
+                "percent": 0.486
+              },
+              {
+                "address": "25101",
+                "name": "update_all",
+                "percent": 0.486
+              },
+              {
+                "address": "2500b",
+                "name": "draw_shot",
+                "percent": 0.484
+              },
+              {
+                "address": "2514c",
+                "name": "update_all",
+                "percent": 0.484
+              },
+              {
+                "address": "24ff7",
+                "name": "draw_shot",
+                "percent": 0.484
+              },
+              {
+                "address": "25104",
+                "name": "update_all",
+                "percent": 0.483
+              },
+              {
+                "address": "25053",
+                "name": "draw_shot",
+                "percent": 0.482
+              },
+              {
+                "address": "2501d",
+                "name": "draw_shot",
+                "percent": 0.479
+              },
+              {
+                "address": "24f9d",
+                "name": "draw_shot",
+                "percent": 0.479
+              },
+              {
+                "address": "24fb8",
+                "name": "draw_shot",
+                "percent": 0.476
+              },
+              {
+                "address": "2501c",
+                "name": "draw_shot",
+                "percent": 0.475
+              },
+              {
+                "address": "24fbb",
+                "name": "draw_shot",
+                "percent": 0.474
+              },
+              {
+                "address": "24fbf",
+                "name": "draw_shot",
+                "percent": 0.474
+              },
+              {
+                "address": "24fa3",
+                "name": "draw_shot",
+                "percent": 0.474
+              },
+              {
+                "address": "24ffd",
+                "name": "draw_shot",
+                "percent": 0.452
+              },
+              {
+                "address": "25018",
+                "name": "draw_shot",
+                "percent": 0.448
+              },
+              {
+                "address": "2514f",
+                "name": "update_all",
+                "percent": 0.397
+              },
+              {
+                "address": "25066",
+                "name": "draw_shot",
+                "percent": 0.386
+              },
+              {
+                "address": "24f97",
+                "name": "draw_shot",
+                "percent": 0.382
+              },
+              {
+                "address": "25138",
+                "name": "update_all",
+                "percent": 0.382
+              },
+              {
+                "address": "25150",
+                "name": "update_all",
+                "percent": 0.38
+              },
+              {
+                "address": "24fb4",
+                "name": "draw_shot",
+                "percent": 0.379
+              },
+              {
+                "address": "25124",
+                "name": "update_all",
+                "percent": 0.377
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "intermediateFixtures": {
+    "sparse32": {
+      "note": "Before the final large-GDMA safety split; exact source snapshot and ROM hash retained by fixture.",
+      "case": "stress",
+      "romSha256": "86f795c318c8ed721f9870493b0a7a621dc3126aeedf0f46f10a5fed8b1cf8bb",
+      "fixture": true,
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\sparse32\\fixture-XWtIoh\\projects\\stg-bench\\build\\Debug\\stg-bench.gb",
+      "ramBytes": 2428,
+      "romBytes": 262144,
+      "modes": [
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 1.0483333333333333,
+            "p95": 1,
+            "max": 2,
+            "updatesPerSecond": 56.97376788553259
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 1.048504215083164,
+            "p95": 1.0020221007063113,
+            "max": 2.000142401458191,
+            "updatesPerSecond": 56.96448248924074
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 3,
+          "peakOam": 5,
+          "peakScanline": 3,
+          "dmaEndMax": 147,
+          "bgPixelsChecked": 5064,
+          "phases": [],
+          "dropped": 162,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "36948eef71d94d7b6ce1bc2a0ea9f37ef3764c9d99f0446cfecd779b814c3063"
+        }
+      ]
+    },
+    "final40": {
+      "note": "Before the final large-GDMA safety split; exact source snapshot and ROM hash retained by fixture.",
+      "case": "stress",
+      "romSha256": "089126c857eea2b4968096b2ed16546ea6e1205e23154409cb2291421250cfe9",
+      "fixture": true,
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\final40\\fixture-Xne7iW\\projects\\stg-bench\\build\\Debug\\stg-bench.gb",
+      "ramBytes": 2496,
+      "romBytes": 262144,
+      "modes": [
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 2,
+            "p95": 2,
+            "max": 2,
+            "updatesPerSecond": 29.86375
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 2.000170881749833,
+            "p95": 2.0001993620414673,
+            "max": 2.0002563226247436,
+            "updatesPerSecond": 29.861198633062735
+          },
+          "peakShots": 40,
+          "peakEnemies": 8,
+          "peakEntities": 8,
+          "peakOam": 10,
+          "peakScanline": 4,
+          "dmaEndMax": 147,
+          "bgPixelsChecked": 6928,
+          "phases": [],
+          "dropped": 554,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "aa263075dbc0543ce1c9c0b1bb207a8331d30fdf22850427154c7fd8fe680b01"
+        }
+      ]
+    },
+    "final64": {
+      "note": "Before the final large-GDMA safety split; exact source snapshot and ROM hash retained by fixture.",
+      "case": "stress",
+      "romSha256": "eae6516f076c5398a0c6d414025b4bd467af012cf90fff5e735d4837746e6a5b",
+      "fixture": true,
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\final64\\fixture-7k9UQq\\projects\\stg-bench\\build\\Debug\\stg-bench.gb",
+      "ramBytes": 2496,
+      "romBytes": 262144,
+      "modes": [
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 1.9883333333333333,
+            "p95": 2,
+            "max": 2,
+            "updatesPerSecond": 30.038977367979882
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 1.9885072529809407,
+            "p95": 2.0001993620414673,
+            "max": 2.002022100706311,
+            "updatesPerSecond": 30.03635008645979
+          },
+          "peakShots": 64,
+          "peakEnemies": 3,
+          "peakEntities": 3,
+          "peakOam": 5,
+          "peakScanline": 3,
+          "dmaEndMax": 147,
+          "bgPixelsChecked": 9616,
+          "phases": [],
+          "dropped": 58,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "def94b2938ab54d18fe351e20283431748198a189a57d3ef617a45c786b5ce35"
+        }
+      ]
+    },
+    "local-hit2": {
+      "note": "Before the final large-GDMA safety split; exact source snapshot and ROM hash retained by fixture.",
+      "case": "stress",
+      "romSha256": "a8e33315ef887c92034f116914b69759fe18ed2b9d406dba88c3e7614c218706",
+      "fixture": true,
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-only\\local-hit2\\fixture-CUpQ1o\\projects\\stg-bench\\build\\Debug\\stg-bench.gb",
+      "ramBytes": 2496,
+      "romBytes": 262144,
+      "modes": [
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 1.065,
+            "p95": 2,
+            "max": 2,
+            "updatesPerSecond": 56.082159624413144
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 1.065184457355512,
+            "p95": 2.000142401458191,
+            "max": 2.0082877648667123,
+            "updatesPerSecond": 56.07244791036748
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 4,
+          "peakOam": 6,
+          "peakScanline": 3,
+          "dmaEndMax": 147,
+          "bgPixelsChecked": 5068,
+          "phases": [],
+          "dropped": 165,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "c3650960769d6d0a5ff4baa70fa31aa699574093c62ffae4a0ad35146c2e00b1"
+        }
+      ]
+    }
+  },
+  "intermediateProfiles": {
+    "profile-kouma": {
+      "path": ".cache/gbc-only/profile-kouma.json",
+      "sha256": "c14fcf3602578a5d5014b6409a14195d2da82abc2524def8374c4bfa725ab329",
+      "note": "Sampled intermediate ROM; not final timing attribution."
+    },
+    "profile96": {
+      "path": ".cache/gbc-only/profile96.json",
+      "sha256": "8b133589c848f19724cd1f17c2a4c121eab8a5f9d16c94f66ab534d70ef13360",
+      "note": "Sampled intermediate ROM; not final timing attribution."
+    },
+    "profile-dictionary1": {
+      "path": ".cache/gbc-only/profile-dictionary1.json",
+      "sha256": "6a5c498364a4a3bb5abbc18640b45f90e2f18fa3604ec866fffee94baf5ea3aa",
+      "note": "Sampled intermediate ROM; not final timing attribution."
+    }
+  },
+  "logs": [
+    {
+      "path": ".cache/gbc-only/doctor.log",
+      "sha256": "a0ee87506589e845562bc8a68224e0a771fcc56e49f5a885f995e44c747977ab"
+    },
+    {
+      "path": ".cache/gbc-only/hello-clean.log",
+      "sha256": "fa256fcb7136d277a11932d91613b779ee927e2bdfe2c6f53a26a1c024b9b197"
+    },
+    {
+      "path": ".cache/gbc-only/hello-debug.log",
+      "sha256": "4cb5983c599525a303bde314882253bd542585a4b98e28f805089fa80da130c1"
+    },
+    {
+      "path": ".cache/gbc-only/test-star.log",
+      "sha256": "ccb36074c5dcf5b471ade7649c6cbed74687c98006ded89155f71354b77e3fae"
+    },
+    {
+      "path": ".cache/gbc-only/star-release.log",
+      "sha256": "bd4dfc7f712158042c8cb423f6ac4ccbc1bd52e5bdd812877345ef577e2e330f"
+    },
+    {
+      "path": ".cache/gbc-only/touhou-safe-debug.log",
+      "sha256": "cced52889a34404d00ce75cb869a4d996dd4bf609037fe4c64ff65f799ba77c3"
+    },
+    {
+      "path": ".cache/gbc-only/touhou-safe-release.log",
+      "sha256": "b379b082957d81c1caf8fe73e8a6fa87c61d61e788f9f11244e324300f556fa2"
+    }
+  ],
+  "limits": [
+    "Performance acceptance is NOT met: no universal 60 updates/s and production Reimu road is slower than v27.",
+    "96-shot native BGB fixture: 21.5234 updates/s; Boytacean reports 26.4651. Use native timing for the conservative result.",
+    "Dense compound fields may take another VBlank to publish safely. Map and attributes are still transferred in full.",
+    "Emulicious EvaluateRequest throws NullPointerException; attachment is not execution verification.",
+    "Physical CGB, human listening, manual full-campaign clear and user playtest remain unverified.",
+    "8x16 OBJ uses shared palettes for tile pairs; original art retained, packing can differ from v27.",
+    "96 is a tested BG capacity, not the authored boss count; production caps remain 12/18/22/26/30/36/40."
+  ]
+}

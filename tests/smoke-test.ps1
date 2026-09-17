@@ -31,6 +31,9 @@ if ($ProjectJson) {
     if (($project.PSObject.Properties.Name -contains 'cgbCompatibility') -and $project.cgbCompatibility -eq 'dual') {
         if ($rom[0x143] -ne 0x80) { throw ("Expected dual DMG/CGB flag 0x80, found 0x{0:X2}" -f $rom[0x143]) }
     }
+    if (($project.PSObject.Properties.Name -contains 'cgbCompatibility') -and $project.cgbCompatibility -eq 'gbc') {
+        if ($rom[0x143] -ne 0xC0) { throw ("Expected GBC-only flag 0xC0, found 0x{0:X2}" -f $rom[0x143]) }
+    }
     if ($project.PSObject.Properties.Name -contains 'cartridgeType') {
         $expectedCartridgeType = [byte]$project.cartridgeType
         if ($rom[0x147] -ne $expectedCartridgeType) {

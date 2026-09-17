@@ -178,6 +178,16 @@ export class Simulation {
     entities: Entity[] = [];
     bgShots: {x: number; y: number; vx: number; vy: number; life: number; damage: number; slot: number; ref: string; angle: number}[] = [];
     bgNext=0;
+    private denseBgHit=false;
+    private retireDenseBg() {
+        const top=this.game.screens.find(s=>s.id==="hud")?.dock==="top"?hudHeight(this.game):0,pb=this.box(this.game.player.asset,this.playerX,this.playerY);
+        this.bgShots=this.bgShots.filter(b=>{
+            const x=Math.trunc(b.x/16)&~1,y=Math.trunc(b.y/16)&~1;
+            if(b.life<=0||b.x<0||b.y<0||x>158||y<top||y>=top+143-hudHeight(this.game))return false;
+            if(!this.respawn&&this.overlap(pb,{x,y,w:2,h:2})){this.denseBgHit ||= !!b.damage;return false;}
+            return true;
+        });
+    }
     bombs=0;
     bombLeft=0;
     bombLatch=true;
@@ -262,8 +272,28 @@ export class Simulation {
     }
     slots(asset: string) {
         const a = assetById(this.game, asset);
-        return (a.width * a.height) / 64;
+        return this.game.performance?.dense ? a.width/8*Math.ceil(a.height/16) : (a.width * a.height) / 64;
     }
+    get roadBg() { return !!this.game.performance?.dense && !!this.stage.bgBullets && this.battleMode === "stage"; }
+    visibleSlots = new Set<number>();
+    planSprites() {
+        if(!this.game.performance?.dense)return;
+        const lines=Array(18).fill(0);let slots=0;this.visibleSlots.clear();
+        const admit=(asset:string,x:number,y:number)=>{
+            const a=assetById(this.game,asset),left=Math.trunc(x/16)-a.origin.x,top=Math.trunc(y/16)-a.origin.y,bottom=top+Math.ceil(a.height/16)*16,n=this.slots(asset),columns=a.width/8;
+            if(left>=160||left+a.width<=0||bottom<=0||top>=144||slots+n>40)return false;
+            const first=Math.floor(Math.max(0,top)/8),end=Math.ceil(Math.min(144,bottom)/8);
+            for(let r=first;r<end;r++)if(lines[r]+columns>10)return false;
+            for(let r=first;r<end;r++)lines[r]+=columns;slots+=n;return true;
+        };
+        admit(this.barrier&&this.game.player.barrierAsset?this.game.player.barrierAsset:this.game.player.asset,this.playerX,this.playerY);
+        const ordered=[...this.entities.filter(e=>e.slot<13),...this.entities.filter(e=>e.slot>=21),...this.entities.filter(e=>e.slot>=13&&e.slot<21)];
+        for(const e of ordered){
+            if((e.kind==="pshot"||e.kind==="eshot")&&this.slots(e.asset)===1){const a=assetById(this.game,e.asset),sx=(Math.trunc(e.x/16)-a.origin.x+8)&255,sy=(Math.trunc(e.y/16)-a.origin.y+16)&255,bottom=this.game.screens.find(s=>s.id==="hud")?.dock==="bottom";if(((sx-1)&255)>=167||sy<(bottom?9:hudHeight(this.game)+9)||sy>=(bottom?160-hudHeight(this.game):160))continue;}
+            if(!(e.kind==="boss"&&(this.battleMode==="bg-boss"||this.transition?.stage==="break"))&&admit(e.asset,e.x,e.y))this.visibleSlots.add(e.slot);
+        }
+    }
+    visible(e:Entity) { return !this.game.performance?.dense || this.visibleSlots.has(e.slot) || (e.kind==="boss"&&this.battleMode==="bg-boss"); }
     get oam() {
         return (
             this.slots(this.game.player.asset) +
@@ -292,15 +322,15 @@ export class Simulation {
         const limits = { ...POOL_LIMITS, enemy: caps?.enemies ?? POOL_LIMITS.enemy, pshot: caps?.playerShots ?? POOL_LIMITS.pshot, eshot: caps?.enemyShots ?? POOL_LIMITS.eshot, fx: caps?.effects ?? POOL_LIMITS.fx };
         const reserve = this.game.items?.length && entity.kind !== "item" ? Math.max(0, 4 - this.entities.filter(e => e.kind === "item").length) : 0;
         if (
-            this.entities.length >= ENTITY_LIMIT - reserve ||
+            (!caps?.dense && this.entities.length >= ENTITY_LIMIT - reserve) ||
             this.entities.filter((e) => e.kind === entity.kind).length >=
                 limits[entity.kind] ||
-            this.oam + this.slots(entity.asset) > 40 - reserve
+            (!caps?.dense && this.oam + this.slots(entity.asset) > 40 - reserve)
         ) {
             this.dropped++;
             return;
         }
-        let slot = 0;
+        let slot = caps?.dense ? {enemy:0,boss:0,fx:13,item:17,pshot:21,eshot:21+(caps.playerShots??6)}[entity.kind] : 0;
         while (this.entities.some((e) => e.slot === slot)) slot++;
         this.entities.push({ ...entity, slot });
         this.entities.sort((a, b) => a.slot - b.slot);
@@ -409,7 +439,7 @@ export class Simulation {
         if (friendly && this.game.player.atomicVolleys) {
             const count = points.length * shotAngles(p, sequence, 0, 0).length;
             const reserve = this.game.items?.length ? Math.max(0, 4 - this.entities.filter(e => e.kind === "item").length) : 0;
-            if (this.entities.length + count > ENTITY_LIMIT - reserve || this.entities.filter(e => e.kind === "pshot").length + count > (this.game.performance?.playerShots ?? 6) || this.oam + count * this.slots(p.asset) > 40 - reserve) { this.dropped+=count; return; }
+            if ((!this.game.performance?.dense && this.entities.length + count > ENTITY_LIMIT - reserve) || this.entities.filter(e => e.kind === "pshot").length + count > (this.game.performance?.playerShots ?? 6) || (!this.game.performance?.dense && this.oam + count * this.slots(p.asset) > 40 - reserve)) { this.dropped+=count; return; }
         }
         for (const point of points) {
             const px=point.x,py=point.y;
@@ -422,10 +452,12 @@ export class Simulation {
                 Math.trunc((targetY - py) / 16),
             )) {
                 const speed = q4(p.speed);
-                if (!friendly && ["bg-bullets","bg-boss"].includes(this.battleMode)) {
+                if (!friendly && (this.roadBg || ["bg-bullets","bg-boss"].includes(this.battleMode))) {
+                    if(this.roadBg)this.bgLimit=this.stage.bgBulletLimit??40;
                     if (this.bgShots.length < this.bgLimit) {
                         while(this.bgShots.some(b=>b.slot===this.bgNext))this.bgNext=(this.bgNext+1)%this.bgLimit;
                         this.bgShots.push({x: px, y: py, vx: Math.trunc(SIN[angle] * speed / 16), vy: Math.trunc(-COS[angle] * speed / 16), life: p.lifetime, damage: p.damage,slot:this.bgNext,ref:p.id,angle});this.bgNext=(this.bgNext+1)%this.bgLimit;
+                        if(this.game.performance?.dense)this.retireDenseBg();
                     }
                     else this.dropped++;
                     continue;
@@ -702,6 +734,7 @@ export class Simulation {
         }
         if (this.invulnerable) this.invulnerable--;
         }
+        this.denseBgHit=false;
         for (const b of this.bgShots) {
             const p=g.patterns.find(p=>p.id===b.ref)!;
             if(p.kind==="homing" && p.lifetime-b.life<(p.guidance?.frames??48) && !((this.tick-b.slot)&((p.guidance?.period??16)-1))){
@@ -711,6 +744,7 @@ export class Simulation {
             b.x += b.vx; b.y += b.vy; --b.life;
         }
         this.bgShots = this.bgShots.filter(b => b.life > 0);
+        if(g.performance?.dense)this.retireDenseBg();
         this.camera = advanceCamera(this.game, this.stage, this.camera, this.scroll);
         let finish = this.deferredFinish;this.deferredFinish=false;
         if(this.eventStage!==this.stage){
@@ -744,7 +778,7 @@ export class Simulation {
                 if(e.age>=e.lifetime)this.entities=this.entities.filter(x=>x!==e);
             } else if (e.kind === "pshot" || e.kind === "eshot") {
                 const p=g.patterns.find(p=>p.id===e.ref)!;
-                if(e.kind==="eshot"&&p.kind==="homing"&&e.age<(p.guidance?.frames??48)&&!((this.tick-e.slot)&((p.guidance?.period??16)-1))){
+                if(e.kind==="eshot"&&p.kind==="homing"&&e.age<(p.guidance?.frames??48)&&!((this.tick-(e.slot-(g.performance?.dense?21:0)))&((p.guidance?.period??16)-1))){
                     e.sequence=homingAngle(e.sequence,Math.trunc(this.playerX/16)-Math.trunc(e.x/16),Math.trunc(this.playerY/16)-Math.trunc(e.y/16),horizontalStage(this.stage));
                     e.vx=Math.trunc(SIN[e.sequence]*q4(p.speed)/16)|0;e.vy=Math.trunc(-COS[e.sequence]*q4(p.speed)/16)|0;
                 }
@@ -821,13 +855,14 @@ export class Simulation {
                 this.entities = this.entities.filter((x) => x !== e);
         }
         if (this.bombLeft && p.bomb?.live) this.sweepBomb();
+        this.planSprites();
         for (const shot of [...this.entities].filter(
             (e) => e.kind === "pshot",
         )) {
-            if (!this.entities.includes(shot)) continue;
+            if (!this.entities.includes(shot) || !this.visible(shot)) continue;
             const enemy = this.entities.find(
                 (e) =>
-                    (e.kind === "enemy" || e.kind === "boss") && !(e.kind === "boss" && this.phaseLocked) &&
+                    this.visible(e) && (e.kind === "enemy" || e.kind === "boss") && !(e.kind === "boss" && this.phaseLocked) &&
                     this.overlap(
                         this.box(e.asset, e.x, e.y),
                         this.box(shot.asset, shot.x, shot.y),
@@ -842,7 +877,7 @@ export class Simulation {
         if (this.wall(playerBox)) this.hitPlayer();
         for (const e of this.entities)
             if (
-                e.kind !== "pshot" &&
+                this.visible(e) && e.kind !== "pshot" &&
                 e.kind !== "fx" &&
                 (e.kind === "boss" && this.game.bosses.find(b=>b.id===e.ref)?.contactBoxes?.length
                     ? this.game.bosses.find(b=>b.id===e.ref)!.contactBoxes!.some(r=>this.overlap(playerBox,{...r,x:Math.trunc(e.x/16)+r.x,y:Math.trunc(e.y/16)+r.y}))
@@ -855,6 +890,7 @@ export class Simulation {
             }
         }
         const pb = this.box(p.asset, this.playerX, this.playerY);
+        if(this.denseBgHit)this.hitPlayer();
         this.bgShots = this.bgShots.filter(b => {
             const x = Math.trunc(b.x / 16) & ~1, y = Math.trunc(b.y / 16) & ~1;
             if (b.x < 0 || b.y < 0 || x > 158 || y < top || y >= top + 143 - hudHeight(g)) return false;
@@ -972,7 +1008,7 @@ export function drawSimulation(
             for(const shot of sim.bgShots) ctx.fillRect(((Math.trunc(shot.x/16)+sx)&~1)-sx,((Math.trunc(shot.y/16)+sy)&~1)-sy,2,2);
         }
     }
-    if (sim.battleMode === "bg-bullets") {
+    if (sim.roadBg || sim.battleMode === "bg-bullets") {
         ctx.fillStyle = bg === g ? "#000" : "#fff"; ctx.fillRect(0,top,160,144-hudHeight(g)); ctx.fillStyle = bg === g ? "#fff" : "#000";
         for (const b of sim.bgShots) { const x = Math.trunc(b.x/16) & ~1, y = Math.trunc(b.y/16) & ~1; ctx.fillRect(x,y,2,2); }
     }
@@ -1004,7 +1040,7 @@ export function drawSimulation(
     };
     if (!sim.respawn && (sim.bombLeft || !sim.invulnerable || (sim.invulnerable & 4) === 0))
         draw(sim.barrier && g.player.barrierAsset ? g.player.barrierAsset : g.player.asset, sim.playerX, sim.playerY);
-    for (const e of sim.entities) if (!((sim.transition?.stage === "break" || sim.battleMode === "bg-boss") && e.kind === "boss")) draw(e.asset, e.x, e.y, e.age);
+    for (const e of sim.entities) if (sim.visible(e) && !((sim.transition?.stage === "break" || sim.battleMode === "bg-boss") && e.kind === "boss")) draw(e.asset, e.x, e.y, e.age);
     if(hitboxes) for(const e of sim.entities.filter(e=>e.kind==="boss")) {
         const weak=sim.box(e.asset,e.x,e.y);ctx.strokeStyle="#ffde59";ctx.lineWidth=0.5;ctx.strokeRect(weak.x,weak.y,weak.w,weak.h);
         ctx.strokeStyle="#ff637d";

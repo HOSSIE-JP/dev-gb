@@ -9,6 +9,7 @@ import crypto from 'node:crypto';
 import {createRequire} from 'node:module';
 import {boot,frames,memory,symbols,trace,entityState,simulatedEntities,
     assertPublishedOam,GameBoyMode,PadKey} from './emulator.mjs';
+import {backgroundColors,backgroundPixels,capture} from './presentation-qa.mjs';
 
 const [rootArg,outArg,caseName='stress',...flags]=process.argv.slice(2);
 const root=path.resolve(rootArg), output=path.resolve(outArg);
@@ -38,16 +39,25 @@ if(flags.includes('--cap24')) {
 }
 const isStress=['stress','animation','enemies'].includes(caseName);
 const game=lib.readGame(root,isStress?'star-caravan':'nova-spear');
+if(flags.includes('--dense')||flags.includes('--gbc'))game.performance={enemies:12,playerShots:6,enemyShots:32,effects:4,...game.performance,dense:true};
+if(flags.includes('--gbc'))game.hardware='gbc';
 game.stageFade=false;game.timeLimit=false;game.bossCelebration=false;
 game.player.invulnerability=1024;game.player.lives=9;
+if(flags.includes('--collisions')) {
+    game.player.invulnerability=120;
+    const a=game.assets.find(a=>a.id===game.player.asset);
+    a.hitbox={x:1,y:1,w:3,h:3};
+}
 game.stageOrder=[game.stageOrder[0]];
-const stage=game.stages[0];stage.duration=60;stage.clearOnBoss=false;stage.requireBoss=false;
+const stage=game.stages[0];if(flags.includes('--road')){stage.bgBullets=true;stage.bgBulletLimit=flags.includes('--more')?40:32;stage.walls.fill(0);if(stage.destructibles)stage.destructibles.objects=[];}stage.duration=60;stage.clearOnBoss=false;stage.requireBoss=false;
+const requestedBullets=flags.find(f=>f.startsWith('--bullets='));if(requestedBullets)stage.bgBulletLimit=Number(requestedBullets.split('=')[1]);
 if(isStress) {
     const enemy=game.enemies[0], pattern=game.patterns.find(p=>p.asset==='enemy-bullet');
     Object.assign(enemy,{hp:255,pattern:pattern.id,attacks:[]});
     Object.assign(enemy.motion,{kind:'straight',vx:0,vy:0});
     Object.assign(pattern,{kind:'fan',count:8,angle:180,spread:90,speed:.5,interval:64,delay:0,lifetime:384});
     stage.events=[{id:'load',kind:'enemy',ref:enemy.id,frame:0,x:32,y:28,count:3,spacing:48,interval:8,value:0}];
+    if(flags.includes('--more'))stage.events=Array.from({length:8},(_,i)=>({id:'load-'+i,kind:'enemy',ref:enemy.id,frame:i*8,x:24+(i%4)*36,y:28+Math.floor(i/4)*40,count:1,spacing:0,interval:0,value:0}));
     if(caseName==='enemies') {
         enemy.pattern='';
         stage.events=Array.from({length:12},(_,i)=>({id:`load-${i}`,kind:'enemy',ref:enemy.id,frame:i*8,x:16+(i%6)*24,y:24+Math.floor(i/6)*48,count:1,spacing:0,interval:0,value:0}));
@@ -70,7 +80,7 @@ if(isStress) {
 fs.mkdirSync(path.join(fixture,'projects'));
 lib.createProject(fixture,'stg-bench','STG BENCH',game);
 const report=flags.includes('--reuse') ? JSON.parse(fs.readFileSync(path.join(output,`${caseName}.json`))) :
-    lib.compile(fixture,'stg-bench','Release',()=>{});
+    lib.compile(fixture,'stg-bench',flags.includes('--debug')?'Debug':'Release',s=>fs.appendFileSync(path.join(output,'build.log'),s));
 if(flags.includes('--reuse')) report.romPath=report.rom;
 if(flags.includes('--reuse')) {
     const priorRoot=path.resolve(path.dirname(report.romPath),'../../../..');
@@ -81,14 +91,15 @@ const rom=fs.readFileSync(report.romPath),syms=symbols(report.romPath.replace(/\
 const results={case:caseName,romSha256:crypto.createHash('sha256').update(rom).digest('hex'),
     fixture:true,rom:report.romPath,ramBytes:report.ramBytes,romBytes:rom.length,modes:[]};
 if(flags.includes('--reuse')) assert.equal(results.romSha256,report.romSha256,'reused ROM hash');
-for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
+for(const mode of game.hardware==='gbc'?[GameBoyMode.Cgb]:[GameBoyMode.Dmg,GameBoyMode.Cgb]) {
     const gb=boot(rom,mode),gaps=[],cycleGaps=[],phases=new Set(),stateHash=crypto.createHash('sha256');
-    let previous=0,lastFrame=0,cycles=0,lastCycles=0,peakShots=0,peakEnemies=0,peakEntities=0,peakOam=0,peakScanline=0,checked=0,last;
+    let previous=0,lastFrame=0,cycles=0,lastCycles=0,peakShots=0,peakEnemies=0,peakEntities=0,peakOam=0,peakScanline=0,checked=0,last,dmaEndMax=0,bgPixelsChecked=0;
     const sim=new lib.Simulation(game);
     const parity=!flags.includes('--dense-baseline');
     try {
         frames(gb,240);gb.key_press(PadKey.Start);frames(gb,5);gb.key_lift(PadKey.Start);
         assert.ok(syms._ce_step>0 && syms._ce_step<0x4000, 'nonbanked update entry');
+        if(flags.includes('--fire'))gb.key_press(PadKey.A);
         gb.step_to(syms._ce_step);
         for(let n=0;n<12000;n++) {
             // Stop at the next update entry: the previous pose was rendered,
@@ -108,23 +119,49 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
                 if(t.tick>64) assert.ok(boss.y>=0&&boss.y<120*16,'boss battle must remain on screen');
             }
             if(parity) {
-                while(sim.tick<t.tick)sim.step(0);
+                while(sim.tick<t.tick)sim.step(flags.includes('--fire')?16:0);
                 assert.deepEqual(entities,simulatedEntities(sim),`entity parity at ${t.tick}`);
                 assert.equal(t.dropped,sim.dropped&65535);
+                assert.equal(t.lives,sim.lives,'player collision parity');
             }
             assertPublishedOam(gb,syms,game,mode);checked++;
+            if(stage.bgBullets){
+                const m=memory(gb),read=(key,i)=>m.ram.readUInt16LE(syms['_ce_bg_'+key]-0xc000+(game.hardware==='gbc'?0x1000:0)+i*2),actual=[];
+                if(game.hardware==='gbc') {
+                    assert.equal(m.io[0x70]&7,1,'actor bank restored before next update');
+                    assert.equal(m.ram.readUInt16LE(syms._ce_bg_tile_drops-0xc000),0,'no invisible dropped bullet tiles');
+                }
+                for(let i=0;i<stage.bgBulletLimit;i++)if(read('life',i))actual.push({slot:i,x:read('x',i)/16,y:read('y',i)/16,life:read('life',i)});
+                assert.deepEqual(actual,sim.bgShots.map(({slot,x,y,life})=>({slot,x,y,life})).sort((a,b)=>a.slot-b.slot),'BG trajectory/lifetime parity');
+                if(mode===GameBoyMode.Cgb){const end=m.ram[syms._ce_bg_dma_end_ly-0xc000];assert.ok(end>=144&&end<=153,'GDMA ends in VBlank');dmaEndMax=Math.max(dmaEndMax,end);}
+                if(!(t.tick%16)){
+                    const pixels=mode===GameBoyMode.Cgb?backgroundColors(gb):backgroundPixels(gb),plane=m.ram[syms._ce_bg_plane-0xc000];
+                    for(const b of actual){const x=Math.trunc(b.x/16)&~1,y=Math.trunc(b.y/16)&~1;
+                        for(let dy=0;dy<2;dy++)for(let dx=0;dx<2;dx++)assert.ok(mode===GameBoyMode.Cgb?pixels[(y+dy)*160+x+dx]===32767:pixels[(y+dy)*160+x+dx]&(1<<plane),'every BG bullet pixel is published');bgPixelsChecked+=4;
+                    }
+                    if(game.hardware==='gbc') {
+                        const expected=new Uint16Array(160*144),hud=game.screens.find(s=>s.id==='hud'),h=(hud.rows??2)*8;
+                        for(const b of actual){const x=Math.trunc(b.x/16)&~1,y=Math.trunc(b.y/16)&~1;for(let dy=0;dy<2;dy++)for(let dx=0;dx<2;dx++)expected[(y+dy)*160+x+dx]=32767;}
+                        const top=hud.dock==='bottom'?0:h,bottom=hud.dock==='bottom'?144-h:144;
+                        for(let i=top*160;i<bottom*160;i++)assert.equal(pixels[i],expected[i],`exact BG pixels (including empty cells) at tick ${t.tick}, pixel ${i}`);
+                    }
+                }
+                if(t.tick===480)capture(gb,path.join(output,mode===GameBoyMode.Cgb?'CGB.png':'DMG.png'));
+            }
             const {oam}=memory(gb);const lines=Array(144).fill(0);let used=0;
             stateHash.update(JSON.stringify({trace:t,entities,oam:[...oam]}));
-            for(let i=0;i<40;i++) {const y=oam[i*4]-16;if(y<=-8||y>=144)continue;used++;
-                for(let row=Math.max(0,y);row<Math.min(144,y+8);row++)lines[row]++;}
-            peakShots=Math.max(peakShots,entities.filter(e=>e.kind==='eshot').length);
+            for(let i=0;i<40;i++) {const y=oam[i*4]-16;const height=game.performance?.dense?16:8;if(y<=-height||y>=144)continue;used++;
+                for(let row=Math.max(0,y);row<Math.min(144,y+height);row++)lines[row]++;}
+            peakShots=Math.max(peakShots,entities.filter(e=>e.kind==='eshot').length+(syms._ce_bg_count?memory(gb).ram[syms._ce_bg_count-0xc000]:0));
             peakEnemies=Math.max(peakEnemies,entities.filter(e=>e.kind==='enemy').length);
             peakEntities=Math.max(peakEntities,entities.length);
+            if(game.performance?.dense)assert.ok(Math.max(...lines)<=10,'scanline OBJ budget');
             peakOam=Math.max(peakOam,used);peakScanline=Math.max(peakScanline,...lines);
             previous=t.tick;lastFrame=frame;lastCycles=cycles;last=t;
             if(t.tick>=720)break;
         }
         assert.equal(previous,720,'fixture must complete the measurement range');
+        if(flags.includes('--collisions'))assert.ok(last.lives>0 && last.lives<9,'local occupancy query must exercise a real player hit');
         assert.equal(gaps.length,600);
         if(!isStress) assert.equal(phases.size,game.bosses[Number(caseName.at(-1))].phases.length,'all authored phases exercised');
         if(caseName!=='enemies' && isStress && flags.includes('--expect24'))
@@ -141,7 +178,7 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]) {
             assert.ok(elapsed.mean<=budget,`${caseName} mean frame budgets ${elapsed.mean} exceeds ${budget}`);
         }
         results.modes.push({mode:mode===GameBoyMode.Dmg?'DMG':'CGB',gaps:stats(gaps),elapsedFrameBudgets:elapsed,
-            peakShots,peakEnemies,peakEntities,peakOam,peakScanline,phases:[...phases],dropped:last.dropped,checked,parity,stateSha256:stateHash.digest('hex')});
+            peakShots,peakEnemies,peakEntities,peakOam,peakScanline,dmaEndMax,bgPixelsChecked,phases:[...phases],dropped:last.dropped,checked,parity,stateSha256:stateHash.digest('hex')});
     }finally{gb.free();}
 }
 fs.writeFileSync(path.join(output,`${caseName}.json`),JSON.stringify(results,null,2)+'\n');

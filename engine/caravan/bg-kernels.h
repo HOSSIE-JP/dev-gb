@@ -1,3 +1,4 @@
+#ifndef CE_CGB
 /* Private SM83 writers. Only the main loop owns the inactive map/bitplane.
  * Two stores finish within the safe interval following a mode-0/1 poll. */
 /* Compose the CGB packet directly from occupancy masks. C's indexed 16-bit
@@ -22,7 +23,7 @@ static void compose_dma_tiles(void) __naked {
         ld l, e
         srl h
         rr l
-        ld bc, #_map
+        ld bc, #(_ce_render_workspace + 720)
         add hl, bc
         ld a, (_next_tile)
         ld (hl), a
@@ -32,7 +33,7 @@ static void compose_dma_tiles(void) __naked {
         inc hl
         inc (hl)
 002$:
-        ld hl, #_cells
+        ld hl, #_ce_render_workspace
         add hl, de
         ld a, (hl+)
         ld e, a
@@ -93,7 +94,7 @@ static void pack_dma_map(void) __naked {
         ld l, a
         ld a, (_dma_map + 1)
         ld h, a
-        ld de, #_map
+        ld de, #(_ce_render_workspace + 720)
         ld b, #18
 001$:
         .rept 20
@@ -120,7 +121,7 @@ static void copy_map(void) __naked {
         push bc
         push de
         push hl
-        ld de, #_map
+        ld de, #(_ce_render_workspace + 720)
         ld hl, #0x9c00
         ld a, (_ce_bg_map_front)
         or a
@@ -206,3 +207,5 @@ static void write_composite(void) __naked {
         ret
     __endasm;
 }
+
+#endif

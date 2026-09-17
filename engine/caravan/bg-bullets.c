@@ -2,28 +2,54 @@
 #include "caravan.h"
 #include <string.h>
 /* 2x2 bullets on a two-pixel grid. DMG uses an inactive bitplane; CGB
- * precomposes RAM packets and publishes them with the hidden map by GDMA. */
+ * precomposes RAM packets and publishes them with the hidden bg_map by GDMA. */
 uint8_t ce_battle_mode, ce_battle_asset, ce_bg_limit, ce_bg_count, ce_bg_hit;
 uint8_t ce_bg_plane, ce_bg_back, ce_bg_map_front;
 uint16_t ce_bg_tile_drops, ce_bg_peak_tiles;
-int16_t ce_bg_x[CE_MAX_BG_SHOTS], ce_bg_y[CE_MAX_BG_SHOTS], ce_bg_vx[CE_MAX_BG_SHOTS], ce_bg_vy[CE_MAX_BG_SHOTS];
-uint16_t ce_bg_life[CE_MAX_BG_SHOTS];
-static uint8_t damage[CE_MAX_BG_SHOTS];
-static uint8_t guide_pattern[CE_MAX_BG_SHOTS], guide_angle[CE_MAX_BG_SHOTS], has_guidance;
-static uint16_t cells[360], compound_cells[CE_MAX_BG_SHOTS / 2];
-/* CGB uploads at most 32 composite tiles plus 18 full map rows in VBlank.
- * cells is dead after composition and doubles as the aligned DMA map source. */
+int16_t CE_AT(0xd000) ce_bg_x[CE_MAX_BG_SHOTS];
+int16_t CE_AT(0xd0c0) ce_bg_y[CE_MAX_BG_SHOTS];
+int16_t CE_AT(0xd180) ce_bg_vx[CE_MAX_BG_SHOTS];
+int16_t CE_AT(0xd240) ce_bg_vy[CE_MAX_BG_SHOTS];
+uint16_t CE_AT(0xD300) ce_bg_life[CE_MAX_BG_SHOTS];
+static uint8_t CE_AT(0xD3C0) damage[CE_MAX_BG_SHOTS];
+static uint8_t CE_AT(0xD420) guide_pattern[CE_MAX_BG_SHOTS];
+static uint8_t CE_AT(0xD480) guide_angle[CE_MAX_BG_SHOTS];
+static uint8_t has_guidance;
+/* Giant mode never uses monochrome masks/maps. Its complete 32x32 direct
+ * index fits in their shared lifetime without allocating another WRAM byte. */
+uint8_t CE_AT(0xD500) ce_render_workspace[1080];
+#ifdef CE_CGB
+#include "gbc-barrage.h"
+#define cells CGB_MASKS
+#define bg_map CGB_MAP
+#else
+#define cells ((uint16_t *)ce_render_workspace)
+#define bg_map (ce_render_workspace + 720u)
+#endif
+#define GIANT_INDEX ce_render_workspace
+#ifndef CE_CGB
+static uint16_t compound_cells[CE_MAX_BG_SHOTS / 2];
+#endif
+/* CGB uploads at most 32 composite tiles plus 18 full bg_map rows in VBlank.
+ * cells is dead after composition and doubles as the aligned DMA bg_map source. */
+#ifdef CE_CGB
+#define dma_tile_storage CGB_TILES
+#else
 static uint8_t dma_tile_storage[CE_MAX_BG_SHOTS / 2 * 16 + 15];
-static uint8_t *dma_tiles, *dma_map, *dma_cursor;
+#endif
 uint8_t ce_bg_dma_end_ly;
+static uint8_t hud[40], tile_buffer[16], hud_tiles;
+#ifndef CE_CGB
+static uint8_t *dma_tiles, *dma_map, *dma_cursor;
 static uint8_t compound_count, flush_left;
-static uint8_t map[360], hud[40], tile_buffer[16], hud_tiles, static_tiles;
+static uint8_t static_tiles;
 /* With an ordinary HUD the CGB tile budget also holds every two-dot pattern.
  * Three or more distinct dots still use dynamically composed tiles. */
 /* Immutable mask order is also consumed by the SM83 composition kernel. */
 static const uint16_t static_masks[136] = {1u,2u,4u,8u,16u,32u,64u,128u,256u,512u,1024u,2048u,4096u,8192u,16384u,32768u,3u,5u,9u,17u,33u,65u,129u,257u,513u,1025u,2049u,4097u,8193u,16385u,32769u,6u,10u,18u,34u,66u,130u,258u,514u,1026u,2050u,4098u,8194u,16386u,32770u,12u,20u,36u,68u,132u,260u,516u,1028u,2052u,4100u,8196u,16388u,32772u,24u,40u,72u,136u,264u,520u,1032u,2056u,4104u,8200u,16392u,32776u,48u,80u,144u,272u,528u,1040u,2064u,4112u,8208u,16400u,32784u,96u,160u,288u,544u,1056u,2080u,4128u,8224u,16416u,32800u,192u,320u,576u,1088u,2112u,4160u,8256u,16448u,32832u,384u,640u,1152u,2176u,4224u,8320u,16512u,32896u,768u,1280u,2304u,4352u,8448u,16640u,33024u,1536u,2560u,4608u,8704u,16896u,33280u,3072u,5120u,9216u,17408u,33792u,6144u,10240u,18432u,34816u,12288u,20480u,36864u,24576u,40960u,49152u};
 static const uint8_t pair_base[16]={0,14,27,39,50,60,69,77,84,90,95,99,102,104,105,105};
 static uint16_t next_tile;
+#endif
 static uint8_t top, bottom, slot, px, py, spawn_next;
 static int16_t left, right, player_top, player_bottom;
 static uint8_t hit_width, hit_height;
@@ -41,22 +67,34 @@ static CE_Giant giant;
 static uint8_t giant_frames[2], giant_frame;
 static uint8_t giant_counts[2], giant_next_x, giant_next_y, giant_first;
 /* Mutually exclusive with the monochrome renderer: reuse its DMA scratch.
- * No extra tile/map/HP arrays are allocated in scarce WRAM. */
+ * No extra tile/bg_map/HP arrays are allocated in scarce WRAM. */
 #define GIANT_OLD ((uint16_t *)dma_tile_storage)
 #define GIANT_BASE (dma_tile_storage + 128u)
 #define GIANT_CELLS ((uint16_t *)(dma_tile_storage + 192u))
 #define GIANT_MASKS ((uint16_t *)(dma_tile_storage + 256u))
 #include "bg-kernels.h"
-void ce_bg_clear(void) BANKED {memset(ce_bg_life,0,sizeof(ce_bg_life));ce_bg_count=0;ce_bg_hit=0;spawn_next=0;has_guidance=0;}
+#ifdef CE_CGB
+#include "gbc-render.h"
+#endif
+void ce_bg_clear(void) BANKED {CE_BG_ENTER;memset(ce_bg_life,0,sizeof(ce_bg_life));ce_bg_count=0;ce_bg_hit=0;spawn_next=0;has_guidance=0;CE_BG_LEAVE;}
 void ce_bg_begin(void) BANKED {
+    CE_BG_ENTER;
+#ifndef CE_CGB
     ce_bg_back=ce_is_cgb?0u:ce_bg_plane^1u;next_tile=hud_tiles+static_tiles;compound_count=0;
+#endif
     /* Singleton masks are reconstructed on their first overlap. Every compound
-     * cell is initialized before use, so only the map needs clearing. */
-    if (ce_battle_mode != 3u) memset(map,0,sizeof(map));
+     * cell is initialized before use, so only the bg_map needs clearing. */
+    if (ce_battle_mode != 3u) {
+#ifdef CE_CGB
+        cgb_begin();
+#else
+        memset(bg_map,0,360);
+#endif
+    }
     left=ce_state.player_x/16+ce_hitboxes[ce_player_asset].x-1;right=left+ce_hitboxes[ce_player_asset].w;
     player_top=ce_state.player_y/16+ce_hitboxes[ce_player_asset].y-1;player_bottom=player_top+ce_hitboxes[ce_player_asset].h;
     if(left<0)left=0;if(player_top<0)player_top=0;ce_bg_hit=0;
-    hit_width=right-left+1;hit_height=player_bottom-player_top+1;
+    hit_width=right-left+1;hit_height=player_bottom-player_top+1;CE_BG_LEAVE;
 }
 void ce_bg_palette(void) BANKED {
     static palette_color_t colors[4];uint8_t i;
@@ -64,7 +102,10 @@ void ce_bg_palette(void) BANKED {
     if(ce_is_cgb){for(i=0;i!=4u;++i)colors[i]=!ce_fade_level&&(i&(1u<<ce_bg_plane))?RGB(31,31,31):0;set_bkg_palette(0,1,colors);}
 }
 void ce_bg_setup(void) BANKED {
-    uint8_t t,y,bit;uint16_t word;
+#ifdef CE_CGB
+    CE_BG_ENTER;cgb_setup();CE_BG_LEAVE;
+#else
+    uint8_t t,y,bit;uint16_t word;CE_BG_ENTER;
     dma_tiles=(uint8_t *)(((uint16_t)dma_tile_storage+15u)&0xfff0u);
     dma_map=(uint8_t *)(((uint16_t)cells+15u)&0xfff0u);
     ce_get_screen(&screen,4);hud_tiles=screen.tile_count;ce_bg_plane=0;ce_bg_map_front=0;ce_bg_tile_drops=0;ce_bg_peak_tiles=0;
@@ -76,10 +117,11 @@ void ce_bg_setup(void) BANKED {
         set_bkg_data(t,1,tile_buffer);
     }
     for(t=0;t!=static_tiles;++t){word=static_masks[t];for(y=0;y!=16u;y+=4u){bit=expand[word&15u];word>>=4;tile_buffer[y]=tile_buffer[y+1u]=tile_buffer[y+2u]=tile_buffer[y+3u]=bit;}set_bkg_data(hud_tiles+t,1,tile_buffer);}
-    ce_copy(hud,&screen.map,0,ce_hud_height/8u*20u);memset(map,0,sizeof(map));
+    ce_copy(hud,&screen.map,0,ce_hud_height/8u*20u);memset(bg_map,0,360u);
     if(ce_is_cgb){VBK_REG=1;ce_bg_map_front=0;copy_map();ce_bg_map_front=1;copy_map();VBK_REG=0;}
     ce_bg_map_front=0;HIDE_WIN;move_bkg(0,0);LCDC_REG&=~8u;
-    ce_bg_begin();ce_bg_flush();vsync();ce_bg_publish();ce_bg_begin();
+    ce_bg_begin();ce_bg_flush();vsync();ce_bg_publish();ce_bg_begin();CE_BG_LEAVE;
+#endif
 }
 void ce_bg_hud(uint8_t x,uint8_t y,uint8_t count,const uint8_t *data) BANKED {memcpy(hud+y*20u+x,data,count);}
 static void retire(void){ce_bg_life[slot]=0;--ce_bg_count;}
@@ -100,28 +142,38 @@ static void guide(void) {
 }
 #include "bg-query-kernel.h"
 void ce_bg_update(void) BANKED {
+    CE_BG_ENTER;
+#ifndef CE_CGB
     uint8_t n,kept,x0,x1,y0,y1;
+#endif
     if(has_guidance)guide();ce_bg_begin();direct_collision=ce_battle_mode==3u||hit_width!=4u||hit_height!=4u||right>=160||player_bottom>=144;
     if(direct_collision)update_all();else update_all_local();
     if(!direct_collision && occupied_player()){
         /* Rare impact: retire overlapping shots and rebuild without advancing
          * motion/lifetime. Slot order preserves damage and allocation behavior. */
         direct_collision=1;
-        /* Only the (at most four) queried tiles need rebuilding. Preserve all
-         * other composed cells and avoid redrawing the complete bullet field. */
-        for(n=0;n!=query_count;++n)map[query_cells[n]]=0;
-        for(n=0,kept=0;n!=compound_count;++n)if(map[compound_cells[n]>>1]==255u)compound_cells[kept++]=compound_cells[n];
+#ifdef CE_CGB
+        /* Rare impact: rebuild exact masks without advancing motion/lifetime.
+         * This also releases empty sparse-list slots before this tick's volley. */
+        cgb_begin();
+        for(slot=0;slot<ce_bg_limit;++slot)if(ce_bg_life[slot])draw_shot();
+#else
+        /* Only the queried cells need rebuilding in the dual backend. */
+        for(n=0;n!=query_count;++n)bg_map[query_cells[n]]=0;
+        for(n=0,kept=0;n!=compound_count;++n)if(bg_map[compound_cells[n]>>1]==255u)compound_cells[kept++]=compound_cells[n];
         compound_count=kept;x0=(uint8_t)(left+1u)>>3;x1=(uint8_t)right>>3;y0=(uint8_t)(player_top+1u)>>3;y1=(uint8_t)player_bottom>>3;
         for(slot=0;slot<ce_bg_limit;++slot)if(ce_bg_life[slot]){
             n=(uint16_t)ce_bg_x[slot]>>11;if(n<x0||n>x1)continue;
             n=(uint16_t)ce_bg_y[slot]>>11;if(n>=y0&&n<=y1)draw_shot();
         }
+#endif
     }
-    direct_collision=1;
+    direct_collision=1;CE_BG_LEAVE;
 }
 void ce_bg_spawn(void) BANKED {
     if(ce_bomb_image)return;
     if(ce_bg_count>=ce_bg_limit){++ce_state.dropped;return;}
+    CE_BG_ENTER;
     /* Continue after the preceding allocation instead of rescanning the same
      * live prefix for every bullet of a volley. A full pool rejects in O(1). */
     slot=spawn_next;
@@ -133,9 +185,13 @@ void ce_bg_spawn(void) BANKED {
     if(ce_bg_request.pattern!=CE_NONE){
         guide_pattern[slot]=ce_bg_request.pattern;guide_angle[slot]=ce_bg_request.angle;has_guidance=1;
     }
+    CE_BG_LEAVE;
 }
 void ce_bg_flush(void) BANKED {
-    static uint16_t i;static uint8_t lo,hi,n;
+#ifdef CE_CGB
+    CE_BG_ENTER;cgb_flush();CE_BG_LEAVE;
+#else
+    static uint16_t i;static uint8_t lo,hi,n;CE_BG_ENTER;
     dma_cursor=dma_tiles;
     if(ce_is_cgb)compose_dma_tiles();
     else for(n=0;n!=compound_count;++n){
@@ -145,24 +201,33 @@ void ce_bg_flush(void) BANKED {
         tile_buffer[2]=expand[hi&15u];tile_buffer[3]=expand[hi>>4];
         /* DMG / large-HUD CGB: HUD(<=128)+16+32 <=176 tiles.
          * Pair-cache CGB: HUD(<=80)+136+floor(64/3) <=237 tiles. */
-        map[i]=next_tile;
+        bg_map[i]=next_tile;
         write_composite();
         ++next_tile;
     }
     if(next_tile>ce_bg_peak_tiles)ce_bg_peak_tiles=next_tile;
-    memcpy(map+(ce_hud_bottom?360u-ce_hud_height/8u*20u:0),hud,ce_hud_height/8u*20u);
+    memcpy(bg_map+(ce_hud_bottom?360u-ce_hud_height/8u*20u:0),hud,ce_hud_height/8u*20u);
     if(ce_is_cgb)pack_dma_map();
     else copy_map();
+    CE_BG_LEAVE;
+#endif
 }
 static void dma_transfer(uint16_t source,uint16_t dest,uint8_t blocks){
     HDMA1_REG=source>>8;HDMA2_REG=source;HDMA3_REG=dest>>8;HDMA4_REG=dest;HDMA5_REG=blocks-1u;
 }
 void ce_bg_publish(void) BANKED {
+    CE_BG_ENTER;
+#ifdef CE_CGB
+    cgb_publish();
+#else
     if(ce_is_cgb){
         uint8_t first=hud_tiles+static_tiles,n=compound_count;
         /* OAM DMA has finished when vsync returns. Keep GDMA wholly in VBlank,
          * including the signed-tile discontinuity at tile 128. */
-        if(LY_REG<144u||LY_REG>145u)vsync();
+        /* The banked return after OAM DMA can reach line 146. Even the maximum
+         * 68 GDMA blocks fit before line 154 from here; waiting again would add
+         * a whole display frame to every publication. */
+        if(LY_REG<144u||LY_REG>146u)vsync();
         CRITICAL {
             if(n){
                 if(first<128u&&first+n>128u){
@@ -174,9 +239,12 @@ void ce_bg_publish(void) BANKED {
             ce_bg_map_front^=1u;if(ce_bg_map_front)LCDC_REG|=8u;else LCDC_REG&=~8u;
             ce_bg_dma_end_ly=LY_REG;
         }
-        return;
+        CE_BG_LEAVE;return;
     }
     ce_bg_plane=ce_bg_back;ce_bg_map_front^=1u;
     if(ce_bg_map_front)LCDC_REG|=8u;else LCDC_REG&=~8u;ce_bg_palette();move_bkg(0,0);
+#endif
+    CE_BG_LEAVE;
 }
+    /* public routines restore SVBK before returning to actor code */
 #include "giant-render.h"

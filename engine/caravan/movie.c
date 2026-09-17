@@ -19,8 +19,13 @@ typedef struct {
     uint8_t tiles[640], attributes[40];
     uint8_t lcdc;
 } MovieWork;
+#ifdef CE_DENSE
+#define MOVIE ((MovieWork *)ce_render_workspace)
+typedef char MovieFits[(sizeof(MovieWork) <= sizeof(ce_render_workspace)) ? 1 : -1];
+#else
 #define MOVIE ((MovieWork *)ce_entities)
 typedef char MovieFits[(sizeof(MovieWork) <= sizeof(ce_entities)) ? 1 : -1];
+#endif
 
 static void movie_pcm(void) NONBANKED {
     uint8_t bank = CURRENT_BANK;
@@ -91,6 +96,9 @@ void ce_play_movie(void) BANKED {
     uint8_t frame, chunk;
     uint16_t now;
     if (!ce_movie_count) return;
+#ifdef CE_CGB
+    SVBK_REG=2u;
+#endif
     ce_music_play(0);
     ce_scene = 15; ce_used = 0;
     memset(MOVIE, 0, sizeof(MovieWork));
@@ -154,4 +162,7 @@ done:
     set_interrupts(MOVIE->ie);
     CRITICAL { ce_music_time = sys_time; }
     ce_used = 0;
+#ifdef CE_CGB
+    SVBK_REG=1u;
+#endif
 }

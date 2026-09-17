@@ -58,10 +58,33 @@ static void demo_ranking(void) {
     ce_demo=0;ce_fade(1);ce_scene=4;ce_load_screen(3);ce_music_play(ce_music_title);
     attract_clock=clock_now();
 }
+#ifdef CE_CGB
+static void require_color(void) {
+    /* Small ROM-resident diagnostic; no banked WRAM or game assets involved. */
+    static const uint8_t glyphs[]={
+        60,60,66,66,64,64,78,78,66,66,66,66,60,60,0,0,
+        124,124,66,66,66,66,124,124,66,66,66,124,124,0,0,
+        60,60,66,66,64,64,64,64,64,64,66,66,60,60,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        60,60,66,66,66,66,66,66,66,66,66,66,60,60,0,0,
+        66,66,98,98,82,82,74,74,70,70,66,66,66,66,0,0,
+        64,64,64,64,64,64,64,64,64,64,64,64,126,126,0,0,
+        66,66,66,66,36,36,24,24,24,24,24,24,24,24,0,0};
+    static const uint8_t message[]={0,1,2,3,4,5,6,7};
+    DISPLAY_OFF;LCDC_REG=0x11;BGP_REG=0xe4;
+    set_bkg_data(0,8,glyphs);fill_bkg_rect(0,0,32,32,3);
+    set_bkg_tiles(6,8,8,1,message);move_bkg(0,0);DISPLAY_ON;
+    for(;;)vsync();
+}
+#endif
 void ce_mainloop(void) BANKED {
     uint8_t input, pressed, previous = 0;
     uint16_t now;
     ce_is_cgb = _cpu == CGB_TYPE;
+#ifdef CE_CGB
+    if (!ce_is_cgb) require_color();
+    SVBK_REG=1u;
+#endif
     if (ce_is_cgb) cpu_fast();
     NR52_REG = 0x80; NR50_REG = 0x77; NR51_REG = 0xff;
     add_VBL(ce_count_frame);

@@ -1,0 +1,1303 @@
+{
+  "version": "0.27-measured-render",
+  "createdAt": "2026-09-17T01:20:26.518Z",
+  "baseCommit": "e22cc52dfeeb18061bfe1d92fbd218bc5b3cab58",
+  "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v27.gb",
+    "sha256": "ce3ca55b0099090c62dedac5cd119051bc90b44b2155b34a5cf65aaa56b09128",
+    "bytes": 2097152
+  },
+  "sourceHashes": {
+    "config/tools.lock.json": "f75e7cced361bcdf1494fb393734a146f5ce3668c0a43844b9307dabad934d44",
+    "editor/src/node/compiler.ts": "5ab58a3f279f5355cbc04afd8030ca69b9fe2c7296a5ac02cd486b28e1af33b3",
+    "editor/src/renderer/fields.tsx": "3c65b04e94c72eb62673c485583d55b1590e9763ea68c2251fcc110808b57ed5",
+    "editor/src/shared/color.ts": "87f49f504cabe3ae645eb06547f7bbc29867f8007c81846679b5a7526c802595",
+    "editor/src/shared/model.ts": "1722998a0718a2e86084100cbbb6337d7d0b1cb0120ee687d25ec91e7bf480f2",
+    "editor/src/shared/simulation.ts": "29d9133a298e98b72d224028044f91672c961810550427a3acdd9bc6ac921191",
+    "engine/caravan/MUSIC-LICENSE.txt": "3a7a3e0613c1f242be385172ea9575b49e650d41bc9c8cbd6047ec5dccde29b1",
+    "engine/caravan/actor-step.h": "2ebe7d23e41210fa432d1606b0d48f1dce05c590913021e6ad80e6a39a4981fa",
+    "engine/caravan/assets-src/kouma-score.json": "09d257ff5a545d4e16cd243753976bfb0ff769c26b64ff7a277247184e855493",
+    "engine/caravan/assets-src/side-score.json": "4a2f21edd10c9893af34f050a1e0bb09e0e90fdba4bf62c12c87c3b317c112bf",
+    "engine/caravan/assets-src/side-score.md": "25a95a2a52f3fd054cfde330b5b353723461daeef48baf47a93550e78c23f775",
+    "engine/caravan/bg-bullets.c": "cd53f92781a57bd5124c96447366a147bdb0c4b8cfbffe535a6dfca935397e25",
+    "engine/caravan/bg-kernels.h": "4612e36575c194f8d6c8827c1ac0644467a36b91bb494bcd67e5f4cf1db84cb9",
+    "engine/caravan/bg-query-kernel.h": "dccfe585742ebff1c8bc7e44d17a0abd0e2d440392a103a1e06377ae312944c2",
+    "engine/caravan/bg-state-kernels.h": "67a3a6580eb00e5851aed8a1a5936658466bee41c5229aa33bc9a4cfead6c655",
+    "engine/caravan/bg-update-kernel.h": "9822a1ec983b3dd447c49637539e709202c94e42c80d7b53c81eedce61b3feae",
+    "engine/caravan/caravan.h": "f27102020a4f0dc01b053fb70bb32783e6b2e29b81a9646d6feb585d61f3fa7d",
+    "engine/caravan/dense-render.h": "a307df0e94c94e4b6b462fcec9c83289469ce807afdba0070ceb4d428d504b9f",
+    "engine/caravan/dense-shots.h": "f932abaccbfccfeefa2e59a1fadcca819dc8e354e75f0d76c314a0b70332e202",
+    "engine/caravan/dense.c": "363ab2a544d104216ebd8a9973e85fc503fa588649068a0489cf140e10402a21",
+    "engine/caravan/flow.c": "1ef3293d0140bfc08f62dc9e8ac5e248627c63de7ca6d04282bb12f1a8898792",
+    "engine/caravan/giant-render.h": "2c047c8150e78863539e25f775d69486a38e4171bbc9f62b7c058b6cee900826",
+    "engine/caravan/items.c": "c73329663fc6b01c993e8eefab91664c143211fdbce3b614a3ca4d9fad1a8c9f",
+    "engine/caravan/mainloop.c": "f383a08eb85059a5dc8831850143e6aa8bb1bffd507c3773fddf475c6ace7eda",
+    "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+    "engine/caravan/movie.c": "0ee1f1bd0e15aa6c09dbcc5c273cc5e068494b51345cd9d286c0324c5b587447",
+    "engine/caravan/music.c": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995",
+    "engine/caravan/music.h": "7e0f71159080d9fe7342f8cfea26b8f57d8fbbcd50f0df4248673070b93c0187",
+    "engine/caravan/render.c": "6301a85c4fb071d75c61940b61699df8e5e3cc95ef71c942d89b2f510cb1bf4d",
+    "engine/caravan/runtime.c": "691d8ee283f205567701e460fd1e823a5006a53248222da1356478668722cb10",
+    "engine/caravan/save.c": "d6ae608b7d8e24d1cc2e80481403140e2f7f6f92d026808823344e564cb99d29",
+    "engine/caravan/shot-kernels.h": "1bb0e9c880ec287579862b7ded78006b1057a1cb197da090ed199e5bcd636f7d",
+    "engine/caravan/special.c": "86ee9d9c86dc1375051dd3162a3e7b7c1b9d95393780c179e9dca348d8895b0e",
+    "engine/caravan/sprite-frame.h": "c4ecb5b62fe0c6c206cac9fd0d9c1534ee247b4e6bca53641c02095924269fa0",
+    "engine/caravan/sprite-render.h": "d27521895303ab3ead61ba52a707afb62cb87214a2615952e37c766c909dd937",
+    "engine/caravan/sprites.c": "f7dce5a246611f589b9aaa6acb56a4bd624f82aa1656bb35a16c35c14a234047",
+    "engine/caravan/terrain.c": "7115edd66f4338172fe2cf974910cf4ba53b5ab43c91e6afbc8b25754f3c9d98"
+  },
+  "adopted": {
+    "defaultDense": false,
+    "giantDirectIndex": true,
+    "cgbRedundantWaitRemoved": true,
+    "sourceArtUnchanged": true
+  },
+  "experimental": {
+    "path": "build/Release/touhou-kouma-v27-dense-experimental.gb",
+    "sha256": "fb56c7ca3ed391f9f78cd0d24e15d4b8e4f6b206f203136cac9c2c96e5445a81",
+    "bytes": 2097152,
+    "configuration": "touhou-kouma-design/dense-experimental.json",
+    "notDefaultReason": "Production road slowdown despite improved high-load rendering"
+  },
+  "builds": {
+    "debugReleaseIdentical": true,
+    "touhouDebug": true,
+    "touhouRelease": true,
+    "helloDebug": true,
+    "starDebug": true,
+    "starRelease": true,
+    "staticWramBytes": 7166,
+    "romBytes": 2097152
+  },
+  "benchmarks": {
+    "baselineStress": {
+      "case": "stress",
+      "romSha256": "9a6ded3cbda637596e1ea4b4655f0b1849a1e602fb0982a25d18db6fdddc5bbd",
+      "fixture": true,
+      "rom": ".cache/perf-plan/before-stress/fixture-CRxyDn/projects/stg-bench/build/Release/stg-bench.gb",
+      "ramBytes": 7166,
+      "romBytes": 131072,
+      "modes": [
+        {
+          "mode": "DMG",
+          "gaps": {
+            "samples": 600,
+            "mean": 2.9683333333333333,
+            "p95": 3,
+            "max": 3,
+            "updatesPerSecond": 20.121560920830994
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 2.968675096832975,
+            "p95": 3.0003417634996583,
+            "max": 3.0018227386648437,
+            "updatesPerSecond": 20.119244461516907
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 35,
+          "peakOam": 37,
+          "peakScanline": 22,
+          "phases": [],
+          "dropped": 184,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "c579d95b9a46be3a002a8b531937ea915612415f96db56d1975f2fd70cb84f18"
+        },
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 1.95,
+            "p95": 2,
+            "max": 2,
+            "updatesPerSecond": 30.629487179487178
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 1.9501708817498293,
+            "p95": 2.000170881749829,
+            "max": 2.000911369332422,
+            "updatesPerSecond": 30.626803301671863
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 35,
+          "peakOam": 37,
+          "peakScanline": 22,
+          "phases": [],
+          "dropped": 184,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "aa4e276752d90a278ca0e27bc7fe49c844b05a7a713e8ce49bbd39973a059fe0"
+        }
+      ]
+    },
+    "road32": {
+      "case": "stress",
+      "romSha256": "45326bf35c851e7825e10b542f8f995609c286e925122c4ca793eeb947d0391e",
+      "fixture": true,
+      "rom": ".cache/perf-plan/accepted-road/fixture-bXzjNV/projects/stg-bench/build/Debug/stg-bench.gb",
+      "ramBytes": 6489,
+      "romBytes": 131072,
+      "modes": [
+        {
+          "mode": "DMG",
+          "gaps": {
+            "samples": 600,
+            "mean": 3,
+            "p95": 3,
+            "max": 3,
+            "updatesPerSecond": 19.909166666666668
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 3.0003417634996743,
+            "p95": 3.0003987240829346,
+            "max": 3.0005126452494872,
+            "updatesPerSecond": 19.906898849527174
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 3,
+          "peakOam": 5,
+          "peakScanline": 3,
+          "dmaEndMax": 0,
+          "bgPixelsChecked": 5064,
+          "phases": [],
+          "dropped": 162,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "5052e60bb2ed1a771230e409c63c47f051896d4d13ba7b4a6cc928ccec76b40f"
+        },
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 1.0483333333333333,
+            "p95": 1,
+            "max": 2,
+            "updatesPerSecond": 56.97376788553259
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 1.0485102908787136,
+            "p95": 1.003816359079517,
+            "max": 2.000170881749829,
+            "updatesPerSecond": 56.96415239753615
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 3,
+          "peakOam": 5,
+          "peakScanline": 3,
+          "dmaEndMax": 147,
+          "bgPixelsChecked": 5064,
+          "phases": [],
+          "dropped": 162,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "36948eef71d94d7b6ce1bc2a0ea9f37ef3764c9d99f0446cfecd779b814c3063"
+        }
+      ]
+    },
+    "road40": {
+      "case": "stress",
+      "romSha256": "8821945db055c47fedc9d7b1465b5468a45a1e15edb0d0019966acf5f0091ad7",
+      "fixture": true,
+      "rom": ".cache/perf-plan/accepted-more/fixture-PPkFOZ/projects/stg-bench/build/Debug/stg-bench.gb",
+      "ramBytes": 6489,
+      "romBytes": 131072,
+      "modes": [
+        {
+          "mode": "DMG",
+          "gaps": {
+            "samples": 600,
+            "mean": 4.068333333333333,
+            "p95": 5,
+            "max": 5,
+            "updatesPerSecond": 14.681073330602212
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 4.068675096832997,
+            "p95": 5.000284802916382,
+            "max": 5.000284802916382,
+            "updatesPerSecond": 14.679840139236257
+          },
+          "peakShots": 40,
+          "peakEnemies": 8,
+          "peakEntities": 8,
+          "peakOam": 10,
+          "peakScanline": 4,
+          "dmaEndMax": 0,
+          "bgPixelsChecked": 6928,
+          "phases": [],
+          "dropped": 554,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "b700d6ddf4c0b87653148a90b093d026a834c1894b1e852f42250f9ec74fc020"
+        },
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 2,
+            "p95": 2,
+            "max": 2,
+            "updatesPerSecond": 29.86375
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 2.000164805954283,
+            "p95": 2.003816359079517,
+            "max": 2.003816359079517,
+            "updatesPerSecond": 29.861289340857027
+          },
+          "peakShots": 40,
+          "peakEnemies": 8,
+          "peakEntities": 8,
+          "peakOam": 10,
+          "peakScanline": 4,
+          "dmaEndMax": 147,
+          "bgPixelsChecked": 6928,
+          "phases": [],
+          "dropped": 554,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "aa263075dbc0543ce1c9c0b1bb207a8331d30fdf22850427154c7fd8fe680b01"
+        }
+      ]
+    },
+    "animation": {
+      "case": "animation",
+      "romSha256": "b543140bc8cf1f4b2ebe7c2a977bbf5571904ec886a477e81835de683547a3db",
+      "fixture": true,
+      "rom": ".cache/perf-plan/accepted-animation/fixture-zxTYEb/projects/stg-bench/build/Release/stg-bench.gb",
+      "ramBytes": 6489,
+      "romBytes": 131072,
+      "modes": [
+        {
+          "mode": "DMG",
+          "gaps": {
+            "samples": 600,
+            "mean": 3.9783333333333335,
+            "p95": 4,
+            "max": 5,
+            "updatesPerSecond": 15.013196480938415
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 3.9786750968329945,
+            "p95": 4.000341763499658,
+            "max": 5.000341763499658,
+            "updatesPerSecond": 15.01190686506239
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 39,
+          "peakOam": 35,
+          "peakScanline": 10,
+          "dmaEndMax": 0,
+          "bgPixelsChecked": 0,
+          "phases": [],
+          "dropped": 184,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "4a77e6e952e70f4d2f68591dc69080dc45013b67decea2de80a319b1af272fa2"
+        },
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 2.05,
+            "p95": 3,
+            "max": 3,
+            "updatesPerSecond": 29.135365853658538
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 2.050170881749833,
+            "p95": 3.000170881749829,
+            "max": 3.000170881749829,
+            "updatesPerSecond": 29.132937420817438
+          },
+          "peakShots": 32,
+          "peakEnemies": 3,
+          "peakEntities": 39,
+          "peakOam": 35,
+          "peakScanline": 10,
+          "dmaEndMax": 0,
+          "bgPixelsChecked": 0,
+          "phases": [],
+          "dropped": 184,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "1f6406849740c9fcfde1f5a747fa3c86d1e3943a06a5a8ecdb4321b00d56ae3f"
+        }
+      ]
+    },
+    "denseBossPhases": {
+      "case": "boss-0",
+      "romSha256": "30206b864e122dda9d86cc5ebf85ef0fe92130a9380a6f380a02c6e75a58551d",
+      "fixture": true,
+      "rom": ".cache/perf-plan/accepted-dense-boss/fixture-NQ7xQH/projects/stg-bench/build/Release/stg-bench.gb",
+      "ramBytes": 6489,
+      "romBytes": 131072,
+      "modes": [
+        {
+          "mode": "DMG",
+          "gaps": {
+            "samples": 600,
+            "mean": 2.131666666666667,
+            "p95": 3,
+            "max": 3,
+            "updatesPerSecond": 28.019155590304923
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 2.1320084301663234,
+            "p95": 3.0140123034859876,
+            "max": 3.020448849396218,
+            "updatesPerSecond": 28.014664086173667
+          },
+          "peakShots": 7,
+          "peakEnemies": 0,
+          "peakEntities": 13,
+          "peakOam": 20,
+          "peakScanline": 10,
+          "dmaEndMax": 0,
+          "bgPixelsChecked": 0,
+          "phases": [
+            0,
+            1,
+            2
+          ],
+          "dropped": 0,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "24094cc68fe94a79cb9b722feab69c9aa81de1ea5e80ded35f65ce2cc0c679e5"
+        },
+        {
+          "mode": "CGB",
+          "gaps": {
+            "samples": 600,
+            "mean": 1.1366666666666667,
+            "p95": 2,
+            "max": 2,
+            "updatesPerSecond": 52.54618768328445
+          },
+          "elapsedFrameBudgets": {
+            "samples": 600,
+            "mean": 1.1368375484164963,
+            "p95": 2.000170881749829,
+            "max": 2.0107940305308727,
+            "updatesPerSecond": 52.538289294890525
+          },
+          "peakShots": 7,
+          "peakEnemies": 0,
+          "peakEntities": 13,
+          "peakOam": 20,
+          "peakScanline": 10,
+          "dmaEndMax": 0,
+          "bgPixelsChecked": 0,
+          "phases": [
+            0,
+            1,
+            2
+          ],
+          "dropped": 0,
+          "checked": 720,
+          "parity": true,
+          "stateSha256": "f51812caed08f2917c8765a6eb67901a2df4da0687b5197fe5525df2b258029e"
+        }
+      ]
+    },
+    "giantBefore": {
+      "rom": ".cache/perf-plan/giant-before/fixture/projects/giant-bench/build/Debug/giant-bench.gb",
+      "ramBytes": 7166,
+      "projectRevision": "1e5990d14fa6af0de5faa28ff1edf53dd07772bcff9c161a42281dde9a5be117",
+      "results": [
+        {
+          "mode": "DMG",
+          "peakShots": 32,
+          "samples": 360,
+          "mean": 6.666996721601979,
+          "p95": 7.1624515835042155,
+          "max": 8.165584415584416,
+          "pixelHash": "92f89e43ec514edb116ca71f05a1442f963e1cf29f7ac6a6f004894582308a38"
+        },
+        {
+          "mode": "CGB",
+          "peakShots": 32,
+          "samples": 360,
+          "mean": 3.5640825548720185,
+          "p95": 4.008430166324903,
+          "max": 4.082792207792208,
+          "pixelHash": "9c39d6fc0e40e35ff67417e16f9fdde0be48dacd744ce5aaada7b2fc39b7fb71"
+        }
+      ]
+    },
+    "giantLegacyAfter": {
+      "rom": ".cache/perf-plan/accepted-legacy-giant/fixture/projects/giant-bench/build/Debug/giant-bench.gb",
+      "ramBytes": 7166,
+      "projectRevision": "1e5990d14fa6af0de5faa28ff1edf53dd07772bcff9c161a42281dde9a5be117",
+      "results": [
+        {
+          "mode": "DMG",
+          "peakShots": 32,
+          "samples": 360,
+          "mean": 5.528578232196632,
+          "p95": 6.020277967646389,
+          "max": 6.169229892914103,
+          "pixelHash": "92f89e43ec514edb116ca71f05a1442f963e1cf29f7ac6a6f004894582308a38"
+        },
+        {
+          "mode": "CGB",
+          "peakShots": 32,
+          "samples": 360,
+          "mean": 3.000170881749824,
+          "p95": 3.0084301663249033,
+          "max": 3.082792207792208,
+          "pixelHash": "9c39d6fc0e40e35ff67417e16f9fdde0be48dacd744ce5aaada7b2fc39b7fb71"
+        }
+      ]
+    },
+    "giantDenseAfter": {
+      "rom": ".cache/perf-plan/accepted-giant/fixture/projects/giant-bench/build/Debug/giant-bench.gb",
+      "ramBytes": 5979,
+      "projectRevision": "7461114cc47e4b4b579717fb3d88b8427080bbec670d696e98766958e8032cbe",
+      "results": [
+        {
+          "mode": "DMG",
+          "peakShots": 32,
+          "samples": 360,
+          "mean": 5.666998303840389,
+          "p95": 6.016860332649807,
+          "max": 7.003360674413306,
+          "pixelHash": "92f89e43ec514edb116ca71f05a1442f963e1cf29f7ac6a6f004894582308a38"
+        },
+        {
+          "mode": "CGB",
+          "peakShots": 32,
+          "samples": 360,
+          "mean": 3.000172701324012,
+          "p95": 3.0084301663249033,
+          "max": 3.083105491000228,
+          "pixelHash": "9c39d6fc0e40e35ff67417e16f9fdde0be48dacd744ce5aaada7b2fc39b7fb71"
+        }
+      ]
+    },
+    "production": [
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v26.gb",
+        "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+        "mode": "DMG",
+        "character": 0,
+        "fireFromTick": 60,
+        "stateSha256": "d3f2dad9044b4c6dcfd7a0896a6eed2eb8f506c050469791410905c010d17fe9",
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 1172,
+        "updates": 880,
+        "updatesPerSecond": 44.84658703071673,
+        "meanFrameBudgets": 1.3318181818181818,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 25,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 4
+      },
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v26.gb",
+        "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+        "mode": "DMG",
+        "character": 1,
+        "fireFromTick": 60,
+        "stateSha256": "6ac68fb41e20e1317aa42fc15ac469c2e0d6a4d965efccdb2d11dc5e07a9b5d4",
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 1604,
+        "updates": 880,
+        "updatesPerSecond": 32.76820448877805,
+        "meanFrameBudgets": 1.8227272727272728,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 29,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 3
+      },
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v26.gb",
+        "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+        "mode": "CGB",
+        "character": 0,
+        "fireFromTick": 60,
+        "stateSha256": "d3f2dad9044b4c6dcfd7a0896a6eed2eb8f506c050469791410905c010d17fe9",
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 896,
+        "updates": 880,
+        "updatesPerSecond": 58.6609375,
+        "meanFrameBudgets": 1.018181818181818,
+        "p95": 1,
+        "maxGap": 3,
+        "peakOam": 25,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 4
+      },
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v26.gb",
+        "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+        "mode": "CGB",
+        "character": 1,
+        "fireFromTick": 60,
+        "stateSha256": "6ac68fb41e20e1317aa42fc15ac469c2e0d6a4d965efccdb2d11dc5e07a9b5d4",
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 978,
+        "updates": 880,
+        "updatesPerSecond": 53.74253578732107,
+        "meanFrameBudgets": 1.1113636363636363,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 29,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 3
+      },
+      {
+        "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+        "sha256": "ce3ca55b0099090c62dedac5cd119051bc90b44b2155b34a5cf65aaa56b09128",
+        "mode": "DMG",
+        "character": 0,
+        "fireFromTick": 60,
+        "stateSha256": "d3f2dad9044b4c6dcfd7a0896a6eed2eb8f506c050469791410905c010d17fe9",
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 1172,
+        "updates": 880,
+        "updatesPerSecond": 44.84658703071673,
+        "meanFrameBudgets": 1.3318181818181818,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 25,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 4
+      },
+      {
+        "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+        "sha256": "ce3ca55b0099090c62dedac5cd119051bc90b44b2155b34a5cf65aaa56b09128",
+        "mode": "DMG",
+        "character": 1,
+        "fireFromTick": 60,
+        "stateSha256": "6ac68fb41e20e1317aa42fc15ac469c2e0d6a4d965efccdb2d11dc5e07a9b5d4",
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 1604,
+        "updates": 880,
+        "updatesPerSecond": 32.76820448877805,
+        "meanFrameBudgets": 1.8227272727272728,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 29,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 3
+      },
+      {
+        "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+        "sha256": "ce3ca55b0099090c62dedac5cd119051bc90b44b2155b34a5cf65aaa56b09128",
+        "mode": "CGB",
+        "character": 0,
+        "fireFromTick": 60,
+        "stateSha256": "d3f2dad9044b4c6dcfd7a0896a6eed2eb8f506c050469791410905c010d17fe9",
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 895,
+        "updates": 880,
+        "updatesPerSecond": 58.72648044692737,
+        "meanFrameBudgets": 1.0170454545454546,
+        "p95": 1,
+        "maxGap": 2,
+        "peakOam": 25,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 4
+      },
+      {
+        "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+        "sha256": "ce3ca55b0099090c62dedac5cd119051bc90b44b2155b34a5cf65aaa56b09128",
+        "mode": "CGB",
+        "character": 1,
+        "fireFromTick": 60,
+        "stateSha256": "6ac68fb41e20e1317aa42fc15ac469c2e0d6a4d965efccdb2d11dc5e07a9b5d4",
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 978,
+        "updates": 880,
+        "updatesPerSecond": 53.74253578732107,
+        "meanFrameBudgets": 1.1113636363636363,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 29,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 3
+      }
+    ],
+    "rejectedProductionDense": [
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v26.gb",
+        "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+        "mode": "DMG",
+        "character": 0,
+        "fireFromTick": 60,
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 1172,
+        "updates": 880,
+        "updatesPerSecond": 44.84658703071673,
+        "meanFrameBudgets": 1.3318181818181818,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 25,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 4
+      },
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v26.gb",
+        "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+        "mode": "DMG",
+        "character": 1,
+        "fireFromTick": 60,
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 1604,
+        "updates": 880,
+        "updatesPerSecond": 32.76820448877805,
+        "meanFrameBudgets": 1.8227272727272728,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 29,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 3
+      },
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v26.gb",
+        "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+        "mode": "CGB",
+        "character": 0,
+        "fireFromTick": 60,
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 896,
+        "updates": 880,
+        "updatesPerSecond": 58.6609375,
+        "meanFrameBudgets": 1.018181818181818,
+        "p95": 1,
+        "maxGap": 3,
+        "peakOam": 25,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 4
+      },
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v26.gb",
+        "sha256": "a91e4131145956dc2256ed9cb034d12856ddff2e2a5adb4fb690fa1ef52da4fc",
+        "mode": "CGB",
+        "character": 1,
+        "fireFromTick": 60,
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 978,
+        "updates": 880,
+        "updatesPerSecond": 53.74253578732107,
+        "meanFrameBudgets": 1.1113636363636363,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 29,
+        "peakScanline": 6,
+        "dropped": 0,
+        "lives": 3
+      },
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v27-dense-experimental.gb",
+        "sha256": "fb56c7ca3ed391f9f78cd0d24e15d4b8e4f6b206f203136cac9c2c96e5445a81",
+        "mode": "DMG",
+        "character": 0,
+        "fireFromTick": 60,
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 1691,
+        "updates": 880,
+        "updatesPerSecond": 31.082318154937905,
+        "meanFrameBudgets": 1.9215909090909091,
+        "p95": 3,
+        "maxGap": 3,
+        "peakOam": 18,
+        "peakScanline": 8,
+        "dropped": 0,
+        "lives": 4
+      },
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v27-dense-experimental.gb",
+        "sha256": "fb56c7ca3ed391f9f78cd0d24e15d4b8e4f6b206f203136cac9c2c96e5445a81",
+        "mode": "DMG",
+        "character": 1,
+        "fireFromTick": 60,
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 1871,
+        "updates": 880,
+        "updatesPerSecond": 28.092036344200963,
+        "meanFrameBudgets": 2.1261363636363635,
+        "p95": 3,
+        "maxGap": 3,
+        "peakOam": 17,
+        "peakScanline": 7,
+        "dropped": 0,
+        "lives": 3
+      },
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v27-dense-experimental.gb",
+        "sha256": "fb56c7ca3ed391f9f78cd0d24e15d4b8e4f6b206f203136cac9c2c96e5445a81",
+        "mode": "CGB",
+        "character": 0,
+        "fireFromTick": 60,
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 1019,
+        "updates": 880,
+        "updatesPerSecond": 51.5801766437684,
+        "meanFrameBudgets": 1.1579545454545455,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 18,
+        "peakScanline": 8,
+        "dropped": 0,
+        "lives": 4
+      },
+      {
+        "file": "projects/touhou-kouma/build/Release/touhou-kouma-v27-dense-experimental.gb",
+        "sha256": "fb56c7ca3ed391f9f78cd0d24e15d4b8e4f6b206f203136cac9c2c96e5445a81",
+        "mode": "CGB",
+        "character": 1,
+        "fireFromTick": 60,
+        "range": [
+          120,
+          1000
+        ],
+        "ppuFrames": 1147,
+        "updates": 880,
+        "updatesPerSecond": 45.824062772449864,
+        "meanFrameBudgets": 1.303409090909091,
+        "p95": 2,
+        "maxGap": 3,
+        "peakOam": 17,
+        "peakScanline": 7,
+        "dropped": 0,
+        "lives": 3
+      }
+    ],
+    "native40": {
+      "rom": ".cache/perf-plan/accepted-more/fixture-PPkFOZ/projects/stg-bench/build/Debug/stg-bench.gb",
+      "sha256": "8821945db055c47fedc9d7b1465b5468a45a1e15edb0d0019966acf5f0091ad7",
+      "emulator": "BGB 1.6.6",
+      "method": "ordinary input and read-only breakpoint log",
+      "results": [
+        {
+          "mode": "DMG",
+          "samples": 601,
+          "peakShots": 40,
+          "peakEnemies": 8,
+          "reservedOamPeak": 10,
+          "dmaEndMax": 0,
+          "meanFrameBudgets": 4.07,
+          "updatesPerSecond": 14.675061425061424,
+          "maxGap": 5
+        },
+        {
+          "mode": "CGB",
+          "samples": 601,
+          "peakShots": 40,
+          "peakEnemies": 8,
+          "reservedOamPeak": 10,
+          "dmaEndMax": 149,
+          "meanFrameBudgets": 2,
+          "updatesPerSecond": 29.86375,
+          "maxGap": 2
+        }
+      ]
+    }
+  },
+  "tests": {
+    "suite": {
+      "passed": 145,
+      "failed": 0,
+      "log": ".cache/perf-plan/test-accepted.log"
+    },
+    "targeted": {
+      "passed": 11,
+      "failed": 0,
+      "log": ".cache/perf-plan/targeted-final.log"
+    },
+    "typecheck": true,
+    "doctorWarnings": 0,
+    "editor": {
+      "temp": ".cache/dense-ui-b0FXs7",
+      "checks": [
+        {
+          "denseToggle": true,
+          "bgToggle": true,
+          "bulletLimit": true,
+          "savedAndReloaded": true,
+          "buildFree": true
+        }
+      ]
+    },
+    "display": [
+      {
+        "mode": "DMG",
+        "roadSamples": 3315,
+        "bossSamples": 120,
+        "cameraPositions": 3253,
+        "residentAssets": [
+          "reimu",
+          "fairy",
+          "bat",
+          "book",
+          "shot-ofuda",
+          "shot-focus",
+          "shot-orb",
+          "shot-knife",
+          "shot-star",
+          "shot-diamond",
+          "burst",
+          "marisa",
+          "shot-marisa-laser"
+        ],
+        "movie": true,
+        "cutin": true
+      },
+      {
+        "mode": "CGB",
+        "roadSamples": 1722,
+        "bossSamples": 120,
+        "cameraPositions": 1660,
+        "residentAssets": [
+          "reimu",
+          "fairy",
+          "bat",
+          "book",
+          "shot-ofuda",
+          "shot-focus",
+          "shot-orb",
+          "shot-knife",
+          "shot-star",
+          "shot-diamond",
+          "burst",
+          "marisa",
+          "shot-marisa-laser"
+        ],
+        "movie": true,
+        "cutin": true
+      }
+    ],
+    "movie": {
+      "sha256": "ce3ca55b0099090c62dedac5cd119051bc90b44b2155b34a5cf65aaa56b09128",
+      "results": [
+        {
+          "mode": "DMG",
+          "displayVBlanks": 217,
+          "frames": 36,
+          "overruns": 0,
+          "pcmBlocks": 926,
+          "pixelParity": 36,
+          "titleMusic": true,
+          "normalStart": true,
+          "audioRate": 44100,
+          "audioChannels": 2
+        },
+        {
+          "mode": "CGB",
+          "displayVBlanks": 217,
+          "frames": 36,
+          "overruns": 0,
+          "pcmBlocks": 926,
+          "pixelParity": 36,
+          "titleMusic": true,
+          "normalStart": true,
+          "audioRate": 44100,
+          "audioChannels": 2
+        }
+      ]
+    },
+    "resetCutin": [
+      {
+        "mode": "DMG",
+        "resets": [
+          "boss battle",
+          "paused gameplay",
+          "cutin"
+        ],
+        "rankingPreserved": true,
+        "heldChordConsumed": true,
+        "partialChordDoesNotReset": true,
+        "volumes": [
+          2,
+          5,
+          4,
+          3,
+          7,
+          6,
+          9,
+          8,
+          10,
+          1,
+          0
+        ],
+        "audioSamples": 147840
+      },
+      {
+        "mode": "CGB",
+        "resets": [
+          "boss battle",
+          "paused gameplay",
+          "cutin"
+        ],
+        "rankingPreserved": true,
+        "heldChordConsumed": true,
+        "partialChordDoesNotReset": true,
+        "volumes": [
+          5,
+          4,
+          3,
+          2,
+          7,
+          6,
+          9,
+          8,
+          10,
+          1,
+          0
+        ],
+        "audioSamples": 147840
+      }
+    ],
+    "nativeProduction": {
+      "rom": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+      "sha256": "ce3ca55b0099090c62dedac5cd119051bc90b44b2155b34a5cf65aaa56b09128",
+      "results": [
+        {
+          "mode": "DMG",
+          "scenes": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              7,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              12,
+              4,
+              0
+            ],
+            [
+              15,
+              4,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              1,
+              6,
+              1
+            ]
+          ],
+          "displayModeRestored": true,
+          "gameplaySamples": 10519,
+          "bossSamples": 807
+        },
+        {
+          "mode": "CGB",
+          "scenes": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              7,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              8,
+              4,
+              1
+            ],
+            [
+              7,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              12,
+              4,
+              0
+            ],
+            [
+              15,
+              4,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              8,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ],
+            [
+              1,
+              6,
+              1
+            ]
+          ],
+          "displayModeRestored": true,
+          "gameplaySamples": 16491,
+          "bossSamples": 2460
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Dense 8 enemies + 40 BG bullets reaches about 30 updates/s on GBC and 15 on DMG, not universal 60fps.",
+    "Baseline sprite fixture exceeds scanline limit; road BG comparison has equal authored load, not identical pixels.",
+    "Giant direct-index fixture has identical pixel hashes before/after.",
+    "Emulicious DAP EvaluateRequest NullPointerException prevented execution verification.",
+    "Physical DMG/CGB, human listening and manual full-game clear not verified.",
+    "Experimental ROM uses a different palette packing and simplified backgrounds."
+  ],
+  "evidence": "../../docs/stg-three-stage-performance.md"
+}

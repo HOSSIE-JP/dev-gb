@@ -9,3 +9,4 @@ export * from "../shared/stage-space";
 export * from "../shared/pixel-tools";
 export * from "../shared/emulation";
 export * from "../shared/color";
+export * from "../shared/gbc-barrage";

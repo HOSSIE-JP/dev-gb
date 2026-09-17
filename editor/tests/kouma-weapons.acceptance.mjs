@@ -4,7 +4,7 @@ import {boot,frames,memory,symbols,settledTrace,entityState,GameBoyMode,PadKey} 
 import {capture} from './presentation-qa.mjs';
 const l=createRequire(import.meta.url)('../build/library.cjs'),g=l.readGame(process.cwd(),'touhou-kouma'),file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]),rom=fs.readFileSync(file),syms=symbols(file.replace(/\.gb$/,'.map')),results=[];
 fs.mkdirSync(out,{recursive:true});
-for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb])for(const character of [0,1])for(const stage of [0,2,6]){
+for(const mode of (rom[0x143]===0xC0?[GameBoyMode.Cgb]:[GameBoyMode.Dmg,GameBoyMode.Cgb]))for(const character of [0,1])for(const stage of [0,2,6]){
  const label=`${mode===GameBoyMode.Dmg?'DMG':'CGB'}-${character}-stage${stage+1}`,gb=boot(rom,mode),capacity=(syms._ce_state-syms._ce_entities)/25;
  const read=()=>settledTrace(gb,syms._ce_trace),until=(f,n=2400)=>{for(let i=0;i<n;i++){const t=read();if(t&&f(t))return t;frames(gb,1);}throw Error(label+' timeout');};
  const tap=k=>{gb.key_press(k);frames(gb,4);gb.key_lift(k);frames(gb,12);};
@@ -39,7 +39,7 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb])for(const character of [0,1]
  }finally{gb.free();}
 }
 const upperTarget=[];
-for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb]){
+for(const mode of (rom[0x143]===0xC0?[GameBoyMode.Cgb]:[GameBoyMode.Dmg,GameBoyMode.Cgb])){
  const gb=boot(rom,mode),read=()=>settledTrace(gb,syms._ce_trace),until=f=>{for(let i=0;i<2400;i++){const t=read();if(t&&f(t))return t;frames(gb,1);}throw Error('upper target timeout');},tap=k=>{gb.key_press(k);frames(gb,4);gb.key_lift(k);frames(gb,12);};
  try{
   until(t=>t.scene===0);tap(PadKey.A);until(t=>t.scene===10);tap(PadKey.A);until(t=>t.scene===1);gb.key_press(PadKey.Up);until(t=>t.y<=20*16);gb.key_lift(PadKey.Up);

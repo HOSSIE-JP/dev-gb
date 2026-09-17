@@ -51,7 +51,11 @@ static uint8_t occupied_player(void) __naked {
         ld e, a
         add hl, hl
         add hl, hl
+#ifdef CE_CGB
+        add hl, hl
+#else
         add hl, de
+#endif
         ld a, (_px)
         srl a
         srl a
@@ -98,7 +102,11 @@ _bg_query_y:
         cp #6
         jr nz, _bg_query_done
         ld a, (_cell_index)
+#ifdef CE_CGB
+        add #32
+#else
         add #20
+#endif
         ld c, a
         ld a, (_cell_index + 1)
         adc #0
@@ -113,7 +121,11 @@ _bg_query_y:
         cp #6
         jr nz, _bg_query_done
         ld a, (_cell_index)
+#ifdef CE_CGB
+        add #33
+#else
         add #21
+#endif
         ld c, a
         ld a, (_cell_index + 1)
         adc #0
@@ -140,7 +152,14 @@ _bg_query_probe:
         ld hl, #_query_count
         inc (hl)
         pop de
-        ld hl, #_map
+#ifdef CE_CGB
+        ld hl, #0xd980
+        add hl, bc
+        ld a, (hl)
+        or a
+        ret z
+#else
+        ld hl, #(_ce_render_workspace + 720)
         add hl, bc
         ld a, (hl)
         or a
@@ -155,11 +174,12 @@ _bg_query_probe:
         ld bc, #_static_masks
         add hl, bc
         jr _bg_query_mask
+#endif
 _bg_query_compound:
         ld h, b
         ld l, c
         add hl, hl
-        ld bc, #_cells
+        ld bc, #_ce_render_workspace
         add hl, bc
 _bg_query_mask:
         ld a, (hl+)

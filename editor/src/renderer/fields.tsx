@@ -3,7 +3,8 @@ import { type Game, clone, uid } from "../shared/model";
 import { MusicField, SoundtrackFields } from "./music-field";
 
 const labels: Record<string, string> = {
-    stageSelect:"START／STAGE SELECTメニュー（下4行）", selectionHeading:"「キャラクター選択」の見出し",
+    hardware:"対応機種",
+    dense:"高密度処理（実験用・負荷によって低速化）",bgBullets:"道中BG弾幕（背景を単色化）",bgBulletLimit:"道中BG弾の同時上限（1〜64）",stageSelect:"START／STAGE SELECTメニュー（下4行）", selectionHeading:"「キャラクター選択」の見出し",
     contactBoxes:"胴体の接触判定（弱点原点から・最大8矩形）", smooth:"滑らかに補間する（Q4）", live:"ボム演出中もゲームを動かす", barrierMax:"バリアの上限", barrierFrames:"バリア被弾後の無敵（更新数）", barrierAsset:"バリア装着時の自機画像", graphic:"巨大BG画像（原点＝弱点）", scrollAxis: "スクロール方向", spacingY: "編隊間隔 Y", oscillationAxis: "波形の振幅方向", emitterOffsets: "発射位置の差替え（自機原点から）", dropItem: "撃破時のアイテム", atomicVolleys: "一斉射撃を全弾まとめて生成", maxLives: "残機の上限", button: "ボム操作", maxStock: "ボム所持上限", destroyBackground: "ボムで背景を破壊して得点", powerUps: "パワーアップ", shotWeapons: "ショット段階（先頭が初期）", speedLevels: "速度段階（先頭が初期）", shotOnMiss: "ミス時のショット", speedOnMiss: "ミス時の速度", amount: "加算量", playerShots: "自機弾の同時上限（6〜24）",
     selectionBackground:"機体選択の画像（文字なし）",gameoverBackground:"ゲームオーバーの専用画像",characterDialogues:"追加機体の会話",character:"対象の選択機体",before:"戦闘開始前の会話",after:"撃破後の会話",portrait:"左の立ち絵差替え（上部80×96）",dialoguePortrait:"左の立ち絵差替え（上部80×96）",
     characters:"追加の選択機体（最大3）", bomb:"ボム（全機体共通）", bombBackground:"専用ボム画像（空欄＝共通）", bombStyle:"ボムの演出方式", stock:"残機1機ごとのボム数", flashPeriod:"点滅切替間隔（進行中はゲーム更新数）",
@@ -96,6 +97,7 @@ const labels: Record<string, string> = {
     explosion: "爆発スプライト",
 };
 const names: Record<string, string> = {
+    dual:"GB／GBC両対応",gbc:"GBC専用（追加WRAM・専用BG描画）",
     palette:"背景パレットの点滅",image:"専用画像の点滅（敵弾の発生を抑止）",barrier:"バリア",weapon:"武器を切替",laser:"集中パルスレーザー", horizontal:"横（背景を右から左へ）", vertical:"縦", item:"アイテム", shot:"ショット強化", speed:"速度アップ", bomb:"ボム追加", life:"1UP", shotLevel:"ショット段階", speedLevel:"速度段階", down:"1段階下げる", reset:"初期段階に戻す", keep:"維持する", "a+b":"A＋B同時押し", b:"Bを押す", x:"X方向", y:"Y方向",
     actor:"キャラクター起点",left:"画面左端",right:"画面右端",alternate:"左右交互",both:"左右両端",fixed:"画面内の固定座標",homing:"短時間追尾→直進",bombs:"ボム残数",orb:"中央の大玉",beam:"自機Xに合わせるレーザー",
     caravan: "キャラバン",
@@ -173,6 +175,7 @@ export function Form({
 }) {
     const edit = (key: string, next: any) =>
         onChange({ ...value, [key]: next,
+            ...(key === "hardware" && next === "gbc" ? {performance:{enemies:12,playerShots:6,enemyShots:32,effects:4,...value.performance,dense:true}} : {}),
             ...(context === "effects" && key === "kind" && next !== "score" && value.amount > 8 ? {amount:1} : {}),
             ...(context === "stage" && key === "scrollAxis" && next === "horizontal" ? {scrollDown:false} : {}),
             ...(context === "phase" && ((key === "hp" && next > 0 && value.until === "hp") || (key === "until" && next === "hp" && value.hp > 0)) ? {threshold: 0} : {})
@@ -183,7 +186,7 @@ export function Form({
                 context === "player" ? { name:"PLAYER 1",selectionBackground:"",selectionHeading:false,gameoverBackground:"", focusWeapon: "", focusSpeed: value.speed, respawnDelay: 0, characters:[], barrierMax:3,barrierFrames:45,barrierAsset:"",maxLives:9, atomicVolleys:false, bomb:{enabled:false,stock:2,damage:30,frames:48,flashPeriod:2,background:""}, ...value }
                 : context === "characters" ? {selectionBackground:"",gameoverBackground:"",focusWeapon:"",focusSpeed:value.speed,bombBackground:"",bombStyle:"orb",...value}
                 : context === "pattern" ? {launch:{kind:"actor",x:80,y:32,step:16,lanes:1},guidance:{frames:48,period:16},emitterOffsets:[],...value}
-                : context === "stage" ? { scrollAxis:"vertical", requireBoss: false, scrollDown: false, music: 0, bossMusic: 0, presentation: { enabled: false, dialogueBackground: "", clearBackground: "", rightPalette: 0, dialogue: [], clearEnabled: false, baseBonus: game.clearBonus, lifeBonus: 200, noMissBonus: 1000 }, parallax: { enabled: false, firstTile: 0, width: 4, height: 2, divisor: 2 }, ...value }
+                : context === "stage" ? { bgBullets:false,bgBulletLimit:40,scrollAxis:"vertical", requireBoss: false, scrollDown: false, music: 0, bossMusic: 0, presentation: { enabled: false, dialogueBackground: "", clearBackground: "", rightPalette: 0, dialogue: [], clearEnabled: false, baseBonus: game.clearBonus, lifeBonus: 200, noMissBonus: 1000 }, parallax: { enabled: false, firstTile: 0, width: 4, height: 2, divisor: 2 }, ...value }
                 : context === "event" ? {spacingY:0,...value}
                 : context === "battle" ? {graphic:"",returnX:80,returnY:36,...value}
                 : context === "effects" ? {weapon:"",...value}
@@ -191,7 +194,7 @@ export function Form({
                 : context === "bomb" ? {live:false,presentation:"palette",button:"a+b",destroyBackground:false,maxStock:9,...value}
                 : context === "actor" && "phases" in value ? {contactBoxes:[],dropItem:"",battle:{background:"stage",maxBullets:64},...value}
                 : context === "actor" || context === "item" ? { ...(context === "actor" ? {dropItem:""} : {}), ...value}
-                : context === "performance" ? {playerShots:6,...value}
+                : context === "performance" ? {dense:false,playerShots:6,...value}
                 : "phases" in value ? {battle: {background: "stage", maxBullets: 64}, ...value}
                 : context === "phase" ? {hp: 0, intro: {enabled: false, background: "", spellName: value.name, seconds: 1.2}, ...value}
                 : context === "presentation" ? {dialoguePortrait:"",characterDialogues:[],clearWaitSeconds: 2, victoryDialogue: {enabled: false, background: value.clearBackground ?? "", pages: []}, ...value}
@@ -200,7 +203,7 @@ export function Form({
                 : value.id === "hud" ? { rows: 2, ...value }
                 : value.id === "title" && "dock" in value && Array.isArray(value.items) ? { stageSelect:false, ...value }
                 : "binding" in value ? { digits: 5, ...value }
-                : value.schemaVersion === 1 ? { attract:{enabled:false,titleSeconds:12,bossSeconds:15,rankingSeconds:8}, performance:{enemies:12,playerShots:6,enemyShots:32,effects:4}, continue: {enabled:false,seconds:10,delaySeconds:0}, startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
+                : value.schemaVersion === 1 ? { hardware:"dual", attract:{enabled:false,titleSeconds:12,bossSeconds:15,rankingSeconds:8}, performance:{enemies:12,playerShots:6,enemyShots:32,effects:4}, continue: {enabled:false,seconds:10,delaySeconds:0}, startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )
                 .filter(
@@ -282,6 +285,7 @@ export function Form({
                             name: `${i} · ${p.name}`,
                         }));
                     const enums: Record<string, string[]> = {
+                        hardware:["dual","gbc"],
                         mode: ["caravan", "campaign"],
                         until: ["time", "hp"],
                         dock: ["top", "bottom"],
@@ -321,6 +325,8 @@ export function Form({
                             name: names[id] ?? id,
                         }));
                     const label =
+                        key === "bgBulletLimit" ? `道中BG弾の同時上限（1〜${game.hardware==="gbc"?96:64}）` :
+                        key === "maxBullets" ? `BG敵弾の上限（1〜${value.background==="bg-boss"?32:game.hardware==="gbc"?96:64}）` :
                         key === "presentation" && context === "bomb" ? "進行中ボムの表示方式" :
                         key === "frames" && context === "guidance" ? "追尾する期間（更新数、以後は直進）" : key === "frames" && context === "bomb" ? (value.live ? "ボム表示時間（ゲーム更新数）" : "ボム表示時間（表示フレーム）") :
                         key === "period" && context === "guidance" ? "誘導周期（8・16・32更新）" :

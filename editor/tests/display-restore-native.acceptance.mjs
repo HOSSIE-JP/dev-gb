@@ -9,10 +9,12 @@ fs.mkdirSync(out,{recursive:true});
 const sig=Buffer.from([0x21,(t+22)&255,(t+22)>>8,0x36,0]),found=rom.indexOf(sig,s._ce_trace_write),published=found+sig.length;
 assert.ok(found>=s._ce_trace_write&&published<s._ce_sound);
 const hex=n=>n.toString(16),addresses=[t+17,t+4,s._ce_demo,0xff40,s._ce_battle_mode],bp=`${hex(published)}///DEMO ${addresses.map(n=>`%(${hex(n)})%`).join(' ')}`,results=[];
-for(const mode of ['DMG','CGB']) {
+for(const mode of (rom[0x143]===0xC0?['CGB']:['DMG','CGB'])) {
  const dir=fs.mkdtempSync(path.join(out,mode+'-')),exe=path.join(dir,'bgb64.exe');fs.copyFileSync('.tools/bgb/bgb64.exe',exe);
- fs.writeFileSync(path.join(dir,'input.dem'),Buffer.alloc(22000));
- const r=spawnSync(exe,['-hf','-nobatt','-nowriteini','-ini',path.join(dir,'bgb.ini'),'-set',`SystemMode=${mode==='DMG'?0:1}`,'-set','DebugMsgFile=1','-set','DebugMsgFileTS=0','-rom',file,'-demoplay',path.join(dir,'input.dem'),'-screenonexit',path.join(dir,'screen.bmp'),'-br',bp],{cwd:dir,windowsHide:true,timeout:360000});
+ // Random exhibition stages have different loads. Leave time for the second
+ // ranking to finish instead of ending the replay just before its logo return.
+ fs.writeFileSync(path.join(dir,'input.dem'),Buffer.alloc(28000));
+ const r=spawnSync(exe,['-hf','-nobatt','-nowriteini','-ini',path.join(dir,'bgb.ini'),'-set',`SystemMode=${mode==='DMG'?0:1}`,'-set','DebugMsgFile=1','-set','DebugMsgFileTS=0','-rom',file,'-demoplay',path.join(dir,'input.dem'),'-screenonexit',path.join(dir,'screen.bmp'),'-br',bp],{cwd:dir,windowsHide:true,timeout:480000});
  if(r.error)throw r.error;assert.equal(r.status,0);
  const rows=fs.readFileSync(path.join(dir,'debugmsg.txt'),'utf8').split(/\r?\n/).filter(x=>x.startsWith('DEMO ')).map(x=>x.slice(5).trim().split(/\s+/).map(x=>parseInt(x,16)));
  const scenes=[];let last=-1;for(const row of rows){if(row[0]===1)assert.equal(row[3]&0x50,0x40,'gameplay LCDC mode');if(row[0]!==last){scenes.push(row.slice(0,3));last=row[0];}}
