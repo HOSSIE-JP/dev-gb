@@ -231,6 +231,7 @@ void ce_bg_setup(void) BANKED;
 void ce_bg_begin(void) BANKED;
 void ce_bg_update(void) BANKED;
 void ce_bg_spawn(void) BANKED;
+void ce_bg_shoot(uint8_t pattern,uint8_t source,int16_t x,int16_t y,uint8_t sequence) BANKED;
 void ce_bg_flush(void) BANKED;
 void ce_bg_publish(void) BANKED;
 void ce_bg_palette(void) BANKED;

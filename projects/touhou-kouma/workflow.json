@@ -1,16 +1,26 @@
 {
-  "version": "0.29-bg-registers",
-  "updatedAt": "2026-09-17T06:37:53.723Z",
+  "version": "0.30-bg-volley",
+  "updatedAt": "2026-09-17T07:25:53.915Z",
   "status": "awaiting-playtest",
   "approved": false,
   "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
-  "engineRevision": "e22cc52dfeeb18061bfe1d92fbd218bc5b3cab58",
+  "engineRevision": "601564eb79cbd373746c1e65526b0a69001b952d",
   "rom": {
-    "path": "build/Release/touhou-kouma-v29.gb",
-    "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
+    "path": "build/Release/touhou-kouma-v30.gb",
+    "sha256": "e5f1aaaa3c9290744aa166c21b3a6e4b3d1954905e4745c61ebdc3fffa28558f",
     "bytes": 2097152
   },
   "previous": [
+    {
+      "version": "0.29-bg-registers",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v29.gb",
+        "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
+        "bytes": 2097152
+      },
+      "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
+      "validation": "touhou-kouma-design/qa-v29.json"
+    },
     {
       "version": "0.26-reset-cutin",
       "rom": {
@@ -213,20 +223,24 @@
     }
   ],
   "checks": {
-    "standard": 141,
-    "failed": 0,
-    "skipped": 0,
-    "doctorWarnings": 0,
-    "kernelParityPublications": 1152,
-    "kernelNativeParity": true,
-    "vblankDmaPassed": true,
+    "debugReleaseIdentical": true,
+    "touhouDebug": true,
+    "touhouRelease": true,
+    "helloCleanDebug": true,
+    "starDebug": true,
+    "starRelease": true,
+    "staticWramBytes": 7166,
+    "rom0FreeBytes": 77,
+    "standardTests": 141,
+    "volleyParityStates": 1122,
     "gameplayParityUpdates": 2000,
+    "bossParityUpdates": 600,
     "productionDisplay": [
       {
         "mode": "DMG",
-        "roadSamples": 3313,
+        "roadSamples": 3315,
         "bossSamples": 120,
-        "cameraPositions": 3251,
+        "cameraPositions": 3253,
         "residentAssets": [
           "reimu",
           "fairy",
@@ -247,9 +261,9 @@
       },
       {
         "mode": "CGB",
-        "roadSamples": 1723,
+        "roadSamples": 1730,
         "bossSamples": 120,
-        "cameraPositions": 1661,
+        "cameraPositions": 1668,
         "residentAssets": [
           "reimu",
           "fairy",
@@ -271,8 +285,9 @@
     ],
     "productionNative": {
       "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
-      "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
-      "frameCount": 30000,
+      "sha256": "e5f1aaaa3c9290744aa166c21b3a6e4b3d1954905e4745c61ebdc3fffa28558f",
+      "frameCount": 15000,
+      "requiredCycles": 1,
       "results": [
         {
           "mode": "DMG",
@@ -331,46 +346,11 @@
               1,
               5,
               1
-            ],
-            [
-              7,
-              5,
-              1
-            ],
-            [
-              1,
-              5,
-              1
-            ],
-            [
-              4,
-              5,
-              0
-            ],
-            [
-              12,
-              5,
-              0
-            ],
-            [
-              15,
-              5,
-              0
-            ],
-            [
-              0,
-              5,
-              0
-            ],
-            [
-              1,
-              6,
-              1
             ]
           ],
           "displayModeRestored": true,
-          "gameplaySamples": 11657,
-          "bossSamples": 818
+          "gameplaySamples": 5105,
+          "bossSamples": 398
         },
         {
           "mode": "CGB",
@@ -474,118 +454,24 @@
               0,
               5,
               0
-            ],
-            [
-              1,
-              2,
-              1
-            ],
-            [
-              7,
-              2,
-              1
-            ],
-            [
-              1,
-              2,
-              1
-            ],
-            [
-              8,
-              2,
-              1
-            ],
-            [
-              7,
-              2,
-              1
-            ],
-            [
-              1,
-              2,
-              1
-            ],
-            [
-              4,
-              2,
-              0
-            ],
-            [
-              12,
-              2,
-              0
-            ],
-            [
-              15,
-              2,
-              0
-            ],
-            [
-              0,
-              2,
-              0
-            ],
-            [
-              1,
-              1,
-              1
-            ],
-            [
-              7,
-              1,
-              1
-            ],
-            [
-              1,
-              1,
-              1
-            ],
-            [
-              4,
-              1,
-              0
-            ],
-            [
-              12,
-              1,
-              0
-            ],
-            [
-              15,
-              1,
-              0
-            ],
-            [
-              0,
-              1,
-              0
-            ],
-            [
-              1,
-              0,
-              1
             ]
           ],
           "displayModeRestored": true,
-          "gameplaySamples": 16577,
-          "bossSamples": 3543
+          "gameplaySamples": 7825,
+          "bossSamples": 1763
         }
       ]
-    },
-    "nativeInitialAttempt": {
-      "frames": 22000,
-      "result": "Stopped in second ranking; third-logo assertion failed. ROM reached both bosses/cutins/rankings with correct LCDC. Extended the observation window to 30000 frames and reran without changing the ROM."
     }
   },
   "pending": [
-    "User playtest of v0.29",
-    "GBC full-frame gain is small: +0.63% native stationary / +1.28% moving fixture. Not sustained 60 updates/second.",
-    "No complete seven-stage performance guarantee or physical hardware/human audio verification.",
-    "Emulicious DAP EvaluateRequest NullPointerException; no execution proof."
+    "User playtest of v0.30",
+    "Remaining dense-volley and road slowdowns",
+    "Physical hardware, human audio and full-campaign performance",
+    "Emulicious DAP EvaluateRequest NullPointerException; no execution evidence."
   ],
-  "evidence": "../../docs/stg-bg-register-performance.md",
+  "evidence": "../../docs/stg-bg-volley-performance.md",
   "engineWorkingTreeChanges": true,
-  "validation": "touhou-kouma-design/qa-v29.json",
+  "validation": "touhou-kouma-design/qa-v30.json",
   "approval": null,
   "promotion": {
     "path": "touhou-kouma-design/pv-v22/touhou-kouma-v22-pv.mp4",
@@ -595,12 +481,15 @@
     "sourceVersion": "0.22-character-animation"
   },
   "sourceHashes": {
-    "engine/caravan/bg-state-kernels.h": "807e3fcc7d930cc3f83056f941e941d1e73c7ea13439cf58d1dddb1f0fcceca4",
-    "engine/caravan/bg-update-kernel.h": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b",
-    "editor/tests/bg-registers.acceptance.mjs": "33adbe1a1a005784f842940c5abf4057cce5f726ddbb7107e48ea4f089b0cd83",
-    "editor/tests/bg-registers-native.acceptance.mjs": "698f70902ada92f0edbbc5f0ad12601219cd20a4d3a8b565b4b0ef3998088753",
-    "editor/tests/bg-local.acceptance.mjs": "e538cb4cb9e3153651f28cd85004556f5f1798e72a355917b7b7b83c85cb8746",
+    "engine/caravan/special.c": "c5e29f5ad8becf7c0199996acbdcd90cace6caf71d358cc86431220b82c3ac74",
+    "engine/caravan/bg-bullets.c": "3ec6b7746f394be2196f4c88e7e39695476aaa50b367e0dcabc77737ea8a2127",
+    "engine/caravan/bg-volley.h": "452ac2f390232da471c3bfd7fd369209bfd77e3af70e7a693ea3c738d6bac4ae",
+    "engine/caravan/caravan.h": "fb8eb622260125f34eca713160b080f6704b95ea9d63ef17dc40afb864ef536b",
+    "editor/tests/bg-volley.acceptance.mjs": "a05ab7dc3693171cbd5965588a962e5d62c3f6e492d3fccaaaf35fd1a077176a",
+    "editor/tests/bg-deadline-profile.mjs": "3cedce153c3ea16e81f10d0733822f53880de769ae23281b0fec7a7235d88619",
+    "editor/tests/bg-local.acceptance.mjs": "f47f7b92ae01e16c3962c79a89db708c86878cd292cd4d194c5d85145cf5b64f",
     "editor/tests/bg-local-native.acceptance.mjs": "8f4dbc453571b90e7c6774019ba4713950651adf9ac4c1c8c02edeb5ea882ddd",
-    "editor/tests/display-restore-native.acceptance.mjs": "b3c51897cdbb0e405a6200c2646cd0f38f2c2938502a3a9cb3a4d68e376ba1eb"
+    "editor/tests/kouma-boss-performance.mjs": "a2a5b1f056af4eb327f4de3846773b75f639e81b7f4d0e759d9035890fc7e64f",
+    "editor/tests/display-restore-native.acceptance.mjs": "8e0ebd815622d4d0bc3c2585b9a592ce35dd6946e3b3de32cddd93609cb6206a"
   }
 }

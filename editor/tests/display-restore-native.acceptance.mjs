@@ -8,7 +8,11 @@ const file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]),s=sym
 // Random stages have different DMG road durations. Leave room for the third
 // logo after two completed ranking screens, rather than stopping in ranking 2.
 const frameCount=Number(process.argv[4]??30000);
-assert.ok(Number.isInteger(frameCount)&&frameCount>=22000&&frameCount<=120000);
+// Optional single-cycle regression for engine-only edits. The default still
+// requires two complete exhibitions; report the chosen scope with the result.
+const cycles=Number(process.argv[5]??2);
+assert.ok(cycles===1||cycles===2);
+assert.ok(Number.isInteger(frameCount)&&frameCount>=(cycles===1?15000:22000)&&frameCount<=120000);
 fs.mkdirSync(out,{recursive:true});
 const sig=Buffer.from([0x21,(t+22)&255,(t+22)>>8,0x36,0]),found=rom.indexOf(sig,s._ce_trace_write),published=found+sig.length;
 assert.ok(found>=s._ce_trace_write&&published<s._ce_sound);
@@ -20,10 +24,10 @@ for(const mode of ['DMG','CGB']) {
  if(r.error)throw r.error;assert.equal(r.status,0);
  const rows=fs.readFileSync(path.join(dir,'debugmsg.txt'),'utf8').split(/\r?\n/).filter(x=>x.startsWith('DEMO ')).map(x=>x.slice(5).trim().split(/\s+/).map(x=>parseInt(x,16)));
  const scenes=[];let last=-1;for(const row of rows){if(row[0]===1)assert.equal(row[3]&0x50,0x40,'gameplay LCDC mode');if(row[0]!==last){scenes.push(row.slice(0,3));last=row[0];}}
- assert.ok(scenes.filter(r=>r[0]===4).length>=2,'two rankings');assert.ok(scenes.filter(r=>r[0]===12).length>=3,'logo returns');assert.ok(scenes.filter(r=>r[0]===7&&r[2]).length>=2,'demo cutins');
+ assert.ok(scenes.filter(r=>r[0]===4).length>=cycles,'completed rankings');assert.ok(scenes.filter(r=>r[0]===12).length>=cycles+1,'logo returns');assert.ok(scenes.filter(r=>r[0]===7&&r[2]).length>=cycles,'demo cutins');
  assert.ok(rows.some(r=>r[0]===1&&r[4]===2),'native BG boss battle');
  assert.ok(scenes.filter(r=>r[0]===15).length>=2,'movie replayed on next exhibition cycle');
  results.push({mode,scenes,displayModeRestored:true,gameplaySamples:rows.filter(r=>r[0]===1).length,bossSamples:rows.filter(r=>r[0]===1&&r[4]===2).length});console.log(mode+' native exhibition passed');
 }
-fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({rom:file,sha256:crypto.createHash('sha256').update(rom).digest('hex'),frameCount,results},null,2));
+fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({rom:file,sha256:crypto.createHash('sha256').update(rom).digest('hex'),frameCount,requiredCycles:cycles,results},null,2));
 

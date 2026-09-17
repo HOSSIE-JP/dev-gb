@@ -1,0 +1,1681 @@
+{
+  "version": "0.30-bg-volley",
+  "date": "2026-09-17T07:25:53.915Z",
+  "baseCommit": "601564eb79cbd373746c1e65526b0a69001b952d",
+  "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
+  "sourceHashes": {
+    "engine/caravan/special.c": "c5e29f5ad8becf7c0199996acbdcd90cace6caf71d358cc86431220b82c3ac74",
+    "engine/caravan/bg-bullets.c": "3ec6b7746f394be2196f4c88e7e39695476aaa50b367e0dcabc77737ea8a2127",
+    "engine/caravan/bg-volley.h": "452ac2f390232da471c3bfd7fd369209bfd77e3af70e7a693ea3c738d6bac4ae",
+    "engine/caravan/caravan.h": "fb8eb622260125f34eca713160b080f6704b95ea9d63ef17dc40afb864ef536b",
+    "editor/tests/bg-volley.acceptance.mjs": "a05ab7dc3693171cbd5965588a962e5d62c3f6e492d3fccaaaf35fd1a077176a",
+    "editor/tests/bg-deadline-profile.mjs": "3cedce153c3ea16e81f10d0733822f53880de769ae23281b0fec7a7235d88619",
+    "editor/tests/bg-local.acceptance.mjs": "f47f7b92ae01e16c3962c79a89db708c86878cd292cd4d194c5d85145cf5b64f",
+    "editor/tests/bg-local-native.acceptance.mjs": "8f4dbc453571b90e7c6774019ba4713950651adf9ac4c1c8c02edeb5ea882ddd",
+    "editor/tests/kouma-boss-performance.mjs": "a2a5b1f056af4eb327f4de3846773b75f639e81b7f4d0e759d9035890fc7e64f",
+    "editor/tests/display-restore-native.acceptance.mjs": "8e0ebd815622d4d0bc3c2585b9a592ce35dd6946e3b3de32cddd93609cb6206a"
+  },
+  "method": "Same authored data and inputs; no host ROM/RAM modifications. Native CPU clocks, not host wall time.",
+  "gameplay": [
+    {
+      "variant": "baseline",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\bg-deadline\\gameplay\\baseline\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "33439f4a725793825c48e7b2f8fe222a0c94412147a5b491ef22c97d3c0474cc",
+      "sha256": "76fd5501d56ba40334ef996d28a57551675cc5157502c5778241ce96531cc02a",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 47656.78478478479,
+          "meanDisplayFrames": 2.389490772385538,
+          "updatesPerSecond": 24.995911551636294,
+          "p95": 3.000911369332422,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 45455.65965965966,
+          "meanDisplayFrames": 1.0663362952836482,
+          "updatesPerSecond": 56.01187942694226,
+          "p95": 2.000427204374573,
+          "hash": "d6d758baed1c6245efee11313c34828d2450e9cfaf12c589a160eb7238285177"
+        }
+      ]
+    },
+    {
+      "variant": "current",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\bg-deadline\\gameplay\\current\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "33439f4a725793825c48e7b2f8fe222a0c94412147a5b491ef22c97d3c0474cc",
+      "sha256": "9f8672f2849c98ac792aa8c3d9ecf24b184ec3a7e368efe5f1e04e48dfab08ee",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 47656.78478478479,
+          "meanDisplayFrames": 2.3860816814764467,
+          "updatesPerSecond": 25.031624216251533,
+          "p95": 3.000911369332422,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 45455.65965965966,
+          "meanDisplayFrames": 1.0015635680109212,
+          "updatesPerSecond": 59.63425778217676,
+          "p95": 1.0040726817042607,
+          "hash": "d6d758baed1c6245efee11313c34828d2450e9cfaf12c589a160eb7238285177"
+        }
+      ]
+    }
+  ],
+  "native": {
+    "emulator": "BGB 1.6.6",
+    "fixture": true,
+    "input": "Start, stationary; no shots or RAM writes",
+    "results": [
+      {
+        "variant": "baseline",
+        "mode": "DMG",
+        "sha256": "76fd5501d56ba40334ef996d28a57551675cc5157502c5778241ce96531cc02a",
+        "samples": 880,
+        "peak": 40,
+        "meanDisplayFrames": 2.4340909090909086,
+        "updatesPerSecond": 24.53790849673203,
+        "maxDisplayFrames": 3.001537935748462,
+        "stateHash": "e86859db09587480bcfdec3049a4d95bda2a43b4ab5c86c0787ddf385548c8d8"
+      },
+      {
+        "variant": "baseline",
+        "mode": "CGB",
+        "sha256": "76fd5501d56ba40334ef996d28a57551675cc5157502c5778241ce96531cc02a",
+        "samples": 880,
+        "peak": 40,
+        "meanDisplayFrames": 1.075001035646969,
+        "updatesPerSecond": 55.56041158979362,
+        "maxDisplayFrames": 2.00549669628617,
+        "stateHash": "e86859db09587480bcfdec3049a4d95bda2a43b4ab5c86c0787ddf385548c8d8"
+      },
+      {
+        "variant": "current",
+        "mode": "DMG",
+        "sha256": "9f8672f2849c98ac792aa8c3d9ecf24b184ec3a7e368efe5f1e04e48dfab08ee",
+        "samples": 880,
+        "peak": 40,
+        "meanDisplayFrames": 2.431818181818181,
+        "updatesPerSecond": 24.560841121495333,
+        "maxDisplayFrames": 3.001537935748462,
+        "stateHash": "e86859db09587480bcfdec3049a4d95bda2a43b4ab5c86c0787ddf385548c8d8"
+      },
+      {
+        "variant": "current",
+        "mode": "CGB",
+        "sha256": "9f8672f2849c98ac792aa8c3d9ecf24b184ec3a7e368efe5f1e04e48dfab08ee",
+        "samples": 880,
+        "peak": 40,
+        "meanDisplayFrames": 1.002273762919696,
+        "updatesPerSecond": 59.59200191573355,
+        "maxDisplayFrames": 2.004129642287537,
+        "stateHash": "e86859db09587480bcfdec3049a4d95bda2a43b4ab5c86c0787ddf385548c8d8"
+      }
+    ]
+  },
+  "profile": {
+    "before": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\bg-registers\\gameplay\\current\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sha256": "76fd5501d56ba40334ef996d28a57551675cc5157502c5778241ce96531cc02a",
+      "emulator": "BGB 1.6.6",
+      "mode": "CGB",
+      "method": "Unmodified ROM; logged PC milestones and DMA writes. Durations include IRQs. Unit: display frames (35112 double-speed NOPs).",
+      "range": [
+        120,
+        400
+      ],
+      "all": {
+        "samples": 280,
+        "meanFrames": {
+          "total": 1.0749852512775446,
+          "update": 0.33326264118087434,
+          "otherSimulation": 0.2038729128014844,
+          "spritesHud": 0.06017448247241487,
+          "assemble": 0.0905163680304656,
+          "poseWait": 0.3412342748104028,
+          "publish": 0.03421917211860814,
+          "loop": 0.01170539986329456
+        },
+        "extraWaits": 0,
+        "publishLines": [
+          145
+        ],
+        "peak": 40
+      },
+      "late": {
+        "samples": 21,
+        "meanFrames": {
+          "total": 2.0010863196953426,
+          "update": 0.3162655014158773,
+          "otherSimulation": 0.5428682637329254,
+          "spritesHud": 0.056202465037051515,
+          "assemble": 0.09419653028675586,
+          "poseWait": 0.9457396196118,
+          "publish": 0.034108539747637494,
+          "loop": 0.011705399863294604
+        },
+        "extraWaits": 0,
+        "publishLines": [
+          145
+        ],
+        "peak": 40
+      },
+      "normal": {
+        "samples": 259,
+        "meanFrames": {
+          "total": 0.9998959754598854,
+          "update": 0.33464078764830674,
+          "otherSimulation": 0.17638680326650272,
+          "spritesHud": 0.060496537940147026,
+          "assemble": 0.09021797649617182,
+          "poseWait": 0.29222032793461367,
+          "publish": 0.034228142310848995,
+          "loop": 0.011705399863294563
+        },
+        "extraWaits": 0,
+        "publishLines": [
+          145
+        ],
+        "peak": 40
+      },
+      "lateSamples": [
+        {
+          "tick": 126,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 0,
+          "total": 2,
+          "update": 0.32140009113693324,
+          "otherSimulation": 0.502449305080884,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0884313055365687,
+          "poseWait": 0.9866142629300524,
+          "publish": 0.03101503759398496,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146
+          ]
+        },
+        {
+          "tick": 138,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 0,
+          "total": 2,
+          "update": 0.32037480063795853,
+          "otherSimulation": 0.4888072453861928,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0884313055365687,
+          "poseWait": 1.0012816131237183,
+          "publish": 0.03101503759398496,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146
+          ]
+        },
+        {
+          "tick": 162,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 1,
+          "total": 2.004129642287537,
+          "update": 0.29254955570745045,
+          "otherSimulation": 0.600848712690818,
+          "spritesHud": 0.08509911141490088,
+          "assemble": 0.08996924128503075,
+          "poseWait": 0.8880724538619276,
+          "publish": 0.03588516746411483,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 174,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 1,
+          "total": 2.004129642287537,
+          "update": 0.29143882433356116,
+          "otherSimulation": 0.5981430849851903,
+          "spritesHud": 0.037508544087491456,
+          "assemble": 0.0953235361130098,
+          "poseWait": 0.9348655730234677,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 186,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 2,
+          "total": 2.000455684666211,
+          "update": 0.3141091364775575,
+          "otherSimulation": 0.5605206197311461,
+          "spritesHud": 0.05847003873319663,
+          "assemble": 0.10207336523125997,
+          "poseWait": 0.9179767600820232,
+          "publish": 0.035600364547732966,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            147
+          ]
+        },
+        {
+          "tick": 198,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 1,
+          "total": 2,
+          "update": 0.3200615174299385,
+          "otherSimulation": 0.5355149236728184,
+          "spritesHud": 0.037508544087491456,
+          "assemble": 0.0953235361130098,
+          "poseWait": 0.9647413989519252,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 210,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 1,
+          "total": 2,
+          "update": 0.30656185919343815,
+          "otherSimulation": 0.5493278651173388,
+          "spritesHud": 0.05847003873319663,
+          "assemble": 0.0953235361130098,
+          "poseWait": 0.9434666210982,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 222,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 2,
+          "total": 2.000455684666211,
+          "update": 0.3257006151742994,
+          "otherSimulation": 0.5362554112554112,
+          "spritesHud": 0.037508544087491456,
+          "assemble": 0.10207336523125997,
+          "poseWait": 0.9516119845067214,
+          "publish": 0.035600364547732966,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            147
+          ]
+        },
+        {
+          "tick": 234,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 1,
+          "total": 2.004129642287537,
+          "update": 0.3205172020961495,
+          "otherSimulation": 0.5272271588061062,
+          "spritesHud": 0.05847003873319663,
+          "assemble": 0.0953235361130098,
+          "poseWait": 0.9557416267942583,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 246,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 1,
+          "total": 1.9998860788334472,
+          "update": 0.32074504442925494,
+          "otherSimulation": 0.5493848257006151,
+          "spritesHud": 0.037508544087491456,
+          "assemble": 0.0953235361130098,
+          "poseWait": 0.9500740487582593,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 258,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 1,
+          "total": 2,
+          "update": 0.33996924128503075,
+          "otherSimulation": 0.504129642287537,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0953235361130098,
+          "poseWait": 0.9553429027113237,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 282,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 0,
+          "total": 2,
+          "update": 0.32792207792207795,
+          "otherSimulation": 0.49934495329232165,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0884313055365687,
+          "poseWait": 0.9831966279334701,
+          "publish": 0.03101503759398496,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146
+          ]
+        },
+        {
+          "tick": 294,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 0,
+          "total": 1.995870357712463,
+          "update": 0.3163305992253361,
+          "otherSimulation": 0.4921394395078606,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0884313055365687,
+          "poseWait": 0.997863978127136,
+          "publish": 0.03101503759398496,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146
+          ]
+        },
+        {
+          "tick": 306,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 2,
+          "total": 2.004585326953748,
+          "update": 0.314023695602643,
+          "otherSimulation": 0.5728810663021189,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.10207336523125997,
+          "poseWait": 0.9099168375484165,
+          "publish": 0.035600364547732966,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            147
+          ]
+        },
+        {
+          "tick": 318,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 0,
+          "total": 2,
+          "update": 0.3074447482342219,
+          "otherSimulation": 0.5494987468671679,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0884313055365687,
+          "poseWait": 0.9535201640464799,
+          "publish": 0.03101503759398496,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146
+          ]
+        },
+        {
+          "tick": 330,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 1,
+          "total": 2.004129642287537,
+          "update": 0.33031442241968556,
+          "otherSimulation": 0.5151799954431534,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0953235361130098,
+          "poseWait": 0.9580770107085896,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 342,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 2,
+          "total": 2.000455684666211,
+          "update": 0.3266404647983595,
+          "otherSimulation": 0.5543119161540214,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.10207336523125997,
+          "poseWait": 0.9117395762132604,
+          "publish": 0.035600364547732966,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            147
+          ]
+        },
+        {
+          "tick": 354,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 0,
+          "total": 1.995870357712463,
+          "update": 0.3083276372750057,
+          "otherSimulation": 0.5512645249487355,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0884313055365687,
+          "poseWait": 0.9467418546365914,
+          "publish": 0.03101503759398496,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146
+          ]
+        },
+        {
+          "tick": 366,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 2,
+          "total": 2.000455684666211,
+          "update": 0.31137502848029164,
+          "otherSimulation": 0.586950330371383,
+          "spritesHud": 0.06373889268626111,
+          "assemble": 0.09671907040328093,
+          "poseWait": 0.8943665983139667,
+          "publish": 0.035600364547732966,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            147
+          ]
+        },
+        {
+          "tick": 378,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 1,
+          "total": 2.004129642287537,
+          "update": 0.3002107541581226,
+          "otherSimulation": 0.5962918660287081,
+          "spritesHud": 0.06373889268626111,
+          "assemble": 0.08996924128503075,
+          "poseWait": 0.9070688083845979,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        },
+        {
+          "tick": 390,
+          "bullets": 40,
+          "spawnCalls": 16,
+          "compound": 1,
+          "total": 2.004129642287537,
+          "update": 0.32555821371610844,
+          "otherSimulation": 0.5297619047619049,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0953235361130098,
+          "poseWait": 0.9482513100934153,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        }
+      ]
+    },
+    "after": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\bg-deadline\\gameplay\\current\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sha256": "9f8672f2849c98ac792aa8c3d9ecf24b184ec3a7e368efe5f1e04e48dfab08ee",
+      "emulator": "BGB 1.6.6",
+      "mode": "CGB",
+      "method": "Unmodified ROM; logged PC milestones and DMA writes. Durations include IRQs. Unit: display frames (35112 double-speed NOPs).",
+      "range": [
+        120,
+        400
+      ],
+      "all": {
+        "samples": 280,
+        "meanFrames": {
+          "total": 1.0035566798489732,
+          "update": 0.33326264118087434,
+          "otherSimulation": 0.1914432998079616,
+          "spritesHud": 0.06011711502782937,
+          "assemble": 0.09019128584448113,
+          "poseWait": 0.282617766005924,
+          "publish": 0.03421917211860814,
+          "loop": 0.01170539986329456
+        },
+        "extraWaits": 0,
+        "publishLines": [
+          145
+        ],
+        "peak": 40
+      },
+      "late": {
+        "samples": 1,
+        "meanFrames": {
+          "total": 2.004129642287537,
+          "update": 0.3002107541581226,
+          "otherSimulation": 0.5021645021645021,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0953235361130098,
+          "poseWait": 1.0011961722488039,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946
+        },
+        "extraWaits": 0,
+        "publishLines": [
+          145
+        ],
+        "peak": 40
+      },
+      "normal": {
+        "samples": 279,
+        "meanFrames": {
+          "total": 0.9999703968294803,
+          "update": 0.3333811067257587,
+          "otherSimulation": 0.19032960374216754,
+          "spritesHud": 0.06012332476678832,
+          "assemble": 0.09017289068222835,
+          "poseWait": 0.28004221616275954,
+          "publish": 0.034215854886483,
+          "loop": 0.011705399863294563
+        },
+        "extraWaits": 0,
+        "publishLines": [
+          145
+        ],
+        "peak": 40
+      },
+      "lateSamples": [
+        {
+          "tick": 378,
+          "bullets": 40,
+          "spawnCalls": 8,
+          "compound": 1,
+          "total": 2.004129642287537,
+          "update": 0.3002107541581226,
+          "otherSimulation": 0.5021645021645021,
+          "spritesHud": 0.05838459785828207,
+          "assemble": 0.0953235361130098,
+          "poseWait": 1.0011961722488039,
+          "publish": 0.035144679881521985,
+          "loop": 0.0117053998632946,
+          "publishLine": 145,
+          "extraWait": false,
+          "dmaStarts": [
+            146,
+            146
+          ]
+        }
+      ]
+    }
+  },
+  "volley": {
+    "parityStates": 1122,
+    "before": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\bg-deadline\\volley-before\\fixture-1hYED5\\projects\\bg-volley\\build\\Debug\\bg-volley.gb",
+      "sha256": "c8d0253896b6f9c1f52493a12c30822afd8860e557ca0a07ba4941aafeacd4b9",
+      "harnessSha256": "2beb134be1ef73e2673e30d3e6ac8f0b6bcf67d9308f8df06f62e4a8931f7386",
+      "gameRevision": "7a3ad0f37ab491e3028a4501557838f6b32252bd8dc601a991e1e7bcc9bd40b1",
+      "modes": [
+        {
+          "mode": "DMG",
+          "cases": [
+            {
+              "name": "full-wrap",
+              "cycles": 121008,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 58
+              },
+              "parityStates": 33,
+              "stateHash": "74b49a473a09b25504431e6f429069acc5ffd5674939799e4122a951893a56ad"
+            },
+            {
+              "name": "fills-first-emitter",
+              "cycles": 146680,
+              "initial": {
+                "count": 20,
+                "hit": 0,
+                "dropped": 51
+              },
+              "parityStates": 33,
+              "stateHash": "ac0cb79ae8911b26673b8aa23c8185e6c2615a3afbe3ee97a61cc5cc251c497c"
+            },
+            {
+              "name": "culled-birth",
+              "cycles": 156056,
+              "initial": {
+                "count": 3,
+                "hit": 0,
+                "dropped": 47
+              },
+              "parityStates": 33,
+              "stateHash": "0c6775b9f8a615a4de55939329014d336539219353823a75305225d3e1d9695d"
+            },
+            {
+              "name": "collision-birth",
+              "cycles": 278960,
+              "initial": {
+                "count": 2,
+                "hit": 17,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "3c6b04f2da03dc494350c68687e0942518ff2bf7d3b954baded728c02060a211"
+            },
+            {
+              "name": "homing",
+              "cycles": 24800,
+              "initial": {
+                "count": 4,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "afaee2164c808be02a869b18bb69fd647c2f5d4d20821443cf540938e493eba0"
+            },
+            {
+              "name": "both-edges",
+              "cycles": 72052,
+              "initial": {
+                "count": 16,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "fc16b4dd4774818ec5a8e273ac3a78f2f9d8fd9e1a19f49354d3ccbb5f00a8d5"
+            },
+            {
+              "name": "alternate-left",
+              "cycles": 37208,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "6bdad4c319dd24cf40bca4e710cf191cd501050de74b499340a5ef0ee6ff5442"
+            },
+            {
+              "name": "alternate-right",
+              "cycles": 37176,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "e9d21dec757a425f302d39aa006e069a4499fb976b6fb0925d93a2f71e57853b"
+            },
+            {
+              "name": "aimed-down",
+              "cycles": 43792,
+              "initial": {
+                "count": 4,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "2594856553707321a0646bc77490695200dd7fab8b8b732c6aa727e76ca368d4"
+            },
+            {
+              "name": "rotating",
+              "cycles": 203112,
+              "initial": {
+                "count": 40,
+                "hit": 0,
+                "dropped": 24
+              },
+              "parityStates": 33,
+              "stateHash": "68235ff331a7736d3125cced5b5e436994ebe06d16d60612bb62b4d702c8dd08"
+            },
+            {
+              "name": "fixed",
+              "cycles": 36840,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "b95138c7cbcd6c3c04060f26195ba8bdd5c339b90346b3a2c9948a858a213545"
+            },
+            {
+              "name": "bomb",
+              "cycles": 680,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "f5604b1c3489a35d630e3a2461a61ff5d35bfe6d2c60cf5d3bebd7944547ac30"
+            },
+            {
+              "name": "sprite-enemy",
+              "cycles": 306464,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 32
+              },
+              "parityStates": 33,
+              "stateHash": "2a4b394e9e286f87dc3fc4da47ff42b5682b735b4575b7599960260b998d1b41"
+            },
+            {
+              "name": "sprite-friendly",
+              "cycles": 66216,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 10
+              },
+              "parityStates": 33,
+              "stateHash": "c084b0d266b5bcd57c4cf9a8d298aff3524b53914889235e8d410c9edb4db81a"
+            },
+            {
+              "name": "no-pattern",
+              "cycles": 616,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "3a7344f737aad5853042ce9fdd2da04ff7497f133224f27b3c48d92a82f7bacf"
+            },
+            {
+              "name": "fills-second-emitter",
+              "cycles": 160512,
+              "initial": {
+                "count": 20,
+                "hit": 0,
+                "dropped": 44
+              },
+              "parityStates": 33,
+              "stateHash": "ed9c9edde2a32bcd97a5df9c44f956a021fb7edc339c62893e4b9d7170465caf"
+            },
+            {
+              "name": "full-homing",
+              "cycles": 16384,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 65534
+              },
+              "parityStates": 33,
+              "stateHash": "a3363a3ea0c3c691745f14b36e2c63524080787c577b47ed8007854ce41dff9f"
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "cases": [
+            {
+              "name": "full-wrap",
+              "cycles": 119896,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 58
+              },
+              "parityStates": 33,
+              "stateHash": "74b49a473a09b25504431e6f429069acc5ffd5674939799e4122a951893a56ad"
+            },
+            {
+              "name": "fills-first-emitter",
+              "cycles": 145568,
+              "initial": {
+                "count": 20,
+                "hit": 0,
+                "dropped": 51
+              },
+              "parityStates": 33,
+              "stateHash": "ac0cb79ae8911b26673b8aa23c8185e6c2615a3afbe3ee97a61cc5cc251c497c"
+            },
+            {
+              "name": "culled-birth",
+              "cycles": 154944,
+              "initial": {
+                "count": 3,
+                "hit": 0,
+                "dropped": 47
+              },
+              "parityStates": 33,
+              "stateHash": "0c6775b9f8a615a4de55939329014d336539219353823a75305225d3e1d9695d"
+            },
+            {
+              "name": "collision-birth",
+              "cycles": 276736,
+              "initial": {
+                "count": 2,
+                "hit": 17,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "3c6b04f2da03dc494350c68687e0942518ff2bf7d3b954baded728c02060a211"
+            },
+            {
+              "name": "homing",
+              "cycles": 24800,
+              "initial": {
+                "count": 4,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "afaee2164c808be02a869b18bb69fd647c2f5d4d20821443cf540938e493eba0"
+            },
+            {
+              "name": "both-edges",
+              "cycles": 70940,
+              "initial": {
+                "count": 16,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "fc16b4dd4774818ec5a8e273ac3a78f2f9d8fd9e1a19f49354d3ccbb5f00a8d5"
+            },
+            {
+              "name": "alternate-left",
+              "cycles": 37208,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "6bdad4c319dd24cf40bca4e710cf191cd501050de74b499340a5ef0ee6ff5442"
+            },
+            {
+              "name": "alternate-right",
+              "cycles": 37176,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "e9d21dec757a425f302d39aa006e069a4499fb976b6fb0925d93a2f71e57853b"
+            },
+            {
+              "name": "aimed-down",
+              "cycles": 43792,
+              "initial": {
+                "count": 4,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "2594856553707321a0646bc77490695200dd7fab8b8b732c6aa727e76ca368d4"
+            },
+            {
+              "name": "rotating",
+              "cycles": 200888,
+              "initial": {
+                "count": 40,
+                "hit": 0,
+                "dropped": 24
+              },
+              "parityStates": 33,
+              "stateHash": "68235ff331a7736d3125cced5b5e436994ebe06d16d60612bb62b4d702c8dd08"
+            },
+            {
+              "name": "fixed",
+              "cycles": 36840,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "b95138c7cbcd6c3c04060f26195ba8bdd5c339b90346b3a2c9948a858a213545"
+            },
+            {
+              "name": "bomb",
+              "cycles": 680,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "f5604b1c3489a35d630e3a2461a61ff5d35bfe6d2c60cf5d3bebd7944547ac30"
+            },
+            {
+              "name": "sprite-enemy",
+              "cycles": 307440,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 32
+              },
+              "parityStates": 33,
+              "stateHash": "d0811792b6c669118d68a46b272c152311c6483452aba186175fc639f46f21d8"
+            },
+            {
+              "name": "sprite-friendly",
+              "cycles": 65704,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 10
+              },
+              "parityStates": 33,
+              "stateHash": "467d0efc9698dfd9463c076a05000f4e5064b59de054bc0c510408b934bc5ab9"
+            },
+            {
+              "name": "no-pattern",
+              "cycles": 616,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "6de6e6c9ef1fdb34d6c1751a262f15cfeb484bd289711748cc5dc046dc60c9de"
+            },
+            {
+              "name": "fills-second-emitter",
+              "cycles": 159400,
+              "initial": {
+                "count": 20,
+                "hit": 0,
+                "dropped": 44
+              },
+              "parityStates": 33,
+              "stateHash": "94b335e23fd6294380e39a545ba7e6381fd6a66981dfbc228c4607892f60b195"
+            },
+            {
+              "name": "full-homing",
+              "cycles": 16384,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 65534
+              },
+              "parityStates": 33,
+              "stateHash": "9ed125e494e611ab871126f28bc47b068e8b263753cb77930c2265ffa4a8de51"
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\bg-deadline\\volley-final\\fixture-JDzeci\\projects\\bg-volley\\build\\Debug\\bg-volley.gb",
+      "sha256": "f651b027576e5a147cf512143576a70281ba90487e0cfb90b05e23d0343b0290",
+      "harnessSha256": "2beb134be1ef73e2673e30d3e6ac8f0b6bcf67d9308f8df06f62e4a8931f7386",
+      "gameRevision": "7a3ad0f37ab491e3028a4501557838f6b32252bd8dc601a991e1e7bcc9bd40b1",
+      "modes": [
+        {
+          "mode": "DMG",
+          "cases": [
+            {
+              "name": "full-wrap",
+              "cycles": 2508,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 58
+              },
+              "parityStates": 33,
+              "stateHash": "74b49a473a09b25504431e6f429069acc5ffd5674939799e4122a951893a56ad"
+            },
+            {
+              "name": "fills-first-emitter",
+              "cycles": 51580,
+              "initial": {
+                "count": 20,
+                "hit": 0,
+                "dropped": 51
+              },
+              "parityStates": 33,
+              "stateHash": "ac0cb79ae8911b26673b8aa23c8185e6c2615a3afbe3ee97a61cc5cc251c497c"
+            },
+            {
+              "name": "culled-birth",
+              "cycles": 68800,
+              "initial": {
+                "count": 3,
+                "hit": 0,
+                "dropped": 47
+              },
+              "parityStates": 33,
+              "stateHash": "0c6775b9f8a615a4de55939329014d336539219353823a75305225d3e1d9695d"
+            },
+            {
+              "name": "collision-birth",
+              "cycles": 259392,
+              "initial": {
+                "count": 2,
+                "hit": 17,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "3c6b04f2da03dc494350c68687e0942518ff2bf7d3b954baded728c02060a211"
+            },
+            {
+              "name": "homing",
+              "cycles": 27252,
+              "initial": {
+                "count": 4,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "afaee2164c808be02a869b18bb69fd647c2f5d4d20821443cf540938e493eba0"
+            },
+            {
+              "name": "both-edges",
+              "cycles": 67436,
+              "initial": {
+                "count": 16,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "fc16b4dd4774818ec5a8e273ac3a78f2f9d8fd9e1a19f49354d3ccbb5f00a8d5"
+            },
+            {
+              "name": "alternate-left",
+              "cycles": 34896,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "6bdad4c319dd24cf40bca4e710cf191cd501050de74b499340a5ef0ee6ff5442"
+            },
+            {
+              "name": "alternate-right",
+              "cycles": 34872,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "e9d21dec757a425f302d39aa006e069a4499fb976b6fb0925d93a2f71e57853b"
+            },
+            {
+              "name": "aimed-down",
+              "cycles": 46144,
+              "initial": {
+                "count": 4,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "2594856553707321a0646bc77490695200dd7fab8b8b732c6aa727e76ca368d4"
+            },
+            {
+              "name": "rotating",
+              "cycles": 148660,
+              "initial": {
+                "count": 40,
+                "hit": 0,
+                "dropped": 24
+              },
+              "parityStates": 33,
+              "stateHash": "68235ff331a7736d3125cced5b5e436994ebe06d16d60612bb62b4d702c8dd08"
+            },
+            {
+              "name": "fixed",
+              "cycles": 34472,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "b95138c7cbcd6c3c04060f26195ba8bdd5c339b90346b3a2c9948a858a213545"
+            },
+            {
+              "name": "bomb",
+              "cycles": 680,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "f5604b1c3489a35d630e3a2461a61ff5d35bfe6d2c60cf5d3bebd7944547ac30"
+            },
+            {
+              "name": "sprite-enemy",
+              "cycles": 297204,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 32
+              },
+              "parityStates": 33,
+              "stateHash": "2a4b394e9e286f87dc3fc4da47ff42b5682b735b4575b7599960260b998d1b41"
+            },
+            {
+              "name": "sprite-friendly",
+              "cycles": 64452,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 10
+              },
+              "parityStates": 33,
+              "stateHash": "c084b0d266b5bcd57c4cf9a8d298aff3524b53914889235e8d410c9edb4db81a"
+            },
+            {
+              "name": "no-pattern",
+              "cycles": 616,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "3a7344f737aad5853042ce9fdd2da04ff7497f133224f27b3c48d92a82f7bacf"
+            },
+            {
+              "name": "fills-second-emitter",
+              "cycles": 77276,
+              "initial": {
+                "count": 20,
+                "hit": 0,
+                "dropped": 44
+              },
+              "parityStates": 33,
+              "stateHash": "ed9c9edde2a32bcd97a5df9c44f956a021fb7edc339c62893e4b9d7170465caf"
+            },
+            {
+              "name": "full-homing",
+              "cycles": 2508,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 65534
+              },
+              "parityStates": 33,
+              "stateHash": "a3363a3ea0c3c691745f14b36e2c63524080787c577b47ed8007854ce41dff9f"
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "cases": [
+            {
+              "name": "full-wrap",
+              "cycles": 2508,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 58
+              },
+              "parityStates": 33,
+              "stateHash": "74b49a473a09b25504431e6f429069acc5ffd5674939799e4122a951893a56ad"
+            },
+            {
+              "name": "fills-first-emitter",
+              "cycles": 50468,
+              "initial": {
+                "count": 20,
+                "hit": 0,
+                "dropped": 51
+              },
+              "parityStates": 33,
+              "stateHash": "ac0cb79ae8911b26673b8aa23c8185e6c2615a3afbe3ee97a61cc5cc251c497c"
+            },
+            {
+              "name": "culled-birth",
+              "cycles": 67688,
+              "initial": {
+                "count": 3,
+                "hit": 0,
+                "dropped": 47
+              },
+              "parityStates": 33,
+              "stateHash": "0c6775b9f8a615a4de55939329014d336539219353823a75305225d3e1d9695d"
+            },
+            {
+              "name": "collision-birth",
+              "cycles": 257168,
+              "initial": {
+                "count": 2,
+                "hit": 17,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "3c6b04f2da03dc494350c68687e0942518ff2bf7d3b954baded728c02060a211"
+            },
+            {
+              "name": "homing",
+              "cycles": 27252,
+              "initial": {
+                "count": 4,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "afaee2164c808be02a869b18bb69fd647c2f5d4d20821443cf540938e493eba0"
+            },
+            {
+              "name": "both-edges",
+              "cycles": 66324,
+              "initial": {
+                "count": 16,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "fc16b4dd4774818ec5a8e273ac3a78f2f9d8fd9e1a19f49354d3ccbb5f00a8d5"
+            },
+            {
+              "name": "alternate-left",
+              "cycles": 34896,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "6bdad4c319dd24cf40bca4e710cf191cd501050de74b499340a5ef0ee6ff5442"
+            },
+            {
+              "name": "alternate-right",
+              "cycles": 34872,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "e9d21dec757a425f302d39aa006e069a4499fb976b6fb0925d93a2f71e57853b"
+            },
+            {
+              "name": "aimed-down",
+              "cycles": 46144,
+              "initial": {
+                "count": 4,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "2594856553707321a0646bc77490695200dd7fab8b8b732c6aa727e76ca368d4"
+            },
+            {
+              "name": "rotating",
+              "cycles": 147548,
+              "initial": {
+                "count": 40,
+                "hit": 0,
+                "dropped": 24
+              },
+              "parityStates": 33,
+              "stateHash": "68235ff331a7736d3125cced5b5e436994ebe06d16d60612bb62b4d702c8dd08"
+            },
+            {
+              "name": "fixed",
+              "cycles": 34472,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "b95138c7cbcd6c3c04060f26195ba8bdd5c339b90346b3a2c9948a858a213545"
+            },
+            {
+              "name": "bomb",
+              "cycles": 680,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "f5604b1c3489a35d630e3a2461a61ff5d35bfe6d2c60cf5d3bebd7944547ac30"
+            },
+            {
+              "name": "sprite-enemy",
+              "cycles": 298180,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 32
+              },
+              "parityStates": 33,
+              "stateHash": "d0811792b6c669118d68a46b272c152311c6483452aba186175fc639f46f21d8"
+            },
+            {
+              "name": "sprite-friendly",
+              "cycles": 63940,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 10
+              },
+              "parityStates": 33,
+              "stateHash": "467d0efc9698dfd9463c076a05000f4e5064b59de054bc0c510408b934bc5ab9"
+            },
+            {
+              "name": "no-pattern",
+              "cycles": 616,
+              "initial": {
+                "count": 0,
+                "hit": 0,
+                "dropped": 0
+              },
+              "parityStates": 33,
+              "stateHash": "6de6e6c9ef1fdb34d6c1751a262f15cfeb484bd289711748cc5dc046dc60c9de"
+            },
+            {
+              "name": "fills-second-emitter",
+              "cycles": 76164,
+              "initial": {
+                "count": 20,
+                "hit": 0,
+                "dropped": 44
+              },
+              "parityStates": 33,
+              "stateHash": "94b335e23fd6294380e39a545ba7e6381fd6a66981dfbc228c4607892f60b195"
+            },
+            {
+              "name": "full-homing",
+              "cycles": 2508,
+              "initial": {
+                "count": 8,
+                "hit": 0,
+                "dropped": 65534
+              },
+              "parityStates": 33,
+              "stateHash": "9ed125e494e611ab871126f28bc47b068e8b263753cb77930c2265ffa4a8de51"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "productionBoss": [
+    {
+      "variant": "before",
+      "file": ".cache/bg-deadline/production-before/touhou-kouma.gb",
+      "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
+      "mode": "CGB",
+      "stage": 6,
+      "startTick": 4141,
+      "range": [
+        4262,
+        4741
+      ],
+      "samples": 480,
+      "peak": 30,
+      "cutin": true,
+      "startLives": 3,
+      "endLives": 1,
+      "meanDisplayFrames": 1.0001708817498338,
+      "updatesPerSecond": 59.71729540406601,
+      "twoFrameUpdates": 0,
+      "stateHash": "8d53a926c4b23e1b14121967ced94eecf549825012b44f5812860d40fa1d327f"
+    },
+    {
+      "variant": "after",
+      "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+      "sha256": "e5f1aaaa3c9290744aa166c21b3a6e4b3d1954905e4745c61ebdc3fffa28558f",
+      "mode": "CGB",
+      "stage": 6,
+      "startTick": 4141,
+      "range": [
+        4262,
+        4741
+      ],
+      "samples": 480,
+      "peak": 30,
+      "cutin": true,
+      "startLives": 3,
+      "endLives": 1,
+      "meanDisplayFrames": 1.0001708817498338,
+      "updatesPerSecond": 59.71729540406601,
+      "twoFrameUpdates": 0,
+      "stateHash": "8d53a926c4b23e1b14121967ced94eecf549825012b44f5812860d40fa1d327f"
+    }
+  ],
+  "productionWeapons": [
+    {
+      "file": ".cache/bg-deadline/production-before/touhou-kouma.gb",
+      "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
+      "mode": "DMG",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1172,
+      "updates": 880,
+      "updatesPerSecond": 44.84658703071673,
+      "maxGap": 3,
+      "peakOam": 25,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": ".cache/bg-deadline/production-before/touhou-kouma.gb",
+      "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
+      "mode": "DMG",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1604,
+      "updates": 880,
+      "updatesPerSecond": 32.76820448877805,
+      "maxGap": 3,
+      "peakOam": 29,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 3
+    },
+    {
+      "file": ".cache/bg-deadline/production-before/touhou-kouma.gb",
+      "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
+      "mode": "CGB",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 896,
+      "updates": 880,
+      "updatesPerSecond": 58.6609375,
+      "maxGap": 3,
+      "peakOam": 25,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": ".cache/bg-deadline/production-before/touhou-kouma.gb",
+      "sha256": "f5b81f1029ea062bc7f509a5562c9b59ce165fab046939ac8c87b3c78f78bc30",
+      "mode": "CGB",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 975,
+      "updates": 880,
+      "updatesPerSecond": 53.90789743589744,
+      "maxGap": 2,
+      "peakOam": 29,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 3
+    },
+    {
+      "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+      "sha256": "e5f1aaaa3c9290744aa166c21b3a6e4b3d1954905e4745c61ebdc3fffa28558f",
+      "mode": "DMG",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1172,
+      "updates": 880,
+      "updatesPerSecond": 44.84658703071673,
+      "maxGap": 3,
+      "peakOam": 25,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+      "sha256": "e5f1aaaa3c9290744aa166c21b3a6e4b3d1954905e4745c61ebdc3fffa28558f",
+      "mode": "DMG",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 1603,
+      "updates": 880,
+      "updatesPerSecond": 32.788646288209605,
+      "maxGap": 3,
+      "peakOam": 29,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 3
+    },
+    {
+      "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+      "sha256": "e5f1aaaa3c9290744aa166c21b3a6e4b3d1954905e4745c61ebdc3fffa28558f",
+      "mode": "CGB",
+      "character": 0,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 895,
+      "updates": 880,
+      "updatesPerSecond": 58.72648044692737,
+      "maxGap": 2,
+      "peakOam": 25,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 4
+    },
+    {
+      "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+      "sha256": "e5f1aaaa3c9290744aa166c21b3a6e4b3d1954905e4745c61ebdc3fffa28558f",
+      "mode": "CGB",
+      "character": 1,
+      "range": [
+        120,
+        1000
+      ],
+      "ppuFrames": 977,
+      "updates": 880,
+      "updatesPerSecond": 53.79754350051177,
+      "maxGap": 3,
+      "peakOam": 29,
+      "peakScanline": 6,
+      "dropped": 0,
+      "lives": 3
+    }
+  ],
+  "limitations": [
+    "One two-frame update remains in the 280-update profile.",
+    "DMG and ordinary road rendering show little improvement.",
+    "Four unsaturated homing emitters cost 9.9% more; aimed-down 5.4% more.",
+    "Only first Flandre pattern measured; no seven-stage or hardware guarantee."
+  ]
+}

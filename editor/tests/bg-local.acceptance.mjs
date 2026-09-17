@@ -1,5 +1,5 @@
 // Identical authored fixture and inputs, legacy/current engines, no RAM writes.
-// node editor/tests/bg-local.acceptance.mjs BASELINE_ENGINE OUTPUT [--reuse]
+// node editor/tests/bg-local.acceptance.mjs BASELINE_ENGINE OUTPUT [--reuse|--reuse-baseline]
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import crypto from 'node:crypto';import {createRequire} from 'node:module';
 import {boot,frames,memory,symbols,trace,GameBoyMode,PadKey} from './emulator.mjs';
 const root=process.cwd(),lib=createRequire(import.meta.url)('../build/library.cjs'),base=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]),reuse=process.argv.includes('--reuse');fs.mkdirSync(out,{recursive:true});
@@ -10,7 +10,7 @@ stage.events=[{id:'boss',kind:'boss',ref:boss.id,frame:0,x:80,y:32,count:1,spaci
 const reports=[];
 for(const variant of['baseline','current']){
  const fixture=path.join(out,variant),file=path.join(fixture,'projects/bg-local/build/Debug/bg-local.gb');
- if(!reuse){for(const dir of['engine','.tools/gbdk','.tools/misaki'])fs.cpSync(path.join(root,dir),path.join(fixture,dir),{recursive:true});if(variant==='baseline')fs.cpSync(base,path.join(fixture,'engine/caravan'),{recursive:true});fs.mkdirSync(path.join(fixture,'projects'),{recursive:true});if(fs.existsSync(path.join(fixture,'projects/bg-local')))lib.saveGame(fixture,'bg-local',g);else lib.createProject(fixture,'bg-local',g.title,g);lib.compile(fixture,'bg-local','Debug',()=>{});}
+ if(!reuse&&!(variant==='baseline'&&process.argv.includes('--reuse-baseline'))){for(const dir of['engine','.tools/gbdk','.tools/misaki'])fs.cpSync(path.join(root,dir),path.join(fixture,dir),{recursive:true});if(variant==='baseline')fs.cpSync(base,path.join(fixture,'engine/caravan'),{recursive:true});fs.mkdirSync(path.join(fixture,'projects'),{recursive:true});if(fs.existsSync(path.join(fixture,'projects/bg-local')))lib.saveGame(fixture,'bg-local',g);else lib.createProject(fixture,'bg-local',g.title,g);lib.compile(fixture,'bg-local','Debug',()=>{});}
  assert.equal(lib.revision(lib.readGame(fixture,'bg-local')),lib.revision(g),'reused fixture must match the current test data');
  const rom=fs.readFileSync(file),syms=symbols(file.replace(/\.gb$/,'.map')),report={variant,rom:file,sourceRevision:lib.revision(g),sha256:crypto.createHash('sha256').update(rom).digest('hex'),modes:[]};
  for(const mode of[GameBoyMode.Dmg,GameBoyMode.Cgb]){

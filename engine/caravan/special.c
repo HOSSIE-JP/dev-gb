@@ -53,6 +53,7 @@ void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t fri
     const CE_Pattern *p; const CE_Asset *a; const int8_t *offsets; uint8_t emitter, n, base, angle, slot, emitters, origin;
     int16_t px, py; CE_Entity *e;
     if (pattern == CE_NONE || (!friendly && ce_bomb_image)) return;
+    if (!friendly && ce_battle_mode >= 2u) { ce_bg_shoot(pattern,source,x,y,sequence); return; }
     p = &ce_patterns[pattern]; a = &ce_assets[source];
     origin=friendly?0:p->launch;emitters=origin?(origin==4u?2u:1u):(p->emitters?p->emitters:a->emitters);
     offsets=p->emitters?p->emitter_xy:a->emitter_xy;
@@ -78,12 +79,6 @@ void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t fri
         if (p->kind == 4u) base += sequence * p->rotation;
         for (n = 0; n != p->count; ++n) {
             angle = (base + p->angles[n]) & 15u;
-            if (!friendly && ce_battle_mode >= 2u) {
-                ce_bg_request.x = px; ce_bg_request.y = py;
-                ce_bg_request.vx = p->velocity[angle * 2u]; ce_bg_request.vy = p->velocity[angle * 2u + 1u];
-                ce_bg_request.life = p->lifetime; ce_bg_request.damage = p->damage;
-                ce_bg_request.pattern=p->kind==5u?pattern:CE_NONE;ce_bg_request.angle=angle;ce_bg_spawn(); continue;
-            }
             slot = allocate(friendly ? CE_PSHOT : CE_ESHOT, p->asset); if (slot == CE_NONE) continue;
             e = &ce_entities[slot]; e->ref = pattern; e->sequence=angle;
             ce_shot_x[slot] = px; ce_shot_y[slot] = py; ce_shot_age[slot] = 0;

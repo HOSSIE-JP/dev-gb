@@ -119,7 +119,7 @@ void ce_bg_update(void) BANKED {
     }
     direct_collision=1;
 }
-void ce_bg_spawn(void) BANKED {
+static void spawn_shot(void) {
     if(ce_bomb_image)return;
     if(ce_bg_count>=ce_bg_limit){++ce_state.dropped;return;}
     /* Continue after the preceding allocation instead of rescanning the same
@@ -134,6 +134,8 @@ void ce_bg_spawn(void) BANKED {
         guide_pattern[slot]=ce_bg_request.pattern;guide_angle[slot]=ce_bg_request.angle;has_guidance=1;
     }
 }
+void ce_bg_spawn(void) BANKED { spawn_shot(); }
+#include "bg-volley.h"
 void ce_bg_flush(void) BANKED {
     static uint16_t i;static uint8_t lo,hi,n;
     dma_cursor=dma_tiles;

@@ -1,0 +1,291 @@
+{
+  "version": "0.30-bg-volley",
+  "date": "2026-09-17T07:25:53.915Z",
+  "baseCommit": "601564eb79cbd373746c1e65526b0a69001b952d",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v30.gb",
+    "sha256": "e5f1aaaa3c9290744aa166c21b3a6e4b3d1954905e4745c61ebdc3fffa28558f",
+    "bytes": 2097152
+  },
+  "projectRevision": "7c12693c8d96488c97d9ccd15911226b0702858a0567377a02d145cefca1592c",
+  "sourceHashes": {
+    "engine/caravan/special.c": "c5e29f5ad8becf7c0199996acbdcd90cace6caf71d358cc86431220b82c3ac74",
+    "engine/caravan/bg-bullets.c": "3ec6b7746f394be2196f4c88e7e39695476aaa50b367e0dcabc77737ea8a2127",
+    "engine/caravan/bg-volley.h": "452ac2f390232da471c3bfd7fd369209bfd77e3af70e7a693ea3c738d6bac4ae",
+    "engine/caravan/caravan.h": "fb8eb622260125f34eca713160b080f6704b95ea9d63ef17dc40afb864ef536b",
+    "editor/tests/bg-volley.acceptance.mjs": "a05ab7dc3693171cbd5965588a962e5d62c3f6e492d3fccaaaf35fd1a077176a",
+    "editor/tests/bg-deadline-profile.mjs": "3cedce153c3ea16e81f10d0733822f53880de769ae23281b0fec7a7235d88619",
+    "editor/tests/bg-local.acceptance.mjs": "f47f7b92ae01e16c3962c79a89db708c86878cd292cd4d194c5d85145cf5b64f",
+    "editor/tests/bg-local-native.acceptance.mjs": "8f4dbc453571b90e7c6774019ba4713950651adf9ac4c1c8c02edeb5ea882ddd",
+    "editor/tests/kouma-boss-performance.mjs": "a2a5b1f056af4eb327f4de3846773b75f639e81b7f4d0e759d9035890fc7e64f",
+    "editor/tests/display-restore-native.acceptance.mjs": "8e0ebd815622d4d0bc3c2585b9a592ce35dd6946e3b3de32cddd93609cb6206a"
+  },
+  "builds": {
+    "debugReleaseIdentical": true,
+    "touhouDebug": true,
+    "touhouRelease": true,
+    "helloCleanDebug": true,
+    "starDebug": true,
+    "starRelease": true,
+    "staticWramBytes": 7166,
+    "rom0FreeBytes": 77
+  },
+  "tests": {
+    "standard": 141,
+    "failed": 0,
+    "skipped": 0,
+    "doctorWarnings": 0,
+    "volleyParityStates": 1122,
+    "gameplayParityUpdates": 2000,
+    "bossParityUpdates": 600,
+    "nativeGameplayParity": true,
+    "measuredDmaStartsInVBlank": true,
+    "productionDisplay": [
+      {
+        "mode": "DMG",
+        "roadSamples": 3315,
+        "bossSamples": 120,
+        "cameraPositions": 3253,
+        "residentAssets": [
+          "reimu",
+          "fairy",
+          "bat",
+          "book",
+          "shot-ofuda",
+          "shot-focus",
+          "shot-orb",
+          "shot-knife",
+          "shot-star",
+          "shot-diamond",
+          "burst",
+          "marisa",
+          "shot-marisa-laser"
+        ],
+        "movie": true,
+        "cutin": true
+      },
+      {
+        "mode": "CGB",
+        "roadSamples": 1730,
+        "bossSamples": 120,
+        "cameraPositions": 1668,
+        "residentAssets": [
+          "reimu",
+          "fairy",
+          "bat",
+          "book",
+          "shot-ofuda",
+          "shot-focus",
+          "shot-orb",
+          "shot-knife",
+          "shot-star",
+          "shot-diamond",
+          "burst",
+          "marisa",
+          "shot-marisa-laser"
+        ],
+        "movie": true,
+        "cutin": true
+      }
+    ],
+    "productionNative": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "e5f1aaaa3c9290744aa166c21b3a6e4b3d1954905e4745c61ebdc3fffa28558f",
+      "frameCount": 15000,
+      "requiredCycles": 1,
+      "results": [
+        {
+          "mode": "DMG",
+          "scenes": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              7,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              12,
+              4,
+              0
+            ],
+            [
+              15,
+              4,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              1,
+              5,
+              1
+            ]
+          ],
+          "displayModeRestored": true,
+          "gameplaySamples": 5105,
+          "bossSamples": 398
+        },
+        {
+          "mode": "CGB",
+          "scenes": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              7,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              8,
+              5,
+              1
+            ],
+            [
+              7,
+              5,
+              1
+            ],
+            [
+              1,
+              5,
+              1
+            ],
+            [
+              4,
+              5,
+              0
+            ],
+            [
+              12,
+              5,
+              0
+            ],
+            [
+              15,
+              5,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ]
+          ],
+          "displayModeRestored": true,
+          "gameplaySamples": 7825,
+          "bossSamples": 1763
+        }
+      ]
+    }
+  },
+  "emulicious": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "e5f1aaaa3c9290744aa166c21b3a6e4b3d1954905e4745c61ebdc3fffa28558f",
+    "bootExecutionVerified": false,
+    "gameplayVerified": false,
+    "error": "EvaluateRequest NullPointerException",
+    "evidence": ".cache/bg-deadline/emulicious-final/results.json"
+  },
+  "evidence": "../../../docs/stg-bg-volley-performance.md",
+  "pending": [
+    "User playtest of v0.30",
+    "Remaining dense-volley and road slowdowns",
+    "Physical hardware, human audio and full-campaign performance",
+    "Emulicious DAP EvaluateRequest NullPointerException; no execution evidence."
+  ],
+  "iterations": [
+    "The first shared-loop attempt regressed ordinary sprite-shot creation and was replaced with a BG-only volley loop.",
+    "The production route initially pressed Start during entrance-image loading. Waiting for the scene to finish loading fixed the input route without modifying the ROM.",
+    "The final native presentation check explicitly requires one full exhibition per mode, 15000 frames; default checker still requires two."
+  ]
+}
