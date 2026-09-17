@@ -9,13 +9,14 @@ import {
     type Pattern,
     type Stage,
     assetById,
-    hudHeight,
+    hudHeight, playWidth,
     frameAt,
     q4,
     clamp,
 } from "./model";
 import { advanceCamera, initialCamera, horizontalStage, screenToWorld, stageCell, destructibleIndex, worldToScreen } from "./stage-space";
 import { dmgColors } from "./palette";
+import { bombViewportPixels, focusMarkerPixels } from "./presentation";
 
 export const ENTITY_LIMIT = 39;
 export const POOL_LIMITS = { enemy: 12, boss: 1, pshot: 6, eshot: 32, fx: 4, item: 4 };
@@ -68,13 +69,13 @@ export function shotAngles(
         return (base + offset + 32) & 15;
     });
 }
-export function launchPoints(p: Pattern, a: Asset, x: number, y: number, sequence: number) {
+export function launchPoints(p: Pattern, a: Asset, x: number, y: number, sequence: number, width = 160) {
     const l=p.launch;
     if(!l || l.kind==="actor")return p.emitterOffsets ? p.emitterOffsets.map(e=>({x:x+q4(e.x),y:y+q4(e.y),angle:p.angle})) : (a.emitters.length?a.emitters:[a.origin]).map(e=>({x:x+q4(e.x-a.origin.x),y:y+q4(e.y-a.origin.y),angle:p.angle}));
     const py=q4(l.y+(sequence%l.lanes)*l.step);
     if(l.kind==="fixed")return [{x:q4(l.x),y:py,angle:p.angle}];
     const sides=l.kind==="both"?[false,true]:[l.kind==="right"||l.kind==="alternate"&&!!(sequence&1)];
-    return sides.map(right=>({x:q4(right?158:1),y:py,angle:p.kind==="aimed"||p.kind==="aimed-down"?p.angle:right?270:90}));
+    return sides.map(right=>({x:q4(right?width-2:1),y:py,angle:p.kind==="aimed"||p.kind==="aimed-down"?p.angle:right?270:90}));
 }
 export function homingAngle(angle:number, dx:number, dy:number, horizontal=false) {
     let target=aimStep(dx,dy);
@@ -167,6 +168,8 @@ export class Simulation {
     objectHp = new Uint8Array(256);
     objectCells = new Map<number, number>();
     score = 0;
+    grazeFlash = 0;
+    private grazed = new WeakSet<object>();
     lives = 3;
     playerX = 0;
     playerY = 0;
@@ -175,6 +178,7 @@ export class Simulation {
     cooldown = 0;
     playerSequence = 0;
     weaponMode = 0;
+    bossExitLeft = 0;
     entities: Entity[] = [];
     bgShots: {x: number; y: number; vx: number; vy: number; life: number; damage: number; slot: number; ref: string; angle: number}[] = [];
     bgNext=0;
@@ -197,19 +201,36 @@ export class Simulation {
     transition: {boss: Entity; stage: "break" | "return"; elapsed: number; x: number; y: number} | undefined;
     finishPhase(boss: Entity) {
         const b = this.game.bosses.find(b => b.id === boss.ref)!;
-        boss.x = boss.baseX = q4(b.battle?.returnX ?? 80); boss.y = boss.baseY = q4(b.battle?.returnY ?? 36);
+        boss.x = boss.baseX = q4(b.battle?.returnX ?? playWidth(this.game)/2); boss.y = boss.baseY = q4(b.battle?.returnY ?? 36);
         ++boss.phase; boss.phaseAge = 0; boss.sequence = 0;
         const phase = b.phases[boss.phase]; if (phase.hp) boss.hp = phase.hp;
         this.transition = undefined; this.startIntro(phase);
         this.phaseLocked = !!this.introLeft || !!phase.hp && phase.until === "time";
     }
-    startPhaseChange(boss: Entity, damage: boolean) {
+    startPhaseChange(boss: Entity, damage: boolean, timeout = false) {
         this.bombLatch=true;
         this.phaseLocked = true; this.bgShots = []; this.bgNext=0;
         this.entities = this.entities.filter(e => !["pshot", "eshot", "fx"].includes(e.kind));
-        if (!damage) {this.finishPhase(boss); return;}
+        if (!damage && !timeout) {this.finishPhase(boss); return;}
+        if(timeout){this.transition={boss,stage:"return",elapsed:0,x:boss.x,y:boss.y};return;}
         this.explode(boss.x, boss.y);
         this.transition = {boss, stage: "break", elapsed: 0, x: boss.x, y: boss.y};
+    }
+    get bossStatus() {
+        const e=this.entities.find(e=>e.kind==="boss"),b=e&&this.game.bosses.find(b=>b.id===e.ref),p=e&&b?.phases[e.phase];
+        if(!e||!b||p?.until!=="hp"||!p.hp)return {boss:"--",bossTime:"--",bossPhase:"--"};
+        return {boss:String(e.hp),bossTime:p.timeLimitSeconds?String(Math.max(0,Math.ceil((p.timeLimitSeconds*60-e.phaseAge)/60))):"--",bossPhase:`${b.phases.slice(0,e.phase+1).filter(p=>p.hp&&p.until==="hp").length}/${b.phases.filter(p=>p.hp&&p.until==="hp").length}`};
+    }
+    finishBossModes() {
+        const e=this.entities.find(e=>e.kind==="boss");if(!e)return;
+        const b=this.game.bosses.find(b=>b.id===e.ref)!,p=b.phases[e.phase];
+        if(p.until!=="hp"||(!p.timeLimitSeconds&&p.score===undefined))return;
+        const defeated=e.hp<=0;
+        if(!defeated&&(!p.timeLimitSeconds||e.phaseAge<p.timeLimitSeconds*60))return;
+        if(defeated&&p.score!==undefined)this.score=Math.min(65535,this.score+p.score);
+        this.bombLeft=0;this.bgShots=[];this.bgNext=0;this.entities=this.entities.filter(e=>e.kind!=="pshot"&&e.kind!=="eshot");
+        if(e.phase+1<b.phases.length)this.startPhaseChange(e,defeated,!defeated);
+        else {if(defeated&&p.score===undefined)this.score=Math.min(65535,this.score+b.score);this.bossDefeated=true;this.entities=this.entities.filter(v=>v!==e);if(defeated)this.explode(e.x,e.y);}
     }
     startIntro(phase: BossPhase) {
         if (!phase.intro?.enabled) return;
@@ -235,6 +256,7 @@ export class Simulation {
             ? game.stageOrder[0]
             : game.startStage,
         character=0,
+        public bossMode=false,
     ) {
         this.sourceGame = game; this.character = character;
         const extra=character ? game.player.characters?.[character-1] : undefined;
@@ -257,6 +279,7 @@ export class Simulation {
         this.camera = initialCamera(this.game, this.stage);
         this.resetObjects();
         this.scroll = q4(this.stage.scrollSpeed);
+        if(this.bossMode)this.stageTick=this.stage.events.find(e=>e.kind==="boss")?.frame??0;
         this.cooldown =
             game.patterns.find((p) => p.id === this.currentWeapon)?.delay ?? 0;
     }
@@ -267,6 +290,7 @@ export class Simulation {
     get oam() {
         return (
             this.slots(this.game.player.asset) +
+            (this.game.player.focusHitbox ? 2 : 0) +
             this.entities.reduce((n, e) => n + this.slots(e.asset), 0)
         );
     }
@@ -328,7 +352,7 @@ export class Simulation {
     objectsOverlapping(box: {x:number;y:number;w:number;h:number}) {
         if (this.battleMode !== "stage") return [];
         const top = this.game.screens.find(s => s.id === "hud")?.dock === "top" ? hudHeight(this.game) : 0;
-        const left = Math.max(0, box.x), right = Math.min(160, box.x + box.w), upper = Math.max(top, box.y), bottom = Math.min(top + 144 - hudHeight(this.game), box.y + box.h);
+        const left = Math.max(0, box.x), right = Math.min(playWidth(this.game), box.x + box.w), upper = Math.max(top, box.y), bottom = Math.min(top + 144 - hudHeight(this.game), box.y + box.h);
         const found = new Set<number>();
         if (right <= left || bottom <= upper) return [];
         const a = screenToWorld(this.game, this.stage, this.camera, left, upper), b = screenToWorld(this.game, this.stage, this.camera, right - 1, bottom - 1);
@@ -405,7 +429,7 @@ export class Simulation {
         const p = this.game.patterns.find((p) => p.id === ref);
         if (!p || (!friendly && this.bombImage)) return;
         const asset = assetById(this.game, sourceAsset);
-        const points = launchPoints(friendly?{...p,launch:undefined}:p,asset,x,y,sequence);
+        const points = launchPoints(friendly?{...p,launch:undefined}:p,asset,x,y,sequence,playWidth(this.game));
         if (friendly && this.game.player.atomicVolleys) {
             const count = points.length * shotAngles(p, sequence, 0, 0).length;
             const reserve = this.game.items?.length ? Math.max(0, 4 - this.entities.filter(e => e.kind === "item").length) : 0;
@@ -460,6 +484,11 @@ export class Simulation {
             h: a.hitbox.h,
         };
     }
+    private visibleShot(e: Entity) {
+        if (playWidth(this.game) === 160) return true;
+        const a=assetById(this.game,e.asset),x=Math.trunc(e.x/16)-a.origin.x;
+        return x < 120 && x+8 <= 120 && x > -8;
+    }
     overlap(
         a: ReturnType<Simulation["box"]>,
         b: ReturnType<Simulation["box"]>,
@@ -477,8 +506,8 @@ export class Simulation {
         const top = this.game.screens.find(s => s.id === "hud")?.dock === "top" ? hudHeight(this.game) : 0;
         const right = box.x + box.w - 1,
             bottom = box.y + box.h - 1;
-        if (right < 0 || box.x >= 160 || bottom < top || box.y >= top + 144 - hudHeight(this.game)) return false;
-        const a = screenToWorld(this.game, this.stage, this.camera, Math.max(0, box.x), Math.max(top, box.y)), b = screenToWorld(this.game, this.stage, this.camera, Math.min(159, right), Math.min(top + 143 - hudHeight(this.game), bottom));
+        if (right < 0 || box.x >= playWidth(this.game) || bottom < top || box.y >= top + 144 - hudHeight(this.game)) return false;
+        const a = screenToWorld(this.game, this.stage, this.camera, Math.max(0, box.x), Math.max(top, box.y)), b = screenToWorld(this.game, this.stage, this.camera, Math.min(playWidth(this.game)-1, right), Math.min(top + 143 - hudHeight(this.game), bottom));
         for (let y = Math.floor(a.y / 8); y <= Math.floor(b.y / 8); y++) for (let x = Math.floor(a.x / 8); x <= Math.floor(b.x / 8); x++) {
             const cell=stageCell(this.stage,x*8,y*8),index=this.objectAtCell(cell);
             if(mode!==3&&index!==undefined&&this.getObjectHp(index)){
@@ -494,7 +523,7 @@ export class Simulation {
         for (const e of [...this.entities]) {
             if ((e.kind !== "enemy" && e.kind !== "boss") || this.bombHits.has(e) || (e.kind === "boss" && this.phaseLocked)) continue;
             const a = assetById(this.game, e.asset);
-            if (e.x + q4(a.width - a.origin.x) <= 0 || e.x - q4(a.origin.x) >= 2560 ||
+            if (e.x + q4(a.width - a.origin.x) <= 0 || e.x - q4(a.origin.x) >= q4(playWidth(this.game)) ||
                 e.y + q4(a.height - a.origin.y) <= 0 || e.y - q4(a.origin.y) >= 2304) continue;
             this.bombHits.add(e); this.damageActor(e, this.game.player.bomb!.damage);
         }
@@ -503,6 +532,7 @@ export class Simulation {
         if(enemy.kind==="boss"){
             if(this.phaseLocked)return;
             const b=this.game.bosses.find(b=>b.id===enemy.ref)!,p=b.phases[enemy.phase];
+            if(p.until==="hp" && (p.timeLimitSeconds || p.score!==undefined) && enemy.hp<=damage){enemy.hp=0;this.phaseLocked=true;this.bgShots=[];this.entities=this.entities.filter(e=>e.kind!=="pshot"&&e.kind!=="eshot");return;}
             if(p.until==="hp"&&b.phases[enemy.phase+1]&&(p.hp||b.phases[enemy.phase+1].intro?.enabled)&&enemy.hp-damage<=(p.hp?0:p.threshold)){
                 enemy.hp=p.hp?0:p.threshold;this.phaseLocked=true;this.bgShots=[];this.bgNext=0;
                 this.entities=this.entities.filter(e=>e.kind!=="pshot"&&e.kind!=="eshot");return;
@@ -545,16 +575,17 @@ export class Simulation {
         this.eventCursor=0;this.deferredFinish=false;
         this.battleMode = "stage"; this.bgShots = []; this.bgNext=0;this.bombLatch=true;this.intro = undefined; this.introLeft = 0; this.phaseLocked = false; this.transition = undefined;
         if (this.game.bossCelebration && this.bossDefeated) this.entities = [];
-        this.score = Math.min(65535, this.score + this.game.clearBonus);
+        if(!this.bossMode)this.score = Math.min(65535, this.score + this.game.clearBonus);
         if (
-            this.game.mode === "campaign" &&
+            (this.game.mode === "campaign" || this.bossMode) &&
             this.stageIndex + 1 < this.game.stageOrder.length
         ) {
             this.stageIndex++;
             this.stage = this.game.stages.find(
                 (s) => s.id === this.game.stageOrder[this.stageIndex],
             )!;
-            this.stageTick = 0;
+            this.stageTick = this.bossMode ? this.stage.events.find(e=>e.kind==="boss")?.frame??0 : 0;
+            this.grazeFlash=0;
             this.camera = initialCamera(this.game, this.stage);
             this.resetObjects();
             this.scroll = q4(this.stage.scrollSpeed);
@@ -595,7 +626,7 @@ export class Simulation {
         const pressed = input & ~this.resultInput; this.resultInput = input;
         if (!this.gameOverState) {
             const index = this.highscores.findIndex(score => this.score > score);
-            if (index >= 0) { this.highscores.splice(index, 0, this.score); this.highscores.length = 5; }
+            if (!this.bossMode && index >= 0) { this.highscores.splice(index, 0, this.score); this.highscores.length = 5; }
             this.deathLeft = Math.round((this.game.continue?.delaySeconds ?? 0) * 60);
             this.gameOverState = "delay";
             if (!this.lives) this.respawn = 1;
@@ -615,12 +646,18 @@ export class Simulation {
         if (!--this.continueLeft || pressed & 32) { this.continueLeft = 0; this.gameOverState = "done"; return; }
         if (pressed & (16 | 128)) {
             const scores = this.highscores;
-            Object.assign(this, new Simulation(this.sourceGame, this.stage.id, this.character));
+            Object.assign(this, new Simulation(this.sourceGame, this.stage.id, this.character, this.bossMode));
             this.highscores = scores; this.resultInput = input;
         }
     }
     step(input = this.input) {
         if (this.result) { if (this.result === 1) this.gameOverStep(input); return; }
+        if(this.bossExitLeft){
+            for(const e of this.entities)if(e.kind==="fx")e.age++;
+            this.entities=this.entities.filter(e=>e.kind!=="fx"||e.age<e.lifetime);
+            if(!--this.bossExitLeft)this.finishStage();
+            return;
+        }
         this.resultInput = input;
         if(this.bombLeft){--this.bombLeft;if (!this.game.player.bomb?.live) return;}
         if (this.transition) {
@@ -630,7 +667,7 @@ export class Simulation {
                 else for (const e of this.entities) if (e.kind === "fx") e.age = t.elapsed;
             } else {
                 const position = (start: number, target: number) => {const d = target - start;return start + Math.trunc(d / 32) * t.elapsed + Math.trunc((d % 32) * t.elapsed / 32);};
-                t.boss.x = position(t.x, q4(b.battle?.returnX ?? 80)); t.boss.y = position(t.y, q4(b.battle?.returnY ?? 36));
+                t.boss.x = position(t.x, q4(b.battle?.returnX ?? playWidth(this.game)/2)); t.boss.y = position(t.y, q4(b.battle?.returnY ?? 36));
                 if (t.elapsed++ === 32) this.finishPhase(t.boss);
             }
             return;
@@ -656,7 +693,7 @@ export class Simulation {
         if(bombPressed && this.bombs && !this.respawn && !this.bombLeft){
             this.bombLatch=true;--this.bombs;this.bombLeft=p.bomb!.frames;this.invulnerable=Math.max(this.invulnerable,90);
             this.bgShots=[];this.bgNext=0;this.entities=this.entities.filter(e=>e.kind!=="pshot"&&e.kind!=="eshot");
-            if(p.bomb!.destroyBackground) for(const i of this.objectsOverlapping({x:0,y:top,w:160,h:144-hudHeight(g)}).sort((a,b)=>a-b)) this.damageObject(i,15);
+            if(p.bomb!.destroyBackground) for(const i of this.objectsOverlapping({x:0,y:top,w:playWidth(g),h:144-hudHeight(g)}).sort((a,b)=>a-b)) this.damageObject(i,15);
             this.bombHits.clear();this.sweepBomb();
             if (!p.bomb!.live) return;
         }
@@ -677,7 +714,7 @@ export class Simulation {
         this.playerX = clamp(
             this.playerX,
             q4(a.origin.x),
-            q4(160 - a.width + a.origin.x),
+            q4(playWidth(g) - a.width + a.origin.x),
         );
         this.playerY = clamp(
             this.playerY,
@@ -702,6 +739,7 @@ export class Simulation {
         }
         if (this.invulnerable) this.invulnerable--;
         }
+        if(this.grazeFlash)--this.grazeFlash;
         for (const b of this.bgShots) {
             const p=g.patterns.find(p=>p.id===b.ref)!;
             if(p.kind==="homing" && p.lifetime-b.life<(p.guidance?.frames??48) && !((this.tick-b.slot)&((p.guidance?.period??16)-1))){
@@ -721,12 +759,13 @@ export class Simulation {
         const events=this.scheduledEvents;
         while(this.eventCursor<events.length && events[this.eventCursor].frame<=this.stageTick){
             const event=events[this.eventCursor];
+            if(this.bossMode && event.kind!=="boss"){++this.eventCursor;continue;}
             if(event.kind === "boss" && this.bombImage)break;
             if(event.kind === "boss" || event.kind === "enemy") {if(event.kind === "boss" || this.battleMode === "stage")this.spawnActor(event.ref,event.kind,event.x,event.y);}
             else if(event.kind === "item") {if(this.battleMode === "stage")this.spawnItem(event.ref,event.x,event.y);}
             else if(event.kind === "scroll") {if(this.battleMode === "stage")this.scroll=q4(event.value);}
             else finish=true;
-            ++this.eventCursor;
+            if(this.bossMode && event.kind==="boss")this.eventCursor=events.length;else ++this.eventCursor;
         }
         if(this.bombImage){this.deferredFinish=finish;finish=false;}
         if (this.introLeft) return;
@@ -764,7 +803,7 @@ export class Simulation {
                     const phases = (actor as Boss).phases,
                         phase = phases[e.phase];
                     if (
-                        !this.bombImage && e.phase + 1 < phases.length &&
+                        !this.bombImage && e.phase + 1 < phases.length && (phase.until==="time" || (!phase.timeLimitSeconds && phase.score===undefined)) &&
                         (phase.until === "time"
                             ? e.phaseAge >= phase.threshold
                             : e.hp <= (phase.hp ? 0 : phase.threshold))
@@ -817,14 +856,14 @@ export class Simulation {
                 e.age++;
                 e.phaseAge++;
             }
-            if (e.x < -512 || e.x > 3072 || e.y < -512 || e.y > 2816)
+            if (e.x < -512 || e.x > q4(playWidth(g)+32) || e.y < -512 || e.y > 2816)
                 this.entities = this.entities.filter((x) => x !== e);
         }
         if (this.bombLeft && p.bomb?.live) this.sweepBomb();
         for (const shot of [...this.entities].filter(
             (e) => e.kind === "pshot",
         )) {
-            if (!this.entities.includes(shot)) continue;
+            if (!this.entities.includes(shot) || !this.visibleShot(shot)) continue;
             const enemy = this.entities.find(
                 (e) =>
                     (e.kind === "enemy" || e.kind === "boss") && !(e.kind === "boss" && this.phaseLocked) &&
@@ -843,7 +882,7 @@ export class Simulation {
         for (const e of this.entities)
             if (
                 e.kind !== "pshot" &&
-                e.kind !== "fx" &&
+                e.kind !== "fx" && (e.kind !== "eshot" || this.visibleShot(e)) &&
                 (e.kind === "boss" && this.game.bosses.find(b=>b.id===e.ref)?.contactBoxes?.length
                     ? this.game.bosses.find(b=>b.id===e.ref)!.contactBoxes!.some(r=>this.overlap(playerBox,{...r,x:Math.trunc(e.x/16)+r.x,y:Math.trunc(e.y/16)+r.y}))
                     : this.overlap(playerBox, this.box(e.asset, e.x, e.y)))
@@ -857,11 +896,23 @@ export class Simulation {
         const pb = this.box(p.asset, this.playerX, this.playerY);
         this.bgShots = this.bgShots.filter(b => {
             const x = Math.trunc(b.x / 16) & ~1, y = Math.trunc(b.y / 16) & ~1;
-            if (b.x < 0 || b.y < 0 || x > 158 || y < top || y >= top + 143 - hudHeight(g)) return false;
+            if (b.x < 0 || b.y < 0 || x > playWidth(g)-2 || y < top || y >= top + 143 - hudHeight(g)) return false;
             if (!this.respawn && this.overlap(pb, {x, y, w:2, h:2})) {this.hitPlayer(); return false;}
             return true;
         });
-        if (!this.bombImage && this.bossDefeated && !this.stage.clearOnBoss) {this.battleMode = "stage"; this.bgShots = []; this.scroll = q4(this.stage.scrollSpeed);}
+        const graze = g.graze;
+        if (graze?.enabled && !this.invulnerable && !this.respawn && !this.bombLeft && !this.result) {
+            const outer={x:pb.x-graze.radius,y:pb.y-graze.radius,w:pb.w+2*graze.radius,h:pb.h+2*graze.radius};
+            const award=(bullet:object,box:{x:number;y:number;w:number;h:number})=>{
+                if(!this.grazed.has(bullet)&&!this.overlap(pb,box)&&this.overlap(outer,box)){
+                    this.grazed.add(bullet);this.score=Math.min(65535,this.score+graze.score);this.grazeFlash=graze.flashFrames;
+                }
+            };
+            for(const b of this.bgShots)award(b,{x:Math.trunc(b.x/16)&~1,y:Math.trunc(b.y/16)&~1,w:2,h:2});
+            for(const e of this.entities)if(e.kind==="eshot" && this.visibleShot(e))award(e,this.box(e.asset,e.x,e.y));
+        }
+        if (!this.bombImage && this.bossDefeated && !this.stage.clearOnBoss && !this.bossMode) {this.battleMode = "stage"; this.bgShots = []; this.scroll = q4(this.stage.scrollSpeed);}
+        this.finishBossModes();
         this.tick++;
         this.stageTick = Math.min(65535, this.stageTick + 1);
         if (!this.bombImage && !this.result && this.stage.requireBoss && !this.bossDefeated && (finish || (this.game.timeLimit !== false && this.stageTick >= this.stage.duration * 60)))
@@ -869,10 +920,13 @@ export class Simulation {
         if (
             !this.bombImage && !this.result &&
             (finish ||
-                (this.bossDefeated && this.stage.clearOnBoss) ||
+                (this.bossDefeated && (this.stage.clearOnBoss || this.bossMode)) ||
                 (this.game.timeLimit !== false && this.stageTick >= this.stage.duration * 60))
-        )
-            this.finishStage();
+        ) {
+            if(this.bossMode && this.bossDefeated){
+                this.entities=this.entities.filter(e=>e.kind==="fx");this.bgShots=[];this.bossExitLeft=60;
+            } else this.finishStage();
+        }
     }
 }
 
@@ -893,7 +947,7 @@ export function drawAsset(
                 ? dmgColors(game)
                 : game.palettes[asset.palette]?.colors);
     if (!frame || !colors) return;
-    const color = !dmg ? colorPreview(game,asset,frame) : undefined;
+    const color = !dmg && !colorsOverride ? colorPreview(game,asset,frame) : undefined;
     for (let py = 0; py < asset.height; py++)
         for (let px = 0; px < asset.width; px++) {
             const c = frame.pixels[py * asset.width + px];
@@ -903,9 +957,12 @@ export function drawAsset(
         }
 }
 /** BG/HUD use the inverted palette during a live bomb; sprites keep theirs. */
-export function backgroundPaletteGame(sim: Simulation): Game {
+export function backgroundPaletteGame(sim: Simulation, dmg = false): Game {
     const g = sim.game, bomb = g.player.bomb;
-    if (!sim.bombLeft || !bomb?.live || sim.bombImage || !(Math.floor((bomb.frames - sim.bombLeft) / bomb.flashPeriod) & 1)) return g;
+    if (!sim.bombLeft || !bomb?.live) return g;
+    if(sim.bombImage && sim.battleMode==="stage" && playWidth(g)===120)return g;
+    const visible = Math.floor((bomb.frames - sim.bombLeft) / bomb.flashPeriod) & 1;
+    if (sim.bombImage ? !(dmg && playWidth(g) < 160 && !visible) : !visible) return g;
     return {...g, dmgPalette: (g.dmgPalette ?? 0xe4) ^ 255,
         palettes: g.palettes.map(p => ({...p, colors: p.colors.map(c =>
             `#${(parseInt(c.slice(1), 16) ^ 0xffffff).toString(16).padStart(6, "0")}`) as typeof p.colors}))};
@@ -916,11 +973,12 @@ export function drawSimulation(
     dmg: boolean,
     hitboxes = false,
 ) {
-    const g = sim.game, bg = backgroundPaletteGame(sim),
+    const g = sim.game, bg = backgroundPaletteGame(sim, dmg),
         s = sim.stage,
         top = g.screens.find((s) => s.id === "hud")?.dock === "top" ? hudHeight(g) : 0;
     ctx.fillStyle = dmg ? dmgColors(bg)[0] : bg.palettes[0].colors[0];
     ctx.fillRect(0, 0, 160, 144);
+    ctx.save();ctx.beginPath();ctx.rect(0,top,playWidth(g),144-hudHeight(g));ctx.clip();
     const tileset = assetById(g, s.tileset),
         frame = tileset?.frames[0],
         colors = dmg
@@ -929,7 +987,7 @@ export function drawSimulation(
     const colorFrame = !dmg && frame ? colorPreview(g,tileset,frame) : undefined;
     if (frame && sim.battleMode === "stage")
         for (let y = 0; y < 144 - hudHeight(g); y++)
-            for (let x = 0; x < 160; x++) {
+            for (let x = 0; x < playWidth(g); x++) {
                 const world = screenToWorld(g, s, sim.camera, x, y + top), cell = stageCell(s, world.x, world.y);
                 if (cell < 0) continue;
                 const tile = sim.tileAt(cell),
@@ -976,15 +1034,18 @@ export function drawSimulation(
         ctx.fillStyle = bg === g ? "#000" : "#fff"; ctx.fillRect(0,top,160,144-hudHeight(g)); ctx.fillStyle = bg === g ? "#fff" : "#000";
         for (const b of sim.bgShots) { const x = Math.trunc(b.x/16) & ~1, y = Math.trunc(b.y/16) & ~1; ctx.fillRect(x,y,2,2); }
     }
-    if(sim.bombLeft && (!g.player.bomb?.live || sim.bombImage)){
+    const roadBomb=sim.bombImage && sim.battleMode==="stage" && playWidth(g)===120;
+    const bombVisible=!!(sim.bombLeft&&(Math.floor((g.player.bomb!.frames-sim.bombLeft)/g.player.bomb!.flashPeriod)&1));
+    if(sim.bombLeft && (!g.player.bomb?.live || sim.bombImage) && (!roadBomb||bombVisible)){
         ctx.fillStyle="#000";ctx.fillRect(0,0,160,144);
-        if(Math.floor((g.player.bomb!.frames-sim.bombLeft)/g.player.bomb!.flashPeriod)&1){
-            const beam=sim.bombStyle==="beam",x=beam?Math.trunc(sim.playerX/16)-80:0,y=beam?Math.trunc(sim.playerY/16)-120:0,art=assetById(g,sim.bombBackground);
-            if(beam&&y>0){ctx.save();ctx.beginPath();ctx.rect(0,0,160,y);ctx.clip();for(let row=y%8-8;row<y;row+=8){ctx.save();ctx.beginPath();ctx.rect(0,row,160,8);ctx.clip();drawAsset(ctx,g,art,x,row,0,dmg);ctx.restore();}ctx.restore();}
-            drawAsset(ctx,g,art,x,y,0,dmg);
+        if((Math.floor((g.player.bomb!.frames-sim.bombLeft)/g.player.bomb!.flashPeriod)&1) || (dmg && playWidth(g)<160)){
+            const beam=sim.bombStyle==="beam",narrow=playWidth(g)<160,px=Math.trunc(sim.playerX/16),x=beam?(roadBomb?clamp(px,12,108):px)-(narrow?60:80):0,y=beam?Math.trunc(sim.playerY/16)-(narrow?90:120):0,source=assetById(g,sim.bombBackground),pixels=bombViewportPixels(g,source.id,beam);
+            const art={...source,frames:[{...source.frames[0],pixels:pixels.pixels,cgbPixels:pixels.rgb}]};
+            if(beam&&y>0){ctx.save();ctx.beginPath();ctx.rect(0,0,160,y);ctx.clip();for(let row=y%8-8;row<y;row+=8){ctx.save();ctx.beginPath();ctx.rect(0,row,160,8);ctx.clip();drawAsset(ctx,bg,art,x,row,0,dmg);ctx.restore();}ctx.restore();}
+            drawAsset(ctx,bg,art,x,y,0,dmg);
         }
     }
-    const draw = (assetId: string, x: number, y: number, age = sim.tick) => {
+    const draw = (assetId: string, x: number, y: number, age = sim.tick, flash = false) => {
         const a = assetById(g, assetId);
         drawAsset(
             ctx,
@@ -994,6 +1055,7 @@ export function drawSimulation(
             Math.trunc(y / 16) - a.origin.y,
             age,
             dmg,
+            flash ? ["#ffffff","#ffffff","#ffffff","#ffffff"] : undefined,
         );
         if (hitboxes) {
             const b = sim.box(assetId, x, y);
@@ -1003,11 +1065,17 @@ export function drawSimulation(
         }
     };
     if (!sim.respawn && (sim.bombLeft || !sim.invulnerable || (sim.invulnerable & 4) === 0))
-        draw(sim.barrier && g.player.barrierAsset ? g.player.barrierAsset : g.player.asset, sim.playerX, sim.playerY);
+        draw(sim.barrier && g.player.barrierAsset ? g.player.barrierAsset : g.player.asset, sim.playerX, sim.playerY,sim.tick,!!sim.grazeFlash&&!sim.invulnerable&&!sim.bombLeft);
     for (const e of sim.entities) if (!((sim.transition?.stage === "break" || sim.battleMode === "bg-boss") && e.kind === "boss")) draw(e.asset, e.x, e.y, e.age);
+    if(g.player.focusHitbox && sim.weaponMode && !sim.respawn){
+        const b=sim.box(g.player.asset,sim.playerX,sim.playerY),x=b.x+Math.floor(b.w/2)-3,y=b.y+Math.floor(b.h/2)-3;
+        const colors=dmg?dmgColors(g):g.palettes[0].colors;
+        focusMarkerPixels.forEach((v,i)=>{if(v){ctx.fillStyle=colors[v];ctx.fillRect(x+i%8,y+Math.floor(i/8),1,1);}});
+    }
     if(hitboxes) for(const e of sim.entities.filter(e=>e.kind==="boss")) {
         const weak=sim.box(e.asset,e.x,e.y);ctx.strokeStyle="#ffde59";ctx.lineWidth=0.5;ctx.strokeRect(weak.x,weak.y,weak.w,weak.h);
         ctx.strokeStyle="#ff637d";
         for(const r of g.bosses.find(b=>b.id===e.ref)?.contactBoxes??[])ctx.strokeRect(Math.trunc(e.x/16)+r.x,Math.trunc(e.y/16)+r.y,r.w,r.h);
     }
+    ctx.restore();
 }

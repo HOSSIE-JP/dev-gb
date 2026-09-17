@@ -72,8 +72,8 @@ uint8_t ce_terrain_collision(CE_Box *box, uint8_t damage, uint8_t shots) BANKED 
     uint8_t top = ce_hud_bottom ? 0u : ce_hud_height, bottom = top + 144u - ce_hud_height;
     uint16_t x, y, first_x, last_x, first_y, last_y, wx, wy, id, index, camera = ce_state.camera >> 4;
     if (!s->has_walls && shots != 1u) return 0;
-    if (right < 0 || left >= 160 || lower < top || upper >= bottom) return 0;
-    if (left < 0) left = 0; if (right > 159) right = 159;
+    if (right < 0 || left >= CE_PLAY_WIDTH || lower < top || upper >= bottom) return 0;
+    if (left < 0) left = 0; if (right >= CE_PLAY_WIDTH) right = CE_PLAY_WIDTH-1;
     if (upper < top) upper = top; if (lower >= bottom) lower = bottom - 1u;
     first_x = (left + (s->horizontal ? camera : 0u)) >> 3;
     last_x = (right + (s->horizontal ? camera : 0u)) >> 3;
@@ -112,7 +112,7 @@ void ce_terrain_bomb(void) BANKED {
     /* A bomb is one discrete action; ordinary shots use constant-time macrocell lookup. */
     for (id = 0; id != s->object_count; ++id) if (hp(id)) {
         read_object(id, &object); screen_position(&object, &x, &y);
-        if (x < 160 && x > -16 && y < top + 144u - ce_hud_height && y + 16 > top) damage_object(id, 15);
+        if (x < CE_PLAY_WIDTH && x > -16 && y < top + 144u - ce_hud_height && y + 16 > top) damage_object(id, 15);
     }
 }
 void ce_terrain_flush(uint8_t tile_base) BANKED {
@@ -150,8 +150,8 @@ void ce_terrain_flush(uint8_t tile_base) BANKED {
             do {
                 if (position >= 0) {
                     tx = s->horizontal ? start + position : x; ty = s->horizontal ? y : start + position;
-                    set_bkg_tiles(tx & 31u, ty & 31u, 1, 1, &value); ++written;
-                    if (ce_is_cgb) { VBK_REG = 1; set_bkg_tiles(tx & 31u, ty & 31u, 1, 1, &s->palette); VBK_REG = 0; }
+                    set_tiles(tx & 31u, ty & 31u, 1, 1, (uint8_t *)0x9800, &value); ++written;
+                    if (ce_is_cgb) { VBK_REG = 1; set_tiles(tx & 31u, ty & 31u, 1, 1, (uint8_t *)0x9800, &s->palette); VBK_REG = 0; }
                 }
                 position += length;
             } while (s->loop && position < 32);

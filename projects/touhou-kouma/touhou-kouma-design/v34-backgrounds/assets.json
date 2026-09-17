@@ -1,0 +1,76 @@
+{
+  "sourceRevision": "bca6a6db20ae582f54b5b20bced0e256e2a776ab69b9bf87886d632ce66cc9bc",
+  "revision": "7714f2458c3ead243d950ef67f5d5016d019df6fbcf74cf8b25c860801f617bf",
+  "tool": "built-in image_gen, alpha-aware downsample, compiler 8x8 color quantization",
+  "records": [
+    {
+      "stage": "stage-forest",
+      "source": "map-forest",
+      "asset": "map-forest-v34",
+      "master": "masters/forest.png",
+      "sha256": "4c05f3ed4cfff4785de1cba32d71c5f17f6c4776aa290f3cc6aeaebcb3cab7a8",
+      "tiles": 40,
+      "sidePixels": 32,
+      "centerPixels": 56,
+      "animatedTiles": 8
+    },
+    {
+      "stage": "stage-lake",
+      "source": "map-lake-hud40",
+      "asset": "map-lake-v34",
+      "master": "masters/lake.png",
+      "sha256": "79f1f888f2dee47b6daf1889d8488f9b82157dc9c360761d96caf045c5c463b5",
+      "tiles": 40,
+      "sidePixels": 32,
+      "centerPixels": 56,
+      "animatedTiles": 8
+    },
+    {
+      "stage": "stage-1",
+      "source": "map-1-hud40",
+      "asset": "map-gate-v34",
+      "master": "masters/gate.png",
+      "sha256": "e788b45fa8df71859a20348e301b80241ff10e08fb2eab105de58699f282b8a2",
+      "tiles": 40,
+      "sidePixels": 32,
+      "centerPixels": 56,
+      "animatedTiles": 8
+    },
+    {
+      "stage": "stage-4",
+      "source": "map-4-hud40",
+      "asset": "map-roof-v34",
+      "master": "masters/roof.png",
+      "sha256": "d4e94638b4da3ea5836a91624ea2afd404a5c7ebd14d5af3da30d9c769e4324b",
+      "tiles": 40,
+      "sidePixels": 32,
+      "centerPixels": 56,
+      "animatedTiles": 8
+    },
+    {
+      "stage": "stage-5",
+      "source": "map-5-hud40",
+      "asset": "map-cellar-v34",
+      "master": "masters/cellar.png",
+      "sha256": "43d28cb5d232c2ba671603fc1c0f6b67feedc3c70c3286acaa33f7be5ed5ac9a",
+      "tiles": 40,
+      "sidePixels": 32,
+      "centerPixels": 56,
+      "animatedTiles": 8
+    },
+    {
+      "stage": "stage-2",
+      "asset": "map-2-hud40",
+      "sidePixels": 32,
+      "centerPixels": 56,
+      "preservedArtwork": true
+    },
+    {
+      "stage": "stage-3",
+      "asset": "map-3-hud40",
+      "sidePixels": 32,
+      "centerPixels": 56,
+      "preservedArtwork": true
+    }
+  ]
+}

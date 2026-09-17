@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {gameOverPresentation, cutinPresentation} from "../shared/presentation";
-import { type Game, clone, assetById } from "../shared/model";
+import { type Game, clone, assetById, playWidth } from "../shared/model";
 import { Simulation, drawSimulation, drawAsset, backgroundPaletteGame } from "../shared/simulation";
 import { drawScreen } from "./canvases";
 const inputKey: Record<string, number> = {
@@ -76,7 +76,7 @@ export function Preview({
                     frame: 0,
                     kind: "enemy",
                     ref: actor.id,
-                    x: 80,
+                    x: playWidth(g)/2,
                     y: 44,
                     count: 1,
                     spacing: 0,
@@ -89,7 +89,7 @@ export function Preview({
                     frame: 0,
                     kind: kind === "bosses" ? "boss" : kind === "items" ? "item" : "enemy",
                     ref: id,
-                    x: 80,
+                    x: playWidth(g)/2,
                     y: 32,
                     count: 1,
                     spacing: 0,
@@ -123,11 +123,11 @@ export function Preview({
             drawScreen(c,s.game,cutinPresentation(s.intro),glyphs,dmg);
         } else {
             drawSimulation(c, s, dmg, hitbox);
-            if (!s.bombLeft || (s.game.player.bomb?.live && !s.bombImage)) {
+            if (!s.bombLeft || (s.game.player.bomb?.live && (!s.bombImage || s.game.screens.find(h=>h.id==="hud")?.dock==="right"))) {
             const hud = s.game.screens.find((s) => s.id === "hud")!;
             c.save();
-            c.translate(0, hud.dock === "top" ? 0 : 144 - (hud.rows ?? 2) * 8);
-            drawScreen(c, backgroundPaletteGame(s), hud, glyphs, dmg, {
+            c.translate(hud.dock==="right"?120:0, hud.dock === "right" || hud.dock === "top" ? 0 : 144 - (hud.rows ?? 2) * 8);
+            drawScreen(c, backgroundPaletteGame(s,dmg), hud, glyphs, dmg, {
                 score: String(s.score).padStart(5, "0"),
                 lives: String(s.lives).padStart(5, "0"),
                 time: String(
@@ -137,6 +137,8 @@ export function Preview({
                     ),
                 ).padStart(5, "0"),
                 boss: String(s.bossHp).padStart(5, "0"),
+                ...(hud.dock==="right"?s.bossStatus:{bossTime:s.bossStatus.bossTime,bossPhase:s.bossStatus.bossPhase}),
+                bossTime: Number(s.bossStatus.bossTime)<=10 && (s.tick&16) ? "  " : s.bossStatus.bossTime,
                 bombs: String(s.bombs).padStart(5,"0"),
                 barrier: String(s.barrier), shotLevel: String(s.shotLevel+1), speedLevel: String(s.speedLevel+1),
             });
@@ -302,7 +304,7 @@ export function Preview({
                         if (scope === "selection" && sim.current) {
                             const r = e.currentTarget.getBoundingClientRect();
                             sim.current.aim = {
-                                x: ((e.clientX - r.left) * 160) / r.width,
+                                x: Math.max(0,Math.min(playWidth(game)-1,((e.clientX - r.left) * 160) / r.width)),
                                 y: ((e.clientY - r.top) * 144) / r.height,
                             };
                         }
@@ -311,7 +313,7 @@ export function Preview({
                         if (e.buttons && scope === "selection" && sim.current) {
                             const r = e.currentTarget.getBoundingClientRect();
                             sim.current.aim = {
-                                x: ((e.clientX - r.left) * 160) / r.width,
+                                x: Math.max(0,Math.min(playWidth(game)-1,((e.clientX - r.left) * 160) / r.width)),
                                 y: ((e.clientY - r.top) * 144) / r.height,
                             };
                         }

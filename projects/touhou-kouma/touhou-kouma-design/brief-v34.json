@@ -1,0 +1,18 @@
+{
+  "version": "0.34-boss-bomb-background-focus",
+  "intent": [
+    "Show one explosion and a one-second pause before advancing from a boss-only battle",
+    "Select the boss-only clear portrait using the chosen player's final ending slide",
+    "Alternate the resident road background and resident bomb artwork while gameplay continues",
+    "Regenerate readable tile-limited terrain for stages 1, 2, 3, 6 and 7",
+    "Use equal 32-pixel side bands on every 120-pixel stage",
+    "Display a visible ring at the actual hitbox while B focus is held"
+  ],
+  "constraints": [
+    "Keep DMG and CGB support, prior collision fixes, phase limits and score migration",
+    "Preserve unrelated source edits, original artwork and save identity",
+    "Measure performance on real ROMs with identical controller movies",
+    "Separate production ROM, diagnostic fixture, native emulator and physical hardware evidence"
+  ],
+  "approved": false
+}

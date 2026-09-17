@@ -1,0 +1,18 @@
+{
+  "version": "0.31-boss-graze",
+  "intent": [
+    "Restore sustained Marisa beam SFX",
+    "Title B x10 toggles boss-only chain and boss select",
+    "Graze enemy bullets for points and player palette feedback"
+  ],
+  "defaults": {
+    "graze": {
+      "radius": 6,
+      "score": 10,
+      "flashFrames": 12,
+      "oncePerBullet": true
+    },
+    "debugRanking": false
+  },
+  "approved": false
+}

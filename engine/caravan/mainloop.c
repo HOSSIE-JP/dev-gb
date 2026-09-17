@@ -4,6 +4,7 @@
 #include "mainloop.h"
 
 uint8_t ce_title_choice, ce_title_stage;
+static uint8_t title_b_count;
 uint8_t ce_demo, ce_demo_abort, ce_demo_cutin;
 static uint16_t attract_clock, demo_clock, boss_clock, attract_rng;
 static uint8_t last_demo_stage = 255u, demo_boss_seen;
@@ -11,7 +12,7 @@ static uint16_t clock_now(void) {
     uint16_t value; CRITICAL { value = sys_time; } return value;
 }
 static void title_screen(void) {
-    ce_demo=0;ce_demo_abort=0;ce_demo_cutin=0;
+    ce_demo=0;ce_demo_abort=0;ce_demo_cutin=0;title_b_count=0;
     ce_title_choice=0;ce_title_stage=ce_campaign?0u:ce_start_stage;
     ce_scene=0;ce_load_screen(0);ce_title_draw();ce_music_play(ce_music_title);
     attract_clock=clock_now();
@@ -22,13 +23,13 @@ static uint8_t selected_stage(void) {
 
 static void record_score(void) {
     uint8_t i, j;
-    if (ce_demo) return;
+    if (ce_demo || CE_BOSS_MODE) return;
     for (i = 0; i != 5u; ++i) if (ce_state.score > ce_scores[i]) {
         for (j = 4; j > i; --j) ce_scores[j] = ce_scores[j - 1u]; ce_scores[i] = ce_state.score; ce_save_scores(); break;
     }
 }
 static void start_game(uint8_t stage) {
-    ce_fade(1);ce_reset(stage,1);ce_scene=1;ce_pause=0;ce_load_stage();ce_fade(0);
+    ce_fade(1);ce_reset(stage,1);if(CE_BOSS_MODE)ce_boss_seek();ce_scene=1;ce_pause=0;ce_load_stage();ce_fade(0);
 }
 static void start_demo(void) {
     uint8_t stage;
@@ -45,9 +46,9 @@ static void start_demo(void) {
 }
 static uint8_t demo_input(void) {
     uint8_t i, input=J_A;
-    int16_t target=80*16;
+    int16_t target=(CE_PLAY_WIDTH/2)*16;
     for(i=0;i<ce_used;++i) if(ce_entities[i].kind==CE_BOSS) {target=ce_entities[i].x;break;}
-    if(i==ce_used) target=((ce_state.tick/120u)&1u)?104*16:56*16;
+    if(i==ce_used) target=((ce_state.tick/120u)&1u)?(CE_PLAY_WIDTH*13/20)*16:(CE_PLAY_WIDTH*7/20)*16;
     if(ce_state.player_x<target-32) input|=J_RIGHT;
     else if(ce_state.player_x>target+32) input|=J_LEFT;
     if(ce_state.player_y<112*16) input|=J_DOWN;
@@ -111,6 +112,11 @@ void ce_mainloop(void) BANKED {
                         ce_scene=2;ce_load_screen(ce_gameover_screens[ce_character]);ce_music_play(ce_music_gameover);
                     }
                     previous=joypad();
+                } else if (CE_BOSS_MODE) {
+                    ce_scene=3;
+                    /* The final authored ending slide is the player's clear portrait. */
+                    ce_load_screen(ce_ending_counts[ce_character] ? ce_ending_screens[ce_ending_offsets[ce_character]+ce_ending_counts[ce_character]-1u] : 2u);
+                    ce_music_play(ce_music_clear);previous=joypad();
                 } else if (ce_ending_score_after) {
                     ce_scene = 4; ce_load_screen(3); ce_music_play(ce_music_clear); attract_clock=clock_now();
                     previous = joypad();
@@ -123,6 +129,10 @@ void ce_mainloop(void) BANKED {
             }
         } else if (ce_scene == 0u) {
             if (input) attract_clock=clock_now();
+            if (ce_debug_boss_mode && (pressed & J_B)) {
+                if (++title_b_count == 10u) { title_b_count=0;ce_boss_mode=!ce_boss_mode;ce_title_draw();ce_sound(6); }
+            }
+            if (pressed & ~J_B) title_b_count=0;
             if (pressed & (J_START | J_A)) {
                 if(ce_player_count>1u){ce_scene=10;ce_select_player(0);ce_load_screen(ce_select_first);}
                 else start_game(selected_stage());

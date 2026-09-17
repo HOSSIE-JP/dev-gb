@@ -1,0 +1,462 @@
+{
+  "version": "0.31-boss-graze",
+  "date": "2026-09-17T12:28:09.996Z",
+  "baseCommit": "6cc064af237b2fe3e7529b3604f3e21583ce2069",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v31.gb",
+    "sha256": "dccb67c70e2291ff68ce6909a3f7599d4768bc8c10c138311e35488963f327b1",
+    "bytes": 2097152
+  },
+  "projectRevision": "b6de8cc51256a3b848edf8895711bfa6da8cc39a59eddbe5e0bd93e17e09fa65",
+  "sourceHashes": {
+    "engine/caravan/bg-bullets.c": "02cdf2c67f640316e0b1ab49b87473b651865cbb7d8e8c07dba9060cbb5752fb",
+    "engine/caravan/bg-kernels.h": "81f8b2c3bc12eb7b46deedb40e21d7c84a79a514f6df4c3e684a1afe553de9bd",
+    "engine/caravan/bg-query-kernel.h": "441986ed74075d6deeb087e5a4e540c64b95e7ca082f6af1d09a36ac840fc335",
+    "engine/caravan/bg-state-kernels.h": "e776cab1cf81bf878f46770e4f1f6280801cda60110dfb682252497d4f22af7d",
+    "engine/caravan/bg-update-kernel.h": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b",
+    "engine/caravan/bg-volley.h": "452ac2f390232da471c3bfd7fd369209bfd77e3af70e7a693ea3c738d6bac4ae",
+    "engine/caravan/caravan.h": "62adf3d9883d872097bfdc01d62b96d9b29a597b92ab285a7156b3bc2546136a",
+    "engine/caravan/flow.c": "d1a9f2a2f89d5b35496722575f5d76a1197659a5e7061e86d998aa5775c61cca",
+    "engine/caravan/giant-render.h": "ca1eb41a7d89a87f78d4b221c8cd96de064fb163831939cefe36b7d6b43cd92f",
+    "engine/caravan/graze.c": "5ff4e1e5e57d25154d1257d7a9773511b0c3e93a16b8dadc0794980f1c5081c3",
+    "engine/caravan/items.c": "b5f426f6d8b2df18a8c20eab1572014c77a4d5f1c646b1ad5039c63067c1d565",
+    "engine/caravan/mainloop.c": "429101c649b1a77306f04f6cc142e0c1e4134eb15c9c59253946e60f5ca0502b",
+    "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+    "engine/caravan/movie.c": "fadada968ced3bcd895bc175149e6bed74fd1b7c94d035fb042d75bc24e79e2b",
+    "engine/caravan/music.c": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995",
+    "engine/caravan/music.h": "7e0f71159080d9fe7342f8cfea26b8f57d8fbbcd50f0df4248673070b93c0187",
+    "engine/caravan/render.c": "ce6ab094bd74d9262d7b2ac1881f604a69bb9b2444e29eea0bf09f26173b9e0e",
+    "engine/caravan/runtime.c": "4ca4ca30ec84a76ad90e869d2f118ab7f64e6331f69981213045f7c7c62c3559",
+    "engine/caravan/save.c": "d6ae608b7d8e24d1cc2e80481403140e2f7f6f92d026808823344e564cb99d29",
+    "engine/caravan/shot-kernels.h": "4b0631e3a1ed519a46129ce2fb364f0e371a116e38ee3318398332c24b1b73f1",
+    "engine/caravan/sound.c": "bfd856a384d9a3bf5511ce53208f2dfdf43df9c110e71b334bbf81c88deffbf3",
+    "engine/caravan/special.c": "acd23b804d9d9c2c21a70ea4798aa49e405f9b50ab35c91bad7c7c4e8a3679d0",
+    "engine/caravan/terrain.c": "7115edd66f4338172fe2cf974910cf4ba53b5ab43c91e6afbc8b25754f3c9d98",
+    "editor/src/node/compiler.ts": "0a9b1618d4389145c4debf5a224b2a1522d8d4614539eeb3811fb1f74c8e1b5b",
+    "editor/src/shared/model.ts": "8c4ff3073337b5b68770ca0e1d76b38071e4c3490abde746c657896c805a324f",
+    "editor/src/shared/simulation.ts": "44624ad850c0f574523dcb7060c8489fcfa3a654853296e5da60de78a7cb1833",
+    "editor/src/shared/presentation.ts": "f3613f19d8835e5544a4eb1337f4770be8c179bf9e41583524309bd7912c1800",
+    "editor/src/renderer/fields.tsx": "e44b8e88f9bb3542ff83b2ed6ee3e0f1851f5819ca1e8372042e2fb4a15c3a5f",
+    "editor/tests/boss-chain.acceptance.mjs": "1c50ae825d8f9aab897ee5834bc7ee3c6b8eb4eed8fffe407e162ca3395d911f",
+    "editor/tests/boss-graze.test.mjs": "45f749fa6020231a79fe609a7fbeeaee57aa7eec97fd7f689d80ed17eb28413f",
+    "editor/tests/boss-mode-native.acceptance.mjs": "66a8b15b46473bfc2461dc8f87e18207d128020fe2ffd6cc97852c9cc29ca771",
+    "editor/tests/boss-mode.acceptance.mjs": "4a0accb465fbeacefc3c6e7ac76a6c540ce74f4bbd0370e403128bea51401def",
+    "editor/tests/graze-performance.acceptance.mjs": "8704a1146a81b39748576b5d0d87e202fc2d160ebc68e0fdaffcf8d59aa87f51",
+    "editor/tests/graze-rom.acceptance.mjs": "8c4e4ec1fe4504479d9cde81c8f7523a8d8b00d62d65bc354dab924731304145"
+  },
+  "builds": {
+    "debugReleaseIdentical": true,
+    "touhouDebug": true,
+    "touhouRelease": true,
+    "helloCleanDebug": true,
+    "starDebug": true,
+    "starRelease": true,
+    "staticWramBytes": 7159,
+    "compilerWarnings": 0,
+    "rom0FreeBytes": 77
+  },
+  "tests": {
+    "standard": 144,
+    "failed": 0,
+    "skipped": 0,
+    "doctorWarnings": 0,
+    "core": 137,
+    "graze": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\boss-graze\\graze\\fixture\\projects\\graze-test\\build\\Debug\\graze-test.gb",
+      "sha256": "a09aa780e5995c01a665dbdd6fa7e09daf104c3bfab1991c97f76e0ea19b10a3",
+      "diagnostic": true,
+      "results": [
+        {
+          "mode": "DMG",
+          "samples": 787,
+          "gridCases": 338,
+          "immunity": true,
+          "slotReuse": true,
+          "birthGraze": true,
+          "beamPriority": true,
+          "spellPriority": true
+        },
+        {
+          "mode": "CGB",
+          "samples": 787,
+          "gridCases": 338,
+          "immunity": true,
+          "slotReuse": true,
+          "birthGraze": true,
+          "beamPriority": true,
+          "spellPriority": true
+        }
+      ]
+    },
+    "bossChain": {
+      "diagnostic": true,
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\boss-graze\\chain\\fixture\\projects\\boss-chain\\build\\Debug\\boss-chain.gb",
+      "results": [
+        {
+          "mode": "CGB",
+          "twoBossChain": true,
+          "lastBossClear": true,
+          "noRanking": true,
+          "bossSelect": true,
+          "continueSameBoss": true,
+          "scoreReset": true
+        },
+        {
+          "mode": "DMG",
+          "twoBossChain": true,
+          "lastBossClear": true,
+          "noRanking": true,
+          "bossSelect": true,
+          "continueSameBoss": true,
+          "scoreReset": true
+        }
+      ]
+    },
+    "production": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "dccb67c70e2291ff68ce6909a3f7599d4768bc8c10c138311e35488963f327b1",
+      "results": [
+        {
+          "mode": "CGB",
+          "stage": 1,
+          "character": 0,
+          "heldB": true,
+          "tenthPress": true,
+          "toggleOff": true,
+          "cutin": true,
+          "beamSamples": 0,
+          "audioSamples": 0,
+          "sfxRms": 0,
+          "reset": true,
+          "normalRoad": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 7,
+          "character": 1,
+          "heldB": true,
+          "tenthPress": true,
+          "toggleOff": true,
+          "cutin": true,
+          "beamSamples": 35,
+          "audioSamples": 97608,
+          "sfxRms": 5.6542148782727715,
+          "reset": true,
+          "normalRoad": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 7,
+          "character": 1,
+          "heldB": true,
+          "tenthPress": true,
+          "toggleOff": true,
+          "cutin": true,
+          "beamSamples": 50,
+          "audioSamples": 119808,
+          "sfxRms": 6.100792418668559,
+          "reset": true,
+          "normalRoad": true
+        }
+      ]
+    },
+    "nativeBoss": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "results": [
+        {
+          "mode": "DMG",
+          "samples": 2113,
+          "beamSamples": 140,
+          "titleToggle": true,
+          "lastBoss": true,
+          "marisa": true,
+          "cutin": true
+        },
+        {
+          "mode": "CGB",
+          "samples": 2974,
+          "beamSamples": 140,
+          "titleToggle": true,
+          "lastBoss": true,
+          "marisa": true,
+          "cutin": true
+        }
+      ]
+    },
+    "productionDisplay": [
+      {
+        "mode": "DMG",
+        "roadSamples": 2366,
+        "bossSamples": 120,
+        "cameraPositions": 2303,
+        "residentAssets": [
+          "reimu",
+          "fairy",
+          "bat",
+          "book",
+          "shot-ofuda",
+          "shot-focus",
+          "shot-orb",
+          "shot-knife",
+          "shot-star",
+          "shot-diamond",
+          "burst",
+          "marisa",
+          "shot-marisa-laser"
+        ],
+        "movie": true,
+        "cutin": true
+      },
+      {
+        "mode": "CGB",
+        "roadSamples": 2098,
+        "bossSamples": 120,
+        "cameraPositions": 2036,
+        "residentAssets": [
+          "reimu",
+          "fairy",
+          "bat",
+          "book",
+          "shot-ofuda",
+          "shot-focus",
+          "shot-orb",
+          "shot-knife",
+          "shot-star",
+          "shot-diamond",
+          "burst",
+          "marisa",
+          "shot-marisa-laser"
+        ],
+        "movie": true,
+        "cutin": true
+      }
+    ],
+    "nativeExhibition": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "dccb67c70e2291ff68ce6909a3f7599d4768bc8c10c138311e35488963f327b1",
+      "frameCount": 15000,
+      "requiredCycles": 1,
+      "results": [
+        {
+          "mode": "DMG",
+          "scenes": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              7,
+              4,
+              1
+            ],
+            [
+              1,
+              4,
+              1
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              12,
+              4,
+              0
+            ],
+            [
+              15,
+              4,
+              0
+            ],
+            [
+              0,
+              4,
+              0
+            ],
+            [
+              1,
+              5,
+              1
+            ]
+          ],
+          "displayModeRestored": true,
+          "gameplaySamples": 5044,
+          "bossSamples": 392
+        },
+        {
+          "mode": "CGB",
+          "scenes": [
+            [
+              12,
+              0,
+              0
+            ],
+            [
+              15,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              7,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              4,
+              2,
+              0
+            ],
+            [
+              12,
+              2,
+              0
+            ],
+            [
+              15,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              1,
+              6,
+              1
+            ],
+            [
+              7,
+              6,
+              1
+            ],
+            [
+              1,
+              6,
+              1
+            ],
+            [
+              8,
+              6,
+              1
+            ],
+            [
+              7,
+              6,
+              1
+            ],
+            [
+              1,
+              6,
+              1
+            ],
+            [
+              4,
+              6,
+              0
+            ]
+          ],
+          "displayModeRestored": true,
+          "gameplaySamples": 8635,
+          "bossSamples": 1733
+        }
+      ]
+    }
+  },
+  "performance": [
+    {
+      "variant": "baseline",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\boss-graze\\performance\\baseline\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "90cd823ec9622df08b1cee5afa1122f0835ce26ba13cafc424cfd9b54f351fb4",
+      "sha256": "ee5541afec1d739aa1bbcea39739e1d928503b230e1f8d15d9fa8e5952866ad8",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 47658.22222222222,
+          "meanDisplayFrames": 2.4042634996582644,
+          "updatesPerSecond": 24.842326978091005,
+          "p95": 3.000911369332422,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 45455.68368368368,
+          "meanDisplayFrames": 1.0015635680109212,
+          "updatesPerSecond": 59.63425778217676,
+          "p95": 1.0040726817042607,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+        }
+      ]
+    },
+    {
+      "variant": "current",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\boss-graze\\performance\\current\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "791ab99aa3b0a9d7d64366f0c5f3b862812ff2a7d8400095b787200eca7beb91",
+      "sha256": "a1eb427f838b6184c066700815234ab5beec5dcb4882abaa8e5c473774eaf799",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 51292.84084084084,
+          "meanDisplayFrames": 2.7303998632946187,
+          "updatesPerSecond": 21.875001095235262,
+          "p95": 3.000911369332422,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 49083.23523523523,
+          "meanDisplayFrames": 1.0140635680109211,
+          "updatesPerSecond": 58.89916755135488,
+          "p95": 1.0040726817042607,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Physical hardware, human audio judgement and complete authored seven-boss clear not verified.",
+    "Emulicious DAP EvaluateRequest NullPointerException; no execution evidence.",
+    "40-shot graze enabled: CGB 58.90 vs 59.63 updates/s; DMG 21.88 vs 24.84 updates/s."
+  ]
+}

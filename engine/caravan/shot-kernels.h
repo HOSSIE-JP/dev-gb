@@ -107,7 +107,7 @@ _ce_prepare_shot_body::
         add hl, de
         ld a, (_shot_sx)
         dec a
-        cp #167
+        cp #CE_SPRITE_X_LIMIT
         jr nc, 072$
         ld a, (_shot_top)
         ld b, a
@@ -219,12 +219,21 @@ _ce_step_bullet_body::
         ld b, a
         ld a, (hl)
         add #2
+#if CE_HUD_RIGHT
+        cp #11
+        jr c, 081$
+        jr nz, 083$
+        ld a, b
+        cp #129
+        jr nc, 083$
+#else
         cp #14
         jr c, 081$
         jr nz, 083$
         ld a, b
         or a
         jr nz, 083$
+#endif
 081$:
         ld hl, #_ce_shot_y
         add hl, de
@@ -265,11 +274,26 @@ static uint8_t bullet_overlaps(uint8_t slot) __naked {
         push hl
         ld e, a
         ld d, #0
+#if CE_HUD_RIGHT
+        /* A culled edge component must not hit or graze behind the HUD. */
+        ld l, e
+        ld h, #0
+        add hl, hl
+        add hl, hl
+        ld bc, #_ce_shot_oam
+        add hl, bc
+        ld a, (hl)
+        or a
+        jr nz, 096$
+        xor a
+        jp 092$
+096$:
+#endif
         ld hl, #_shot_range_index
         add hl, de
         ld c, (hl)
         ld b, #0
-        ld hl, #_player_ranges
+        ld hl, #_ce_player_ranges
         add hl, bc
         ld a, l
         ld (_shot_hit_range), a
@@ -287,18 +311,18 @@ static uint8_t bullet_overlaps(uint8_t slot) __naked {
         ld a, (_player_delta_x + 1)
         adc b
         or a
-        jr nz, 091$
+        jp nz, 091$
         ld a, (_shot_hit_range)
         ld l, a
         ld a, (_shot_hit_range + 1)
         ld h, a
         ld a, c
         sub (hl)
-        jr c, 091$
+        jp c, 091$
         inc hl
         ld a, (hl)
         sub c
-        jr c, 091$
+        jp c, 091$
         ld hl, #_ce_shot_py
         add hl, de
         ld a, (hl+)
@@ -310,7 +334,7 @@ static uint8_t bullet_overlaps(uint8_t slot) __naked {
         ld a, (_player_delta_y + 1)
         adc b
         or a
-        jr nz, 091$
+        jp nz, 091$
         ld a, (_shot_hit_range)
         ld l, a
         ld a, (_shot_hit_range + 1)
@@ -319,15 +343,80 @@ static uint8_t bullet_overlaps(uint8_t slot) __naked {
         inc hl
         ld a, c
         sub (hl)
-        jr c, 091$
+        jp c, 091$
         inc hl
         ld a, (hl)
         sub c
-        ld a, #0
-        rla
-        xor #1
-        jr 092$
+        jp c, 091$
+        ld a, #1
+        jp 092$
 091$:
+#if CE_GRAZE_ENABLED
+        ld a, (_ce_graze_active)
+        or a
+        jr z, 094$
+        ld hl, #_ce_shot_px
+        add hl, de
+        ld a, (hl+)
+        ld c, a
+        ld b, (hl)
+        ld a, (_player_delta_x)
+        add c
+        ld c, a
+        ld a, (_player_delta_x + 1)
+        adc b
+        or a
+        jr nz, 094$
+        ld a, (_shot_hit_range)
+        ld l, a
+        ld a, (_shot_hit_range + 1)
+        ld h, a
+        ld a, (_ce_graze_radius)
+        ld b, a
+        ld a, (hl+)
+        sub b
+        cp c
+        jr z, 093$
+        jr nc, 094$
+093$:
+        ld a, (hl)
+        add b
+        cp c
+        jr c, 094$
+        ld hl, #_ce_shot_py
+        add hl, de
+        ld a, (hl+)
+        ld c, a
+        ld b, (hl)
+        ld a, (_player_delta_y)
+        add c
+        ld c, a
+        ld a, (_player_delta_y + 1)
+        adc b
+        or a
+        jr nz, 094$
+        ld a, (_shot_hit_range)
+        ld l, a
+        ld a, (_shot_hit_range + 1)
+        ld h, a
+        inc hl
+        inc hl
+        ld a, (_ce_graze_radius)
+        ld b, a
+        ld a, (hl+)
+        sub b
+        cp c
+        jr z, 095$
+        jr nc, 094$
+095$:
+        ld a, (hl)
+        add b
+        cp c
+        jr c, 094$
+        ld a, #2
+        jp 092$
+094$:
+#endif
         xor a
 092$:
         pop hl

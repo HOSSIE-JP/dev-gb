@@ -50,6 +50,7 @@ test("DMG drawing honors BGP bit pairs while sprite index zero stays transparent
         asset = structuredClone(g.assets.find((a) => a.kind === "sprite")),
         drawn = [],
         ctx = {
+            save() {}, restore() {}, beginPath() {}, rect() {}, clip() {},
             fillStyle: "",
             fillRect(x, y) { drawn.push({ x, y, color: this.fillStyle }); },
         };

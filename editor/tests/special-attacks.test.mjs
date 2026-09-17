@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 const lib=createRequire(import.meta.url)('../build/library.cjs');
-const game=()=>{const g=lib.readGame(process.cwd(),'touhou-kouma');g.player.bomb.live=false;g.timeLimit=false;g.stageFade=false;g.stages.forEach(s=>{s.events=[];s.requireBoss=false;s.clearOnBoss=false;});return g;};
+const game=()=>{const g=lib.readGame(process.cwd(),'touhou-kouma');g.debugBossMode=false;g.player.bomb.live=false;g.timeLimit=false;g.stageFade=false;g.stages.forEach(s=>{s.events=[];s.requireBoss=false;s.clearOnBoss=false;});return g;};
 
 test('edge and fixed launch sites do not inherit actor position or emitter count',()=>{
  const g=game(),a=g.assets.find(a=>a.id==='reimu'),p=g.patterns[0];
@@ -26,7 +26,7 @@ test('seekers turn gradually, stop steering after their window, and never revers
 
 test('Marisa selection changes movement and weapon while retaining the common lives and bomb budget',()=>{
  const g=game(),reimu=new lib.Simulation(g),marisa=new lib.Simulation(g,undefined,1);
- reimu.step(1);marisa.step(1);assert.equal(reimu.playerX,82.25*16);assert.equal(marisa.playerX,83.25*16);
+ reimu.step(1);marisa.step(1);assert.equal(reimu.playerX,(g.player.x+2.25)*16);assert.equal(marisa.playerX,(g.player.x+3.25)*16);
  assert.equal(marisa.game.player.weapon,'marisa-shot');assert.equal(marisa.bombBackground,'bomb-spark');assert.equal(marisa.bombStyle,'beam');
  assert.equal(reimu.bombBackground,'bomb-yinyang');assert.equal(reimu.bombs,2);assert.equal(marisa.bombs,2);assert.equal(marisa.lives,reimu.lives);
 });
@@ -45,8 +45,8 @@ test('bomb is one stock per fresh chord, clears both bullet pools and damages on
  s.bombs=1;s.finishStage();assert.equal(s.bombs,1,'stage transition does not replenish');
 });
 
-test('bomb overkill stops at a phase boundary and final damage awards score once',()=>{
- const g=game();for(const b of g.bosses)for(const p of b.phases)if(p.intro)p.intro.enabled=false;
+test('legacy untimed bomb overkill stops at a phase boundary and final damage awards score once',()=>{
+ const g=game();for(const b of g.bosses){b.score=1000;for(const p of b.phases){delete p.score;delete p.timeLimitSeconds;if(p.intro)p.intro.enabled=false;}}
  const s=new lib.Simulation(g);s.spawnActor('rumia','boss',80,36);const b=s.entities.find(e=>e.kind==='boss');b.phase=1;b.hp=20;s.phaseLocked=false;
  s.step(0);s.step(48);assert.equal(b.hp,0);assert.equal(b.phase,1);assert.equal(s.bossDefeated,false);
  for(let n=0;n<120;n++)s.step(0);assert.equal(b.phase,2);assert.equal(b.hp,100);

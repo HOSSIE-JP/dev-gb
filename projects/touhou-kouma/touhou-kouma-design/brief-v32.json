@@ -1,0 +1,17 @@
+{
+  "version": "0.32-right-hud",
+  "intent": [
+    "120x144 playfield plus 40x144 HUD",
+    "Three 100 HP boss modes with 3600-update deadlines",
+    "Timeout advances without mode points, lethal hit wins ties",
+    "Scores and old rankings use one tenth of the old unit"
+  ],
+  "defaults": {
+    "columns": 5,
+    "rows": 18,
+    "timeLimitSeconds": 60,
+    "grazeScore": 1,
+    "legacyScoreDivisor": 10
+  },
+  "approved": false
+}

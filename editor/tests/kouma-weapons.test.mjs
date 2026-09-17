@@ -24,8 +24,8 @@ test('Kouma aimed shots change direction for left/right player positions and sep
   const q={...p,angle,launch:{kind:launch,x:80,y:32,step:0,lanes:1}};
   for(const point of l.launchPoints(q,l.assetById(g,'fairy'),80*16,32*16,0))for(const a of l.shotAngles({...q,angle:point.angle},0,-120,-120))assert.ok(-l.COS[a]>=0);
  }
- for(const ref of ['fairy-down','fairy-wave','bat-down','bat-cross'])for(const x of [16,144]){
-  const s=new l.Simulation(g);s.playerX=x*16;s.playerY=128*16;s.spawnActor(ref,'enemy',80,0);
+ for(const ref of ['fairy-down','fairy-wave','bat-down','bat-cross'])for(const x of [16,104]){
+  const s=new l.Simulation(g);s.playerX=x*16;s.playerY=128*16;s.spawnActor(ref,'enemy',x<60?80:32,0);
   let shot,actor;for(let n=0;n<70&&!shot;n++){s.step(0);shot=s.entities.find(e=>e.kind==='eshot');actor=s.entities.find(e=>e.kind==='enemy');}
   assert.ok(shot&&actor,ref);assert.equal(Math.sign(shot.vx),Math.sign(x*16-shot.x),ref);assert.ok(shot.vy>0,ref);
   const dx=shot.x-actor.x,dy=shot.y-actor.y;for(let n=0;n<8;n++)s.step(0);

@@ -1,0 +1,744 @@
+{
+  "version": "0.32-right-hud",
+  "date": "2026-09-17T14:18:50.194Z",
+  "baseCommit": "6cc064af237b2fe3e7529b3604f3e21583ce2069",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v32.gb",
+    "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+    "bytes": 2097152
+  },
+  "projectRevision": "cf99c917351d96a14e7930c35aced8414efc3962a57a51116544fc8d8cdc1cd8",
+  "sourceHashes": {
+    "engine/caravan/bg-bullets.c": "45e5f634495f8c762c19cd54183b77e4d79a9923f2c75f8f13f4bc8db4270aee",
+    "engine/caravan/bg-kernels.h": "81f8b2c3bc12eb7b46deedb40e21d7c84a79a514f6df4c3e684a1afe553de9bd",
+    "engine/caravan/bg-query-kernel.h": "441986ed74075d6deeb087e5a4e540c64b95e7ca082f6af1d09a36ac840fc335",
+    "engine/caravan/bg-state-kernels.h": "7296ecbab0ccc8bb8e5ced11fe10c1f7214ffc39eb9eda921c53d573763eafa3",
+    "engine/caravan/bg-update-kernel.h": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b",
+    "engine/caravan/bg-volley.h": "7b9a278b4a28b59c2678332156f8a37988b9c4fe30d84d5d87598fe19fe159a3",
+    "engine/caravan/boss-phase.c": "37793b322d48ce335bf39898310ba10ee1cbd8975cfc7594c59ea2f2e5696cb4",
+    "engine/caravan/caravan.h": "da5659059893c6cbfa941dd9ab0ec81a512fdfd6e68631b4216f0b99cf99c22f",
+    "engine/caravan/flow.c": "5bb7ba0626b09c00a204475e78a9e50b2adb5c6a8a5b41f758dbaa165e5209c0",
+    "engine/caravan/giant-render.h": "ca1eb41a7d89a87f78d4b221c8cd96de064fb163831939cefe36b7d6b43cd92f",
+    "engine/caravan/graze.c": "5ff4e1e5e57d25154d1257d7a9773511b0c3e93a16b8dadc0794980f1c5081c3",
+    "engine/caravan/items.c": "b5f426f6d8b2df18a8c20eab1572014c77a4d5f1c646b1ad5039c63067c1d565",
+    "engine/caravan/mainloop.c": "0baa8ce8d5056c31909c3e4a7300f23c597f3730d7b910af6fa5ee1c1ef94a9b",
+    "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+    "engine/caravan/movie.c": "fadada968ced3bcd895bc175149e6bed74fd1b7c94d035fb042d75bc24e79e2b",
+    "engine/caravan/music.c": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995",
+    "engine/caravan/music.h": "7e0f71159080d9fe7342f8cfea26b8f57d8fbbcd50f0df4248673070b93c0187",
+    "engine/caravan/render.c": "6c90f4b6df8808f2beb53d8905447db2b6f52a9115cd470c3c35e34287bf0522",
+    "engine/caravan/runtime.c": "5571cce8cca74338e6f437a503e1960d88fa7088c49344e94a8fcc0e7f95b946",
+    "engine/caravan/save.c": "26fbc74c1bfb843eca15edf0b32a98fd9339d2253ea59ee41fb38559d774e025",
+    "engine/caravan/shot-kernels.h": "7140e44ce5d7adee7268b2f74966ff31bb3fc35157642dd726e2d58177411a12",
+    "engine/caravan/sound.c": "bfd856a384d9a3bf5511ce53208f2dfdf43df9c110e71b334bbf81c88deffbf3",
+    "engine/caravan/special.c": "d25bb899e063272cf45840b11ee7d5ee3d4f11fbbf9d32e459d75307b76a389c",
+    "engine/caravan/terrain.c": "303c547cf4751dd0e55032fc722fc1aa643634b0a94b577043bcfc145973863b",
+    "editor/src/node/compiler.ts": "189653572fe6d8e2083f4f11ce3ff2b2153ce99a5bb979ed052815bce5782dde",
+    "editor/src/shared/model.ts": "8bccd3b65bb086b259b3d4a70eb3ada716967a00322ed21215254baa6ee00699",
+    "editor/src/shared/simulation.ts": "22505b40664ef791d5491fe11032ec1fc009b42b373c847bf5ba3e0611f863aa",
+    "editor/src/shared/presentation.ts": "2474d2765369844604ea052c5064c302407d9f31d874498c7d45258ad8a68f6a",
+    "editor/src/shared/stage-space.ts": "1e8ebec2d2abc05c9de706e73c4234bfdae9a49ee84f8909ff23916bfea46d60",
+    "editor/src/renderer/fields.tsx": "e1dd13e4e3b10ca68eeefead12d8759d69db4dbc04a01491521a9ef4598fdcd5",
+    "editor/src/renderer/canvases.tsx": "4490797d5d5fb9f45661f56cfd9e0d6dbc5d6182a156796420cb59d43e8b7be1",
+    "editor/src/renderer/boss-canvas.tsx": "fc4970d73bed87c5d257f241158b3d5a24c9cd37438fa002250f67c571ecc17b",
+    "editor/src/renderer/stage-canvas.tsx": "5105251c1a3a76c9af750e6134c3827f7c5fcd21435cbb8ffd2b51a73e78329e",
+    "editor/src/renderer/preview.tsx": "f23ad830bd70f6f8795c170525c1da195d06b50073b61a18492ef7a341fc1239",
+    "editor/tests/right-hud.test.mjs": "351db09502cd3f2e4a04d06d46bd2c9b99095c4f890179ae065e3662ceae8e46",
+    "editor/tests/right-hud-rom.acceptance.mjs": "421af6cc02cfbcaa93be5f24e5980427fa4c5f998b785d097f9f96da3538bbc0",
+    "editor/tests/right-hud-play.acceptance.mjs": "fa49f767469c74b0c168db6fd8c2abcfd972eae943d431fe6f86cc28f0fefdfb",
+    "editor/tests/right-hud-performance.acceptance.mjs": "2392d51f3e2fad6d22035c7238cca1b51b148b1c4d3191350359837b6d3b2c07",
+    "editor/tests/boss-ui.acceptance.cjs": "1b9cea0b355408eb94a867c9f95bfdb3f8a27e7e8496a93127eb89565a6276fe",
+    "editor/tests/boss-chain.acceptance.mjs": "a73879839f722f28be7aed8522e78c4644322e1619ad69d0210596bdd6e92011",
+    "projects/touhou-kouma/assets-src/game.json": "db14e469d627874eb047ea31adbd5c1ae3595af37bd71843b34a8021fe431cea"
+  },
+  "debugReleaseIdentical": true,
+  "build": {
+    "debug": {
+      "ok": true,
+      "revision": "cf99c917351d96a14e7930c35aced8414efc3962a57a51116544fc8d8cdc1cd8",
+      "configuration": "Debug",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "size": 2097152,
+      "ramBytes": 7159,
+      "spriteTiles": 88,
+      "diagnostics": [],
+      "romHash": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+      "builtAt": "2026-09-17T14:10:59.994Z",
+      "durationMs": 385216
+    },
+    "release": {
+      "ok": true,
+      "revision": "cf99c917351d96a14e7930c35aced8414efc3962a57a51116544fc8d8cdc1cd8",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "size": 2097152,
+      "ramBytes": 7159,
+      "spriteTiles": 88,
+      "diagnostics": [],
+      "romHash": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+      "builtAt": "2026-09-17T14:16:50.490Z",
+      "durationMs": 310506
+    },
+    "warnings": 0,
+    "rom0FreeBytes": 120
+  },
+  "standard": {
+    "doctorWarnings": 0,
+    "helloDebug": true,
+    "starDebugRelease": true,
+    "testCommand": "test.cmd star-caravan",
+    "tests": 155,
+    "failed": 0,
+    "skipped": 0,
+    "finalCoreTests": 148,
+    "typecheck": true
+  },
+  "phasesAndSave": {
+    "diagnostic": true,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v32\\phase-final\\fixture\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "reports": [
+      {
+        "mode": "CGB",
+        "samples": 191,
+        "bosses": 7,
+        "modes": 21,
+        "routes": 3,
+        "deadlineUpdates": 3600,
+        "scoreMigration": true,
+        "reboot": true,
+        "insertAfterMigration": true,
+        "corruptRecovery": true,
+        "tornRecovery": true
+      },
+      {
+        "mode": "DMG",
+        "samples": 191,
+        "bosses": 7,
+        "modes": 21,
+        "routes": 3,
+        "deadlineUpdates": 3600,
+        "scoreMigration": true,
+        "reboot": true,
+        "insertAfterMigration": true,
+        "corruptRecovery": true,
+        "tornRecovery": true
+      }
+    ]
+  },
+  "productionPlay": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+    "results": [
+      {
+        "mode": "CGB",
+        "character": 0,
+        "windowFixed": true,
+        "bgHud": true,
+        "bombSamples": 22,
+        "liveSamples": 23,
+        "pause": true,
+        "cutinClock": true,
+        "bombClock": true,
+        "missClock": true,
+        "noHudSprites": true,
+        "peak": 17
+      },
+      {
+        "mode": "CGB",
+        "character": 1,
+        "windowFixed": true,
+        "bgHud": true,
+        "bombSamples": 23,
+        "liveSamples": 23,
+        "pause": true,
+        "cutinClock": true,
+        "bombClock": true,
+        "missClock": true,
+        "noHudSprites": true,
+        "peak": 24
+      },
+      {
+        "mode": "DMG",
+        "character": 0,
+        "windowFixed": true,
+        "bgHud": true,
+        "bombSamples": 23,
+        "liveSamples": 24,
+        "pause": true,
+        "cutinClock": true,
+        "bombClock": true,
+        "missClock": true,
+        "noHudSprites": true,
+        "peak": 24
+      },
+      {
+        "mode": "DMG",
+        "character": 1,
+        "windowFixed": true,
+        "bgHud": true,
+        "bombSamples": 23,
+        "liveSamples": 24,
+        "pause": true,
+        "cutinClock": true,
+        "bombClock": true,
+        "missClock": true,
+        "noHudSprites": true,
+        "peak": 24
+      }
+    ]
+  },
+  "productionContinue": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+    "projectRevision": "cf99c917351d96a14e7930c35aced8414efc3962a57a51116544fc8d8cdc1cd8",
+    "results": [
+      {
+        "label": "DMG-reimu",
+        "fixture": false,
+        "memoryWrites": false,
+        "lostStage": 6,
+        "lives": [
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "lostScore": 141,
+        "rankingPersistedBeforeChoice": true,
+        "menuPixelMatch": true,
+        "sameCharacter": true,
+        "restartedStage": 6,
+        "restartedScore": 0,
+        "restartedLives": 5,
+        "restartedBombs": 2,
+        "frames": 4118
+      },
+      {
+        "label": "DMG-marisa",
+        "fixture": false,
+        "memoryWrites": false,
+        "lostStage": 6,
+        "lives": [
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "lostScore": 78,
+        "rankingPersistedBeforeChoice": true,
+        "menuPixelMatch": true,
+        "sameCharacter": true,
+        "restartedStage": 6,
+        "restartedScore": 0,
+        "restartedLives": 5,
+        "restartedBombs": 2,
+        "frames": 4173
+      },
+      {
+        "label": "CGB-reimu",
+        "fixture": false,
+        "memoryWrites": false,
+        "lostStage": 6,
+        "lives": [
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "lostScore": 195,
+        "rankingPersistedBeforeChoice": true,
+        "menuPixelMatch": true,
+        "sameCharacter": true,
+        "restartedStage": 6,
+        "restartedScore": 0,
+        "restartedLives": 5,
+        "restartedBombs": 2,
+        "frames": 3632
+      },
+      {
+        "label": "CGB-marisa",
+        "fixture": false,
+        "memoryWrites": false,
+        "lostStage": 6,
+        "lives": [
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "lostScore": 78,
+        "rankingPersistedBeforeChoice": true,
+        "menuPixelMatch": true,
+        "sameCharacter": true,
+        "restartedStage": 6,
+        "restartedScore": 0,
+        "restartedLives": 5,
+        "restartedBombs": 2,
+        "frames": 3861
+      }
+    ]
+  },
+  "attract": {
+    "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+    "results": [
+      {
+        "label": "DMG",
+        "cycles": 2,
+        "stages": [
+          5,
+          1
+        ],
+        "events": [
+          {
+            "frame": 116,
+            "scene": 12,
+            "demo": 0,
+            "stage": 0
+          },
+          {
+            "frame": 676,
+            "scene": 15,
+            "demo": 0,
+            "stage": 0
+          },
+          {
+            "frame": 904,
+            "scene": 0,
+            "demo": 0,
+            "stage": 0
+          },
+          {
+            "frame": 1656,
+            "scene": 1,
+            "demo": 1,
+            "stage": 5
+          },
+          {
+            "frame": 10328,
+            "scene": 7,
+            "demo": 1,
+            "stage": 5
+          },
+          {
+            "frame": 10424,
+            "scene": 1,
+            "demo": 1,
+            "stage": 5
+          },
+          {
+            "frame": 11352,
+            "scene": 4,
+            "demo": 0,
+            "stage": 5
+          },
+          {
+            "frame": 11864,
+            "scene": 12,
+            "demo": 0,
+            "stage": 5
+          },
+          {
+            "frame": 12432,
+            "scene": 15,
+            "demo": 0,
+            "stage": 5
+          },
+          {
+            "frame": 12660,
+            "scene": 0,
+            "demo": 0,
+            "stage": 5
+          },
+          {
+            "frame": 13412,
+            "scene": 1,
+            "demo": 1,
+            "stage": 1
+          },
+          {
+            "frame": 17876,
+            "scene": 7,
+            "demo": 1,
+            "stage": 1
+          },
+          {
+            "frame": 17972,
+            "scene": 1,
+            "demo": 1,
+            "stage": 1
+          },
+          {
+            "frame": 18900,
+            "scene": 4,
+            "demo": 0,
+            "stage": 1
+          },
+          {
+            "frame": 19408,
+            "scene": 12,
+            "demo": 0,
+            "stage": 1
+          }
+        ],
+        "rankingsUnchanged": true,
+        "normalStart": true,
+        "demoAndCutinCancel": true,
+        "heldInputConsumed": true,
+        "titleMusicRestarts": true
+      },
+      {
+        "label": "CGB",
+        "cycles": 2,
+        "stages": [
+          4,
+          2
+        ],
+        "events": [
+          {
+            "frame": 200,
+            "scene": 12,
+            "demo": 0,
+            "stage": 0
+          },
+          {
+            "frame": 772,
+            "scene": 15,
+            "demo": 0,
+            "stage": 0
+          },
+          {
+            "frame": 996,
+            "scene": 0,
+            "demo": 0,
+            "stage": 0
+          },
+          {
+            "frame": 1756,
+            "scene": 1,
+            "demo": 1,
+            "stage": 4
+          },
+          {
+            "frame": 6680,
+            "scene": 7,
+            "demo": 1,
+            "stage": 4
+          },
+          {
+            "frame": 6776,
+            "scene": 1,
+            "demo": 1,
+            "stage": 4
+          },
+          {
+            "frame": 7436,
+            "scene": 8,
+            "demo": 1,
+            "stage": 4
+          },
+          {
+            "frame": 7488,
+            "scene": 7,
+            "demo": 1,
+            "stage": 4
+          },
+          {
+            "frame": 7584,
+            "scene": 1,
+            "demo": 1,
+            "stage": 4
+          },
+          {
+            "frame": 7708,
+            "scene": 4,
+            "demo": 0,
+            "stage": 4
+          },
+          {
+            "frame": 8224,
+            "scene": 12,
+            "demo": 0,
+            "stage": 4
+          },
+          {
+            "frame": 8808,
+            "scene": 15,
+            "demo": 0,
+            "stage": 4
+          },
+          {
+            "frame": 9032,
+            "scene": 0,
+            "demo": 0,
+            "stage": 4
+          },
+          {
+            "frame": 9792,
+            "scene": 1,
+            "demo": 1,
+            "stage": 2
+          },
+          {
+            "frame": 12892,
+            "scene": 7,
+            "demo": 1,
+            "stage": 2
+          },
+          {
+            "frame": 12992,
+            "scene": 1,
+            "demo": 1,
+            "stage": 2
+          },
+          {
+            "frame": 13920,
+            "scene": 4,
+            "demo": 0,
+            "stage": 2
+          },
+          {
+            "frame": 14436,
+            "scene": 12,
+            "demo": 0,
+            "stage": 2
+          }
+        ],
+        "rankingsUnchanged": true,
+        "normalStart": true,
+        "demoAndCutinCancel": true,
+        "heldInputConsumed": true,
+        "titleMusicRestarts": true
+      }
+    ]
+  },
+  "bgb": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "results": [
+      {
+        "mode": "DMG",
+        "samples": 2031,
+        "beamSamples": 140,
+        "titleToggle": true,
+        "lastBoss": true,
+        "marisa": true,
+        "cutin": true
+      },
+      {
+        "mode": "CGB",
+        "samples": 2086,
+        "beamSamples": 140,
+        "titleToggle": true,
+        "lastBoss": true,
+        "marisa": true,
+        "cutin": true
+      }
+    ],
+    "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58"
+  },
+  "bossChain": {
+    "diagnostic": true,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v32\\boss-chain\\fixture\\projects\\boss-chain\\build\\Debug\\boss-chain.gb",
+    "results": [
+      {
+        "mode": "CGB",
+        "twoBossChain": true,
+        "lastBossClear": true,
+        "noRanking": true,
+        "bossSelect": true,
+        "continueSameBoss": true,
+        "scoreReset": true
+      },
+      {
+        "mode": "DMG",
+        "twoBossChain": true,
+        "lastBossClear": true,
+        "noRanking": true,
+        "bossSelect": true,
+        "continueSameBoss": true,
+        "scoreReset": true
+      }
+    ]
+  },
+  "editor": {
+    "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\boss-ui-ysaUJv",
+    "checks": [
+      {
+        "modeTimeEditedAndReopened": true,
+        "modeScoreControl": true
+      },
+      {
+        "characterBeforeAndAfterPreviews": true,
+        "unsavedMarisaDialogueRefresh": true
+      },
+      {
+        "playerScreenDropdown": true,
+        "selectionPreviewChanges": true,
+        "gameoverPreviewChanges": true,
+        "characterArtFields": true
+      },
+      {
+        "characterStorySavedAndReopened": true,
+        "characterScreenReferencesPreserved": true
+      },
+      {
+        "characterControls": true,
+        "characterPreviewSelection": true,
+        "characterBombImage": true,
+        "launchOptions": 6,
+        "guidanceControls": true,
+        "savedAndReopened": true,
+        "buildFree": true
+      },
+      {
+        "endingPreviewsBothCharacters": true,
+        "endingSecondsEditedAndReloaded": 12,
+        "endingMusic": 34,
+        "scoreAfter": true,
+        "buildFree": true
+      },
+      {
+        "rightHudCanvas": [
+          40,
+          144
+        ],
+        "dock": "right",
+        "columns": 5
+      },
+      {
+        "victoryPreview": true,
+        "unsavedDialogueRefresh": true,
+        "phaseHpControl": true,
+        "phaseHp": 100,
+        "returnPositionControl": true,
+        "bossControls": true,
+        "cutinPreview": true,
+        "cutinSeconds": 1.2,
+        "scoreWaitControl": true
+      }
+    ]
+  },
+  "performance": [
+    {
+      "variant": "v31-wide",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v32\\performance\\v31-wide\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "1cf4efb26d8bd8bf7033182a8349fadda410ae7157febf03f2af4f353ecf826f",
+      "sha256": "fbf93df93220a27d94d85228b31a7704f9b6d035d4ad1e803583252ccb40d0a9",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 51292.84084084084,
+          "meanDisplayFrames": 2.7303998632946187,
+          "updatesPerSecond": 21.875001095235262,
+          "p95": 3.000911369332422,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4",
+          "cpuMeanTCycles": 82433.4,
+          "flushMeanTCycles": 47806.32727272727,
+          "publishMeanTCycles": 602
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 49083.23523523523,
+          "meanDisplayFrames": 1.0140635680109211,
+          "updatesPerSecond": 58.89916755135488,
+          "p95": 1.0040726817042607,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4",
+          "cpuMeanTCycles": 78431.50454545455,
+          "flushMeanTCycles": 12616.65,
+          "publishMeanTCycles": 1024.4363636363637,
+          "dmaEndLyMax": 147
+        }
+      ]
+    },
+    {
+      "variant": "v32-wide",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v32\\performance\\v32-wide\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "525d8073acf9faa7600d93e830d03c7fd54ed3e3e00e9fa638501dd1af42832d",
+      "sha256": "5834de276996de46f13b0fa421116e4816afaa3502ab280000802c503c28723e",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 51297.597597597596,
+          "meanDisplayFrames": 2.81903622693098,
+          "updatesPerSecond": 21.18720555252458,
+          "p95": 3.000911369332422,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4",
+          "cpuMeanTCycles": 83982.34090909091,
+          "flushMeanTCycles": 47448.681818181816,
+          "publishMeanTCycles": 602
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 49083.23523523523,
+          "meanDisplayFrames": 1.0174726589200118,
+          "updatesPerSecond": 58.70182306755768,
+          "p95": 1.0040726817042607,
+          "hash": "9b045bc0aa95af3e94da7e591b5f4f7b20f281ab1bf5686dac573ee1403563e4",
+          "cpuMeanTCycles": 79943.50454545455,
+          "flushMeanTCycles": 12620.068181818182,
+          "publishMeanTCycles": 1024.4363636363637,
+          "dmaEndLyMax": 147
+        }
+      ]
+    },
+    {
+      "variant": "v32-right",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v32\\performance\\v32-right\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+      "sourceRevision": "fd5de877c19af4cf3f7c0484d4b8e0a34ed4fe45bcca5b3b332a1a0cf07979ae",
+      "sha256": "89618f12c5bb01b0d26c3df51fc4eba119e886d59bb2cf03e1356ab27a73e6fd",
+      "modes": [
+        {
+          "mode": "DMG",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 53702.57857857858,
+          "meanDisplayFrames": 2.925854408749159,
+          "updatesPerSecond": 20.413695165896613,
+          "p95": 3.000911369332422,
+          "hash": "2e49dfc2135a2fbb356ce3450d0331478524da5436d9a00431c5e5b13ec108ae",
+          "cpuMeanTCycles": 86498.69545454545,
+          "flushMeanTCycles": 46301.19090909091,
+          "publishMeanTCycles": 602
+        },
+        {
+          "mode": "CGB",
+          "peak": 40,
+          "hits": 4,
+          "meanBgUpdateCycles": 51474.87887887888,
+          "meanDisplayFrames": 1.0379313469624323,
+          "updatesPerSecond": 57.544750117429324,
+          "p95": 1.0040726817042607,
+          "hash": "2e49dfc2135a2fbb356ce3450d0331478524da5436d9a00431c5e5b13ec108ae",
+          "cpuMeanTCycles": 82895.81818181818,
+          "flushMeanTCycles": 11802.186363636363,
+          "publishMeanTCycles": 1694.290909090909,
+          "dmaEndLyMax": 147
+        }
+      ]
+    }
+  ],
+  "assets": "assets-v32.json",
+  "logs": ".cache/right-hud-v32",
+  "limitations": [
+    "Physical GB/GBC hardware, human listening and controller checks not performed.",
+    "Full unmodified campaign clear not claimed; all 7 boss deadline/kill/mixed routes use an authored diagnostic loop.",
+    "Emulicious DAP reads failed with EvaluateRequest: NullPointerException.",
+    "40-bullet fixture is a controlled comparison, not a guarantee of worst-case production FPS.",
+    "Right HUD does not support the separate giant BG boss renderer; validation rejects this combination."
+  ]
+}

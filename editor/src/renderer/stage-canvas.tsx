@@ -5,7 +5,7 @@ import {
     type Point,
     clone,
     clamp,
-    uid,
+    uid, playWidth,
 } from "../shared/model";
 import {
     cameraAtEventFrame,
@@ -137,6 +137,12 @@ export function MapCanvas({
                 c.stroke();
             }
         }
+        // On vertical maps, columns beyond the playfield are covered by the Window.
+        if (playWidth(game)<160 && s.scrollAxis!=="horizontal") {
+            c.fillStyle="#081020b0"; c.fillRect(playWidth(game),0,s.width*8-playWidth(game),s.height*8);
+            c.strokeStyle="#ffbd66"; c.lineWidth=1; c.beginPath();
+            c.moveTo(playWidth(game)-0.5,0); c.lineTo(playWidth(game)-0.5,s.height*8);c.stroke();
+        }
         for (const event of s.events)
             if (["enemy", "boss", "item"].includes(event.kind)) {
                 const p = eventWorld(event);
@@ -185,7 +191,7 @@ export function MapCanvas({
             if (stage.loopMap) {
                 if (stage.scrollAxis === "horizontal") {
                     while (q.x < -32) q.x += stage.width * 8;
-                    while (q.x > 192) q.x -= stage.width * 8;
+                    while (q.x > playWidth(game)+32) q.x -= stage.width * 8;
                 } else {
                     while (q.y < -32) q.y += stage.height * 8;
                     while (q.y > 176) q.y -= stage.height * 8;
@@ -193,7 +199,7 @@ export function MapCanvas({
             }
             draft.current.events = draft.current.events.map((e) =>
                 e.id === eventId
-                    ? { ...e, x: clamp(q.x, -32, 192), y: clamp(q.y, -32, 176) }
+                    ? { ...e, x: clamp(q.x, -32, playWidth(game)+32), y: clamp(q.y, -32, 176) }
                     : e,
             );
         } else {
@@ -400,6 +406,7 @@ export function MapCanvas({
                 />
             </div>
             <p className="hint">
+                {playWidth(game)<160 && "ゲーム領域は幅120px。縦マップの右側の暗い帯はHUDに隠れます。"}
                 赤は接触すると被弾する壁、黄枠は破壊BG。破壊BGの「自機に当たる地形」がOFFなら自機は上を飛べます。描画1ストロークごとに元に戻せます。
             </p>
         </>

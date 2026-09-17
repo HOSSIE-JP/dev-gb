@@ -1,0 +1,3926 @@
+{
+  "version": "0.33-shot-hit-performance",
+  "date": "2026-09-17T15:25:13.060Z",
+  "baseCommit": "6cc064af237b2fe3e7529b3604f3e21583ce2069",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v33.gb",
+    "sha256": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+    "bytes": 2097152
+  },
+  "projectRevision": "bca6a6db20ae582f54b5b20bced0e256e2a776ab69b9bf87886d632ce66cc9bc",
+  "sourceHashes": {
+    "editor/src/node/compiler.ts": "638ad694bf822a2abb9c0cd05574d0bcff3cdf9a19827ff956ce63d76df91108",
+    "editor/src/renderer/boss-canvas.tsx": "fc4970d73bed87c5d257f241158b3d5a24c9cd37438fa002250f67c571ecc17b",
+    "editor/src/renderer/canvases.tsx": "4490797d5d5fb9f45661f56cfd9e0d6dbc5d6182a156796420cb59d43e8b7be1",
+    "editor/src/renderer/fields.tsx": "e1dd13e4e3b10ca68eeefead12d8759d69db4dbc04a01491521a9ef4598fdcd5",
+    "editor/src/renderer/preview.tsx": "f23ad830bd70f6f8795c170525c1da195d06b50073b61a18492ef7a341fc1239",
+    "editor/src/renderer/stage-canvas.tsx": "5105251c1a3a76c9af750e6134c3827f7c5fcd21435cbb8ffd2b51a73e78329e",
+    "editor/src/shared/model.ts": "8bccd3b65bb086b259b3d4a70eb3ada716967a00322ed21215254baa6ee00699",
+    "editor/src/shared/presentation.ts": "2474d2765369844604ea052c5064c302407d9f31d874498c7d45258ad8a68f6a",
+    "editor/src/shared/simulation.ts": "22505b40664ef791d5491fe11032ec1fc009b42b373c847bf5ba3e0611f863aa",
+    "editor/src/shared/stage-space.ts": "1e8ebec2d2abc05c9de706e73c4234bfdae9a49ee84f8909ff23916bfea46d60",
+    "editor/tests/boss-chain.acceptance.mjs": "a73879839f722f28be7aed8522e78c4644322e1619ad69d0210596bdd6e92011",
+    "editor/tests/boss-ui.acceptance.cjs": "1b9cea0b355408eb94a867c9f95bfdb3f8a27e7e8496a93127eb89565a6276fe",
+    "editor/tests/fixtures/kernel_harness.c": "fc2c70e862f99a7a4c78a71b3cfe8a063a93168411dc8552b65cca01674298de",
+    "editor/tests/fixtures/render_harness.c": "16d86cbd60b9809541f22741b7f2eac5db012c1388e704cdccd84f37bfdb0723",
+    "editor/tests/kernel-runtime.mjs": "5a5934fc6bf14d885db8699bdcab724e22bed66dce984d143663f24878577480",
+    "editor/tests/kouma-native-performance.mjs": "9ef1cb5ede690426eb497f4300c0d7a28de61c35c55988f28fec639e80664679",
+    "editor/tests/kouma-production-performance.mjs": "96cd464978c5063862596f191557102c836c37bf45b9520ce2da55b25e8a31bc",
+    "editor/tests/right-hud-performance.acceptance.mjs": "2392d51f3e2fad6d22035c7238cca1b51b148b1c4d3191350359837b6d3b2c07",
+    "editor/tests/right-hud-play.acceptance.mjs": "fa49f767469c74b0c168db6fd8c2abcfd972eae943d431fe6f86cc28f0fefdfb",
+    "editor/tests/right-hud-rom.acceptance.mjs": "421af6cc02cfbcaa93be5f24e5980427fa4c5f998b785d097f9f96da3538bbc0",
+    "editor/tests/right-hud.test.mjs": "351db09502cd3f2e4a04d06d46bd2c9b99095c4f890179ae065e3662ceae8e46",
+    "editor/tests/shot-hitbox-rom.acceptance.mjs": "cd52c0cb403416cec79d66aec4b851c3a63c95a927704df1e4f3d18d6bb57920",
+    "engine/caravan/bg-bullets.c": "ee2b0f5fc95a7b43aea2e5f6fe84faba5bfe5db6a8628d1af45dea243e5b4680",
+    "engine/caravan/bg-kernels.h": "0991427618c4efe50c5d6e1365329fd4ab6a1231b9bcd5e72a131923a0dd830c",
+    "engine/caravan/bg-query-kernel.h": "441986ed74075d6deeb087e5a4e540c64b95e7ca082f6af1d09a36ac840fc335",
+    "engine/caravan/bg-state-kernels.h": "7296ecbab0ccc8bb8e5ced11fe10c1f7214ffc39eb9eda921c53d573763eafa3",
+    "engine/caravan/bg-update-kernel.h": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b",
+    "engine/caravan/bg-volley.h": "7b9a278b4a28b59c2678332156f8a37988b9c4fe30d84d5d87598fe19fe159a3",
+    "engine/caravan/boss-phase.c": "ce35bcc6b2ad037b57f084983cd6feff096eca7e12096982f4db5c778361807c",
+    "engine/caravan/caravan.h": "a08ccbd1c487a0e5966e4714fbc57541e87068f892ff9f3b4ab6ca2803fb6636",
+    "engine/caravan/flow.c": "5bb7ba0626b09c00a204475e78a9e50b2adb5c6a8a5b41f758dbaa165e5209c0",
+    "engine/caravan/giant-render.h": "ca1eb41a7d89a87f78d4b221c8cd96de064fb163831939cefe36b7d6b43cd92f",
+    "engine/caravan/graze.c": "5ff4e1e5e57d25154d1257d7a9773511b0c3e93a16b8dadc0794980f1c5081c3",
+    "engine/caravan/items.c": "b5f426f6d8b2df18a8c20eab1572014c77a4d5f1c646b1ad5039c63067c1d565",
+    "engine/caravan/mainloop.c": "0baa8ce8d5056c31909c3e4a7300f23c597f3730d7b910af6fa5ee1c1ef94a9b",
+    "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+    "engine/caravan/movie.c": "fadada968ced3bcd895bc175149e6bed74fd1b7c94d035fb042d75bc24e79e2b",
+    "engine/caravan/music.c": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995",
+    "engine/caravan/music.h": "7e0f71159080d9fe7342f8cfea26b8f57d8fbbcd50f0df4248673070b93c0187",
+    "engine/caravan/render.c": "eac730b7d2dccc17b4052bdd0652018f401b15a7c33f1edefe6595f3b5505115",
+    "engine/caravan/runtime.c": "b44ccb6dcc745715d67bf06cd6cc7dd5f9dd490da2b7ea90566d5592521a87a9",
+    "engine/caravan/save.c": "26fbc74c1bfb843eca15edf0b32a98fd9339d2253ea59ee41fb38559d774e025",
+    "engine/caravan/shot-kernels.h": "3434b5f97a33a09da40345001b5b3104d3b7d12219b0825fc8a06def85f75ec6",
+    "engine/caravan/sound.c": "bfd856a384d9a3bf5511ce53208f2dfdf43df9c110e71b334bbf81c88deffbf3",
+    "engine/caravan/special.c": "d25bb899e063272cf45840b11ee7d5ee3d4f11fbbf9d32e459d75307b76a389c",
+    "engine/caravan/sprites.c": "e7388b1455f5c8a46b49c06224e1a9b08c01e61f3a25fec4d3db79812788e0a7",
+    "engine/caravan/terrain.c": "303c547cf4751dd0e55032fc722fc1aa643634b0a94b577043bcfc145973863b",
+    "projects/touhou-kouma/assets-src/game.json": "f57e92d74e38a998bd519bc4bf147a0250286cfc3c2167a45f7934519d354e20"
+  },
+  "debugReleaseIdentical": true,
+  "build": {
+    "debug": {
+      "ok": true,
+      "revision": "bca6a6db20ae582f54b5b20bced0e256e2a776ab69b9bf87886d632ce66cc9bc",
+      "configuration": "Debug",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "size": 2097152,
+      "ramBytes": 7160,
+      "spriteTiles": 88,
+      "diagnostics": [],
+      "romHash": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+      "builtAt": "2026-09-17T15:14:51.182Z",
+      "durationMs": 526047
+    },
+    "release": {
+      "ok": true,
+      "revision": "bca6a6db20ae582f54b5b20bced0e256e2a776ab69b9bf87886d632ce66cc9bc",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "size": 2097152,
+      "ramBytes": 7160,
+      "spriteTiles": 88,
+      "diagnostics": [],
+      "romHash": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+      "builtAt": "2026-09-17T15:21:32.287Z",
+      "durationMs": 397189
+    },
+    "starDebug": {
+      "ok": true,
+      "revision": "07bd41dc8c3e83c9570d68d4f31d5424ad19e0286f5587d2406bd9531d443309",
+      "configuration": "Debug",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\star-caravan\\build\\Debug\\star-caravan.gb",
+      "size": 131072,
+      "ramBytes": 7151,
+      "spriteTiles": 12,
+      "diagnostics": [],
+      "romHash": "5c295b37432cac05adfd4088c182ccaa193fb912c1d0e43c1f7986e0c5f87adf",
+      "builtAt": "2026-09-17T15:05:53.863Z",
+      "durationMs": 239915
+    },
+    "starRelease": {
+      "ok": true,
+      "revision": "07bd41dc8c3e83c9570d68d4f31d5424ad19e0286f5587d2406bd9531d443309",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\star-caravan\\build\\Release\\star-caravan.gb",
+      "size": 131072,
+      "ramBytes": 7151,
+      "spriteTiles": 12,
+      "diagnostics": [],
+      "romHash": "5c295b37432cac05adfd4088c182ccaa193fb912c1d0e43c1f7986e0c5f87adf",
+      "builtAt": "2026-09-17T15:22:02.709Z",
+      "durationMs": 199986
+    },
+    "warnings": {
+      "touhouKouma": [],
+      "starCaravanAndKernel": [
+        "runtime.c:92 SDCC 126 unreachable code",
+        "bg-bullets.c:123 SDCC 126 unreachable code",
+        "render.c:304 SDCC 126 unreachable code",
+        "render.c:308 SDCC 110 conditional flow changed by optimizer"
+      ]
+    }
+  },
+  "checks": [
+    "Debug/Release identical; touhou-kouma compiler warnings 0",
+    "Doctor 0 warnings; clean hello-gb Debug; star-caravan Debug/Release",
+    "155 regression tests passed; no failures/skips",
+    "Shot collision: 4004 cases, 0 failures; old engine has 570 failures per mode",
+    "Independent SM83 kernel oracle: 11200 box and 100800 movement cases per mode; animation/render parity",
+    "Production shots: DMG/CGB, both characters, stages 1/3/7",
+    "Production right HUD, road scrolling, boss, bombs/restoration, pause/cutin/miss timers",
+    "Native BGB unchanged production ROM before/after with identical 5000-frame inputs",
+    "40-bullet coordinate, OAM and collision parity; BGB DMA deadline and extra-wait check"
+  ],
+  "pending": [
+    "Physical DMG/CGB hardware, human listening and controller play not performed.",
+    "Constant 60 updates/second not achieved; dense road sections still slow down.",
+    "Full unmodified campaign clear not claimed in this revision.",
+    "Emulicious final-ROM DAP evaluation failed with NullPointerException; connection is not execution proof.",
+    "Unrelated earlier source changes remain uncommitted; this task did not commit or push."
+  ],
+  "collision": {
+    "before": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v33\\collision-old\\fixture\\projects\\shot-probe\\build\\Debug\\shot-probe.gb",
+      "sha256": "3eda1641713a38bf6438dd188b0aab9e3ede88a4a948b5bdd8c0fb680840e844",
+      "results": [
+        {
+          "mode": "DMG",
+          "cases": 2002,
+          "hits": 880,
+          "misses": 1122,
+          "failures": 570,
+          "examples": [
+            {
+              "n": 15,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -8,
+              "y": -10,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 16,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -8,
+              "y": -6,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 17,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -8,
+              "y": 0,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 18,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -8,
+              "y": 6,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 19,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -8,
+              "y": 10,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 22,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -6,
+              "y": -10,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 23,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -6,
+              "y": -6,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 24,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -6,
+              "y": 0,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 25,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -6,
+              "y": 6,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 26,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -6,
+              "y": 10,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 29,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -4,
+              "y": -10,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 30,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -4,
+              "y": -6,
+              "expected": 9,
+              "actual": 10
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "cases": 2002,
+          "hits": 880,
+          "misses": 1122,
+          "failures": 570,
+          "examples": [
+            {
+              "n": 15,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -8,
+              "y": -10,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 16,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -8,
+              "y": -6,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 17,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -8,
+              "y": 0,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 18,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -8,
+              "y": 6,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 19,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -8,
+              "y": 10,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 22,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -6,
+              "y": -10,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 23,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -6,
+              "y": -6,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 24,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -6,
+              "y": 0,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 25,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -6,
+              "y": 6,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 26,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -6,
+              "y": 10,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 29,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -4,
+              "y": -10,
+              "expected": 9,
+              "actual": 10
+            },
+            {
+              "n": 30,
+              "id": "shot-ofuda",
+              "slot": 1,
+              "x": -4,
+              "y": -6,
+              "expected": 9,
+              "actual": 10
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v33\\collision-fixed\\fixture\\projects\\shot-probe\\build\\Debug\\shot-probe.gb",
+      "sha256": "b8a2e67712a48d68d2a7d85723f8a466b6bd17cc8c9f106e4456ffa3850c7de7",
+      "results": [
+        {
+          "mode": "DMG",
+          "cases": 2002,
+          "hits": 880,
+          "misses": 1122,
+          "failures": 0,
+          "examples": []
+        },
+        {
+          "mode": "CGB",
+          "cases": 2002,
+          "hits": 880,
+          "misses": 1122,
+          "failures": 0,
+          "examples": []
+        }
+      ]
+    },
+    "hitboxChanges": [
+      {
+        "id": "meiling",
+        "before": {
+          "x": 7,
+          "y": 5,
+          "w": 10,
+          "h": 14
+        },
+        "after": {
+          "x": 3,
+          "y": 2,
+          "w": 18,
+          "h": 20
+        }
+      },
+      {
+        "id": "patchouli",
+        "before": {
+          "x": 7,
+          "y": 5,
+          "w": 10,
+          "h": 14
+        },
+        "after": {
+          "x": 3,
+          "y": 2,
+          "w": 18,
+          "h": 20
+        }
+      },
+      {
+        "id": "sakuya",
+        "before": {
+          "x": 7,
+          "y": 5,
+          "w": 10,
+          "h": 14
+        },
+        "after": {
+          "x": 3,
+          "y": 2,
+          "w": 18,
+          "h": 20
+        }
+      },
+      {
+        "id": "remilia",
+        "before": {
+          "x": 7,
+          "y": 5,
+          "w": 10,
+          "h": 14
+        },
+        "after": {
+          "x": 3,
+          "y": 2,
+          "w": 18,
+          "h": 20
+        }
+      },
+      {
+        "id": "flandre",
+        "before": {
+          "x": 7,
+          "y": 5,
+          "w": 10,
+          "h": 14
+        },
+        "after": {
+          "x": 3,
+          "y": 2,
+          "w": 18,
+          "h": 20
+        }
+      },
+      {
+        "id": "fairy",
+        "before": {
+          "x": 4,
+          "y": 3,
+          "w": 8,
+          "h": 10
+        },
+        "after": {
+          "x": 2,
+          "y": 1,
+          "w": 12,
+          "h": 14
+        }
+      },
+      {
+        "id": "bat",
+        "before": {
+          "x": 4,
+          "y": 2,
+          "w": 8,
+          "h": 5
+        },
+        "after": {
+          "x": 1,
+          "y": 0,
+          "w": 14,
+          "h": 7
+        }
+      },
+      {
+        "id": "book",
+        "before": {
+          "x": 1,
+          "y": 1,
+          "w": 6,
+          "h": 6
+        },
+        "after": {
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 8
+        }
+      },
+      {
+        "id": "cirno",
+        "before": {
+          "x": 7,
+          "y": 5,
+          "w": 10,
+          "h": 14
+        },
+        "after": {
+          "x": 3,
+          "y": 2,
+          "w": 18,
+          "h": 20
+        }
+      },
+      {
+        "id": "rumia",
+        "before": {
+          "x": 5,
+          "y": 4,
+          "w": 14,
+          "h": 16
+        },
+        "after": {
+          "x": 3,
+          "y": 2,
+          "w": 18,
+          "h": 20
+        }
+      }
+    ],
+    "method": "Same enlarged fixture targets in both engines; code-only comparison. Final production source uses the same corrected collision path."
+  },
+  "kernel": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v33\\kernel-oracle\\fixture-x4maq4\\projects\\kernel-test\\build\\Debug\\kernel-test.gb",
+    "romSha256": "bddf479673e68e83780884bc69ee673f662839d04d1927c86b7b8d4641a6ca19",
+    "results": [
+      {
+        "mode": "DMG",
+        "status": 165,
+        "casesModulo65536": 46464,
+        "boxCases": 11200,
+        "movementCases": 100800,
+        "bulletAnimation": "all single-tile assets; all 65536 ages and wrap; slot reuse",
+        "renderer": "all sprite assets; continuous, skipped, repeated and wrapped ages; slot reuse; negative clipping"
+      },
+      {
+        "mode": "CGB",
+        "status": 165,
+        "casesModulo65536": 46464,
+        "boxCases": 11200,
+        "movementCases": 100800,
+        "bulletAnimation": "all single-tile assets; all 65536 ages and wrap; slot reuse",
+        "renderer": "all sprite assets; continuous, skipped, repeated and wrapped ages; slot reuse; negative clipping"
+      }
+    ]
+  },
+  "play": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+    "results": [
+      {
+        "mode": "CGB",
+        "character": 0,
+        "windowFixed": true,
+        "bgHud": true,
+        "bombSamples": 23,
+        "liveSamples": 23,
+        "pause": true,
+        "cutinClock": true,
+        "bombClock": true,
+        "missClock": true,
+        "noHudSprites": true,
+        "peak": 24
+      },
+      {
+        "mode": "CGB",
+        "character": 1,
+        "windowFixed": true,
+        "bgHud": true,
+        "bombSamples": 23,
+        "liveSamples": 23,
+        "pause": true,
+        "cutinClock": true,
+        "bombClock": true,
+        "missClock": true,
+        "noHudSprites": true,
+        "peak": 24
+      },
+      {
+        "mode": "DMG",
+        "character": 0,
+        "windowFixed": true,
+        "bgHud": true,
+        "bombSamples": 23,
+        "liveSamples": 24,
+        "pause": true,
+        "cutinClock": true,
+        "bombClock": true,
+        "missClock": true,
+        "noHudSprites": true,
+        "peak": 24
+      },
+      {
+        "mode": "DMG",
+        "character": 1,
+        "windowFixed": true,
+        "bgHud": true,
+        "bombSamples": 23,
+        "liveSamples": 24,
+        "pause": true,
+        "cutinClock": true,
+        "bombClock": true,
+        "missClock": true,
+        "noHudSprites": true,
+        "peak": 24
+      }
+    ]
+  },
+  "weapons": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+    "results": [
+      {
+        "label": "DMG-0-stage1",
+        "volleys": 4,
+        "intervals": [
+          12,
+          12,
+          12
+        ],
+        "peakPlayerShots": 4,
+        "aims": [
+          {
+            "tick": 125,
+            "vx": 0,
+            "vy": 40,
+            "cos": 0.9934089358711311
+          },
+          {
+            "tick": 149,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9986528121548055
+          },
+          {
+            "tick": 173,
+            "vx": -27,
+            "vy": 27,
+            "cos": 0.9943889131791124
+          },
+          {
+            "tick": 221,
+            "vx": 0,
+            "vy": 40,
+            "cos": 0.997817503157556
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9942309241880266
+          },
+          {
+            "tick": 269,
+            "vx": -27,
+            "vy": 27,
+            "cos": 0.9999932912695936
+          },
+          {
+            "tick": 317,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          },
+          {
+            "tick": 341,
+            "vx": 0,
+            "vy": 40,
+            "cos": 1
+          },
+          {
+            "tick": 365,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          }
+        ],
+        "pausedSamples": 174,
+        "dropped": 0
+      },
+      {
+        "label": "DMG-0-stage3",
+        "volleys": 4,
+        "intervals": [
+          12,
+          12,
+          12
+        ],
+        "peakPlayerShots": 4,
+        "aims": [
+          {
+            "tick": 125,
+            "vx": 0,
+            "vy": 40,
+            "cos": 0.9934089358711311
+          },
+          {
+            "tick": 149,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9986528121548055
+          },
+          {
+            "tick": 173,
+            "vx": -27,
+            "vy": 27,
+            "cos": 0.9943889131791124
+          },
+          {
+            "tick": 221,
+            "vx": 0,
+            "vy": 40,
+            "cos": 0.997817503157556
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9942309241880266
+          },
+          {
+            "tick": 269,
+            "vx": -27,
+            "vy": 27,
+            "cos": 0.9999932912695936
+          },
+          {
+            "tick": 297,
+            "vx": 0,
+            "vy": 44,
+            "cos": 0.9905906867548756
+          },
+          {
+            "tick": 322,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.996278219574607
+          },
+          {
+            "tick": 345,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.996278219574607
+          }
+        ],
+        "pausedSamples": 87,
+        "dropped": 0
+      },
+      {
+        "label": "DMG-0-stage7",
+        "volleys": 4,
+        "intervals": [
+          12,
+          12,
+          12
+        ],
+        "peakPlayerShots": 4,
+        "aims": [
+          {
+            "tick": 105,
+            "vx": 0,
+            "vy": 44,
+            "cos": 0.9944411606572345
+          },
+          {
+            "tick": 129,
+            "vx": -16,
+            "vy": 41,
+            "cos": 0.9979205541280056
+          },
+          {
+            "tick": 153,
+            "vx": -16,
+            "vy": 41,
+            "cos": 0.9648925583308572
+          },
+          {
+            "tick": 221,
+            "vx": 0,
+            "vy": 40,
+            "cos": 0.997817503157556
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9942309241880266
+          },
+          {
+            "tick": 269,
+            "vx": -27,
+            "vy": 27,
+            "cos": 0.9999932912695936
+          },
+          {
+            "tick": 297,
+            "vx": 0,
+            "vy": 44,
+            "cos": 0.9868074809493755
+          },
+          {
+            "tick": 322,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9875522054612402
+          },
+          {
+            "tick": 345,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9875522054612402
+          },
+          {
+            "tick": 605,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          }
+        ],
+        "pausedSamples": 0,
+        "dropped": 0
+      },
+      {
+        "label": "DMG-1-stage1",
+        "volleys": 14,
+        "intervals": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "peakPlayerShots": 5,
+        "aims": [
+          {
+            "tick": 125,
+            "vx": 27,
+            "vy": 27,
+            "cos": 0.9998078216567244
+          },
+          {
+            "tick": 149,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.996921232993346
+          },
+          {
+            "tick": 173,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          },
+          {
+            "tick": 221,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9793928074835833
+          },
+          {
+            "tick": 269,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9811805786094336
+          },
+          {
+            "tick": 317,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          },
+          {
+            "tick": 341,
+            "vx": 0,
+            "vy": 40,
+            "cos": 1
+          },
+          {
+            "tick": 365,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          }
+        ],
+        "pausedSamples": 173,
+        "dropped": 0
+      },
+      {
+        "label": "DMG-1-stage3",
+        "volleys": 14,
+        "intervals": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "peakPlayerShots": 5,
+        "aims": [
+          {
+            "tick": 125,
+            "vx": 27,
+            "vy": 27,
+            "cos": 0.9998078216567244
+          },
+          {
+            "tick": 149,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.996921232993346
+          },
+          {
+            "tick": 173,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          },
+          {
+            "tick": 221,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9793928074835833
+          },
+          {
+            "tick": 269,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9811805786094336
+          },
+          {
+            "tick": 297,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.996278219574607
+          },
+          {
+            "tick": 322,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.996278219574607
+          },
+          {
+            "tick": 345,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.996278219574607
+          }
+        ],
+        "pausedSamples": 87,
+        "dropped": 0
+      },
+      {
+        "label": "DMG-1-stage7",
+        "volleys": 14,
+        "intervals": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "peakPlayerShots": 5,
+        "aims": [
+          {
+            "tick": 105,
+            "vx": 30,
+            "vy": 30,
+            "cos": 0.999146281396975
+          },
+          {
+            "tick": 129,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9960221662459173
+          },
+          {
+            "tick": 153,
+            "vx": 0,
+            "vy": 44,
+            "cos": 0.9973076252903365
+          },
+          {
+            "tick": 221,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9793928074835833
+          },
+          {
+            "tick": 269,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9811805786094336
+          },
+          {
+            "tick": 297,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9875522054612402
+          },
+          {
+            "tick": 322,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9875522054612402
+          },
+          {
+            "tick": 345,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9875522054612402
+          },
+          {
+            "tick": 605,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          }
+        ],
+        "pausedSamples": 0,
+        "dropped": 0
+      },
+      {
+        "label": "CGB-0-stage1",
+        "volleys": 4,
+        "intervals": [
+          12,
+          12,
+          12
+        ],
+        "peakPlayerShots": 4,
+        "aims": [
+          {
+            "tick": 125,
+            "vx": 0,
+            "vy": 40,
+            "cos": 0.9934089358711311
+          },
+          {
+            "tick": 149,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9986528121548055
+          },
+          {
+            "tick": 173,
+            "vx": -27,
+            "vy": 27,
+            "cos": 0.9943889131791124
+          },
+          {
+            "tick": 221,
+            "vx": 0,
+            "vy": 40,
+            "cos": 0.997817503157556
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9942309241880266
+          },
+          {
+            "tick": 269,
+            "vx": -27,
+            "vy": 27,
+            "cos": 0.9999932912695936
+          },
+          {
+            "tick": 317,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          },
+          {
+            "tick": 341,
+            "vx": 0,
+            "vy": 40,
+            "cos": 1
+          },
+          {
+            "tick": 365,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          }
+        ],
+        "pausedSamples": 170,
+        "dropped": 0
+      },
+      {
+        "label": "CGB-0-stage3",
+        "volleys": 4,
+        "intervals": [
+          12,
+          12,
+          12
+        ],
+        "peakPlayerShots": 4,
+        "aims": [
+          {
+            "tick": 126,
+            "vx": 0,
+            "vy": 40,
+            "cos": 0.9934089358711311
+          },
+          {
+            "tick": 149,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9986528121548055
+          },
+          {
+            "tick": 174,
+            "vx": -27,
+            "vy": 27,
+            "cos": 0.9943889131791124
+          },
+          {
+            "tick": 222,
+            "vx": 0,
+            "vy": 40,
+            "cos": 0.997817503157556
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9942309241880266
+          },
+          {
+            "tick": 269,
+            "vx": -27,
+            "vy": 27,
+            "cos": 0.9999932912695936
+          },
+          {
+            "tick": 297,
+            "vx": 0,
+            "vy": 44,
+            "cos": 0.9905906867548756
+          },
+          {
+            "tick": 345,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.996278219574607
+          }
+        ],
+        "pausedSamples": 63,
+        "dropped": 0
+      },
+      {
+        "label": "CGB-0-stage7",
+        "volleys": 4,
+        "intervals": [
+          12,
+          12,
+          12
+        ],
+        "peakPlayerShots": 4,
+        "aims": [
+          {
+            "tick": 105,
+            "vx": 0,
+            "vy": 44,
+            "cos": 0.996861721065102
+          },
+          {
+            "tick": 129,
+            "vx": -16,
+            "vy": 41,
+            "cos": 0.9991741900477313
+          },
+          {
+            "tick": 153,
+            "vx": -16,
+            "vy": 41,
+            "cos": 0.9995922872062812
+          },
+          {
+            "tick": 222,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9793928074835833
+          },
+          {
+            "tick": 269,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9811805786094336
+          },
+          {
+            "tick": 297,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9875522054612402
+          },
+          {
+            "tick": 345,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9875522054612402
+          },
+          {
+            "tick": 605,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          }
+        ],
+        "pausedSamples": 0,
+        "dropped": 0
+      },
+      {
+        "label": "CGB-1-stage1",
+        "volleys": 14,
+        "intervals": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "peakPlayerShots": 5,
+        "aims": [
+          {
+            "tick": 125,
+            "vx": 27,
+            "vy": 27,
+            "cos": 0.9998078216567244
+          },
+          {
+            "tick": 149,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.996921232993346
+          },
+          {
+            "tick": 173,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          },
+          {
+            "tick": 221,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9793928074835833
+          },
+          {
+            "tick": 269,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9811805786094336
+          },
+          {
+            "tick": 317,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          },
+          {
+            "tick": 341,
+            "vx": 0,
+            "vy": 40,
+            "cos": 1
+          },
+          {
+            "tick": 365,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          }
+        ],
+        "pausedSamples": 170,
+        "dropped": 0
+      },
+      {
+        "label": "CGB-1-stage3",
+        "volleys": 14,
+        "intervals": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "peakPlayerShots": 5,
+        "aims": [
+          {
+            "tick": 126,
+            "vx": 27,
+            "vy": 27,
+            "cos": 0.9998078216567244
+          },
+          {
+            "tick": 149,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.996921232993346
+          },
+          {
+            "tick": 174,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9988839136998461
+          },
+          {
+            "tick": 222,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9793928074835833
+          },
+          {
+            "tick": 269,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9811805786094336
+          },
+          {
+            "tick": 297,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.996278219574607
+          },
+          {
+            "tick": 345,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.996278219574607
+          }
+        ],
+        "pausedSamples": 63,
+        "dropped": 0
+      },
+      {
+        "label": "CGB-1-stage7",
+        "volleys": 14,
+        "intervals": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "peakPlayerShots": 5,
+        "aims": [
+          {
+            "tick": 105,
+            "vx": 30,
+            "vy": 30,
+            "cos": 0.999146281396975
+          },
+          {
+            "tick": 129,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9960221662459173
+          },
+          {
+            "tick": 153,
+            "vx": 0,
+            "vy": 44,
+            "cos": 0.9973076252903365
+          },
+          {
+            "tick": 222,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          },
+          {
+            "tick": 245,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9793928074835833
+          },
+          {
+            "tick": 269,
+            "vx": -15,
+            "vy": 37,
+            "cos": 0.9811805786094336
+          },
+          {
+            "tick": 297,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9875522054612402
+          },
+          {
+            "tick": 345,
+            "vx": 16,
+            "vy": 41,
+            "cos": 0.9875522054612402
+          },
+          {
+            "tick": 605,
+            "vx": 15,
+            "vy": 37,
+            "cos": 0.994399210344922
+          }
+        ],
+        "pausedSamples": 0,
+        "dropped": 0
+      }
+    ],
+    "upperTarget": [
+      {
+        "mode": "DMG",
+        "horizontal": 3
+      },
+      {
+        "mode": "CGB",
+        "horizontal": 3
+      }
+    ]
+  },
+  "performance": {
+    "native": {
+      "before": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma-v32.gb",
+        "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+        "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+        "results": [
+          {
+            "mode": "CGB",
+            "route": "road",
+            "updates": 2865,
+            "updatesPerSecond": 45.17404633051743,
+            "peak": 0,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 57.31913306451613
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 37.52513089005236
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 45.94423076923077
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 33.02903225806452
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 49.09109589041096
+              },
+              {
+                "tick": 720,
+                "updates": 120,
+                "updatesPerSecond": 55.56046511627907
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 55.13307692307693
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 46.240645161290324
+              },
+              {
+                "tick": 1080,
+                "updates": 120,
+                "updatesPerSecond": 37.3296875
+              },
+              {
+                "tick": 1200,
+                "updates": 120,
+                "updatesPerSecond": 43.703048780487805
+              },
+              {
+                "tick": 1320,
+                "updates": 120,
+                "updatesPerSecond": 40.72329545454546
+              },
+              {
+                "tick": 1440,
+                "updates": 120,
+                "updatesPerSecond": 41.9140350877193
+              },
+              {
+                "tick": 1560,
+                "updates": 120,
+                "updatesPerSecond": 49.429655172413796
+              },
+              {
+                "tick": 1680,
+                "updates": 120,
+                "updatesPerSecond": 40.26573033707865
+              },
+              {
+                "tick": 1800,
+                "updates": 120,
+                "updatesPerSecond": 45.07735849056604
+              },
+              {
+                "tick": 1920,
+                "updates": 120,
+                "updatesPerSecond": 40.956
+              },
+              {
+                "tick": 2040,
+                "updates": 120,
+                "updatesPerSecond": 57.80080645161291
+              },
+              {
+                "tick": 2160,
+                "updates": 120,
+                "updatesPerSecond": 49.429655172413796
+              },
+              {
+                "tick": 2280,
+                "updates": 120,
+                "updatesPerSecond": 50.47394366197183
+              },
+              {
+                "tick": 2400,
+                "updates": 120,
+                "updatesPerSecond": 58.748360655737706
+              },
+              {
+                "tick": 2520,
+                "updates": 120,
+                "updatesPerSecond": 49.09109589041096
+              },
+              {
+                "tick": 2640,
+                "updates": 120,
+                "updatesPerSecond": 49.09109589041096
+              },
+              {
+                "tick": 2760,
+                "updates": 120,
+                "updatesPerSecond": 49.429655172413796
+              },
+              {
+                "tick": 2880,
+                "updates": 106,
+                "updatesPerSecond": 30.148166666666665
+              }
+            ],
+            "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830"
+          },
+          {
+            "mode": "CGB",
+            "route": "boss",
+            "updates": 1015,
+            "updatesPerSecond": 26.97971183800623,
+            "peak": 28,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 27.872833333333332
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 26.74365671641791
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 27.35610687022901
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 26.843820224719103
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 27.25209125475285
+              },
+              {
+                "tick": 720,
+                "updates": 120,
+                "updatesPerSecond": 26.644237918215612
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 27.35610687022901
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 26.74365671641791
+              }
+            ],
+            "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585"
+          },
+          {
+            "mode": "DMG",
+            "route": "road",
+            "updates": 1739,
+            "updatesPerSecond": 27.15454183006536,
+            "peak": 0,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 42.05664201183432
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 24.629896907216494
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 26.644237918215612
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 21.523423423423424
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 31.854666666666667
+              },
+              {
+                "tick": 720,
+                "updates": 120,
+                "updatesPerSecond": 30.760944206008585
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 31.16217391304348
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 27.672972972972975
+              },
+              {
+                "tick": 1080,
+                "updates": 120,
+                "updatesPerSecond": 23.811627906976746
+              },
+              {
+                "tick": 1200,
+                "updates": 120,
+                "updatesPerSecond": 26.74365671641791
+              },
+              {
+                "tick": 1320,
+                "updates": 120,
+                "updatesPerSecond": 25.781654676258995
+              },
+              {
+                "tick": 1440,
+                "updates": 120,
+                "updatesPerSecond": 26.06290909090909
+              },
+              {
+                "tick": 1560,
+                "updates": 120,
+                "updatesPerSecond": 28.6692
+              },
+              {
+                "tick": 1680,
+                "updates": 120,
+                "updatesPerSecond": 24.461774744027306
+              },
+              {
+                "tick": 1800,
+                "updates": 60,
+                "updatesPerSecond": 23.732781456953642
+              }
+            ],
+            "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830"
+          },
+          {
+            "mode": "DMG",
+            "route": "boss",
+            "updates": 1015,
+            "updatesPerSecond": 22.060921579330422,
+            "peak": 28,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 23.535008278145696
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 21.142477876106195
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 23.34625407166124
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 21.142477876106195
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 23.34625407166124
+              },
+              {
+                "tick": 720,
+                "updates": 120,
+                "updatesPerSecond": 21.142477876106195
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 23.34625407166124
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 21.142477876106195
+              }
+            ],
+            "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585"
+          }
+        ]
+      },
+      "after": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+        "sha256": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+        "results": [
+          {
+            "mode": "CGB",
+            "route": "road",
+            "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+            "updates": 3164,
+            "updatesPerSecond": 49.40596339869281,
+            "peak": 0,
+            "dmaSamples": 0,
+            "extraVblankWaits": 0,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 59.22977083333333
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 45.3626582278481
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 53.09111111111111
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 34.96243902439024
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 49.77291666666667
+              },
+              {
+                "tick": 720,
+                "updates": 120,
+                "updatesPerSecond": 58.748360655737706
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 58.748360655737706
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 45.07735849056604
+              },
+              {
+                "tick": 1080,
+                "updates": 120,
+                "updatesPerSecond": 37.3296875
+              },
+              {
+                "tick": 1200,
+                "updates": 120,
+                "updatesPerSecond": 52.70073529411765
+              },
+              {
+                "tick": 1320,
+                "updates": 120,
+                "updatesPerSecond": 54.29772727272727
+              },
+              {
+                "tick": 1440,
+                "updates": 120,
+                "updatesPerSecond": 56.88333333333333
+              },
+              {
+                "tick": 1560,
+                "updates": 120,
+                "updatesPerSecond": 56.88333333333333
+              },
+              {
+                "tick": 1680,
+                "updates": 120,
+                "updatesPerSecond": 44.517391304347825
+              },
+              {
+                "tick": 1800,
+                "updates": 120,
+                "updatesPerSecond": 48.75714285714286
+              },
+              {
+                "tick": 1920,
+                "updates": 120,
+                "updatesPerSecond": 45.3626582278481
+              },
+              {
+                "tick": 2040,
+                "updates": 120,
+                "updatesPerSecond": 59.7275
+              },
+              {
+                "tick": 2160,
+                "updates": 120,
+                "updatesPerSecond": 45.94423076923077
+              },
+              {
+                "tick": 2280,
+                "updates": 120,
+                "updatesPerSecond": 50.831914893617025
+              },
+              {
+                "tick": 2400,
+                "updates": 120,
+                "updatesPerSecond": 59.23388429752066
+              },
+              {
+                "tick": 2520,
+                "updates": 120,
+                "updatesPerSecond": 52.316058394160585
+              },
+              {
+                "tick": 2640,
+                "updates": 120,
+                "updatesPerSecond": 59.23388429752066
+              },
+              {
+                "tick": 2760,
+                "updates": 120,
+                "updatesPerSecond": 51.56330935251799
+              },
+              {
+                "tick": 2880,
+                "updates": 120,
+                "updatesPerSecond": 32.431221719457014
+              },
+              {
+                "tick": 3000,
+                "updates": 120,
+                "updatesPerSecond": 51.936956521739134
+              },
+              {
+                "tick": 3120,
+                "updates": 120,
+                "updatesPerSecond": 53.88947368421053
+              }
+            ]
+          },
+          {
+            "mode": "CGB",
+            "route": "boss",
+            "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+            "updates": 1056,
+            "updatesPerSecond": 54.37262068965517,
+            "peak": 28,
+            "dmaSamples": 1289,
+            "dmaEndMax": 151,
+            "extraVblankWaits": 0,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 55.965137795275595
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 54.29772727272727
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 54.71221374045802
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 54.29772727272727
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 54.71221374045802
+              },
+              {
+                "tick": 720,
+                "updates": 119,
+                "updatesPerSecond": 54.673634615384614
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 51.56330935251799
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 57.3384
+              },
+              {
+                "tick": 1080,
+                "updates": 98,
+                "updatesPerSecond": 51.79907079646018
+              }
+            ]
+          },
+          {
+            "mode": "DMG",
+            "route": "road",
+            "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+            "updates": 1863,
+            "updatesPerSecond": 29.075602952704468,
+            "peak": 0,
+            "dmaSamples": 0,
+            "extraVblankWaits": 0,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 43.60473926380368
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 26.644237918215612
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 28.441666666666666
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 21.98558282208589
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 31.996875
+              },
+              {
+                "tick": 720,
+                "updates": 120,
+                "updatesPerSecond": 32.877522935779815
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 34.62463768115942
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 26.944736842105264
+              },
+              {
+                "tick": 1080,
+                "updates": 120,
+                "updatesPerSecond": 23.195145631067962
+              },
+              {
+                "tick": 1200,
+                "updates": 120,
+                "updatesPerSecond": 30.114705882352943
+              },
+              {
+                "tick": 1320,
+                "updates": 120,
+                "updatesPerSecond": 30.114705882352943
+              },
+              {
+                "tick": 1440,
+                "updates": 120,
+                "updatesPerSecond": 36.755384615384614
+              },
+              {
+                "tick": 1560,
+                "updates": 120,
+                "updatesPerSecond": 30.760944206008585
+              },
+              {
+                "tick": 1680,
+                "updates": 120,
+                "updatesPerSecond": 25.874729241877258
+              },
+              {
+                "tick": 1800,
+                "updates": 120,
+                "updatesPerSecond": 26.843820224719103
+              },
+              {
+                "tick": 1920,
+                "updates": 64,
+                "updatesPerSecond": 26.36248275862069
+              }
+            ]
+          },
+          {
+            "mode": "DMG",
+            "route": "boss",
+            "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+            "updates": 1028,
+            "updatesPerSecond": 25.84169612794613,
+            "peak": 28,
+            "dmaSamples": 0,
+            "extraVblankWaits": 0,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 26.520792910447764
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 25.06048951048951
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 26.253846153846155
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 24.800346020761246
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 26.158029197080293
+              },
+              {
+                "tick": 720,
+                "updates": 119,
+                "updatesPerSecond": 27.982568897637798
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 25.874729241877258
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 26.545555555555556
+              },
+              {
+                "tick": 1080,
+                "updates": 70,
+                "updatesPerSecond": 22.599594594594596
+              }
+            ]
+          }
+        ]
+      },
+      "waitOnlyDiagnostic": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v33\\v32-wait-probe.gb",
+        "sha256": "e16bd1329c09bf02f16a7831a03d4719e964fe80d3a1a4cfe2919ccc2af1b763",
+        "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+        "results": [
+          {
+            "mode": "CGB",
+            "route": "boss",
+            "updates": 1015,
+            "updatesPerSecond": 49.28732723577236,
+            "peak": 28,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 52.261562500000004
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 48.75714285714286
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 50.47394366197183
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 48.4277027027027
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 50.47394366197183
+              },
+              {
+                "tick": 720,
+                "updates": 120,
+                "updatesPerSecond": 48.4277027027027
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 50.47394366197183
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 48.4277027027027
+              }
+            ]
+          }
+        ]
+      },
+      "method": "Unmodified production ROM and identical frame-based input; wait-only ROM is diagnostic, not deliverable. First 120 updates and transition gaps >12 display frames excluded."
+    },
+    "roadPerUpdate": [
+      {
+        "character": 0,
+        "stage": 1,
+        "before": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma-v32.gb",
+          "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+          "character": 0,
+          "stage": 0,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 57.32253929382847,
+              "cpuMean": 52107.025925925926,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 59.69893648516317,
+                  "cpu": 27780.5
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 54.697944215792134,
+                  "cpu": 61907.933333333334
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 54.28245538048458,
+                  "cpu": 68432.2
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 58.73404675417788,
+                  "cpu": 47772.23333333333
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 58.72790628859253,
+                  "cpu": 40531.066666666666
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 59.71352682429351,
+                  "cpu": 37360.933333333334
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 57.32204893933196,
+                  "cpu": 53115.933333333334
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 59.711231560475184,
+                  "cpu": 42683.5
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 55.97861382227211,
+                  "cpu": 61963.23333333333
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 57.322388414628314,
+                  "cpu": 55196.2
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+          "sha256": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+          "character": 0,
+          "stage": 0,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 59.43532815645225,
+              "cpuMean": 38980.45925925926,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 59.69893648516317,
+                  "cpu": 24785.866666666665
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 59.71086320123266,
+                  "cpu": 38708.2
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 57.32103053756779,
+                  "cpu": 58585.76666666667
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 59.71270504289493,
+                  "cpu": 28702.466666666667
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 59.70938980970969,
+                  "cpu": 39954.03333333333
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 59.710494846534935,
+                  "cpu": 35984.933333333334
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 59.711231560475184,
+                  "cpu": 37713.26666666667
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 59.71012649638192,
+                  "cpu": 29274
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 59.710494846534935,
+                  "cpu": 46483.63333333333
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 59.70975815077353,
+                  "cpu": 35417.833333333336
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "character": 0,
+        "stage": 3,
+        "before": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma-v32.gb",
+          "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+          "character": 0,
+          "stage": 2,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 53.25281833226056,
+              "cpuMean": 55094.99259259259,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 59.6971521370003,
+                  "cpu": 27653.833333333332
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 52.687495603412756,
+                  "cpu": 61781.26666666667
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 49.759572150895586,
+                  "cpu": 65431.73333333333
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 57.78764053200088,
+                  "cpu": 37353.63333333333
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 57.78315574559069,
+                  "cpu": 42108.3
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 53.87592992611971,
+                  "cpu": 56828.46666666667
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 47.77088040188109,
+                  "cpu": 65910.3
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 58.732977562940135,
+                  "cpu": 38162.8
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 48.415069685405655,
+                  "cpu": 68312.06666666667
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 55.11921480742965,
+                  "cpu": 59966.36666666667
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+          "sha256": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+          "character": 0,
+          "stage": 2,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 58.51840089407742,
+              "cpuMean": 37558.066666666666,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 59.6971521370003,
+                  "cpu": 24659.2
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 58.73020881272013,
+                  "cpu": 38584.86666666667
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 53.874119155416764,
+                  "cpu": 54904.9
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 59.71484455547295,
+                  "cpu": 27715.5
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 59.216434452035905,
+                  "cpu": 37928.46666666667
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 59.710494846534935,
+                  "cpu": 35050.03333333333
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 59.71086320123266,
+                  "cpu": 35222.3
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 59.71012649638192,
+                  "cpu": 30958.966666666667
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 58.25314346030629,
+                  "cpu": 48999.76666666667
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 58.25252319029584,
+                  "cpu": 28657.8
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "character": 0,
+        "stage": 7,
+        "before": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma-v32.gb",
+          "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+          "character": 0,
+          "stage": 6,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 53.56244670476342,
+              "cpuMean": 53707.748148148145,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 59.6971521370003,
+                  "cpu": 24438.166666666668
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 58.255247083050534,
+                  "cpu": 31094.466666666667
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 47.45185204180529,
+                  "cpu": 70552.56666666667
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 52.305489807778166,
+                  "cpu": 61884.166666666664
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 51.54926219269637,
+                  "cpu": 69130.1
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 50.4631145059108,
+                  "cpu": 58993.9
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 57.322727893945604,
+                  "cpu": 50863.46666666667
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 52.655977633502545,
+                  "cpu": 52759.63333333333
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 56.4567668392806,
+                  "cpu": 47000.86666666667
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 57.784880581058296,
+                  "cpu": 41090.566666666666
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+          "sha256": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+          "character": 0,
+          "stage": 6,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 57.17035291064896,
+              "cpuMean": 46699.207407407404,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 59.69752032709327,
+                  "cpu": 22847.3
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 59.71086320123266,
+                  "cpu": 24776.733333333334
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 54.282150956598564,
+                  "cpu": 60531.03333333333
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 58.25489646870913,
+                  "cpu": 46548.3
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 54.696707828947595,
+                  "cpu": 61603.166666666664
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 56.41820155468362,
+                  "cpu": 45084.566666666666
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 58.25813306911807,
+                  "cpu": 50252.066666666666
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 56.42123727621131,
+                  "cpu": 48068.9
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 57.78419063451462,
+                  "cpu": 44690.2
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 59.21824591721624,
+                  "cpu": 38737.9
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "character": 1,
+        "stage": 1,
+        "before": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma-v32.gb",
+          "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+          "character": 1,
+          "stage": 0,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 50.03130230958851,
+              "cpuMean": 62434.751851851855,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 59.69856827760147,
+                  "cpu": 34638
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 51.550634933900994,
+                  "cpu": 63573.4
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 41.182414531082415,
+                  "cpu": 75468.13333333333
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 54.285804268603364,
+                  "cpu": 58726.2
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 51.18088214119238,
+                  "cpu": 57730.933333333334
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 48.74630129089693,
+                  "cpu": 68124.3
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 50.45948205183011,
+                  "cpu": 62870.433333333334
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 59.220712474911736,
+                  "cpu": 44977.76666666667
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 48.41579621128258,
+                  "cpu": 68996.93333333333
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 49.080851936899286,
+                  "cpu": 61444.666666666664
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+          "sha256": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+          "character": 1,
+          "stage": 0,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 54.88410125183559,
+              "cpuMean": 58895.996296296296,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 59.69856827760147,
+                  "cpu": 33138.1
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 57.78557054407817,
+                  "cpu": 60311.333333333336
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 52.68577486691337,
+                  "cpu": 57776.833333333336
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 58.73404675417788,
+                  "cpu": 56891.96666666667
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 52.30131554336305,
+                  "cpu": 62605.6
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 50.46232523743486,
+                  "cpu": 73333.56666666667
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 58.732977562940135,
+                  "cpu": 53657
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 59.71012649638192,
+                  "cpu": 35449.833333333336
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 52.6869220120909,
+                  "cpu": 72861
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 52.68806920722388,
+                  "cpu": 57176.833333333336
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "character": 1,
+        "stage": 3,
+        "before": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma-v32.gb",
+          "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+          "character": 1,
+          "stage": 2,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 46.53048384941648,
+              "cpuMean": 61506.44814814815,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 58.24149537693615,
+                  "cpu": 34511.333333333336
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 49.07960757882124,
+                  "cpu": 63450.066666666666
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 38.94454379504435,
+                  "cpu": 74584.06666666667
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 54.28610873346771,
+                  "cpu": 43744.53333333333
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 51.91961996041323,
+                  "cpu": 52726.3
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 47.145463299306286,
+                  "cpu": 60236.433333333334
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 39.15778585025706,
+                  "cpu": 68333.6
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 51.55228231985664,
+                  "cpu": 57814.36666666667
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 42.14943171730909,
+                  "cpu": 73895.8
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 50.46432881331597,
+                  "cpu": 58772.86666666667
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+          "sha256": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+          "character": 1,
+          "stage": 2,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 53.340922363962314,
+              "cpuMean": 52660.248148148145,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 59.203673730568,
+                  "cpu": 33011.433333333334
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 50.820131100134496,
+                  "cpu": 60184.666666666664
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 49.75931634341801,
+                  "cpu": 53661
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 59.713441811375766,
+                  "cpu": 34634.53333333333
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 55.54153262685081,
+                  "cpu": 51416
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 56.86729215250285,
+                  "cpu": 49102.13333333333
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 54.28765453084836,
+                  "cpu": 53295.3
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 59.70836981201911,
+                  "cpu": 38154.933333333334
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 43.961902446028986,
+                  "cpu": 76450.36666666667
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 53.47426647140469,
+                  "cpu": 57043.3
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "character": 1,
+        "stage": 7,
+        "before": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma-v32.gb",
+          "sha256": "c4fb65f898e3107c891910f42aab6325e75645797b23c64270b87af55d6d6e58",
+          "character": 1,
+          "stage": 6,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 44.785943900810345,
+              "cpuMean": 63171.69629629629,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 58.71828698010994,
+                  "cpu": 33292.566666666666
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 56.42123727621131,
+                  "cpu": 40539.7
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 37.321892974430035,
+                  "cpu": 77243.33333333333
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 45.93290201198323,
+                  "cpu": 70308.13333333333
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 32.871833046598624,
+                  "cpu": 93502.13333333333
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 49.421948085971145,
+                  "cpu": 53322
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 56.41787270446297,
+                  "cpu": 49644.3
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 55.54901109884332,
+                  "cpu": 43991
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 46.52901751460166,
+                  "cpu": 62471.833333333336
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 37.32290036824847,
+                  "cpu": 77522.83333333333
+                }
+              ]
+            },
+            {
+              "mode": "CGB",
+              "route": "boss",
+              "updates": 1070,
+              "peak": 28,
+              "transitions": 0,
+              "updatesPerSecond": 49.95557199602502,
+              "cpuMean": 73896.81121495327,
+              "windows": [
+                {
+                  "tick": 65,
+                  "updates": 120,
+                  "updatesPerSecond": 50.822542942279476,
+                  "cpu": 71376.2
+                },
+                {
+                  "tick": 185,
+                  "updates": 120,
+                  "updatesPerSecond": 54.698253321237004,
+                  "cpu": 66905.6
+                },
+                {
+                  "tick": 305,
+                  "updates": 120,
+                  "updatesPerSecond": 45.64165734457498,
+                  "cpu": 81357.33333333333
+                },
+                {
+                  "tick": 425,
+                  "updates": 120,
+                  "updatesPerSecond": 55.115110485040894,
+                  "cpu": 66884.86666666667
+                },
+                {
+                  "tick": 545,
+                  "updates": 120,
+                  "updatesPerSecond": 45.93509865090486,
+                  "cpu": 81357.6
+                },
+                {
+                  "tick": 665,
+                  "updates": 120,
+                  "updatesPerSecond": 55.12072390316855,
+                  "cpu": 66884.73333333334
+                },
+                {
+                  "tick": 785,
+                  "updates": 120,
+                  "updatesPerSecond": 45.64165734457498,
+                  "cpu": 81357.53333333334
+                },
+                {
+                  "tick": 905,
+                  "updates": 120,
+                  "updatesPerSecond": 54.697944215792134,
+                  "cpu": 66884.93333333333
+                },
+                {
+                  "tick": 1025,
+                  "updates": 110,
+                  "updatesPerSecond": 44.987613555409816,
+                  "cpu": 82804.83636363636
+                }
+              ]
+            },
+            {
+              "mode": "DMG",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 27.512189462009726,
+              "cpuMean": 63975.28888888889,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 40.01140919814133,
+                  "cpu": 33207.86666666667
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 36.184963019646645,
+                  "cpu": 40567.933333333334
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 24.371399247295603,
+                  "cpu": 78513.3
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 26.54053339188617,
+                  "cpu": 71533.03333333334
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 21.517972497913256,
+                  "cpu": 95053.96666666666
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 31.98799278835154,
+                  "cpu": 53654.1
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 30.754283217082325,
+                  "cpu": 49962.6
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 31.153317085199706,
+                  "cpu": 44148.3
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 27.45263988333801,
+                  "cpu": 63311.53333333333
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 23.806104985222063,
+                  "cpu": 79032.83333333333
+                }
+              ]
+            },
+            {
+              "mode": "DMG",
+              "route": "boss",
+              "updates": 1070,
+              "peak": 28,
+              "transitions": 0,
+              "updatesPerSecond": 22.055600590512835,
+              "cpuMean": 76005.08785046729,
+              "windows": [
+                {
+                  "tick": 65,
+                  "updates": 120,
+                  "updatesPerSecond": 21.32798528201089,
+                  "cpu": 73116.1
+                },
+                {
+                  "tick": 185,
+                  "updates": 120,
+                  "updatesPerSecond": 24.709130090365786,
+                  "cpu": 68733.53333333334
+                },
+                {
+                  "tick": 305,
+                  "updates": 120,
+                  "updatesPerSecond": 20.12851755622763,
+                  "cpu": 83813.7
+                },
+                {
+                  "tick": 425,
+                  "updates": 120,
+                  "updatesPerSecond": 24.624836051810565,
+                  "cpu": 68733.46666666666
+                },
+                {
+                  "tick": 545,
+                  "updates": 120,
+                  "updatesPerSecond": 20.185691047520045,
+                  "cpu": 83841.3
+                },
+                {
+                  "tick": 665,
+                  "updates": 120,
+                  "updatesPerSecond": 24.79361725898467,
+                  "cpu": 68685.2
+                },
+                {
+                  "tick": 785,
+                  "updates": 120,
+                  "updatesPerSecond": 20.129570518699612,
+                  "cpu": 83844.43333333333
+                },
+                {
+                  "tick": 905,
+                  "updates": 120,
+                  "updatesPerSecond": 24.53877965570192,
+                  "cpu": 68697.4
+                },
+                {
+                  "tick": 1025,
+                  "updates": 110,
+                  "updatesPerSecond": 19.785375921483816,
+                  "cpu": 85360.25454545455
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "rom": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+          "sha256": "62d86c0e3b97cfbbd2dacec15b42fabfa5c8ca0fb7bffebff1649ba94f280a68",
+          "character": 1,
+          "stage": 6,
+          "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+          "results": [
+            {
+              "mode": "CGB",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 46.83451090747147,
+              "cpuMean": 63671.72592592592,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 59.20331160695088,
+                  "cpu": 32188.433333333334
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 57.78591553176686,
+                  "cpu": 42968.76666666667
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 41.90402735053665,
+                  "cpu": 70289.73333333334
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 50.81717562277019,
+                  "cpu": 67819.06666666667
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 35.127066064080054,
+                  "cpu": 97018.2
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 50.114172536859044,
+                  "cpu": 54079.2
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 58.731277903153156,
+                  "cpu": 47435.1
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 59.712620032317076,
+                  "cpu": 38407.066666666666
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 45.06641280592762,
+                  "cpu": 70022
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 37.12955244456864,
+                  "cpu": 85006.4
+                }
+              ]
+            },
+            {
+              "mode": "CGB",
+              "route": "boss",
+              "updates": 1079,
+              "peak": 28,
+              "transitions": 1,
+              "updatesPerSecond": 54.834350960277895,
+              "cpuMean": 65311.96292863763,
+              "windows": [
+                {
+                  "tick": 65,
+                  "updates": 120,
+                  "updatesPerSecond": 53.877198691489546,
+                  "cpu": 64431.23333333333
+                },
+                {
+                  "tick": 185,
+                  "updates": 120,
+                  "updatesPerSecond": 57.3266060776286,
+                  "cpu": 62106.53333333333
+                },
+                {
+                  "tick": 305,
+                  "updates": 120,
+                  "updatesPerSecond": 52.30279385247707,
+                  "cpu": 74420
+                },
+                {
+                  "tick": 425,
+                  "updates": 120,
+                  "updatesPerSecond": 57.32298903461817,
+                  "cpu": 62106.666666666664
+                },
+                {
+                  "tick": 545,
+                  "updates": 120,
+                  "updatesPerSecond": 51.923883502837825,
+                  "cpu": 74420.26666666666
+                },
+                {
+                  "tick": 665,
+                  "updates": 120,
+                  "updatesPerSecond": 58.265039018817845,
+                  "cpu": 55362.6
+                },
+                {
+                  "tick": 786,
+                  "updates": 120,
+                  "updatesPerSecond": 52.30059815876333,
+                  "cpu": 67538.2
+                },
+                {
+                  "tick": 906,
+                  "updates": 120,
+                  "updatesPerSecond": 57.78750783601882,
+                  "cpu": 54733.9
+                },
+                {
+                  "tick": 1026,
+                  "updates": 119,
+                  "updatesPerSecond": 53.42251489309871,
+                  "cpu": 72750.25210084034
+                }
+              ]
+            },
+            {
+              "mode": "DMG",
+              "route": "road",
+              "updates": 1080,
+              "peak": 0,
+              "transitions": 0,
+              "updatesPerSecond": 28.43386167769971,
+              "cpuMean": 64436.566666666666,
+              "windows": [
+                {
+                  "tick": 0,
+                  "updates": 120,
+                  "updatesPerSecond": 41.88185061624966,
+                  "cpu": 32115.833333333332
+                },
+                {
+                  "tick": 120,
+                  "updates": 120,
+                  "updatesPerSecond": 35.64687504780618,
+                  "cpu": 43161.8
+                },
+                {
+                  "tick": 240,
+                  "updates": 120,
+                  "updatesPerSecond": 27.664248693727384,
+                  "cpu": 71248.96666666666
+                },
+                {
+                  "tick": 360,
+                  "updates": 120,
+                  "updatesPerSecond": 28.21038462392131,
+                  "cpu": 68820.5
+                },
+                {
+                  "tick": 480,
+                  "updates": 120,
+                  "updatesPerSecond": 21.979611204631908,
+                  "cpu": 98580.9
+                },
+                {
+                  "tick": 600,
+                  "updates": 120,
+                  "updatesPerSecond": 31.70746777447449,
+                  "cpu": 54424.63333333333
+                },
+                {
+                  "tick": 720,
+                  "updates": 120,
+                  "updatesPerSecond": 32.86811078744008,
+                  "cpu": 47723.4
+                },
+                {
+                  "tick": 840,
+                  "updates": 120,
+                  "updatesPerSecond": 34.58695878644912,
+                  "cpu": 38402.13333333333
+                },
+                {
+                  "tick": 960,
+                  "updates": 120,
+                  "updatesPerSecond": 26.850207315436343,
+                  "cpu": 71043.7
+                },
+                {
+                  "tick": 1080,
+                  "updates": 120,
+                  "updatesPerSecond": 23.116338660863324,
+                  "cpu": 86523.06666666667
+                }
+              ]
+            },
+            {
+              "mode": "DMG",
+              "route": "boss",
+              "updates": 1079,
+              "peak": 28,
+              "transitions": 1,
+              "updatesPerSecond": 25.91603237014451,
+              "cpuMean": 67066.94717330862,
+              "windows": [
+                {
+                  "tick": 65,
+                  "updates": 120,
+                  "updatesPerSecond": 25.77702299216728,
+                  "cpu": 65937.13333333333
+                },
+                {
+                  "tick": 185,
+                  "updates": 120,
+                  "updatesPerSecond": 27.14195364761245,
+                  "cpu": 64010.333333333336
+                },
+                {
+                  "tick": 305,
+                  "updates": 120,
+                  "updatesPerSecond": 24.28886013163137,
+                  "cpu": 77002.36666666667
+                },
+                {
+                  "tick": 425,
+                  "updates": 120,
+                  "updatesPerSecond": 27.039557152435147,
+                  "cpu": 63998.46666666667
+                },
+                {
+                  "tick": 545,
+                  "updates": 120,
+                  "updatesPerSecond": 24.12801070130683,
+                  "cpu": 77011.16666666667
+                },
+                {
+                  "tick": 665,
+                  "updates": 120,
+                  "updatesPerSecond": 28.760961436087843,
+                  "cpu": 56428.333333333336
+                },
+                {
+                  "tick": 786,
+                  "updates": 120,
+                  "updatesPerSecond": 25.14322526912811,
+                  "cpu": 69007.76666666666
+                },
+                {
+                  "tick": 906,
+                  "updates": 120,
+                  "updatesPerSecond": 28.547109185118735,
+                  "cpu": 55565.96666666667
+                },
+                {
+                  "tick": 1026,
+                  "updates": 119,
+                  "updatesPerSecond": 23.52968294842726,
+                  "cpu": 74704.63865546219
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "fortyBullet": {
+      "before": {
+        "variant": "v32-right",
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v32\\performance\\v32-right\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+        "sourceRevision": "fd5de877c19af4cf3f7c0484d4b8e0a34ed4fe45bcca5b3b332a1a0cf07979ae",
+        "sha256": "89618f12c5bb01b0d26c3df51fc4eba119e886d59bb2cf03e1356ab27a73e6fd",
+        "modes": [
+          {
+            "mode": "DMG",
+            "peak": 40,
+            "hits": 4,
+            "meanBgUpdateCycles": 53702.57857857858,
+            "meanDisplayFrames": 2.925854408749159,
+            "updatesPerSecond": 20.413695165896613,
+            "p95": 3.000911369332422,
+            "hash": "2e49dfc2135a2fbb356ce3450d0331478524da5436d9a00431c5e5b13ec108ae",
+            "cpuMeanTCycles": 86498.69545454545,
+            "flushMeanTCycles": 46301.19090909091,
+            "publishMeanTCycles": 602
+          },
+          {
+            "mode": "CGB",
+            "peak": 40,
+            "hits": 4,
+            "meanBgUpdateCycles": 51474.87887887888,
+            "meanDisplayFrames": 1.0379313469624323,
+            "updatesPerSecond": 57.544750117429324,
+            "p95": 1.0040726817042607,
+            "hash": "2e49dfc2135a2fbb356ce3450d0331478524da5436d9a00431c5e5b13ec108ae",
+            "cpuMeanTCycles": 82895.81818181818,
+            "flushMeanTCycles": 11802.186363636363,
+            "publishMeanTCycles": 1694.290909090909,
+            "dmaEndLyMax": 147
+          }
+        ]
+      },
+      "after": {
+        "variant": "v32-right",
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v33\\performance\\v32-right\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+        "sourceRevision": "fd5de877c19af4cf3f7c0484d4b8e0a34ed4fe45bcca5b3b332a1a0cf07979ae",
+        "sha256": "7e3b6172eb7bead5a90e3976e97910c228e55be4a6225755e6efc58f7bd808f0",
+        "modes": [
+          {
+            "mode": "DMG",
+            "peak": 40,
+            "hits": 4,
+            "meanBgUpdateCycles": 49250.5985985986,
+            "meanDisplayFrames": 2.3292634996582673,
+            "updatesPerSecond": 25.64222553985961,
+            "p95": 3.000911369332422,
+            "hash": "2e49dfc2135a2fbb356ce3450d0331478524da5436d9a00431c5e5b13ec108ae",
+            "cpuMeanTCycles": 82133.80454545455,
+            "flushMeanTCycles": 40281.61818181818,
+            "publishMeanTCycles": 602
+          },
+          {
+            "mode": "CGB",
+            "peak": 40,
+            "hits": 4,
+            "meanBgUpdateCycles": 47063.65965965966,
+            "meanDisplayFrames": 1.0402040742351872,
+            "updatesPerSecond": 57.419021401079206,
+            "p95": 1.0041011619958988,
+            "hash": "2e49dfc2135a2fbb356ce3450d0331478524da5436d9a00431c5e5b13ec108ae",
+            "cpuMeanTCycles": 78507.72727272728,
+            "flushMeanTCycles": 10578.063636363637,
+            "publishMeanTCycles": 3735.6,
+            "dmaEndLyMax": 149
+          }
+        ]
+      },
+      "variantLabelNote": "v32-right is the legacy fixture directory name; after contains current v33 engine.",
+      "nativeAfter": {
+        "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\right-hud-v33\\performance\\v32-right\\projects\\bg-local\\build\\Debug\\bg-local.gb",
+        "sha256": "7e3b6172eb7bead5a90e3976e97910c228e55be4a6225755e6efc58f7bd808f0",
+        "results": [
+          {
+            "mode": "CGB",
+            "route": "boss",
+            "inputSha256": "1e0c9f83af719435939e16b3b5a4d20262cdb3fd2181fcbc2a83e6c038455ccb",
+            "updates": 1828,
+            "updatesPerSecond": 56.57091709844559,
+            "peak": 40,
+            "dmaSamples": 1948,
+            "dmaEndMax": 151,
+            "extraVblankWaits": 0,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 57.31913306451613
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 56.88333333333333
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 56.88333333333333
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 55.99453125
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 56.88333333333333
+              },
+              {
+                "tick": 720,
+                "updates": 120,
+                "updatesPerSecond": 56.43543307086615
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 56.43543307086615
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 56.88333333333333
+              },
+              {
+                "tick": 1080,
+                "updates": 120,
+                "updatesPerSecond": 56.43543307086615
+              },
+              {
+                "tick": 1200,
+                "updates": 120,
+                "updatesPerSecond": 56.43543307086615
+              },
+              {
+                "tick": 1320,
+                "updates": 120,
+                "updatesPerSecond": 56.43543307086615
+              },
+              {
+                "tick": 1440,
+                "updates": 120,
+                "updatesPerSecond": 56.88333333333333
+              },
+              {
+                "tick": 1560,
+                "updates": 120,
+                "updatesPerSecond": 56.43543307086615
+              },
+              {
+                "tick": 1680,
+                "updates": 120,
+                "updatesPerSecond": 56.43543307086615
+              },
+              {
+                "tick": 1800,
+                "updates": 120,
+                "updatesPerSecond": 56.43543307086615
+              }
+            ]
+          },
+          {
+            "mode": "DMG",
+            "route": "boss",
+            "inputSha256": "1e0c9f83af719435939e16b3b5a4d20262cdb3fd2181fcbc2a83e6c038455ccb",
+            "updates": 1828,
+            "updatesPerSecond": 25.30873203523412,
+            "peak": 40,
+            "dmaSamples": 0,
+            "extraVblankWaits": 0,
+            "windows": [
+              {
+                "tick": 120,
+                "updates": 119,
+                "updatesPerSecond": 27.1281393129771
+              },
+              {
+                "tick": 240,
+                "updates": 120,
+                "updatesPerSecond": 24.714827586206898
+              },
+              {
+                "tick": 360,
+                "updates": 120,
+                "updatesPerSecond": 26.44760147601476
+              },
+              {
+                "tick": 480,
+                "updates": 120,
+                "updatesPerSecond": 24.132323232323234
+              },
+              {
+                "tick": 600,
+                "updates": 120,
+                "updatesPerSecond": 27.046415094339622
+              },
+              {
+                "tick": 720,
+                "updates": 120,
+                "updatesPerSecond": 23.195145631067962
+              },
+              {
+                "tick": 840,
+                "updates": 120,
+                "updatesPerSecond": 26.843820224719103
+              },
+              {
+                "tick": 960,
+                "updates": 120,
+                "updatesPerSecond": 23.499344262295082
+              },
+              {
+                "tick": 1080,
+                "updates": 120,
+                "updatesPerSecond": 26.944736842105264
+              },
+              {
+                "tick": 1200,
+                "updates": 120,
+                "updatesPerSecond": 23.811627906976746
+              },
+              {
+                "tick": 1320,
+                "updates": 120,
+                "updatesPerSecond": 26.944736842105264
+              },
+              {
+                "tick": 1440,
+                "updates": 120,
+                "updatesPerSecond": 23.499344262295082
+              },
+              {
+                "tick": 1560,
+                "updates": 120,
+                "updatesPerSecond": 26.944736842105264
+              },
+              {
+                "tick": 1680,
+                "updates": 120,
+                "updatesPerSecond": 23.732781456953642
+              },
+              {
+                "tick": 1800,
+                "updates": 120,
+                "updatesPerSecond": 26.944736842105264
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "emulicious": {
+    "evidence": ".cache/right-hud-v33/emulicious/results.json",
+    "sha256": "f67f66f5cb95076e7a09f3907577e08799a98bafaf18dcc19607f241b3dc13c2",
+    "verified": false,
+    "error": "EvaluateRequest: NullPointerException"
+  },
+  "rawEvidence": ".cache/right-hud-v33",
+  "report": "docs/touhou-kouma-v33.md"
+}

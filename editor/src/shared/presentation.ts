@@ -1,5 +1,25 @@
 import type {Game, Presentation, Stage, Screen} from "./model";
 
+const bombViewportCache = new WeakMap<Game, Map<string, {pixels:number[];rgb?:number[]}>>();
+
+/** Keep immutable 160px masters; only gameplay bomb art uses the narrow field. */
+export function bombViewportPixels(game: Game, background: string, beam: boolean) {
+    const art=game.assets.find(a=>a.id===background)!;
+    const frame=art.frames[0];
+    if(game.screens.find(s=>s.id==="hud")?.dock!=="right")return {pixels:frame.pixels,rgb:frame.cgbPixels};
+    let cache=bombViewportCache.get(game);
+    if(!cache){cache=new Map();bombViewportCache.set(game,cache);}
+    const key=background+(beam?"/beam":"/orb"),cached=cache.get(key);
+    if(cached)return cached;
+    const shrink=(source:number[],blank:number)=>{
+        const out=Array(160*144).fill(blank),oy=beam?0:18;
+        for(let y=0;y<108;y++)for(let x=0;x<120;x++)out[(y+oy)*160+x]=source[Math.floor(y*4/3)*160+Math.floor(x*4/3)];
+        return out;
+    };
+    const result={pixels:shrink(frame.pixels,0),rgb:frame.cgbPixels?shrink(frame.cgbPixels,0):undefined};
+    cache.set(key,result);return result;
+}
+
 /** Keep spell names in the 32px footer shared by ROM and editor previews. */
 export function cutinPresentation(intro: {background: string; spellName: string}): Screen {
     const name = [...intro.spellName.normalize("NFC")];
@@ -11,7 +31,7 @@ export function cutinPresentation(intro: {background: string; spellName: string}
 }
 
 /** A shared, tile-aligned UI composition; source illustrations stay untouched. */
-export function titlePresentation(game: Game, base: Screen, choice = 0, stage = 0) {
+export function titlePresentation(game: Game, base: Screen, choice = 0, stage = 0, bossMode = false) {
     if (base.id !== "title" || !base.stageSelect) return {screen: base, pixels: undefined};
     const art = game.assets.find(a => a.id === base.background);
     const pixels = art ? [...art.frames[0].pixels] : Array(160 * 144).fill(0);
@@ -19,8 +39,8 @@ export function titlePresentation(game: Game, base: Screen, choice = 0, stage = 
     const text = (id: string, text: string, x: number, y: number) => ({id, text, x, y, palette:base.palette, binding:"none" as const});
     const index = Math.max(0, Math.min(game.stages.length - 1, stage));
     const screen: Screen = {...base, stageSelect:false, items:[...base.items.filter(i => i.y < 14 && (i.binding !== "highscores" || i.y < 5)),
-        text("menu-start", `${choice ? " " : ">"}START`, 1, 14),
-        text("menu-stage", `${choice ? ">" : " "}STAGE SELECT <${String(index + 1).padStart(2,"0")}>`, 1, 16)]};
+        text("menu-start", `${choice ? " " : ">"}${bossMode ? "BOSS MODE" : "START"}`, 1, 14),
+        text("menu-stage", `${choice ? ">" : " "}${bossMode ? "BOSS SELECT " : "STAGE SELECT"} <${String(index + 1).padStart(2,"0")}>`, 1, 16)]};
     return {screen, pixels};
 }
 
@@ -78,3 +98,8 @@ export function dialoguePixels(game: Game, background: string, portrait?: string
     for (let y = 0; y < 96; y++) for (let x = 0; x < 80; x++) pixels[y * 160 + x] = left.frames[0].pixels[y * 160 + x];
     return pixels;
 }
+/** Seven-pixel ring with its center at (3,3); zero is OBJ transparency. */
+export const focusMarkerPixels = [
+    "00333000", "03111300", "31000130", "31030130",
+    "31000130", "03111300", "00333000", "00000000",
+].flatMap(row => [...row].map(Number));

@@ -2,25 +2,32 @@
 #include "caravan.h"
 #include "music.h"
 static CE_Presentation presentation;
-void ce_spell_sound(void) BANKED {
-    /* E-major rising shimmer, then a falling, quiet tail. CH2/3 stay with BGM. */
-    static const uint16_t pitch[12] = {1650,1783,1849,1890,1915,1949,1943,1915,1890,1849,1783,1849};
-    static const uint8_t volume[12] = {2,3,5,7,9,10,8,6,4,3,2,1};
-    uint8_t step = (72u - ce_spell_sound_left) / 6u;
-    uint16_t frequency;
-    if (step == ce_spell_sound_step) return;
-    ce_spell_sound_step = step; frequency = pitch[step];
-    NR10_REG = 0; NR11_REG = 0x80; NR12_REG = (volume[step] << 4) | 2u;
-    NR13_REG = (uint8_t)frequency; NR14_REG = 0x80u | (frequency >> 8);
+extern const uint8_t ce_title_tiles[], ce_title_labels[];
+void ce_title_draw(void) BANKED {
+    /* These glyph tables belong to bank 1 alongside the screen atlas. */
+    static const CE_Data glyphs={1,ce_title_tiles,12}, labels={1,ce_title_labels,42};
+    uint8_t buf[12];
+    if (!ce_title_select) return;
+    if (ce_debug_boss_mode) {
+        ce_copy(buf,&labels,ce_boss_mode?9u:0u,9);set_bkg_tiles(2,14,9,1,buf);
+        ce_copy(buf,&labels,ce_boss_mode?30u:18u,12);set_bkg_tiles(2,16,12,1,buf);
+    }
+    ce_copy(buf,&glyphs,0,12);
+    set_bkg_tiles(1,14,1,1,buf+!ce_title_choice);
+    set_bkg_tiles(1,16,1,1,buf+ce_title_choice);
+    set_bkg_tiles(16,16,1,1,buf+2u+(ce_title_stage+1u)/10u);
+    set_bkg_tiles(17,16,1,1,buf+2u+(ce_title_stage+1u)%10u);
 }
 
 extern uint8_t allocate(uint8_t kind, uint8_t asset);
 extern void release(uint8_t slot);
 extern void explode(int16_t x, int16_t y);
+extern uint8_t defeated_asset;
+extern int16_t defeated_x, defeated_y;
 
 uint16_t ce_camera_limit(void) BANKED {
     const CE_Stage *s = ce_stage;
-    return ((s->horizontal ? s->width : s->height) * 8u - (s->horizontal ? 160u : 144u - ce_hud_height)) * 16u;
+    return ((s->horizontal ? s->width : s->height) * 8u - (s->horizontal ? CE_PLAY_WIDTH : 144u - ce_hud_height)) * 16u;
 }
 
 /* Presentation runs with gameplay frozen. Only real button edges advance pages. */
@@ -178,6 +185,29 @@ void ce_stage_complete(void) BANKED {
     const CE_Presentation *p = &presentation;
     uint8_t i, pressed, complete;
     uint16_t total, wait_clock, now, elapsed;
+    if (CE_BOSS_MODE) {
+        /* Keep the final burst on screen before the next boss/clear portrait.
+         * Display time, not gameplay ticks: a slow DMG still waits one second. */
+        ce_scene=15; ce_clear_combat(0);
+        for(i=0;i!=ce_used;++i)release(i);
+        ce_used=0;ce_bg_clear();if(ce_battle_mode==2u)ce_bg_begin();
+        explode(defeated_x,defeated_y);ce_sound(2);
+        CRITICAL { wait_clock=sys_time; }
+        do {
+            ce_render();ce_audio_sync();
+            CRITICAL { now=sys_time; }
+            elapsed=now-wait_clock;
+            for(i=0;i!=ce_used;++i)if(ce_entities[i].kind==CE_FX){
+                ce_entities[i].age=elapsed;
+                if(elapsed>=ce_entities[i].lifetime)release(i);
+            }
+            ce_trace_write();
+        } while(elapsed<60u);
+        if (ce_state.stage + 1u < ce_stage_count) {
+            ce_fade(1); ce_reset(ce_state.stage + 1u, 0); ce_boss_seek(); ce_load_stage(); ce_scene = 1; ce_fade(0);
+        } else { ce_scene = 1; ce_state.result = 2; }
+        return;
+    }
     if (ce_ending_score_after && (!ce_campaign || ce_state.stage + 1u == ce_stage_count)) ce_play_ending();
     ce_get_presentation(&presentation, ce_state.stage);
     if (p->clear != 255u) {
@@ -250,13 +280,15 @@ void ce_change_phase(CE_Entity *boss, uint8_t damage) BANKED {
     if (ce_battle_mode == 2u) ce_bg_begin();
     ce_scene = 8; ce_hud();
     if (damage) {
+        if (damage == 1u) {
         ce_transition_state = 1; explode(x, y); ce_sound(1);
         start = transition_clock(); elapsed = 0;
         do {
             for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_FX) ce_entities[i].age = elapsed;
             transition_frame(); elapsed = transition_clock() - start;
         } while (elapsed < ce_explosion_duration);
-        clear_effects(); ce_transition_state = 2; start = transition_clock(); elapsed = 0;
+        clear_effects(); }
+        ce_transition_state = 2; start = transition_clock(); elapsed = 0;
         for (;;) {
             if (elapsed > 32u) elapsed = 32u;
             boss->x = return_position(x, dx, elapsed); boss->y = return_position(y, dy, elapsed);
@@ -272,8 +304,6 @@ void ce_change_phase(CE_Entity *boss, uint8_t damage) BANKED {
     ce_scene = 1; ce_transition_state = 0;
     ce_boss_invulnerable = actor->phase[boss->phase].hp && !actor->phase[boss->phase].until;
 }
-extern uint8_t defeated_asset;
-extern int16_t defeated_x, defeated_y;
 static void victory_effects(void) {
     uint8_t i;
     for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_FX) {
@@ -316,6 +346,12 @@ void ce_read_event(void) BANKED {
     if (event_cursor < ce_stage->event_count)
         ce_copy((uint8_t *)&next_event, &ce_stage->events, event_cursor * 9u, 9u);
 }
+void ce_boss_seek(void) BANKED {
+    while (event_cursor < ce_stage->event_count && next_event.kind != CE_BOSS) {
+        ++event_cursor; ce_read_event();
+    }
+    if (event_cursor < ce_stage->event_count) ce_state.stage_tick = next_event.frame;
+}
 /* Local call stays in this auto-assigned bank. A static BANKED function would
  * bake the placeholder bank 255 into SDCC's call instead of the linker bank. */
 static void spawn_actor(uint8_t kind, uint8_t ref, int16_t x, int16_t y) {
@@ -350,17 +386,18 @@ uint8_t ce_stage_events(void) BANKED {
     } else {
         ce_state.camera += ce_state.scroll;
         if (stage->loop) { if (end && ce_state.camera >= end) ce_state.camera -= end; }
-        else { end -= (stage->horizontal ? 160u : 144u - ce_hud_height) * 16u; if (ce_state.camera < before || ce_state.camera > end) ce_state.camera = end; }
+        else { end -= (stage->horizontal ? CE_PLAY_WIDTH : 144u - ce_hud_height) * 16u; if (ce_state.camera < before || ce_state.camera > end) ce_state.camera = end; }
     }
     while (event_cursor < stage->event_count && next_event.frame <= ce_state.stage_tick) {
         /* Keep this event pending until the live image releases the BG. */
         if (ce_bomb_image && next_event.kind == 2u) break;
-        if (next_event.kind == 2u) ce_dialogue();
+        if (next_event.kind == 2u && !CE_BOSS_MODE) ce_dialogue();
         if (next_event.kind <= 2u && (!ce_battle_mode || next_event.kind == 2u)) spawn_actor(next_event.kind, next_event.ref, next_event.x, next_event.y);
         else if (next_event.kind == 3u) { if (!ce_battle_mode) ce_state.scroll = next_event.value; }
         else if (next_event.kind == 4u) finish = 1;
         else if (next_event.kind == 5u && !ce_battle_mode) ce_spawn_item(next_event.ref, next_event.x * 16, next_event.y * 16);
-        ++event_cursor; ce_read_event();
+        if (CE_BOSS_MODE && next_event.kind == CE_BOSS) event_cursor = stage->event_count;
+        else { ++event_cursor; ce_read_event(); }
     }
     return finish;
 }

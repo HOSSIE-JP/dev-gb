@@ -60,7 +60,7 @@ vm.runInNewContext(fs.readFileSync(path.join(root, 'editor/build/main.cjs'), 'ut
     require: (name) => name === 'electron' ? native : require(name),
     module: { exports: {} }, __dirname: path.join(temp, 'editor/build'),
     process: { ...process, argv: [process.execPath, 'first'], env: { ...process.env } },
-    Buffer, console, structuredClone, URL, Response, setTimeout, clearTimeout,
+    Buffer, atob, btoa, console, structuredClone, URL, Response, setTimeout, clearTimeout,
 });
 
 electron.app.whenReady().then(async()=>{
@@ -79,7 +79,15 @@ electron.app.whenReady().then(async()=>{
  assert.ok((await js("document.body.innerText")).includes('このフェーズのHP'));
  const phaseHp=Number(await js("document.querySelector('input[aria-label=\"このフェーズのHP（0＝通算HP）\"]').value"));
  assert.equal(phaseHp,lib.readGame(root,'touhou-kouma').bosses.find(b=>b.id==='rumia').phases[1].hp);
- assert.equal(await js("Number(document.querySelector('input[aria-label=フェーズ復帰位置X]').value)"),80);
+ assert.equal(await js("Number(document.querySelector('input[aria-label=フェーズ復帰位置X]').value)"),lib.readGame(root,'touhou-kouma').bosses[0].battle.returnX);
+ assert.equal(await js("Number(document.querySelector('input[aria-label=モード制限時間]').value)"),60);
+ assert.equal(await js("Number(document.querySelector('input[aria-label=モード撃破点]').value)"),100);
+ await js("document.querySelector('input[aria-label=モード制限時間]').focus()");
+ win.webContents.sendInputEvent({type:'keyDown',keyCode:'A',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'A',modifiers:['control']});await win.webContents.insertText('59');
+ await until("document.querySelector('input[aria-label=モード制限時間]').value==='59'");
+ win.webContents.sendInputEvent({type:'keyDown',keyCode:'S',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'S',modifiers:['control']});
+ for(let i=0;i<100 && lib.readGame(temp,'first').bosses[0].phases[1].timeLimitSeconds!==59;i++)await new Promise(r=>setTimeout(r,50));
+ assert.equal(lib.readGame(temp,'first').bosses[0].phases[1].timeLimitSeconds,59);record({modeTimeEditedAndReopened:true,modeScoreControl:true});
  fs.mkdirSync(output,{recursive:true});
  fs.writeFileSync(path.join(output,'editor-boss.png'),(await win.webContents.capturePage()).toPNG());
  await js("[...document.querySelectorAll('.category')].find(e=>e.textContent.includes('ステージ')).click()");
@@ -160,12 +168,19 @@ electron.app.whenReady().then(async()=>{
   fs.writeFileSync(path.join(output,'ending-reimu.png'),Buffer.from(reimu.split(',')[1],'base64'));fs.writeFileSync(path.join(output,'ending-marisa.png'),Buffer.from((await js(canvas+'.toDataURL()')).split(',')[1],'base64'));
   await js("[...document.querySelectorAll('.category')].find(e=>e.textContent.includes('プロジェクト')).click()");
   await until("!!document.querySelector('input[aria-label=自動送り秒数]')");
-  const seconds="document.querySelector('input[aria-label=自動送り秒数]')",music="document.querySelector('select[aria-label=エンディングBGM]')",after="document.querySelector('input[aria-label=最終スコアをエンディング後に集計]')";
+  const seconds="[...document.querySelectorAll('summary')].find(e=>e.textContent==='エンディング').parentElement.querySelector('input[aria-label=自動送り秒数]')",music="document.querySelector('select[aria-label=エンディングBGM]')",after="document.querySelector('input[aria-label=最終スコアをエンディング後に集計]')";
   assert.equal(await js(seconds+'.value'),'10');assert.equal(await js(music+'.value'),'34');assert.equal(await js(after+'.checked'),true);
   await js(seconds+'.focus()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'A',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'A',modifiers:['control']});await win.webContents.insertText('12');await until(seconds+".value==='12'");
   win.webContents.sendInputEvent({type:'keyDown',keyCode:'S',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'S',modifiers:['control']});
   for(let i=0;i<100&&lib.readGame(temp,'first').ending.seconds!==12;i++)await new Promise(r=>setTimeout(r,50));const saved=lib.readGame(temp,'first');assert.equal(saved.ending.seconds,12);assert.equal(saved.ending.music,34);assert.equal(saved.ending.scoreAfter,true);assert.equal(lib.resolveEnding(saved,1).at(-1).background,'ending-marisa');assert.equal(fs.existsSync(path.join(temp,'projects/first/build')),false);
   fs.writeFileSync(path.join(output,'editor-ending.png'),(await win.webContents.capturePage()).toPNG());record({endingPreviewsBothCharacters:true,endingSecondsEditedAndReloaded:12,endingMusic:34,scoreAfter:true,buildFree:true});
  }
+ await js("[...document.querySelectorAll('.category')].find(e=>e.textContent.includes('画面')).click()");
+ await js("[...document.querySelectorAll('.asset-row')].find(e=>e.textContent.includes('hud')).click()");
+ await until("!!document.querySelector('canvas[width=\"40\"][height=\"144\"]')");
+ assert.equal(await js("[...document.querySelectorAll('select')].find(e=>[...e.options].some(o=>o.value==='right')&&[...e.options].some(o=>o.value==='top')).value"),'right');
+ assert.equal(await js("document.querySelector('input[aria-label=\"右HUD幅（タイル）\"]').value"),'5');
+ fs.writeFileSync(path.join(output,'editor-right-hud.png'),(await win.webContents.capturePage()).toPNG());
+ record({rightHudCanvas:[40,144],dock:'right',columns:5});
  record({victoryPreview:true,unsavedDialogueRefresh:true,phaseHpControl:true,phaseHp,returnPositionControl:true,bossControls:true,cutinPreview:true,cutinSeconds:Number(duration),scoreWaitControl:true});clearTimeout(timer);electron.app.exit(0);
 }).catch(error=>{record({error:error.stack});clearTimeout(timer);electron.app.exit(1);});

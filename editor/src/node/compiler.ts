@@ -12,10 +12,10 @@ import {
     type Diagnostic,
     validate,
     spriteLayout,
-    q4,
+    q4, playWidth,
 } from "../shared/model";
 import { angleStep, shotAngles, SIN, COS } from "../shared/simulation";
-import {resolvePresentation, resolveEnding, dialoguePixels, gameOverPresentation, titlePresentation, selectionPresentation, cutinPresentation} from "../shared/presentation";
+import {resolvePresentation, resolveEnding, dialoguePixels, gameOverPresentation, titlePresentation, selectionPresentation, cutinPresentation, bombViewportPixels, focusMarkerPixels} from "../shared/presentation";
 import {generateMusic} from "./music-data";
 import {
     safePath,
@@ -273,7 +273,8 @@ export function generate(
     const patternId = (id: string) =>
         id ? game.patterns.findIndex((p) => p.id === id) : 255;
     const layout = spriteLayout(game);
-    const spriteTiles = layout.tiles;
+    const focusPlayers=[game.player,...(game.player.characters??[])];
+    const spriteTiles = layout.tiles + (game.player.focusHitbox ? focusPlayers.length*2 : 0);
     const spriteColor=quantizeSpriteAssets(game), colorSpriteData=Array(spriteTiles*16).fill(0), colorBossGraphics:string[]=[];
     const spriteData: number[] = Array(spriteTiles * 16).fill(0), bossGraphics: string[] = [],
         assetRows: string[] = [];
@@ -303,6 +304,12 @@ export function generate(
         if (layout.overlay.has(a.id)) bossGraphics.push(blob(data));
         else { spriteData.splice((first - 128) * 16, data.length, ...data); bossGraphics.push("{0,0,0}"); }
     });
+    const focusOffsets=focusPlayers.map((p,index)=>{
+        const a=spriteAssets[assetId(p.asset)],left=a.hitbox.x+Math.floor(a.hitbox.w/2)-3,aligned=Math.floor(left/8)*8;
+        if(game.player.focusHitbox){const pixels=Array(128).fill(0);focusMarkerPixels.forEach((v,i)=>pixels[Math.floor(i/8)*16+i%8+left-aligned]=v);const marker=packTiles(16,8,pixels);spriteData.splice((layout.tiles+index*2)*16,32,...marker);colorSpriteData.splice((layout.tiles+index*2)*16,32,...marker);}
+        return aligned-a.origin.x;
+    });
+    config.push(`const uint8_t ce_focus_enabled=${game.player.focusHitbox?2:0},ce_focus_tile=${game.player.focusHitbox?128+layout.tiles:0};`, `const int8_t ce_focus_offsets[]={${focusOffsets}};`);
     config.push(
         `const CE_Asset ce_assets[] = {${assetRows}};`,
         `const CE_Hitbox ce_hitboxes[]={${spriteAssets.map((a) => `{${a.hitbox.x - a.origin.x},${a.hitbox.y - a.origin.y},${a.hitbox.w},${a.hitbox.h}}`)}};`,
@@ -388,10 +395,10 @@ export function generate(
     const bosses = game.bosses.map((a, i) => {
         const phases = a.phases.map(
             (p) =>
-                `{${p.until === "hp" ? 1 : 0},${p.threshold},${patternId(p.pattern)},${motion(p.motion)},${attackList(p.attacks)},${p.intro?.enabled ? introFirst + intros.indexOf(p) : 255},${p.intro?.enabled ? Math.round(p.intro.seconds * 60) : 0},${p.hp ?? 0}}`,
+                `{${p.until === "hp" ? 1 : 0},${p.threshold},${patternId(p.pattern)},${motion(p.motion)},${attackList(p.attacks)},${p.intro?.enabled ? introFirst + intros.indexOf(p) : 255},${p.intro?.enabled ? Math.round(p.intro.seconds * 60) : 0},${p.hp ?? 0},${(p.timeLimitSeconds ?? 0)*60},${p.score ?? 65535}}`,
         );
         config.push(`static const CE_Phase boss_${i}_phases[]={${phases}};`);
-        return `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},${phases.length},boss_${i}_phases,${attackList(a.attacks)},${["stage", "blank", "bg-bullets", "bg-boss"].indexOf(a.battle?.background ?? "stage")},${a.battle?.maxBullets ?? 64},${a.battle?.returnX ?? 80},${a.battle?.returnY ?? 36},${itemId(a.dropItem)}}`;
+        return `{${assetId(a.asset)},${a.hp},${a.score},${patternId(a.pattern)},${motion(a.motion)},${phases.length},boss_${i}_phases,${attackList(a.attacks)},${["stage", "blank", "bg-bullets", "bg-boss"].indexOf(a.battle?.background ?? "stage")},${a.battle?.maxBullets ?? 64},${a.battle?.returnX ?? playWidth(game)/2},${a.battle?.returnY ?? 36},${itemId(a.dropItem)}}`;
     });
     config.push(
         `const CE_Actor ce_enemies[]={${enemies}};`,
@@ -400,17 +407,22 @@ export function generate(
     );
     const glyphs = readFont(root),
         screenRows: string[] = [], colorScreenRows: string[] = [], sceneConfig: string[] = [];
-    let hudTileCount = 0;
-    function compileScreen(s: Screen, index: number, rightPalette?: number, sharedChars = "", pixels?: number[], tileBudget = 255, portraitId?: string) {
+    let hudTileCount = 0; let hudTileBytes:number[]=[];
+    function compileScreen(s: Screen, index: number, rightPalette?: number, sharedChars = "", pixels?: number[], tileBudget = 255, portraitId?: string, bombArt?: {pixels:number[];rgb?:number[]}) {
         if (s.id === "title" && s.stageSelect) { const title = titlePresentation(game,s); s = title.screen; pixels = title.pixels; }
         const width = 20,
-            height = s.id === "hud" ? (s.rows ?? 2) : 18,
+            height = s.id === "hud" ? (s.dock === "right" ? 18 : s.rows ?? 2) : 18,
             tileBytes = Array(16).fill(0),
             tileMap = Array(width * height).fill(0),
             attrs = tileMap.map(() => s.palette),
             dictionary = new Map<string, number>([
                 [Array(16).fill(0).join(","), 0],
             ]);
+        if(bombArt){
+            tileBytes.splice(0,tileBytes.length,...hudTileBytes);dictionary.clear();
+            for(let i=0;i<hudTileBytes.length;i+=16)dictionary.set(hudTileBytes.slice(i,i+16).join(","),i/16);
+            pixels=bombArt.pixels;
+        }
         const addTile = (tile: number[]) => {
             const key = tile.join(",");
             if (dictionary.has(key)) return dictionary.get(key)!;
@@ -444,7 +456,7 @@ export function generate(
             });
             if (item.binding !== "none") {
                 bindings.push(
-                    `{${["none", "score", "lives", "time", "boss", "highscores", "bombs", "shotLevel", "speedLevel", "barrier"].indexOf(item.binding)},${item.x + labelLength},${item.y},${item.digits ?? 5}}`,
+                    `{${["none", "score", "lives", "time", "boss", "highscores", "bombs", "shotLevel", "speedLevel", "barrier", "bossTime", "bossPhase"].indexOf(item.binding)},${item.x + labelLength},${item.y},${item.digits ?? 5}}`,
                 );
                 const count = item.binding === "highscores" ? 9 : (item.digits ?? 5);
                 for (let n = 0; n < count; n++)
@@ -466,7 +478,11 @@ export function generate(
             ? [..."0123456789"].map(charTile)
             : Array(10).fill(0);
         if (bindings.length) charTile(" ");
-        if (index === 0) sceneConfig.push(`const uint8_t ce_title_tiles[]={${game.screens.find(s=>s.id==="title")?.stageSelect ? [..." >0123456789"].map(charTile) : "0"}};`);
+        if (s.id === "hud") sceneConfig.push(`const uint8_t ce_hud_symbols[]={${[..." -/"].map(charTile)}};`);
+        if (index === 0) {
+            sceneConfig.push(`const uint8_t ce_title_tiles[]={${game.screens.find(s=>s.id==="title")?.stageSelect ? [..." >0123456789"].map(charTile) : "0"}};`);
+            sceneConfig.push(`const uint8_t ce_title_labels[]={${game.debugBossMode ? [..."START    BOSS MODESTAGE SELECTBOSS SELECT "].map(charTile) : "0"}};`);
+        }
         const count = tileBytes.length / 16;
         // Full-screen scenes hide sprites and reload their tiles on stage entry.
         // They may use both halves of the BG tile area; gameplay/HUD still share
@@ -476,7 +492,7 @@ export function generate(
             throw new Error(
                 `${s.name}: 背景と文字が${count}タイルあります（上限${tileLimit}）`,
             );
-        if (s.id === "hud") hudTileCount = count;
+        if (s.id === "hud") {hudTileCount = count;hudTileBytes=[...tileBytes];}
         sceneConfig.push(
             `static const uint8_t screen_${index}_digits[]={${digits}};`,
             `static const CE_Binding screen_${index}_bindings[]={${bindings.length ? bindings.join(",") : "{0,0,0,5}"}};`,
@@ -486,10 +502,10 @@ export function generate(
         );
         const sourceAsset = game.assets.find(a=>a.id===s.background);
         if (s.id !== "hud" && sourceAsset?.frames[0].cgbPixels) {
-            const rgb = [...sourceAsset.frames[0].cgbPixels];
+            const rgb = [...(bombArt?.rgb ?? sourceAsset.frames[0].cgbPixels)];
             // Presentation helpers erase menu bands or substitute a portrait.
             // Copy matching source regions in RGB, keeping the DMG composition.
-            if (pixels) {
+            if (pixels && !bombArt) {
                 const base = sourceAsset.frames[0].pixels;
                 const portrait = game.assets.find(a=>a.id===portraitId);
                 for(let y=0;y<144;y++)for(let x=0;x<160;x++) {
@@ -501,7 +517,7 @@ export function generate(
                 if(s.id==="gameover")rgb.fill(Number.parseInt(game.palettes[0].colors[0].slice(1),16),160*104);
             }
             const q=quantizeColorTiles(160,144,rgb), raw=packTiles(160,144,q.pixels);
-            const atlas:number[][]=Array.from({length:512},()=>Array(16).fill(0)), used=new Set<number>([0,...Object.values(chars)]);
+            const atlas:number[][]=Array.from({length:512},()=>Array(16).fill(0)), used=new Set<number>([0,...Object.values(chars),...(bombArt?Array.from({length:hudTileCount},(_,i)=>i):[])]);
             for(const id of used)atlas[id]=tileBytes.slice(id*16,id*16+16);
             const dictionary=new Map<string,number>(), map:number[]=[], attributes:number[]=[];
             let next=1;
@@ -515,6 +531,7 @@ export function generate(
                 for(let n=0;n<item.text.normalize("NFC").length;n++){const i=item.y*20+item.x+n;map[i]=tileMap[i];attributes[i]=0;}
                 if(item.binding!=="none")for(let row=0;row<(item.binding==="highscores"?5:1);row++)for(let n=0;n<(item.binding==="highscores"?9:item.digits??5);n++){const x=item.x+item.text.length+n;if(x<20)attributes[(item.y+row*2)*20+x]=0;}
             }
+            if(index===0&&game.debugBossMode)for(let x=2;x<11;x++)attributes[14*20+x]=0;
             if(index===0&&s.stageSelect)for(const i of [281,321,336,337])attributes[i]=0;
             const colorCount=Math.max(...used)+1;
             colorScreenRows.push(`{${blob(atlas.slice(0,colorCount).flat())},${blob(map)},${blob(attributes)},${blob(q.palettes.flatMap(c=>[c&255,c>>8]))},${colorCount}}`);
@@ -528,6 +545,8 @@ export function generate(
     );
 
     config.push(`const uint8_t ce_title_select=${+(game.screens.find(s=>s.id==="title")?.stageSelect ?? false)};`);
+    config.push(`const uint8_t ce_debug_boss_mode=${+(game.debugBossMode ?? false)};`);
+    config.push(`const uint8_t ce_graze_radius=${game.graze?.enabled?game.graze.radius:0},ce_graze_score=${game.graze?.score??10},ce_graze_frames=${game.graze?.flashFrames??12};`);
 
     const ordered = game.stageOrder.map((id) =>
         game.stages.find((s) => s.id === id)!,
@@ -640,7 +659,7 @@ export function generate(
     const bomb=game.player.bomb,bombScreens:number[]=[];
     for(const p of players){
         bombScreens.push(bomb?.enabled?screenRows.length:255);
-        if(bomb?.enabled)compileScreen({id:"clear",name:`${p.name}のボム（スプライト領域を保持）`,background:p.bombBackground||bomb.background,palette:0,dock:"top",items:[]},screenRows.length,undefined,"",undefined,128);
+        if(bomb?.enabled)compileScreen({id:"clear",name:`${p.name}のボム（スプライト領域を保持）`,background:p.bombBackground||bomb.background,palette:0,dock:"top",items:[]},screenRows.length,undefined,"",undefined,128,undefined,game.screens.find(s=>s.id==="hud")?.dock==="right"?bombViewportPixels(game,p.bombBackground||bomb.background,p.bombStyle==="beam"):undefined);
     }
     config.push(`const uint8_t ce_bomb_stock=${bomb?.enabled ? bomb.stock : 0},ce_bomb_damage=${bomb?.damage ?? 30},ce_bomb_frames=${bomb?.frames ?? 48},ce_bomb_period=${bomb?.flashPeriod ?? 2};`,
         `const uint8_t ce_bomb_live=${bomb?.live ? bomb.presentation === "image" ? 2 : 1 : 0},ce_bomb_button=${+(bomb?.button === "b")},ce_bomb_background=${+!!bomb?.destroyBackground},ce_bomb_max=${bomb?.maxStock ?? 9};`,
@@ -773,7 +792,7 @@ export function generate(
         `const uint8_t ce_campaign=${+(game.mode === "campaign")},ce_start_stage=${Math.max(
             0,
             ordered.findIndex((s) => s.id === game.startStage),
-        )},ce_hud_bottom=${+(game.screens.find((s) => s.id === "hud")!.dock === "bottom")},ce_hud_height=${(game.screens.find((s) => s.id === "hud")!.rows ?? 2) * 8};`,
+        )},ce_hud_bottom=${+(game.screens.find((s) => s.id === "hud")!.dock === "bottom")},ce_hud_height=${game.screens.find((s)=>s.id==="hud")!.dock==="right"?0:(game.screens.find((s) => s.id === "hud")!.rows ?? 2) * 8};`,
     );
     config.push(
         `const uint8_t ce_player_lives=${game.player.lives};`,
@@ -782,6 +801,7 @@ export function generate(
     );
     config.push(
         `const uint16_t ce_player_invulnerability=${game.player.invulnerability},ce_clear_bonus=${game.clearBonus},ce_player_respawn_delay=${game.player.respawnDelay ?? 0};`,
+        `const uint8_t ce_legacy_score_divisor=${game.legacyScoreDivisor ?? 1};`,
         `const uint8_t ce_save_id[]={${Array.from(Buffer.from(game.name)).reduce((h, b) => Math.imul(h ^ b, 16777619) >>> 0, 2166136261).toString(16).padStart(8,"0").match(/../g)!.map(b => parseInt(b,16))}};`,
         `const uint8_t ce_stage_fade=${+(game.stageFade ?? true)},ce_time_limit=${+(game.timeLimit ?? true)},ce_boss_celebration=${+(game.bossCelebration ?? false)};`,
         `const int16_t ce_player_start_x=${q4(game.player.x)},ce_player_start_y=${q4(game.player.y)};`,
@@ -883,11 +903,13 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "mainloop.c", "flow.c", "movie.c", "special.c", "terrain.c", "items.c", "bg-bullets.c", "render.c", "music.c", "save.c"]
+        const inputs = ["runtime.c", "mainloop.c", "flow.c", "movie.c", "special.c", "bomb-road.c", "terrain.c", "items.c", "bg-bullets.c", "render.c", "sprites.c", "music.c", "sound.c", "graze.c", "boss-phase.c", "save.c"]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [
             "-Wm-yc",
+            `-DCE_GRAZE_ENABLED=${+(game.graze?.enabled??false)}`,
+            `-DCE_HUD_RIGHT=${+(game.screens.find(s=>s.id==="hud")?.dock==="right")}`,
             "-Wf--opt-code-speed",
             "-Wf--max-allocs-per-node50000",
             "-Wl-yt0x1B",

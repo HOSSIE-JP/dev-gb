@@ -1,0 +1,17 @@
+{
+  "version": "0.33-shot-hit-performance",
+  "intent": [
+    "Correct shot collision false negatives and visible alignment",
+    "Enlarge enemy targets while retaining player and shot dimensions",
+    "Reproduce reported slowdown in production ROMs on BGB",
+    "Remove unnecessary waits and hidden-area rendering work",
+    "Keep the 120x144 playfield, right HUD, boss deadlines and score migration"
+  ],
+  "constraints": [
+    "DMG and CGB remain supported",
+    "Do not decrease authored bullet counts or skip collisions to improve measurements",
+    "Preserve source art and save identity",
+    "Separate diagnostic, browser-emulator, native-emulator and physical hardware evidence"
+  ],
+  "approved": false
+}

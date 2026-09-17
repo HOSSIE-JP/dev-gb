@@ -1,4 +1,4 @@
-import { type Game, type Stage, type Point, q4, hudHeight } from "./model";
+import { type Game, type Stage, type Point, q4, hudHeight, playWidth } from "./model";
 
 export const horizontalStage = (stage: Stage) => stage.scrollAxis === "horizontal";
 export const stageSpan = (stage: Stage) => (horizontalStage(stage) ? stage.width : stage.height) * 8;
@@ -6,7 +6,7 @@ export const initialCamera = (game: Game, stage: Stage) => !horizontalStage(stag
 export function advanceCamera(game: Game, stage: Stage, camera: number, speed: number) {
     const span = q4(stageSpan(stage)), next = camera + (!horizontalStage(stage) && stage.scrollDown ? -speed : speed);
     // Do not truncate to uint16 before wrapping: a 512-tile map spans 65536 Q4 units.
-    return stage.loopMap ? ((next % span) + span) % span : Math.max(0, Math.min(next, span - q4(horizontalStage(stage) ? 160 : 144 - hudHeight(game))));
+    return stage.loopMap ? ((next % span) + span) % span : Math.max(0, Math.min(next, span - q4(horizontalStage(stage) ? playWidth(game) : 144 - hudHeight(game))));
 }
 /** Camera at the beginning of a playable tick, including prior scroll events. */
 export function cameraAtFrame(game: Game, stage: Stage, frame: number) {

@@ -27,10 +27,79 @@ static void draw_shot(void) __naked {
         pop de
         pop bc
         ret
+#if CE_GRAZE_ENABLED
+_bg_graze_xy:
+        ; D/E remain the displayed, quantized dot coordinates.
+        ld a, (_ce_graze_active)
+        or a
+        ret z
+        ld a, (_ce_graze_x)
+        ld b, a
+        ld a, d
+        sub b
+        ld b, a
+        ld a, (_ce_graze_w)
+        cp b
+        ret c
+        ret z
+        ld a, (_ce_graze_y)
+        ld c, a
+        ld a, e
+        sub c
+        ld c, a
+        ld a, (_ce_graze_h)
+        cp c
+        ret c
+        ret z
+        ld a, (_ce_graze_radius)
+        ld l, a
+        ld a, b
+        cp l
+        jr c, _bg_graze_near
+        ld a, (_ce_graze_w)
+        sub l
+        cp b
+        jr c, _bg_graze_near
+        jr z, _bg_graze_near
+        ld a, c
+        cp l
+        jr c, _bg_graze_near
+        ld a, (_ce_graze_h)
+        sub l
+        cp c
+        jr z, _bg_graze_near
+        ret nc
+_bg_graze_near:
+        ld a, (_slot)
+        and #7
+        ld l, a
+        ld h, #0
+        ld bc, #_graze_bits
+        add hl, bc
+        ld b, (hl)
+        ld a, (_slot)
+        srl a
+        srl a
+        srl a
+        ld l, a
+        ld h, #0
+        ld a, b
+        ld bc, #_grazed
+        add hl, bc
+        ld b, a
+        and (hl)
+        ret nz
+        ld a, b
+        or (hl)
+        ld (hl), a
+        ld hl, #_ce_graze_pending
+        inc (hl)
+        ret
+#endif
 _draw_local_xy:
         ld a, d
         and #0xfe
-        cp #160
+        cp #CE_PLAY_WIDTH
         jp nc, _bg_xy_030
         ld d, a
         ld a, e
@@ -50,7 +119,7 @@ _bg_xy_106:
 _draw_xy:
         ld a, d
         and #0xfe
-        cp #160
+        cp #CE_PLAY_WIDTH
         jp nc, _bg_xy_030
         ld d, a
         ld a, e
@@ -97,10 +166,18 @@ _bg_xy_006:
         ld (_ce_bg_hit), a
         jp _bg_xy_030
 _bg_xy_010:
+#if CE_GRAZE_ENABLED
+        call _bg_graze_xy
+#endif
         ld a, (_ce_battle_mode)
         cp #3
         ret z
+        jr _bg_xy_render
 _bg_xy_plot:
+#if CE_GRAZE_ENABLED
+        call _bg_graze_xy
+#endif
+_bg_xy_render:
         ; Compute the sub-tile position once, while D/E still hold X/Y.
         ld a, d
         and #6

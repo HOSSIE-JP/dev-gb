@@ -442,14 +442,18 @@ export function ScreenCanvas({
     const [menuChoice,setMenuChoice]=useState(0),[menuStage,setMenuStage]=useState(0);
     const stageIds=[...game.stageOrder,...game.stages.map(s=>s.id).filter(id=>!game.stageOrder.includes(id))];
     const ref = useRef<HTMLCanvasElement>(null),
-        height = screen.id === "hud" ? (screen.rows ?? 2) * 8 : 144;
+        width = screen.id === "hud" && screen.dock === "right" ? 40 : 160,
+        height = screen.id === "hud" && screen.dock !== "right" ? (screen.rows ?? 2) * 8 : 144;
     useEffect(() => {
         const c = ref.current?.getContext("2d");
         if (!c) return;
-        drawScreen(c, game, screen, glyphs, dmg, {titleChoice:String(menuChoice),titleStage:String(menuStage)});
+        drawScreen(c, game, screen, glyphs, dmg, {
+            titleChoice:String(menuChoice),titleStage:String(menuStage),
+            ...(screen.id==="hud" && screen.dock==="right" ? {bossTime:"60",boss:"100",bossPhase:"1/3",score:"12345",lives:"5",bombs:"2"} : {}),
+        });
         c.strokeStyle = "#7f90a344";
         c.lineWidth = 0.3;
-        for (let x = 0; x <= 160; x += 8) {
+        for (let x = 0; x <= width; x += 8) {
             c.beginPath();
             c.moveTo(x, 0);
             c.lineTo(x, height);
@@ -458,7 +462,7 @@ export function ScreenCanvas({
         for (let y = 0; y <= height; y += 8) {
             c.beginPath();
             c.moveTo(0, y);
-            c.lineTo(160, y);
+            c.lineTo(width, y);
             c.stroke();
         }
         const t = screen.items.find((i) => i.id === selected);
@@ -474,11 +478,11 @@ export function ScreenCanvas({
             <div className="canvas-well">
                 <canvas
                     ref={ref}
-                    width={160}
+                    width={width}
                     height={height}
-                    style={{ width: 640, height: height * 4 }}
+                    style={{ width: width * 4, height: height * 4 }}
                     onPointerDown={(e) => {
-                        const p = pos(e, 160, height),
+                        const p = pos(e, width, height),
                             x = Math.floor(p.x / 8),
                             y = Math.floor(p.y / 8),
                             hit = [...screen.items]
@@ -501,7 +505,7 @@ export function ScreenCanvas({
                     }}
                     onPointerMove={(e) => {
                         if (!e.buttons || !dragging.current) return;
-                        const p = pos(e, 160, height);
+                        const p = pos(e, width, height);
                         onChange({
                             ...screen,
                             items: screen.items.map((t) =>
@@ -511,7 +515,7 @@ export function ScreenCanvas({
                                           x: Math.max(
                                               0,
                                               Math.min(
-                                                  19,
+                                                  width / 8 - [...t.text.normalize("NFC")].length - (t.binding==="none"?0:t.binding==="highscores"?9:t.digits??5),
                                                   Math.floor(p.x / 8) -
                                                       grab.current.x,
                                               ),
@@ -559,7 +563,7 @@ export function drawScreen(
     }
     const colors = dmg ? dmgColors(g) : g.palettes[s.palette].colors;
     c.fillStyle = colors[0];
-    c.fillRect(0, 0, 160, s.id === "hud" ? (s.rows ?? 2) * 8 : 144);
+    c.fillRect(0, 0, s.id === "hud" && s.dock === "right" ? 40 : 160, s.id === "hud" && s.dock !== "right" ? (s.rows ?? 2) * 8 : 144);
     const background = g.assets.find((a) => a.id === s.background);
     if (background) {
         const f=background.frames[0];
@@ -575,7 +579,7 @@ export function drawScreen(
                 (item.binding === "none"
                     ? ""
                     : (values[item.binding] ??
-                      (item.binding === "highscores" ? "1  00000" : "00000")).slice(item.binding === "highscores" ? 0 : -(item.digits ?? 5)).padStart(item.binding === "highscores" ? 0 : (item.digits ?? 5), "0"));
+                      (item.binding === "highscores" ? "1  00000" : "00000")).slice(item.binding === "highscores" ? 0 : -(item.digits ?? 5)).padStart(item.binding === "highscores" ? 0 : (item.digits ?? 5), values[item.binding]?.includes("-") ? " " : "0"));
         const drawText = (text: string, tx: number, ty: number) =>
             [...text.normalize("NFC")].forEach((char, i) => {
                 const pixels = glyphs[char];

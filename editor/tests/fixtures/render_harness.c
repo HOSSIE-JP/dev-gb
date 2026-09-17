@@ -5,13 +5,13 @@ extern volatile uint8_t ce_kernel_status;
 void ce_render_kernel_test(void) BANKED {
     static const uint16_t ages[] = {0,1,2,3,9,10,20,21,127,128,129,255,256,65534,65535,0,1,1};
     static const int16_t positions[] = {-513,-17,-16,-15,-1,0,1,15,16,17,1279,2560,3073};
-    static CE_Entity candidate;
-    static const CE_Asset *asset;
-    static uint16_t n,time;
-    static uint8_t a,pass,frame,tile,x,y,column,row,index,expected_y;
+    CE_Entity candidate;
+    const CE_Asset *asset;
+    uint16_t n,time;
+    uint8_t a,pass,frame,tile,x,y,column,row,index,expected_y;
     ce_is_cgb = _cpu == CGB_TYPE;
     DISABLE_OAM_DMA;
-    hide_all();
+    ce_hide_sprites();
     emit_top=9; emit_bottom=144;
     for (pass=0; pass!=2u; ++pass) for (a=0; a!=ce_asset_count; ++a) {
         asset=&ce_assets[a]; candidate.asset=a; pose=&candidate;

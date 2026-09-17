@@ -3,6 +3,20 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
 #include <stdint.h>
+#ifndef CE_GRAZE_ENABLED
+#define CE_GRAZE_ENABLED 0
+#endif
+
+#ifndef CE_HUD_RIGHT
+#define CE_HUD_RIGHT 0
+#endif
+#if CE_HUD_RIGHT
+#define CE_PLAY_WIDTH 120
+#define CE_SPRITE_X_LIMIT 120
+#else
+#define CE_PLAY_WIDTH 160
+#define CE_SPRITE_X_LIMIT 167
+#endif
 
 #define CE_MAX_ENTITIES 39u
 #define CE_MAX_ENEMIES 12u
@@ -43,7 +57,7 @@ typedef struct {
     uint8_t emitters; const int8_t *emitter_xy;
 } CE_Pattern;
 typedef struct { uint8_t asset, weapon, speed, focus_weapon, focus_speed; } CE_Player;
-typedef struct { uint8_t until; uint16_t threshold; uint8_t pattern; const CE_Motion *motion; uint8_t layers; const uint8_t *layer; uint8_t intro_screen; uint16_t intro_frames; uint8_t hp; } CE_Phase;
+typedef struct { uint8_t until; uint16_t threshold; uint8_t pattern; const CE_Motion *motion; uint8_t layers; const uint8_t *layer; uint8_t intro_screen; uint16_t intro_frames; uint8_t hp; uint16_t time_limit, score; } CE_Phase;
 typedef struct { uint8_t asset, hp; uint16_t score; uint8_t pattern; const CE_Motion *motion; uint8_t phases; const CE_Phase *phase; uint8_t layers; const uint8_t *layer; uint8_t background, bg_limit, return_x, return_y, drop_item; } CE_Actor;
 
 typedef struct { uint8_t kind; uint16_t amount; } CE_ItemEffect;
@@ -79,6 +93,23 @@ typedef struct {
 } CE_State;
 
 extern const uint8_t ce_asset_count, ce_pattern_count, ce_enemy_count, ce_boss_count, ce_stage_count;
+extern const uint8_t ce_debug_boss_mode,ce_graze_radius,ce_graze_score,ce_graze_frames;
+extern uint8_t ce_boss_mode;
+#define CE_BOSS_MODE (ce_boss_mode && !ce_demo)
+void ce_boss_seek(void) BANKED;
+extern CE_Entity ce_player_pose;
+extern const uint8_t ce_focus_enabled, ce_focus_tile;
+extern const int8_t ce_focus_offsets[];
+void ce_prepare_road_bomb(void) BANKED;
+void ce_road_bomb_draw(uint8_t visible) BANKED;
+void ce_bomb_end(void) BANKED;
+void ce_get_road_palette(CE_Data *data) BANKED;
+extern uint8_t ce_graze_flash,ce_graze_active,ce_graze_pending;
+extern uint8_t ce_graze_x,ce_graze_y,ce_graze_w,ce_graze_h;
+void ce_graze_begin(void) BANKED;
+void ce_graze_finish(void) BANKED;
+void ce_graze_palette(uint8_t fade) BANKED;
+void ce_graze_oam(uint8_t count) BANKED;
 extern const CE_Asset ce_assets[];
 extern const CE_Hitbox ce_hitboxes[];
 extern const CE_Pattern ce_patterns[];
@@ -183,7 +214,10 @@ extern uint8_t ce_shot_simple[CE_MAX_ENTITIES];
 extern uint8_t ce_is_cgb, ce_scene, ce_pause, ce_active_screen;
 extern uint8_t ce_used;
 extern uint16_t ce_scores[5];
-extern const uint8_t ce_save_id[4];
+extern const uint8_t ce_save_id[4], ce_legacy_score_divisor;
+extern const uint8_t ce_hud_symbols[3];
+void ce_finish_boss_modes(void) BANKED;
+uint16_t ce_boss_status(uint8_t kind) BANKED;
 void ce_save_load(void) BANKED;
 void ce_save_scores(void) BANKED;
 extern volatile uint8_t ce_trace[24];
@@ -193,6 +227,7 @@ uint8_t ce_read(const CE_Data *source, uint16_t offset) NONBANKED;
 void ce_reset(uint8_t stage, uint8_t new_game) NONBANKED;
 void ce_step(uint8_t input) NONBANKED;
 void ce_trace_write(void) NONBANKED;
+void ce_trace_build(void) BANKED;
 uint8_t ce_boss_hp(void) NONBANKED;
 void ce_load_stage(void) BANKED;
 typedef struct { uint8_t screen; uint16_t frames; } CE_Logo;
@@ -213,12 +248,17 @@ extern uint8_t ce_ending_slide;
 extern uint16_t ce_ending_left;
 void ce_play_ending(void) BANKED;
 void ce_render(void) BANKED;
+void ce_draw_sprites(void) BANKED;
+void ce_hide_sprites(void) BANKED;
+void ce_prepare_player_ranges(void) BANKED;
+extern uint8_t ce_player_ranges[64u * 4u];
 void ce_fade(uint8_t out) BANKED;
 void ce_audio_sync(void) NONBANKED;
 void ce_hud(void) BANKED;
 void ce_sound(uint8_t effect) NONBANKED;
+void ce_sfx(uint8_t effect) BANKED;
+void ce_sfx_tick(uint8_t elapsed) BANKED;
 extern uint8_t ce_spell_sound_left, ce_spell_sound_step;
-void ce_spell_sound(void) BANKED;
 void ce_run(void) NONBANKED;
 /* Boss presentation and monochrome BG shot renderer. */
 typedef struct { int16_t x,y,vx,vy; uint16_t life; uint8_t damage, pattern, angle; } CE_BGSpawn;

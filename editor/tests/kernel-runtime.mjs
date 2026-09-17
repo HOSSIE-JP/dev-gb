@@ -27,7 +27,6 @@ assert.ok(source.includes("void ce_run(void) NONBANKED {"));
 // Keep the actual kernels in fixed bank 0. Only expose their private linkage
 // in this disposable copy; the large independent C oracle runs in bank 2.
 const functions = [
-    "prepare_player_ranges",
     "box",
     "overlap",
     "prepare_shot",
@@ -66,8 +65,9 @@ fs.writeFileSync(
 fs.writeFileSync(
     path.join(fixture, "engine/caravan/mainloop.c"),
     '#pragma bank 2\n#include "caravan.h"\n#include <string.h>\n' +
+        'uint8_t ce_title_choice, ce_title_stage, ce_demo, ce_demo_abort, ce_demo_cutin;\n' +
         declarations.map((d) => `extern ${d}`).join("\n") +
-        "\nvoid prepare_player_ranges(void);\nvoid box(CE_Box *, const CE_Entity *);\nuint8_t overlap(void);\n" +
+        "\nvoid box(CE_Box *, const CE_Entity *);\nuint8_t overlap(void);\n" +
         [
             "prepare_shot",
             "init_shot_visual",
@@ -83,7 +83,7 @@ fs.writeFileSync(
         ),
 );
 fs.appendFileSync(
-    path.join(fixture, "engine/caravan/render.c"),
+    path.join(fixture, "engine/caravan/sprites.c"),
     fs.readFileSync(
         new URL("./fixtures/render_harness.c", import.meta.url),
         "utf8",

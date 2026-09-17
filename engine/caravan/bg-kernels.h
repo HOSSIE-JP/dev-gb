@@ -96,16 +96,28 @@ static void pack_dma_map(void) __naked {
         ld de, #_map
         ld b, #18
 001$:
+#if CE_HUD_RIGHT
+        .rept 16
+#else
         .rept 20
+#endif
         ld a, (de)
         inc de
         ld (hl+), a
         .endm
+#if CE_HUD_RIGHT
+        ld a, e
+        add #4
+        ld e, a
+        jr nc, 003$
+        inc d
+#else
         ld a, l
         add #12
         ld l, a
         jr nc, 003$
         inc h
+#endif
 003$:
         dec b
         jr nz, 001$
@@ -115,6 +127,159 @@ static void pack_dma_map(void) __naked {
         ret
     __endasm;
 }
+#if CE_HUD_RIGHT
+/* Columns 16..19 are static HUD. Update both map pages only when a binding
+ * changes; column 15 shares the hardware's minimum 16-byte DMA block. */
+static void copy_hud_maps(void) __naked {
+    __asm
+        push bc
+        push de
+        push hl
+        ld hl, #0x9810
+        call 001$
+        ld hl, #0x9c10
+        call 001$
+        pop hl
+        pop de
+        pop bc
+        ret
+001$:
+        ld de, #(_map + 16)
+        ld b, #18
+002$:
+        ld c, #2
+003$:
+        di
+004$:
+        ldh a, (#0x41)
+        and #2
+        jr nz, 004$
+        ld a, (de)
+        ld (hl+), a
+        inc de
+        ld a, (de)
+        ld (hl+), a
+        inc de
+        ei
+        dec c
+        jr nz, 003$
+        ld a, e
+        add #16
+        ld e, a
+        jr nc, 005$
+        inc d
+005$:
+        ld a, l
+        add #28
+        ld l, a
+        jr nc, 006$
+        inc h
+006$:
+        dec b
+        jr nz, 002$
+        ret
+    __endasm;
+}
+static void copy_play_map(void) __naked {
+    __asm
+        push bc
+        push de
+        push hl
+        ld de, #_map
+        ld hl, #0x9c00
+        ld a, (_ce_bg_map_front)
+        or a
+        jr z, 001$
+        ld h, #0x98
+001$:
+        ld b, #18
+002$:
+        ld c, #8
+003$:
+        di
+004$:
+        ldh a, (#0x41)
+        and #2
+        jr nz, 004$
+        ld a, (de)
+        ld (hl+), a
+        inc de
+        ld a, (de)
+        ld (hl+), a
+        inc de
+        ei
+        dec c
+        jr nz, 003$
+        ld a, e
+        add #4
+        ld e, a
+        jr nc, 005$
+        inc d
+005$:
+        ld a, l
+        add #16
+        ld l, a
+        jr nc, 006$
+        inc h
+006$:
+        dec b
+        jr nz, 002$
+        pop hl
+        pop de
+        pop bc
+        ret
+    __endasm;
+}
+/* Called inside the publication critical section, after OAM DMA. Explicitly
+ * program each aligned source/destination; no undocumented register readback. */
+static void publish_play_rows(void) __naked {
+    __asm
+        push bc
+        push de
+        push hl
+        ld a, (_dma_map)
+        ld l, a
+        ld a, (_dma_map + 1)
+        ld h, a
+        ld de, #0x9c00
+        ld a, (_ce_bg_map_front)
+        or a
+        jr z, 001$
+        ld d, #0x98
+001$:
+        ld b, #18
+002$:
+        ld a, h
+        ldh (#0x51), a
+        ld a, l
+        ldh (#0x52), a
+        ld a, d
+        ldh (#0x53), a
+        ld a, e
+        ldh (#0x54), a
+        xor a
+        ldh (#0x55), a
+        ld a, l
+        add #16
+        ld l, a
+        jr nc, 003$
+        inc h
+003$:
+        ld a, e
+        add #32
+        ld e, a
+        jr nc, 004$
+        inc d
+004$:
+        dec b
+        jr nz, 002$
+        pop hl
+        pop de
+        pop bc
+        ret
+    __endasm;
+}
+#endif
 static void copy_map(void) __naked {
     __asm
         push bc

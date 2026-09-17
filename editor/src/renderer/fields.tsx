@@ -3,6 +3,7 @@ import { type Game, clone, uid } from "../shared/model";
 import { MusicField, SoundtrackFields } from "./music-field";
 
 const labels: Record<string, string> = {
+    debugBossMode:"タイトルでBを10回：ボス連戦デバッグ",graze:"グレイズ",radius:"かすり判定の幅（px）",flashFrames:"グレイズ発光時間（更新数）",
     stageSelect:"START／STAGE SELECTメニュー（下4行）", selectionHeading:"「キャラクター選択」の見出し",
     contactBoxes:"胴体の接触判定（弱点原点から・最大8矩形）", smooth:"滑らかに補間する（Q4）", live:"ボム演出中もゲームを動かす", barrierMax:"バリアの上限", barrierFrames:"バリア被弾後の無敵（更新数）", barrierAsset:"バリア装着時の自機画像", graphic:"巨大BG画像（原点＝弱点）", scrollAxis: "スクロール方向", spacingY: "編隊間隔 Y", oscillationAxis: "波形の振幅方向", emitterOffsets: "発射位置の差替え（自機原点から）", dropItem: "撃破時のアイテム", atomicVolleys: "一斉射撃を全弾まとめて生成", maxLives: "残機の上限", button: "ボム操作", maxStock: "ボム所持上限", destroyBackground: "ボムで背景を破壊して得点", powerUps: "パワーアップ", shotWeapons: "ショット段階（先頭が初期）", speedLevels: "速度段階（先頭が初期）", shotOnMiss: "ミス時のショット", speedOnMiss: "ミス時の速度", amount: "加算量", playerShots: "自機弾の同時上限（6〜24）",
     selectionBackground:"機体選択の画像（文字なし）",gameoverBackground:"ゲームオーバーの専用画像",characterDialogues:"追加機体の会話",character:"対象の選択機体",before:"戦闘開始前の会話",after:"撃破後の会話",portrait:"左の立ち絵差替え（上部80×96）",dialoguePortrait:"左の立ち絵差替え（上部80×96）",
@@ -26,6 +27,7 @@ const labels: Record<string, string> = {
     weapon: "自機の弾幕",
     focusWeapon: "Bボタンの集中ショット",
     focusSpeed: "集中ショット中の速度 px / frame",
+    focusHitbox: "低速中に当たり判定の円を表示",
     scrollDown: "背景を上から下へ流す",
     requireBoss: "時間内のボス撃破を必須にする",
     dmgPalette: "DMG階調レジスター（0〜255）",
@@ -84,7 +86,7 @@ const labels: Record<string, string> = {
     text: "表示文字（英数字・かな）",
     binding: "動的表示",
     digits: "数値の桁数",
-    rows: "HUD行数",
+    rows: "HUD行数", columns:"右HUD幅（タイル）", timeLimitSeconds:"モード制限時間（秒・0で無制限）", legacyScoreDivisor:"旧ランキングの換算除数",
     ref: "出現キャラクター",
     spacing: "編隊間隔 X",
     value: "変更後スクロール速度",
@@ -180,7 +182,7 @@ export function Form({
     return (
         <div className="form" data-context={context}>
             {Object.entries(
-                context === "player" ? { name:"PLAYER 1",selectionBackground:"",selectionHeading:false,gameoverBackground:"", focusWeapon: "", focusSpeed: value.speed, respawnDelay: 0, characters:[], barrierMax:3,barrierFrames:45,barrierAsset:"",maxLives:9, atomicVolleys:false, bomb:{enabled:false,stock:2,damage:30,frames:48,flashPeriod:2,background:""}, ...value }
+                context === "player" ? { name:"PLAYER 1",selectionBackground:"",selectionHeading:false,gameoverBackground:"", focusWeapon: "", focusSpeed: value.speed, focusHitbox:false, respawnDelay: 0, characters:[], barrierMax:3,barrierFrames:45,barrierAsset:"",maxLives:9, atomicVolleys:false, bomb:{enabled:false,stock:2,damage:30,frames:48,flashPeriod:2,background:""}, ...value }
                 : context === "characters" ? {selectionBackground:"",gameoverBackground:"",focusWeapon:"",focusSpeed:value.speed,bombBackground:"",bombStyle:"orb",...value}
                 : context === "pattern" ? {launch:{kind:"actor",x:80,y:32,step:16,lanes:1},guidance:{frames:48,period:16},emitterOffsets:[],...value}
                 : context === "stage" ? { scrollAxis:"vertical", requireBoss: false, scrollDown: false, music: 0, bossMusic: 0, presentation: { enabled: false, dialogueBackground: "", clearBackground: "", rightPalette: 0, dialogue: [], clearEnabled: false, baseBonus: game.clearBonus, lifeBonus: 200, noMissBonus: 1000 }, parallax: { enabled: false, firstTile: 0, width: 4, height: 2, divisor: 2 }, ...value }
@@ -193,14 +195,14 @@ export function Form({
                 : context === "actor" || context === "item" ? { ...(context === "actor" ? {dropItem:""} : {}), ...value}
                 : context === "performance" ? {playerShots:6,...value}
                 : "phases" in value ? {battle: {background: "stage", maxBullets: 64}, ...value}
-                : context === "phase" ? {hp: 0, intro: {enabled: false, background: "", spellName: value.name, seconds: 1.2}, ...value}
+                : context === "phase" ? {hp: 0, timeLimitSeconds:0, intro: {enabled: false, background: "", spellName: value.name, seconds: 1.2}, ...value}
                 : context === "presentation" ? {dialoguePortrait:"",characterDialogues:[],clearWaitSeconds: 2, victoryDialogue: {enabled: false, background: value.clearBackground ?? "", pages: []}, ...value}
                 : ["before","after","victoryDialogue"].includes(context) ? {portrait:"",...value}
                 : context === "ending" ? {music: game.music?.clear ?? 0, scoreAfter:false, characterSlides:[], ...value}
-                : value.id === "hud" ? { rows: 2, ...value }
+                : value.id === "hud" ? { rows: 2, columns:5, ...value }
                 : value.id === "title" && "dock" in value && Array.isArray(value.items) ? { stageSelect:false, ...value }
                 : "binding" in value ? { digits: 5, ...value }
-                : value.schemaVersion === 1 ? { attract:{enabled:false,titleSeconds:12,bossSeconds:15,rankingSeconds:8}, performance:{enemies:12,playerShots:6,enemyShots:32,effects:4}, continue: {enabled:false,seconds:10,delaySeconds:0}, startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
+                : value.schemaVersion === 1 ? { debugBossMode:false,graze:{enabled:false,radius:6,score:10,flashFrames:12},attract:{enabled:false,titleSeconds:12,bossSeconds:15,rankingSeconds:8}, performance:{enemies:12,playerShots:6,enemyShots:32,effects:4}, continue: {enabled:false,seconds:10,delaySeconds:0}, startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )
                 .filter(
@@ -284,7 +286,7 @@ export function Form({
                     const enums: Record<string, string[]> = {
                         mode: ["caravan", "campaign"],
                         until: ["time", "hp"],
-                        dock: ["top", "bottom"],
+                        dock: ["top", "bottom", "right"],
                         bombStyle:["orb","beam"],
                         scrollAxis:["vertical","horizontal"], oscillationAxis:["x","y"], button:["a+b","b"],
                         binding: [
@@ -295,7 +297,7 @@ export function Form({
                             "boss",
                             "highscores",
                             "bombs",
-                            "shotLevel", "speedLevel", "barrier",
+                            "shotLevel", "speedLevel", "barrier", "bossTime", "bossPhase",
                         ],
                     };
                     if (context === "bomb") enums.presentation = ["palette", "image"];

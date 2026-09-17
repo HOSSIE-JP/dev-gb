@@ -3,8 +3,6 @@
  * No game RAM modification by the host, and no diagnostic code in releases. */
 volatile uint8_t ce_kernel_status;
 volatile uint16_t ce_kernel_cases;
-static CE_Entity test_pose, test_reference;
-static CE_Box test_actual, test_expected, test_player;
 void ce_render_kernel_test(void) BANKED;
 static void reference_box(CE_Box *b, const CE_Entity *e) {
     const CE_Hitbox *a = &ce_hitboxes[e->asset];
@@ -23,7 +21,7 @@ static uint8_t test_shot_animation(void) {
         asset=&ce_assets[a]; if(asset->tiles!=1u)continue;
         slot=a&1u ? 0u : CE_MAX_ENTITIES-1u;
         ce_entities[slot].asset=a; ce_shot_x[slot]=1279;ce_shot_y[slot]=1023;
-        ce_shot_age[slot]=0; init_shot_visual(slot);
+        ce_shot_age[slot]=0; ce_init_shot_visual(slot);
         age=0;
         do {
             ce_shot_age[slot]=age;
@@ -36,17 +34,20 @@ static uint8_t test_shot_animation(void) {
         ce_shot_age[slot]=0;advance_shot_animation(slot);
         if(ce_shot_oam[slot].tile!=asset->first_tile || shot_left[slot]!=asset->durations[0])return 0;
         /* Reinitializing the same asset must also clear its previous phase. */
-        init_shot_visual(slot);
+        ce_init_shot_visual(slot);
         if(shot_frame[slot] || shot_left[slot]!=asset->durations[0])return 0;
     }
     return 1;
 }
 static void ce_kernel_test(void) {
+    /* Oracle-only scratch uses the reserved stack, not scarce static WRAM. */
+    CE_Entity test_pose, test_reference;
+    CE_Box test_actual, test_expected, test_player;
     static const int16_t coordinates[] = {-32768,-1025,-513,-512,-511,-33,-32,-31,-17,-16,-15,-1,0,1,15,16,17,127,128,255,256,511,512,1023,1024,1535,1536,1919,1920,2047,2048,2559,2560,2815,2816,2817,3071,3072,3073,32767};
     static const int16_t velocities[] = {-128,-17,-1,0,1,17,128};
     static const uint16_t ages[] = {0,1,127,255,256,383,384,65534,65535};
     uint8_t a,x,y,v,n,slot,expected; uint16_t cases = 0;
-    ce_kernel_status=1; prepare_player_ranges();
+    ce_kernel_status=1; ce_prepare_player_ranges();
     shot_top=9; shot_bottom=144;
     test_pose.asset=ce_player_asset;test_pose.x=1280;test_pose.y=1024;
     reference_box(&test_player,&test_pose);

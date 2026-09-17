@@ -21,30 +21,34 @@ static uint16_t crc(void) {
 static uint8_t read_slot(uint8_t slot) {
     uint8_t i, offset = slot << 5;
     for (i = 0; i != 20u; ++i) record[i] = sram[offset + i];
-    if (record[0] != 0xa5u || record[1] != 1u) return 0;
+    if (record[0] != 0xa5u || (record[1] != 1u && record[1] != 2u)) return 0;
     for (i = 0; i != 4u; ++i) if (record[2u + i] != ce_save_id[i]) return 0;
     if (crc() != word(18)) return 0;
     for (i = 10; i != 18u; i += 2u) if (word(i) > word(i - 2u)) return 0;
     return 1;
 }
 void ce_save_load(void) BANKED {
-    uint8_t slot, i; uint16_t generation, delta;
+    uint8_t slot, i, legacy=0; uint16_t generation, delta;
     ce_save_slot = 255; ce_save_generation = 0;
     for (i = 0; i != 5u; ++i) ce_scores[i] = 0;
     ENABLE_RAM; SWITCH_RAM(0);
     for (slot = 0; slot != 2u; ++slot) if (read_slot(slot)) {
         generation = word(6); delta = generation - ce_save_generation;
         if (ce_save_slot == 255u || (delta && delta < 0x8000u)) {
-            ce_save_slot = slot; ce_save_generation = generation;
+            ce_save_slot = slot; ce_save_generation = generation;legacy=record[1]==1u;
             for (i = 0; i != 5u; ++i) ce_scores[i] = word(8u + (i << 1));
         }
     }
     DISABLE_RAM;
+    if(legacy && ce_legacy_score_divisor>1u){
+        for(i=0;i!=5u;++i)ce_scores[i]/=ce_legacy_score_divisor;
+        ce_save_scores();
+    }
 }
 void ce_save_scores(void) BANKED {
     uint8_t i, slot = ce_save_slot == 0u ? 1u : 0u, offset = slot << 5;
     uint16_t sum, generation = ce_save_generation + 1u;
-    record[0] = 0xa5; record[1] = 1;
+    record[0] = 0xa5; record[1] = ce_legacy_score_divisor>1u?2u:1u;
     for (i = 0; i != 4u; ++i) record[2u + i] = ce_save_id[i];
     record[6] = generation; record[7] = generation >> 8;
     for (i = 0; i != 5u; ++i) { record[8u + (i << 1)] = ce_scores[i]; record[9u + (i << 1)] = ce_scores[i] >> 8; }

@@ -74,6 +74,8 @@ export type BossPhase = {
     until: "time" | "hp";
     threshold: number;
     hp?: number;
+    timeLimitSeconds?: number;
+    score?: number;
     pattern: string;
     attacks?: { id: string; pattern: string }[];
     motion: Motion;
@@ -152,20 +154,23 @@ export type TextItem = {
     y: number;
     palette: number;
     digits?: number;
-    binding: "none" | "score" | "lives" | "time" | "boss" | "highscores" | "bombs" | "shotLevel" | "speedLevel" | "barrier";
+    binding: "none" | "score" | "lives" | "time" | "boss" | "highscores" | "bombs" | "shotLevel" | "speedLevel" | "barrier" | "bossTime" | "bossPhase";
 };
 export type Screen = {
     id: "title" | "gameover" | "clear" | "scores" | "hud";
     name: string;
     background: string;
     palette: number;
-    dock: "top" | "bottom";
+    dock: "top" | "bottom" | "right";
     rows?: number;
+    columns?: number;
     /** Title only: reserve the bottom four rows for START / STAGE SELECT. */
     stageSelect?: boolean;
     items: TextItem[];
 };
-export const hudHeight = (game: Game) => (game.screens.find(s => s.id === "hud")?.rows ?? 2) * 8;
+export const hudColumns = (game: Game) => { const h=game.screens.find(s=>s.id==="hud"); return h?.dock==="right" ? (h.columns ?? 5) : 20; };
+export const hudHeight = (game: Game) => game.screens.find(s=>s.id==="hud")?.dock==="right" ? 0 : (game.screens.find(s => s.id === "hud")?.rows ?? 2) * 8;
+export const playWidth = (game: Game) => game.screens.find(s=>s.id==="hud")?.dock === "right" ? 160-hudColumns(game)*8 : 160;
 
 export type PlayerCharacter = { id: string; name: string; asset: string; speed: number; weapon: string; focusWeapon?: string; focusSpeed?: number; bombBackground?: string; bombStyle?: "orb" | "beam"; selectionBackground?: string; gameoverBackground?: string };
 export type Bomb = { enabled: boolean; stock: number; damage: number; frames: number; flashPeriod: number; background: string; button?: "a+b" | "b"; destroyBackground?: boolean; maxStock?: number; live?: boolean; presentation?: "palette" | "image" };
@@ -208,6 +213,7 @@ export type Game = {
         weapon: string;
         focusWeapon?: string;
         focusSpeed?: number;
+        focusHitbox?: boolean;
         x: number;
         y: number;
     };
@@ -219,9 +225,13 @@ export type Game = {
         music?: number; scoreAfter?: boolean;
         characterSlides?: {id: string; character: string; slides: {id: string; background: string}[]}[] };
     clearBonus: number;
+    /** One-time migration of version-1 rankings; new scores already use the new unit. */
+    legacyScoreDivisor?: number;
     stageFade?: boolean;
     timeLimit?: boolean;
     bossCelebration?: boolean;
+    debugBossMode?: boolean;
+    graze?: { enabled: boolean; radius: number; score: number; flashFrames: number };
     music?: { title: number; boss: number; clear: number; gameover: number; victory?: number };
     /** Optional admission caps. OAM 40 and the fixed pool remain hard limits. */
     performance?: { enemies: number; playerShots: number; enemyShots: number; effects: number };
@@ -400,6 +410,7 @@ export function validateShape(
                         until: "string",
                         threshold: "number",
                         "hp?": "number",
+                        "timeLimitSeconds?": "number", "score?": "number",
                         pattern: "string",
                         "attacks?": attacks,
                         motion,
@@ -460,7 +471,7 @@ export function validateShape(
                 background: "string",
                 palette: "number",
                 dock: "string",
-                "rows?": "number",
+                "rows?": "number", "columns?": "number",
                 "stageSelect?": "boolean",
                 items: [
                     {
@@ -490,6 +501,7 @@ export function validateShape(
             weapon: "string",
             "focusWeapon?": "string",
             "focusSpeed?": "number",
+            "focusHitbox?": "boolean",
             x: "number",
             y: "number",
         },
@@ -499,10 +511,12 @@ export function validateShape(
         "startupMovie?": {enabled:"boolean", pcm:"string", frames:[{dmg:"string",cgb:"string",attributes:"string",palettes:"string"}]},
         "ending?": { seconds: "number", slides: [{id: "string", background: "string"}], "music?":"number", "scoreAfter?":"boolean",
             "characterSlides?":[{id:"string",character:"string",slides:[{id:"string",background:"string"}]}] },
-        clearBonus: "number",
+        clearBonus: "number", "legacyScoreDivisor?": "number",
         "stageFade?": "boolean",
         "timeLimit?": "boolean",
         "bossCelebration?": "boolean",
+        "debugBossMode?": "boolean",
+        "graze?": {enabled:"boolean",radius:"number",score:"number",flashFrames:"number"},
         "music?": { title: "number", boss: "number", clear: "number", gameover: "number", "victory?": "number" },
         "performance?": { enemies: "number", playerShots: "number", enemyShots: "number", effects: "number" },
         effects: { explosion: "string", duration: "number" },
@@ -806,12 +820,13 @@ export function validate(value: unknown): Diagnostic[] {
             if (!["stage", "blank", "bg-bullets", "bg-boss"].includes(b.battle.background)) err(b.id, "ボス背景モードが不正です");
             integer(b.battle.maxBullets, 1, b.battle.background === "bg-boss" ? 32 : 64, b.id);
             if (b.battle.background === "bg-boss") {
+                if (playWidth(game) < 160) err(b.id, "巨大BGボスは上下HUD専用です。右HUDではBG弾幕を選択してください");
                 const art = assets.get(b.battle.graphic ?? "");
                 if (!art || art.kind !== "screen" || art.width !== 160 || art.height !== 144) err(b.id, "巨大BGボスは160×144の画面画像を指定してください（原点が弱点位置）");
                 if (art && art.frames.length > 1 && (art.frames.length > 8 || ![1,2,4,8,16,32,64,128].includes(art.frames[0].duration) || art.frames.some(f => f.duration !== art.frames[0].duration))) err(b.id,"巨大BGアニメは8枚まで・全コマ共通の2の累乗更新数にしてください");
                 if (b.phases.some(p => p.intro?.enabled)) err(b.id, "巨大BGボスではフェーズ間カットインを無効にしてください");
             }
-            if (b.battle.returnX !== undefined) integer(b.battle.returnX, 16, 144, b.id);
+            if (b.battle.returnX !== undefined) integer(b.battle.returnX, 16, playWidth(game)-16, b.id);
             if (b.battle.returnY !== undefined) integer(b.battle.returnY, 24, 128, b.id);
         }
         uniqueIds(b.phases, b.id);
@@ -900,6 +915,15 @@ export function validate(value: unknown): Diagnostic[] {
             if (slides.length > 20) err("ending", "スライドは20枚までです");
             for (const slide of slides) if (!game.assets.some(a => a.id === slide.background && a.kind === "screen" && a.width === 160 && a.height === 144)) err("ending", "160x144の画面画像を指定してください");
         }
+    }
+    if (game.graze) {
+        integer(game.graze.radius, 1, 12, "graze");
+        integer(game.graze.score, 1, 255, "graze");
+        integer(game.graze.flashFrames, 1, 60, "graze");
+    }
+    if (game.debugBossMode) {
+        if (!game.screens.some(s => s.id === "title" && s.stageSelect)) err("debugBossMode", "ボス連戦にはタイトルのステージ選択が必要です");
+        if (game.stages.some(s => !s.events.some(e => e.kind === "boss"))) err("debugBossMode", "ボス連戦には各ステージのボス登場イベントが必要です");
     }
     if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 37, "music");
     if (game.bossCelebration && game.music?.victory !== undefined && ![0, 6, 7, 8, 14, 15, 29].includes(game.music.victory))
@@ -1130,19 +1154,24 @@ export function validate(value: unknown): Diagnostic[] {
             !["title", "gameover", "clear", "scores", "hud"].includes(screen.id)
         )
             err(screen.id, "画面種別が不正です");
-        if (!["top", "bottom"].includes(screen.dock))
-            err(screen.id, "HUDの配置は上または下にしてください");
+        if (!["top", "bottom", "right"].includes(screen.dock))
+            err(screen.id, "HUDの配置は上・下・右にしてください");
         if (screen.background) assetRef(screen.background, screen.id, "screen");
         if (screen.id === "hud" && screen.background)
             warn(screen.id, "HUDの背景素材はROMに使用されません");
         integer(screen.palette, 0, game.palettes.length - 1, screen.id);
         integer(screen.items.length, 0, 32, screen.id);
-        if (screen.rows !== undefined) integer(screen.rows, 1, 2, screen.id);
+        if (screen.rows !== undefined) integer(screen.rows, 1, screen.dock === "right" ? 18 : 2, screen.id);
+        if (screen.columns !== undefined) integer(screen.columns, 5, 5, screen.id);
+        const columns = screen.id === "hud" && screen.dock === "right" ? (screen.columns ?? 5) : 20;
+        const rows = screen.id === "hud" ? (screen.dock === "right" ? 18 : screen.rows ?? 2) : 18;
         if (screen.stageSelect && screen.id !== "title") err(screen.id, "ステージ選択メニューはタイトル画面専用です");
         for (const text of screen.items) {
-            integer(text.x, 0, 19, screen.id);
-            integer(text.y, 0, screen.id === "hud" ? (screen.rows ?? 2) - 1 : 17, screen.id);
+            integer(text.x, 0, columns - 1, screen.id);
+            integer(text.y, 0, rows - 1, screen.id);
             if (text.digits !== undefined) integer(text.digits, 1, 5, text.id);
+            if (text.binding === "bossPhase" && text.digits !== 3) err(text.id, "MODE表示は3文字（1/3）にしてください");
+            if (screen.id !== "hud" && ["bossTime","bossPhase"].includes(text.binding)) err(text.id, "ボス制限時間・MODE表示はHUD専用です");
             integer(text.palette, 0, game.palettes.length - 1, screen.id);
             if (!supportedText(text.text))
                 err(text.id, "英数字・ひらがな・カタカナのみ使用できます");
@@ -1162,11 +1191,11 @@ export function validate(value: unknown): Diagnostic[] {
                     "boss",
                     "highscores",
                     "bombs",
-                    "shotLevel", "speedLevel", "barrier",
+                    "shotLevel", "speedLevel", "barrier", "bossTime", "bossPhase",
                 ].includes(text.binding)
             )
                 err(text.id, "動的表示の種類が不正です");
-            if (text.x + width > 20) err(text.id, "表示が画面の右端を超えます");
+            if (text.x + width > columns) err(text.id, "表示が画面の右端を超えます");
             if (
                 text.binding === "highscores" &&
                 (screen.id === "hud" || text.y + 9 > 18)
@@ -1174,7 +1203,13 @@ export function validate(value: unknown): Diagnostic[] {
                 err(text.id, "スコア一覧の表示領域が足りません");
         }
     }
-    const spriteTiles = spriteLayout(game).tiles;
+    if (game.legacyScoreDivisor !== undefined) integer(game.legacyScoreDivisor, 1, 255, "legacyScoreDivisor");
+    for (const boss of game.bosses) for (const phase of boss.phases) {
+        if (phase.timeLimitSeconds !== undefined) integer(phase.timeLimitSeconds, 0, 99, phase.id);
+        if (phase.score !== undefined) integer(phase.score, 0, 65534, phase.id);
+        if ((phase.timeLimitSeconds || phase.score !== undefined) && (phase.until !== "hp" || !phase.hp)) err(phase.id, "制限時間・撃破点にはモード固有HPが必要です");
+    }
+    const spriteTiles = spriteLayout(game).tiles + (game.player.focusHitbox ? 2*(1+(game.player.characters?.length??0)) : 0);
     if (spriteTiles > 128)
         err(
             "assets",

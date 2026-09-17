@@ -24,10 +24,10 @@ void ce_bomb_effect(void) BANKED {
     uint8_t frame=0;
     if (ce_bomb_live) {
         ce_bomb_left = ce_bomb_frames;
-        if (ce_bomb_live == 2u) { ce_render(); ce_bomb_setup(); ce_bomb_image = 1; }
-        ce_sound(ce_bomb_live == 2u && ce_bomb_styles[ce_character] ? 5u : 2u); return;
+        if (ce_bomb_live == 2u) { ce_render(); ce_bomb_image = 1; ce_bomb_setup(); }
+        ce_sound(ce_bomb_styles[ce_character] ? 7u : 2u); return;
     }
-    ce_bomb_left=ce_bomb_frames;ce_render();ce_scene=11;ce_bomb_setup();ce_sound(ce_bomb_styles[ce_character]?5u:2u);
+    ce_bomb_left=ce_bomb_frames;ce_render();ce_scene=11;ce_bomb_setup();ce_sound(ce_bomb_styles[ce_character]?7u:2u);
     for(ce_bomb_left=ce_bomb_frames;ce_bomb_left;--ce_bomb_left,++frame){
         vsync();ce_bomb_draw((frame/ce_bomb_period)&1u);ce_audio_sync();ce_trace_write();
     }
@@ -66,7 +66,7 @@ void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t fri
         base = p->angle;
         if(origin && origin!=5u){
             uint8_t right=origin==2u||(origin==3u&&(sequence&1u))||(origin==4u&&emitter);
-            px=right?2528:16;base=right?12u:4u;
+            px=right?(CE_PLAY_WIDTH-2)*16:16;base=right?12u:4u;
         }
         if (p->kind == 1u || p->kind == 7u) base = p->angle + ce_aim((ce_state.player_x - px) / 16, (ce_state.player_y - py) / 16);
         /* Downward aimed shots keep their horizontal boundary when the target
@@ -101,6 +101,9 @@ void ce_damage_actor(uint8_t slot, uint8_t damage) BANKED {
     if(target->kind!=CE_ENEMY && target->kind!=CE_BOSS)return;
     if(target->kind==CE_BOSS && ce_boss_invulnerable)return;
     actor=target->kind==CE_BOSS?&ce_bosses[target->ref]:&ce_enemies[target->ref];
+    if(target->kind==CE_BOSS && actor->phase[target->phase].until && (actor->phase[target->phase].time_limit || actor->phase[target->phase].score != 65535u) && target->hp<=damage){
+        target->hp=0;ce_boss_invulnerable=1;ce_clear_combat(0);return;
+    }
     if(target->kind==CE_BOSS && target->phase+1u<actor->phases){
         const CE_Phase *p=&actor->phase[target->phase];
         if(p->until && (p->hp || actor->phase[target->phase+1u].intro_frames) && target->hp <= (p->hp?0u:p->threshold)+damage){
@@ -125,7 +128,7 @@ void ce_bomb_sweep(void) BANKED {
         if(ce_bomb_hits[i>>3]&bit)continue;
         if(e->kind==CE_BOSS && ce_boss_invulnerable)continue;
         a=&ce_assets[e->asset];
-        if(e->x+(int16_t)(a->width-a->ox)*16<=0 || e->x-(int16_t)a->ox*16>=2560 ||
+        if(e->x+(int16_t)(a->width-a->ox)*16<=0 || e->x-(int16_t)a->ox*16>=(int16_t)CE_PLAY_WIDTH*16 ||
            e->y+(int16_t)(a->height-a->oy)*16<=0 || e->y-(int16_t)a->oy*16>=2304)continue;
         ce_bomb_hits[i>>3]|=bit;
         ce_damage_actor(i,ce_bomb_damage);

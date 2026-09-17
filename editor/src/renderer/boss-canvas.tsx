@@ -43,6 +43,10 @@ export function BossCanvas({
                     </select>
                 </label>
             </div>
+            <div className="toolbar">
+                <label>モード制限時間（秒・0で無制限） <input aria-label="モード制限時間" type="number" min={0} max={99} value={phase.timeLimitSeconds ?? 0} onChange={e=>onChange({...boss,phases:boss.phases.map((p,i)=>i===selected?{...p,timeLimitSeconds:Number(e.target.value)}:p)})}/></label>
+                <label>モード撃破点（空欄は従来方式） <input aria-label="モード撃破点" type="number" min={0} max={65534} value={phase.score ?? ""} onChange={e=>onChange({...boss,phases:boss.phases.map((p,i)=>i===selected?{...p,score:e.target.value===""?undefined:Number(e.target.value)}:p)})}/></label>
+            </div>
             {phase.intro?.enabled && <div className="canvas-well">
                 <canvas ref={canvas} width={160} height={144} style={{width:320,height:288,imageRendering:"pixelated"}} aria-label="弾幕名カットインプレビュー" />
                 <p>{phase.intro.seconds}秒間、戦闘を停止して表示します。</p>

@@ -22,7 +22,7 @@ test('live bombs hit late entrants once, allow a new bomb to hit again, and stop
 });
 test('bomb entry uses sprite edges and reused slots belong to fresh targets',()=>{
  const g=game();g.effects.explosion='';const s=new lib.Simulation(g),ref=g.enemies[0].id,a=lib.assetById(g,g.enemies[0].asset);s.step(0);s.step(48);
- const x=160+a.origin.x;s.spawnActor(ref,'enemy',x,48);const e=s.entities.find(e=>e.kind==='enemy');
+ const x=lib.playWidth(g)+a.origin.x;s.spawnActor(ref,'enemy',x,48);const e=s.entities.find(e=>e.kind==='enemy');
  s.step(0);assert.equal(e.hp,60);e.baseX-=16;s.step(0);assert.equal(e.hp,30);
  e.hp=1;s.damageActor(e,1);const slot=e.slot;
  s.spawnActor(ref,'enemy',32,48);const replacement=s.entities.find(e=>e.kind==='enemy');assert.equal(replacement.slot,slot);
