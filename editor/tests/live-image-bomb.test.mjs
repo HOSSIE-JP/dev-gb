@@ -4,7 +4,7 @@ function game(){const g=lib.readGame(process.cwd(),'touhou-kouma');g.debugBossMo
 test('live image keeps movement and friendly fire, suppresses hidden hostile shots and protects against contact',()=>{
  for(const character of[0,1]){const g=game(),s=new lib.Simulation(g,undefined,character);s.spawnActor('rumia','boss',80,36);const boss=s.entities.find(e=>e.kind==='boss');boss.phase=1;boss.hp=100;s.introLeft=0;s.phaseLocked=false;s.step(0);const x=s.playerX,tick=s.tick;s.step(49);
  assert.equal(s.bombs,1);assert.equal(s.bombImage,true);assert.equal(s.tick,tick+1);assert.ok(s.playerX>x);assert.equal(boss.hp,70);
- for(let n=0;n<20;n++)s.step(49);assert.equal(s.bgShots.length,0);assert.ok(s.entities.some(e=>e.kind==='pshot'));assert.equal(s.bombs,1);assert.equal(lib.backgroundPaletteGame(s),s.game);
+ for(let n=0;n<20;n++)s.step(49);assert.equal(s.bgShots.length,0);if(character)assert.equal(s.beamPattern,'marisa-focus');else assert.ok(s.entities.some(e=>e.kind==='pshot'));assert.equal(s.bombs,1);assert.equal(lib.backgroundPaletteGame(s),s.game);
  s.invulnerable=0;const lives=s.lives;s.hitPlayer();assert.equal(s.lives,lives);s.shoot('rumia-halo','rumia',1280,576,false,0);assert.equal(s.bgShots.length,0);
  while(s.bombLeft)s.step(0);s.shoot('rumia-halo','rumia',1280,576,false,0);assert.ok(s.bgShots.length);assert.equal(s.bombImage,false);
  }

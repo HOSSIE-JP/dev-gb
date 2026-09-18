@@ -56,7 +56,7 @@ static void shot_box(uint8_t slot) __naked {
     __endasm;
 }
 
-static void prepare_shot(uint8_t slot) __naked {
+static void prepare_shot(uint8_t slot) NONBANKED __naked {
     slot;
     __asm
         push bc

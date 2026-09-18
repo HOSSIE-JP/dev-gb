@@ -102,6 +102,9 @@ void ce_hit_player(void) BANKED {
     uint8_t i;
     if (ce_respawn || ce_state.invulnerable || ce_state.result || ce_bomb_image) return;
     if (ce_barrier) { --ce_barrier; ce_state.invulnerable = ce_barrier_frames; ce_sound(6); return; }
+#if CE_OBJ_16
+    ce_beam_pattern=CE_NONE;ce_beam_pulse=0;
+#endif
     explode(ce_state.player_x, ce_state.player_y);
     ce_sound(2); if (ce_stage_misses != 255u) ++ce_stage_misses; --ce_state.lives;
     ce_power_miss();

@@ -9,7 +9,7 @@ import {
     type Pattern,
     type Stage,
     assetById,
-    hudHeight, playWidth,
+    hudHeight, playWidth, spriteHeight,
     frameAt,
     q4,
     clamp,
@@ -47,12 +47,12 @@ export function shotAngles(
     dy: number,
 ): number[] {
     let base = angleStep(pattern.angle);
-    if (pattern.kind === "aimed" || pattern.kind === "aimed-down") base = (base + aimStep(dx, dy)) & 15;
+    if (pattern.kind === "aimed" || pattern.kind === "aimed-down" || pattern.kind === "aimed-fan") base = (base + aimStep(dx, dy)) & 15;
     if (pattern.kind === "aimed-down") base = clamp(base, 4, 12);
     if (pattern.kind === "spiral")
         base = (base + sequence * angleStep(pattern.rotation)) & 15;
     const count =
-        pattern.kind === "laser" || pattern.kind === "straight" || pattern.kind === "aimed" || pattern.kind === "aimed-down" || pattern.kind === "homing"
+        pattern.kind === "beam" || pattern.kind === "laser" || pattern.kind === "straight" || pattern.kind === "aimed" || pattern.kind === "aimed-down" || pattern.kind === "homing"
             ? 1
             : pattern.count;
     return Array.from({ length: count }, (_, i) => {
@@ -75,7 +75,7 @@ export function launchPoints(p: Pattern, a: Asset, x: number, y: number, sequenc
     const py=q4(l.y+(sequence%l.lanes)*l.step);
     if(l.kind==="fixed")return [{x:q4(l.x),y:py,angle:p.angle}];
     const sides=l.kind==="both"?[false,true]:[l.kind==="right"||l.kind==="alternate"&&!!(sequence&1)];
-    return sides.map(right=>({x:q4(right?width-2:1),y:py,angle:p.kind==="aimed"||p.kind==="aimed-down"?p.angle:right?270:90}));
+    return sides.map(right=>({x:q4(right?width-2:1),y:py,angle:p.kind==="aimed"||p.kind==="aimed-down"||p.kind==="aimed-fan"?p.angle:right?270:90}));
 }
 export function homingAngle(angle:number, dx:number, dy:number, horizontal=false) {
     let target=aimStep(dx,dy);
@@ -178,6 +178,8 @@ export class Simulation {
     cooldown = 0;
     playerSequence = 0;
     weaponMode = 0;
+    beamPattern = "";
+    beamPulse = false;
     bossExitLeft = 0;
     entities: Entity[] = [];
     bgShots: {x: number; y: number; vx: number; vy: number; life: number; damage: number; slot: number; ref: string; angle: number}[] = [];
@@ -285,12 +287,13 @@ export class Simulation {
     }
     slots(asset: string) {
         const a = assetById(this.game, asset);
-        return (a.width * a.height) / 64;
+        return a.width / 8 * Math.ceil(a.height / spriteHeight(this.game));
     }
     get oam() {
         return (
             this.slots(this.game.player.asset) +
             (this.game.player.focusHitbox ? 2 : 0) +
+            (spriteHeight(this.game)===16 ? 9 : 0) +
             this.entities.reduce((n, e) => n + this.slots(e.asset), 0)
         );
     }
@@ -427,7 +430,7 @@ export class Simulation {
         sequence: number,
     ) {
         const p = this.game.patterns.find((p) => p.id === ref);
-        if (!p || (!friendly && this.bombImage)) return;
+        if (!p || p.kind==="beam" || (!friendly && this.bombImage)) return;
         const asset = assetById(this.game, sourceAsset);
         const points = launchPoints(friendly?{...p,launch:undefined}:p,asset,x,y,sequence,playWidth(this.game));
         if (friendly && this.game.player.atomicVolleys) {
@@ -651,6 +654,7 @@ export class Simulation {
         }
     }
     step(input = this.input) {
+        this.beamPattern="";this.beamPulse=false;
         if (this.result) { if (this.result === 1) this.gameOverStep(input); return; }
         if(this.bossExitLeft){
             for(const e of this.entities)if(e.kind==="fx")e.age++;
@@ -721,12 +725,14 @@ export class Simulation {
             q4(top + a.origin.y),
             q4(top + 144 - hudHeight(g) - a.height + a.origin.y),
         );
+        if (weapon.kind==="beam" && (input & (p.bomb?.button === "b" ? 16 : 48)))this.beamPattern=pattern;
         if (!(input & (p.bomb?.button === "b" ? 16 : 48))) {
             this.cooldown = weapon.delay;
             this.playerSequence = 0;
         } else if (this.cooldown) this.cooldown--;
         else if (!weapon.repeats || this.playerSequence < weapon.repeats) {
-            this.shoot(
+            if(weapon.kind==="beam")this.beamPulse=true;
+            else this.shoot(
                 pattern,
                 p.asset,
                 this.playerX,
@@ -860,6 +866,13 @@ export class Simulation {
                 this.entities = this.entities.filter((x) => x !== e);
         }
         if (this.bombLeft && p.bomb?.live) this.sweepBomb();
+        if(this.beamPulse){
+            const ray={x:Math.trunc(this.playerX/16)-1,y:top,w:2,h:Math.max(0,Math.trunc(this.playerY/16)-8-top)};
+            for(const e of [...this.entities])if((e.kind==="enemy"||e.kind==="boss") && !(e.kind==="boss"&&this.phaseLocked)){
+                const b=this.box(e.asset,e.x,e.y);
+                if(b.x<playWidth(g)&&b.x+b.w>0&&this.overlap(ray,b))this.damageActor(e,weapon.damage);
+            }
+        }
         for (const shot of [...this.entities].filter(
             (e) => e.kind === "pshot",
         )) {
@@ -1067,6 +1080,12 @@ export function drawSimulation(
     if (!sim.respawn && (sim.bombLeft || !sim.invulnerable || (sim.invulnerable & 4) === 0))
         draw(sim.barrier && g.player.barrierAsset ? g.player.barrierAsset : g.player.asset, sim.playerX, sim.playerY,sim.tick,!!sim.grazeFlash&&!sim.invulnerable&&!sim.bombLeft);
     for (const e of sim.entities) if (!((sim.transition?.stage === "break" || sim.battleMode === "bg-boss") && e.kind === "boss")) draw(e.asset, e.x, e.y, e.age);
+    if(sim.beamPattern && !sim.respawn && !sim.transition && !sim.phaseLocked && !sim.result){
+        const x=Math.trunc(sim.playerX/16),top=g.screens.find(s=>s.id==="hud")?.dock==="top"?hudHeight(g):0,h=Math.max(0,Math.trunc(sim.playerY/16)-8-top);
+        const colors=dmg?dmgColors(g):g.palettes[0].colors;
+        if(!(sim.tick&1)){ctx.fillStyle=colors[2];ctx.fillRect(x-2,top,4,h);}
+        ctx.fillStyle=colors[3];ctx.fillRect(x-1,top,2,h);
+    }
     if(g.player.focusHitbox && sim.weaponMode && !sim.respawn){
         const b=sim.box(g.player.asset,sim.playerX,sim.playerY),x=b.x+Math.floor(b.w/2)-3,y=b.y+Math.floor(b.h/2)-3;
         const colors=dmg?dmgColors(g):g.palettes[0].colors;

@@ -1,0 +1,2557 @@
+{
+  "version": "0.37-follow-beam-barrages",
+  "date": "2026-09-18T03:28:22.174Z",
+  "baseCommit": "990daacd730cc4e01cc22841f180d61ea0ffcc80",
+  "engineWorkingTreeChanges": true,
+  "rom": {
+    "path": "build/Release/touhou-kouma-v37.gb",
+    "sha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+    "bytes": 2097152
+  },
+  "projectRevision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+  "builds": {
+    "release": {
+      "ok": true,
+      "revision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "size": 2097152,
+      "ramBytes": 7163,
+      "spriteTiles": 126,
+      "diagnostics": [],
+      "romHash": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+      "builtAt": "2026-09-18T03:19:19.750Z",
+      "durationMs": 459982
+    },
+    "debug": {
+      "ok": true,
+      "revision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+      "configuration": "Debug",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "size": 2097152,
+      "ramBytes": 7163,
+      "spriteTiles": 126,
+      "diagnostics": [],
+      "romHash": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+      "builtAt": "2026-09-18T03:26:51.302Z",
+      "durationMs": 449102
+    }
+  },
+  "sourceHashes": {
+    "editor/src/node/build-workflow.ts": "c8c4fba6e514097e8721c524078570745c2e584670013c05c8924c4db08cd4ba",
+    "editor/src/node/compiler.ts": "625e70b968491779b237adfd6a9cbbb2082f0094cf5053de813bccc84f648b3e",
+    "editor/src/node/library.ts": "6078e70aeb4a2dc6e8abef101c390a48dbb4e9f2624523a215cf036758148db4",
+    "editor/src/node/main.ts": "d871b64bac6a76e4918d954071e7808e246793f917e6f9b8b9e488c107a0f7c0",
+    "editor/src/node/music-data.ts": "c43410b554ada227093d7b9e5aabd4beae6da5e28961002b9b51779ba57e98a7",
+    "editor/src/node/preload.ts": "eac474db2a1d090cf89f289628d41e9574a861bb9e7216d944bdfd6422a6e7da",
+    "editor/src/node/project-store.ts": "f221423e6d8323ac71e0974251671f0cd35a6267e88e05404aff236c2ca63db5",
+    "editor/src/renderer/boss-canvas.tsx": "fc4970d73bed87c5d257f241158b3d5a24c9cd37438fa002250f67c571ecc17b",
+    "editor/src/renderer/canvases.tsx": "4490797d5d5fb9f45661f56cfd9e0d6dbc5d6182a156796420cb59d43e8b7be1",
+    "editor/src/renderer/column-resize.tsx": "4725244c9b1a39fba5084bf0dd078ae81ba1b0e30a5b81d96df76cc3c7b36dc4",
+    "editor/src/renderer/entity-defaults.ts": "769d17b6677de2a3654e1a5ae67b57c72251f9f4eb26b5e570bf7e56524ed132",
+    "editor/src/renderer/env.d.ts": "9be7ea778895c94059af08e9d0386027594def4a9cd488504959de7fa7bd3590",
+    "editor/src/renderer/fields.tsx": "ddc8dd061c3e36aaf32f57854a13387461f34bf19964949fdb49e0bc86d5a57c",
+    "editor/src/renderer/index.html": "d5069520f4b4b4066897395ddd08373275571bb3f1882cf5b17e61e071f80900",
+    "editor/src/renderer/index.tsx": "efecbf80465e8a2449c4d8e5d4e3185dd537a198582de39a321044524aa908bd",
+    "editor/src/renderer/music-field.tsx": "8dd9019964315ecdc48fe1af8ba56d6c4e15d2dda6426651ad65ac11ac4219c5",
+    "editor/src/renderer/player-presentation-canvas.tsx": "f05b86e8356c23d65bf49a7a0d4605ffd6ffeb5b208df6a29ddb970532a44844",
+    "editor/src/renderer/preview.tsx": "d4c2b27b638bd085ea63f97a447c28fcfcc374ba1010d78f183261c39043efa8",
+    "editor/src/renderer/rom-preview.tsx": "e5756008147c239b599125c71fc2331db819d6114d69ac174dc919340b55612e",
+    "editor/src/renderer/shooter-fields.tsx": "ed39135b73226556ee3facc9b08143ba560f700edf52b9094ea6db69bec06eb8",
+    "editor/src/renderer/stage-canvas.tsx": "5105251c1a3a76c9af750e6134c3827f7c5fcd21435cbb8ffd2b51a73e78329e",
+    "editor/src/renderer/startup-preview.tsx": "bb64999294fdbcad8a66ae4b2a5ce9c36dfca1e1bfc9054fad93d2facf6dedea",
+    "editor/src/renderer/style.css": "ca5fe7442b0fce1e9e374300f550133903648b3cf53597ac78b41a440e6709d5",
+    "editor/src/renderer/tile-palette.tsx": "518f5b5745ccef82ee021e82f98de80b2e87c2d607069ba9edc9c5500d5f5f72",
+    "editor/src/renderer/timeline.tsx": "4dd084f981fcc23dfbfbf7d927d5dc1b54bbd929975b11b45e1af42ef7302f53",
+    "editor/src/renderer/victory-dialogue-canvas.tsx": "342b90342f4e69225b8b483c0c21b410b622b999a7469d47e42a107d4f0c7331",
+    "editor/src/renderer/workspace.css": "54ddf04d36bd6e07b90c8492db9092b3faaf5d4749937624ff9e666d7529931b",
+    "editor/src/renderer/workspace.tsx": "c468f4d441c5ab6289fbc20d1365fd2c1e3bf52b57549ebfbc94f63d45e772c1",
+    "editor/src/shared/bridge.ts": "dd4158d81d1718e0be198b68f85c56e27693ed7082ebc268237d93817bb12ce0",
+    "editor/src/shared/color.ts": "0895f2ced1990009d99b729ca33c24f2f0bc8b29e02ce153b68747bb5eb9816e",
+    "editor/src/shared/emulation.ts": "38a858f83421632301d1d771d5a2e6f118636a0a5537eaa1fe16ef07a5915201",
+    "editor/src/shared/model.ts": "66412ded8e6c633526f560ed00b9b70b1f385a77b2fc6bde48b87df0ae078583",
+    "editor/src/shared/music.ts": "3426ce52e5f4f9f17b15033e525d3ce31721e13cb9e927ca9daa1f5a6b60a803",
+    "editor/src/shared/numeric-font.ts": "5bf45b2825fb4d9607f9a50faa800108b57aa5d602999eb7408be231b6a0ed7b",
+    "editor/src/shared/palette.ts": "a887c042f9179ac9bdeff43d7720499426fdb40a4696ad38ac89e2f401428033",
+    "editor/src/shared/pixel-tools.ts": "05d87244f9e05fc4211e056061d2aa82b10c8ffce86bf92a654923bafe28b11b",
+    "editor/src/shared/presentation.ts": "f3605cfed67c2497836ed3f67337e9b3bd0c3e49c9b1658ee969eb26a282bac2",
+    "editor/src/shared/simulation.ts": "802b709e37bfdc8fe124ee4535b44528cbb0ab59deeee8576790dd0c91e10637",
+    "editor/src/shared/stage-space.ts": "1e8ebec2d2abc05c9de706e73c4234bfdae9a49ee84f8909ff23916bfea46d60",
+    "engine/caravan/MUSIC-LICENSE.txt": "3a7a3e0613c1f242be385172ea9575b49e650d41bc9c8cbd6047ec5dccde29b1",
+    "engine/caravan/assets-src/kouma-score.json": "09d257ff5a545d4e16cd243753976bfb0ff769c26b64ff7a277247184e855493",
+    "engine/caravan/assets-src/side-score.json": "4a2f21edd10c9893af34f050a1e0bb09e0e90fdba4bf62c12c87c3b317c112bf",
+    "engine/caravan/assets-src/side-score.md": "25a95a2a52f3fd054cfde330b5b353723461daeef48baf47a93550e78c23f775",
+    "engine/caravan/bg-bullets.c": "ee2b0f5fc95a7b43aea2e5f6fe84faba5bfe5db6a8628d1af45dea243e5b4680",
+    "engine/caravan/bg-kernels.h": "0991427618c4efe50c5d6e1365329fd4ab6a1231b9bcd5e72a131923a0dd830c",
+    "engine/caravan/bg-query-kernel.h": "441986ed74075d6deeb087e5a4e540c64b95e7ca082f6af1d09a36ac840fc335",
+    "engine/caravan/bg-state-kernels.h": "7296ecbab0ccc8bb8e5ced11fe10c1f7214ffc39eb9eda921c53d573763eafa3",
+    "engine/caravan/bg-update-kernel.h": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b",
+    "engine/caravan/bg-volley.h": "cb3382ba2de572f42c9ffa393f52f2a70035d12cc5728839742432f052165740",
+    "engine/caravan/bomb-road.c": "008d285727f655c09a438e82a0c1c3de84445fc86461ddb2b9c676b19f99e1e3",
+    "engine/caravan/boss-phase.c": "ce35bcc6b2ad037b57f084983cd6feff096eca7e12096982f4db5c778361807c",
+    "engine/caravan/caravan.h": "996b319895eac8b637e5072a7d0bc224f3b16336b4d901f91c21c71b9dbcab71",
+    "engine/caravan/flow.c": "96815d2cc710bf1f37a245c84020cce40100ca02fd8e32b88148d24cb85ef45e",
+    "engine/caravan/giant-render.h": "ca1eb41a7d89a87f78d4b221c8cd96de064fb163831939cefe36b7d6b43cd92f",
+    "engine/caravan/graze.c": "5ff4e1e5e57d25154d1257d7a9773511b0c3e93a16b8dadc0794980f1c5081c3",
+    "engine/caravan/items.c": "69183188a636df6777a449b5af06ea1da26cb06c12a3f4fbea38d0d3736b8344",
+    "engine/caravan/mainloop.c": "b005f6b01d76e2faec561d27047f224c59e46aad0ab91f378b557eea69bd9d2a",
+    "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+    "engine/caravan/movie.c": "fadada968ced3bcd895bc175149e6bed74fd1b7c94d035fb042d75bc24e79e2b",
+    "engine/caravan/music.c": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995",
+    "engine/caravan/music.h": "7e0f71159080d9fe7342f8cfea26b8f57d8fbbcd50f0df4248673070b93c0187",
+    "engine/caravan/render.c": "dcf82f9da1f99832d3bf0ba6b7f7ec55795427e57bb392e22a865f6a80a97f5f",
+    "engine/caravan/runtime.c": "a8d2cb1526319cfafad2c018f6ff866a4cd2ba4e5213cfa61f2aa6c401b4fff5",
+    "engine/caravan/save.c": "26fbc74c1bfb843eca15edf0b32a98fd9339d2253ea59ee41fb38559d774e025",
+    "engine/caravan/shot-kernels.h": "9872465884ce3f3cef26c5d399e6ffd745d9ef657097bdadce17ef69e57950c0",
+    "engine/caravan/sound.c": "bfd856a384d9a3bf5511ce53208f2dfdf43df9c110e71b334bbf81c88deffbf3",
+    "engine/caravan/special.c": "43bcef63c4b1a5ebb56382297affddd2d7fc42353c52b1681eb3721f797eb7b9",
+    "engine/caravan/sprites.c": "09c786b7d3253ae2d41a805617f2a4f20151d8f2bf01b2f02d10060ab2aaec06",
+    "engine/caravan/terrain.c": "90a8378faed2d79daf175280bc0278a354c76689f71769ad9fdc7c5221b3954a",
+    "projects/touhou-kouma/assets-src/game.json": "dcbee712eb6a7193cbf0d245a3eec3d4c03bf14cc7ea44b5cc79ab5fec6ccc3b",
+    "projects/touhou-kouma/touhou-kouma-design/v37-gameplay/apply.cjs": "32d68f676ae9efd7add5964082022593b8c8611f33ce73691cec87c98a23e43f",
+    "projects/touhou-kouma/touhou-kouma-design/v37-gameplay/brief.json": "e5b09a3bc94e945d28e85d13cc4cf7c2a1194c8bf82435f88482c4de3314bac2",
+    "editor/tests/beam-collision-rom.acceptance.mjs": "66a3f498ddd389b5806bf7efc88fe99e96d60aba195e6fd3ca5cdab17888d5d6",
+    "editor/tests/beam-ui.acceptance.cjs": "8e25cff5cdc368c7b2c4833c67d8adc4cd0064e2baf3f99cadf4309d7d5ed4e1",
+    "editor/tests/kouma-beam.acceptance.mjs": "6bccd58a9423a6a8800e925efe6e6c916436152cbf9d27a031178026cbb581af",
+    "editor/tests/kouma-moving-bosses.acceptance.mjs": "a9c00ec2fa6ecac83a68f2c47c2d13b77b5f43a0a943a02128b70fc07bd99b2b",
+    "editor/tests/kouma-native-performance.mjs": "9ef1cb5ede690426eb497f4300c0d7a28de61c35c55988f28fec639e80664679",
+    "editor/tests/kouma-production-performance.mjs": "96cd464978c5063862596f191557102c836c37bf45b9520ce2da55b25e8a31bc",
+    "editor/tests/kouma-top-pressure.acceptance.mjs": "c94b22afea498933e7b25c3cc1f6183134cebce274e6e964a4e08983fe043207",
+    "editor/tests/kouma-v37.test.mjs": "785bc6dff54bba5898156e860cf7d959c39cc8b18beb90efeb7decfbbf74bb28"
+  },
+  "checks": [
+    "GB/CGB production ROM: held beam follows player, continuous core, release clears, focus/normal, boss damage, all resident sprite pixels and transparent padding match",
+    "GB/CGB source-authored fixture: 1080 collision cases per system across six allocator slots, boundary positions and above/below the muzzle; normal ce_step banked path",
+    "GB/CGB production ROM: 7 bosses x 3 moving modes, HP changes, clear flow; real boss-select inputs and automatic follow/fire/bomb inputs",
+    "GB/CGB production ROM: all 7 bosses shoot upward at a player moved to Y=12 via real inputs",
+    "GB/CGB both characters: focus, road/boss bombs, resident OBJ preservation, both alternating backgrounds, scrolling and HUD",
+    "GB/CGB Reimu bomb source-art comparison: 17280 pixels x 4 cases, zero mismatch",
+    "Electron actual UI: beam preview, interval edit/save/reopen, aimed-fan selector, accurate 126/128 tile budget, existing boss/dialogue/character/ending/HUD controls",
+    "Debug/Release identical 2 MiB ROMs, zero compiler warnings, WRAM 7163 bytes incl. shadow OAM with >=1024-byte stack reserve",
+    "Doctor zero warnings; hello-gb clean/Debug; star-caravan Debug/Release passed with four existing compiler warnings per configuration",
+    "test.cmd hello-gb: TypeScript and 163 tests passed; star-caravan ROM/integration/native-BGB regressions: four tests passed",
+    "Final native BGB repeated exact 5000-display-frame input movies from v36 on GB/CGB road/boss routes; CPU measurements use the production ROM and real input",
+    "Original images, BG, BGM, player movement/collision dimensions, HUD, scoring/save configuration unchanged; migration uses revision-checked editor read/save"
+  ],
+  "performance": {
+    "note": "Rebalanced gameplay: identical joypad movies, but enemy/bullet populations and survival lengths differ. Common equal-length update windows are also recorded.",
+    "matchedWindows": [
+      {
+        "mode": "CGB",
+        "route": "road",
+        "ticks": [
+          120,
+          240,
+          360,
+          480,
+          600,
+          720,
+          840,
+          960,
+          1080,
+          1200,
+          1320,
+          1440,
+          1560,
+          1680,
+          1800,
+          1920,
+          2040,
+          2160,
+          2280,
+          2400,
+          2520,
+          2640,
+          2760
+        ],
+        "before": 50.2096808348568,
+        "after": 56.53110548885076
+      },
+      {
+        "mode": "CGB",
+        "route": "boss",
+        "ticks": [
+          120,
+          240,
+          360,
+          480,
+          600,
+          840,
+          960
+        ],
+        "before": 54.64708015267176,
+        "after": 57.00952502844142
+      },
+      {
+        "mode": "DMG",
+        "route": "road",
+        "ticks": [
+          120,
+          240,
+          360,
+          480,
+          600,
+          720,
+          840,
+          960,
+          1080,
+          1200,
+          1320,
+          1440,
+          1560,
+          1680,
+          1800
+        ],
+        "before": 29.190375577288776,
+        "after": 35.43857932058047
+      },
+      {
+        "mode": "DMG",
+        "route": "boss",
+        "ticks": [
+          120,
+          240,
+          360,
+          480,
+          600,
+          840,
+          960
+        ],
+        "before": 25.88397339876033,
+        "after": 28.53722807517084
+      }
+    ]
+  },
+  "results": {
+    "beam": [
+      {
+        "mode": "CGB",
+        "samples": 5,
+        "roadAtlas": true,
+        "following": true,
+        "release": true,
+        "focus": true,
+        "bossDamage": true
+      },
+      {
+        "mode": "DMG",
+        "samples": 5,
+        "roadAtlas": true,
+        "following": true,
+        "release": true,
+        "focus": true,
+        "bossDamage": true
+      }
+    ],
+    "bosses": [
+      {
+        "system": "CGB",
+        "stage": 1,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 129,
+            "hpChanges": 50,
+            "peak": 5
+          },
+          {
+            "mode": 2,
+            "x": 129,
+            "y": 97,
+            "hpChanges": 35,
+            "peak": 8
+          },
+          {
+            "mode": 3,
+            "x": 129,
+            "y": 97,
+            "hpChanges": 35,
+            "peak": 7
+          }
+        ]
+      },
+      {
+        "system": "CGB",
+        "stage": 2,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 129,
+            "hpChanges": 50,
+            "peak": 7
+          },
+          {
+            "mode": 2,
+            "x": 129,
+            "y": 107,
+            "hpChanges": 36,
+            "peak": 7
+          },
+          {
+            "mode": 3,
+            "x": 129,
+            "y": 108,
+            "hpChanges": 31,
+            "peak": 13
+          }
+        ]
+      },
+      {
+        "system": "CGB",
+        "stage": 3,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 97,
+            "hpChanges": 50,
+            "peak": 13
+          },
+          {
+            "mode": 2,
+            "x": 129,
+            "y": 97,
+            "hpChanges": 36,
+            "peak": 12
+          },
+          {
+            "mode": 3,
+            "x": 65,
+            "y": 117,
+            "hpChanges": 18,
+            "peak": 13
+          }
+        ]
+      },
+      {
+        "system": "CGB",
+        "stage": 4,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 108,
+            "hpChanges": 50,
+            "peak": 9
+          },
+          {
+            "mode": 2,
+            "x": 129,
+            "y": 108,
+            "hpChanges": 36,
+            "peak": 16
+          },
+          {
+            "mode": 3,
+            "x": 129,
+            "y": 129,
+            "hpChanges": 36,
+            "peak": 16
+          }
+        ]
+      },
+      {
+        "system": "CGB",
+        "stage": 5,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 95,
+            "hpChanges": 50,
+            "peak": 12
+          },
+          {
+            "mode": 2,
+            "x": 65,
+            "y": 129,
+            "hpChanges": 33,
+            "peak": 8
+          },
+          {
+            "mode": 3,
+            "x": 129,
+            "y": 129,
+            "hpChanges": 36,
+            "peak": 12
+          }
+        ]
+      },
+      {
+        "system": "CGB",
+        "stage": 6,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 108,
+            "hpChanges": 50,
+            "peak": 14
+          },
+          {
+            "mode": 2,
+            "x": 127,
+            "y": 122,
+            "hpChanges": 34,
+            "peak": 15
+          },
+          {
+            "mode": 3,
+            "x": 129,
+            "y": 97,
+            "hpChanges": 21,
+            "peak": 21
+          }
+        ]
+      },
+      {
+        "system": "CGB",
+        "stage": 7,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 65,
+            "y": 129,
+            "hpChanges": 50,
+            "peak": 18
+          },
+          {
+            "mode": 2,
+            "x": 128,
+            "y": 121,
+            "hpChanges": 19,
+            "peak": 10
+          },
+          {
+            "mode": 3,
+            "x": 127,
+            "y": 108,
+            "hpChanges": 19,
+            "peak": 25
+          }
+        ]
+      },
+      {
+        "system": "DMG",
+        "stage": 1,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 129,
+            "hpChanges": 50,
+            "peak": 5
+          },
+          {
+            "mode": 2,
+            "x": 129,
+            "y": 96,
+            "hpChanges": 35,
+            "peak": 8
+          },
+          {
+            "mode": 3,
+            "x": 129,
+            "y": 91,
+            "hpChanges": 35,
+            "peak": 7
+          }
+        ]
+      },
+      {
+        "system": "DMG",
+        "stage": 2,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 129,
+            "hpChanges": 50,
+            "peak": 7
+          },
+          {
+            "mode": 2,
+            "x": 129,
+            "y": 108,
+            "hpChanges": 29,
+            "peak": 7
+          },
+          {
+            "mode": 3,
+            "x": 129,
+            "y": 108,
+            "hpChanges": 31,
+            "peak": 13
+          }
+        ]
+      },
+      {
+        "system": "DMG",
+        "stage": 3,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 95,
+            "hpChanges": 50,
+            "peak": 13
+          },
+          {
+            "mode": 2,
+            "x": 129,
+            "y": 91,
+            "hpChanges": 36,
+            "peak": 12
+          },
+          {
+            "mode": 3,
+            "x": 65,
+            "y": 129,
+            "hpChanges": 18,
+            "peak": 13
+          }
+        ]
+      },
+      {
+        "system": "DMG",
+        "stage": 4,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 108,
+            "hpChanges": 50,
+            "peak": 9
+          },
+          {
+            "mode": 2,
+            "x": 129,
+            "y": 108,
+            "hpChanges": 36,
+            "peak": 16
+          },
+          {
+            "mode": 3,
+            "x": 129,
+            "y": 129,
+            "hpChanges": 35,
+            "peak": 16
+          }
+        ]
+      },
+      {
+        "system": "DMG",
+        "stage": 5,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 94,
+            "hpChanges": 50,
+            "peak": 13
+          },
+          {
+            "mode": 2,
+            "x": 65,
+            "y": 129,
+            "hpChanges": 36,
+            "peak": 8
+          },
+          {
+            "mode": 3,
+            "x": 129,
+            "y": 129,
+            "hpChanges": 36,
+            "peak": 12
+          }
+        ]
+      },
+      {
+        "system": "DMG",
+        "stage": 6,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 129,
+            "y": 108,
+            "hpChanges": 50,
+            "peak": 14
+          },
+          {
+            "mode": 2,
+            "x": 129,
+            "y": 128,
+            "hpChanges": 36,
+            "peak": 14
+          },
+          {
+            "mode": 3,
+            "x": 129,
+            "y": 97,
+            "hpChanges": 22,
+            "peak": 21
+          }
+        ]
+      },
+      {
+        "system": "DMG",
+        "stage": 7,
+        "cleared": true,
+        "phases": [
+          {
+            "mode": 1,
+            "x": 65,
+            "y": 129,
+            "hpChanges": 50,
+            "peak": 18
+          },
+          {
+            "mode": 2,
+            "x": 129,
+            "y": 129,
+            "hpChanges": 19,
+            "peak": 10
+          },
+          {
+            "mode": 3,
+            "x": 125,
+            "y": 104,
+            "hpChanges": 20,
+            "peak": 25
+          }
+        ]
+      }
+    ],
+    "topPressure": [
+      {
+        "system": "CGB",
+        "stage": 1,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -240
+      },
+      {
+        "system": "CGB",
+        "stage": 2,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -288
+      },
+      {
+        "system": "CGB",
+        "stage": 3,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -320
+      },
+      {
+        "system": "CGB",
+        "stage": 4,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -304
+      },
+      {
+        "system": "CGB",
+        "stage": 5,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -480
+      },
+      {
+        "system": "CGB",
+        "stage": 6,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -480
+      },
+      {
+        "system": "CGB",
+        "stage": 7,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -416
+      },
+      {
+        "system": "DMG",
+        "stage": 1,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -240
+      },
+      {
+        "system": "DMG",
+        "stage": 2,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -288
+      },
+      {
+        "system": "DMG",
+        "stage": 3,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -320
+      },
+      {
+        "system": "DMG",
+        "stage": 4,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -304
+      },
+      {
+        "system": "DMG",
+        "stage": 5,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -480
+      },
+      {
+        "system": "DMG",
+        "stage": 6,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -480
+      },
+      {
+        "system": "DMG",
+        "stage": 7,
+        "tick": 137,
+        "playerY": 12,
+        "vy": -416
+      }
+    ],
+    "focusAndBomb": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+      "results": [
+        {
+          "mode": "CGB",
+          "character": 0,
+          "focusRoad": true,
+          "focusBoss": true,
+          "bombResidentTiles": true,
+          "bothBackgrounds": true,
+          "scrollSamples": 23
+        },
+        {
+          "mode": "CGB",
+          "character": 1,
+          "focusRoad": true,
+          "focusBoss": true,
+          "bombResidentTiles": true,
+          "bothBackgrounds": true,
+          "scrollSamples": 46
+        },
+        {
+          "mode": "DMG",
+          "character": 0,
+          "focusRoad": true,
+          "focusBoss": true,
+          "bombResidentTiles": true,
+          "bothBackgrounds": true,
+          "scrollSamples": 47
+        },
+        {
+          "mode": "DMG",
+          "character": 1,
+          "focusRoad": true,
+          "focusBoss": true,
+          "bombResidentTiles": true,
+          "bothBackgrounds": true,
+          "scrollSamples": 47
+        }
+      ]
+    },
+    "bombArt": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+      "results": [
+        {
+          "mode": "CGB",
+          "boss": false,
+          "pixels": 17280,
+          "mismatches": 0,
+          "examples": []
+        },
+        {
+          "mode": "CGB",
+          "boss": true,
+          "pixels": 17280,
+          "mismatches": 0,
+          "examples": []
+        },
+        {
+          "mode": "DMG",
+          "boss": false,
+          "pixels": 17280,
+          "mismatches": 0,
+          "examples": []
+        },
+        {
+          "mode": "DMG",
+          "boss": true,
+          "pixels": 17280,
+          "mismatches": 0,
+          "examples": []
+        }
+      ]
+    },
+    "collisionFixture": [
+      {
+        "mode": "CGB",
+        "cases": 1080,
+        "hits": 48
+      },
+      {
+        "mode": "DMG",
+        "cases": 1080,
+        "hits": 48
+      }
+    ],
+    "editorBeam": {
+      "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\beam-ui-yYi8eE",
+      "checks": [
+        {
+          "beamControl": true,
+          "beamPreviewContinuous": true,
+          "beamIntervalSavedAndReopened": 9,
+          "aimedFanControl": true,
+          "bossTimeControl": 60,
+          "buildFree": true
+        }
+      ]
+    },
+    "editorRegression": {
+      "temp": "C:\\homebrew\\projects\\dev-gb\\.cache\\boss-ui-n83z2O",
+      "checks": [
+        {
+          "modeTimeEditedAndReopened": true,
+          "modeScoreControl": true
+        },
+        {
+          "characterBeforeAndAfterPreviews": true,
+          "unsavedMarisaDialogueRefresh": true
+        },
+        {
+          "playerScreenDropdown": true,
+          "selectionPreviewChanges": true,
+          "gameoverPreviewChanges": true,
+          "characterArtFields": true
+        },
+        {
+          "characterStorySavedAndReopened": true,
+          "characterScreenReferencesPreserved": true
+        },
+        {
+          "characterControls": true,
+          "characterPreviewSelection": true,
+          "characterBombImage": true,
+          "launchOptions": 6,
+          "guidanceControls": true,
+          "savedAndReopened": true,
+          "buildFree": true
+        },
+        {
+          "endingPreviewsBothCharacters": true,
+          "endingSecondsEditedAndReloaded": 12,
+          "endingMusic": 34,
+          "scoreAfter": true,
+          "buildFree": true
+        },
+        {
+          "rightHudCanvas": [
+            40,
+            144
+          ],
+          "dock": "right",
+          "columns": 5
+        },
+        {
+          "victoryPreview": true,
+          "unsavedDialogueRefresh": true,
+          "phaseHpControl": true,
+          "phaseHp": 100,
+          "returnPositionControl": true,
+          "bossControls": true,
+          "cutinPreview": true,
+          "cutinSeconds": 1.2,
+          "scoreWaitControl": true
+        }
+      ]
+    },
+    "nativeBefore": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma-v36.gb",
+      "sha256": "5c0cf836fa8ffd3a78d7421ee7f2ce0b108108100cce31dd3d57bb440da17782",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 3153,
+          "updatesPerSecond": 49.32446503404924,
+          "peak": 0,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 59.22977083333333
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 45.07735849056604
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 53.09111111111111
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 34.792718446601945
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 49.77291666666667
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 44.517391304347825
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 37.3296875
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 53.09111111111111
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 54.29772727272727
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 56.88333333333333
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 56.88333333333333
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 44.242592592592594
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 48.4277027027027
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 45.6515923566879
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 45.94423076923077
+            },
+            {
+              "tick": 2280,
+              "updates": 120,
+              "updatesPerSecond": 50.47394366197183
+            },
+            {
+              "tick": 2400,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 2520,
+              "updates": 120,
+              "updatesPerSecond": 52.316058394160585
+            },
+            {
+              "tick": 2640,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 2760,
+              "updates": 120,
+              "updatesPerSecond": 51.56330935251799
+            },
+            {
+              "tick": 2880,
+              "updates": 120,
+              "updatesPerSecond": 32.285135135135135
+            },
+            {
+              "tick": 3000,
+              "updates": 120,
+              "updatesPerSecond": 51.56330935251799
+            },
+            {
+              "tick": 3120,
+              "updates": 120,
+              "updatesPerSecond": 53.88947368421053
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1056,
+          "updatesPerSecond": 54.32578811369509,
+          "peak": 28,
+          "dmaSamples": 1289,
+          "dmaEndMax": 151,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 56.409305555555555
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 54.29772727272727
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 54.71221374045802
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 54.29772727272727
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 54.71221374045802
+            },
+            {
+              "tick": 720,
+              "updates": 119,
+              "updatesPerSecond": 54.673634615384614
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 51.195
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 57.3384
+            },
+            {
+              "tick": 1080,
+              "updates": 98,
+              "updatesPerSecond": 51.34469298245614
+            }
+          ]
+        },
+        {
+          "mode": "DMG",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 1860,
+          "updatesPerSecond": 29.09721058145626,
+          "peak": 0,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 43.60473926380368
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 26.74365671641791
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 28.441666666666666
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 21.98558282208589
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 31.996875
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 32.877522935779815
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 34.62463768115942
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 26.944736842105264
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 23.195145631067962
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 29.988702928870293
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 30.241772151898736
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 36.94484536082474
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 30.760944206008585
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 25.68924731182796
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 26.944736842105264
+            },
+            {
+              "tick": 1920,
+              "updates": 61,
+              "updatesPerSecond": 26.593996350364964
+            }
+          ]
+        },
+        {
+          "mode": "DMG",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1028,
+          "updatesPerSecond": 25.830824568784184,
+          "peak": 28,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 26.520792910447764
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 24.973170731707317
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 26.350367647058825
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 24.800346020761246
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 26.158029197080293
+            },
+            {
+              "tick": 720,
+              "updates": 119,
+              "updatesPerSecond": 27.763955078125
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 25.968478260869567
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 26.545555555555556
+            },
+            {
+              "tick": 1080,
+              "updates": 70,
+              "updatesPerSecond": 22.599594594594596
+            }
+          ]
+        }
+      ]
+    },
+    "nativeFinal": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 2801,
+          "updatesPerSecond": 56.4048305799056,
+          "peak": 0,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 59.22977083333333
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 57.3384
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 43.97116564417178
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 43.97116564417178
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 57.80080645161291
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 56.88333333333333
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 56.43543307086615
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 54.71221374045802
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 53.48731343283582
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 2280,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 2400,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2520,
+              "updates": 120,
+              "updatesPerSecond": 57.80080645161291
+            },
+            {
+              "tick": 2640,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2760,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1317,
+          "updatesPerSecond": 56.79503068592057,
+          "peak": 18,
+          "dmaSamples": 1498,
+          "dmaEndMax": 151,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 55.52791015625
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 55.56046511627907
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 56.43543307086615
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 55.99453125
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 55.99453125
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 1320,
+              "updates": 118,
+              "updatesPerSecond": 55.93527777777778
+            }
+          ]
+        },
+        {
+          "mode": "DMG",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 2268,
+          "updatesPerSecond": 35.49841981132076,
+          "peak": 0,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 43.33885670731708
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 29.988702928870293
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 29.49506172839506
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 25.781654676258995
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 26.74365671641791
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 53.88947368421053
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 48.10268456375839
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 36.755384615384614
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 29.739834024896265
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 40.26573033707865
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 41.42947976878613
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 47.782000000000004
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 42.16058823529412
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 34.96243902439024
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 29.135365853658538
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 28.784337349397592
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 47.465562913907284
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 35.30689655172414
+            },
+            {
+              "tick": 2280,
+              "updates": 109,
+              "updatesPerSecond": 35.96849447513812
+            }
+          ]
+        },
+        {
+          "mode": "DMG",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1317,
+          "updatesPerSecond": 28.510734867705686,
+          "peak": 18,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 27.763955078125
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 29.374180327868853
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 28.107058823529414
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 28.900403225806453
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 28.554980079681275
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 28.217716535433073
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 29.017408906882594
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 28.107058823529414
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 27.88832684824903
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 29.374180327868853
+            },
+            {
+              "tick": 1320,
+              "updates": 118,
+              "updatesPerSecond": 28.418729838709677
+            }
+          ]
+        }
+      ]
+    },
+    "cpuBefore": {
+      "rom": "projects/touhou-kouma/build/Debug/touhou-kouma-v36.gb",
+      "sha256": "5c0cf836fa8ffd3a78d7421ee7f2ce0b108108100cce31dd3d57bb440da17782",
+      "character": 1,
+      "stage": 6,
+      "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "road",
+          "updates": 1080,
+          "peak": 0,
+          "transitions": 0,
+          "updatesPerSecond": 46.83451090747147,
+          "cpuMean": 63673.07037037037,
+          "windows": [
+            {
+              "tick": 0,
+              "updates": 120,
+              "updatesPerSecond": 59.20331160695088,
+              "cpu": 32188.433333333334
+            },
+            {
+              "tick": 120,
+              "updates": 120,
+              "updatesPerSecond": 57.78591553176686,
+              "cpu": 42968.76666666667
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 42.39828451358385,
+              "cpu": 70289.73333333334
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 50.819371673828066,
+              "cpu": 67819.06666666667
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 34.78795730531478,
+              "cpu": 97040.3
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 50.107427284387825,
+              "cpu": 54075.86666666667
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 58.73728198013664,
+              "cpu": 47431.76666666667
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.710494846534935,
+              "cpu": 38403.73333333333
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 44.78481569511802,
+              "cpu": 70022
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 37.32290036824847,
+              "cpu": 85006.4
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "route": "boss",
+          "updates": 1079,
+          "peak": 28,
+          "transitions": 1,
+          "updatesPerSecond": 54.83464462289213,
+          "cpuMean": 65311.5922150139,
+          "windows": [
+            {
+              "tick": 65,
+              "updates": 120,
+              "updatesPerSecond": 53.8829434861048,
+              "cpu": 64431.23333333333
+            },
+            {
+              "tick": 185,
+              "updates": 120,
+              "updatesPerSecond": 57.318889400600476,
+              "cpu": 62106.53333333333
+            },
+            {
+              "tick": 305,
+              "updates": 120,
+              "updatesPerSecond": 52.30620732657833,
+              "cpu": 74416.66666666667
+            },
+            {
+              "tick": 425,
+              "updates": 120,
+              "updatesPerSecond": 57.32298903461817,
+              "cpu": 62110
+            },
+            {
+              "tick": 545,
+              "updates": 120,
+              "updatesPerSecond": 51.923883502837825,
+              "cpu": 74416.93333333333
+            },
+            {
+              "tick": 665,
+              "updates": 120,
+              "updatesPerSecond": 58.265039018817845,
+              "cpu": 55362.6
+            },
+            {
+              "tick": 786,
+              "updates": 120,
+              "updatesPerSecond": 52.30059815876333,
+              "cpu": 67538.2
+            },
+            {
+              "tick": 906,
+              "updates": 120,
+              "updatesPerSecond": 57.78756091433851,
+              "cpu": 54733.9
+            },
+            {
+              "tick": 1026,
+              "updates": 119,
+              "updatesPerSecond": 53.422469149386394,
+              "cpu": 72750.25210084034
+            }
+          ]
+        }
+      ]
+    },
+    "cpuFinal": {
+      "rom": "projects/touhou-kouma/build/Release/touhou-kouma.gb",
+      "sha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+      "character": 1,
+      "stage": 6,
+      "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "road",
+          "updates": 1080,
+          "peak": 0,
+          "transitions": 0,
+          "updatesPerSecond": 54.05628328197496,
+          "cpuMean": 44234.26296296297,
+          "windows": [
+            {
+              "tick": 0,
+              "updates": 120,
+              "updatesPerSecond": 59.695750223985165,
+              "cpu": 13773.333333333334
+            },
+            {
+              "tick": 120,
+              "updates": 120,
+              "updatesPerSecond": 59.713002581823595,
+              "cpu": 28508.6
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 53.07563721369304,
+              "cpu": 57059.8
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 57.322727893945604,
+              "cpu": 50908.666666666664
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 44.50692049783866,
+              "cpu": 75810.26666666666
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 43.96414502015139,
+              "cpu": 69684.23333333334
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 59.71086320123266,
+              "cpu": 20111.166666666668
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.711231560475184,
+              "cpu": 17835.633333333335
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 58.25244228648569,
+              "cpu": 34269.6
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 56.86757486094847,
+              "cpu": 43920.4
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "route": "boss",
+          "updates": 1200,
+          "peak": 18,
+          "transitions": 0,
+          "updatesPerSecond": 57.18590739963003,
+          "cpuMean": 54135.59333333333,
+          "windows": [
+            {
+              "tick": 65,
+              "updates": 120,
+              "updatesPerSecond": 57.33183005000794,
+              "cpu": 52702.566666666666
+            },
+            {
+              "tick": 185,
+              "updates": 120,
+              "updatesPerSecond": 57.3225320400026,
+              "cpu": 52964.2
+            },
+            {
+              "tick": 305,
+              "updates": 120,
+              "updatesPerSecond": 57.78460194681695,
+              "cpu": 54354.13333333333
+            },
+            {
+              "tick": 425,
+              "updates": 120,
+              "updatesPerSecond": 56.864747902976305,
+              "cpu": 54344.333333333336
+            },
+            {
+              "tick": 545,
+              "updates": 120,
+              "updatesPerSecond": 58.73474586180411,
+              "cpu": 53092.86666666667
+            },
+            {
+              "tick": 665,
+              "updates": 120,
+              "updatesPerSecond": 56.42002294839839,
+              "cpu": 56796.36666666667
+            },
+            {
+              "tick": 785,
+              "updates": 120,
+              "updatesPerSecond": 58.2542626765713,
+              "cpu": 50369.566666666666
+            },
+            {
+              "tick": 905,
+              "updates": 120,
+              "updatesPerSecond": 56.42002294839839,
+              "cpu": 56103
+            },
+            {
+              "tick": 1025,
+              "updates": 120,
+              "updatesPerSecond": 55.97932358548674,
+              "cpu": 57457
+            },
+            {
+              "tick": 1145,
+              "updates": 120,
+              "updatesPerSecond": 56.864747902976305,
+              "cpu": 53171.9
+            }
+          ]
+        }
+      ]
+    },
+    "cpuLongFinal": {
+      "rom": "projects/touhou-kouma/build/Release/touhou-kouma.gb",
+      "sha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+      "character": 1,
+      "stage": 6,
+      "method": "Unmodified ROM, fixed fire input per game update; transitions reported separately, CPU T-cycles inclusive of interrupts",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "road",
+          "updates": 2801,
+          "peak": 0,
+          "transitions": 0,
+          "updatesPerSecond": 56.44336181706545,
+          "cpuMean": 37179.0531952874,
+          "windows": [
+            {
+              "tick": 0,
+              "updates": 120,
+              "updatesPerSecond": 59.695750223985165,
+              "cpu": 13773.333333333334
+            },
+            {
+              "tick": 120,
+              "updates": 120,
+              "updatesPerSecond": 59.713002581823595,
+              "cpu": 28508.6
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 53.07563721369304,
+              "cpu": 57059.8
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 57.322727893945604,
+              "cpu": 50908.666666666664
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 44.50692049783866,
+              "cpu": 75810.26666666666
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 43.96414502015139,
+              "cpu": 69684.23333333334
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 59.71086320123266,
+              "cpu": 20111.166666666668
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.711231560475184,
+              "cpu": 17835.633333333335
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 58.25244228648569,
+              "cpu": 34269.6
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 56.86757486094847,
+              "cpu": 43920.4
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 58.73404675417788,
+              "cpu": 27699.2
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 59.21607217229866,
+              "cpu": 27261.333333333332
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 59.71233666547238,
+              "cpu": 17379.866666666665
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 59.216434452035905,
+              "cpu": 27726.166666666668
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 57.32001217198948,
+              "cpu": 44855.8
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 55.11416899139446,
+              "cpu": 57346.1
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 53.877867700928,
+              "cpu": 55844.73333333333
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 59.716615791152215,
+              "cpu": 22536.733333333334
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 58.25244228648569,
+              "cpu": 34793.066666666666
+            },
+            {
+              "tick": 2280,
+              "updates": 120,
+              "updatesPerSecond": 59.21543122669932,
+              "cpu": 35510.566666666666
+            },
+            {
+              "tick": 2400,
+              "updates": 120,
+              "updatesPerSecond": 59.71446198236506,
+              "cpu": 15221.833333333334
+            },
+            {
+              "tick": 2520,
+              "updates": 120,
+              "updatesPerSecond": 57.78315574559069,
+              "cpu": 26850.1
+            },
+            {
+              "tick": 2640,
+              "updates": 120,
+              "updatesPerSecond": 59.710211499860016,
+              "cpu": 18114.8
+            },
+            {
+              "tick": 2760,
+              "updates": 120,
+              "updatesPerSecond": 59.71077819589904,
+              "cpu": 34054.26666666667
+            },
+            {
+              "tick": 2880,
+              "updates": 41,
+              "updatesPerSecond": 48.78843874353214,
+              "cpu": 71760.39024390244
+            }
+          ]
+        }
+      ]
+    },
+    "emulicious": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+      "emulator": "Emulicious 2026-03-27",
+      "method": "Unchanged isolated ROM CLI startup; DAP attach, numeric-address reads only",
+      "run": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v37\\emulicious-release\\direct-LIvGq8",
+      "steps": [
+        {
+          "command": "initialize",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "supportsSetExpression": false,
+              "supportsDisassembleRequest": false,
+              "supportsRestartFrame": false,
+              "supportsTerminateRequest": false,
+              "supportsConfigurationDoneRequest": false,
+              "supportsRestartRequest": false,
+              "supportsGotoTargetsRequest": false,
+              "supportsConditionalBreakpoints": true,
+              "supportsModulesRequest": false,
+              "supportsCancelRequest": false,
+              "supportsHitConditionalBreakpoints": false,
+              "supportsLogPoints": true,
+              "supportsReadMemoryRequest": false,
+              "exceptionBreakpointFilters": [
+                {
+                  "filter": "Exception-5",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on inconsistent state after interrupt"
+                },
+                {
+                  "filter": "Exception-4",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on read of uninitialized memory"
+                },
+                {
+                  "filter": "Exception-3",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on execution of data"
+                },
+                {
+                  "filter": "Exception-2",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on bank swap at PC"
+                },
+                {
+                  "filter": "Exception-1",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on push to ROM"
+                }
+              ],
+              "supportsStepInTargetsRequest": false,
+              "supportsLoadedSourcesRequest": false,
+              "supportsTerminateThreadsRequest": false,
+              "supportsExceptionInfoRequest": false,
+              "supportsValueFormattingOptions": false,
+              "supportsCompletionsRequest": false,
+              "supportTerminateDebuggee": false,
+              "supportsSteppingGranularity": false,
+              "supportsDelayedStackTraceLoading": false,
+              "supportsDataBreakpoints": false,
+              "supportsEvaluateForHovers": true,
+              "supportsFunctionBreakpoints": true,
+              "supportsBreakpointLocationsRequest": false,
+              "supportsInstructionBreakpoints": false,
+              "supportsStepBack": true,
+              "supportsExceptionOptions": false,
+              "supportsSetVariable": false,
+              "supportsClipboardContext": false
+            },
+            "seq": 1,
+            "request_seq": 1,
+            "command": "initialize"
+          }
+        },
+        {
+          "event": {
+            "type": "event",
+            "event": "terminated",
+            "seq": 2
+          }
+        },
+        {
+          "command": "attach",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 3,
+            "request_seq": 2,
+            "command": "attach"
+          }
+        },
+        {
+          "command": "threads",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "threads": [
+                {
+                  "name": "Thread",
+                  "id": 1
+                }
+              ]
+            },
+            "seq": 4,
+            "request_seq": 3,
+            "command": "threads"
+          }
+        },
+        {
+          "command": "pause",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 5,
+            "request_seq": 4,
+            "command": "pause"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 6,
+            "request_seq": 5,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 7,
+            "request_seq": 6,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 8,
+            "request_seq": 7,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 9,
+            "request_seq": 8,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "continue",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "allThreadsContinued": false
+            },
+            "seq": 10,
+            "request_seq": 9,
+            "command": "continue"
+          }
+        },
+        {
+          "command": "pause",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 11,
+            "request_seq": 10,
+            "command": "pause"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 12,
+            "request_seq": 11,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 13,
+            "request_seq": 12,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 14,
+            "request_seq": 13,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 15,
+            "request_seq": 14,
+            "command": "evaluate"
+          }
+        }
+      ],
+      "stderr": "java.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\n",
+      "bootExecutionVerified": false,
+      "gameplayVerified": false,
+      "command": {
+        "executable": "C:\\homebrew\\projects\\dev-gb\\.tools\\emulicious\\java\\bin\\java.exe",
+        "args": [
+          "-Duser.home=C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v37\\emulicious-release\\direct-LIvGq8",
+          "-Dsun.java2d.d3d=false",
+          "-jar",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v37\\emulicious-release\\direct-LIvGq8\\Emulicious.jar",
+          "-remotedebug",
+          "61357",
+          "-muted",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v37\\emulicious-release\\direct-LIvGq8\\side-caravan.gb"
+        ]
+      },
+      "snapshots": [
+        {
+          "pc": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 6,
+            "request_seq": 5,
+            "command": "evaluate"
+          },
+          "frame": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 7,
+            "request_seq": 6,
+            "command": "evaluate"
+          },
+          "scene": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 8,
+            "request_seq": 7,
+            "command": "evaluate"
+          },
+          "cgb": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 9,
+            "request_seq": 8,
+            "command": "evaluate"
+          }
+        },
+        {
+          "pc": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 12,
+            "request_seq": 11,
+            "command": "evaluate"
+          },
+          "frame": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 13,
+            "request_seq": 12,
+            "command": "evaluate"
+          },
+          "scene": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 14,
+            "request_seq": 13,
+            "command": "evaluate"
+          },
+          "cgb": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 15,
+            "request_seq": 14,
+            "command": "evaluate"
+          }
+        }
+      ],
+      "limitation": "Connection alone is not execution evidence; inspect response errors."
+    }
+  },
+  "pending": [
+    "Emulicious launches/attaches but DAP evaluation fails with NullPointerException on the final ROM; no gameplay verification claimed",
+    "Physical hardware, human controller feel/audio and a full normal-campaign clear remain unverified",
+    "Average gains include gameplay changes; not a rendering-only or fixed-40-bullet comparison and not a constant 60fps guarantee",
+    "Awaiting human playtest of this ROM; work is not committed/pushed"
+  ]
+}

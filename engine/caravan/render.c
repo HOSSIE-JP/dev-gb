@@ -244,7 +244,7 @@ void ce_load_stage(void) BANKED {
     if (ce_battle_mode >= 2u) {
         /* A cut-in replaced only the arena. Reload its HUD/sprites/bullet tiles,
          * without uploading the scrolling stage map that stays invisible. */
-        ce_active_screen = 4; hide_all(); SPRITES_8x8; ce_battle_setup();
+        ce_active_screen = 4; hide_all(); CE_SET_OBJ_SIZE; ce_battle_setup();
         SHOW_BKG; SHOW_SPRITES; DISPLAY_ON; return;
     }
     /* Preserve an enabled, black LCD during transition loading. Turning it off
@@ -253,7 +253,7 @@ void ce_load_stage(void) BANKED {
     LCDC_REG &= ~8u; hide_all(); ce_active_screen = 4; palettes();
     tiles(&ce_screens[4].tiles, 0, ce_screens[4].tile_count, 0);
     tiles(ce_is_cgb && ce_color_stages[ce_state.stage].attrs ? &ce_color_stages[ce_state.stage].tiles : &s->tiles, ce_screens[4].tile_count, s->tile_count, 0);
-    tiles(ce_is_cgb && ce_color_sprites ? &ce_color_sprite_data : &ce_sprite_data, 128, ce_sprite_tiles, 1); SPRITES_8x8;
+    tiles(ce_is_cgb && ce_color_sprites ? &ce_color_sprite_data : &ce_sprite_data, 128, ce_sprite_tiles, 1); CE_SET_OBJ_SIZE;
     for (row = 0; row != 32u; ++row) map_row(start + row);
     ce_terrain_clean();
     screen_map(4, 1); move_win(CE_HUD_RIGHT ? 127 : 7, ce_hud_bottom ? 144u - ce_hud_height : 0);

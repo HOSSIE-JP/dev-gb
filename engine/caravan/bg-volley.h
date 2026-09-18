@@ -21,7 +21,7 @@ void ce_bg_shoot(uint8_t pattern,uint8_t source,int16_t x,int16_t y,uint8_t sequ
             uint8_t right=origin==2u||(origin==3u&&(sequence&1u))||(origin==4u&&emitter);
             sx=right?(CE_PLAY_WIDTH-2)*16:16;base=right?12u:4u;
         }
-        if(p->kind==1u||p->kind==7u)base=p->angle+ce_aim((ce_state.player_x-sx)/16,(ce_state.player_y-sy)/16);
+        if(p->kind==1u||p->kind==7u||p->kind==9u)base=p->angle+ce_aim((ce_state.player_x-sx)/16,(ce_state.player_y-sy)/16);
         if(p->kind==7u){base&=15u;if(base<4u)base=4u;else if(base>12u)base=12u;}
         if(p->kind==4u)base+=sequence*p->rotation;
         ce_bg_request.x=sx;ce_bg_request.y=sy;

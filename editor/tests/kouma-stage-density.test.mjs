@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {createRequire} from 'node:module';
 const lib=createRequire(import.meta.url)('../build/library.cjs'),game=()=>lib.readGame(process.cwd(),'touhou-kouma');
 test('side barrages occupy lower-half lanes without increasing the boss bullet ceiling',()=>{
- const g=game(),side=g.patterns.filter(p=>p.launch&&['left','right','both','alternate'].includes(p.launch.kind));assert.equal(side.length,4);
+ const g=game(),side=g.patterns.filter(p=>!p.id.startsWith('v37-')&&p.launch&&['left','right','both','alternate'].includes(p.launch.kind));assert.equal(side.length,4);
  for(const p of side)for(let sequence=0;sequence<12;sequence++)for(const point of lib.launchPoints(p,g.assets.find(a=>a.id==='fairy'),80*16,20*16,sequence)){assert.ok(point.y>=80*16&&point.y<=132*16);assert.ok(point.x===16||point.x===158*16);}
  assert.ok(g.bosses.every(b=>b.battle.maxBullets<=40));
 });

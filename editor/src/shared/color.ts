@@ -1,4 +1,4 @@
-import type {Game} from "./model";
+import {type Game, spriteHeight} from "./model";
 const spriteCache = new WeakMap<Game, ReturnType<typeof quantizeSpriteAssets>>();
 const frameCache = new WeakMap<Game, Map<number[], ReturnType<typeof quantizeColorTiles>>>();
 export function colorPreview(game:Game,asset:Game["assets"][number],frame=asset.frames[0]) {
@@ -24,7 +24,14 @@ export function quantizeSpriteAssets(game:Game) {
             rgb.push(f.cgbPixels?.[at] ?? Number.parseInt(game.palettes[a.palette].colors[f.pixels[at]].slice(1),16));mask.push(f.cgbPixels ? +(f.cgbPixels[at]>=0) : f.pixels[at]);
         }
     }
-    const q=quantizeColorTiles(8,rgb.length/8,rgb,mask), frames=new Map<string,{pixels:number[],preview:number[],attributes:number[]}>();
+    // One hardware 8x16 OBJ has one palette for both tiles, even if the
+    // source artist assigned different colors to its upper and lower half.
+    const pairs:number[][]=[];
+    if(spriteHeight(game)===16)for(const r of ranges)for(let y=0;y<r.height;y+=16)for(let x=0;x<r.width;x+=8){
+        const top=r.start/64+(y/8)*(r.width/8)+x/8;
+        if(y+8<r.height)pairs.push([top,top+r.width/8]);
+    }
+    const q=quantizeColorTiles(8,rgb.length/8,rgb,mask,pairs), frames=new Map<string,{pixels:number[],preview:number[],attributes:number[]}>();
     for(const r of ranges){const pixels:number[]=[],preview:number[]=[];let n=r.start;for(let y=0;y<r.height;y+=8)for(let x=0;x<r.width;x+=8)for(let j=0;j<8;j++)for(let i=0;i<8;i++){const at=(y+j)*r.width+x+i;pixels[at]=q.pixels[n];preview[at]=q.preview[n++];}frames.set(r.image,{pixels,preview,attributes:q.attributes.slice(r.start/64,n/64)});}
     return {frames,palettes:q.palettes,error:q.error,enabled:assets.some(a=>a.frames.some(f=>!!f.cgbPixels))};
 }

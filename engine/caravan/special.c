@@ -40,11 +40,30 @@ extern void explode(int16_t x,int16_t y);
 extern uint8_t defeated_asset;
 extern int16_t defeated_x,defeated_y;
 
+#if CE_OBJ_16
+/* A narrow, penetrating ray. Only actors are scanned, once per damage pulse;
+ * no projectile entities, per-pixel search or VRAM collision readback. */
+void ce_collide_beam(void) BANKED {
+    uint8_t i,damage=ce_patterns[ce_beam_pattern].damage;
+    int16_t x=ce_state.player_x/16,y=ce_state.player_y/16-8;
+    uint8_t top=ce_hud_bottom?0:ce_hud_height;
+    for(i=0;i!=ce_used;++i){
+        CE_Entity *e=&ce_entities[i];const CE_Hitbox *h;int16_t left,bottom;
+        if(e->kind!=CE_ENEMY && e->kind!=CE_BOSS)continue;
+        if(e->kind==CE_BOSS && ce_boss_invulnerable)continue;
+        h=&ce_hitboxes[e->asset];left=e->x/16+h->x;bottom=e->y/16+h->y+h->h;
+        if(left>=CE_PLAY_WIDTH || left+h->w<=0 || left>=x+1 || left+h->w<=x-1 || bottom<=top || bottom-h->h>=y)continue;
+        ce_damage_actor(i,damage);
+        if(ce_beam_pattern==CE_NONE)return;
+    }
+}
+#endif
+
 /* Only this bank's atomic volley path needs the complete admission check. */
 static uint8_t ce_can_allocate(uint8_t kind, uint8_t asset, uint8_t count) {
     uint8_t i, total = 0, reserve = kind == CE_ITEM ? 0u : ce_entity_limits[CE_ITEM] - ce_pool_counts[CE_ITEM];
     if ((uint16_t)ce_pool_counts[kind] + count > ce_entity_limits[kind] ||
-        (uint16_t)ce_pool_oam + (uint16_t)ce_assets[asset].tiles * count + reserve > 40u) return 0;
+        (uint16_t)ce_pool_oam + (uint16_t)CE_OAM_COST(asset) * count + reserve > 40u) return 0;
     for (i = 1; i != 7u; ++i) total += ce_pool_counts[i];
     return (uint16_t)total + count + reserve <= CE_MAX_ENTITIES;
 }
@@ -53,6 +72,7 @@ void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t fri
     const CE_Pattern *p; const CE_Asset *a; const int8_t *offsets; uint8_t emitter, n, base, angle, slot, emitters, origin;
     int16_t px, py; CE_Entity *e;
     if (pattern == CE_NONE || (!friendly && ce_bomb_image)) return;
+    if (ce_patterns[pattern].kind==8u) return; /* Held player ray has no entities. */
     if (!friendly && ce_battle_mode >= 2u) { ce_bg_shoot(pattern,source,x,y,sequence); return; }
     p = &ce_patterns[pattern]; a = &ce_assets[source];
     origin=friendly?0:p->launch;emitters=origin?(origin==4u?2u:1u):(p->emitters?p->emitters:a->emitters);
@@ -68,7 +88,7 @@ void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t fri
             uint8_t right=origin==2u||(origin==3u&&(sequence&1u))||(origin==4u&&emitter);
             px=right?(CE_PLAY_WIDTH-2)*16:16;base=right?12u:4u;
         }
-        if (p->kind == 1u || p->kind == 7u) base = p->angle + ce_aim((ce_state.player_x - px) / 16, (ce_state.player_y - py) / 16);
+        if (p->kind == 1u || p->kind == 7u || p->kind == 9u) base = p->angle + ce_aim((ce_state.player_x - px) / 16, (ce_state.player_y - py) / 16);
         /* Downward aimed shots keep their horizontal boundary when the target
          * moves above the emitter. Ordinary aimed shots retain all directions. */
         if (p->kind == 7u) {

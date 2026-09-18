@@ -2642,15 +2642,15 @@
       "name": "花扇・五枚の花びら",
       "asset": "shot-orb",
       "kind": "fan",
-      "speed": 0.75,
+      "speed": 0.875,
       "angle": 180,
       "count": 5,
       "spread": 90,
-      "interval": 64,
+      "interval": 72,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2658,15 +2658,15 @@
       "name": "門番・両脇の拳",
       "asset": "shot-orb",
       "kind": "straight",
-      "speed": 0.75,
+      "speed": 0.875,
       "angle": 90,
       "count": 1,
       "spread": 0,
-      "interval": 64,
+      "interval": 72,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1,
       "launch": {
         "kind": "both",
@@ -2681,15 +2681,15 @@
       "name": "紅拳・三連の追い打ち",
       "asset": "shot-diamond",
       "kind": "fan",
-      "speed": 0.75,
+      "speed": 0.875,
       "angle": 180,
       "count": 3,
       "spread": 45,
-      "interval": 64,
+      "interval": 72,
       "rotation": 0,
       "repeats": 0,
       "delay": 56,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2697,15 +2697,15 @@
       "name": "三角の魔法陣",
       "asset": "shot-star",
       "kind": "fan",
-      "speed": 0.75,
+      "speed": 0.875,
       "angle": 180,
       "count": 3,
       "spread": 90,
-      "interval": 48,
+      "interval": 64,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2713,15 +2713,15 @@
       "name": "天井の魔法陣",
       "asset": "shot-star",
       "kind": "fan",
-      "speed": 0.75,
+      "speed": 0.875,
       "angle": 180,
       "count": 4,
       "spread": 135,
-      "interval": 72,
+      "interval": 88,
       "rotation": 0,
       "repeats": 0,
       "delay": 48,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1,
       "launch": {
         "kind": "fixed",
@@ -2736,15 +2736,15 @@
       "name": "魔印・追尾する光",
       "asset": "shot-diamond",
       "kind": "homing",
-      "speed": 0.75,
+      "speed": 0.875,
       "angle": 180,
       "count": 1,
       "spread": 0,
-      "interval": 80,
+      "interval": 96,
       "rotation": 0,
       "repeats": 0,
       "delay": 73,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1,
       "guidance": {
         "frames": 48,
@@ -2756,15 +2756,15 @@
       "name": "銀の三連時計",
       "asset": "shot-knife",
       "kind": "fan",
-      "speed": 0.75,
+      "speed": 1,
       "angle": 180,
       "count": 3,
       "spread": 45,
-      "interval": 28,
+      "interval": 44,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2772,15 +2772,15 @@
       "name": "時空・左右の銀針",
       "asset": "shot-knife",
       "kind": "straight",
-      "speed": 0.75,
+      "speed": 1,
       "angle": 90,
       "count": 1,
       "spread": 0,
-      "interval": 28,
+      "interval": 44,
       "rotation": 0,
       "repeats": 0,
       "delay": 42,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1,
       "launch": {
         "kind": "alternate",
@@ -2795,15 +2795,15 @@
       "name": "秒針・真下への連射",
       "asset": "shot-knife",
       "kind": "straight",
-      "speed": 0.75,
+      "speed": 1,
       "angle": 180,
       "count": 1,
       "spread": 0,
-      "interval": 16,
+      "interval": 32,
       "rotation": 0,
       "repeats": 0,
       "delay": 31,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2811,15 +2811,15 @@
       "name": "紅い六枚の翼",
       "asset": "shot-diamond",
       "kind": "fan",
-      "speed": 0.75,
+      "speed": 1,
       "angle": 180,
       "count": 6,
       "spread": 135,
-      "interval": 44,
+      "interval": 60,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2827,15 +2827,15 @@
       "name": "夜潮・五枚の扇",
       "asset": "shot-orb",
       "kind": "fan",
-      "speed": 0.75,
+      "speed": 1,
       "angle": 180,
       "count": 5,
       "spread": 90,
-      "interval": 48,
+      "interval": 64,
       "rotation": 0,
       "repeats": 0,
       "delay": 26,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2843,15 +2843,15 @@
       "name": "紅槍・短い追尾",
       "asset": "shot-diamond",
       "kind": "homing",
-      "speed": 0.75,
+      "speed": 1,
       "angle": 180,
       "count": 1,
       "spread": 0,
-      "interval": 40,
+      "interval": 56,
       "rotation": 0,
       "repeats": 0,
       "delay": 27,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1,
       "guidance": {
         "frames": 48,
@@ -2863,15 +2863,15 @@
       "name": "七枚の結晶",
       "asset": "shot-star",
       "kind": "fan",
-      "speed": 0.75,
+      "speed": 1.125,
       "angle": 180,
       "count": 7,
       "spread": 135,
-      "interval": 40,
+      "interval": 56,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2879,15 +2879,15 @@
       "name": "禁弾・追う結晶",
       "asset": "shot-star",
       "kind": "homing",
-      "speed": 0.75,
+      "speed": 1.125,
       "angle": 180,
       "count": 1,
       "spread": 0,
-      "interval": 40,
+      "interval": 56,
       "rotation": 0,
       "repeats": 0,
       "delay": 29,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1,
       "guidance": {
         "frames": 48,
@@ -2899,15 +2899,15 @@
       "name": "真紅・五枚の結晶",
       "asset": "shot-diamond",
       "kind": "fan",
-      "speed": 0.75,
+      "speed": 1.125,
       "angle": 180,
       "count": 5,
       "spread": 90,
-      "interval": 48,
+      "interval": 64,
       "rotation": 0,
       "repeats": 0,
       "delay": 40,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2919,11 +2919,11 @@
       "angle": 180,
       "count": 3,
       "spread": 90,
-      "interval": 72,
+      "interval": 80,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2935,11 +2935,11 @@
       "angle": 90,
       "count": 1,
       "spread": 0,
-      "interval": 72,
+      "interval": 80,
       "rotation": 0,
       "repeats": 0,
       "delay": 48,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1,
       "launch": {
         "kind": "left",
@@ -2958,11 +2958,11 @@
       "angle": 90,
       "count": 1,
       "spread": 0,
-      "interval": 72,
+      "interval": 80,
       "rotation": 0,
       "repeats": 0,
       "delay": 84,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1,
       "launch": {
         "kind": "right",
@@ -2981,11 +2981,11 @@
       "angle": 180,
       "count": 2,
       "spread": 45,
-      "interval": 80,
+      "interval": 88,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -2997,11 +2997,11 @@
       "angle": 180,
       "count": 3,
       "spread": 90,
-      "interval": 88,
+      "interval": 96,
       "rotation": 0,
       "repeats": 0,
       "delay": 32,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
@@ -3013,23 +3013,23 @@
       "angle": 180,
       "count": 3,
       "spread": 45,
-      "interval": 64,
+      "interval": 72,
       "rotation": 0,
       "repeats": 0,
       "delay": 24,
-      "lifetime": 192,
+      "lifetime": 160,
       "damage": 1
     },
     {
       "id": "marisa-shot",
-      "name": "魔理沙・高速レーザー連射",
+      "name": "魔理沙・追従光線",
       "asset": "shot-marisa-laser",
-      "kind": "laser",
+      "kind": "beam",
       "speed": 8,
       "angle": 0,
       "count": 1,
       "spread": 0,
-      "interval": 4,
+      "interval": 8,
       "rotation": 0,
       "repeats": 0,
       "delay": 0,
@@ -3038,19 +3038,616 @@
     },
     {
       "id": "marisa-focus",
-      "name": "魔理沙・集中レーザー",
+      "name": "魔理沙・集中光線",
       "asset": "shot-marisa-laser",
-      "kind": "laser",
+      "kind": "beam",
       "speed": 8,
       "angle": 0,
       "count": 1,
       "spread": 0,
-      "interval": 6,
+      "interval": 10,
       "rotation": 0,
       "repeats": 0,
       "delay": 0,
       "lifetime": 24,
       "damage": 2
+    },
+    {
+      "id": "v37-scout-aim",
+      "name": "斥候・単発狙撃",
+      "asset": "shot-orb",
+      "kind": "aimed",
+      "speed": 1.75,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 96,
+      "rotation": 0,
+      "repeats": 1,
+      "delay": 44,
+      "lifetime": 100,
+      "damage": 1
+    },
+    {
+      "id": "v37-intercept",
+      "name": "迎撃妖精・狙い三連",
+      "asset": "shot-diamond",
+      "kind": "aimed-fan",
+      "speed": 2.25,
+      "angle": 0,
+      "count": 3,
+      "spread": 45,
+      "interval": 56,
+      "rotation": 0,
+      "repeats": 2,
+      "delay": 40,
+      "lifetime": 84,
+      "damage": 1
+    },
+    {
+      "id": "v37-dive",
+      "name": "急降下蝙蝠・置き弾",
+      "asset": "shot-orb",
+      "kind": "fan",
+      "speed": 1.25,
+      "angle": 180,
+      "count": 3,
+      "spread": 90,
+      "interval": 96,
+      "rotation": 0,
+      "repeats": 1,
+      "delay": 36,
+      "lifetime": 112,
+      "damage": 1
+    },
+    {
+      "id": "v37-page",
+      "name": "魔導書・交差散弾",
+      "asset": "shot-star",
+      "kind": "fan",
+      "speed": 1.5,
+      "angle": 180,
+      "count": 3,
+      "spread": 90,
+      "interval": 48,
+      "rotation": 0,
+      "repeats": 2,
+      "delay": 64,
+      "lifetime": 96,
+      "damage": 1
+    },
+    {
+      "id": "v37-sniper",
+      "name": "精鋭妖精・高速狙撃",
+      "asset": "shot-knife",
+      "kind": "aimed",
+      "speed": 3,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 64,
+      "rotation": 0,
+      "repeats": 2,
+      "delay": 56,
+      "lifetime": 72,
+      "damage": 1
+    },
+    {
+      "id": "v37-seeker",
+      "name": "魔導書・遅い誘導弾",
+      "asset": "shot-orb",
+      "kind": "homing",
+      "speed": 1.25,
+      "angle": 180,
+      "count": 1,
+      "spread": 0,
+      "interval": 72,
+      "rotation": 0,
+      "repeats": 2,
+      "delay": 56,
+      "lifetime": 112,
+      "damage": 1,
+      "guidance": {
+        "frames": 32,
+        "period": 16
+      }
+    },
+    {
+      "id": "v37-rumia-night-eye",
+      "name": "闇の追視",
+      "asset": "shot-orb",
+      "kind": "aimed",
+      "speed": 1,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 128,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 72,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-rumia-twin-shadow",
+      "name": "双影",
+      "asset": "shot-orb",
+      "kind": "aimed",
+      "speed": 1.125,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 144,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 88,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": -12,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "v37-rumia-night-edge",
+      "name": "夜の横風",
+      "asset": "shot-orb",
+      "kind": "aimed",
+      "speed": 1,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 128,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 104,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ],
+      "launch": {
+        "kind": "alternate",
+        "x": 60,
+        "y": 24,
+        "step": 16,
+        "lanes": 3
+      }
+    },
+    {
+      "id": "v37-cirno-ice-needle",
+      "name": "氷の狙い針",
+      "asset": "shot-orb",
+      "kind": "aimed",
+      "speed": 1.25,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 112,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 72,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-cirno-ice-v",
+      "name": "氷のＶ字",
+      "asset": "shot-orb",
+      "kind": "aimed-fan",
+      "speed": 1,
+      "angle": 0,
+      "count": 3,
+      "spread": 45,
+      "interval": 128,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 88,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-cirno-ice-trident",
+      "name": "氷の三叉",
+      "asset": "shot-orb",
+      "kind": "aimed-fan",
+      "speed": 1.125,
+      "angle": 0,
+      "count": 3,
+      "spread": 90,
+      "interval": 144,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 104,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-meiling-lotus-aim",
+      "name": "蓮の迎撃",
+      "asset": "shot-orb",
+      "kind": "aimed-fan",
+      "speed": 1.25,
+      "angle": 0,
+      "count": 3,
+      "spread": 45,
+      "interval": 112,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 72,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-meiling-cross-fist",
+      "name": "双掌",
+      "asset": "shot-orb",
+      "kind": "aimed",
+      "speed": 1.5,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 128,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 88,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": -12,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "v37-meiling-lotus-triad",
+      "name": "三華",
+      "asset": "shot-orb",
+      "kind": "aimed-fan",
+      "speed": 1.25,
+      "angle": 0,
+      "count": 3,
+      "spread": 90,
+      "interval": 128,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 104,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-patchouli-fire-point",
+      "name": "火符・点火",
+      "asset": "shot-star",
+      "kind": "aimed",
+      "speed": 1.75,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 112,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 72,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-patchouli-water-v",
+      "name": "水符・二叉",
+      "asset": "shot-star",
+      "kind": "aimed-fan",
+      "speed": 1.125,
+      "angle": 0,
+      "count": 3,
+      "spread": 90,
+      "interval": 128,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 88,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-patchouli-earth-grid",
+      "name": "土符・三列",
+      "asset": "shot-star",
+      "kind": "aimed",
+      "speed": 1.25,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 144,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 104,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": -16,
+          "y": 8
+        },
+        {
+          "x": 0,
+          "y": 0
+        },
+        {
+          "x": 16,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-sakuya-silver-aim",
+      "name": "銀の狙撃",
+      "asset": "shot-knife",
+      "kind": "aimed",
+      "speed": 2,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 96,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 72,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-sakuya-twin-clock",
+      "name": "双時計",
+      "asset": "shot-knife",
+      "kind": "aimed",
+      "speed": 1.5,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 112,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 88,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": -12,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "v37-sakuya-knife-triad",
+      "name": "三本ナイフ",
+      "asset": "shot-knife",
+      "kind": "aimed-fan",
+      "speed": 1.75,
+      "angle": 0,
+      "count": 3,
+      "spread": 45,
+      "interval": 128,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 104,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-remilia-scarlet-spear",
+      "name": "紅の槍",
+      "asset": "shot-diamond",
+      "kind": "aimed",
+      "speed": 2,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 96,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 72,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-remilia-bat-wings",
+      "name": "蝙蝠の翼",
+      "asset": "shot-orb",
+      "kind": "aimed-fan",
+      "speed": 1.5,
+      "angle": 0,
+      "count": 3,
+      "spread": 90,
+      "interval": 128,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 88,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-remilia-blood-moon",
+      "name": "血の双月",
+      "asset": "shot-diamond",
+      "kind": "aimed",
+      "speed": 1.75,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 112,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 104,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": -12,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "v37-flandre-ruby-aim",
+      "name": "紅玉の狙撃",
+      "asset": "shot-star",
+      "kind": "aimed-fan",
+      "speed": 1.75,
+      "angle": 0,
+      "count": 3,
+      "spread": 45,
+      "interval": 112,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 72,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "v37-flandre-prism-cross",
+      "name": "プリズム交差",
+      "asset": "shot-diamond",
+      "kind": "aimed",
+      "speed": 2,
+      "angle": 0,
+      "count": 1,
+      "spread": 0,
+      "interval": 112,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 88,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": -12,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "v37-flandre-four-star",
+      "name": "四つ星",
+      "asset": "shot-star",
+      "kind": "aimed-fan",
+      "speed": 1.5,
+      "angle": 0,
+      "count": 5,
+      "spread": 135,
+      "interval": 144,
+      "rotation": 0,
+      "repeats": 0,
+      "delay": 104,
+      "lifetime": 144,
+      "damage": 1,
+      "emitterOffsets": [
+        {
+          "x": 0,
+          "y": 8
+        }
+      ]
     }
   ],
   "enemies": [
@@ -3504,6 +4101,348 @@
       },
       "pattern": "",
       "attacks": []
+    },
+    {
+      "id": "v37-scout",
+      "name": "斥候妖精",
+      "asset": "fairy",
+      "hp": 2,
+      "score": 8,
+      "pattern": "v37-scout-aim",
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": false,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": 0,
+            "y": 44
+          },
+          {
+            "frame": 64,
+            "x": 0,
+            "y": 44
+          },
+          {
+            "frame": 128,
+            "x": 16,
+            "y": 240
+          }
+        ]
+      },
+      "attacks": []
+    },
+    {
+      "id": "v37-intercept-left",
+      "name": "迎撃妖精・右切り返し",
+      "asset": "fairy",
+      "hp": 3,
+      "score": 10,
+      "pattern": "v37-intercept",
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": false,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": 0,
+            "y": 48
+          },
+          {
+            "frame": 64,
+            "x": 16,
+            "y": 64
+          },
+          {
+            "frame": 96,
+            "x": 0,
+            "y": 80
+          },
+          {
+            "frame": 160,
+            "x": -16,
+            "y": 240
+          }
+        ]
+      },
+      "attacks": []
+    },
+    {
+      "id": "v37-intercept-right",
+      "name": "迎撃妖精・左切り返し",
+      "asset": "fairy",
+      "hp": 3,
+      "score": 10,
+      "pattern": "v37-intercept",
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": false,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": 0,
+            "y": 48
+          },
+          {
+            "frame": 64,
+            "x": -16,
+            "y": 64
+          },
+          {
+            "frame": 96,
+            "x": 0,
+            "y": 80
+          },
+          {
+            "frame": 160,
+            "x": 16,
+            "y": 240
+          }
+        ]
+      },
+      "attacks": []
+    },
+    {
+      "id": "v37-dive-left",
+      "name": "蝙蝠・斜め急降下",
+      "asset": "bat",
+      "hp": 1,
+      "score": 7,
+      "pattern": "v37-dive",
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": false,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": 48,
+            "y": 16
+          },
+          {
+            "frame": 64,
+            "x": 72,
+            "y": 80
+          },
+          {
+            "frame": 96,
+            "x": 120,
+            "y": 152
+          }
+        ]
+      },
+      "attacks": []
+    },
+    {
+      "id": "v37-dive-right",
+      "name": "蝙蝠・反転急降下",
+      "asset": "bat",
+      "hp": 1,
+      "score": 7,
+      "pattern": "v37-dive",
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": false,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": -48,
+            "y": 16
+          },
+          {
+            "frame": 64,
+            "x": -72,
+            "y": 80
+          },
+          {
+            "frame": 96,
+            "x": -120,
+            "y": 152
+          }
+        ]
+      },
+      "attacks": []
+    },
+    {
+      "id": "v37-page",
+      "name": "魔導書・横滑り砲台",
+      "asset": "book",
+      "hp": 4,
+      "score": 13,
+      "pattern": "v37-page",
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": false,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 48,
+            "x": 0,
+            "y": 52
+          },
+          {
+            "frame": 80,
+            "x": 16,
+            "y": 52
+          },
+          {
+            "frame": 112,
+            "x": -16,
+            "y": 52
+          },
+          {
+            "frame": 176,
+            "x": 0,
+            "y": 240
+          }
+        ]
+      },
+      "attacks": []
+    },
+    {
+      "id": "v37-sniper",
+      "name": "精鋭狙撃妖精",
+      "asset": "fairy",
+      "hp": 3,
+      "score": 12,
+      "pattern": "v37-sniper",
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": false,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": 0,
+            "y": 48
+          },
+          {
+            "frame": 64,
+            "x": 0,
+            "y": 48
+          },
+          {
+            "frame": 96,
+            "x": 16,
+            "y": 72
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 96
+          },
+          {
+            "frame": 176,
+            "x": 0,
+            "y": 240
+          }
+        ]
+      },
+      "attacks": []
+    },
+    {
+      "id": "v37-seeker",
+      "name": "追尾魔導書",
+      "asset": "book",
+      "hp": 3,
+      "score": 12,
+      "pattern": "v37-seeker",
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": false,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 48,
+            "x": 0,
+            "y": 52
+          },
+          {
+            "frame": 80,
+            "x": -16,
+            "y": 60
+          },
+          {
+            "frame": 112,
+            "x": 0,
+            "y": 68
+          },
+          {
+            "frame": 176,
+            "x": 0,
+            "y": 240
+          }
+        ]
+      },
+      "attacks": []
     }
   ],
   "bosses": [
@@ -3575,38 +4514,44 @@
           "until": "hp",
           "threshold": 0,
           "pattern": "rumia-halo",
-          "attacks": [],
+          "attacks": [
+            {
+              "id": "rumia-phase-1-v37",
+              "pattern": "v37-rumia-night-eye"
+            }
+          ],
           "motion": {
             "kind": "path",
             "vx": 0,
             "vy": 0,
             "amplitude": 0,
-            "period": 240,
+            "period": 256,
             "loop": true,
             "points": [
               {
                 "frame": 0,
                 "x": 0,
-                "y": 0,
-                "vx": null
+                "y": 0
               },
               {
-                "frame": 80,
-                "x": -15,
-                "y": 0,
-                "vx": null
+                "frame": 64,
+                "x": -12,
+                "y": 4
               },
               {
-                "frame": 160,
-                "x": 15,
-                "y": 0,
-                "vx": null
-              },
-              {
-                "frame": 240,
+                "frame": 128,
                 "x": 0,
-                "y": 0,
-                "vx": null
+                "y": 8
+              },
+              {
+                "frame": 192,
+                "x": 12,
+                "y": 4
+              },
+              {
+                "frame": 256,
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -3626,38 +4571,64 @@
           "until": "hp",
           "threshold": 0,
           "pattern": "rumia-ribbon",
-          "attacks": [],
+          "attacks": [
+            {
+              "id": "rumia-phase-2-v37",
+              "pattern": "v37-rumia-twin-shadow"
+            }
+          ],
           "motion": {
             "kind": "path",
             "vx": 0,
             "vy": 0,
             "amplitude": 0,
-            "period": 240,
+            "period": 256,
             "loop": true,
             "points": [
               {
                 "frame": 0,
                 "x": 0,
-                "y": 0,
-                "vx": null
+                "y": 0
               },
               {
-                "frame": 80,
-                "x": -15,
-                "y": 0,
-                "vx": null
+                "frame": 32,
+                "x": 8,
+                "y": 4
+              },
+              {
+                "frame": 64,
+                "x": 16,
+                "y": 8
+              },
+              {
+                "frame": 96,
+                "x": 8,
+                "y": 12
+              },
+              {
+                "frame": 128,
+                "x": 0,
+                "y": 8
               },
               {
                 "frame": 160,
-                "x": 15,
-                "y": 0,
-                "vx": null
+                "x": -8,
+                "y": 4
               },
               {
-                "frame": 240,
+                "frame": 192,
+                "x": -16,
+                "y": 8
+              },
+              {
+                "frame": 224,
+                "x": -8,
+                "y": 12
+              },
+              {
+                "frame": 256,
                 "x": 0,
-                "y": 0,
-                "vx": null
+                "y": 0
               }
             ]
           },
@@ -3677,38 +4648,54 @@
           "until": "hp",
           "threshold": 0,
           "pattern": "rumia-moon",
-          "attacks": [],
+          "attacks": [
+            {
+              "id": "rumia-phase-3-v37",
+              "pattern": "v37-rumia-night-edge"
+            }
+          ],
           "motion": {
             "kind": "path",
             "vx": 0,
             "vy": 0,
             "amplitude": 0,
-            "period": 240,
+            "period": 256,
             "loop": true,
             "points": [
               {
                 "frame": 0,
                 "x": 0,
-                "y": 0,
-                "vx": null
+                "y": 0
               },
               {
-                "frame": 80,
-                "x": -15,
-                "y": 0,
-                "vx": null
+                "frame": 32,
+                "x": -8,
+                "y": 0
+              },
+              {
+                "frame": 64,
+                "x": -16,
+                "y": 8
+              },
+              {
+                "frame": 128,
+                "x": 0,
+                "y": 16
               },
               {
                 "frame": 160,
-                "x": 15,
-                "y": 0,
-                "vx": null
+                "x": 8,
+                "y": 8
               },
               {
-                "frame": 240,
+                "frame": 192,
+                "x": 16,
+                "y": 0
+              },
+              {
+                "frame": 256,
                 "x": 0,
-                "y": 0,
-                "vx": null
+                "y": 0
               }
             ]
           },
@@ -3806,7 +4793,12 @@
           "until": "hp",
           "threshold": 0,
           "pattern": "mei-petal",
-          "attacks": [],
+          "attacks": [
+            {
+              "id": "meiling-p1-v37",
+              "pattern": "v37-meiling-lotus-aim"
+            }
+          ],
           "motion": {
             "kind": "path",
             "vx": 0,
@@ -3816,28 +4808,49 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
-              },
-              {
-                "x": -18,
-                "y": 0,
-                "frame": 64,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 0,
-                "frame": 192,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
+                "y": 0
+              },
+              {
+                "frame": 32,
+                "x": -16,
+                "y": 8
+              },
+              {
+                "frame": 64,
+                "x": -32,
+                "y": 16
+              },
+              {
+                "frame": 96,
+                "x": -16,
+                "y": 24
+              },
+              {
+                "frame": 128,
+                "x": 0,
+                "y": 16
+              },
+              {
+                "frame": 160,
+                "x": 16,
+                "y": 8
+              },
+              {
+                "frame": 192,
+                "x": 32,
+                "y": 16
+              },
+              {
+                "frame": 224,
+                "x": 16,
+                "y": 24
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -3861,6 +4874,10 @@
             {
               "id": "meiling-p2-layer",
               "pattern": "mei-needle"
+            },
+            {
+              "id": "meiling-p2-v37",
+              "pattern": "v37-meiling-cross-fist"
             }
           ],
           "motion": {
@@ -3872,34 +4889,39 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
-                "x": -18,
-                "y": 8,
+                "frame": 32,
+                "x": 16,
+                "y": 0
+              },
+              {
                 "frame": 64,
-                "vx": null
+                "x": 32,
+                "y": 16
               },
               {
-                "x": 0,
-                "y": 24,
                 "frame": 128,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 8,
-                "frame": 192,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
+                "y": 32
+              },
+              {
+                "frame": 160,
+                "x": -16,
+                "y": 16
+              },
+              {
+                "frame": 192,
+                "x": -32,
+                "y": 0
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -3923,6 +4945,10 @@
             {
               "id": "meiling-p3-layer",
               "pattern": "mei-needle"
+            },
+            {
+              "id": "meiling-p3-v37",
+              "pattern": "v37-meiling-lotus-triad"
             }
           ],
           "motion": {
@@ -3934,52 +4960,49 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
-                "x": 0,
-                "y": 0,
+                "frame": 32,
+                "x": -24,
+                "y": 8
+              },
+              {
                 "frame": 64,
-                "vx": null
+                "x": 0,
+                "y": 16
               },
               {
-                "x": -18,
-                "y": 0,
-                "frame": 80,
-                "vx": null
+                "frame": 96,
+                "x": 24,
+                "y": 24
               },
               {
-                "x": -18,
-                "y": 0,
                 "frame": 128,
-                "vx": null
+                "x": 0,
+                "y": 32
               },
               {
-                "x": 18,
-                "y": 0,
                 "frame": 160,
-                "vx": null
+                "x": -24,
+                "y": 24
               },
               {
-                "x": 18,
-                "y": 0,
-                "frame": 208,
-                "vx": null
-              },
-              {
+                "frame": 192,
                 "x": 0,
-                "y": 0,
+                "y": 16
+              },
+              {
                 "frame": 224,
-                "vx": null
+                "x": 24,
+                "y": 8
               },
               {
-                "x": 0,
-                "y": 0,
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4081,6 +5104,10 @@
             {
               "id": "patchouli-p1-layer",
               "pattern": "pat-seal"
+            },
+            {
+              "id": "patchouli-p1-v37",
+              "pattern": "v37-patchouli-fire-point"
             }
           ],
           "motion": {
@@ -4092,16 +5119,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
+                "frame": 64,
+                "x": 32,
+                "y": -8
+              },
+              {
+                "frame": 128,
                 "x": 0,
-                "y": 0,
+                "y": 16
+              },
+              {
+                "frame": 192,
+                "x": -32,
+                "y": -8
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4125,6 +5165,10 @@
             {
               "id": "patchouli-p2-layer",
               "pattern": "pat-element"
+            },
+            {
+              "id": "patchouli-p2-v37",
+              "pattern": "v37-patchouli-water-v"
             }
           ],
           "motion": {
@@ -4136,28 +5180,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
-              },
-              {
-                "x": -18,
-                "y": 0,
-                "frame": 64,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 0,
-                "frame": 192,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
+                "y": 0
+              },
+              {
+                "frame": 64,
+                "x": -32,
+                "y": 16
+              },
+              {
+                "frame": 128,
+                "x": 0,
+                "y": -8
+              },
+              {
+                "frame": 192,
+                "x": 32,
+                "y": 16
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4185,6 +5230,10 @@
             {
               "id": "patchouli-p3-v09-layer-1",
               "pattern": "pat-seal"
+            },
+            {
+              "id": "patchouli-p3-v37",
+              "pattern": "v37-patchouli-earth-grid"
             }
           ],
           "motion": {
@@ -4196,34 +5245,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
-                "x": -18,
-                "y": 8,
                 "frame": 64,
-                "vx": null
+                "x": -24,
+                "y": 8
               },
               {
-                "x": 0,
-                "y": 24,
                 "frame": 128,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 8,
-                "frame": 192,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
+                "y": 16
+              },
+              {
+                "frame": 192,
+                "x": 24,
+                "y": 8
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4325,6 +5369,10 @@
             {
               "id": "sakuya-p1-layer",
               "pattern": "sak-line"
+            },
+            {
+              "id": "sakuya-p1-v37",
+              "pattern": "v37-sakuya-silver-aim"
             }
           ],
           "motion": {
@@ -4336,52 +5384,39 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
-                "x": 0,
-                "y": 0,
+                "frame": 32,
+                "x": -16,
+                "y": 0
+              },
+              {
                 "frame": 64,
-                "vx": null
+                "x": -32,
+                "y": 16
               },
               {
-                "x": -18,
-                "y": 0,
-                "frame": 80,
-                "vx": null
-              },
-              {
-                "x": -18,
-                "y": 0,
                 "frame": 128,
-                "vx": null
+                "x": 0,
+                "y": 32
               },
               {
-                "x": 18,
-                "y": 0,
                 "frame": 160,
-                "vx": null
+                "x": 16,
+                "y": 16
               },
               {
-                "x": 18,
-                "y": 0,
-                "frame": 208,
-                "vx": null
+                "frame": 192,
+                "x": 32,
+                "y": 0
               },
               {
-                "x": 0,
-                "y": 0,
-                "frame": 224,
-                "vx": null
-              },
-              {
-                "x": 0,
-                "y": 0,
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4405,6 +5440,10 @@
             {
               "id": "sakuya-p2-layer",
               "pattern": "sak-line"
+            },
+            {
+              "id": "sakuya-p2-v37",
+              "pattern": "v37-sakuya-twin-clock"
             }
           ],
           "motion": {
@@ -4416,34 +5455,49 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
-                "x": -18,
-                "y": 8,
+                "frame": 32,
+                "x": 24,
+                "y": 8
+              },
+              {
                 "frame": 64,
-                "vx": null
+                "x": 0,
+                "y": 16
               },
               {
-                "x": 0,
-                "y": 24,
+                "frame": 96,
+                "x": -24,
+                "y": 24
+              },
+              {
                 "frame": 128,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 8,
-                "frame": 192,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
+                "y": 32
+              },
+              {
+                "frame": 160,
+                "x": 24,
+                "y": 24
+              },
+              {
+                "frame": 192,
+                "x": 0,
+                "y": 16
+              },
+              {
+                "frame": 224,
+                "x": -24,
+                "y": 8
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4467,6 +5521,10 @@
             {
               "id": "sakuya-p3-layer",
               "pattern": "sak-cross"
+            },
+            {
+              "id": "sakuya-p3-v37",
+              "pattern": "v37-sakuya-knife-triad"
             }
           ],
           "motion": {
@@ -4478,28 +5536,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
-              },
-              {
-                "x": -18,
-                "y": 0,
-                "frame": 64,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 0,
-                "frame": 192,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
+                "y": 0
+              },
+              {
+                "frame": 64,
+                "x": 24,
+                "y": 16
+              },
+              {
+                "frame": 128,
+                "x": 0,
+                "y": 32
+              },
+              {
+                "frame": 192,
+                "x": -24,
+                "y": 16
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4601,6 +5660,10 @@
             {
               "id": "remilia-p1-layer",
               "pattern": "rem-coil"
+            },
+            {
+              "id": "remilia-p1-v37",
+              "pattern": "v37-remilia-scarlet-spear"
             }
           ],
           "motion": {
@@ -4612,34 +5675,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
-                "x": -18,
-                "y": 8,
                 "frame": 64,
-                "vx": null
+                "x": 32,
+                "y": 16
               },
               {
-                "x": 0,
-                "y": 24,
                 "frame": 128,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 8,
-                "frame": 192,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
+                "y": -8
+              },
+              {
+                "frame": 192,
+                "x": -32,
+                "y": 16
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4663,6 +5721,10 @@
             {
               "id": "remilia-p2-layer",
               "pattern": "rem-coil"
+            },
+            {
+              "id": "remilia-p2-v37",
+              "pattern": "v37-remilia-bat-wings"
             }
           ],
           "motion": {
@@ -4674,46 +5736,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
-                "frame": 48,
-                "vx": null
+                "y": 0
               },
               {
-                "x": 18,
-                "y": 32,
-                "frame": 80,
-                "vx": null
+                "frame": 64,
+                "x": 24,
+                "y": 8
               },
               {
-                "x": 0,
-                "y": 0,
                 "frame": 128,
-                "vx": null
-              },
-              {
-                "x": -18,
-                "y": 32,
-                "frame": 160,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
-                "frame": 208,
-                "vx": null
+                "y": 16
               },
               {
-                "x": 0,
-                "y": 0,
+                "frame": 192,
+                "x": -24,
+                "y": 8
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4737,6 +5782,10 @@
             {
               "id": "remilia-p3-layer",
               "pattern": "rem-fan"
+            },
+            {
+              "id": "remilia-p3-v37",
+              "pattern": "v37-remilia-blood-moon"
             }
           ],
           "motion": {
@@ -4748,28 +5797,49 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
-              },
-              {
-                "x": -18,
-                "y": 0,
-                "frame": 64,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 0,
-                "frame": 192,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
+                "y": 0
+              },
+              {
+                "frame": 32,
+                "x": -16,
+                "y": 8
+              },
+              {
+                "frame": 64,
+                "x": -32,
+                "y": 16
+              },
+              {
+                "frame": 96,
+                "x": -16,
+                "y": 24
+              },
+              {
+                "frame": 128,
+                "x": 0,
+                "y": 16
+              },
+              {
+                "frame": 160,
+                "x": 16,
+                "y": 8
+              },
+              {
+                "frame": 192,
+                "x": 32,
+                "y": 16
+              },
+              {
+                "frame": 224,
+                "x": 16,
+                "y": 24
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4871,6 +5941,10 @@
             {
               "id": "flandre-p1-layer",
               "pattern": "flan-coil"
+            },
+            {
+              "id": "flandre-p1-v37",
+              "pattern": "v37-flandre-ruby-aim"
             }
           ],
           "motion": {
@@ -4882,16 +5956,49 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
+                "frame": 32,
+                "x": -24,
+                "y": 8
+              },
+              {
+                "frame": 64,
                 "x": 0,
-                "y": 0,
+                "y": 16
+              },
+              {
+                "frame": 96,
+                "x": 24,
+                "y": 24
+              },
+              {
+                "frame": 128,
+                "x": 0,
+                "y": 32
+              },
+              {
+                "frame": 160,
+                "x": -24,
+                "y": 24
+              },
+              {
+                "frame": 192,
+                "x": 0,
+                "y": 16
+              },
+              {
+                "frame": 224,
+                "x": 24,
+                "y": 8
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4915,6 +6022,10 @@
             {
               "id": "flandre-p2-layer",
               "pattern": "flan-coil"
+            },
+            {
+              "id": "flandre-p2-v37",
+              "pattern": "v37-flandre-prism-cross"
             }
           ],
           "motion": {
@@ -4926,46 +6037,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
-                "frame": 48,
-                "vx": null
+                "y": 0
               },
               {
-                "x": 18,
-                "y": 32,
-                "frame": 80,
-                "vx": null
+                "frame": 64,
+                "x": -24,
+                "y": 16
               },
               {
-                "x": 0,
-                "y": 0,
                 "frame": 128,
-                "vx": null
-              },
-              {
-                "x": -18,
-                "y": 32,
-                "frame": 160,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
-                "frame": 208,
-                "vx": null
+                "y": 32
               },
               {
-                "x": 0,
-                "y": 0,
+                "frame": 192,
+                "x": 24,
+                "y": 16
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -4989,6 +6083,10 @@
             {
               "id": "flandre-p3-layer",
               "pattern": "flan-final"
+            },
+            {
+              "id": "flandre-p3-v37",
+              "pattern": "v37-flandre-four-star"
             }
           ],
           "motion": {
@@ -5000,52 +6098,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
-                "x": 0,
-                "y": 0,
                 "frame": 64,
-                "vx": null
+                "x": 32,
+                "y": -8
               },
               {
-                "x": -18,
-                "y": 0,
-                "frame": 80,
-                "vx": null
-              },
-              {
-                "x": -18,
-                "y": 0,
                 "frame": 128,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 0,
-                "frame": 160,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 0,
-                "frame": 208,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
-                "frame": 224,
-                "vx": null
+                "y": 16
               },
               {
-                "x": 0,
-                "y": 0,
+                "frame": 192,
+                "x": -32,
+                "y": -8
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -5143,7 +6218,12 @@
           "until": "hp",
           "threshold": 0,
           "pattern": "cirno-icicle",
-          "attacks": [],
+          "attacks": [
+            {
+              "id": "cirno-p1-v37",
+              "pattern": "v37-cirno-ice-needle"
+            }
+          ],
           "motion": {
             "kind": "path",
             "vx": 0,
@@ -5153,28 +6233,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
-              },
-              {
-                "x": -18,
-                "y": 0,
-                "frame": 64,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 0,
-                "frame": 192,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
+                "y": 0
+              },
+              {
+                "frame": 64,
+                "x": 12,
+                "y": 8
+              },
+              {
+                "frame": 128,
+                "x": 0,
+                "y": 16
+              },
+              {
+                "frame": 192,
+                "x": -12,
+                "y": 8
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -5198,6 +6279,10 @@
             {
               "id": "cirno-layer2",
               "pattern": "cirno-aim"
+            },
+            {
+              "id": "cirno-p2-v37",
+              "pattern": "v37-cirno-ice-v"
             }
           ],
           "motion": {
@@ -5209,34 +6294,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
-                "x": -18,
-                "y": 8,
                 "frame": 64,
-                "vx": null
+                "x": -16,
+                "y": -4
               },
               {
-                "x": 0,
-                "y": 24,
                 "frame": 128,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 8,
-                "frame": 192,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
+                "y": 8
+              },
+              {
+                "frame": 192,
+                "x": 16,
+                "y": -4
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -5264,6 +6344,10 @@
             {
               "id": "cirno-p3-v09-layer-1",
               "pattern": "cirno-aim"
+            },
+            {
+              "id": "cirno-p3-v37",
+              "pattern": "v37-cirno-ice-trident"
             }
           ],
           "motion": {
@@ -5275,52 +6359,29 @@
             "loop": true,
             "points": [
               {
-                "x": 0,
-                "y": 0,
                 "frame": 0,
-                "vx": null
+                "x": 0,
+                "y": 0
               },
               {
-                "x": 0,
-                "y": 0,
                 "frame": 64,
-                "vx": null
+                "x": 16,
+                "y": 8
               },
               {
-                "x": -18,
-                "y": 0,
-                "frame": 80,
-                "vx": null
-              },
-              {
-                "x": -18,
-                "y": 0,
                 "frame": 128,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 0,
-                "frame": 160,
-                "vx": null
-              },
-              {
-                "x": 18,
-                "y": 0,
-                "frame": 208,
-                "vx": null
-              },
-              {
                 "x": 0,
-                "y": 0,
-                "frame": 224,
-                "vx": null
+                "y": -4
               },
               {
-                "x": 0,
-                "y": 0,
+                "frame": 192,
+                "x": -16,
+                "y": 8
+              },
+              {
                 "frame": 256,
-                "vx": null
+                "x": 0,
+                "y": 0
               }
             ]
           },
@@ -29741,24 +30802,24 @@
           "id": "s0-w1",
           "frame": 176,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-scout",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
           "id": "s0-w2",
           "frame": 272,
           "kind": "enemy",
-          "ref": "bat-cross",
+          "ref": "v37-dive-left",
           "x": -9,
-          "y": 36,
-          "count": 3,
+          "y": 32,
+          "count": 2,
           "spacing": 0,
-          "interval": 24,
+          "interval": 40,
           "value": 0
         },
         {
@@ -29801,24 +30862,24 @@
           "id": "s0-w4",
           "frame": 1008,
           "kind": "enemy",
-          "ref": "bat-down",
+          "ref": "v37-scout",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
           "id": "s0-w5",
           "frame": 1104,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-scout",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -29861,24 +30922,24 @@
           "id": "s0-w7",
           "frame": 1840,
           "kind": "enemy",
-          "ref": "book-stop",
-          "x": 24,
+          "ref": "v37-page",
+          "x": 28,
           "y": -12,
           "count": 2,
-          "spacing": 48,
-          "interval": 28,
+          "spacing": 64,
+          "interval": 36,
           "value": 0
         },
         {
           "id": "s0-w8",
           "frame": 1936,
           "kind": "enemy",
-          "ref": "bat-down",
+          "ref": "v37-scout",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -40228,24 +41289,24 @@
           "id": "s1-w1",
           "frame": 176,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-intercept-left",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
           "id": "s1-w2",
           "frame": 272,
           "kind": "enemy",
-          "ref": "bat-cross",
+          "ref": "v37-dive-left",
           "x": -9,
-          "y": 48,
-          "count": 3,
+          "y": 36,
+          "count": 2,
           "spacing": 0,
-          "interval": 24,
+          "interval": 40,
           "value": 0
         },
         {
@@ -40300,24 +41361,24 @@
           "id": "s1-w4",
           "frame": 1188,
           "kind": "enemy",
-          "ref": "fairy-down",
+          "ref": "v37-intercept-right",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
           "id": "s1-w5",
           "frame": 1284,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-intercept-left",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -40360,24 +41421,24 @@
           "id": "s1-w7",
           "frame": 2020,
           "kind": "enemy",
-          "ref": "book-stop",
-          "x": 24,
+          "ref": "v37-page",
+          "x": 28,
           "y": -12,
           "count": 2,
-          "spacing": 48,
-          "interval": 28,
+          "spacing": 64,
+          "interval": 36,
           "value": 0
         },
         {
           "id": "s1-w8",
           "frame": 2116,
           "kind": "enemy",
-          "ref": "bat-down",
+          "ref": "v37-intercept-right",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -52019,24 +53080,24 @@
           "id": "s2-w1",
           "frame": 176,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-sniper",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
           "id": "s2-w2",
           "frame": 272,
           "kind": "enemy",
-          "ref": "bat-cross",
+          "ref": "v37-dive-left",
           "x": -9,
-          "y": 60,
-          "count": 3,
+          "y": 40,
+          "count": 2,
           "spacing": 0,
-          "interval": 24,
+          "interval": 40,
           "value": 0
         },
         {
@@ -52055,12 +53116,12 @@
           "id": "s2-w4",
           "frame": 464,
           "kind": "enemy",
-          "ref": "fairy-right",
-          "x": 12,
+          "ref": "v37-intercept-right",
+          "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -52103,12 +53164,12 @@
           "id": "s2-w5",
           "frame": 1284,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-sniper",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -52127,24 +53188,24 @@
           "id": "s2-w7",
           "frame": 1476,
           "kind": "enemy",
-          "ref": "book-stop",
-          "x": 36,
+          "ref": "v37-page",
+          "x": 28,
           "y": -12,
           "count": 2,
-          "spacing": 48,
-          "interval": 28,
+          "spacing": 64,
+          "interval": 36,
           "value": 0
         },
         {
           "id": "s2-w8",
           "frame": 1572,
           "kind": "enemy",
-          "ref": "fairy-down",
+          "ref": "v37-intercept-right",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -52199,24 +53260,24 @@
           "id": "s2-w10",
           "frame": 2488,
           "kind": "enemy",
-          "ref": "bat-cross",
-          "x": -9,
-          "y": 60,
-          "count": 3,
+          "ref": "v37-dive-right",
+          "x": 129,
+          "y": 40,
+          "count": 2,
           "spacing": 0,
-          "interval": 24,
+          "interval": 40,
           "value": 0
         },
         {
           "id": "s2-w11",
           "frame": 2584,
           "kind": "enemy",
-          "ref": "book-stop",
-          "x": 24,
+          "ref": "v37-page",
+          "x": 28,
           "y": -12,
           "count": 2,
-          "spacing": 48,
-          "interval": 28,
+          "spacing": 64,
+          "interval": 36,
           "value": 0
         },
         {
@@ -64818,24 +65879,24 @@
           "id": "s3-w1",
           "frame": 176,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-sniper",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
           "id": "s3-w2",
           "frame": 272,
           "kind": "enemy",
-          "ref": "bat-cross",
+          "ref": "v37-dive-left",
           "x": -9,
-          "y": 36,
-          "count": 3,
+          "y": 44,
+          "count": 2,
           "spacing": 0,
-          "interval": 24,
+          "interval": 40,
           "value": 0
         },
         {
@@ -64854,12 +65915,12 @@
           "id": "s3-w4",
           "frame": 464,
           "kind": "enemy",
-          "ref": "fairy-left",
-          "x": 36,
+          "ref": "v37-intercept-right",
+          "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -64902,12 +65963,12 @@
           "id": "s3-w5",
           "frame": 1284,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-sniper",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -64926,24 +65987,24 @@
           "id": "s3-w7",
           "frame": 1476,
           "kind": "enemy",
-          "ref": "book-stop",
-          "x": 36,
+          "ref": "v37-seeker",
+          "x": 28,
           "y": -12,
           "count": 2,
-          "spacing": 48,
-          "interval": 28,
+          "spacing": 64,
+          "interval": 36,
           "value": 0
         },
         {
           "id": "s3-w8",
           "frame": 1572,
           "kind": "enemy",
-          "ref": "fairy-right",
-          "x": 12,
+          "ref": "v37-intercept-right",
+          "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -64998,24 +66059,24 @@
           "id": "s3-w10",
           "frame": 2488,
           "kind": "enemy",
-          "ref": "bat-cross",
-          "x": -9,
-          "y": 36,
-          "count": 3,
+          "ref": "v37-dive-right",
+          "x": 129,
+          "y": 44,
+          "count": 2,
           "spacing": 0,
-          "interval": 24,
+          "interval": 40,
           "value": 0
         },
         {
           "id": "s3-w11",
           "frame": 2584,
           "kind": "enemy",
-          "ref": "book-stop",
-          "x": 24,
+          "ref": "v37-seeker",
+          "x": 28,
           "y": -12,
           "count": 2,
-          "spacing": 48,
-          "interval": 28,
+          "spacing": 64,
+          "interval": 36,
           "value": 0
         },
         {
@@ -65034,12 +66095,12 @@
           "id": "s3-w13",
           "frame": 2776,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-sniper",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -78761,24 +79822,24 @@
           "id": "s4-w1",
           "frame": 176,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-sniper",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
           "id": "s4-w2",
           "frame": 272,
           "kind": "enemy",
-          "ref": "bat-cross",
+          "ref": "v37-dive-left",
           "x": -9,
           "y": 48,
-          "count": 3,
+          "count": 2,
           "spacing": 0,
-          "interval": 24,
+          "interval": 40,
           "value": 0
         },
         {
@@ -78797,24 +79858,24 @@
           "id": "s4-w4",
           "frame": 464,
           "kind": "enemy",
-          "ref": "book-down",
-          "x": 24,
+          "ref": "v37-page",
+          "x": 28,
           "y": -12,
-          "count": 3,
-          "spacing": 36,
-          "interval": 24,
+          "count": 2,
+          "spacing": 64,
+          "interval": 36,
           "value": 0
         },
         {
           "id": "s4-w5",
           "frame": 560,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-sniper",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -78881,24 +79942,24 @@
           "id": "s4-w7",
           "frame": 1656,
           "kind": "enemy",
-          "ref": "book-stop",
-          "x": 36,
+          "ref": "v37-seeker",
+          "x": 28,
           "y": -12,
           "count": 2,
-          "spacing": 48,
-          "interval": 28,
+          "spacing": 64,
+          "interval": 36,
           "value": 0
         },
         {
           "id": "s4-w8",
           "frame": 1752,
           "kind": "enemy",
-          "ref": "fairy-left",
-          "x": 36,
+          "ref": "v37-intercept-right",
+          "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
@@ -78917,12 +79978,12 @@
           "id": "s4-w10",
           "frame": 1944,
           "kind": "enemy",
-          "ref": "bat-cross",
-          "x": -9,
+          "ref": "v37-dive-right",
+          "x": 129,
           "y": 48,
-          "count": 3,
+          "count": 2,
           "spacing": 0,
-          "interval": 24,
+          "interval": 40,
           "value": 0
         },
         {
@@ -78965,12 +80026,12 @@
           "id": "s4-w11",
           "frame": 2764,
           "kind": "enemy",
-          "ref": "book-stop",
-          "x": 24,
+          "ref": "v37-seeker",
+          "x": 28,
           "y": -12,
           "count": 2,
-          "spacing": 48,
-          "interval": 28,
+          "spacing": 64,
+          "interval": 36,
           "value": 0
         },
         {
@@ -78989,24 +80050,24 @@
           "id": "s4-w13",
           "frame": 2956,
           "kind": "enemy",
-          "ref": "fairy-wave",
+          "ref": "v37-sniper",
           "x": 24,
           "y": -12,
           "count": 3,
           "spacing": 36,
-          "interval": 24,
+          "interval": 32,
           "value": 0
         },
         {
           "id": "s4-w14",
           "frame": 3052,
           "kind": "enemy",
-          "ref": "bat-cross",
+          "ref": "v37-dive-left",
           "x": -9,
           "y": 48,
-          "count": 3,
+          "count": 2,
           "spacing": 0,
-          "interval": 24,
+          "interval": 40,
           "value": 0
         },
         {

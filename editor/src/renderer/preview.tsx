@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {gameOverPresentation, cutinPresentation} from "../shared/presentation";
-import { type Game, clone, assetById, playWidth } from "../shared/model";
+import { type Game, clone, assetById, playWidth, spriteHeight } from "../shared/model";
 import { Simulation, drawSimulation, drawAsset, backgroundPaletteGame } from "../shared/simulation";
 import { drawScreen } from "./canvases";
 const inputKey: Record<string, number> = {
@@ -60,6 +60,11 @@ export function Preview({
             s.requireBoss = false;
             g.player.invulnerability = 65535;
             if (kind === "patterns") {
+                if(g.patterns.find(p=>p.id===id)?.kind==="beam"){
+                    g.player.weapon=id;g.player.focusWeapon=id;
+                    for(const p of g.player.characters??[]){p.weapon=id;p.focusWeapon=id;}
+                    return new Simulation(g,stageId,character);
+                }
                 const actor = clone(g.enemies[0]);
                 actor.id = "preview-actor";
                 actor.hp = 255;
@@ -167,9 +172,11 @@ export function Preview({
         for (const e of items) {
             const a = assetById(s.game, e.asset),
                 y = Math.trunc(e.y / 16) - a.origin.y;
-            for (let n = Math.max(0, y); n < Math.min(144, y + a.height); n++)
+            const height=Math.ceil(a.height/spriteHeight(s.game))*spriteHeight(s.game);
+            for (let n = Math.max(0, y); n < Math.min(144, y + height); n++)
                 lines[n] += a.width / 8;
         }
+        if(s.beamPattern&&!s.respawn&&!s.transition&&!s.phaseLocked)for(let y=0;y<Math.max(0,Math.trunc(s.playerY/16)-8);y++)lines[y]++;
         setLineMax(Math.max(...lines));
     };
     useEffect(() => {

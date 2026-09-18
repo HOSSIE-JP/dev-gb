@@ -4,14 +4,14 @@ import {createRequire} from 'node:module';
 const l=createRequire(import.meta.url)('../build/library.cjs');
 const load=()=>l.readGame(process.cwd(),'touhou-kouma');
 function empty(){const g=load();g.stages.forEach(s=>s.events=[]);g.timeLimit=false;return g;}
-test('Kouma normal shots: faster narrow Marisa laser and wider Reimu collision, within pool',()=>{
+test('Kouma normal shots: continuous narrow Marisa laser and wider Reimu collision, within pool',()=>{
  const g=empty(),counts=[];
  for(const character of [0,1]){
   const s=new l.Simulation(g,undefined,character),born=new Set();let peak=0;
   for(let i=0;i<120;i++){s.step(16);for(const e of s.entities.filter(e=>e.kind==='pshot'))born.add(i-e.age);peak=Math.max(peak,s.entities.filter(e=>e.kind==='pshot').length);}
   counts.push(born.size);assert.equal(s.dropped,0);assert.ok(peak<=6);
  }
- assert.ok(counts[1]>=counts[0]*2,JSON.stringify(counts));
+ assert.ok(counts[0]>0);assert.equal(counts[1],0,"beam does not allocate travelling projectiles");
  const s=new l.Simulation(g),wide=s.box('shot-ofuda',1280,1280),thin=s.box('shot-marisa-laser',1280,1280);
  assert.equal(wide.w,8);assert.equal(thin.w,2);assert.equal(thin.h,16);
  for(const id of ['reimu','marisa'])assert.deepEqual(l.assetById(g,id).hitbox,{x:7,y:11,w:3,h:3});
@@ -42,7 +42,7 @@ test('Kouma stop-and-fire enemies wait, shoot during the pause, then depart; rai
 });
 test('Reimu broad shot hits a grazing target that the narrow Marisa laser misses',()=>{
  for(const [pattern,expected] of [['reimu-shot',9],['marisa-shot',10]]){
-  const g=empty(),enemy=g.enemies[0],art=l.assetById(g,enemy.asset);
+  const g=empty();g.patterns.find(p=>p.id==='marisa-shot').kind='laser';const enemy=g.enemies[0],art=l.assetById(g,enemy.asset);
   enemy.hp=10;enemy.pattern='';enemy.attacks=[];enemy.motion.kind='straight';enemy.motion.vx=enemy.motion.vy=0;
   art.hitbox={x:art.origin.x,y:art.origin.y,w:1,h:1};
   const s=new l.Simulation(g);s.spawnActor(enemy.id,'enemy',83,80);const target=s.entities.find(e=>e.kind==='enemy');

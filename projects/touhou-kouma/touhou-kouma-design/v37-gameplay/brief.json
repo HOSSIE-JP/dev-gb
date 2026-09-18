@@ -1,0 +1,14 @@
+{
+  "project": "touhou-kouma",
+  "version": "0.37-follow-beam-barrages",
+  "sourceRevision": "807ab103a3903883e4ea6cc820be7ae5e3cba366b6145c84893a0b8a165b9dd3",
+  "requests": ["魔理沙の追従する連続光線", "中盤以降の敵の行動と攻撃の緩急", "全ボスモードの移動", "上端の安全地帯への狙い攻撃", "ボス弾幕の種類を約2倍"],
+  "decisions": {
+    "beam": "幅2pxの貫通光線。自機中心Xへ毎更新追従。発射口は自機Y-8、上端まで接続。芯を維持し4pxの周辺光を点滅。通常1ダメージ/8更新、集中2ダメージ/10更新。離す・被弾・演出移行で消える。",
+    "renderer": "光線使用プロジェクトだけ8x16 OBJへ自動変換。元の寸法・原点・当たり判定は維持。パレットは縦2タイルで共通化。光線は最大9 OAMを予約、4タイル常駐。毎フレームのタイル転送は不要。",
+    "enemies": "既存画像を共用し8つの行動種と6つの攻撃を追加。序盤2ステージと無武装の連続撃破区間は維持。",
+    "bosses": "HP100x3・各60秒・最大40発を維持。各ボスに固有の狙い攻撃3種類を追加し計42種類。従来の広範囲弾は下方向、狙い弾は上へ回り込んだ自機にも向く。全21モードを連続移動の256更新ループにする。"
+  },
+  "assetProvenance": "Existing project sprite masters unchanged. Beam strip is a procedural engine primitive. Migration script uses revision-checked editor read/save APIs.",
+  "hardwareReference": "https://raw.githubusercontent.com/gbdev/pandocs/master/src/OAM.md"
+}

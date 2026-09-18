@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import type { BuildResult, Diagnostic, Game } from "../shared/model";
-import { spriteLayout } from "../shared/model";
+import { spriteLayout, spriteHeight } from "../shared/model";
 
 export const categories = [
     ["project", "プロジェクト", "◈"],
@@ -70,7 +70,9 @@ export function LibraryPanel({
     canDuplicate: boolean;
 }) {
     const query = search.trim().toLowerCase();
-    const spriteTiles = spriteLayout(game).tiles;
+    const spriteTiles = spriteLayout(game).tiles
+        + (game.player.focusHitbox ? spriteHeight(game)/4*(1+(game.player.characters?.length??0)) : 0)
+        + (spriteHeight(game)===16 ? 4 : 0);
     const groups = categories
         .map(([kind, label, icon]) => ({
             kind,

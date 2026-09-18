@@ -43,7 +43,7 @@ export type Pattern = {
     id: string;
     name: string;
     asset: string;
-    kind: "straight" | "aimed" | "fan" | "ring" | "spiral" | "homing" | "laser" | "aimed-down";
+    kind: "straight" | "aimed" | "fan" | "ring" | "spiral" | "homing" | "laser" | "aimed-down" | "beam" | "aimed-fan";
     launch?: { kind: "actor" | "left" | "right" | "alternate" | "both" | "fixed"; x: number; y: number; step: number; lanes: number };
     guidance?: { frames: number; period: number };
     speed: number;
@@ -648,7 +648,7 @@ export function validate(value: unknown): Diagnostic[] {
     integer(game.palettes.length, 1, 8, "palettes");
     integer(game.assets.length, 1, 128, "assets");
     integer(game.assets.filter(a => a.kind === "sprite").length, 1, 64, "assets");
-    integer(game.patterns.length, 1, 32, "patterns");
+    integer(game.patterns.length, 1, 64, "patterns");
     integer(game.enemies.length, 1, 32, "enemies");
     integer(game.bosses.length, 1, 8, "bosses");
     integer(game.stages.length, 1, 16, "stages");
@@ -778,7 +778,7 @@ export function validate(value: unknown): Diagnostic[] {
             for (const point of p.emitterOffsets) { integer(point.x, -32, 32, p.id); integer(point.y, -32, 32, p.id); }
         }
         assetRef(p.asset, p.id);
-        if (!["straight", "aimed", "fan", "ring", "spiral", "homing", "laser", "aimed-down"].includes(p.kind))
+        if (!["straight", "aimed", "fan", "ring", "spiral", "homing", "laser", "aimed-down", "beam", "aimed-fan"].includes(p.kind))
             err(p.id, "弾幕方式が不正です");
         if (p.launch) {
             const l = p.launch;
@@ -953,7 +953,7 @@ export function validate(value: unknown): Diagnostic[] {
         for (const id of [p.weapon, p.focusWeapon, ...(game.player.powerUps?.shotWeapons ?? [])]) {
             const shot = game.patterns.find(s => s.id === id);
             if (shot && (shot.kind === "homing" || shot.launch && shot.launch.kind !== "actor")) err("player", "自機ショットは機体起点・誘導なしで設定してください");
-            if (shot && game.player.atomicVolleys) {
+            if (shot && shot.kind !== "beam" && game.player.atomicVolleys) {
                 const art=assets.get(p.asset),bullet=assets.get(shot.asset),emitters=shot.emitterOffsets?.length??(art?.emitters.length||1),count=emitters*(["straight","aimed","homing","laser","aimed-down"].includes(shot.kind)?1:shot.count),reserve=game.items?.length?4:0;
                 if(count>(game.performance?.playerShots??6)||count>39-reserve||(art&&bullet&&art.width*art.height/64+count*bullet.width*bullet.height/64>40-reserve))err("player",`一斉射撃「${shot.id}」の全弾が弾数・OAM上限に入りません`);
             }
@@ -1209,7 +1209,11 @@ export function validate(value: unknown): Diagnostic[] {
         if (phase.score !== undefined) integer(phase.score, 0, 65534, phase.id);
         if ((phase.timeLimitSeconds || phase.score !== undefined) && (phase.until !== "hp" || !phase.hp)) err(phase.id, "制限時間・撃破点にはモード固有HPが必要です");
     }
-    const spriteTiles = spriteLayout(game).tiles + (game.player.focusHitbox ? 2*(1+(game.player.characters?.length??0)) : 0);
+    for (const p of game.patterns.filter(p => p.kind === "beam")) {
+        if (game.enemies.some(a => a.pattern === p.id || a.attacks?.some(a => a.pattern === p.id)) || game.bosses.some(b => b.phases.some(f => f.pattern === p.id || f.attacks?.some(a => a.pattern === p.id)))) err(p.id, "追従光線はプレイヤー専用です");
+        if (p.delay || p.repeats || p.launch && p.launch.kind !== "actor") err(p.id, "追従光線は遅延0・繰り返し無制限・自機起点で設定してください");
+    }
+    const spriteTiles = spriteLayout(game).tiles + (game.player.focusHitbox ? spriteHeight(game)/4*(1+(game.player.characters?.length??0)) : 0) + (spriteHeight(game) === 16 ? 4 : 0);
     if (spriteTiles > 128)
         err(
             "assets",
@@ -1219,6 +1223,8 @@ export function validate(value: unknown): Diagnostic[] {
 }
 
 /** One boss can exist at a time. Exclusive boss art shares a reloadable VRAM slot. */
+export function spriteHeight(game: Game): 8 | 16 { return game.patterns.some(p => p.kind === "beam") ? 16 : 8; }
+export function spriteFrameTiles(game: Game, a: Asset) { return a.width / 8 * Math.ceil(a.height / spriteHeight(game)) * (spriteHeight(game) / 8); }
 export function spriteLayout(game: Game) {
     const resident = new Set([game.player.asset, game.player.barrierAsset, ...(game.player.characters ?? []).map(p => p.asset), ...game.enemies.map(a => a.asset), ...(game.items ?? []).map(i => i.asset), ...game.patterns.map(p => p.asset), game.effects.explosion]);
     const overlay = new Set(game.bosses.map(b => b.asset).filter(id => !resident.has(id)));
@@ -1226,7 +1232,7 @@ export function spriteLayout(game: Game) {
     let base = 0, size = 0;
     const offsets = new Map<string, number>();
     for (const a of assets) {
-        const n = a.width * a.height / 64 * a.frames.length;
+        const n = spriteFrameTiles(game, a) * a.frames.length;
         if (overlay.has(a.id)) size = Math.max(size, n);
         else { offsets.set(a.id, base); base += n; }
     }

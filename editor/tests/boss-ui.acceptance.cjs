@@ -110,7 +110,7 @@ electron.app.whenReady().then(async()=>{
    await js(selector+'.closest("details").open=true');await js(selector+'.focus()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'Down'});win.webContents.sendInputEvent({type:'keyUp',keyCode:'Down'});
    await until(selector+".value === '1'");await until(canvas+'.toDataURL() !== '+JSON.stringify(initial));
    const input=variant+`.querySelectorAll('summary')`,field=`[...${input}].find(e=>e.textContent==='${section}').parentElement.querySelector('input[aria-label="セリフ1行目（18文字まで）"]')`,before=await js(canvas+'.toDataURL()');
-   await js(field+'.focus()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'A',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'A',modifiers:['control']});await win.webContents.insertText(text);
+   await js(field+'.focus();'+field+'.select()');win.webContents.sendInputEvent({type:'keyDown',keyCode:'A',modifiers:['control']});win.webContents.sendInputEvent({type:'keyUp',keyCode:'A',modifiers:['control']});await win.webContents.insertText(text);
    await until(canvas+'.toDataURL() !== '+JSON.stringify(before));assert.equal(await js(field+'.value'),text);
    fs.writeFileSync(path.join(output,title+'-marisa.png'),Buffer.from((await js(canvas+'.toDataURL()')).split(',')[1],'base64'));
   }

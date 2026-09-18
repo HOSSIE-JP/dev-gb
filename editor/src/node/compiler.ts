@@ -11,7 +11,7 @@ import {
     type Screen,
     type Diagnostic,
     validate,
-    spriteLayout,
+    spriteLayout, spriteHeight, spriteFrameTiles,
     q4, playWidth,
 } from "../shared/model";
 import { angleStep, shotAngles, SIN, COS } from "../shared/simulation";
@@ -273,14 +273,27 @@ export function generate(
     const patternId = (id: string) =>
         id ? game.patterns.findIndex((p) => p.id === id) : 255;
     const layout = spriteLayout(game);
+    const objHeight=spriteHeight(game),objStride=objHeight/8,focusStride=2*objStride;
+    // Reorder source row-major 8px tiles into vertically paired OBJ tiles.
+    // Partial final rows are transparent padding; origins/hitboxes never move.
+    const pairTiles=(width:number,height:number,data:number[],unit=16)=>{
+        if(objHeight===8)return data;
+        const out:number[]=[];
+        for(let y=0;y<height;y+=16)for(let x=0;x<width;x+=8)for(let dy=0;dy<16;dy+=8){
+            const at=((y+dy)/8*(width/8)+x/8)*unit;
+            out.push(...(y+dy<height?data.slice(at,at+unit):Array(unit).fill(0)));
+        }
+        return out;
+    };
     const focusPlayers=[game.player,...(game.player.characters??[])];
-    const spriteTiles = layout.tiles + (game.player.focusHitbox ? focusPlayers.length*2 : 0);
+    const beamTile=layout.tiles+(game.player.focusHitbox?focusPlayers.length*focusStride:0);
+    const spriteTiles = beamTile + (objHeight===16?4:0);
     const spriteColor=quantizeSpriteAssets(game), colorSpriteData=Array(spriteTiles*16).fill(0), colorBossGraphics:string[]=[];
     const spriteData: number[] = Array(spriteTiles * 16).fill(0), bossGraphics: string[] = [],
         assetRows: string[] = [];
     spriteAssets.forEach((a, i) => {
         const first = 128 + layout.offsets.get(a.id)!,
-            tileCount = (a.width * a.height) / 64;
+            tileCount = spriteFrameTiles(game,a);
         config.push(
             `static const uint8_t asset_${i}_durations[] = {${a.frames.map((f) => f.duration)}};`,
         );
@@ -296,9 +309,9 @@ export function generate(
         assetRows.push(
             `{${[a.width, a.height, a.origin.x, a.origin.y, a.palette, first, tileCount, a.frames.length, duration, animationShift]},asset_${i}_durations,${emitters.length},asset_${i}_emitters}`,
         );
-        const data = a.frames.flatMap(f => converted.get(f.image)!);
-        const colorData=a.frames.flatMap(f=>packTiles(a.width,a.height,spriteColor.frames.get(a.id+"/"+f.id)!.pixels));
-        config.push(`static const uint8_t asset_${i}_color_attrs[]={${a.frames.flatMap(f=>spriteColor.frames.get(a.id+"/"+f.id)!.attributes)}};`);
+        const data = a.frames.flatMap(f => pairTiles(a.width,a.height,converted.get(f.image)!));
+        const colorData=a.frames.flatMap(f=>pairTiles(a.width,a.height,packTiles(a.width,a.height,spriteColor.frames.get(a.id+"/"+f.id)!.pixels)));
+        config.push(`static const uint8_t asset_${i}_color_attrs[]={${a.frames.flatMap(f=>pairTiles(a.width,a.height,spriteColor.frames.get(a.id+"/"+f.id)!.attributes,1))}};`);
         if(layout.overlay.has(a.id))colorBossGraphics.push(blob(colorData));
         else {colorSpriteData.splice((first-128)*16,colorData.length,...colorData);colorBossGraphics.push("{0,0,0}");}
         if (layout.overlay.has(a.id)) bossGraphics.push(blob(data));
@@ -306,10 +319,17 @@ export function generate(
     });
     const focusOffsets=focusPlayers.map((p,index)=>{
         const a=spriteAssets[assetId(p.asset)],left=a.hitbox.x+Math.floor(a.hitbox.w/2)-3,aligned=Math.floor(left/8)*8;
-        if(game.player.focusHitbox){const pixels=Array(128).fill(0);focusMarkerPixels.forEach((v,i)=>pixels[Math.floor(i/8)*16+i%8+left-aligned]=v);const marker=packTiles(16,8,pixels);spriteData.splice((layout.tiles+index*2)*16,32,...marker);colorSpriteData.splice((layout.tiles+index*2)*16,32,...marker);}
+        if(game.player.focusHitbox){const pixels=Array(128).fill(0);focusMarkerPixels.forEach((v,i)=>pixels[Math.floor(i/8)*16+i%8+left-aligned]=v);const marker=pairTiles(16,8,packTiles(16,8,pixels));spriteData.splice((layout.tiles+index*focusStride)*16,marker.length,...marker);colorSpriteData.splice((layout.tiles+index*focusStride)*16,marker.length,...marker);}
         return aligned-a.origin.x;
     });
     config.push(`const uint8_t ce_focus_enabled=${game.player.focusHitbox?2:0},ce_focus_tile=${game.player.focusHitbox?128+layout.tiles:0};`, `const int8_t ce_focus_offsets[]={${focusOffsets}};`);
+    if(objHeight===16){
+        // A continuous two-pixel core alternates with a wider halo. Both
+        // frames keep the full ray visible; no travelling bullet gaps.
+        const beam=[[0,0,2,3,3,2,0,0],[0,0,0,3,3,0,0,0]].flatMap(row=>Array.from({length:16},()=>row).flat());
+        const data=packTiles(8,32,beam);spriteData.splice(beamTile*16,64,...data);colorSpriteData.splice(beamTile*16,64,...data);
+    }
+    config.push(`const uint8_t ce_beam_tile=${objHeight===16?128+beamTile:0};`);
     config.push(
         `const CE_Asset ce_assets[] = {${assetRows}};`,
         `const CE_Hitbox ce_hitboxes[]={${spriteAssets.map((a) => `{${a.hitbox.x - a.origin.x},${a.hitbox.y - a.origin.y},${a.hitbox.w},${a.hitbox.h}}`)}};`,
@@ -336,7 +356,7 @@ export function generate(
         );
         const l = p.launch, h = p.guidance;
         if (p.emitterOffsets) config.push(`static const int8_t pattern_${i}_emitters[]={${p.emitterOffsets.flatMap(e => [e.x,e.y])}};`);
-        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral", "homing", "laser", "aimed-down"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)},${[l ? ["actor", "left", "right", "alternate", "both", "fixed"].indexOf(l.kind) : 0,l?.x ?? 80,l?.y ?? 32,l?.step ?? 0,l?.lanes ?? 1,h?.frames ?? 48,(h?.period ?? 16)-1]},${p.emitterOffsets?.length ?? 0},${p.emitterOffsets ? `pattern_${i}_emitters` : "0"}}`;
+        return `{${[assetId(p.asset), ["straight", "aimed", "fan", "ring", "spiral", "homing", "laser", "aimed-down", "beam", "aimed-fan"].indexOf(p.kind), q4(p.speed), angleStep(p.angle), offsets.length, angleStep(p.rotation), p.repeats, p.interval, p.delay, p.lifetime, p.damage]},pattern_${i}_angles,velocity_${q4(p.speed)},${[l ? ["actor", "left", "right", "alternate", "both", "fixed"].indexOf(l.kind) : 0,l?.x ?? 80,l?.y ?? 32,l?.step ?? 0,l?.lanes ?? 1,h?.frames ?? 48,(h?.period ?? 16)-1]},${p.emitterOffsets?.length ?? 0},${p.emitterOffsets ? `pattern_${i}_emitters` : "0"}}`;
     });
     config.push(
         `const CE_Pattern ce_patterns[]={${patternRows}};`,
@@ -909,6 +929,7 @@ export function compile(
         const args = [
             "-Wm-yc",
             `-DCE_GRAZE_ENABLED=${+(game.graze?.enabled??false)}`,
+            `-DCE_OBJ_16=${+(spriteHeight(game)===16)}`,
             `-DCE_HUD_RIGHT=${+(game.screens.find(s=>s.id==="hud")?.dock==="right")}`,
             "-Wf--opt-code-speed",
             "-Wf--max-allocs-per-node50000",

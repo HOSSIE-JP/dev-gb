@@ -98,7 +98,7 @@ const labels: Record<string, string> = {
     explosion: "爆発スプライト",
 };
 const names: Record<string, string> = {
-    palette:"背景パレットの点滅",image:"専用画像の点滅（敵弾の発生を抑止）",barrier:"バリア",weapon:"武器を切替",laser:"集中パルスレーザー", horizontal:"横（背景を右から左へ）", vertical:"縦", item:"アイテム", shot:"ショット強化", speed:"速度アップ", bomb:"ボム追加", life:"1UP", shotLevel:"ショット段階", speedLevel:"速度段階", down:"1段階下げる", reset:"初期段階に戻す", keep:"維持する", "a+b":"A＋B同時押し", b:"Bを押す", x:"X方向", y:"Y方向",
+    palette:"背景パレットの点滅",image:"専用画像の点滅（敵弾の発生を抑止）",barrier:"バリア",weapon:"武器を切替","aimed-fan":"自機狙い扇弾",laser:"集中パルスレーザー", horizontal:"横（背景を右から左へ）", vertical:"縦", item:"アイテム", shot:"ショット強化", speed:"速度アップ", bomb:"ボム追加", life:"1UP", shotLevel:"ショット段階", speedLevel:"速度段階", down:"1段階下げる", reset:"初期段階に戻す", keep:"維持する", "a+b":"A＋B同時押し", b:"Bを押す", x:"X方向", y:"Y方向",
     actor:"キャラクター起点",left:"画面左端",right:"画面右端",alternate:"左右交互",both:"左右両端",fixed:"画面内の固定座標",homing:"短時間追尾→直進",bombs:"ボム残数",orb:"中央の大玉",beam:"自機Xに合わせるレーザー",
     caravan: "キャラバン",
     campaign: "通常・ステージ順",
@@ -175,6 +175,7 @@ export function Form({
 }) {
     const edit = (key: string, next: any) =>
         onChange({ ...value, [key]: next,
+            ...(context === "pattern" && key === "kind" && next === "beam" ? {delay:0,repeats:0,launch:{x:80,y:32,step:16,lanes:1,...value.launch,kind:"actor"},emitterOffsets:[]} : {}),
             ...(context === "effects" && key === "kind" && next !== "score" && value.amount > 8 ? {amount:1} : {}),
             ...(context === "stage" && key === "scrollAxis" && next === "horizontal" ? {scrollDown:false} : {}),
             ...(context === "phase" && ((key === "hp" && next > 0 && value.until === "hp") || (key === "until" && next === "hp" && value.hp > 0)) ? {threshold: 0} : {})
@@ -222,6 +223,7 @@ export function Form({
                         ].includes(key) && !(key==="frames"&&Array.isArray(value.frames)) && !(context === "startupMovie" && key === "pcm") && !omit.includes(key),
                 )
                 .map(([key, v]: [string, any]) => {
+                    if(context === "pattern" && value.kind === "beam" && ["asset","speed","angle","count","spread","rotation","repeats","delay","lifetime","launch","guidance","emitterOffsets"].includes(key))return null;
                     if (context === "effects" && ((key === "weapon" && value.kind !== "weapon") || (key === "amount" && value.kind === "weapon"))) return null;
                     if (key === "bossMusic") return <MusicField key={key} label="専用ボスBGM（なし＝共通ボス曲）" value={v} onChange={(n) => edit(key, n)} />;
                     if (key === "music") return typeof v === "number"
@@ -315,7 +317,7 @@ export function Form({
                                           "fan",
                                           "ring",
                                           "spiral",
-                                          "homing", "laser",
+                                          "homing", "laser", "beam", "aimed-fan",
                                       ];
                     if (enums[key])
                         choices = enums[key].map((id) => ({

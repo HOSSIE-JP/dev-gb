@@ -6,6 +6,26 @@
 #ifndef CE_GRAZE_ENABLED
 #define CE_GRAZE_ENABLED 0
 #endif
+#ifndef CE_OBJ_16
+#define CE_OBJ_16 0
+#endif
+#if CE_OBJ_16
+#define CE_OBJ_TILES 2
+#define CE_OBJ_HEIGHT 16
+#define CE_OBJ_RESERVE 9u
+#define CE_SET_OBJ_SIZE SPRITES_8x16
+#else
+#define CE_OBJ_TILES 1
+#define CE_OBJ_HEIGHT 8
+#define CE_OBJ_RESERVE 0u
+#define CE_SET_OBJ_SIZE SPRITES_8x8
+#endif
+#define CE_OAM_COST(asset) (ce_assets[asset].tiles >> CE_OBJ_16)
+#if CE_OBJ_16
+extern uint8_t ce_beam_pattern, ce_beam_pulse;
+extern const uint8_t ce_beam_tile;
+void ce_collide_beam(void) BANKED;
+#endif
 
 #ifndef CE_HUD_RIGHT
 #define CE_HUD_RIGHT 0
