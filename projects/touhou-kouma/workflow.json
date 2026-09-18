@@ -1,16 +1,26 @@
 {
-  "version": "0.34-boss-bomb-background-focus",
-  "updatedAt": "2026-09-17T16:45:58.789Z",
+  "version": "0.35-stage-art-bomb-fix",
+  "updatedAt": "2026-09-17T17:32:20.635Z",
   "status": "awaiting-playtest",
   "approved": false,
-  "projectRevision": "7714f2458c3ead243d950ef67f5d5016d019df6fbcf74cf8b25c860801f617bf",
-  "engineRevision": "6cc064af237b2fe3e7529b3604f3e21583ce2069",
+  "projectRevision": "df2aca01ece1f36fd6a2ed87c7d5b11068b7ccb35fcc5f23f9ef5a1f65a782f5",
+  "engineRevision": "6772c56966a7ceb5c4616b9301fae22d8aab7d32",
   "rom": {
-    "path": "build/Release/touhou-kouma-v34.gb",
-    "sha256": "b15d627e5cb3d596412a5d4e54d904264b283481fe9e8269effc3ebdd8e60b60",
+    "path": "build/Release/touhou-kouma-v35.gb",
+    "sha256": "5e0f5b6c030fb867c0d359172063ba64856683542515a5303c279ad603a57e19",
     "bytes": 2097152
   },
   "previous": [
+    {
+      "version": "0.34-boss-bomb-background-focus",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v34.gb",
+        "sha256": "b15d627e5cb3d596412a5d4e54d904264b283481fe9e8269effc3ebdd8e60b60",
+        "bytes": 2097152
+      },
+      "projectRevision": "7714f2458c3ead243d950ef67f5d5016d019df6fbcf74cf8b25c860801f617bf",
+      "validation": "touhou-kouma-design/qa-v34.json"
+    },
     {
       "version": "0.33-shot-hit-performance",
       "rom": {
@@ -264,36 +274,32 @@
     }
   ],
   "checks": [
-    "Debug/Release identical, zero compiler warnings",
-    "Doctor zero warnings; hello-gb Debug; star-caravan Debug/Release",
-    "test.cmd hello-gb: 154 regression tests passed; TypeScript passed",
-    "Production shots: both machines and characters, stages 1/3/7, 12 routes",
-    "Production right HUD, background changes, road/boss focus OAM, bombs/restoration and timers",
-    "Two-boss diagnostic: explosion, one-second hold, selected clear, continue and ranking exclusion",
-    "Native BGB identical controller movies before/after: normal road/boss and live image bomb",
-    "Native BGB completed road and beam frames visually inspected"
+    "Debug and Release identical 2 MiB ROM, zero compiler warnings, 7161 bytes static WRAM including shadow OAM",
+    "Doctor: zero warnings; clean hello-gb and build Debug; star-caravan Debug/Release passed",
+    "test.cmd hello-gb: 157 tests passed, TypeScript passed",
+    "Reimu source-image pixel comparison: all 4 DMG/CGB road/boss routes match; old CGB road had 128 missing pixels",
+    "All 7 stages on both machines: parallax tiles animate, camera progresses and Window HUD stays fixed",
+    "Both characters and machines: bomb resident atlas, background alternation, scrolling, restoration and focus marker passed",
+    "Right HUD, pause/cutin/bomb/miss timer regression passed",
+    "Native BGB before/after identical movies for normal road/boss and both bomb characters; completed screenshot frames visually checked"
   ],
   "pending": [
-    "BGB and Boytacean are emulator evidence, not physical hardware proof",
-    "Two-boss diagnostic fixture is separate from an unmodified seven-boss clear",
-    "At x=8 and x=112 the Marisa beam artwork is shifted four pixels inward to keep the shared Window map out of the playfield",
-    "Performance comparison uses identical controller movies but also includes the newly authored stage art; it does not isolate engine-only costs",
-    "Emulicious DAP evaluation failed with NullPointerException",
-    "DMG live bomb update rate is lower than v33 while the road background now continues updating",
-    "Human playtest, listening and long exhibition soak are pending",
-    "Existing and current source changes remain uncommitted"
+    "Emulicious DAP evaluate failed with NullPointerException on this ROM; no independent Emulicious runtime proof",
+    "Physical DMG/CGB, human listening and long exhibition soak not tested",
+    "Native performance is a bounded production-ROM input movie, not a constant 60 fps guarantee",
+    "Source changes remain uncommitted; this revision awaits human playtest"
   ],
   "evidence": {
-    "report": "../../docs/touhou-kouma-v34.md",
-    "qa": "touhou-kouma-design/qa-v34.json",
-    "assets": "touhou-kouma-design/v34-backgrounds/assets.json",
-    "raw": ".cache/kouma-v34"
+    "report": "../../docs/touhou-kouma-v35.md",
+    "qa": "touhou-kouma-design/qa-v35.json",
+    "assets": "touhou-kouma-design/v35-backgrounds/assets.json",
+    "raw": ".cache/kouma-v35"
   },
   "engineWorkingTreeChanges": true,
-  "validation": "touhou-kouma-design/qa-v34.json",
+  "validation": "touhou-kouma-design/qa-v35.json",
   "approval": {
     "status": "awaiting-playtest",
-    "romSha256": "b15d627e5cb3d596412a5d4e54d904264b283481fe9e8269effc3ebdd8e60b60"
+    "romSha256": "5e0f5b6c030fb867c0d359172063ba64856683542515a5303c279ad603a57e19"
   },
   "promotion": {
     "path": "touhou-kouma-design/pv-v22/touhou-kouma-v22-pv.mp4",
@@ -350,10 +356,14 @@
     "engine/caravan/special.c": "d25bb899e063272cf45840b11ee7d5ee3d4f11fbbf9d32e459d75307b76a389c",
     "engine/caravan/sprites.c": "401872c6b54d79ad117d43eb5d75f2e878495127bc9181b598f1cf99dc24ffee",
     "engine/caravan/terrain.c": "90a8378faed2d79daf175280bc0278a354c76689f71769ad9fdc7c5221b3954a",
-    "projects/touhou-kouma/assets-src/game.json": "a61aa89b29ba3a07b3493053271913a35f5e4a9bec897ddde70dc1bbdeafe625",
-    "engine/caravan/bomb-road.c": "79cf7f8b8656fc8b24d180309d1a01d810ffeaac3a4e32df26a35be59a747d55",
+    "projects/touhou-kouma/assets-src/game.json": "8c502db429fa40ec4834b90e4d829d45604ce0c291d1473a17044d98ace3567e",
+    "engine/caravan/bomb-road.c": "008d285727f655c09a438e82a0c1c3de84445fc86461ddb2b9c676b19f99e1e3",
     "editor/tests/kouma-v34.test.mjs": "269c1667a6cfeaf690619562e7b16f644c443fc3907ab340b0e20c99d07c2631",
     "editor/tests/kouma-v34-rom.acceptance.mjs": "96dbc60fb5749c7fef16c73b5edd412fe2cf4b9024d854e87a79b19f0e7b2076",
-    "editor/tests/kouma-bomb-native.acceptance.mjs": "ff9c3b0d3b9ab07915f4bcca1e0eef9c51bdcdefc2cab022ad16ceaee76b2708"
+    "editor/tests/kouma-bomb-native.acceptance.mjs": "ff9c3b0d3b9ab07915f4bcca1e0eef9c51bdcdefc2cab022ad16ceaee76b2708",
+    "editor/tests/kouma-bomb-art.acceptance.mjs": "5804676660e23a98bfa2130bdb2cafecf50f4b8d539e3df67b402ddf41f2e1da",
+    "editor/tests/kouma-backgrounds.acceptance.mjs": "2377ead6d00dbab080477acf8c0314e69aa4b9b97766880c5d4576aad43beeab",
+    "editor/tests/kouma-v35.test.mjs": "e887da2027de1fab6838c369779163991979cf76967d95e6891aea2d6a3807f9",
+    "projects/touhou-kouma/touhou-kouma-design/v35-backgrounds/import.cjs": "f7beba8e11d4f7321290666666ee93fa0d8225c49f8ff0cb77971e876bf960bc"
   }
 }

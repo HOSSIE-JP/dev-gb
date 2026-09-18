@@ -1,0 +1,16 @@
+{
+  "version": "0.35-stage-art-bomb-fix",
+  "intent": [
+    "Use red roof and masonry for stage 6 Scarlet Devil Mansion",
+    "Give all seven stage centers distinct patterns, reusing original art where suitable",
+    "Replace repeated isolated stage 2 ice cubes with a continuous ice shore and restore moving water",
+    "Fix missing Reimu bomb pixels without shrinking the art unless required by VRAM"
+  ],
+  "constraints": [
+    "Preserve DMG/CGB support, stable project/save identity, HUD and existing gameplay",
+    "Keep equal 32-pixel side strips and eight parallax tiles",
+    "Preserve original and new image masters with reproducible conversion",
+    "Verify final ROM pixels and compare native BGB timing with the same input"
+  ],
+  "approved": false
+}

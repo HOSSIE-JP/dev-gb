@@ -2392,6 +2392,141 @@
           "cgbImage": "images/map-cellar-v34-cgb.png"
         }
       ]
+    },
+    {
+      "id": "map-forest-v35",
+      "name": "宵闇の森・夜の散歩道・固有地形",
+      "kind": "tileset",
+      "width": 64,
+      "height": 40,
+      "palette": 7,
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "hitbox": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 40
+      },
+      "emitters": [],
+      "frames": [
+        {
+          "id": "map-forest-frame",
+          "image": "images/map-forest-v35.png",
+          "duration": 8,
+          "cgbImage": "images/map-forest-v35-cgb.png"
+        }
+      ]
+    },
+    {
+      "id": "map-lake-v35",
+      "name": "霧の湖・氷の妖精・固有地形",
+      "kind": "tileset",
+      "width": 64,
+      "height": 40,
+      "palette": 6,
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "hitbox": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 40
+      },
+      "emitters": [],
+      "frames": [
+        {
+          "id": "map-lake-0",
+          "image": "images/map-lake-v35.png",
+          "duration": 12,
+          "cgbImage": "images/map-lake-v35-cgb.png"
+        }
+      ]
+    },
+    {
+      "id": "map-gate-v35",
+      "name": "紅魔館・花の門・固有地形",
+      "kind": "tileset",
+      "width": 64,
+      "height": 40,
+      "palette": 1,
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "hitbox": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 40
+      },
+      "emitters": [],
+      "frames": [
+        {
+          "id": "map-1-0",
+          "image": "images/map-gate-v35.png",
+          "duration": 10,
+          "cgbImage": "images/map-gate-v35-cgb.png"
+        }
+      ]
+    },
+    {
+      "id": "map-roof-v35",
+      "name": "紅月の屋上・固有地形",
+      "kind": "tileset",
+      "width": 64,
+      "height": 40,
+      "palette": 4,
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "hitbox": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 40
+      },
+      "emitters": [],
+      "frames": [
+        {
+          "id": "map-4-0",
+          "image": "images/map-roof-v35.png",
+          "duration": 10,
+          "cgbImage": "images/map-roof-v35-cgb.png"
+        }
+      ]
+    },
+    {
+      "id": "map-cellar-v35",
+      "name": "封印された地下室・固有地形",
+      "kind": "tileset",
+      "width": 64,
+      "height": 40,
+      "palette": 5,
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "hitbox": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 40
+      },
+      "emitters": [],
+      "frames": [
+        {
+          "id": "map-5-0",
+          "image": "images/map-cellar-v35.png",
+          "duration": 10,
+          "cgbImage": "images/map-cellar-v35-cgb.png"
+        }
+      ]
     }
   ],
   "patterns": [
@@ -5193,7 +5328,7 @@
     {
       "id": "stage-forest",
       "name": "宵闇の森・夜の散歩道",
-      "tileset": "map-forest-v34",
+      "tileset": "map-forest-v35",
       "width": 20,
       "height": 157,
       "tiles": [
@@ -11804,7 +11939,7 @@
     {
       "id": "stage-lake",
       "name": "霧の湖・氷の妖精",
-      "tileset": "map-lake-v34",
+      "tileset": "map-lake-v35",
       "width": 20,
       "height": 206,
       "tiles": [
@@ -20387,7 +20522,7 @@
     {
       "id": "stage-1",
       "name": "紅魔館・花の門",
-      "tileset": "map-gate-v34",
+      "tileset": "map-gate-v35",
       "width": 20,
       "height": 229,
       "tiles": [
@@ -52264,7 +52399,7 @@
     {
       "id": "stage-4",
       "name": "紅月の屋上",
-      "tileset": "map-roof-v34",
+      "tileset": "map-roof-v35",
       "width": 20,
       "height": 309,
       "tiles": [
@@ -65087,7 +65222,7 @@
     {
       "id": "stage-5",
       "name": "封印された地下室",
-      "tileset": "map-cellar-v34",
+      "tileset": "map-cellar-v35",
       "width": 20,
       "height": 337,
       "tiles": [

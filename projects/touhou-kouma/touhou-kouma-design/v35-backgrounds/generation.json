@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen",
+  "purpose": "User-requested red Scarlet Devil Mansion and continuous tiled ice shore",
+  "assets": [
+    {
+      "name": "roof-red",
+      "master": "masters/roof-red.png",
+      "reference": "../v34-backgrounds/masters/roof.png",
+      "source": "C:/Users/gameofneutral/.codex/generated_images/01a08aa6-e898-7ba0-b14d-33b05dee3d05/exec-92b8c3e9-ec99-419b-9d44-abce200e308c.png",
+      "prompt": "Use case: precise-object-edit. Edit this game terrain tile reference. Keep the roof tiles and left gothic parapet composition, replace the purple/blue colors with SCARLET RED roof terracotta and burgundy red stone of the Scarlet Devil Mansion. Warm red-pink highlights, dark maroon shadows. Eliminate all transparency and holes: fill them with solid continuous dark red stone. A seamless vertically repeatable top-down game terrain square. Flat pixel-art clusters legible when reduced to 32x32 actual game pixels. Large simple roof diamonds and mortar edges, not noisy fine details. OPAQUE entire square, no isolated floating object, no text, no extra frame, no white background. Preserve coherent red architecture at native small size."
+    },
+    {
+      "name": "ice",
+      "master": "masters/ice.png",
+      "source": "C:/Users/gameofneutral/.codex/generated_images/01a08aa6-e898-7ba0-b14d-33b05dee3d05/exec-e2b43a36-3827-4190-af63-161e8369b09a.png",
+      "prompt": "Use case: stylized-concept. Create ONE opaque seamless square texture tile for a Game Boy Color top-down game: continuous frozen lake shoreline, broad interlocking blue ice sheets with angular white-cyan cracks. The surface fills the ENTIRE canvas, no objects floating in empty space, no individual ice cubes, no isolated crystals, no rocks, no 3D perspective. Chunky genuine pixel-art texture designed for reduction to only 32x32 logical pixels, enlarged without smoothing. Use very few colors: deep navy seams, medium blue slabs, light cyan edges, tiny white corners. Broad connected shapes, simple repeating crack network that aligns at the tile boundaries horizontally and vertically. No transparency, no labels, no text, no borders, no grain or small noise. This will be a continuously repeating 32px-wide shore strip on the left and mirrored right of a vertically scrolling lake stage. Not an icon sheet: only one tile of continuous ice surface."
+    }
+  ],
+  "conversion": "import.cjs; opaque 32x32 area reduction; stage-specific legacy center tiles are copied without alteration. Source hashes and final project revision are in assets.json.",
+  "provenance": "New AI-generated terrain, no external downloaded artwork. Reused stage motifs belong to this existing project. Original source assets are preserved."
+}

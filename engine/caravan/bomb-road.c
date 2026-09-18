@@ -10,7 +10,7 @@ static uint8_t road_flash;
 
 void ce_prepare_road_bomb(void) BANKED {
     CE_Screen screen; CE_ColorScreen color;
-    uint8_t data[128], row, column, start, n, index=ce_bomb_screens[ce_character];
+    uint8_t data[128], row, column, n, index=ce_bomb_screens[ce_character];
     uint16_t tile=0, count;
     if(ce_bomb_live!=2u || !ce_bomb_stock || ce_battle_mode || CE_BOSS_MODE)return;
     ce_get_screen(&screen,index);ce_get_color_screen(&color,index);
@@ -29,20 +29,15 @@ void ce_prepare_road_bomb(void) BANKED {
     }
     for(row=0;row!=(ce_bomb_styles[ce_character]?32u:18u);++row){
         uint16_t offset=row<18u?(uint16_t)row*20u:0;
-        /* DMG tile 0 is truly blank, including for the independently indexed
-         * color atlas. Copy only nonempty runs after the one-time clear. */
-        ce_copy(data,&screen.map,offset,15);
+        /* Color and monochrome pictures are independent. A blank DMG tile
+         * may contain visible color artwork, so it cannot be an omission mask.
+         * Load the active picture's complete 15-cell row once; flashing still
+         * transfers no tile or map data. One contiguous write also saves calls. */
+        ce_copy(data,ce_is_cgb&&color.tile_count?&color.map:&screen.map,offset,15);
+        set_tiles(11,row,15,1,(uint8_t *)0x9c00,data);
         if(ce_is_cgb){
-            ce_copy(data+16,color.tile_count?&color.map:&screen.map,offset,15);
-            ce_copy(data+32,color.tile_count?&color.attrs:&screen.attrs,offset,15);
-        }
-        for(column=0;column<15u;){
-            while(column<15u&&!data[column])++column;
-            start=column;while(column<15u&&data[column])++column;n=column-start;
-            if(n){
-                set_tiles(11u+start,row,n,1,(uint8_t *)0x9c00,data+(ce_is_cgb?16u:0u)+start);
-                if(ce_is_cgb){VBK_REG=1;set_tiles(11u+start,row,n,1,(uint8_t *)0x9c00,data+32u+start);VBK_REG=0;}
-            }
+            ce_copy(data,color.tile_count?&color.attrs:&screen.attrs,offset,15);
+            VBK_REG=1;set_tiles(11,row,15,1,(uint8_t *)0x9c00,data);VBK_REG=0;
         }
     }
     road_flash=0;
