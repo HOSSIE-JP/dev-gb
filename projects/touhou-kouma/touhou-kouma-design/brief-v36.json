@@ -1,0 +1,17 @@
+{
+  "version": "0.36-mansion-depth",
+  "feedback": "Stage 6 side and center backgrounds are too similar and monotonous",
+  "intent": [
+    "Separate the near red gothic facade from a distant dark burgundy roof",
+    "Use large vertical windows/pillars at the sides and small diagonal shingles in the center",
+    "Keep the difference visible on both CGB and four-shade DMG"
+  ],
+  "constraints": [
+    "Change only the stage 6 tileset; preserve other stages, engine, gameplay and save identity",
+    "Retain the red Scarlet Devil Mansion theme",
+    "Keep 32-pixel symmetric side strips, 56-pixel center and 40-pixel HUD",
+    "Retain 40 background tiles, 8 parallax tiles and divisor 2",
+    "Keep original masters, prompts and conversion script in the design folder"
+  ],
+  "approved": false
+}

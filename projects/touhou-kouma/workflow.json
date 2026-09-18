@@ -1,16 +1,26 @@
 {
-  "version": "0.35-stage-art-bomb-fix",
-  "updatedAt": "2026-09-17T17:32:20.635Z",
+  "version": "0.36-mansion-depth",
+  "updatedAt": "2026-09-18T01:14:14.849Z",
   "status": "awaiting-playtest",
   "approved": false,
-  "projectRevision": "df2aca01ece1f36fd6a2ed87c7d5b11068b7ccb35fcc5f23f9ef5a1f65a782f5",
-  "engineRevision": "6772c56966a7ceb5c4616b9301fae22d8aab7d32",
+  "projectRevision": "807ab103a3903883e4ea6cc820be7ae5e3cba366b6145c84893a0b8a165b9dd3",
+  "engineRevision": "61ba1682348fd7d5ebb8c472664580888569580b",
   "rom": {
-    "path": "build/Release/touhou-kouma-v35.gb",
-    "sha256": "5e0f5b6c030fb867c0d359172063ba64856683542515a5303c279ad603a57e19",
+    "path": "build/Release/touhou-kouma-v36.gb",
+    "sha256": "5c0cf836fa8ffd3a78d7421ee7f2ce0b108108100cce31dd3d57bb440da17782",
     "bytes": 2097152
   },
   "previous": [
+    {
+      "version": "0.35-stage-art-bomb-fix",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v35.gb",
+        "sha256": "5e0f5b6c030fb867c0d359172063ba64856683542515a5303c279ad603a57e19",
+        "bytes": 2097152
+      },
+      "projectRevision": "df2aca01ece1f36fd6a2ed87c7d5b11068b7ccb35fcc5f23f9ef5a1f65a782f5",
+      "validation": "touhou-kouma-design/qa-v35.json"
+    },
     {
       "version": "0.34-boss-bomb-background-focus",
       "rom": {
@@ -274,32 +284,32 @@
     }
   ],
   "checks": [
-    "Debug and Release identical 2 MiB ROM, zero compiler warnings, 7161 bytes static WRAM including shadow OAM",
-    "Doctor: zero warnings; clean hello-gb and build Debug; star-caravan Debug/Release passed",
-    "test.cmd hello-gb: 157 tests passed, TypeScript passed",
-    "Reimu source-image pixel comparison: all 4 DMG/CGB road/boss routes match; old CGB road had 128 missing pixels",
-    "All 7 stages on both machines: parallax tiles animate, camera progresses and Window HUD stays fixed",
-    "Both characters and machines: bomb resident atlas, background alternation, scrolling, restoration and focus marker passed",
-    "Right HUD, pause/cutin/bomb/miss timer regression passed",
-    "Native BGB before/after identical movies for normal road/boss and both bomb characters; completed screenshot frames visually checked"
+    "Only the stage 6 tileset reference and one new background asset change game data; all other settings equal baseline",
+    "Same 40-tile background, 8 parallax tiles, 32-pixel sides and divisor 2",
+    "GB/CGB all 7 stages: animated center VRAM, scrolling camera, fixed right HUD",
+    "Native BGB stage 6 before/after screenshots: same real controller input, both machines, two completed display frames",
+    "Reimu bomb source-art regression: zero missing pixels for all 4 GB/CGB road/boss cases",
+    "Debug/Release: identical 2 MiB ROMs, zero compiler warnings, static WRAM 7161 bytes",
+    "Doctor zero warnings; hello-gb clean/Debug and star-caravan Debug/Release passed",
+    "test.cmd hello-gb: 157 tests and TypeScript passed"
   ],
   "pending": [
-    "Emulicious DAP evaluate failed with NullPointerException on this ROM; no independent Emulicious runtime proof",
-    "Physical DMG/CGB, human listening and long exhibition soak not tested",
-    "Native performance is a bounded production-ROM input movie, not a constant 60 fps guarantee",
-    "Source changes remain uncommitted; this revision awaits human playtest"
+    "Emulicious DAP evaluation fails with NullPointerException on this ROM",
+    "Physical DMG/CGB, subjective audio and long exhibition soak not tested",
+    "No new performance claim: engine, tile budget and per-frame work are unchanged",
+    "This source-only revision remains uncommitted and awaits human playtest"
   ],
   "evidence": {
-    "report": "../../docs/touhou-kouma-v35.md",
-    "qa": "touhou-kouma-design/qa-v35.json",
-    "assets": "touhou-kouma-design/v35-backgrounds/assets.json",
-    "raw": ".cache/kouma-v35"
+    "report": "../../docs/touhou-kouma-v36.md",
+    "qa": "touhou-kouma-design/qa-v36.json",
+    "assets": "touhou-kouma-design/v36-mansion/assets.json",
+    "raw": ".cache/kouma-v36"
   },
-  "engineWorkingTreeChanges": true,
-  "validation": "touhou-kouma-design/qa-v35.json",
+  "engineWorkingTreeChanges": false,
+  "validation": "touhou-kouma-design/qa-v36.json",
   "approval": {
     "status": "awaiting-playtest",
-    "romSha256": "5e0f5b6c030fb867c0d359172063ba64856683542515a5303c279ad603a57e19"
+    "romSha256": "5c0cf836fa8ffd3a78d7421ee7f2ce0b108108100cce31dd3d57bb440da17782"
   },
   "promotion": {
     "path": "touhou-kouma-design/pv-v22/touhou-kouma-v22-pv.mp4",
@@ -356,7 +366,7 @@
     "engine/caravan/special.c": "d25bb899e063272cf45840b11ee7d5ee3d4f11fbbf9d32e459d75307b76a389c",
     "engine/caravan/sprites.c": "401872c6b54d79ad117d43eb5d75f2e878495127bc9181b598f1cf99dc24ffee",
     "engine/caravan/terrain.c": "90a8378faed2d79daf175280bc0278a354c76689f71769ad9fdc7c5221b3954a",
-    "projects/touhou-kouma/assets-src/game.json": "8c502db429fa40ec4834b90e4d829d45604ce0c291d1473a17044d98ace3567e",
+    "projects/touhou-kouma/assets-src/game.json": "ecdeb7804707cc3e5d1546d50dad0a8b406a35a5f94bb84a250786d1ac72f6e8",
     "engine/caravan/bomb-road.c": "008d285727f655c09a438e82a0c1c3de84445fc86461ddb2b9c676b19f99e1e3",
     "editor/tests/kouma-v34.test.mjs": "269c1667a6cfeaf690619562e7b16f644c443fc3907ab340b0e20c99d07c2631",
     "editor/tests/kouma-v34-rom.acceptance.mjs": "96dbc60fb5749c7fef16c73b5edd412fe2cf4b9024d854e87a79b19f0e7b2076",
@@ -364,6 +374,9 @@
     "editor/tests/kouma-bomb-art.acceptance.mjs": "5804676660e23a98bfa2130bdb2cafecf50f4b8d539e3df67b402ddf41f2e1da",
     "editor/tests/kouma-backgrounds.acceptance.mjs": "2377ead6d00dbab080477acf8c0314e69aa4b9b97766880c5d4576aad43beeab",
     "editor/tests/kouma-v35.test.mjs": "e887da2027de1fab6838c369779163991979cf76967d95e6891aea2d6a3807f9",
-    "projects/touhou-kouma/touhou-kouma-design/v35-backgrounds/import.cjs": "f7beba8e11d4f7321290666666ee93fa0d8225c49f8ff0cb77971e876bf960bc"
+    "projects/touhou-kouma/touhou-kouma-design/v35-backgrounds/import.cjs": "f7beba8e11d4f7321290666666ee93fa0d8225c49f8ff0cb77971e876bf960bc",
+    "projects/touhou-kouma/assets-src/images/map-roof-v36.png": "c6875b1b60f0e0f0b2510b9102609ff0a423163708210afda681c2f837c20981",
+    "projects/touhou-kouma/assets-src/images/map-roof-v36-cgb.png": "b55f3f384c2f252c3cf89fb211b5dae35a2c5b44718da7dc3c6a7fb2249a0f24",
+    "projects/touhou-kouma/touhou-kouma-design/v36-mansion/import.cjs": "d21316632e8ce50d0faba1c14f1dbc9f2b38a91b7ded24ac21cd643378ea4b47"
   }
 }

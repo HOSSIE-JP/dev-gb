@@ -2527,6 +2527,33 @@
           "cgbImage": "images/map-cellar-v35-cgb.png"
         }
       ]
+    },
+    {
+      "id": "map-roof-v36",
+      "name": "紅魔館・赤い尖頭窓と暗い屋根",
+      "kind": "tileset",
+      "width": 64,
+      "height": 40,
+      "palette": 4,
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "hitbox": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 40
+      },
+      "emitters": [],
+      "frames": [
+        {
+          "id": "map-4-0",
+          "image": "images/map-roof-v36.png",
+          "duration": 10,
+          "cgbImage": "images/map-roof-v36-cgb.png"
+        }
+      ]
     }
   ],
   "patterns": [
@@ -52399,7 +52426,7 @@
     {
       "id": "stage-4",
       "name": "紅月の屋上",
-      "tileset": "map-roof-v35",
+      "tileset": "map-roof-v36",
       "width": 20,
       "height": 309,
       "tiles": [

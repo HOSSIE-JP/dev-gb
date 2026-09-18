@@ -1,0 +1,26 @@
+{
+  "sourceRevision": "df2aca01ece1f36fd6a2ed87c7d5b11068b7ccb35fcc5f23f9ef5a1f65a782f5",
+  "revision": "807ab103a3903883e4ea6cc820be7ae5e3cba366b6145c84893a0b8a165b9dd3",
+  "stage": 6,
+  "asset": "map-roof-v36",
+  "tiles": 40,
+  "parallaxTiles": 8,
+  "sideWidth": 32,
+  "centerWidth": 56,
+  "parallaxDivisor": 2,
+  "sourceMasters": [
+    {
+      "file": "masters/facade.png",
+      "width": 32,
+      "height": 32,
+      "sha256": "0b0a826bed6daa1daeff70b9ae41ae3c1c66c386c6630133cb0203294d8bbb60"
+    },
+    {
+      "file": "masters/roof.png",
+      "width": 32,
+      "height": 16,
+      "sha256": "deb1f91cc642b4f3fd9331ceb2980d78f036dcb6d2e6253b82f868fd027b37d3"
+    }
+  ],
+  "method": "Area reduction of two distinct masters; mirrored facade at each side; darker full 32x16 roof in center; common DMG luminance thresholds 28/42/80"
+}

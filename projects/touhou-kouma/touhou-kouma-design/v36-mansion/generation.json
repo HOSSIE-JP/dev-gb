@@ -1,0 +1,19 @@
+{
+  "tool": "built-in image_gen",
+  "purpose": "Stage 6 near gothic facade and distant dark red roof",
+  "assets": [
+    {
+      "name": "facade",
+      "master": "masters/facade.png",
+      "prompt": "Use case: stylized-concept. Asset type: ONE continuous square terrain tile for a Game Boy Color shooting game, a gothic Scarlet Devil Mansion exterior facade. Design precisely for reduction to 32x32 actual game pixels. A BIG single pointed arch window occupies the middle, surrounded by thick scarlet red stone piers and buttresses, a narrow warm rose-gold cornice along the right edge. Black-red dark window interior, sparse muted amber mullions. Entire canvas filled opaque with architecture, NO transparency, NO sky, NO detached object. This is a narrow side wall scrolling vertically, repeated above and below and mirrored on the other screen edge. Predominantly crimson, wine-red, muted rose red lit stone, near-black claret shadows; tiny antique-gold accents only. Strong broad vertical features and one readable large window, bold pixel clusters, no fine detail or busy small bricks. Top/bottom edges should align for continuous repeating facade. Flat orthographic arcade pixel art. No perspective, no text, no border, no margin, no characters. Avoid broad horizontal rows of roof tiles: this is a VERTICAL gothic facade with a window. Most red stone should be medium brightness so it reads as near foreground.",
+      "source": "C:/Users/gameofneutral/.codex/generated_images/01a08aa6-e898-7ba0-b14d-33b05dee3d05/exec-f16593a3-f137-424e-a691-bdda8e371f79.png"
+    },
+    {
+      "name": "roof",
+      "master": "masters/roof.png",
+      "prompt": "Use case: stylized-concept. Asset type: opaque seamless texture for the DISTANT CENTER LAYER of a Game Boy Color mansion stage. Create a wide 2:1 rectangle, designed to reduce to only 32 by 16 actual pixels. Fill edge to edge with LARGE simple interlocking diagonal diamond or fish-scale ROOF SHINGLES. Use very dark black-cherry burgundy, dark oxblood-red and restrained muted crimson edge highlights. Very low average brightness, no bright highlights. 3 flat color shades, dark red family only, no blue and no purple. Broad repeating scalloped shingle shapes, NOT rectangular bricks and not small noise. Opaque, flat top-down view, both opposite edges repeat seamlessly, no frame, no margin, no window, no wall, no character, no labels. Genuine chunky arcade pixel clusters, no gradients. The final dark roof must clearly contrast with medium-bright scarlet gothic WALLS on both sides, preserving legibility of white bullets. This is one continuous texture swatch, not a mockup or scene.",
+      "source": "C:/Users/gameofneutral/.codex/generated_images/01a08aa6-e898-7ba0-b14d-33b05dee3d05/exec-afbd0ffb-dcdb-409e-ba1c-a8310ff9bc6d.png"
+    }
+  ],
+  "provenance": "New generated terrain for the existing fan game. Original and v35 sources are retained."
+}
