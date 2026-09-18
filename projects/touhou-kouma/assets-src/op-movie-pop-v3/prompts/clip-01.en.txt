@@ -1,0 +1,32 @@
+subject_definitions:
+<Subject 1> is Reimu Hakurei, the top character in <Picture 1>: long chestnut hair, brown eyes, large red-white bow, red calf-length shrine dress, yellow necktie and detached white sleeves.
+<Subject 2> is Marisa Kirisame, the bottom character in <Picture 1>: blonde hair with a side braid, amber eyes, black witch hat with white bow, black calf-length dress and white apron, brown broom and octagonal focus.
+<Subject 10> is the sunlit shrine courtyard: red torii, cherry blossoms, wooden veranda and mint-green foliage, from <Picture 2>.
+<Subject 11> is the open cyan sky with large white clouds and a distant tiny manor, from <Picture 3>.
+<Picture 4> is the clean visual board, read left-to-right and top-to-bottom, mapping [Shot 1] through [Shot 6]. It provides composition and identity cues; the written timeline supplies motion and cuts.
+
+summary:
+[reference generation] Create exactly 10.000 seconds, 16:9. Introduce <Subject 1> and <Subject 2> through charming looks, one lively duo pose, two spectacular flight inserts in <Subject 11>, and a playful veranda beat in <Subject 10>. This is a character-led visual-novel opening montage. <Picture 4> supplies composition; the shots jump associatively between moods. Warm smiles are the main attraction, with three seconds of bold aerial camera movement. Use bright polished 2D anime, expressive eyes and a cute, upbeat visual-novel opening mood. Each shot fills one frame as a complete scene; costumes and faces follow the model sheets.
+
+retention_analysis:
+<Subject 1> (appears in [Shot 1], [Shot 3], [Shot 4], [Shot 6]): fully_preserved - retain Reimu Hakurei's face, hair, headwear and costume across expressions and camera angles.
+<Subject 2> (appears in [Shot 2], [Shot 3], [Shot 5], [Shot 6]): fully_preserved - retain Marisa Kirisame's face, hair, headwear and costume across expressions and camera angles.
+<Subject 2> ([Shot 2], [Shot 5], body-relative handedness and broom): fully_preserved - her anatomical right hand stays on the shaft; her anatomical left hand handles the hat or focus as specified. In a frontal view, her right arm originates at screen-left and her left arm at screen-right. Each hand remains connected to its own shoulder through camera motion and cuts. Her right thumb opposes four curled fingers around the shaft. One continuous broom shaft leads with its bare wooden end; the tied straw bundle trails behind her hips.
+<Subject 10> (appears in [Shot 1], [Shot 2], [Shot 3], [Shot 6]): fully_preserved - keep the bright location design while changing framing.
+<Subject 11> (appears in [Shot 4], [Shot 5]): fully_preserved - keep the bright location design while changing framing.
+<Picture 4> (shot composition): partially_preserved - preserve panel order and character placement; follow the written camera movement and exact timing.
+
+detailed_description:
+Crisp cel animation, warm high-key light, expressive character acting, clean silhouettes and bright pastel accents.
+[Shot 1] A close three-quarter view of <Subject 1> fills the frame as her white sleeve finishes sweeping past the lens. In <Subject 10>, she turns toward us, her large red bow catching warm sunlight, and her composed face opens into a small inviting smile. Push forward a few centimeters at eye level. Cherry petals drift through the soft background; a crisp cloth swish and one light sandal tap accent her turn.
+[Shot 2] At 00:01.500, Cut to <Subject 2> approaching head-first beside the shrine. The bare wooden handle leads toward the lens; the straw bundle trails behind her hips. Her anatomical right hand grips the shaft, thumb opposing four curled fingers; her left hand touches the hat brim as she winks. Both wrists connect naturally to their respective forearms. Track backward at face height; braid and white bow stream behind. The handle passes beneath the lens as the courtyard slides sideways in parallax. Broom wind ends with a hat-fabric rustle.
+[Shot 3] At 00:03.000, Cut to a waist-up duo composition: <Subject 1> and <Subject 2> stand back-to-back, then glance toward the camera from opposite shoulders. Their red and black silhouettes form a balanced center against softly defocused cherry blossom and sky. A brisk quarter-orbit settles into their shared smile. Each holds one recognizable prop low, leaving both faces clear. A petal brushes Marisa’s hat with a tiny dry tick.
+[Shot 4] At 00:05.000, Cut directly into <Subject 11>: <Subject 1> sweeps diagonally past the lens, sleeve and talisman sharply foreshortened in the foreground, body receding behind. The camera whips around her shoulder as she banks around one cloud edge. Her focused eyes stay visible for an instant before she clears frame. Use a fast near-to-far change of scale and a clean air crack to convey force, keeping the action readable.
+[Shot 5] At 00:06.500, Reverse screen direction on the cut to <Subject 2> in low frontal flight. Her anatomical right hand keeps its shaft grip; her left holds the octagonal focus. The bare handle leads beneath the camera, straw trailing behind her hips on the same straight shaft. She banks against a huge cloud. Her single black skirt flares over opaque white drawers with separate knee-length legs and gathered cuffs. Snap-track her face, then follow her into the distance. One golden glint leaves the focus. Broom wind rises and cuts sharply.
+[Shot 6] At 00:08.000, Cut to the two sitting side by side on the shrine veranda, returning immediately to warm daylight and everyday charm. <Subject 2> straightens her slightly crooked hat; <Subject 1> notices and hides a small smile behind a folded sleeve. Drift gently sideways at seated eye level, keeping their faces large. Cloth, wood and leaves replace the flight roar. End on their exchanged glance at 00:10.000.
+
+overall_soundscape:
+Only sounds tied to the visible setting and gestures: wind, leaves, cloth, paper, porcelain and brief nonmelodic magical transients where specified. Use quiet gaps between close-up accents. No dialogue, narration, laughter, shouts, vocals or music.
+
+non_diegetic_music:
+None. No BGM, score, song or musical accompaniment.

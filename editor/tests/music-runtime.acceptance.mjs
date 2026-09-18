@@ -25,6 +25,13 @@ const labels = [
     "invalid track selection switches music off",
     "BGM leaves square-1, noise and mixer registers intact",
     "BGM leaves noise pitch intact",
+    "fractional speed alternates five and six VBlanks exactly",
+    "fractional tempo has no three-bar clock drift",
+    "fractional clock remains frozen while paused",
+    "fractional track loops exactly at 3520 updates",
+    "all eight wave instruments survive active playback on DMG and CGB",
+    "switching back to a legacy song restores the original triangle",
+    "new instruments and tempo preserve effect channels and mixer",
 ];
 
 for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
@@ -50,7 +57,7 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             let report;
             for (let n = 0; n < 1200; n++) {
                 frames(gb, 1);
-                report = memory(gb).ram.subarray(address - 0xc000, address - 0xc000 + 16);
+                report = memory(gb).ram.subarray(address - 0xc000, address - 0xc000 + 24);
                 if (report[0] === 0x4d) break;
             }
             assert.equal(report[0], 0x4d, "GBDK test program must reach completion");

@@ -1,0 +1,1085 @@
+{
+  "status": "passed",
+  "checked_at": "2026-09-18T15:56:34.956Z",
+  "checks": [
+    {
+      "name": "four_ten_second_clips",
+      "pass": true,
+      "detail": [
+        10,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "name": "forty_seconds",
+      "pass": true,
+      "detail": 40
+    },
+    {
+      "name": "twenty_eight_shots",
+      "pass": true,
+      "detail": [
+        6,
+        6,
+        6,
+        10
+      ]
+    },
+    {
+      "name": "clip-01_ordered_cuts",
+      "pass": true,
+      "detail": [
+        0,
+        1.5,
+        3,
+        5,
+        6.5,
+        8
+      ]
+    },
+    {
+      "name": "clip-01_shot_labels",
+      "pass": true,
+      "detail": [
+        "霊夢の振り向き",
+        "魔理沙がレンズ前へ",
+        "背中合わせの二人",
+        "霊夢の高速すれ違い",
+        "魔理沙の急な切り返し",
+        "縁側のかわいいひと呼吸"
+      ]
+    },
+    {
+      "name": "clip-01_en_six_sections",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-01_en_shot_numbers",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-01_en_shot_times",
+      "pass": true,
+      "detail": [
+        0,
+        1.5,
+        3,
+        5,
+        6.5,
+        8
+      ]
+    },
+    {
+      "name": "clip-01_en_end_time",
+      "pass": true,
+      "detail": [
+        1.5,
+        3,
+        5,
+        6.5,
+        8,
+        10
+      ]
+    },
+    {
+      "name": "clip-01_en_resolved_references",
+      "pass": true,
+      "detail": [
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 10>",
+        "<Picture 2>",
+        "<Subject 11>",
+        "<Picture 3>",
+        "<Picture 4>"
+      ]
+    },
+    {
+      "name": "clip-01_en_upload_numbering",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "clip-01_en_no_motion_symbols",
+      "pass": true,
+      "detail": "Directions are described as physical motion."
+    },
+    {
+      "name": "clip-01_en_music_disabled",
+      "pass": true,
+      "detail": "No music"
+    },
+    {
+      "name": "clip-01_en_no_vocal_script",
+      "pass": true,
+      "detail": "No vocal performance"
+    },
+    {
+      "name": "clip-01_english_detail_words",
+      "pass": true,
+      "detail": 476
+    },
+    {
+      "name": "clip-01_ja_six_sections",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-01_ja_shot_numbers",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-01_ja_shot_times",
+      "pass": true,
+      "detail": [
+        0,
+        1.5,
+        3,
+        5,
+        6.5,
+        8
+      ]
+    },
+    {
+      "name": "clip-01_ja_end_time",
+      "pass": true,
+      "detail": [
+        1.5,
+        3,
+        5,
+        6.5,
+        8,
+        10
+      ]
+    },
+    {
+      "name": "clip-01_ja_resolved_references",
+      "pass": true,
+      "detail": [
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 10>",
+        "<Picture 2>",
+        "<Subject 11>",
+        "<Picture 3>",
+        "<Picture 4>"
+      ]
+    },
+    {
+      "name": "clip-01_ja_upload_numbering",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "clip-01_ja_no_motion_symbols",
+      "pass": true,
+      "detail": "Directions are described as physical motion."
+    },
+    {
+      "name": "clip-01_ja_music_disabled",
+      "pass": true,
+      "detail": "No music"
+    },
+    {
+      "name": "clip-01_ja_no_vocal_script",
+      "pass": true,
+      "detail": "No vocal performance"
+    },
+    {
+      "name": "clip-01_picture_1",
+      "pass": true,
+      "detail": "references/characters-01-heroes.png"
+    },
+    {
+      "name": "clip-01_picture_2",
+      "pass": true,
+      "detail": "backgrounds/background-01-shrine.png"
+    },
+    {
+      "name": "clip-01_picture_3",
+      "pass": true,
+      "detail": "backgrounds/background-03-sky.png"
+    },
+    {
+      "name": "clip-01_picture_4",
+      "pass": true,
+      "detail": "storyboards/storyboard-01.png"
+    },
+    {
+      "name": "clip-02_ordered_cuts",
+      "pass": true,
+      "detail": [
+        0,
+        1.5,
+        3,
+        4.5,
+        6,
+        8
+      ]
+    },
+    {
+      "name": "clip-02_shot_labels",
+      "pass": true,
+      "detail": [
+        "咲夜のティーサービス",
+        "本から覗くパチュリー",
+        "美鈴の照れた敬礼",
+        "ルーミアとおやつ",
+        "チルノの氷の花",
+        "五人のお茶会"
+      ]
+    },
+    {
+      "name": "clip-02_en_six_sections",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-02_en_shot_numbers",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-02_en_shot_times",
+      "pass": true,
+      "detail": [
+        0,
+        1.5,
+        3,
+        4.5,
+        6,
+        8
+      ]
+    },
+    {
+      "name": "clip-02_en_end_time",
+      "pass": true,
+      "detail": [
+        1.5,
+        3,
+        4.5,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "name": "clip-02_en_resolved_references",
+      "pass": true,
+      "detail": [
+        "<Subject 7>",
+        "<Picture 3>",
+        "<Subject 6>",
+        "<Subject 5>",
+        "<Picture 2>",
+        "<Subject 3>",
+        "<Picture 1>",
+        "<Subject 4>",
+        "<Subject 10>",
+        "<Picture 4>",
+        "<Picture 5>"
+      ]
+    },
+    {
+      "name": "clip-02_en_upload_numbering",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "clip-02_en_no_motion_symbols",
+      "pass": true,
+      "detail": "Directions are described as physical motion."
+    },
+    {
+      "name": "clip-02_en_music_disabled",
+      "pass": true,
+      "detail": "No music"
+    },
+    {
+      "name": "clip-02_en_no_vocal_script",
+      "pass": true,
+      "detail": "No vocal performance"
+    },
+    {
+      "name": "clip-02_english_detail_words",
+      "pass": true,
+      "detail": 467
+    },
+    {
+      "name": "clip-02_ja_six_sections",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-02_ja_shot_numbers",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-02_ja_shot_times",
+      "pass": true,
+      "detail": [
+        0,
+        1.5,
+        3,
+        4.5,
+        6,
+        8
+      ]
+    },
+    {
+      "name": "clip-02_ja_end_time",
+      "pass": true,
+      "detail": [
+        1.5,
+        3,
+        4.5,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "name": "clip-02_ja_resolved_references",
+      "pass": true,
+      "detail": [
+        "<Subject 7>",
+        "<Picture 3>",
+        "<Subject 6>",
+        "<Subject 5>",
+        "<Picture 2>",
+        "<Subject 3>",
+        "<Picture 1>",
+        "<Subject 4>",
+        "<Subject 10>",
+        "<Picture 4>",
+        "<Picture 5>"
+      ]
+    },
+    {
+      "name": "clip-02_ja_upload_numbering",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "clip-02_ja_no_motion_symbols",
+      "pass": true,
+      "detail": "Directions are described as physical motion."
+    },
+    {
+      "name": "clip-02_ja_music_disabled",
+      "pass": true,
+      "detail": "No music"
+    },
+    {
+      "name": "clip-02_ja_no_vocal_script",
+      "pass": true,
+      "detail": "No vocal performance"
+    },
+    {
+      "name": "clip-02_picture_1",
+      "pass": true,
+      "detail": "references/characters-02-rumia-cirno.png"
+    },
+    {
+      "name": "clip-02_picture_2",
+      "pass": true,
+      "detail": "references/characters-03-meiling-clean.png"
+    },
+    {
+      "name": "clip-02_picture_3",
+      "pass": true,
+      "detail": "references/characters-04-patchouli-sakuya.png"
+    },
+    {
+      "name": "clip-02_picture_4",
+      "pass": true,
+      "detail": "backgrounds/background-02-garden.png"
+    },
+    {
+      "name": "clip-02_picture_5",
+      "pass": true,
+      "detail": "storyboards/storyboard-02.png"
+    },
+    {
+      "name": "clip-03_ordered_cuts",
+      "pass": true,
+      "detail": [
+        0,
+        1.5,
+        3,
+        4.5,
+        6,
+        7.5
+      ]
+    },
+    {
+      "name": "clip-03_shot_labels",
+      "pass": true,
+      "detail": [
+        "日傘から瞳へピント送り",
+        "フランがカメラへ覗き込む",
+        "霊夢が帽子の花びらを取る",
+        "フランと魔理沙の帽子いたずら",
+        "バラ越しに四人のじゃれ合い",
+        "姉妹の笑顔へゆっくり寄る"
+      ]
+    },
+    {
+      "name": "clip-03_en_six_sections",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-03_en_shot_numbers",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-03_en_shot_times",
+      "pass": true,
+      "detail": [
+        0,
+        1.5,
+        3,
+        4.5,
+        6,
+        7.5
+      ]
+    },
+    {
+      "name": "clip-03_en_end_time",
+      "pass": true,
+      "detail": [
+        1.5,
+        3,
+        4.5,
+        6,
+        7.5,
+        10
+      ]
+    },
+    {
+      "name": "clip-03_en_resolved_references",
+      "pass": true,
+      "detail": [
+        "<Subject 8>",
+        "<Picture 2>",
+        "<Subject 9>",
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 10>",
+        "<Picture 3>",
+        "<Picture 4>"
+      ]
+    },
+    {
+      "name": "clip-03_en_upload_numbering",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "clip-03_en_no_motion_symbols",
+      "pass": true,
+      "detail": "Directions are described as physical motion."
+    },
+    {
+      "name": "clip-03_en_music_disabled",
+      "pass": true,
+      "detail": "No music"
+    },
+    {
+      "name": "clip-03_en_no_vocal_script",
+      "pass": true,
+      "detail": "No vocal performance"
+    },
+    {
+      "name": "clip-03_english_detail_words",
+      "pass": true,
+      "detail": 496
+    },
+    {
+      "name": "clip-03_ja_six_sections",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-03_ja_shot_numbers",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-03_ja_shot_times",
+      "pass": true,
+      "detail": [
+        0,
+        1.5,
+        3,
+        4.5,
+        6,
+        7.5
+      ]
+    },
+    {
+      "name": "clip-03_ja_end_time",
+      "pass": true,
+      "detail": [
+        1.5,
+        3,
+        4.5,
+        6,
+        7.5,
+        10
+      ]
+    },
+    {
+      "name": "clip-03_ja_resolved_references",
+      "pass": true,
+      "detail": [
+        "<Subject 8>",
+        "<Picture 2>",
+        "<Subject 9>",
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 10>",
+        "<Picture 3>",
+        "<Picture 4>"
+      ]
+    },
+    {
+      "name": "clip-03_ja_upload_numbering",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "clip-03_ja_no_motion_symbols",
+      "pass": true,
+      "detail": "Directions are described as physical motion."
+    },
+    {
+      "name": "clip-03_ja_music_disabled",
+      "pass": true,
+      "detail": "No music"
+    },
+    {
+      "name": "clip-03_ja_no_vocal_script",
+      "pass": true,
+      "detail": "No vocal performance"
+    },
+    {
+      "name": "clip-03_picture_1",
+      "pass": true,
+      "detail": "references/characters-01-heroes.png"
+    },
+    {
+      "name": "clip-03_picture_2",
+      "pass": true,
+      "detail": "references/characters-05-scarlet-sisters-corrected.png"
+    },
+    {
+      "name": "clip-03_picture_3",
+      "pass": true,
+      "detail": "backgrounds/background-02-garden.png"
+    },
+    {
+      "name": "clip-03_picture_4",
+      "pass": true,
+      "detail": "storyboards/storyboard-03.png"
+    },
+    {
+      "name": "clip-04_ordered_cuts",
+      "pass": true,
+      "detail": [
+        0,
+        0.75,
+        1.5,
+        2.25,
+        3,
+        3.75,
+        4.5,
+        5.25,
+        6,
+        6.75
+      ]
+    },
+    {
+      "name": "clip-04_shot_labels",
+      "pass": true,
+      "detail": [
+        "ルーミア",
+        "咲夜",
+        "チルノ",
+        "パチュリー",
+        "美鈴",
+        "フランドール",
+        "レミリア",
+        "魔理沙",
+        "霊夢",
+        "9人の集合絵"
+      ]
+    },
+    {
+      "name": "clip-04_en_six_sections",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-04_en_shot_numbers",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "name": "clip-04_en_shot_times",
+      "pass": true,
+      "detail": [
+        0,
+        0.75,
+        1.5,
+        2.25,
+        3,
+        3.75,
+        4.5,
+        5.25,
+        6,
+        6.75
+      ]
+    },
+    {
+      "name": "clip-04_en_end_time",
+      "pass": true,
+      "detail": [
+        6.75,
+        10,
+        0.75,
+        1.5,
+        2.25,
+        3,
+        3.75,
+        4.5,
+        5.25,
+        6,
+        6.75,
+        8.5,
+        10
+      ]
+    },
+    {
+      "name": "clip-04_en_resolved_references",
+      "pass": true,
+      "detail": [
+        "<Subject 3>",
+        "<Picture 2>",
+        "<Subject 7>",
+        "<Picture 4>",
+        "<Subject 4>",
+        "<Subject 6>",
+        "<Subject 5>",
+        "<Picture 3>",
+        "<Subject 9>",
+        "<Picture 5>",
+        "<Subject 8>",
+        "<Subject 2>",
+        "<Picture 1>",
+        "<Subject 1>",
+        "<Subject 10>",
+        "<Picture 7>",
+        "<Picture 6>"
+      ]
+    },
+    {
+      "name": "clip-04_en_upload_numbering",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "name": "clip-04_en_no_motion_symbols",
+      "pass": true,
+      "detail": "Directions are described as physical motion."
+    },
+    {
+      "name": "clip-04_en_music_disabled",
+      "pass": true,
+      "detail": "No music"
+    },
+    {
+      "name": "clip-04_en_no_vocal_script",
+      "pass": true,
+      "detail": "No vocal performance"
+    },
+    {
+      "name": "clip-04_english_detail_words",
+      "pass": true,
+      "detail": 485
+    },
+    {
+      "name": "clip-04_ja_six_sections",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-04_ja_shot_numbers",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "name": "clip-04_ja_shot_times",
+      "pass": true,
+      "detail": [
+        0,
+        0.75,
+        1.5,
+        2.25,
+        3,
+        3.75,
+        4.5,
+        5.25,
+        6,
+        6.75
+      ]
+    },
+    {
+      "name": "clip-04_ja_end_time",
+      "pass": true,
+      "detail": [
+        6.75,
+        10,
+        0.75,
+        1.5,
+        2.25,
+        3,
+        3.75,
+        4.5,
+        5.25,
+        6,
+        6.75,
+        8.5,
+        10
+      ]
+    },
+    {
+      "name": "clip-04_ja_resolved_references",
+      "pass": true,
+      "detail": [
+        "<Subject 3>",
+        "<Picture 2>",
+        "<Subject 7>",
+        "<Picture 4>",
+        "<Subject 4>",
+        "<Subject 6>",
+        "<Subject 5>",
+        "<Picture 3>",
+        "<Subject 9>",
+        "<Picture 5>",
+        "<Subject 8>",
+        "<Subject 2>",
+        "<Picture 1>",
+        "<Subject 1>",
+        "<Subject 10>",
+        "<Picture 7>",
+        "<Picture 6>"
+      ]
+    },
+    {
+      "name": "clip-04_ja_upload_numbering",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "name": "clip-04_ja_no_motion_symbols",
+      "pass": true,
+      "detail": "Directions are described as physical motion."
+    },
+    {
+      "name": "clip-04_ja_music_disabled",
+      "pass": true,
+      "detail": "No music"
+    },
+    {
+      "name": "clip-04_ja_no_vocal_script",
+      "pass": true,
+      "detail": "No vocal performance"
+    },
+    {
+      "name": "clip-04_picture_1",
+      "pass": true,
+      "detail": "references/characters-01-heroes.png"
+    },
+    {
+      "name": "clip-04_picture_2",
+      "pass": true,
+      "detail": "references/characters-02-rumia-cirno.png"
+    },
+    {
+      "name": "clip-04_picture_3",
+      "pass": true,
+      "detail": "references/characters-03-meiling-clean.png"
+    },
+    {
+      "name": "clip-04_picture_4",
+      "pass": true,
+      "detail": "references/characters-04-patchouli-sakuya.png"
+    },
+    {
+      "name": "clip-04_picture_5",
+      "pass": true,
+      "detail": "references/characters-05-scarlet-sisters-corrected.png"
+    },
+    {
+      "name": "clip-04_picture_6",
+      "pass": true,
+      "detail": "storyboards/storyboard-04-portraits.png"
+    },
+    {
+      "name": "clip-04_picture_7",
+      "pass": true,
+      "detail": "references/final-ensemble.png"
+    },
+    {
+      "name": "nine_distinct_finale_portraits",
+      "pass": true,
+      "detail": [
+        "Rumia",
+        "Sakuya Izayoi",
+        "Cirno",
+        "Patchouli Knowledge",
+        "Hong Meiling",
+        "Flandre Scarlet",
+        "Remilia Scarlet",
+        "Marisa Kirisame",
+        "Reimu Hakurei"
+      ]
+    },
+    {
+      "name": "finale_group_holds_3_25_seconds",
+      "pass": true,
+      "detail": 3.25
+    },
+    {
+      "name": "new_visual_assets_only",
+      "pass": true,
+      "detail": [
+        "references/characters-01-heroes.png",
+        "backgrounds/background-01-shrine.png",
+        "backgrounds/background-03-sky.png",
+        "storyboards/storyboard-01.png",
+        "references/characters-02-rumia-cirno.png",
+        "references/characters-03-meiling-clean.png",
+        "references/characters-04-patchouli-sakuya.png",
+        "backgrounds/background-02-garden.png",
+        "storyboards/storyboard-02.png",
+        "references/characters-01-heroes.png",
+        "references/characters-05-scarlet-sisters-corrected.png",
+        "backgrounds/background-02-garden.png",
+        "storyboards/storyboard-03.png",
+        "references/characters-01-heroes.png",
+        "references/characters-02-rumia-cirno.png",
+        "references/characters-03-meiling-clean.png",
+        "references/characters-04-patchouli-sakuya.png",
+        "references/characters-05-scarlet-sisters-corrected.png",
+        "storyboards/storyboard-04-portraits.png",
+        "references/final-ensemble.png"
+      ]
+    },
+    {
+      "name": "five_unchanged_character_sheets",
+      "pass": true,
+      "detail": [
+        "references/characters-01-heroes.png",
+        "references/characters-02-rumia-cirno.png",
+        "references/characters-03-meiling-clean.png",
+        "references/characters-04-patchouli-sakuya.png",
+        "references/characters-05-scarlet-sisters-corrected.png"
+      ]
+    },
+    {
+      "name": "eight_new_generated_assets",
+      "pass": true,
+      "detail": 13
+    }
+  ],
+  "visual_review": "See QA-JA.md for visual inspection of new boards and the nine-character finale.",
+  "not_performed": [
+    "Video generation from this pack",
+    "Rendered timing and cuts",
+    "Character continuity across generated shots",
+    "SFX listening and synchronization",
+    "ROM video integration"
+  ]
+}

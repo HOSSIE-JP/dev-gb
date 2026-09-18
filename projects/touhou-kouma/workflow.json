@@ -1,16 +1,70 @@
 {
-  "version": "0.37-follow-beam-barrages",
-  "updatedAt": "2026-09-18T03:28:22.174Z",
+  "version": "0.40-opening-movie",
+  "updatedAt": "2026-09-18T16:34:49.882Z",
   "status": "awaiting-playtest",
   "approved": false,
-  "projectRevision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
-  "engineRevision": "990daacd730cc4e01cc22841f180d61ea0ffcc80",
+  "projectRevision": "ec2fd80e96856fb62e056e33b359b3e7bfe459b741c1a04d3035ea2666fdb8fe",
+  "engineRevision": "b7e4cfec8dc83135f3f62e630f8fcb515605c34d",
   "rom": {
-    "path": "build/Release/touhou-kouma-v37.gb",
-    "sha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
-    "bytes": 2097152
+    "path": "build/Release/touhou-kouma-v40.gb",
+    "sha256": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+    "bytes": 4194304
   },
   "previous": [
+    {
+      "version": "0.39-graze-sound",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v39.gb",
+        "sha256": "e253097216410e9bdf44b99ab390d1a6f934d9828ac3f2e2ca65a03b89ef29b1",
+        "bytes": 2097152
+      },
+      "projectRevision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+      "validation": "touhou-kouma-design/qa-v39.json",
+      "checks": [
+        "Quiet CH4 graze tick, approximately 47 ms, volume 4/15, requests limited to once per 12 actual VBlanks",
+        "Independent sound timer allows fresh grazes during a continuous visual flash; dropped low-priority requests are discarded, never queued",
+        "CH1 shots and CH2/CH3 music untouched; impacts/explosions/death, sustained bomb beam and spell cue take priority over grazes",
+        "Boytacean and native BGB DMG/CGB diagnostics: 0/12/24-frame onsets under continuous graze flash, higher-priority preemption in both request orders, no queued cue and unchanged shot/music channels",
+        "Existing collision diagnostic passes 338 coordinate cases per system across BG/OAM shots, plus immunity, saturation, reused slots, birth graze and sustained SFX priority (787 observations per system)",
+        "Unmodified production ROM, Marisa stage 7 boss-select through real joypad input: three actual audible graze events per system on DMG/CGB, isolated CH4 PCM and visual feedback",
+        "Debug/Release identical 2 MiB ROMs, zero diagnostics, 7165 static WRAM/OAM bytes (+2); >=1024-byte stack reserve retained",
+        "doctor zero warnings, hello-gb clean/Debug plus TypeScript/166 standard tests, star-caravan Debug/Release; targeted sound suite and two legacy/new music runtime tests pass",
+        "Native BGB production CGB boss route repeats the v38 5000-frame input movie with identical input hash; update rate is unchanged",
+        "v38 BGM changes retained; game revision, score, visuals, collision, difficulty and save identity unchanged"
+      ],
+      "pending": [
+        "Physical DMG/CGB hardware and human listening evaluation remain unverified",
+        "Emulicious starts and attaches, but DAP evaluate still fails with NullPointerException; not counted as a gameplay pass",
+        "Production graze audio was sampled in stage 7; this is not a new full normal-campaign clear or all-stage sound-coverage claim"
+      ],
+      "evidence": {
+        "report": "../../docs/touhou-kouma-v39.md",
+        "qa": "touhou-kouma-design/qa-v39.json",
+        "design": "touhou-kouma-design/graze-v39/brief.json",
+        "audition": "touhou-kouma-design/graze-v39/graze-preview.wav",
+        "raw": ".cache/kouma-v39/"
+      }
+    },
+    {
+      "version": "0.38-upbeat-soundtrack",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v38.gb",
+        "sha256": "351287f47c8341bc3bc17e4bac1199526503ed630c3b77ad1192b4e22aaa000c",
+        "bytes": 2097152
+      },
+      "projectRevision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+      "validation": "touhou-kouma-design/qa-v38.json"
+    },
+    {
+      "version": "0.37-follow-beam-barrages",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v37.gb",
+        "sha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+        "bytes": 2097152
+      },
+      "projectRevision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+      "validation": "touhou-kouma-design/qa-v37.json"
+    },
     {
       "version": "0.36-mansion-depth",
       "rom": {
@@ -294,36 +348,55 @@
     }
   ],
   "checks": [
-    "GB/CGB production ROM: held beam follows player, continuous core, release clears, focus/normal, boss damage, all resident sprite pixels and transparent padding match",
-    "GB/CGB source-authored fixture: 1080 collision cases per system across six allocator slots, boundary positions and above/below the muzzle; normal ce_step banked path",
-    "GB/CGB production ROM: 7 bosses x 3 moving modes, HP changes, clear flow; real boss-select inputs and automatic follow/fire/bomb inputs",
-    "GB/CGB production ROM: all 7 bosses shoot upward at a player moved to Y=12 via real inputs",
-    "GB/CGB both characters: focus, road/boss bombs, resident OBJ preservation, both alternating backgrounds, scrolling and HUD",
-    "GB/CGB Reimu bomb source-art comparison: 17280 pixels x 4 cases, zero mismatch",
-    "Electron actual UI: beam preview, interval edit/save/reopen, aimed-fan selector, accurate 126/128 tile budget, existing boss/dialogue/character/ending/HUD controls",
-    "Debug/Release identical 2 MiB ROMs, zero compiler warnings, WRAM 7163 bytes incl. shadow OAM with >=1024-byte stack reserve",
-    "Doctor zero warnings; hello-gb clean/Debug; star-caravan Debug/Release passed with four existing compiler warnings per configuration",
-    "test.cmd hello-gb: TypeScript and 163 tests passed; star-caravan ROM/integration/native-BGB regressions: four tests passed",
-    "Final native BGB repeated exact 5000-display-frame input movies from v36 on GB/CGB road/boss routes; CPU measurements use the production ROM and real input",
-    "Original images, BG, BGM, player movement/collision dimensions, HUD, scoring/save configuration unchanged; migration uses revision-checked editor read/save"
+    "40-second master joins 01..04 in order, retiming complete 10.125-second clips to 10 seconds each; audio only from bgm.mp3",
+    "Full 400-frame GB opening with chunked 8192 Hz mono 4-bit PCM; approximately 40.1825 seconds on hardware timing",
+    "Boytacean DMG/CGB: all 400 frames pixel-identical, zero timing overruns, all PCM banks match source, title music and normal Start restored",
+    "Skip at logo, movie start, midpoint, 255, 256 and 399: held input does not start the game inadvertently",
+    "Native BGB DMG/CGB: all 400 frames, 10287 PCM blocks, 2400 VBlank trace rows, zero overruns, return to title",
+    "170 regression tests pass; Doctor zero warnings; hello-gb Debug and star-caravan Debug/Release pass",
+    "Final Debug/Release ROM hashes identical; only startupMovie changed in the project game settings"
   ],
   "pending": [
-    "Emulicious launches/attaches but DAP evaluation fails with NullPointerException on the final ROM; no gameplay verification claimed",
-    "Physical hardware, human controller feel/audio and a full normal-campaign clear remain unverified",
-    "Average gains include gameplay changes; not a rendering-only or fixed-40-bullet comparison and not a constant 60fps guarantee",
-    "Awaiting human playtest of this ROM; work is not committed/pushed"
+    "Emulicious DAP: evaluate NullPointerException / no paused CPU stack; not a playback pass",
+    "Physical DMG/CGB and human listening unverified",
+    "No new full-campaign clear claimed"
   ],
   "evidence": {
-    "report": "../../docs/touhou-kouma-v37.md",
-    "qa": "touhou-kouma-design/qa-v37.json",
-    "design": "touhou-kouma-design/v37-gameplay/brief.json",
-    "raw": ".cache/kouma-v37/"
+    "report": "../../docs/touhou-kouma-v40.md",
+    "qa": "touhou-kouma-design/qa-v40.json",
+    "movie": "assets-src/movie/opening-40s.mp4",
+    "assembly": "assets-src/movie/assembly.json",
+    "encoding": "touhou-kouma-design/movie-v40/encoding.json",
+    "boytacean": "touhou-kouma-design/movie-v40/boytacean-final/results.json",
+    "bgb": "touhou-kouma-design/movie-v40/bgb-final/results.json"
   },
-  "engineWorkingTreeChanges": true,
-  "validation": "touhou-kouma-design/qa-v37.json",
+  "engineWorkingTreeChanges": [
+    "editor/scripts/import-startup-movie.cjs",
+    "editor/src/node/compiler.ts",
+    "editor/src/node/music-data.ts",
+    "editor/src/shared/model.ts",
+    "editor/tests/arranged-music.acceptance.mjs",
+    "editor/tests/ending-music.test.mjs",
+    "editor/tests/fixtures/music_harness.c",
+    "editor/tests/music-runtime.acceptance.mjs",
+    "editor/tests/run.mjs",
+    "editor/tests/startup-movie-benchmark.cjs",
+    "editor/tests/startup-movie-native.acceptance.mjs",
+    "editor/tests/startup-movie-profile.mjs",
+    "editor/tests/startup-movie.acceptance.mjs",
+    "editor/tests/startup-movie.test.mjs",
+    "engine/caravan/assets-src/kouma-score.json",
+    "engine/caravan/caravan.h",
+    "engine/caravan/graze.c",
+    "engine/caravan/movie.c",
+    "engine/caravan/music.c",
+    "engine/caravan/music.h",
+    "engine/caravan/sound.c"
+  ],
+  "validation": "touhou-kouma-design/qa-v40.json",
   "approval": {
     "status": "awaiting-playtest",
-    "romSha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd"
+    "romSha256": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23"
   },
   "promotion": {
     "path": "touhou-kouma-design/pv-v22/touhou-kouma-v22-pv.mp4",
@@ -334,10 +407,10 @@
   },
   "sourceHashes": {
     "editor/src/node/build-workflow.ts": "c8c4fba6e514097e8721c524078570745c2e584670013c05c8924c4db08cd4ba",
-    "editor/src/node/compiler.ts": "625e70b968491779b237adfd6a9cbbb2082f0094cf5053de813bccc84f648b3e",
+    "editor/src/node/compiler.ts": "035cd2b1089778d49e52200c77b401b3ae84574f7f0b3ffea6742cfe17f33473",
     "editor/src/node/library.ts": "6078e70aeb4a2dc6e8abef101c390a48dbb4e9f2624523a215cf036758148db4",
     "editor/src/node/main.ts": "d871b64bac6a76e4918d954071e7808e246793f917e6f9b8b9e488c107a0f7c0",
-    "editor/src/node/music-data.ts": "c43410b554ada227093d7b9e5aabd4beae6da5e28961002b9b51779ba57e98a7",
+    "editor/src/node/music-data.ts": "b734c91525d4d6bebd7a5caa9e4ca787b78ccf71974813838df96a4c7594e4c0",
     "editor/src/node/preload.ts": "eac474db2a1d090cf89f289628d41e9574a861bb9e7216d944bdfd6422a6e7da",
     "editor/src/node/project-store.ts": "f221423e6d8323ac71e0974251671f0cd35a6267e88e05404aff236c2ca63db5",
     "editor/src/renderer/boss-canvas.tsx": "fc4970d73bed87c5d257f241158b3d5a24c9cd37438fa002250f67c571ecc17b",
@@ -364,7 +437,7 @@
     "editor/src/shared/bridge.ts": "dd4158d81d1718e0be198b68f85c56e27693ed7082ebc268237d93817bb12ce0",
     "editor/src/shared/color.ts": "0895f2ced1990009d99b729ca33c24f2f0bc8b29e02ce153b68747bb5eb9816e",
     "editor/src/shared/emulation.ts": "38a858f83421632301d1d771d5a2e6f118636a0a5537eaa1fe16ef07a5915201",
-    "editor/src/shared/model.ts": "66412ded8e6c633526f560ed00b9b70b1f385a77b2fc6bde48b87df0ae078583",
+    "editor/src/shared/model.ts": "7e9cfb36c1cd9de32529833f5094385ea2a3669be85790efdc1295c94d2c5ed5",
     "editor/src/shared/music.ts": "3426ce52e5f4f9f17b15033e525d3ce31721e13cb9e927ca9daa1f5a6b60a803",
     "editor/src/shared/numeric-font.ts": "5bf45b2825fb4d9607f9a50faa800108b57aa5d602999eb7408be231b6a0ed7b",
     "editor/src/shared/palette.ts": "a887c042f9179ac9bdeff43d7720499426fdb40a4696ad38ac89e2f401428033",
@@ -373,7 +446,7 @@
     "editor/src/shared/simulation.ts": "802b709e37bfdc8fe124ee4535b44528cbb0ab59deeee8576790dd0c91e10637",
     "editor/src/shared/stage-space.ts": "1e8ebec2d2abc05c9de706e73c4234bfdae9a49ee84f8909ff23916bfea46d60",
     "engine/caravan/MUSIC-LICENSE.txt": "3a7a3e0613c1f242be385172ea9575b49e650d41bc9c8cbd6047ec5dccde29b1",
-    "engine/caravan/assets-src/kouma-score.json": "09d257ff5a545d4e16cd243753976bfb0ff769c26b64ff7a277247184e855493",
+    "engine/caravan/assets-src/kouma-score.json": "f15ea049b3737c79b75bbceb17fc9ecbc2481ba4d3c6310bb8eef39330dfc450",
     "engine/caravan/assets-src/side-score.json": "4a2f21edd10c9893af34f050a1e0bb09e0e90fdba4bf62c12c87c3b317c112bf",
     "engine/caravan/assets-src/side-score.md": "25a95a2a52f3fd054cfde330b5b353723461daeef48baf47a93550e78c23f775",
     "engine/caravan/bg-bullets.c": "ee2b0f5fc95a7b43aea2e5f6fe84faba5bfe5db6a8628d1af45dea243e5b4680",
@@ -384,34 +457,54 @@
     "engine/caravan/bg-volley.h": "cb3382ba2de572f42c9ffa393f52f2a70035d12cc5728839742432f052165740",
     "engine/caravan/bomb-road.c": "008d285727f655c09a438e82a0c1c3de84445fc86461ddb2b9c676b19f99e1e3",
     "engine/caravan/boss-phase.c": "ce35bcc6b2ad037b57f084983cd6feff096eca7e12096982f4db5c778361807c",
-    "engine/caravan/caravan.h": "996b319895eac8b637e5072a7d0bc224f3b16336b4d901f91c21c71b9dbcab71",
+    "engine/caravan/caravan.h": "9b8af66b29d1ff2a70ead9ebc23a0a48a75f7da8c1e2c915d2a2366e20b481c5",
     "engine/caravan/flow.c": "96815d2cc710bf1f37a245c84020cce40100ca02fd8e32b88148d24cb85ef45e",
     "engine/caravan/giant-render.h": "ca1eb41a7d89a87f78d4b221c8cd96de064fb163831939cefe36b7d6b43cd92f",
-    "engine/caravan/graze.c": "5ff4e1e5e57d25154d1257d7a9773511b0c3e93a16b8dadc0794980f1c5081c3",
+    "engine/caravan/graze.c": "96a7e10e30acf7e68cefbeb439de506657b9811c007faa983b65908fcbb12a48",
     "engine/caravan/items.c": "69183188a636df6777a449b5af06ea1da26cb06c12a3f4fbea38d0d3736b8344",
     "engine/caravan/mainloop.c": "b005f6b01d76e2faec561d27047f224c59e46aad0ab91f378b557eea69bd9d2a",
     "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
-    "engine/caravan/movie.c": "fadada968ced3bcd895bc175149e6bed74fd1b7c94d035fb042d75bc24e79e2b",
-    "engine/caravan/music.c": "3cb8e6bc1e878be3813f13ff985e61fb1f3e2e4309fc002f9aa46d00060dc995",
-    "engine/caravan/music.h": "7e0f71159080d9fe7342f8cfea26b8f57d8fbbcd50f0df4248673070b93c0187",
+    "engine/caravan/movie.c": "8adf531d98195eb83bb3a7d31b40e634c312d3191239d8dda548634342c084cc",
+    "engine/caravan/music.c": "068bd61b25dda9aeaa88a0213915492e3e7b793f7c2a0459a22819ffafd25319",
+    "engine/caravan/music.h": "1fbfa91c85ba4ce4304ca6d8c4b51c2493202d41250502c0deb5b03a669591a7",
     "engine/caravan/render.c": "dcf82f9da1f99832d3bf0ba6b7f7ec55795427e57bb392e22a865f6a80a97f5f",
     "engine/caravan/runtime.c": "a8d2cb1526319cfafad2c018f6ff866a4cd2ba4e5213cfa61f2aa6c401b4fff5",
     "engine/caravan/save.c": "26fbc74c1bfb843eca15edf0b32a98fd9339d2253ea59ee41fb38559d774e025",
     "engine/caravan/shot-kernels.h": "9872465884ce3f3cef26c5d399e6ffd745d9ef657097bdadce17ef69e57950c0",
-    "engine/caravan/sound.c": "bfd856a384d9a3bf5511ce53208f2dfdf43df9c110e71b334bbf81c88deffbf3",
+    "engine/caravan/sound.c": "a7285882ae5a77bb8f9335714138ef2524fdbf69883338fb26f95cc378729d4a",
     "engine/caravan/special.c": "43bcef63c4b1a5ebb56382297affddd2d7fc42353c52b1681eb3721f797eb7b9",
     "engine/caravan/sprites.c": "09c786b7d3253ae2d41a805617f2a4f20151d8f2bf01b2f02d10060ab2aaec06",
     "engine/caravan/terrain.c": "90a8378faed2d79daf175280bc0278a354c76689f71769ad9fdc7c5221b3954a",
-    "projects/touhou-kouma/assets-src/game.json": "dcbee712eb6a7193cbf0d245a3eec3d4c03bf14cc7ea44b5cc79ab5fec6ccc3b",
-    "projects/touhou-kouma/touhou-kouma-design/v37-gameplay/apply.cjs": "32d68f676ae9efd7add5964082022593b8c8611f33ce73691cec87c98a23e43f",
-    "projects/touhou-kouma/touhou-kouma-design/v37-gameplay/brief.json": "e5b09a3bc94e945d28e85d13cc4cf7c2a1194c8bf82435f88482c4de3314bac2",
-    "editor/tests/beam-collision-rom.acceptance.mjs": "66a3f498ddd389b5806bf7efc88fe99e96d60aba195e6fd3ca5cdab17888d5d6",
-    "editor/tests/beam-ui.acceptance.cjs": "8e25cff5cdc368c7b2c4833c67d8adc4cd0064e2baf3f99cadf4309d7d5ed4e1",
-    "editor/tests/kouma-beam.acceptance.mjs": "6bccd58a9423a6a8800e925efe6e6c916436152cbf9d27a031178026cbb581af",
-    "editor/tests/kouma-moving-bosses.acceptance.mjs": "a9c00ec2fa6ecac83a68f2c47c2d13b77b5f43a0a943a02128b70fc07bd99b2b",
-    "editor/tests/kouma-native-performance.mjs": "9ef1cb5ede690426eb497f4300c0d7a28de61c35c55988f28fec639e80664679",
-    "editor/tests/kouma-production-performance.mjs": "96cd464978c5063862596f191557102c836c37bf45b9520ce2da55b25e8a31bc",
-    "editor/tests/kouma-top-pressure.acceptance.mjs": "c94b22afea498933e7b25c3cc1f6183134cebce274e6e964a4e08983fe043207",
-    "editor/tests/kouma-v37.test.mjs": "785bc6dff54bba5898156e860cf7d959c39cc8b18beb90efeb7decfbbf74bb28"
+    "engine/caravan/assets-src/music-waves.json": "4d3446eb435f12413fc6bc51909713ce2841aa260fee32c98d23f72247e46b99",
+    "projects/touhou-kouma/assets-src/game.json": "c594434c6437d62131b2886ed5c611dbc287f26e59ebce9bf863f423d108189f",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/compose.cjs": "cbb9d5b569200d62ab7496d339624a4f3eb9e62dad7d62776331deefb74c67d7",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/score.json": "f15ea049b3737c79b75bbceb17fc9ecbc2481ba4d3c6310bb8eef39330dfc450",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/wave-bank.json": "4d3446eb435f12413fc6bc51909713ce2841aa260fee32c98d23f72247e46b99",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/brief.json": "107dd2b7bda323a3214c9f4128ef741cb710f9fc7a873bbde91b477186b46d96",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/package-audition.cjs": "63f97bd7093c71482dbff6ef3c54e3b0e0edcd934c562362862b4b8d193aa7d7",
+    "editor/tests/kouma-music-v38.test.mjs": "02a754f964d2fe3ddfa56c7e21451d80aa48c00b9e5d056b14108cd6ae98f6aa",
+    "editor/tests/kouma-music-production.acceptance.mjs": "1b6f9cb6ae659685e7c611ed6312536bde52cafd00c82d8e1a1c02f2332aabcd",
+    "editor/tests/arranged-music.acceptance.mjs": "893b9062718bf01a6fd37752c347d0a5c5b27257cf9e01e917b37e8d9023da04",
+    "editor/tests/music-runtime.acceptance.mjs": "16f0bb12b01023c942ef72084ef90fdf37c01373d12fa2d02c233bfd9693fcb1",
+    "editor/tests/fixtures/music_harness.c": "60fc4871596ff50072bb264b2aa570ccdbf655b32226d9cadf07b13646a807bf",
+    "editor/tests/run.mjs": "21893f552965558bc3a95bd4abce01baf463e701d6a6028acdd28bb872a73700",
+    "editor/tests/graze-sound.acceptance.mjs": "0b5393d6d8c48477861f87205dd73934d5cdd46888dd75ceec6274e28abfd5be",
+    "editor/tests/graze-sound-native.acceptance.mjs": "780d642c467fe46b72c445be1875c34c75431ca98a6f6666b3dd85900d0011e8",
+    "editor/tests/graze-production.acceptance.mjs": "5cf25fa9c759c4d14f80a41bd278465f6681ccbfcb090dba0cd810a625d7b7fb",
+    "editor/tests/fixtures/graze_sound_harness.c": "1f77b1a7d62711b693d000432bb90f0ea5a8aa1c1c81d508c72a5b436c4aa9bc",
+    "projects/touhou-kouma/touhou-kouma-design/graze-v39/brief.json": "b25c04d138832400cae641c25e29fd51f558236dc31adbc216217049714092c8",
+    "editor/scripts/import-startup-movie.cjs": "cb955c0e7d648230db91344f06deec3cb3aea2ad8c2ba4c14cf6af67582c5cee",
+    "editor/tests/ending-music.test.mjs": "8f68389f48ba8ef809b1893d29641d7015e55c81a1e3f309736700eb6ce2663b",
+    "editor/tests/startup-movie-benchmark.cjs": "1d1289094cb3e435f85ffa1ca932b808da253f99069c77f69f9ab53a4fd948e9",
+    "editor/tests/startup-movie-native.acceptance.mjs": "71be94dc5ff5c14a3a722bc590d205c006f5eefa1f5d37ff81099873b24fb673",
+    "editor/tests/startup-movie-profile.mjs": "851f7d395bafc06a452679fbfeacf3cc64fdcd269edf50bc6552444bd2fd4727",
+    "editor/tests/startup-movie.acceptance.mjs": "e512083684e099979c322406f57d77c4bc79679690ea08a722c3f01f6a676bca",
+    "editor/tests/startup-movie.test.mjs": "011deb4628a99023af0f5fe2c82dab6410883a1b75bfa8098744bf009bc66cbe",
+    "projects/touhou-kouma/assets-src/movie/assemble.cjs": "2148091666da07bccdfe3ce5bb37f522bccec13363cb0f1faa9b0f4b7211c895",
+    "projects/touhou-kouma/assets-src/movie/01.mp4": "9f0b2ff6db8bed0f25c341654ba83dfd62eece1be266a0d9400b1e8d49287f00",
+    "projects/touhou-kouma/assets-src/movie/02.mp4": "92f232cd23a722482647e6b9a33138e464e634529fb2a2dbec9e9f4c71838ec3",
+    "projects/touhou-kouma/assets-src/movie/03.mp4": "a69b6d128ed21d236378a83ae974b2e993b9e76ee623d9801c1eaebd4795105e",
+    "projects/touhou-kouma/assets-src/movie/04.mp4": "8d03078a3ea7447a83a656857c7843aa17b1d05ba7ac7e891bc9316c91588931",
+    "projects/touhou-kouma/assets-src/movie/bgm.mp3": "8eb65fb1351067b24c72cb86fb8e90a20c815157918442fe7cc94f62365a557f"
   }
 }

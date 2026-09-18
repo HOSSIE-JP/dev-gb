@@ -1,0 +1,198 @@
+{
+  "revision": 3,
+  "tool": "image_gen.imagegen (built-in)",
+  "selected_assets": [
+    {
+      "file": "references/characters-01-heroes.png",
+      "sha256": "2ca6127511d8023a451e38f450f92d5775ca4d43d69df82cbd5770f1e29ddf92",
+      "bytes": 1778580,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "backgrounds/background-01-shrine.png",
+      "sha256": "ccfb8fd994d916820ad10c56720e9345966998582cc938c951cda72f1d68ff1e",
+      "bytes": 2891646,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "backgrounds/background-03-sky.png",
+      "sha256": "1d895a906bafc15f0e1393abd6590e3db515930ee7c7cb1643de5a3be2a417fa",
+      "bytes": 2380180,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "storyboards/storyboard-01.png",
+      "sha256": "f6ab796b99d0f55ce40e766dba97878e0761ad2125fde1ddae0438127cab4a87",
+      "bytes": 2919228,
+      "width": 2048,
+      "height": 768
+    },
+    {
+      "file": "references/characters-02-rumia-cirno.png",
+      "sha256": "0ead1e4a9994dd2f47926f26c86253f0e69111f9861b19c88eadf96559854bdc",
+      "bytes": 1571940,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "references/characters-03-meiling-clean.png",
+      "sha256": "3ad091850be728f6d54f85b5fac070ad68c59ae1644ccfae765dccbe240595f4",
+      "bytes": 1702444,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "references/characters-04-patchouli-sakuya.png",
+      "sha256": "fd7c4c820e3083d1b2cdf114eba91fa2330e59f0009f70336df96c1bcb50f40a",
+      "bytes": 1761563,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "backgrounds/background-02-garden.png",
+      "sha256": "23a9cb956156adab43499f2d6223022e7b85cdc565c4dd6de45f8310a945e3b6",
+      "bytes": 2916225,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "storyboards/storyboard-02.png",
+      "sha256": "b45bb4450a62948ddd28c653f085a97675f0d61fbc6f9d2b493e25775fae6d29",
+      "bytes": 3001026,
+      "width": 2048,
+      "height": 768
+    },
+    {
+      "file": "references/characters-05-scarlet-sisters-corrected.png",
+      "sha256": "e7163c89eab54c940016412e71f939810ebf57d8f493fadb235bda0d198acf60",
+      "bytes": 1968207,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "storyboards/storyboard-03.png",
+      "sha256": "1396d02b78ff8fa333269a257fd7d583c86f85f90a1a1e584e2235f8cc646a3e",
+      "bytes": 3191357,
+      "width": 2048,
+      "height": 768
+    },
+    {
+      "file": "storyboards/storyboard-04-portraits.png",
+      "sha256": "f255537c41d8b16779c8cd147e922fdaa1448e0c5c0eced36130558dc31d0c7f",
+      "bytes": 2766543,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "references/final-ensemble.png",
+      "sha256": "dd3160496a493b5631c6522649514422d2138c4ba5c8de4f27d7e08d05da2d31",
+      "bytes": 2911668,
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "reused_character_sheets": [
+    {
+      "file": "references/characters-01-heroes.png",
+      "source": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-v1\\references\\characters-01-heroes.png",
+      "sha256": "2ca6127511d8023a451e38f450f92d5775ca4d43d69df82cbd5770f1e29ddf92"
+    },
+    {
+      "file": "references/characters-02-rumia-cirno.png",
+      "source": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-v1\\references\\characters-02-rumia-cirno.png",
+      "sha256": "0ead1e4a9994dd2f47926f26c86253f0e69111f9861b19c88eadf96559854bdc"
+    },
+    {
+      "file": "references/characters-03-meiling-clean.png",
+      "source": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-v1\\references\\characters-03-meiling-clean.png",
+      "sha256": "3ad091850be728f6d54f85b5fac070ad68c59ae1644ccfae765dccbe240595f4"
+    },
+    {
+      "file": "references/characters-04-patchouli-sakuya.png",
+      "source": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-v1\\references\\characters-04-patchouli-sakuya.png",
+      "sha256": "fd7c4c820e3083d1b2cdf114eba91fa2330e59f0009f70336df96c1bcb50f40a"
+    },
+    {
+      "file": "references/characters-05-scarlet-sisters-corrected.png",
+      "source": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-v1\\references\\characters-05-scarlet-sisters-corrected.png",
+      "sha256": "e7163c89eab54c940016412e71f939810ebf57d8f493fadb235bda0d198acf60"
+    }
+  ],
+  "sources": [
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+      "sha256": "2ca6127511d8023a451e38f450f92d5775ca4d43d69df82cbd5770f1e29ddf92"
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-02-rumia-cirno.png",
+      "sha256": "0ead1e4a9994dd2f47926f26c86253f0e69111f9861b19c88eadf96559854bdc"
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-03-meiling-clean.png",
+      "sha256": "3ad091850be728f6d54f85b5fac070ad68c59ae1644ccfae765dccbe240595f4"
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-04-patchouli-sakuya.png",
+      "sha256": "fd7c4c820e3083d1b2cdf114eba91fa2330e59f0009f70336df96c1bcb50f40a"
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-05-scarlet-sisters-corrected.png",
+      "sha256": "e7163c89eab54c940016412e71f939810ebf57d8f493fadb235bda0d198acf60"
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-pop-v3/backgrounds/background-01-shrine.png",
+      "sha256": "ccfb8fd994d916820ad10c56720e9345966998582cc938c951cda72f1d68ff1e"
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-pop-v3/backgrounds/background-03-sky.png",
+      "sha256": "1d895a906bafc15f0e1393abd6590e3db515930ee7c7cb1643de5a3be2a417fa"
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-pop-v3/backgrounds/background-02-garden.png",
+      "sha256": "23a9cb956156adab43499f2d6223022e7b85cdc565c4dd6de45f8310a945e3b6"
+    },
+    {
+      "file": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-e155d243-e221-4257-a76c-3c6b60ed32ce.png",
+      "sha256": "f35f8e788af38ba2f6dd295bf768c74d9f02537ec40aedf0cc7f924e882ec0c8"
+    },
+    {
+      "file": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-f54f1c57-0cc2-44b6-9ccd-0bfb150b2981.png",
+      "sha256": "a9a60d024eac63db313756724e99705a1fbb5d2503f116ce090f58de17de7673"
+    },
+    {
+      "file": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-pop-v3\\references\\characters-01-heroes.png",
+      "sha256": "2ca6127511d8023a451e38f450f92d5775ca4d43d69df82cbd5770f1e29ddf92"
+    },
+    {
+      "file": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-aedd93fc-c295-49ce-a41c-0290da1a2a56.png",
+      "sha256": "36d115fc299ab6b2cfe1d3c039e158bd3ef7535cfebad92afad6ceeb49e91e2e"
+    },
+    {
+      "file": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-4505fe89-877f-4897-95f2-0e10fa412dde.png",
+      "sha256": "595e8c6e30e4f534dc70423c3b26c3d119aeba6ef3467e262fa0faef98d026e7"
+    },
+    {
+      "file": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-b9f36385-c569-4712-b48f-a93d9a1f0d5a.png",
+      "sha256": "6d97ce9cffc693a0e1cc413bc8a4451818ebbaf69229b5a206b7a881c646b649"
+    },
+    {
+      "file": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-4217bca4-41bb-4233-be6b-4554bec2dde5.png",
+      "sha256": "2463d2938d10834194d9538b5065c3cbe2213c6063df7b27764a5c183064b04a"
+    },
+    {
+      "file": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-pop-v3\\references\\characters-05-scarlet-sisters-corrected.png",
+      "sha256": "e7163c89eab54c940016412e71f939810ebf57d8f493fadb235bda0d198acf60"
+    },
+    {
+      "file": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-pop-v3\\backgrounds\\background-02-garden.png",
+      "sha256": "23a9cb956156adab43499f2d6223022e7b85cdc565c4dd6de45f8310a945e3b6"
+    }
+  ],
+  "source_game": {
+    "file": "../game.json",
+    "sha256": "dcbee712eb6a7193cbf0d245a3eec3d4c03bf14cc7ea44b5cc79ab5fec6ccc3b"
+  }
+}

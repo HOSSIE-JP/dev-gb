@@ -1,0 +1,3434 @@
+{
+  "version": "0.38-upbeat-soundtrack",
+  "date": "2026-09-18T14:36:53.112Z",
+  "baseCommit": "b7e4cfec8dc83135f3f62e630f8fcb515605c34d",
+  "engineWorkingTreeChanges": true,
+  "rom": {
+    "path": "build/Release/touhou-kouma-v38.gb",
+    "sha256": "351287f47c8341bc3bc17e4bac1199526503ed630c3b77ad1192b4e22aaa000c",
+    "bytes": 2097152
+  },
+  "projectRevision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+  "builds": {
+    "release": {
+      "ok": true,
+      "revision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "size": 2097152,
+      "ramBytes": 7163,
+      "spriteTiles": 126,
+      "diagnostics": [],
+      "romHash": "351287f47c8341bc3bc17e4bac1199526503ed630c3b77ad1192b4e22aaa000c",
+      "builtAt": "2026-09-18T14:27:00.408Z",
+      "durationMs": 423265
+    },
+    "debug": {
+      "ok": true,
+      "revision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+      "configuration": "Debug",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "size": 2097152,
+      "ramBytes": 7163,
+      "spriteTiles": 126,
+      "diagnostics": [],
+      "romHash": "351287f47c8341bc3bc17e4bac1199526503ed630c3b77ad1192b4e22aaa000c",
+      "builtAt": "2026-09-18T14:34:28.142Z",
+      "durationMs": 397203
+    }
+  },
+  "sourceHashes": {
+    "editor/src/node/build-workflow.ts": "c8c4fba6e514097e8721c524078570745c2e584670013c05c8924c4db08cd4ba",
+    "editor/src/node/compiler.ts": "625e70b968491779b237adfd6a9cbbb2082f0094cf5053de813bccc84f648b3e",
+    "editor/src/node/library.ts": "6078e70aeb4a2dc6e8abef101c390a48dbb4e9f2624523a215cf036758148db4",
+    "editor/src/node/main.ts": "d871b64bac6a76e4918d954071e7808e246793f917e6f9b8b9e488c107a0f7c0",
+    "editor/src/node/music-data.ts": "b734c91525d4d6bebd7a5caa9e4ca787b78ccf71974813838df96a4c7594e4c0",
+    "editor/src/node/preload.ts": "eac474db2a1d090cf89f289628d41e9574a861bb9e7216d944bdfd6422a6e7da",
+    "editor/src/node/project-store.ts": "f221423e6d8323ac71e0974251671f0cd35a6267e88e05404aff236c2ca63db5",
+    "editor/src/renderer/boss-canvas.tsx": "fc4970d73bed87c5d257f241158b3d5a24c9cd37438fa002250f67c571ecc17b",
+    "editor/src/renderer/canvases.tsx": "4490797d5d5fb9f45661f56cfd9e0d6dbc5d6182a156796420cb59d43e8b7be1",
+    "editor/src/renderer/column-resize.tsx": "4725244c9b1a39fba5084bf0dd078ae81ba1b0e30a5b81d96df76cc3c7b36dc4",
+    "editor/src/renderer/entity-defaults.ts": "769d17b6677de2a3654e1a5ae67b57c72251f9f4eb26b5e570bf7e56524ed132",
+    "editor/src/renderer/env.d.ts": "9be7ea778895c94059af08e9d0386027594def4a9cd488504959de7fa7bd3590",
+    "editor/src/renderer/fields.tsx": "ddc8dd061c3e36aaf32f57854a13387461f34bf19964949fdb49e0bc86d5a57c",
+    "editor/src/renderer/index.html": "d5069520f4b4b4066897395ddd08373275571bb3f1882cf5b17e61e071f80900",
+    "editor/src/renderer/index.tsx": "efecbf80465e8a2449c4d8e5d4e3185dd537a198582de39a321044524aa908bd",
+    "editor/src/renderer/music-field.tsx": "8dd9019964315ecdc48fe1af8ba56d6c4e15d2dda6426651ad65ac11ac4219c5",
+    "editor/src/renderer/player-presentation-canvas.tsx": "f05b86e8356c23d65bf49a7a0d4605ffd6ffeb5b208df6a29ddb970532a44844",
+    "editor/src/renderer/preview.tsx": "d4c2b27b638bd085ea63f97a447c28fcfcc374ba1010d78f183261c39043efa8",
+    "editor/src/renderer/rom-preview.tsx": "e5756008147c239b599125c71fc2331db819d6114d69ac174dc919340b55612e",
+    "editor/src/renderer/shooter-fields.tsx": "ed39135b73226556ee3facc9b08143ba560f700edf52b9094ea6db69bec06eb8",
+    "editor/src/renderer/stage-canvas.tsx": "5105251c1a3a76c9af750e6134c3827f7c5fcd21435cbb8ffd2b51a73e78329e",
+    "editor/src/renderer/startup-preview.tsx": "bb64999294fdbcad8a66ae4b2a5ce9c36dfca1e1bfc9054fad93d2facf6dedea",
+    "editor/src/renderer/style.css": "ca5fe7442b0fce1e9e374300f550133903648b3cf53597ac78b41a440e6709d5",
+    "editor/src/renderer/tile-palette.tsx": "518f5b5745ccef82ee021e82f98de80b2e87c2d607069ba9edc9c5500d5f5f72",
+    "editor/src/renderer/timeline.tsx": "4dd084f981fcc23dfbfbf7d927d5dc1b54bbd929975b11b45e1af42ef7302f53",
+    "editor/src/renderer/victory-dialogue-canvas.tsx": "342b90342f4e69225b8b483c0c21b410b622b999a7469d47e42a107d4f0c7331",
+    "editor/src/renderer/workspace.css": "54ddf04d36bd6e07b90c8492db9092b3faaf5d4749937624ff9e666d7529931b",
+    "editor/src/renderer/workspace.tsx": "c468f4d441c5ab6289fbc20d1365fd2c1e3bf52b57549ebfbc94f63d45e772c1",
+    "editor/src/shared/bridge.ts": "dd4158d81d1718e0be198b68f85c56e27693ed7082ebc268237d93817bb12ce0",
+    "editor/src/shared/color.ts": "0895f2ced1990009d99b729ca33c24f2f0bc8b29e02ce153b68747bb5eb9816e",
+    "editor/src/shared/emulation.ts": "38a858f83421632301d1d771d5a2e6f118636a0a5537eaa1fe16ef07a5915201",
+    "editor/src/shared/model.ts": "66412ded8e6c633526f560ed00b9b70b1f385a77b2fc6bde48b87df0ae078583",
+    "editor/src/shared/music.ts": "3426ce52e5f4f9f17b15033e525d3ce31721e13cb9e927ca9daa1f5a6b60a803",
+    "editor/src/shared/numeric-font.ts": "5bf45b2825fb4d9607f9a50faa800108b57aa5d602999eb7408be231b6a0ed7b",
+    "editor/src/shared/palette.ts": "a887c042f9179ac9bdeff43d7720499426fdb40a4696ad38ac89e2f401428033",
+    "editor/src/shared/pixel-tools.ts": "05d87244f9e05fc4211e056061d2aa82b10c8ffce86bf92a654923bafe28b11b",
+    "editor/src/shared/presentation.ts": "f3605cfed67c2497836ed3f67337e9b3bd0c3e49c9b1658ee969eb26a282bac2",
+    "editor/src/shared/simulation.ts": "802b709e37bfdc8fe124ee4535b44528cbb0ab59deeee8576790dd0c91e10637",
+    "editor/src/shared/stage-space.ts": "1e8ebec2d2abc05c9de706e73c4234bfdae9a49ee84f8909ff23916bfea46d60",
+    "engine/caravan/MUSIC-LICENSE.txt": "3a7a3e0613c1f242be385172ea9575b49e650d41bc9c8cbd6047ec5dccde29b1",
+    "engine/caravan/assets-src/kouma-score.json": "f15ea049b3737c79b75bbceb17fc9ecbc2481ba4d3c6310bb8eef39330dfc450",
+    "engine/caravan/assets-src/side-score.json": "4a2f21edd10c9893af34f050a1e0bb09e0e90fdba4bf62c12c87c3b317c112bf",
+    "engine/caravan/assets-src/side-score.md": "25a95a2a52f3fd054cfde330b5b353723461daeef48baf47a93550e78c23f775",
+    "engine/caravan/bg-bullets.c": "ee2b0f5fc95a7b43aea2e5f6fe84faba5bfe5db6a8628d1af45dea243e5b4680",
+    "engine/caravan/bg-kernels.h": "0991427618c4efe50c5d6e1365329fd4ab6a1231b9bcd5e72a131923a0dd830c",
+    "engine/caravan/bg-query-kernel.h": "441986ed74075d6deeb087e5a4e540c64b95e7ca082f6af1d09a36ac840fc335",
+    "engine/caravan/bg-state-kernels.h": "7296ecbab0ccc8bb8e5ced11fe10c1f7214ffc39eb9eda921c53d573763eafa3",
+    "engine/caravan/bg-update-kernel.h": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b",
+    "engine/caravan/bg-volley.h": "cb3382ba2de572f42c9ffa393f52f2a70035d12cc5728839742432f052165740",
+    "engine/caravan/bomb-road.c": "008d285727f655c09a438e82a0c1c3de84445fc86461ddb2b9c676b19f99e1e3",
+    "engine/caravan/boss-phase.c": "ce35bcc6b2ad037b57f084983cd6feff096eca7e12096982f4db5c778361807c",
+    "engine/caravan/caravan.h": "996b319895eac8b637e5072a7d0bc224f3b16336b4d901f91c21c71b9dbcab71",
+    "engine/caravan/flow.c": "96815d2cc710bf1f37a245c84020cce40100ca02fd8e32b88148d24cb85ef45e",
+    "engine/caravan/giant-render.h": "ca1eb41a7d89a87f78d4b221c8cd96de064fb163831939cefe36b7d6b43cd92f",
+    "engine/caravan/graze.c": "5ff4e1e5e57d25154d1257d7a9773511b0c3e93a16b8dadc0794980f1c5081c3",
+    "engine/caravan/items.c": "69183188a636df6777a449b5af06ea1da26cb06c12a3f4fbea38d0d3736b8344",
+    "engine/caravan/mainloop.c": "b005f6b01d76e2faec561d27047f224c59e46aad0ab91f378b557eea69bd9d2a",
+    "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+    "engine/caravan/movie.c": "fadada968ced3bcd895bc175149e6bed74fd1b7c94d035fb042d75bc24e79e2b",
+    "engine/caravan/music.c": "068bd61b25dda9aeaa88a0213915492e3e7b793f7c2a0459a22819ffafd25319",
+    "engine/caravan/music.h": "1fbfa91c85ba4ce4304ca6d8c4b51c2493202d41250502c0deb5b03a669591a7",
+    "engine/caravan/render.c": "dcf82f9da1f99832d3bf0ba6b7f7ec55795427e57bb392e22a865f6a80a97f5f",
+    "engine/caravan/runtime.c": "a8d2cb1526319cfafad2c018f6ff866a4cd2ba4e5213cfa61f2aa6c401b4fff5",
+    "engine/caravan/save.c": "26fbc74c1bfb843eca15edf0b32a98fd9339d2253ea59ee41fb38559d774e025",
+    "engine/caravan/shot-kernels.h": "9872465884ce3f3cef26c5d399e6ffd745d9ef657097bdadce17ef69e57950c0",
+    "engine/caravan/sound.c": "bfd856a384d9a3bf5511ce53208f2dfdf43df9c110e71b334bbf81c88deffbf3",
+    "engine/caravan/special.c": "43bcef63c4b1a5ebb56382297affddd2d7fc42353c52b1681eb3721f797eb7b9",
+    "engine/caravan/sprites.c": "09c786b7d3253ae2d41a805617f2a4f20151d8f2bf01b2f02d10060ab2aaec06",
+    "engine/caravan/terrain.c": "90a8378faed2d79daf175280bc0278a354c76689f71769ad9fdc7c5221b3954a",
+    "engine/caravan/assets-src/music-waves.json": "4d3446eb435f12413fc6bc51909713ce2841aa260fee32c98d23f72247e46b99",
+    "projects/touhou-kouma/assets-src/game.json": "dcbee712eb6a7193cbf0d245a3eec3d4c03bf14cc7ea44b5cc79ab5fec6ccc3b",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/compose.cjs": "cbb9d5b569200d62ab7496d339624a4f3eb9e62dad7d62776331deefb74c67d7",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/score.json": "f15ea049b3737c79b75bbceb17fc9ecbc2481ba4d3c6310bb8eef39330dfc450",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/wave-bank.json": "4d3446eb435f12413fc6bc51909713ce2841aa260fee32c98d23f72247e46b99",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/brief.json": "107dd2b7bda323a3214c9f4128ef741cb710f9fc7a873bbde91b477186b46d96",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/package-audition.cjs": "63f97bd7093c71482dbff6ef3c54e3b0e0edcd934c562362862b4b8d193aa7d7",
+    "editor/tests/kouma-music-v38.test.mjs": "02a754f964d2fe3ddfa56c7e21451d80aa48c00b9e5d056b14108cd6ae98f6aa",
+    "editor/tests/kouma-music-production.acceptance.mjs": "1b6f9cb6ae659685e7c611ed6312536bde52cafd00c82d8e1a1c02f2332aabcd",
+    "editor/tests/arranged-music.acceptance.mjs": "893b9062718bf01a6fd37752c347d0a5c5b27257cf9e01e917b37e8d9023da04",
+    "editor/tests/music-runtime.acceptance.mjs": "16f0bb12b01023c942ef72084ef90fdf37c01373d12fa2d02c233bfd9693fcb1",
+    "editor/tests/fixtures/music_harness.c": "60fc4871596ff50072bb264b2aa570ccdbf655b32226d9cadf07b13646a807bf"
+  },
+  "checks": [
+    "All 14 road/boss tracks rearranged at 149.32-199.09 BPM, 57.863-60.274 seconds with two destination keys, pivot dominants and return cadence",
+    "Seven stage-specific 32-sample 4-bit waves plus unchanged legacy triangle; pulse duty, envelope, rhythm and bass arrangement vary by stage",
+    "GBDK music-only ROM: DMG/CGB all 19 complete Kouma tracks, every bar, loops, one-shot, SFX channel isolation and nonzero PCM; loop-clock observation error <=1 VBlank",
+    "Fractional 5/6-frame clock, exact 3520-tick loop, pause, all eight actual Wave RAM readbacks and custom-to-legacy transition passed on DMG/CGB",
+    "Other projects: six full SIDE CARAVAN track/mode routes and legacy music timing/SFX regression passed",
+    "Unmodified production ROM: DMG/CGB x 7 stages x road/boss = 28 real menu-input routes, correct BGM IDs, isolated music PCM, pause/resume; four Marisa bomb SFX PCM cases",
+    "Debug and Release identical 2 MiB ROMs; compiler diagnostics zero; static WRAM + OAM unchanged at 7163 bytes, >=1024-byte stack reserve",
+    "doctor warning count zero; test.cmd hello-gb includes clean/Debug, TypeScript and 166 passing tests; star-caravan Debug/Release and four ROM/integration/BGB tests pass",
+    "BGB: before/after replay of identical 5000-display-frame inputs on DMG/CGB road/boss routes, with per-window update rates retained",
+    "14 full MP3 auditions and 84-second sampler from actual CGB music-ROM APU capture; MIDI is notation only; deterministic composer reproduced the same score SHA256",
+    "Project revision, difficulty, images, save identity and noncombat scores unchanged; archived v13 design is intact"
+  ],
+  "audit": [
+    {
+      "id": 17,
+      "stage": 3,
+      "role": "road",
+      "title": "鉄門に舞う花",
+      "oldBpm": 127.99,
+      "bpm": 162.89,
+      "seconds": 58.934,
+      "bars": 40,
+      "keys": [
+        "G dorian",
+        "Bb major",
+        "D minor"
+      ],
+      "wave": "gate-pluck",
+      "uniqueLeadBars": 33,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "stage": 3,
+      "role": "boss",
+      "title": "紅蓮の歩法",
+      "oldBpm": 149.32,
+      "bpm": 179.18,
+      "seconds": 58.934,
+      "bars": 44,
+      "keys": [
+        "G minor",
+        "Bb major",
+        "D minor"
+      ],
+      "wave": "gate-pluck",
+      "uniqueLeadBars": 36,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "Development",
+          4
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 19,
+      "stage": 4,
+      "role": "road",
+      "title": "六曜の書塵",
+      "oldBpm": 111.99,
+      "bpm": 162.89,
+      "seconds": 58.934,
+      "bars": 40,
+      "keys": [
+        "F# minor",
+        "A major",
+        "C# minor"
+      ],
+      "wave": "library-organ",
+      "uniqueLeadBars": 33,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 20,
+      "stage": 4,
+      "role": "boss",
+      "title": "月の余白",
+      "oldBpm": 149.32,
+      "bpm": 179.18,
+      "seconds": 58.934,
+      "bars": 44,
+      "keys": [
+        "F# minor",
+        "A major",
+        "C# minor"
+      ],
+      "wave": "library-organ",
+      "uniqueLeadBars": 36,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "Development",
+          4
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 21,
+      "stage": 5,
+      "role": "road",
+      "title": "秒針の迷廊",
+      "oldBpm": 127.99,
+      "bpm": 179.18,
+      "seconds": 58.934,
+      "bars": 44,
+      "keys": [
+        "B minor",
+        "D minor",
+        "F# minor"
+      ],
+      "wave": "clock-metal",
+      "uniqueLeadBars": 36,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "Development",
+          4
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "stage": 5,
+      "role": "boss",
+      "title": "一瞬の銀",
+      "oldBpm": 149.32,
+      "bpm": 199.09,
+      "seconds": 60.274,
+      "bars": 50,
+      "keys": [
+        "B minor",
+        "D minor",
+        "F# minor"
+      ],
+      "wave": "clock-metal",
+      "uniqueLeadBars": 42,
+      "form": [
+        [
+          "Intro",
+          2
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "Development",
+          8
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          12
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 23,
+      "stage": 6,
+      "role": "road",
+      "title": "胸壁の上の月",
+      "oldBpm": 111.99,
+      "bpm": 162.89,
+      "seconds": 58.934,
+      "bars": 40,
+      "keys": [
+        "E minor",
+        "G minor",
+        "C major"
+      ],
+      "wave": "mansion-brass",
+      "uniqueLeadBars": 33,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 24,
+      "stage": 6,
+      "role": "boss",
+      "title": "夜潮の冠",
+      "oldBpm": 149.32,
+      "bpm": 179.18,
+      "seconds": 58.934,
+      "bars": 44,
+      "keys": [
+        "E minor",
+        "G minor",
+        "C major"
+      ],
+      "wave": "mansion-brass",
+      "uniqueLeadBars": 36,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "Development",
+          4
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 25,
+      "stage": 7,
+      "role": "road",
+      "title": "灯らぬ七つの窓",
+      "oldBpm": 127.99,
+      "bpm": 179.18,
+      "seconds": 58.934,
+      "bars": 44,
+      "keys": [
+        "C# minor",
+        "E major",
+        "G minor"
+      ],
+      "wave": "basement-toy",
+      "uniqueLeadBars": 36,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "Development",
+          4
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 26,
+      "stage": 7,
+      "role": "boss",
+      "title": "暁の外の遊戯室",
+      "oldBpm": 149.32,
+      "bpm": 199.09,
+      "seconds": 60.274,
+      "bars": 50,
+      "keys": [
+        "C# minor",
+        "E major",
+        "G minor"
+      ],
+      "wave": "basement-toy",
+      "uniqueLeadBars": 42,
+      "form": [
+        [
+          "Intro",
+          2
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "Development",
+          8
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          12
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 30,
+      "stage": 2,
+      "role": "road",
+      "title": "こおりぼしのさざなみ",
+      "oldBpm": 127.99,
+      "bpm": 162.89,
+      "seconds": 58.934,
+      "bars": 40,
+      "keys": [
+        "A major",
+        "C major",
+        "E major"
+      ],
+      "wave": "ice-glass",
+      "uniqueLeadBars": 33,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 31,
+      "stage": 2,
+      "role": "boss",
+      "title": "あさつゆのこおりあそび",
+      "oldBpm": 149.32,
+      "bpm": 179.18,
+      "seconds": 58.934,
+      "bars": 44,
+      "keys": [
+        "A major",
+        "C major",
+        "E major"
+      ],
+      "wave": "ice-glass",
+      "uniqueLeadBars": 36,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "Development",
+          4
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    },
+    {
+      "id": 32,
+      "stage": 1,
+      "role": "road",
+      "title": "宵闇の散歩道",
+      "oldBpm": 111.99,
+      "bpm": 149.32,
+      "seconds": 57.863,
+      "bars": 36,
+      "keys": [
+        "D minor",
+        "F major",
+        "G minor"
+      ],
+      "wave": "forest-reed",
+      "uniqueLeadBars": 31,
+      "form": [
+        [
+          "Intro",
+          2
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          4
+        ],
+        [
+          "Reprise",
+          12
+        ],
+        [
+          "Turnaround",
+          2
+        ]
+      ]
+    },
+    {
+      "id": 33,
+      "stage": 1,
+      "role": "boss",
+      "title": "月を隠すリボン",
+      "oldBpm": 127.99,
+      "bpm": 162.89,
+      "seconds": 58.934,
+      "bars": 40,
+      "keys": [
+        "C minor",
+        "Eb major",
+        "F minor"
+      ],
+      "wave": "forest-reed",
+      "uniqueLeadBars": 33,
+      "form": [
+        [
+          "Intro",
+          4
+        ],
+        [
+          "A",
+          8
+        ],
+        [
+          "B",
+          8
+        ],
+        [
+          "Bridge",
+          8
+        ],
+        [
+          "Reprise",
+          8
+        ],
+        [
+          "Turnaround",
+          4
+        ]
+      ]
+    }
+  ],
+  "performance": [
+    {
+      "mode": "CGB",
+      "route": "road",
+      "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+      "before": 56.4048305799056,
+      "after": 56.423854131534576,
+      "percent": 0.03372681281619272
+    },
+    {
+      "mode": "CGB",
+      "route": "boss",
+      "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+      "before": 56.79503068592057,
+      "after": 56.79503068592057,
+      "percent": 0
+    },
+    {
+      "mode": "DMG",
+      "route": "road",
+      "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+      "before": 35.49841981132076,
+      "after": 35.43873426848453,
+      "percent": -0.16813577379912736
+    },
+    {
+      "mode": "DMG",
+      "route": "boss",
+      "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+      "before": 28.510734867705686,
+      "after": 28.531417301414578,
+      "percent": 0.0725426187885514
+    }
+  ],
+  "results": {
+    "music": {
+      "fixture": "Music-only GBDK ROM; real joypad selection and VBlank playback. WAV listening copies normalized; raw amplitude is reported separately.",
+      "results": [
+        {
+          "mode": "DMG",
+          "id": 16,
+          "title": "朱い夜への巡礼",
+          "bars": 32,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3584,
+          "elapsedFrames": 3584,
+          "seconds": 60.005859947260475,
+          "rawPeak": 9,
+          "rawRms": 1.958550387613143
+        },
+        {
+          "mode": "DMG",
+          "id": 17,
+          "title": "鉄門に舞う花",
+          "bars": 40,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 1.9106831104360102
+        },
+        {
+          "mode": "DMG",
+          "id": 18,
+          "title": "紅蓮の歩法",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 1.8231245252758377
+        },
+        {
+          "mode": "DMG",
+          "id": 19,
+          "title": "六曜の書塵",
+          "bars": 40,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 9,
+          "rawRms": 2.502973961184739
+        },
+        {
+          "mode": "DMG",
+          "id": 20,
+          "title": "月の余白",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 9,
+          "rawRms": 2.58484262597921
+        },
+        {
+          "mode": "DMG",
+          "id": 21,
+          "title": "秒針の迷廊",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 1.3455562048021614
+        },
+        {
+          "mode": "DMG",
+          "id": 22,
+          "title": "一瞬の銀",
+          "bars": 50,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3600,
+          "elapsedFrames": 3599,
+          "seconds": 60.27374325059646,
+          "rawPeak": 10,
+          "rawRms": 1.5276257910558775
+        },
+        {
+          "mode": "DMG",
+          "id": 23,
+          "title": "胸壁の上の月",
+          "bars": 40,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 2.4019958742435623
+        },
+        {
+          "mode": "DMG",
+          "id": 24,
+          "title": "夜潮の冠",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 2.899231894385774
+        },
+        {
+          "mode": "DMG",
+          "id": 25,
+          "title": "灯らぬ七つの窓",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 2.250032820582961
+        },
+        {
+          "mode": "DMG",
+          "id": 26,
+          "title": "暁の外の遊戯室",
+          "bars": 50,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3600,
+          "elapsedFrames": 3599,
+          "seconds": 60.27374325059646,
+          "rawPeak": 10,
+          "rawRms": 1.805352860256855
+        },
+        {
+          "mode": "DMG",
+          "id": 27,
+          "title": "夜明けの静かな神社",
+          "bars": 28,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Reprise"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3584,
+          "elapsedFrames": 3583,
+          "seconds": 60.005859947260475,
+          "rawPeak": 9,
+          "rawRms": 1.8203983419848944
+        },
+        {
+          "mode": "DMG",
+          "id": 28,
+          "title": "灯へ帰る",
+          "bars": 24,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Coda"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3456,
+          "elapsedFrames": 3455,
+          "seconds": 57.8627935205726,
+          "rawPeak": 9,
+          "rawRms": 1.6068688514559348
+        },
+        {
+          "mode": "DMG",
+          "id": 29,
+          "title": "封印がほどける",
+          "bars": 2,
+          "sections": [
+            "Fanfare"
+          ],
+          "loop": false,
+          "oneShot": true,
+          "expectedFrames": 192,
+          "elapsedFrames": 191,
+          "seconds": 3.2145996400318113,
+          "rawPeak": 7,
+          "rawRms": 1.9744412904988968
+        },
+        {
+          "mode": "DMG",
+          "id": 30,
+          "title": "こおりぼしのさざなみ",
+          "bars": 40,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 1.7387905695269672
+        },
+        {
+          "mode": "DMG",
+          "id": 31,
+          "title": "あさつゆのこおりあそび",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 2.1356589242949795
+        },
+        {
+          "mode": "DMG",
+          "id": 32,
+          "title": "宵闇の散歩道",
+          "bars": 36,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3456,
+          "elapsedFrames": 3455,
+          "seconds": 57.8627935205726,
+          "rawPeak": 10,
+          "rawRms": 2.231066213430899
+        },
+        {
+          "mode": "DMG",
+          "id": 33,
+          "title": "月を隠すリボン",
+          "bars": 40,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 2.0866400289488247
+        },
+        {
+          "mode": "DMG",
+          "id": 34,
+          "title": "おかえり、夜明けの空",
+          "bars": 24,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Coda"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3456,
+          "elapsedFrames": 3455,
+          "seconds": 57.8627935205726,
+          "rawPeak": 9,
+          "rawRms": 1.6522699461166759
+        },
+        {
+          "mode": "CGB",
+          "id": 16,
+          "title": "朱い夜への巡礼",
+          "bars": 32,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3584,
+          "elapsedFrames": 3584,
+          "seconds": 60.005859947260475,
+          "rawPeak": 9,
+          "rawRms": 1.9599189227073497
+        },
+        {
+          "mode": "CGB",
+          "id": 17,
+          "title": "鉄門に舞う花",
+          "bars": 40,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 1.9165449617420505
+        },
+        {
+          "mode": "CGB",
+          "id": 18,
+          "title": "紅蓮の歩法",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 1.8280430406489034
+        },
+        {
+          "mode": "CGB",
+          "id": 19,
+          "title": "六曜の書塵",
+          "bars": 40,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 9,
+          "rawRms": 2.51509431725702
+        },
+        {
+          "mode": "CGB",
+          "id": 20,
+          "title": "月の余白",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 9,
+          "rawRms": 2.5851053865063647
+        },
+        {
+          "mode": "CGB",
+          "id": 21,
+          "title": "秒針の迷廊",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 1.3458937221958684
+        },
+        {
+          "mode": "CGB",
+          "id": 22,
+          "title": "一瞬の銀",
+          "bars": 50,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3600,
+          "elapsedFrames": 3599,
+          "seconds": 60.27374325059646,
+          "rawPeak": 10,
+          "rawRms": 1.527352395089025
+        },
+        {
+          "mode": "CGB",
+          "id": 23,
+          "title": "胸壁の上の月",
+          "bars": 40,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 2.394154394706006
+        },
+        {
+          "mode": "CGB",
+          "id": 24,
+          "title": "夜潮の冠",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 2.9044986354167177
+        },
+        {
+          "mode": "CGB",
+          "id": 25,
+          "title": "灯らぬ七つの窓",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 2.2452008721909436
+        },
+        {
+          "mode": "CGB",
+          "id": 26,
+          "title": "暁の外の遊戯室",
+          "bars": 50,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3600,
+          "elapsedFrames": 3599,
+          "seconds": 60.27374325059646,
+          "rawPeak": 10,
+          "rawRms": 1.8043822534417393
+        },
+        {
+          "mode": "CGB",
+          "id": 27,
+          "title": "夜明けの静かな神社",
+          "bars": 28,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Reprise"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3584,
+          "elapsedFrames": 3583,
+          "seconds": 60.005859947260475,
+          "rawPeak": 9,
+          "rawRms": 1.8199832719896316
+        },
+        {
+          "mode": "CGB",
+          "id": 28,
+          "title": "灯へ帰る",
+          "bars": 24,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Coda"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3456,
+          "elapsedFrames": 3455,
+          "seconds": 57.8627935205726,
+          "rawPeak": 9,
+          "rawRms": 1.6064549175034195
+        },
+        {
+          "mode": "CGB",
+          "id": 29,
+          "title": "封印がほどける",
+          "bars": 2,
+          "sections": [
+            "Fanfare"
+          ],
+          "loop": false,
+          "oneShot": true,
+          "expectedFrames": 192,
+          "elapsedFrames": 191,
+          "seconds": 3.2145996400318113,
+          "rawPeak": 8,
+          "rawRms": 1.983078542139002
+        },
+        {
+          "mode": "CGB",
+          "id": 30,
+          "title": "こおりぼしのさざなみ",
+          "bars": 40,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 1.7424704971264078
+        },
+        {
+          "mode": "CGB",
+          "id": 31,
+          "title": "あさつゆのこおりあそび",
+          "bars": 44,
+          "sections": [
+            "Intro",
+            "A",
+            "Development",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 2.1367180866381994
+        },
+        {
+          "mode": "CGB",
+          "id": 32,
+          "title": "宵闇の散歩道",
+          "bars": 36,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3456,
+          "elapsedFrames": 3455,
+          "seconds": 57.8627935205726,
+          "rawPeak": 10,
+          "rawRms": 2.2356954926169412
+        },
+        {
+          "mode": "CGB",
+          "id": 33,
+          "title": "月を隠すリボン",
+          "bars": 40,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Bridge",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3520,
+          "elapsedFrames": 3519,
+          "seconds": 58.934326733916535,
+          "rawPeak": 10,
+          "rawRms": 2.0816193069912448
+        },
+        {
+          "mode": "CGB",
+          "id": 34,
+          "title": "おかえり、夜明けの空",
+          "bars": 24,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Coda"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3456,
+          "elapsedFrames": 3455,
+          "seconds": 57.8627935205726,
+          "rawPeak": 9,
+          "rawRms": 1.6496010713203815
+        }
+      ]
+    },
+    "side": {
+      "fixture": "Music-only GBDK ROM; real joypad selection and VBlank playback. WAV listening copies normalized; raw amplitude is reported separately.",
+      "results": [
+        {
+          "mode": "DMG",
+          "id": 35,
+          "title": "STARLIGHT IGNITION",
+          "bars": 32,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3584,
+          "elapsedFrames": 3584,
+          "seconds": 60.005859947260475,
+          "rawPeak": 15,
+          "rawRms": 3.8969265842489667
+        },
+        {
+          "mode": "DMG",
+          "id": 36,
+          "title": "ORBITAL OVERDRIVE",
+          "bars": 64,
+          "sections": [
+            "Launch",
+            "Flight",
+            "Open Sky",
+            "Break",
+            "Reactor Ascent",
+            "Home Stretch",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 6144,
+          "elapsedFrames": 6143,
+          "seconds": 102.86718848101796,
+          "rawPeak": 15,
+          "rawRms": 3.92773836190821
+        },
+        {
+          "mode": "DMG",
+          "id": 37,
+          "title": "REACTOR HEART",
+          "bars": 32,
+          "sections": [
+            "Warning",
+            "Pressure",
+            "Counterattack",
+            "Overdrive",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 2560,
+          "elapsedFrames": 2559,
+          "seconds": 42.86132853375748,
+          "rawPeak": 15,
+          "rawRms": 4.070878719499756
+        },
+        {
+          "mode": "CGB",
+          "id": 35,
+          "title": "STARLIGHT IGNITION",
+          "bars": 32,
+          "sections": [
+            "Intro",
+            "A",
+            "B",
+            "Reprise",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 3584,
+          "elapsedFrames": 3584,
+          "seconds": 60.005859947260475,
+          "rawPeak": 15,
+          "rawRms": 3.8935600911403188
+        },
+        {
+          "mode": "CGB",
+          "id": 36,
+          "title": "ORBITAL OVERDRIVE",
+          "bars": 64,
+          "sections": [
+            "Launch",
+            "Flight",
+            "Open Sky",
+            "Break",
+            "Reactor Ascent",
+            "Home Stretch",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 6144,
+          "elapsedFrames": 6143,
+          "seconds": 102.86718848101796,
+          "rawPeak": 15,
+          "rawRms": 3.9286241125973986
+        },
+        {
+          "mode": "CGB",
+          "id": 37,
+          "title": "REACTOR HEART",
+          "bars": 32,
+          "sections": [
+            "Warning",
+            "Pressure",
+            "Counterattack",
+            "Overdrive",
+            "Turnaround"
+          ],
+          "loop": true,
+          "oneShot": false,
+          "expectedFrames": 2560,
+          "elapsedFrames": 2559,
+          "seconds": 42.86132853375748,
+          "rawPeak": 15,
+          "rawRms": 4.07042502688554
+        }
+      ]
+    },
+    "production": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "351287f47c8341bc3bc17e4bac1199526503ed630c3b77ad1192b4e22aaa000c",
+      "results": [
+        {
+          "mode": "CGB",
+          "stage": 1,
+          "route": "road",
+          "track": 32,
+          "firstRow": 10,
+          "lastRow": 30,
+          "musicEnergy": 208464,
+          "pause": true,
+          "bombEnergy": 2850058
+        },
+        {
+          "mode": "CGB",
+          "stage": 1,
+          "route": "boss",
+          "track": 33,
+          "firstRow": 32,
+          "lastRow": 53,
+          "musicEnergy": 204904,
+          "pause": true,
+          "bombEnergy": 3222910
+        },
+        {
+          "mode": "CGB",
+          "stage": 2,
+          "route": "road",
+          "track": 30,
+          "firstRow": 11,
+          "lastRow": 33,
+          "musicEnergy": 135488,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 2,
+          "route": "boss",
+          "track": 31,
+          "firstRow": 35,
+          "lastRow": 59,
+          "musicEnergy": 274188,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 3,
+          "route": "road",
+          "track": 17,
+          "firstRow": 11,
+          "lastRow": 33,
+          "musicEnergy": 107284,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 3,
+          "route": "boss",
+          "track": 18,
+          "firstRow": 35,
+          "lastRow": 59,
+          "musicEnergy": 131586,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 4,
+          "route": "road",
+          "track": 19,
+          "firstRow": 11,
+          "lastRow": 33,
+          "musicEnergy": 254902,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 4,
+          "route": "boss",
+          "track": 20,
+          "firstRow": 35,
+          "lastRow": 59,
+          "musicEnergy": 279310,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 5,
+          "route": "road",
+          "track": 21,
+          "firstRow": 12,
+          "lastRow": 36,
+          "musicEnergy": 100178,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 5,
+          "route": "boss",
+          "track": 22,
+          "firstRow": 38,
+          "lastRow": 64,
+          "musicEnergy": 185408,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 6,
+          "route": "road",
+          "track": 23,
+          "firstRow": 11,
+          "lastRow": 33,
+          "musicEnergy": 162600,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 6,
+          "route": "boss",
+          "track": 24,
+          "firstRow": 35,
+          "lastRow": 59,
+          "musicEnergy": 366046,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 7,
+          "route": "road",
+          "track": 25,
+          "firstRow": 12,
+          "lastRow": 36,
+          "musicEnergy": 267018,
+          "pause": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 7,
+          "route": "boss",
+          "track": 26,
+          "firstRow": 38,
+          "lastRow": 64,
+          "musicEnergy": 306070,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 1,
+          "route": "road",
+          "track": 32,
+          "firstRow": 10,
+          "lastRow": 30,
+          "musicEnergy": 243242,
+          "pause": true,
+          "bombEnergy": 2866070
+        },
+        {
+          "mode": "DMG",
+          "stage": 1,
+          "route": "boss",
+          "track": 33,
+          "firstRow": 44,
+          "lastRow": 66,
+          "musicEnergy": 250756,
+          "pause": true,
+          "bombEnergy": 2982464
+        },
+        {
+          "mode": "DMG",
+          "stage": 2,
+          "route": "road",
+          "track": 30,
+          "firstRow": 11,
+          "lastRow": 32,
+          "musicEnergy": 142872,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 2,
+          "route": "boss",
+          "track": 31,
+          "firstRow": 48,
+          "lastRow": 72,
+          "musicEnergy": 277184,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 3,
+          "route": "road",
+          "track": 17,
+          "firstRow": 11,
+          "lastRow": 32,
+          "musicEnergy": 102204,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 3,
+          "route": "boss",
+          "track": 18,
+          "firstRow": 47,
+          "lastRow": 71,
+          "musicEnergy": 189596,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 4,
+          "route": "road",
+          "track": 19,
+          "firstRow": 11,
+          "lastRow": 32,
+          "musicEnergy": 248422,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 4,
+          "route": "boss",
+          "track": 20,
+          "firstRow": 47,
+          "lastRow": 71,
+          "musicEnergy": 474260,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 5,
+          "route": "road",
+          "track": 21,
+          "firstRow": 11,
+          "lastRow": 35,
+          "musicEnergy": 73278,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 5,
+          "route": "boss",
+          "track": 22,
+          "firstRow": 52,
+          "lastRow": 78,
+          "musicEnergy": 112250,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 6,
+          "route": "road",
+          "track": 23,
+          "firstRow": 11,
+          "lastRow": 32,
+          "musicEnergy": 194168,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 6,
+          "route": "boss",
+          "track": 24,
+          "firstRow": 48,
+          "lastRow": 72,
+          "musicEnergy": 632696,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 7,
+          "route": "road",
+          "track": 25,
+          "firstRow": 11,
+          "lastRow": 36,
+          "musicEnergy": 258150,
+          "pause": true
+        },
+        {
+          "mode": "DMG",
+          "stage": 7,
+          "route": "boss",
+          "track": 26,
+          "firstRow": 52,
+          "lastRow": 78,
+          "musicEnergy": 234404,
+          "pause": true
+        }
+      ]
+    },
+    "before": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma-v37.gb",
+      "sha256": "0c9f33bd82f35b4df264190dc762246bdae5e398ca265775c3c96f7671e132cd",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 2801,
+          "updatesPerSecond": 56.4048305799056,
+          "peak": 0,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 59.22977083333333
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 57.3384
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 43.97116564417178
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 43.97116564417178
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 57.80080645161291
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 56.88333333333333
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 56.43543307086615
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 54.71221374045802
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 53.48731343283582
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 2280,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 2400,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2520,
+              "updates": 120,
+              "updatesPerSecond": 57.80080645161291
+            },
+            {
+              "tick": 2640,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2760,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1317,
+          "updatesPerSecond": 56.79503068592057,
+          "peak": 18,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 55.52791015625
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 55.56046511627907
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 56.43543307086615
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 55.99453125
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 55.99453125
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 1320,
+              "updates": 118,
+              "updatesPerSecond": 55.93527777777778
+            }
+          ]
+        },
+        {
+          "mode": "DMG",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 2268,
+          "updatesPerSecond": 35.49841981132076,
+          "peak": 0,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 43.33885670731708
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 29.988702928870293
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 29.49506172839506
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 25.781654676258995
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 26.74365671641791
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 53.88947368421053
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 48.10268456375839
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 36.755384615384614
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 29.739834024896265
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 40.26573033707865
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 41.42947976878613
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 47.782000000000004
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 42.16058823529412
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 34.96243902439024
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 29.135365853658538
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 28.784337349397592
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 47.465562913907284
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 35.30689655172414
+            },
+            {
+              "tick": 2280,
+              "updates": 109,
+              "updatesPerSecond": 35.96849447513812
+            }
+          ]
+        },
+        {
+          "mode": "DMG",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1317,
+          "updatesPerSecond": 28.510734867705686,
+          "peak": 18,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 27.763955078125
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 29.374180327868853
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 28.107058823529414
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 28.900403225806453
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 28.554980079681275
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 28.217716535433073
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 29.017408906882594
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 28.107058823529414
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 27.88832684824903
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 29.374180327868853
+            },
+            {
+              "tick": 1320,
+              "updates": 118,
+              "updatesPerSecond": 28.418729838709677
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "351287f47c8341bc3bc17e4bac1199526503ed630c3b77ad1192b4e22aaa000c",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 2801,
+          "updatesPerSecond": 56.423854131534576,
+          "peak": 0,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 59.22977083333333
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 57.3384
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 43.97116564417178
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 43.97116564417178
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 57.80080645161291
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 56.88333333333333
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 56.88333333333333
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 54.71221374045802
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 53.48731343283582
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 2280,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 2400,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2520,
+              "updates": 120,
+              "updatesPerSecond": 57.80080645161291
+            },
+            {
+              "tick": 2640,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2760,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1317,
+          "updatesPerSecond": 56.79503068592057,
+          "peak": 18,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 55.52791015625
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 55.56046511627907
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 56.43543307086615
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 55.99453125
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 55.99453125
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 1320,
+              "updates": 118,
+              "updatesPerSecond": 55.93527777777778
+            }
+          ]
+        },
+        {
+          "mode": "DMG",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 2263,
+          "updatesPerSecond": 35.43873426848453,
+          "peak": 0,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 43.60473926380368
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 29.739834024896265
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 29.49506172839506
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 25.68924731182796
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 26.644237918215612
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 53.48731343283582
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 48.10268456375839
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 36.755384615384614
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 29.61694214876033
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 40.04078212290503
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 40.72329545454546
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 47.782000000000004
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 42.41005917159763
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 35.133823529411764
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 29.135365853658538
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 28.900403225806453
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 47.465562913907284
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 35.30689655172414
+            },
+            {
+              "tick": 2280,
+              "updates": 104,
+              "updatesPerSecond": 35.905549132947975
+            }
+          ]
+        },
+        {
+          "mode": "DMG",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1317,
+          "updatesPerSecond": 28.531417301414578,
+          "peak": 18,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 27.872833333333332
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 29.49506172839506
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 28.107058823529414
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 28.900403225806453
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 28.554980079681275
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 28.217716535433073
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 29.017408906882594
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 28.107058823529414
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 27.88832684824903
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 29.374180327868853
+            },
+            {
+              "tick": 1320,
+              "updates": 118,
+              "updatesPerSecond": 28.418729838709677
+            }
+          ]
+        }
+      ]
+    },
+    "emulicious": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "351287f47c8341bc3bc17e4bac1199526503ed630c3b77ad1192b4e22aaa000c",
+      "emulator": "Emulicious 2026-03-27",
+      "method": "Unchanged isolated ROM CLI startup; DAP attach, numeric-address reads only",
+      "run": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v38\\emulicious\\direct-t4Sjn5",
+      "steps": [
+        {
+          "command": "initialize",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "supportsSetExpression": false,
+              "supportsDisassembleRequest": false,
+              "supportsRestartFrame": false,
+              "supportsTerminateRequest": false,
+              "supportsConfigurationDoneRequest": false,
+              "supportsRestartRequest": false,
+              "supportsGotoTargetsRequest": false,
+              "supportsConditionalBreakpoints": true,
+              "supportsModulesRequest": false,
+              "supportsCancelRequest": false,
+              "supportsHitConditionalBreakpoints": false,
+              "supportsLogPoints": true,
+              "supportsReadMemoryRequest": false,
+              "exceptionBreakpointFilters": [
+                {
+                  "filter": "Exception-5",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on inconsistent state after interrupt"
+                },
+                {
+                  "filter": "Exception-4",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on read of uninitialized memory"
+                },
+                {
+                  "filter": "Exception-3",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on execution of data"
+                },
+                {
+                  "filter": "Exception-2",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on bank swap at PC"
+                },
+                {
+                  "filter": "Exception-1",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on push to ROM"
+                }
+              ],
+              "supportsStepInTargetsRequest": false,
+              "supportsLoadedSourcesRequest": false,
+              "supportsTerminateThreadsRequest": false,
+              "supportsExceptionInfoRequest": false,
+              "supportsValueFormattingOptions": false,
+              "supportsCompletionsRequest": false,
+              "supportTerminateDebuggee": false,
+              "supportsSteppingGranularity": false,
+              "supportsDelayedStackTraceLoading": false,
+              "supportsDataBreakpoints": false,
+              "supportsEvaluateForHovers": true,
+              "supportsFunctionBreakpoints": true,
+              "supportsBreakpointLocationsRequest": false,
+              "supportsInstructionBreakpoints": false,
+              "supportsStepBack": true,
+              "supportsExceptionOptions": false,
+              "supportsSetVariable": false,
+              "supportsClipboardContext": false
+            },
+            "seq": 1,
+            "request_seq": 1,
+            "command": "initialize"
+          }
+        },
+        {
+          "event": {
+            "type": "event",
+            "event": "terminated",
+            "seq": 2
+          }
+        },
+        {
+          "command": "attach",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 3,
+            "request_seq": 2,
+            "command": "attach"
+          }
+        },
+        {
+          "command": "threads",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "threads": [
+                {
+                  "name": "Thread",
+                  "id": 1
+                }
+              ]
+            },
+            "seq": 4,
+            "request_seq": 3,
+            "command": "threads"
+          }
+        },
+        {
+          "command": "pause",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 5,
+            "request_seq": 4,
+            "command": "pause"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 6,
+            "request_seq": 5,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 7,
+            "request_seq": 6,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 8,
+            "request_seq": 7,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 9,
+            "request_seq": 8,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "continue",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "allThreadsContinued": false
+            },
+            "seq": 10,
+            "request_seq": 9,
+            "command": "continue"
+          }
+        },
+        {
+          "command": "pause",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 11,
+            "request_seq": 10,
+            "command": "pause"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 12,
+            "request_seq": 11,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 13,
+            "request_seq": 12,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 14,
+            "request_seq": 13,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 15,
+            "request_seq": 14,
+            "command": "evaluate"
+          }
+        }
+      ],
+      "stderr": "java.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\n",
+      "bootExecutionVerified": false,
+      "gameplayVerified": false,
+      "command": {
+        "executable": "C:\\homebrew\\projects\\dev-gb\\.tools\\emulicious\\java\\bin\\java.exe",
+        "args": [
+          "-Duser.home=C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v38\\emulicious\\direct-t4Sjn5",
+          "-Dsun.java2d.d3d=false",
+          "-jar",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v38\\emulicious\\direct-t4Sjn5\\Emulicious.jar",
+          "-remotedebug",
+          "61310",
+          "-muted",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v38\\emulicious\\direct-t4Sjn5\\side-caravan.gb"
+        ]
+      },
+      "snapshots": [
+        {
+          "pc": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 6,
+            "request_seq": 5,
+            "command": "evaluate"
+          },
+          "frame": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 7,
+            "request_seq": 6,
+            "command": "evaluate"
+          },
+          "scene": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 8,
+            "request_seq": 7,
+            "command": "evaluate"
+          },
+          "cgb": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 9,
+            "request_seq": 8,
+            "command": "evaluate"
+          }
+        },
+        {
+          "pc": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 12,
+            "request_seq": 11,
+            "command": "evaluate"
+          },
+          "frame": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 13,
+            "request_seq": 12,
+            "command": "evaluate"
+          },
+          "scene": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 14,
+            "request_seq": 13,
+            "command": "evaluate"
+          },
+          "cgb": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 15,
+            "request_seq": 14,
+            "command": "evaluate"
+          }
+        }
+      ],
+      "limitation": "Connection alone is not execution evidence; inspect response errors."
+    }
+  },
+  "audition": {
+    "source": "CGB music-only GBDK ROM actual APU capture, amplitude normalized; no SFX. MIDI is not used.",
+    "preview": "v38-stage-boss-preview.mp3",
+    "previewSegments": [
+      {
+        "at": 0,
+        "stage": 1,
+        "role": "road"
+      },
+      {
+        "at": 6,
+        "stage": 1,
+        "role": "boss"
+      },
+      {
+        "at": 12,
+        "stage": 2,
+        "role": "road"
+      },
+      {
+        "at": 18,
+        "stage": 2,
+        "role": "boss"
+      },
+      {
+        "at": 24,
+        "stage": 3,
+        "role": "road"
+      },
+      {
+        "at": 30,
+        "stage": 3,
+        "role": "boss"
+      },
+      {
+        "at": 36,
+        "stage": 4,
+        "role": "road"
+      },
+      {
+        "at": 42,
+        "stage": 4,
+        "role": "boss"
+      },
+      {
+        "at": 48,
+        "stage": 5,
+        "role": "road"
+      },
+      {
+        "at": 54,
+        "stage": 5,
+        "role": "boss"
+      },
+      {
+        "at": 60,
+        "stage": 6,
+        "role": "road"
+      },
+      {
+        "at": 66,
+        "stage": 6,
+        "role": "boss"
+      },
+      {
+        "at": 72,
+        "stage": 7,
+        "role": "road"
+      },
+      {
+        "at": 78,
+        "stage": 7,
+        "role": "boss"
+      }
+    ],
+    "files": [
+      {
+        "stage": 1,
+        "role": "road",
+        "id": 32,
+        "file": "stage-1-road.mp3",
+        "seconds": 57.863,
+        "bpm": 149.32,
+        "sha256": "0bdc3e66e56ec31d22dc73df0696f012a1ebf5b2c446e508970bf498b7771dd7"
+      },
+      {
+        "stage": 1,
+        "role": "boss",
+        "id": 33,
+        "file": "stage-1-boss.mp3",
+        "seconds": 58.934,
+        "bpm": 162.89,
+        "sha256": "7e6d93c70a8a36664bd97eb398592b9ccab0bd6feea9402a68230cc44d0de4f2"
+      },
+      {
+        "stage": 2,
+        "role": "road",
+        "id": 30,
+        "file": "stage-2-road.mp3",
+        "seconds": 58.934,
+        "bpm": 162.89,
+        "sha256": "a18cbad8a32a7e76edfa5674ceafaafe9e7af8c1b4325eb209e2ca590dfbccf2"
+      },
+      {
+        "stage": 2,
+        "role": "boss",
+        "id": 31,
+        "file": "stage-2-boss.mp3",
+        "seconds": 58.934,
+        "bpm": 179.18,
+        "sha256": "ef4966151a99e8df5621b8ab60a8e194cd74985f21800224eeec56cb543797e1"
+      },
+      {
+        "stage": 3,
+        "role": "road",
+        "id": 17,
+        "file": "stage-3-road.mp3",
+        "seconds": 58.934,
+        "bpm": 162.89,
+        "sha256": "bdf23aa7fdc1e5c59af76e27095aa6bd884f41c88923673f7aea7a794c06b763"
+      },
+      {
+        "stage": 3,
+        "role": "boss",
+        "id": 18,
+        "file": "stage-3-boss.mp3",
+        "seconds": 58.934,
+        "bpm": 179.18,
+        "sha256": "750f5b8ebe1f6798ab1cbc10d2d0a6e2486f358fbfa0674575f9a3baef48aa06"
+      },
+      {
+        "stage": 4,
+        "role": "road",
+        "id": 19,
+        "file": "stage-4-road.mp3",
+        "seconds": 58.934,
+        "bpm": 162.89,
+        "sha256": "4a2196c415141ce8503a0b7b438f477b683a4940b03073ae0345ca51c7a9df1b"
+      },
+      {
+        "stage": 4,
+        "role": "boss",
+        "id": 20,
+        "file": "stage-4-boss.mp3",
+        "seconds": 58.934,
+        "bpm": 179.18,
+        "sha256": "ad5bf457970b456b2cde4fa1abc507a10f5d312c7c59e1f983552b0e1b4e3c3d"
+      },
+      {
+        "stage": 5,
+        "role": "road",
+        "id": 21,
+        "file": "stage-5-road.mp3",
+        "seconds": 58.934,
+        "bpm": 179.18,
+        "sha256": "73c49a3743f9d452eb2c2e8ddbea6baaa6318557ce210bd60b7dcb355233ad34"
+      },
+      {
+        "stage": 5,
+        "role": "boss",
+        "id": 22,
+        "file": "stage-5-boss.mp3",
+        "seconds": 60.274,
+        "bpm": 199.09,
+        "sha256": "7387993d00f44269b67199949f02c60713afe8416d2d9049d64e01fe1ba3b5a5"
+      },
+      {
+        "stage": 6,
+        "role": "road",
+        "id": 23,
+        "file": "stage-6-road.mp3",
+        "seconds": 58.934,
+        "bpm": 162.89,
+        "sha256": "430efb2ee476da905f09d281946cbde4ea44c57b21b5f7f134ad7a0128030a9a"
+      },
+      {
+        "stage": 6,
+        "role": "boss",
+        "id": 24,
+        "file": "stage-6-boss.mp3",
+        "seconds": 58.934,
+        "bpm": 179.18,
+        "sha256": "e6073800fb8f9ad541b48692004bb20354755eb35e33d848abf848c83cda6b4f"
+      },
+      {
+        "stage": 7,
+        "role": "road",
+        "id": 25,
+        "file": "stage-7-road.mp3",
+        "seconds": 58.934,
+        "bpm": 179.18,
+        "sha256": "5aee742e728dea07667830137f7d6254b89ca5354670b95a805ff48eb9e94dd6"
+      },
+      {
+        "stage": 7,
+        "role": "boss",
+        "id": 26,
+        "file": "stage-7-boss.mp3",
+        "seconds": 60.274,
+        "bpm": 199.09,
+        "sha256": "5b8595e13ea4fab9472ae5c90c100f1e157e7c3e4a36f76d61e35ddd5d76bf4d"
+      }
+    ]
+  },
+  "pending": [
+    "Physical hardware and human listening evaluation remain unverified; final ROM awaits user playtest",
+    "Emulicious starts and attaches, but DAP evaluate fails with NullPointerException, so no successful Emulicious gameplay test is claimed",
+    "Native timing covers two input routes and is not an all-stage or constant-60fps guarantee; no new full normal-campaign clear"
+  ]
+}

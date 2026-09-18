@@ -1,0 +1,334 @@
+{
+  "schemaVersion": 1,
+  "title": "SCARLET PILGRIMAGE",
+  "tool": "image_gen.imagegen (built-in)",
+  "selected_assets": [
+    {
+      "file": "references/characters-01-heroes.png",
+      "role": "references",
+      "bytes": 1778580,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "2ca6127511d8023a451e38f450f92d5775ca4d43d69df82cbd5770f1e29ddf92"
+    },
+    {
+      "file": "references/characters-02-rumia-cirno.png",
+      "role": "references",
+      "bytes": 1571940,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "0ead1e4a9994dd2f47926f26c86253f0e69111f9861b19c88eadf96559854bdc"
+    },
+    {
+      "file": "backgrounds/background-01-forest.png",
+      "role": "backgrounds",
+      "bytes": 2215369,
+      "width": 1672,
+      "height": 941,
+      "sha256": "0885c09a67403ef9fcc2b8e8308f9054c0bea515ba020361beb3e21c6f31354d"
+    },
+    {
+      "file": "storyboards/storyboard-01-clean-v2.png",
+      "role": "storyboards",
+      "bytes": 2440531,
+      "width": 1672,
+      "height": 941,
+      "sha256": "5211f928e4d3eb6255e0e19901357397b5ccb107b9cb87f9da89b95eb9c87720"
+    },
+    {
+      "file": "references/characters-03-meiling-clean.png",
+      "role": "references",
+      "bytes": 1702444,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "3ad091850be728f6d54f85b5fac070ad68c59ae1644ccfae765dccbe240595f4"
+    },
+    {
+      "file": "backgrounds/background-02-lake-gate.png",
+      "role": "backgrounds",
+      "bytes": 2672946,
+      "width": 1672,
+      "height": 941,
+      "sha256": "7aa116a70830d39a6de18e491636eb26bc37f40a8e898c2024ff35a30b860d07"
+    },
+    {
+      "file": "storyboards/storyboard-02-clean-v2.png",
+      "role": "storyboards",
+      "bytes": 2524228,
+      "width": 1672,
+      "height": 941,
+      "sha256": "888b7a9a5e36a405ce4525248db4952bb0332bfc24e4a12bb2c23dd34f51740d"
+    },
+    {
+      "file": "references/characters-04-patchouli-sakuya.png",
+      "role": "references",
+      "bytes": 1761563,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "fd7c4c820e3083d1b2cdf114eba91fa2330e59f0009f70336df96c1bcb50f40a"
+    },
+    {
+      "file": "backgrounds/background-03-library-clock.png",
+      "role": "backgrounds",
+      "bytes": 2530927,
+      "width": 1672,
+      "height": 941,
+      "sha256": "d1f35f54678ff21b594d5de8c3f3f65d9c279fa980e76280756c5d1506a67a76"
+    },
+    {
+      "file": "storyboards/storyboard-03-clean-v2.png",
+      "role": "storyboards",
+      "bytes": 2632391,
+      "width": 1672,
+      "height": 941,
+      "sha256": "d8e608db0c59db270740e68d48968e188606ac0f067c31306281c28ceb9f5789"
+    },
+    {
+      "file": "references/characters-05-scarlet-sisters-corrected.png",
+      "role": "references",
+      "bytes": 1968207,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "e7163c89eab54c940016412e71f939810ebf57d8f493fadb235bda0d198acf60"
+    },
+    {
+      "file": "backgrounds/background-04-scarlet-roof.png",
+      "role": "backgrounds",
+      "bytes": 2496400,
+      "width": 1672,
+      "height": 941,
+      "sha256": "62c17248ee0f925d15cf555d7d4f2dd19559ccd47a487d07222b5732fc170af5"
+    },
+    {
+      "file": "storyboards/storyboard-04-clean-v2.png",
+      "role": "storyboards",
+      "bytes": 2652303,
+      "width": 1672,
+      "height": 941,
+      "sha256": "a4f6eba28cbb8b4c1f80f061bad199ace56e77f624ab85109c5dd7319290dac5"
+    },
+    {
+      "file": "references/title-bridge.png",
+      "role": "references",
+      "bytes": 2364291,
+      "width": 1672,
+      "height": 941,
+      "sha256": "59f916cb21d505c8d2c0ff404b4acdd21165903db413d5d02c42a689b4146f82"
+    }
+  ],
+  "comparison_asset": {
+    "file": "references/title-current.png",
+    "sha256": "f1835b9c481543a2cca6f22cec09015612213a0d1c4e3624edf3ef1dc76277d0"
+  },
+  "source_assets": [
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/reimu-sheet-master.png",
+      "sha256": "5210226609d99c2651851a706ebd97c10b0d6e217e1d7a4f53509dd73541e566",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/select-marisa-master.png",
+      "sha256": "5baaea4c5053ffe9fb0e2b58391f6476611e26a61f2a1532d8a453c69e3c7959",
+      "width": 1322,
+      "height": 1190
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/rumia-sheet-master.png",
+      "sha256": "0382d63409c7616420bd2fbb042b8f897f5c967c3c56836dbbdaf7df55bbd9a9",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/cirno-sheet-master.png",
+      "sha256": "f91cbf6ad40bcf4ccc4dd8357ad179837853405fa6517e22f559aac601948412",
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/meiling-sheet-master.png",
+      "sha256": "b394f155d65ced218cbe6d1bf8127efbb2d4ce4bb72b461440fc26289a298b7f",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/patchouli-sheet-master.png",
+      "sha256": "aa1ab14ae225c61d044b79e2924d0ab413a81dcb4f383b47e0a17a42acf2cddf",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/sakuya-sheet-master.png",
+      "sha256": "f520e93c42eb2ca08577584e9fcc492e7362b4028d105cf7c2cb0d9a46d81037",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/remilia-sheet-master.png",
+      "sha256": "26532e92e3f9f04de7b0c966d106e8381ac12281ef73f07bd55a34851e339091",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/flandre-sheet-master.png",
+      "sha256": "f266fead931db55e7cff6f7af5cbb8a8c93056ef1bdace123b692143584be4ab",
+      "width": 1448,
+      "height": 1086
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/stage-forest-master.png",
+      "sha256": "d0b1644cb32db007796a067e03d98278068032e88f4f6de7dcba002ef97dd11a",
+      "width": 992,
+      "height": 1586
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/screen-title-master.png",
+      "sha256": "f1835b9c481543a2cca6f22cec09015612213a0d1c4e3624edf3ef1dc76277d0",
+      "width": 1322,
+      "height": 1190
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/stage-lake-master.png",
+      "sha256": "24a63225ed6515f43aead7402541f2f4b2642fac84285ea1954d2988f86ac814",
+      "width": 992,
+      "height": 1586
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/stage-1-master.png",
+      "sha256": "eaa91c4e3f5f55c6e61a2dc103afec22e8f64d90daadc19c5a21ec57ae23172c",
+      "width": 992,
+      "height": 1586
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/stage-2-master.png",
+      "sha256": "3a9ef84d28e97489b548aa62ec2ba3d3dd9d0a6dfa53d8e9d87f2440b7a1f0b2",
+      "width": 992,
+      "height": 1586
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/stage-3-master.png",
+      "sha256": "0a46f7578e6326b53b71a4cbf0c4111b29c7103383572a305c5ff64c08610cc1",
+      "width": 992,
+      "height": 1586
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/v36-mansion/masters/facade.png",
+      "sha256": "0b0a826bed6daa1daeff70b9ae41ae3c1c66c386c6630133cb0203294d8bbb60",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-03-meiling.png",
+      "sha256": "f2004f8d771009a21f7986fdc4f4e1172e82a3458008e3ac46b808a1b99219d3",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-05-scarlet-sisters.png",
+      "sha256": "f12f3938d8cdfadc829991b2917d22d2b99efce9bb329aa1faca7344ad168a0c",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+      "sha256": "2ca6127511d8023a451e38f450f92d5775ca4d43d69df82cbd5770f1e29ddf92",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/backgrounds/background-04-scarlet-roof.png",
+      "sha256": "62c17248ee0f925d15cf555d7d4f2dd19559ccd47a487d07222b5732fc170af5",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-02-rumia-cirno.png",
+      "sha256": "0ead1e4a9994dd2f47926f26c86253f0e69111f9861b19c88eadf96559854bdc",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/backgrounds/background-01-forest.png",
+      "sha256": "0885c09a67403ef9fcc2b8e8308f9054c0bea515ba020361beb3e21c6f31354d",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-04-patchouli-sakuya.png",
+      "sha256": "fd7c4c820e3083d1b2cdf114eba91fa2330e59f0009f70336df96c1bcb50f40a",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/backgrounds/background-03-library-clock.png",
+      "sha256": "d1f35f54678ff21b594d5de8c3f3f65d9c279fa980e76280756c5d1506a67a76",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-01.png",
+      "sha256": "fd50026e3bab37c5ec4990157ad5b5c060d50dbb49fd35ef777ef16df95bf81c",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-03.png",
+      "sha256": "c1eb3caf35b9aa1174513261c56b1094f041579d2c0e690e2cd5b04a0e9000fb",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-03-meiling-clean.png",
+      "sha256": "3ad091850be728f6d54f85b5fac070ad68c59ae1644ccfae765dccbe240595f4",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/backgrounds/background-02-lake-gate.png",
+      "sha256": "7aa116a70830d39a6de18e491636eb26bc37f40a8e898c2024ff35a30b860d07",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-05-scarlet-sisters-corrected.png",
+      "sha256": "e7163c89eab54c940016412e71f939810ebf57d8f493fadb235bda0d198acf60",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/title-bridge.png",
+      "sha256": "59f916cb21d505c8d2c0ff404b4acdd21165903db413d5d02c42a689b4146f82",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-01-costume-fixed.png",
+      "sha256": "f201ee6d0b4e50cee2d6464dc4a70664a029eefa71519f25902f660f511e1d0e",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-02.png",
+      "sha256": "90578fab39f1bb85a0017916a0e5bd1419306e4739f4707addc9541dc1cf3a34",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-03-costume-fixed.png",
+      "sha256": "ebc804a0d93e746cc9cfa1a041782d3091043284db7242137f51e272e4e9a2bc",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "file": "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-04.png",
+      "sha256": "7f774fe6cb3e39e93e58dfcf9703d9892acf9616fdd4891f79b8305ff3c7c64d",
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "source_game": {
+    "file": "../game.json",
+    "sha256": "dcbee712eb6a7193cbf0d245a3eec3d4c03bf14cc7ea44b5cc79ab5fec6ccc3b"
+  },
+  "note": "Original project art retained. AI-generated animation adaptations; no new exclusive license over Touhou characters or source artwork."
+}

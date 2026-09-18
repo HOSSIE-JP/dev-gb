@@ -12,12 +12,16 @@ typedef struct {
     uint16_t left;
     volatile uint16_t blocks;
     uint16_t start, last;
-    uint8_t bank, frame, overruns, skipped;
+    uint8_t bank;
+    uint16_t frame;
+    uint8_t overruns, skipped;
     uint8_t ie, tac, tma, tima;
     palette_color_t palettes[28];
     CE_MovieFrame data;
     uint8_t tiles[640], attributes[40];
     uint8_t lcdc;
+    uint8_t pcm_page;
+    uint16_t waited;
 } MovieWork;
 #define MOVIE ((MovieWork *)ce_entities)
 typedef char MovieFits[(sizeof(MovieWork) <= sizeof(ce_entities)) ? 1 : -1];
@@ -25,7 +29,16 @@ typedef char MovieFits[(sizeof(MovieWork) <= sizeof(ce_entities)) ? 1 : -1];
 static void movie_pcm(void) NONBANKED {
     uint8_t bank = CURRENT_BANK;
     NR30_REG = 0;
-    if (!MOVIE->left) return;
+    if (!MOVIE->left) {
+        /* Descriptors stay in ROM0, so the ISR never calls banked code.
+         * Chunks are multiples of one 16-byte wave refill. */
+        const CE_Data *next = &ce_movie_pcm[MOVIE->pcm_page + 1u];
+        if (!next->length) return;
+        ++MOVIE->pcm_page;
+        MOVIE->pcm = next->data;
+        MOVIE->bank = next->bank;
+        MOVIE->left = next->length;
+    }
     SWITCH_ROM(MOVIE->bank);
     /* DAC is off: the complete wave RAM is writable on DMG and CGB.
      * A single assembly memcpy avoids repeated shared-pointer updates. */
@@ -46,7 +59,12 @@ static void movie_timer(void) NONBANKED __critical __interrupt {
 ISR_VECTOR(VECTOR_TIMER, movie_timer)
 
 static uint8_t movie_wait(void) {
-    vsync();
+    uint16_t now;
+    /* VRAM copies may themselves cross VBlank. Do not wait a second time
+     * when that chunk has already consumed its display interval. */
+    CRITICAL { now = sys_time; }
+    if (now == MOVIE->waited) vsync();
+    CRITICAL { MOVIE->waited = sys_time; }
     ce_trace_write();
     if (joypad()) { MOVIE->skipped = 1; return 1; }
     return 0;
@@ -88,8 +106,8 @@ static void movie_chunk(uint8_t frame, uint8_t chunk) {
 }
 
 void ce_play_movie(void) BANKED {
-    uint8_t frame, chunk;
-    uint16_t now;
+    uint8_t chunk;
+    uint16_t frame, now;
     if (!ce_movie_count) return;
     ce_music_play(0);
     ce_scene = 15; ce_used = 0;
@@ -111,14 +129,14 @@ void ce_play_movie(void) BANKED {
         ce_copy((uint8_t *)MOVIE->palettes,&MOVIE->data.palettes,0,56);
         set_bkg_palette(1,7,MOVIE->palettes);
     }
-    MOVIE->pcm = ce_movie_pcm.data; MOVIE->bank = ce_movie_pcm.bank; MOVIE->left = ce_movie_pcm.length;
+    MOVIE->pcm = ce_movie_pcm[0].data; MOVIE->bank = ce_movie_pcm[0].bank; MOVIE->left = ce_movie_pcm[0].length;
     NR52_REG = 0x80; NR50_REG = 0x77; NR51_REG = 0x44;
     NR31_REG = 0; NR32_REG = 0x20; NR33_REG = 0;
     TAC_REG = 0;
     LCDC_REG = LCDCF_ON | LCDCF_BG8000 | LCDCF_BGON;
     vsync();
     CRITICAL {
-        MOVIE->start = MOVIE->last = sys_time;
+        MOVIE->start = MOVIE->last = MOVIE->waited = sys_time;
         movie_pcm();
         TMA_REG = TIMA_REG = ce_is_cgb ? 128 : 192;
         IF_REG &= ~TIM_IFLAG;

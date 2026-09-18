@@ -1,0 +1,161 @@
+{
+  "title": "SCARLET PILGRIMAGE",
+  "duration_seconds": 40,
+  "aspect_ratio": "16:9",
+  "mode": "Ref2VA",
+  "music": false,
+  "dialogue": false,
+  "clips": [
+    {
+      "id": "clip-01",
+      "title": "紅霧へ飛び込む二人",
+      "global_start_seconds": 0,
+      "duration_seconds": 10,
+      "bosses": [
+        "Rumia"
+      ],
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "references/characters-02-rumia-cirno.png",
+        "backgrounds/background-01-forest.png",
+        "storyboards/storyboard-01-clean-v2.png"
+      ],
+      "shot_starts_seconds": [
+        0,
+        1,
+        2,
+        4,
+        6,
+        8.5
+      ],
+      "english_prompt": "clip-01.en.txt",
+      "japanese_prompt": "clip-01.ja.txt",
+      "shot_labels_ja": [
+        "霊夢の瞳",
+        "魔理沙の飛び込み",
+        "二人の上昇",
+        "ルーミアの弾幕",
+        "回避と反撃",
+        "湖へ抜ける"
+      ],
+      "pacing_ja": "1秒ずつの登場から加速。ルーミアの一波を見せ、回避と反撃を続けて湖へ抜ける。"
+    },
+    {
+      "id": "clip-02",
+      "title": "氷の湖から紅魔館の門へ",
+      "global_start_seconds": 10,
+      "duration_seconds": 10,
+      "bosses": [
+        "Cirno",
+        "Hong Meiling"
+      ],
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "references/characters-02-rumia-cirno.png",
+        "references/characters-03-meiling-clean.png",
+        "backgrounds/background-02-lake-gate.png",
+        "storyboards/storyboard-02-clean-v2.png"
+      ],
+      "shot_starts_seconds": [
+        0,
+        2,
+        4,
+        5,
+        7,
+        8.5
+      ],
+      "english_prompt": "clip-02.en.txt",
+      "japanese_prompt": "clip-02.ja.txt",
+      "shot_labels_ja": [
+        "チルノの氷陣",
+        "水面すれすれの反撃",
+        "美鈴を見上げる",
+        "掌の弾幕をかわす",
+        "二人の交差",
+        "館の入口へ"
+      ],
+      "pacing_ja": "氷の破裂で門の槍先へ切り替える。美鈴の掌打から交差まで速くつなぎ、入口で色を替える。"
+    },
+    {
+      "id": "clip-03",
+      "title": "魔法図書館と止まる時間",
+      "global_start_seconds": 20,
+      "duration_seconds": 10,
+      "bosses": [
+        "Patchouli Knowledge",
+        "Sakuya Izayoi"
+      ],
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "references/characters-04-patchouli-sakuya.png",
+        "backgrounds/background-03-library-clock.png",
+        "storyboards/storyboard-03-clean-v2.png"
+      ],
+      "shot_starts_seconds": [
+        0,
+        2,
+        4,
+        5.5,
+        7.5,
+        9
+      ],
+      "english_prompt": "clip-03.en.txt",
+      "japanese_prompt": "clip-03.ja.txt",
+      "shot_labels_ja": [
+        "パチュリーの魔法陣",
+        "螺旋を抜けて反撃",
+        "咲夜が時間を止める",
+        "時間再開・ナイフ回避",
+        "一撃で出口を開く",
+        "紅い夜空へ"
+      ],
+      "pacing_ja": "4.400〜5.650秒だけ時間を止めて音を落とし、再開と同時に鋭く加速する。"
+    },
+    {
+      "id": "clip-04",
+      "title": "紅い月の対峙、そしてタイトルへ",
+      "global_start_seconds": 30,
+      "duration_seconds": 10,
+      "bosses": [
+        "Remilia Scarlet",
+        "Flandre Scarlet"
+      ],
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "references/characters-05-scarlet-sisters-corrected.png",
+        "backgrounds/background-04-scarlet-roof.png",
+        "storyboards/storyboard-04-clean-v2.png",
+        "references/title-bridge.png"
+      ],
+      "shot_starts_seconds": [
+        0,
+        2,
+        4,
+        5.5,
+        7.5,
+        8.5
+      ],
+      "english_prompt": "clip-04.en.txt",
+      "japanese_prompt": "clip-04.ja.txt",
+      "shot_labels_ja": [
+        "霊夢対レミリア",
+        "魔理沙対フランドール",
+        "四人の交差",
+        "月下の対峙",
+        "二人の決意",
+        "タイトル接続の寄り"
+      ],
+      "pacing_ja": "前半の連撃から5.500秒で急減速。月下の対峙を見せ、9.500秒から最後の0.500秒は画角を固定する。"
+    }
+  ],
+  "revision": 2,
+  "time_stop": {
+    "clip": "clip-03",
+    "start_seconds": 4.4,
+    "end_seconds": 5.65
+  },
+  "title_camera_settles": {
+    "clip": "clip-04",
+    "at_seconds": 9.5
+  }
+}

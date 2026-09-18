@@ -1,0 +1,35 @@
+subject_definitions:
+<Subject 7> is Sakuya Izayoi, the bottom character in <Picture 3>: silver bob with small braids, blue eyes, white maid headband, navy maid dress, white apron and green neck bow.
+<Subject 6> is Patchouli Knowledge, the top character in <Picture 3>: long purple hair, crescent pink cap, red and blue ribbons, pink-lavender striped gown and purple book.
+<Subject 5> is Hong Meiling, the single character character in <Picture 2>: long red hair with twin braids, green star beret, gold-trimmed green tunic, loose white trousers and green wrist guards.
+<Subject 3> is Rumia, the top character in <Picture 1>: blonde bob, red eyes, small red side ribbon, black dress over a white shirt with red tie.
+<Subject 4> is Cirno, the bottom character in <Picture 1>: ice-blue bob, blue hair bow and dress, red neck ribbon, white zigzag hem and six rigid ice-wing shards.
+<Subject 10> is the sunny manor rose garden, with a white tea table, cream terrace steps and soft peach-green light, from <Picture 4>.
+<Picture 5> is the clean visual board, read left-to-right and top-to-bottom, mapping [Shot 1] through [Shot 6]. It provides composition and identity cues; the written timeline supplies motion and cuts.
+
+summary:
+[reference generation] Create exactly 10.000 seconds, 16:9. Present <Subject 7>, <Subject 6>, <Subject 5>, <Subject 3> and <Subject 4> through affectionate everyday gestures around <Subject 10>. The sequence follows personality and visual match cuts, ending on their relaxed tea gathering. Use <Picture 5> for the six compositions. Bright close-ups and playful reactions create a cute character-introduction passage. Use bright polished 2D anime, expressive eyes and a cute, upbeat visual-novel opening mood. Each shot fills one frame as a complete scene; costumes and faces follow the model sheets.
+
+retention_analysis:
+<Subject 7> (appears in [Shot 1], [Shot 6]): fully_preserved - retain Sakuya Izayoi's face, hair, headwear and costume across expressions and camera angles.
+<Subject 6> (appears in [Shot 2], [Shot 6]): fully_preserved - retain Patchouli Knowledge's face, hair, headwear and costume across expressions and camera angles.
+<Subject 5> (appears in [Shot 3], [Shot 6]): fully_preserved - retain Hong Meiling's face, hair, headwear and costume across expressions and camera angles.
+<Subject 3> (appears in [Shot 4], [Shot 6]): fully_preserved - retain Rumia's face, hair, headwear and costume across expressions and camera angles.
+<Subject 4> (appears in [Shot 5], [Shot 6]): fully_preserved - retain Cirno's face, hair, headwear and costume across expressions and camera angles.
+<Subject 10> (appears in [Shot 1], [Shot 2], [Shot 3], [Shot 4], [Shot 5], [Shot 6]): fully_preserved - keep the bright location design while changing framing.
+<Picture 5> (shot composition): partially_preserved - preserve panel order and character placement; follow the written camera movement and exact timing.
+
+detailed_description:
+Crisp cel animation, warm high-key light, expressive character acting, clean silhouettes and bright pastel accents.
+[Shot 1] Open on the rim of a silver tray held by <Subject 7> in <Subject 10>. Tilt quickly from the cup to her blue eyes and green neck bow as she finishes setting the tray at the edge of frame. She meets the camera with an assured, gentle smile. Her small silver braids remain distinct from the maid headband. A single porcelain contact and soft apron rustle mark the movement; garden air stays light.
+[Shot 2] At 00:01.500, Match the tray’s bright rim to the edge of the purple book held by <Subject 6>. In a tight bust shot beneath a flowering arch, she lowers the book just enough to reveal a shy smile; long purple hair and the crescent cap frame her face. Slide a little to the right, letting blurred rose petals cross the far background. One page flutters and settles, creating a small dry sound.
+[Shot 3] At 00:03.000, Cut to <Subject 5> framed from the waist up beside a sunlit hedge, green star beret and twin red braids clearly visible. A petal rests on her cap. She notices our gaze, gives a slightly embarrassed smile and a quick friendly salute. The camera makes a short upward bounce and settles at eye level. Her tunic remains green and gold; loose white trousers briefly appear at the lower edge. Cloth and a leaf rustle accompany her.
+[Shot 4] At 00:04.500, Cut to <Subject 3> holding a small steamed bun in both hands beneath her chin. She tilts her blonde bob toward the lens with a delighted closed-mouth expression; her red side ribbon and white collar stand out against a soft peach garden background. Push in a little as she offers the bun forward, keeping her hands and face anatomically clear. A paper wrapper gives one delicate crinkle.
+[Shot 5] At 00:06.000, Cut to <Subject 4> proudly lifting a tiny ice flower between thumb and forefinger. A chest-up camera arc catches blue hair, red neck ribbon and the six translucent wing shards behind her. She gives an exaggerated confident wink while the flower briefly glitters in sunlight. Keep its scale small and charming. A crisp ice tick and a light sleeve swish punctuate the pose, followed by ordinary garden wind.
+[Shot 6] At 00:08.000, Cut wider to the five together around the white tea table: <Subject 7> stands at the right with the tray, <Subject 6> sits centrally with her book, <Subject 5> leans near the left chair, while <Subject 3> and <Subject 4> share the foreground. They exchange small smiles and glance toward us. Pull back gently enough to retain readable faces and the bright rose-garden atmosphere. End on this friendly ensemble at 00:10.000, with porcelain, pages and leaves.
+
+overall_soundscape:
+Only sounds tied to the visible setting and gestures: wind, leaves, cloth, paper, porcelain and brief nonmelodic magical transients where specified. Use quiet gaps between close-up accents. No dialogue, narration, laughter, shouts, vocals or music.
+
+non_diegetic_music:
+None. No BGM, score, song or musical accompaniment.

@@ -1,0 +1,50 @@
+{
+  "revision": 2,
+  "reason": "Remove storyboard annotations from video references; retime to four 10-second clips.",
+  "assets": [
+    {
+      "id": "storyboard-01-clean-v2",
+      "dest": "storyboards/storyboard-01-clean-v2.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-01-costume-fixed.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the provided six-panel anime storyboard image into a CLEAN visual reference board for video generation. Image 1 is the sole edit target. Preserve the original 3-column by 2-row panel order, exact shot compositions, framing, all character identities, faces, outfits, skirt lengths, props, backgrounds, palette, illumination and magical combat effects. Surgically remove ALL overlaid camera and motion notation: every cyan/blue and orange curved or straight arrow, arrowhead, dashed path, guide line, and overlay badge. Seamlessly reconstruct the obscured original illustration underneath those overlays, including trees, sky, water, buildings, clothing and hair. Remove all editorial text, shot numbers, times, SFX labels and captions, including any words inside the artwork, leaving the existing gutters and caption strips blank plain off-white. The six panels must each show only the scene artwork. Do not replace removed overlays with other lines, symbols or graphic indicators. Retain the actual in-world spell circles, talisman markings, gold stars, glowing round projectiles, ice crystals, knives and their natural magical trails. Keep this an extremely faithful localized cleanup, not a redesign. Preserve the wide original canvas aspect ratio and high detail.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-e296af10-67ef-47dd-ae70-af76777b466d.png",
+      "status": "selected",
+      "tool": "image_gen.imagegen (built-in)"
+    },
+    {
+      "id": "storyboard-02-clean-v2",
+      "dest": "storyboards/storyboard-02-clean-v2.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-02.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the provided six-panel anime storyboard image into a CLEAN visual reference board for video generation. Image 1 is the sole edit target. Preserve the original 3-column by 2-row panel order, exact shot compositions, framing, all character identities, faces, outfits, skirt lengths, props, backgrounds, palette, illumination and magical combat effects. Surgically remove ALL overlaid camera and motion notation: every cyan/blue and orange curved or straight arrow, arrowhead, dashed path, guide line, and overlay badge. Seamlessly reconstruct the obscured original illustration underneath those overlays, including trees, sky, water, buildings, clothing and hair. Remove all editorial text, shot numbers, times, SFX labels and captions, including any words inside the artwork, leaving the existing gutters and caption strips blank plain off-white. The six panels must each show only the scene artwork. Do not replace removed overlays with other lines, symbols or graphic indicators. Retain the actual in-world spell circles, talisman markings, gold stars, glowing round projectiles, ice crystals, knives and their natural magical trails. Keep this an extremely faithful localized cleanup, not a redesign. Preserve the wide original canvas aspect ratio and high detail.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-d886d662-cc9f-4ee8-a35f-63ec7eeda59c.png",
+      "status": "selected",
+      "tool": "image_gen.imagegen (built-in)"
+    },
+    {
+      "id": "storyboard-03-clean-v2",
+      "dest": "storyboards/storyboard-03-clean-v2.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-03-costume-fixed.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the provided six-panel anime storyboard image into a CLEAN visual reference board for video generation. Image 1 is the sole edit target. Preserve the original 3-column by 2-row panel order, exact shot compositions, framing, all character identities, faces, outfits, skirt lengths, props, backgrounds, palette, illumination and magical combat effects. Surgically remove ALL overlaid camera and motion notation: every cyan/blue and orange curved or straight arrow, arrowhead, dashed path, guide line, and overlay badge. Seamlessly reconstruct the obscured original illustration underneath those overlays, including trees, sky, water, buildings, clothing and hair. Remove all editorial text, shot numbers, times, SFX labels and captions, including any words inside the artwork, leaving the existing gutters and caption strips blank plain off-white. The six panels must each show only the scene artwork. Do not replace removed overlays with other lines, symbols or graphic indicators. Retain the actual in-world spell circles, talisman markings, gold stars, glowing round projectiles, ice crystals, knives and their natural magical trails. Keep this an extremely faithful localized cleanup, not a redesign. Preserve the wide original canvas aspect ratio and high detail.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-3370570b-1c34-475c-b75d-e0c5950bf3b6.png",
+      "status": "selected",
+      "tool": "image_gen.imagegen (built-in)"
+    },
+    {
+      "id": "storyboard-04-clean-v2",
+      "dest": "storyboards/storyboard-04-clean-v2.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-04.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the provided six-panel anime storyboard image into a CLEAN visual reference board for video generation. Image 1 is the sole edit target. Preserve the original 3-column by 2-row panel order, exact shot compositions, framing, all character identities, faces, outfits, skirt lengths, props, backgrounds, palette, illumination and magical combat effects. Surgically remove ALL overlaid camera and motion notation: every cyan/blue and orange curved or straight arrow, arrowhead, dashed path, guide line, and overlay badge. Seamlessly reconstruct the obscured original illustration underneath those overlays, including trees, sky, water, buildings, clothing and hair. Remove all editorial text, shot numbers, times, SFX labels and captions, including any words inside the artwork, leaving the existing gutters and caption strips blank plain off-white. The six panels must each show only the scene artwork. Do not replace removed overlays with other lines, symbols or graphic indicators. Retain the actual in-world spell circles, talisman markings, gold stars, glowing round projectiles, ice crystals, knives and their natural magical trails. For the crimson spear projectiles, retain their directions and locations but render them as slender tapered light lances, without forked graphic-arrow heads.Keep this an extremely faithful localized cleanup, not a redesign. Preserve the wide original canvas aspect ratio and high detail.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-78b81e99-6818-4f40-8bdc-90b88a07f812.png",
+      "status": "selected",
+      "tool": "image_gen.imagegen (built-in)"
+    }
+  ]
+}

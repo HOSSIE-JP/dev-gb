@@ -185,17 +185,23 @@ export function generate(
     const png2asset = gbdkExecutable(root, "png2asset");
     let serial = 0;
     const blobs = new Map<string,string>();
+    // Keep generated data translation units within one ROM bank and the
+    // Windows compiler command line bounded for a 400-frame opening.
+    let blobFile = "", blobBytes = 0, blobSource = "";
     function blob(data: number[] | Uint8Array) {
         const key=crypto.createHash("sha256").update(Buffer.from(data)).digest("hex");
         if(blobs.has(key))return blobs.get(key)!;
         const name = `ce_blob_${serial++}`,
-            values = data.length ? Array.from(data) : [0],
-            file = `${name}.c`;
-        atomicWrite(
-            path.join(target, file),
-            `#pragma bank 255\n#include <gb/gb.h>\n#include <stdint.h>\nBANKREF(${name})\nconst uint8_t ${name}[] = {${bytes(values)}};\n`,
-        );
-        sources.push(file);
+            values = data.length ? Array.from(data) : [0];
+        if (!blobFile || blobBytes + values.length > 16384) {
+            if (blobFile) atomicWrite(path.join(target, blobFile), blobSource);
+            blobFile = `${name}.c`;
+            blobBytes = 0;
+            blobSource = '#pragma bank 255\n#include <gb/gb.h>\n#include <stdint.h>\n';
+            sources.push(blobFile);
+        }
+        blobBytes += values.length;
+        blobSource += `BANKREF(${name})\nconst uint8_t ${name}[] = {${bytes(values)}};\n`;
         decls.push(`BANKREF_EXTERN(${name})\nextern const uint8_t ${name}[];`);
         const ref=`{BANK(${name}),${name},${values.length}}`;blobs.set(key,ref);return ref;
     }
@@ -687,7 +693,11 @@ export function generate(
     config.push(`const uint16_t ce_attract_title_frames=${game.attract?.enabled ? game.attract.titleSeconds*60 : 0},ce_attract_boss_frames=${(game.attract?.bossSeconds??15)*60},ce_attract_rank_frames=${(game.attract?.rankingSeconds??8)*60};`);
     const movie=game.startupMovie?.enabled?game.startupMovie:undefined;
     const movieRows=movie?.frames.map(f=>`{${blob(Buffer.from(f.dmg,'base64'))},${blob(Buffer.from(f.cgb,'base64'))},${blob(Buffer.from(f.attributes,'base64'))},${blob(Buffer.from(f.palettes,'base64'))}}`)??[];
-    config.push(`const uint8_t ce_movie_count=${movieRows.length};`, `const CE_Data ce_movie_pcm=${movie?blob(Buffer.from(movie.pcm,'base64')):'{0,0,0}'};`);
+    const moviePcm = movie ? Buffer.from(movie.pcm,'base64') : Buffer.alloc(0);
+    const moviePcmPages: string[] = [];
+    for (let offset=0; offset<moviePcm.length; offset+=16384)
+        moviePcmPages.push(blob(moviePcm.subarray(offset,offset+16384)));
+    config.push(`const uint16_t ce_movie_count=${movieRows.length};`, `const CE_Data ce_movie_pcm[]={${[...moviePcmPages,'{0,0,0}'].join(',')}};`);
     const logos = game.startup?.enabled ? game.startup.slides : [], logoRows: string[] = [], logoScreens = new Map<string,number>();
     for (const slide of logos) {
         let screen = logoScreens.get(slide.background);
@@ -832,7 +842,7 @@ export function generate(
     sources.push("caravan_scenes.c");
     atomicWrite(path.join(target,"caravan_color_screens.c"),['#pragma bank 255','#include "caravan.h"',...decls,`static const CE_ColorScreen screens[]={${colorScreenRows}};`,`void ce_get_color_screen(CE_ColorScreen *dest,uint8_t index) BANKED { *dest=screens[index]; }`].join('\n')+'\n');
     sources.push("caravan_color_screens.c");
-    atomicWrite(path.join(target,"caravan_movie.c"),['#pragma bank 255','#include "caravan.h"',...decls,`static const CE_MovieFrame frames[]={${movieRows.join(',')||'{{0,0,0},{0,0,0},{0,0,0},{0,0,0}}'}};`,`void ce_get_movie_frame(CE_MovieFrame *dest,uint8_t index) BANKED { *dest=frames[index]; }`].join('\n')+'\n');
+    atomicWrite(path.join(target,"caravan_movie.c"),['#pragma bank 255','#include "caravan.h"',...decls,`static const CE_MovieFrame frames[]={${movieRows.join(',')||'{{0,0,0},{0,0,0},{0,0,0},{0,0,0}}'}};`,`void ce_get_movie_frame(CE_MovieFrame *dest,uint16_t index) BANKED { *dest=frames[index]; }`].join('\n')+'\n');
     sources.push("caravan_movie.c");
     atomicWrite(
         path.join(target, "caravan_data.c"),
@@ -843,6 +853,7 @@ export function generate(
         '#include "caravan.h"\nvoid main(void) { ce_run(); }\n',
     );
     sources.push("caravan_data.c", "caravan_main.c");
+    if (blobFile) atomicWrite(path.join(target, blobFile), blobSource);
     sources.push(...generateMusic(root,target));
     const report = {
         revision: revision(game),

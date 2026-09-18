@@ -14,9 +14,9 @@ test('expanded screen asset capacity retains the 64 sprite-definition hardware b
  const g=game();assert.ok(g.assets.length>64);assert.deepEqual(errors(g),[]);const sprite=g.assets.find(a=>a.kind==='sprite');while(g.assets.filter(a=>a.kind==='sprite').length<=64)g.assets.push({...sprite,id:'sprite-'+g.assets.length,name:'Sprite '+g.assets.length});assert.ok(errors(g).length);
 });
 test('all background roles use complete arranged scores and victory remains a short one-shot',()=>{
- const score=JSON.parse(fs.readFileSync(path.join(root,'engine/caravan/assets-src/kouma-score.json'))),mirror=JSON.parse(fs.readFileSync(path.join(root,'projects/touhou-kouma/touhou-kouma-design/music-v13/score.json')));assert.deepEqual(score,mirror);
+ const score=JSON.parse(fs.readFileSync(path.join(root,'engine/caravan/assets-src/kouma-score.json'))),mirror=JSON.parse(fs.readFileSync(path.join(root,'projects/touhou-kouma/touhou-kouma-design/music-v38/score.json')));assert.deepEqual(score,mirror);
  assert.deepEqual(score.tracks.map(t=>t.id),Array.from({length:19},(_,i)=>i+16));
- for(const t of score.tracks){const seconds=t.bars.length*16*t.speed/59.72750057;if(t.id===29){assert.equal(t.loop,false);assert.ok(seconds<4);continue;}
+ for(const t of score.tracks){const seconds=t.bars.length*16*(t.speed+(t.speedHalf?.5:0))/59.72750057;if(t.id===29){assert.equal(t.loop,false);assert.ok(seconds<4);continue;}
   assert.ok(t.loop);assert.ok(seconds>=57&&seconds<=61);const sections=new Set(t.bars.map(b=>b.section));assert.ok(sections.has('Intro')&&sections.has('A')&&sections.has('B'));assert.ok(new Set(t.bars.map(b=>b.chord)).size>=5);assert.ok(new Set(t.bars.map(b=>b.lead.join(','))).size>=20);
   for(const b of t.bars){assert.equal(b.lead.length,16);assert.equal(b.bass.length,16);assert.ok(b.lead.some(n=>n>0&&n<255));assert.ok(b.bass.some(n=>n>0&&n<255));}
  }

@@ -1,0 +1,244 @@
+{
+  "title": "SCARLET PILGRIMAGE",
+  "concept": "Pop character-introduction opening",
+  "revision": 3,
+  "duration_seconds": 40,
+  "aspect_ratio": "16:9",
+  "music": false,
+  "dialogue": false,
+  "finale_order": [
+    "Rumia",
+    "Sakuya Izayoi",
+    "Cirno",
+    "Patchouli Knowledge",
+    "Hong Meiling",
+    "Flandre Scarlet",
+    "Remilia Scarlet",
+    "Marisa Kirisame",
+    "Reimu Hakurei"
+  ],
+  "finale_group_start_seconds": 36.75,
+  "finale_group_end_seconds": 40,
+  "cast": {
+    "1": {
+      "name": "Reimu Hakurei",
+      "ja": "博麗霊夢",
+      "en": "long chestnut hair, brown eyes, large red-white bow, red calf-length shrine dress, yellow necktie and detached white sleeves",
+      "jp": "長い栗色の髪、茶色の瞳、大きな赤白リボン、ふくらはぎ丈の赤い巫女服、黄色の胸元の結び、白い分離袖"
+    },
+    "2": {
+      "name": "Marisa Kirisame",
+      "ja": "霧雨魔理沙",
+      "en": "blonde hair with a side braid, amber eyes, black witch hat with white bow, black calf-length dress and white apron, brown broom and octagonal focus",
+      "jp": "金髪と片側の編み込み、琥珀色の瞳、白リボン付き黒い魔女帽、ふくらはぎ丈の黒い服と白エプロン、茶色の箒、八角形の魔法の道具"
+    },
+    "3": {
+      "name": "Rumia",
+      "ja": "ルーミア",
+      "en": "blonde bob, red eyes, small red side ribbon, black dress over a white shirt with red tie",
+      "jp": "金髪ボブ、赤い瞳、小さな赤い横リボン、白シャツと赤ネクタイ、黒いワンピース"
+    },
+    "4": {
+      "name": "Cirno",
+      "ja": "チルノ",
+      "en": "ice-blue bob, blue hair bow and dress, red neck ribbon, white zigzag hem and six rigid ice-wing shards",
+      "jp": "水色ボブ、青い髪リボンと服、赤い胸リボン、白い山形の裾、左右3本ずつの氷の翼"
+    },
+    "5": {
+      "name": "Hong Meiling",
+      "ja": "紅美鈴",
+      "en": "long red hair with twin braids, green star beret, gold-trimmed green tunic, loose white trousers and green wrist guards",
+      "jp": "長い赤髪と二本の編み込み、星付き緑帽、金縁の緑の長衣、ゆったりした白ズボン、緑の手甲"
+    },
+    "6": {
+      "name": "Patchouli Knowledge",
+      "ja": "パチュリー・ノーレッジ",
+      "en": "long purple hair, crescent pink cap, red and blue ribbons, pink-lavender striped gown and purple book",
+      "jp": "長い紫髪、三日月飾りの桃色帽、赤青のリボン、桃色と薄紫の縦縞の長衣、紫の本"
+    },
+    "7": {
+      "name": "Sakuya Izayoi",
+      "ja": "十六夜咲夜",
+      "en": "silver bob with small braids, blue eyes, white maid headband, navy maid dress, white apron and green neck bow",
+      "jp": "銀髪ボブと小さな編み込み、青い瞳、白いメイドの髪飾り、紺の服、白いエプロン、緑の胸リボン"
+    },
+    "8": {
+      "name": "Remilia Scarlet",
+      "ja": "レミリア・スカーレット",
+      "en": "short light-blue hair, red eyes, pink frilled cap and dress with long bell sleeves, crimson bows and one pair of purple membrane bat wings",
+      "jp": "短い水色髪、赤い瞳、淡桃色のフリル帽と長いベル袖の服、紅いリボン、一対の紫の膜状のコウモリ翼"
+    },
+    "9": {
+      "name": "Flandre Scarlet",
+      "ja": "フランドール・スカーレット",
+      "en": "blonde side ponytail, red eyes, white cap with red bow, red dress and yellow necktie, dark wing spars with hanging rainbow crystals",
+      "jp": "金髪の横ポニーテール、赤い瞳、赤リボン付き白帽、赤い服と黄色の胸元の結び、虹色の結晶を下げた暗色の翼の枝"
+    }
+  },
+  "clips": [
+    {
+      "id": "clip-01",
+      "title": "ふたりに会いに、青空へ",
+      "global_start_seconds": 0,
+      "duration_seconds": 10,
+      "cast": [
+        "Reimu Hakurei",
+        "Marisa Kirisame"
+      ],
+      "shot_starts_seconds": [
+        0,
+        1.5,
+        3,
+        5,
+        6.5,
+        8
+      ],
+      "shot_labels_ja": [
+        "霊夢の振り向き",
+        "魔理沙がレンズ前へ",
+        "背中合わせの二人",
+        "霊夢の高速すれ違い",
+        "魔理沙の急な切り返し",
+        "縁側のかわいいひと呼吸"
+      ],
+      "pacing_ja": "笑顔と目線で登場。中盤の3秒だけ、強い遠近感の高速カットへ。最後は縁側の小さな仕草で和らげる。",
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "backgrounds/background-01-shrine.png",
+        "backgrounds/background-03-sky.png",
+        "storyboards/storyboard-01.png"
+      ],
+      "english_prompt": "clip-01.en.txt",
+      "japanese_prompt": "clip-01.ja.txt"
+    },
+    {
+      "id": "clip-02",
+      "title": "好きになる、小さな仕草",
+      "global_start_seconds": 10,
+      "duration_seconds": 10,
+      "cast": [
+        "Sakuya Izayoi",
+        "Patchouli Knowledge",
+        "Hong Meiling",
+        "Rumia",
+        "Cirno"
+      ],
+      "shot_starts_seconds": [
+        0,
+        1.5,
+        3,
+        4.5,
+        6,
+        8
+      ],
+      "shot_labels_ja": [
+        "咲夜のティーサービス",
+        "本から覗くパチュリー",
+        "美鈴の照れた敬礼",
+        "ルーミアとおやつ",
+        "チルノの氷の花",
+        "五人のお茶会"
+      ],
+      "pacing_ja": "視線・手元・表情で5人を紹介。トレイの円、本の縁、帽子へ形をつなぎ、最後はお茶会の一枚へ。",
+      "upload_order": [
+        "references/characters-02-rumia-cirno.png",
+        "references/characters-03-meiling-clean.png",
+        "references/characters-04-patchouli-sakuya.png",
+        "backgrounds/background-02-garden.png",
+        "storyboards/storyboard-02.png"
+      ],
+      "english_prompt": "clip-02.en.txt",
+      "japanese_prompt": "clip-02.ja.txt"
+    },
+    {
+      "id": "clip-03",
+      "title": "いたずらに、笑顔がこぼれる",
+      "global_start_seconds": 20,
+      "duration_seconds": 10,
+      "cast": [
+        "Remilia Scarlet",
+        "Flandre Scarlet",
+        "Reimu Hakurei",
+        "Marisa Kirisame"
+      ],
+      "shot_starts_seconds": [
+        0,
+        1.5,
+        3,
+        4.5,
+        6,
+        7.5
+      ],
+      "shot_labels_ja": [
+        "日傘から瞳へピント送り",
+        "フランがカメラへ覗き込む",
+        "霊夢が帽子の花びらを取る",
+        "フランと魔理沙の帽子いたずら",
+        "バラ越しに四人のじゃれ合い",
+        "姉妹の笑顔へゆっくり寄る"
+      ],
+      "pacing_ja": "日向の庭園で4人がじゃれ合う。花びらや指先から瞳へのピント送り、短い回り込み、手前のバラを横切る横移動で奥行きと楽しさを出す。最後は姉妹の笑顔に寄って落ち着く。",
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "references/characters-05-scarlet-sisters-corrected.png",
+        "backgrounds/background-02-garden.png",
+        "storyboards/storyboard-03.png"
+      ],
+      "english_prompt": "clip-03.en.txt",
+      "japanese_prompt": "clip-03.ja.txt"
+    },
+    {
+      "id": "clip-04",
+      "title": "ひとりずつ、そしてみんなで",
+      "global_start_seconds": 30,
+      "duration_seconds": 10,
+      "cast": [
+        "Rumia",
+        "Sakuya Izayoi",
+        "Cirno",
+        "Patchouli Knowledge",
+        "Hong Meiling",
+        "Flandre Scarlet",
+        "Remilia Scarlet",
+        "Marisa Kirisame",
+        "Reimu Hakurei"
+      ],
+      "shot_starts_seconds": [
+        0,
+        0.75,
+        1.5,
+        2.25,
+        3,
+        3.75,
+        4.5,
+        5.25,
+        6,
+        6.75
+      ],
+      "shot_labels_ja": [
+        "ルーミア",
+        "咲夜",
+        "チルノ",
+        "パチュリー",
+        "美鈴",
+        "フランドール",
+        "レミリア",
+        "魔理沙",
+        "霊夢",
+        "9人の集合絵"
+      ],
+      "pacing_ja": "9人を一人0.75秒の顔アップで切り替える。6.75秒から9人集合へ。最後の3.25秒は同じ集合構図で締める。",
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "references/characters-02-rumia-cirno.png",
+        "references/characters-03-meiling-clean.png",
+        "references/characters-04-patchouli-sakuya.png",
+        "references/characters-05-scarlet-sisters-corrected.png",
+        "storyboards/storyboard-04-portraits.png",
+        "references/final-ensemble.png"
+      ],
+      "english_prompt": "clip-04.en.txt",
+      "japanese_prompt": "clip-04.ja.txt"
+    }
+  ]
+}

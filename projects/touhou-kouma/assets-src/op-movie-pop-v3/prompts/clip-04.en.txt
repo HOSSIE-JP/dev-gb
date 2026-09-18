@@ -1,0 +1,49 @@
+subject_definitions:
+<Subject 3> is Rumia, the top character in <Picture 2>: blonde bob, red eyes, small red side ribbon, black dress over a white shirt with red tie.
+<Subject 7> is Sakuya Izayoi, the bottom character in <Picture 4>: silver bob with small braids, blue eyes, white maid headband, navy maid dress, white apron and green neck bow.
+<Subject 4> is Cirno, the bottom character in <Picture 2>: ice-blue bob, blue hair bow and dress, red neck ribbon, white zigzag hem and six rigid ice-wing shards.
+<Subject 6> is Patchouli Knowledge, the top character in <Picture 4>: long purple hair, crescent pink cap, red and blue ribbons, pink-lavender striped gown and purple book.
+<Subject 5> is Hong Meiling, the single character character in <Picture 3>: long red hair with twin braids, green star beret, gold-trimmed green tunic, loose white trousers and green wrist guards.
+<Subject 9> is Flandre Scarlet, the bottom character in <Picture 5>: blonde side ponytail, red eyes, white cap with red bow, red dress and yellow necktie, dark wing spars with hanging rainbow crystals.
+<Subject 8> is Remilia Scarlet, the top character in <Picture 5>: short light-blue hair, red eyes, pink frilled cap and dress with long bell sleeves, crimson bows and one pair of purple membrane bat wings.
+<Subject 2> is Marisa Kirisame, the bottom character in <Picture 1>: blonde hair with a side braid, amber eyes, black witch hat with white bow, black calf-length dress and white apron, brown broom and octagonal focus.
+<Subject 1> is Reimu Hakurei, the top character in <Picture 1>: long chestnut hair, brown eyes, large red-white bow, red calf-length shrine dress, yellow necktie and detached white sleeves.
+<Subject 10> is the sunlit rose-garden setting and two-row cast arrangement of the final ensemble illustration, from <Picture 7>.
+<Picture 6> is the clean visual board, read left-to-right and top-to-bottom, mapping the first nine portrait shots. It provides composition and identity cues; the written timeline supplies motion and cuts.
+<Picture 7> is the final ensemble composition anchor for [Shot 10], with all nine cast members together.
+
+summary:
+[reference generation + keyframe completion] Create exactly 10.000 seconds, 16:9. Give all nine characters separate direct-to-camera close-ups in this exact order: <Subject 3>, <Subject 7>, <Subject 4>, <Subject 6>, <Subject 5>, <Subject 9>, <Subject 8>, <Subject 2>, <Subject 1>. Each portrait lasts 0.750 seconds and uses the corresponding panel of <Picture 6>. At 00:06.750 cut to the complete nine-person ensemble in <Subject 10>, converging on <Picture 7> through the end at 00:10.000. This group image is the final shot of the opening. Use bright polished 2D anime, expressive eyes and a cute, upbeat visual-novel opening mood. Each shot fills one frame as a complete scene; costumes and faces follow the model sheets.
+
+retention_analysis:
+<Subject 3> (appears in [Shot 1], [Shot 10]): fully_preserved - retain Rumia's face, hair, headwear and costume across expressions and camera angles.
+<Subject 7> (appears in [Shot 2], [Shot 10]): fully_preserved - retain Sakuya Izayoi's face, hair, headwear and costume across expressions and camera angles.
+<Subject 4> (appears in [Shot 3], [Shot 10]): fully_preserved - retain Cirno's face, hair, headwear and costume across expressions and camera angles.
+<Subject 6> (appears in [Shot 4], [Shot 10]): fully_preserved - retain Patchouli Knowledge's face, hair, headwear and costume across expressions and camera angles.
+<Subject 5> (appears in [Shot 5], [Shot 10]): fully_preserved - retain Hong Meiling's face, hair, headwear and costume across expressions and camera angles.
+<Subject 9> (appears in [Shot 6], [Shot 10]): fully_preserved - retain Flandre Scarlet's face, hair, headwear and costume across expressions and camera angles.
+<Subject 8> (appears in [Shot 7], [Shot 10]): fully_preserved - retain Remilia Scarlet's face, hair, headwear and costume across expressions and camera angles.
+<Subject 2> (appears in [Shot 8], [Shot 10]): fully_preserved - retain Marisa Kirisame's face, hair, headwear and costume across expressions and camera angles.
+<Subject 1> (appears in [Shot 9], [Shot 10]): fully_preserved - retain Reimu Hakurei's face, hair, headwear and costume across expressions and camera angles.
+<Subject 10> (appears in [Shot 10]): fully_preserved - keep the bright location design while changing framing.
+<Picture 6> (shot composition): partially_preserved - preserve panel order and character placement; follow the written camera movement and exact timing.
+<Picture 7> ([Shot 10] final frame): fully_preserved - retain the complete cast, two-row arrangement and friendly expressions.
+
+detailed_description:
+Crisp cel animation, warm high-key light, expressive character acting, clean silhouettes and bright pastel accents.
+[Shot 1] Open on <Subject 3> in a tight face close-up matching the first panel of <Picture 6>. Blonde bob and red side ribbon frame her delighted smile. She tilts her head once toward the viewer against peach bokeh. A tiny cloth swish punctuates the motion.
+[Shot 2] At 00:00.750, Cut directly to <Subject 7>, silver braids and maid headband fully readable. Keep approximately the same eye line and face size. She gives a composed small smile with one blink against pale mint. A soft apron rustle accompanies a slight forward camera nudge.
+[Shot 3] At 00:01.500, Cut to <Subject 4> against icy blue, her blue hair bow inside frame. She finishes one confident wink, chin tipped upward. The camera is steady so her expression reads immediately. A short ice tick supplies the accent.
+[Shot 4] At 00:02.250, Cut to <Subject 6> against lavender. Her crescent cap frames her eyes; the purple book stays below her chin as she offers a shy smile. Make a tiny lateral camera move. One page edge flutters with a dry papery sound.
+[Shot 5] At 00:03.000, Cut to <Subject 5> against fresh green. Her red twin braids and star beret identify her immediately. With fingertips already at the brim, she gives a warm smile toward the lens. A quick cloth brush accompanies her small salute.
+[Shot 6] At 00:03.750, Cut to <Subject 9> against peach-pink. Her blonde side ponytail and red cap bow bounce slightly; a rainbow crystal glints at the far edge. She gives a sweet mischievous grin. Add one irregular crystal click and a minimal forward push.
+[Shot 7] At 00:04.500, Cut to <Subject 8> against rose, with her light-blue bob, pink cap and purple wing edge distinct. She turns her eyes directly toward us and smiles with playful composure. Keep the head movement small; the sleeve produces a gentle swish.
+[Shot 8] At 00:05.250, Cut to <Subject 2> against warm gold. Frame the white hat bow and blonde braid around her face. She tips the brim just enough to reveal a cheeky wink, already facing the camera. A short fabric snap lands on the gesture.
+[Shot 9] At 00:06.000, Cut to <Subject 1> against soft coral. Her red-white bow and chestnut bangs frame a clear, warm smile. Push forward slightly as she meets our eyes; her paper talisman remains below her face. A single paper flick prepares the ensemble cut.
+[Shot 10] At 00:06.750, Cut to all nine already arranged together in <Subject 10>, following <Picture 7>. Front row left-to-right: Cirno, Reimu, Marisa, Flandre; rear row: Rumia, Meiling, Patchouli, Sakuya, Remilia. Every face is visible. Pull back gently until 00:08.500, then hold the full composition with subtle hair, petals and smiling eyes through 00:10.000. End here on the welcoming group illustration, accompanied by soft garden wind and one quiet fabric flutter.
+
+overall_soundscape:
+Only sounds tied to the visible setting and gestures: wind, leaves, cloth, paper, porcelain and brief nonmelodic magical transients where specified. Use quiet gaps between close-up accents. No dialogue, narration, laughter, shouts, vocals or music.
+
+non_diegetic_music:
+None. No BGM, score, song or musical accompaniment.

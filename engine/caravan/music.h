@@ -45,9 +45,13 @@
 #define CE_MUSIC_MAX 37u
 
 /* A streamed bar is 3 instrument bytes + 16 lead + 16 accompaniment steps.
+ * Level byte: bits 5-6 = NR32 volume, bits 0-2 = wave ID (default zero).
+ * Speed: low six bits = VBlanks per row; bit 7 adds one on odd rows.
  * Its ROM bank is switched only once per bar; effects keep channels 1 and 4. */
 typedef struct { uint8_t bank; const uint8_t *data; uint16_t rows; uint8_t speed, loop; } CE_MusicScore;
 extern const CE_MusicScore ce_music_scores[];
+/* Same ROM bank as music.c. Wave zero is the legacy triangle. */
+extern const uint8_t ce_music_waves[8][16];
 
 extern uint8_t ce_music_track;
 extern uint16_t ce_music_row;

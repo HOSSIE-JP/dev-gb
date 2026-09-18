@@ -1,0 +1,24 @@
+{
+  "source": "opening-40s.mp4",
+  "sourceSha256": "45452993f6e1781969507174e20cf919c3fb6f00e3afb78e7f33a67484d5baca",
+  "seconds": 40,
+  "frames": 400,
+  "displaySeconds": 40.1824951171875,
+  "cgb": {
+    "width": 160,
+    "height": 96,
+    "palettes": 7
+  },
+  "dmg": {
+    "width": 112,
+    "height": 64,
+    "shades": 4
+  },
+  "pcm": {
+    "sampleRate": 8192,
+    "bits": 4,
+    "channels": 1,
+    "bytes": 164592,
+    "gain": 1.1666666666666667
+  }
+}

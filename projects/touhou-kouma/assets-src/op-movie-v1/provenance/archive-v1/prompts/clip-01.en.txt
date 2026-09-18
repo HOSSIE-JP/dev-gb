@@ -1,0 +1,31 @@
+subject_definitions:
+<Subject 1> is Reimu Hakurei, the top row of <Picture 1>: long chestnut hair, brown eyes, large red-and-white hair bow, red shrine dress, yellow necktie and detached white sleeves; she flies without a vehicle and uses paper talismans.
+<Subject 2> is Marisa Kirisame, the bottom row of <Picture 1>: blonde hair and a side braid, amber eyes, black witch hat with white bow, black-and-white dress and apron; she rides the brown broom and channels golden stars through the small octagonal focus.
+<Subject 3> is Rumia, ONLY the top row of <Picture 2>: blonde bob, red eyes, small red side ribbon, black dress over a white shirt and red tie. The blue-haired character on the lower row is not present in this clip.
+<Subject 4> is the forest-to-lake night environment from <Picture 3>: dark emerald canopy, scarlet mist, indigo sky, distant Gothic mansion.
+<Picture 4> is the six-panel storyboard for [Shot 1] through [Shot 6], read left-to-right, top-to-bottom. It guides shot scale, camera direction and staging; borders, arrows and labels never enter the video.
+
+summary:
+[reference generation] Create exactly 15.000 seconds of a 16:9 anime game opening. Introduce <Subject 1> and <Subject 2>, then show their airborne exchange with <Subject 3> above <Subject 4>, following <Picture 4>. End by racing toward the lake through blue mist. This is the opening quarter of a 60-second sequence. Reference sheets define identity only: never reproduce turnaround duplicates, grids, labels, arrows or split screens. Keep faces, anatomy and costumes stable. No extra characters, injury, generated logos, visible lettering, subtitles or lip-sync. Reimu and Marisa retain calf-length skirts from the model sheet even in flight.
+
+retention_analysis:
+<Subject 1> (appears in [Shot 1], [Shot 3], [Shot 4], [Shot 5], [Shot 6]): fully_preserved - retain the model-sheet identity, proportions, colors and clothing in every moving view.
+<Subject 2> (appears in [Shot 2], [Shot 3], [Shot 4], [Shot 5], [Shot 6]): fully_preserved - retain the single hat, side braid, apron and broom; never exchange her features with Reimu.
+<Subject 3> (appears in [Shot 4], [Shot 5]): fully_preserved - keep Rumia distinct, with no ice wings or blue costume.
+<Subject 4> (appears throughout): fully_preserved - preserve forest, mist and distant landmarks while changing viewpoint.
+<Picture 4> (six-shot planning reference): partially_preserved - Keep panel order and action staging; use the written shot directions for exact camera height, motion and timing, and the model sheets for costume length. Never reproduce arrows, labels or panel borders.
+
+detailed_description:
+Hand-drawn 2D anime, crisp cel shadows, painted backgrounds, controlled motion blur, readable flight lanes. Single-screen 16:9.
+[Shot 1] An extreme close-up catches <Subject 1>'s steady brown eye beneath chestnut bangs; a thin scarlet mist reflection slides over it. The camera pulls back quickly to a chest-up three-quarter view, revealing her red hair bow and white detached sleeves as she hovers above <Subject 4>'s treetops. She tightens two fingers around a paper talisman and turns toward the right. Her mouth stays closed. Layer wind and a short paper flutter; the opening breathes for a moment before acceleration.
+[Shot 2] At 00:02.000, the camera cuts to a low side-tracking view of <Subject 2> sweeping rightward on her broom, slightly below the canopy horizon. Her blonde side braid trails behind, one hand secures the hat brim, and her other hand controls the broom. She gives a closed-mouth, confident grin, then leans forward. Nearby leaves rush past the lens while her face remains sharp; a rising broom whoosh crosses from left to right.
+[Shot 3] At 00:04.000, the camera cuts to a low frontal wide shot flying backward ahead of both heroines. <Subject 1> holds screen-left, <Subject 2> screen-right, a full body-width between them. They climb together above the forest, then bank toward a dark opening in the mist. A restrained 20-degree clockwise camera roll follows their shared bank and returns level. Keep their silhouettes legible against the indigo sky. Cloth snaps and rushing air swell naturally.
+[Shot 4] At 00:07.000, the camera cuts to an over-shoulder view behind the pair. <Subject 3> floats clearly visible in the upper center, her blonde bob, red ribbon and black dress outlined in violet light. She opens both arms, emitting one expanding ring of dark-violet luminous orbs with a visible lower-right gap. The camera pushes toward that gap; the ring advances toward the heroines. Add a hollow magical pulse and individual passing bullet whistles.
+[Shot 5] At 00:10.000, the camera cuts above the ring, looking obliquely down. <Subject 1> slips edge-on through the gap and sends a fan of white-red talismans toward <Subject 3>; one small sector of orbs breaks into sparks. <Subject 2> dives through that cleared sector on her broom, returning a short golden star volley. The camera cranes downward with them, never losing the gap's location. Rumia remains airborne and unhurt in the background; show an exchange, not a victory. Crisp talisman snaps and tiny crackles punctuate the dodge.
+[Shot 6] At 00:13.000, the camera cuts to a rear chase view as the pair accelerate rightward away from the forest toward the distant lake. Branches fall below frame and cyan mist rises ahead. Preserve Reimu left and Marisa right. Blue mist softly covers the frame during the last 0.300 seconds, giving the next clip a lake-colored visual handoff. Continue the wind and finish at 00:15.000 without a fade to black.
+
+overall_soundscape:
+Only environmental and action sound: wind, cloth, paper flutters, broom air displacement, hollow magical pulses and short bullet crackles. Keep perspective and stereo movement synchronized to visible sources. No speech, shouts, breathing performance, lyrics, melodic chimes, rhythmic accompaniment or music.
+
+non_diegetic_music:
+None. No background music, score, song or musical accompaniment at any point.

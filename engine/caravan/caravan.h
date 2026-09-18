@@ -54,9 +54,10 @@ void ce_collide_beam(void) BANKED;
 
 typedef struct { uint8_t bank; const uint8_t *data; uint16_t length; } CE_Data;
 typedef struct { CE_Data dmg, cgb, attributes, palettes; } CE_MovieFrame;
-extern const uint8_t ce_movie_count;
-void ce_get_movie_frame(CE_MovieFrame *dest, uint8_t index) BANKED;
-extern const CE_Data ce_movie_pcm;
+extern const uint16_t ce_movie_count;
+void ce_get_movie_frame(CE_MovieFrame *dest, uint16_t index) BANKED;
+/* ROM0 descriptor list, terminated by a zero-length entry. */
+extern const CE_Data ce_movie_pcm[];
 void ce_play_movie(void) BANKED;
 typedef struct { uint16_t frame; int16_t x, y, vx, vy; } CE_Point;
 typedef struct {

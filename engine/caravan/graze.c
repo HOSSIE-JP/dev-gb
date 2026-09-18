@@ -23,7 +23,9 @@ void ce_graze_finish(void) BANKED {
     if (!ce_graze_pending || !eligible()) return;
     points = (uint16_t)ce_graze_pending * ce_graze_score;
     ce_state.score = 65535u - ce_state.score < points ? 65535u : ce_state.score + points;
-    if (!ce_graze_flash) ce_sound(8);
+    /* SFX owns its real-time cooldown. Continuous visual flashes must not
+     * silence subsequent newly grazed bullets for the whole barrage. */
+    ce_sound(8);
     ce_graze_flash = ce_graze_frames;
 }
 

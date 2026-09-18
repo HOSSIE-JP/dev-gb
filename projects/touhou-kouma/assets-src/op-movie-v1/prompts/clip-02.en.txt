@@ -1,0 +1,35 @@
+subject_definitions:
+<Subject 1> is Reimu, top row of <Picture 1>: chestnut hair, red-and-white bow and shrine dress, detached white sleeves, yellow tie, free flight and white-red talismans.
+<Subject 2> is Marisa, bottom row of <Picture 1>: blonde side braid, amber eyes, black hat with white bow, black-and-white apron dress, brown broom and octagonal magical focus.
+<Subject 3> is Cirno, ONLY the bottom row of <Picture 2>: ice-blue bob, blue bow and dress, red neck ribbon, zigzag white hem and exactly six rigid ice-wing shards. The upper-row character does not appear.
+<Subject 4> is Hong Meiling from <Picture 3>: red hair with twin braids, green star beret, green gold-trimmed tunic, loose white trousers and green wrist guards.
+<Subject 5> is the moonlit lake in the TOP panel of <Picture 4>: dark blue water, icy banks and cyan mist.
+<Subject 6> is the mansion gate in the BOTTOM panel of <Picture 4>: gold-tipped black ironwork, stone posts, roses and the distant red mansion.
+<Picture 5> is the clean six-panel visual board for [Shot 1] through [Shot 6], read left-to-right across the top row, then the bottom row. Use it for composition and subject placement. The written shot descriptions supply camera motion, action and timing.
+
+summary:
+[reference generation] Generate exactly 10.000 seconds in 16:9, the second quarter of the opening. <Subject 1> and <Subject 2> exchange airborne danmaku with <Subject 3> above <Subject 5>, then with <Subject 4> above <Subject 6>. Use <Picture 5> for six readable action cuts and end at the mansion entrance. Use the model sheets for each character’s identity and the clean six-panel board for composition. Every shot fills one 16:9 frame with the scene itself. Faces, anatomy and costumes remain consistent; each character appears once within the scene. Reimu and Marisa retain calf-length skirts from the model sheet even in flight. Cut sharply from shattered ice to the gate reveal; keep the palm strike, evasive crossing and doorway exit brisk.
+
+retention_analysis:
+<Subject 1> (all shots): fully_preserved - fixed identity, free flight, red-and-white silhouette and paper projectiles.
+<Subject 2> (all shots): fully_preserved - fixed identity, broom flight, hat and golden magical shots.
+<Subject 3> ([Shot 1], [Shot 2]): fully_preserved - retain six ice-wing shards; airborne ice needles are separate projectiles, not growing wings.
+<Subject 4> ([Shot 3], [Shot 4], [Shot 5]): fully_preserved - retain twin braids and white trousers, with no costume swap.
+<Subject 5> ([Shot 1], [Shot 2]): fully_preserved - use only the lake panel's scenery.
+<Subject 6> ([Shot 3] through [Shot 6]): fully_preserved - use only the gate panel's architecture.
+<Picture 5> (six-shot planning reference): partially_preserved - Keep panel order and action staging; use the written shot directions for exact camera height, motion and timing, and the model sheets for costume length.
+
+detailed_description:
+Hand-drawn 2D anime, crisp cel shadows, painted backgrounds, controlled motion blur, readable flight lanes. Single-screen 16:9.
+[Shot 1] Cyan mist clears to a steep overhead wide shot of <Subject 5>. <Subject 3> hovers above the lake center, identifiable by her blue dress and six rigid ice-wing shards. She spreads one rotating snowflake-shaped formation of ice needles across the water's reflection. <Subject 1> and <Subject 2> enter from lower-left, separated vertically, and peel around opposite edges of a clear lane. The camera descends in a small clockwise arc; brittle ice creaks and a cold wind replace the forest air.
+[Shot 2] At 00:02.000, the camera cuts to water level, tracking right beside <Subject 2>. She banks her broom through a controlled quarter-roll and fires a narrow golden ray from the focus in her free hand; it breaks a small cluster of ice needles ahead, not Cirno's wings. A spray of harmless glitter skips across the water. <Subject 1> sweeps overhead and returns an arcing row of talismans toward <Subject 3>, who dodges upward. Keep the attack, opening and escape legible. Add a short ray hiss, crystal fractures and a reflected water slap.
+[Shot 3] At 00:04.000, the camera cuts on an ice needle's pointed silhouette to a gold spear-tip on <Subject 6>'s gate. A fast upward tilt clears the ironwork and reveals <Subject 4> already levitating above the gate, green tunic and loose white trousers visibly distinct. The two heroines streak into the lower foreground. Rose bushes and the approach remain far beneath them; this is an aerial encounter. A brief rush of leaves gives way to a low palm-energy thump.
+[Shot 4] At 00:05.000, the camera cuts to a medium-wide side view. <Subject 4> rotates her shoulders and thrusts one palm, releasing a curved fan of multicolored light bullets. <Subject 1> glides laterally just outside its leading edge, turns her wrist and sends three bright talismans back through a stable gap. <Subject 2> climbs behind Reimu toward the other flank. The camera arcs briskly through 30 degrees around the exchange, maintaining Meiling on the far side. Synchronize palm impact, paper snaps and passing projectile whistles.
+[Shot 5] At 00:07.000, the camera cuts to a wide diagonal view above the gate. <Subject 1> rises left while <Subject 2> dives right, drawing two curved light trails around <Subject 4>'s expanding fan. They then converge beyond the gap, their paths never colliding. Meiling remains centered, guarding the entrance and turning to follow them, undefeated. A compact burst of stars meets colored bullets between them; the scenery remains intact.
+[Shot 6] At 00:08.500, the camera cuts behind the reunited pair rushing through the open outer gate toward the mansion's open doorway. Keep their motion forward and right; the camera accelerates with them just above the path without either heroine landing. A warm doorway glow fills the center during the last 0.300 seconds, ready to match the next clip's candlelight. Wind gains a subtle indoor echo. End at 00:10.000.
+
+overall_soundscape:
+Cold lake wind, ice cracks, splashes, broom whooshes, talisman paper, short magical ray hiss and soft palm-burst impacts, with a small doorway echo at the end. No voices, dialogue, singing, score, tonal musical pulses or percussion track.
+
+non_diegetic_music:
+None. No background music, score, song or musical accompaniment at any point.

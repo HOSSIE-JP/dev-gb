@@ -1,9 +1,18 @@
 #include "music.h"
 
-volatile uint8_t ce_music_test[16];
+volatile uint8_t ce_music_test[24];
+static const uint8_t wave_tracks[]={16,32,30,17,19,21,23,25};
 
 static void ticks(uint16_t count) {
     while (count--) ce_music_tick(1);
+}
+static uint8_t wave_matches(uint8_t index) {
+    uint8_t j, previous = CURRENT_BANK, ok = 1;
+    SWITCH_ROM(2); /* Expected waveform table shares the player's ROM bank. */
+    for (j = 0; j != 16; ++j)
+        if (AUD3WAVE[j] != ce_music_waves[index][j]) ok = 0;
+    SWITCH_ROM(previous);
+    return ok;
 }
 
 void main(void) {
@@ -56,6 +65,37 @@ void main(void) {
     ce_music_test[12] = !ce_music_track && !NR22_REG && !(NR30_REG & 0x80u);
     ce_music_test[13] = NR12_REG == ch1 && NR42_REG == noise && NR10_REG == sweep && NR51_REG == mixer;
     ce_music_test[14] = NR43_REG == 0x35;
+
+    /* A row speed of 5.5 is exactly 5,6,5,6... VBlanks, not an
+     * integer-rounded faster song. These checks run the shipped score. */
+    ce_music_play(CE_MUSIC_KOUMA_RUMIA);
+    ticks(4);
+    ce_music_test[15] = ce_music_row == 0;
+    ticks(1);
+    ce_music_test[15] &= ce_music_row == 1;
+    ticks(5);
+    ce_music_test[15] &= ce_music_row == 1;
+    ticks(1);
+    ce_music_test[15] &= ce_music_row == 2;
+    ticks(253);
+    ce_music_test[16] = ce_music_row == 48; /* Three 88-VBlank bars. */
+    ce_music_pause(1); ticks(300); ce_music_pause(0);
+    ce_music_test[17] = ce_music_row == 48;
+    ticks(3255);
+    ce_music_test[18] = ce_music_row == 639;
+    ticks(1);
+    ce_music_test[18] &= ce_music_row == 0; /* 3520 ticks for 40 bars. */
+    ce_music_test[19] = 1;
+    for (i = 0; i != 8; ++i) {
+        ce_music_play(wave_tracks[i]); ticks(192);
+        ce_music_pause(1); /* DAC off: actual wave RAM is readable on DMG. */
+        if (!wave_matches(i)) ce_music_test[19] = 0;
+        ce_music_pause(0);
+    }
+    ce_music_play(CE_MUSIC_TITLE); ce_music_pause(1);
+    ce_music_test[20] = wave_matches(0);
+    ce_music_pause(0);
+    ce_music_test[21] = NR12_REG == ch1 && NR42_REG == noise && NR10_REG == sweep && NR51_REG == mixer && NR43_REG == 0x35;
 
     /* Idle PCM is music alone, with effect DACs explicitly silenced. */
     NR12_REG = 0; NR42_REG = 0;

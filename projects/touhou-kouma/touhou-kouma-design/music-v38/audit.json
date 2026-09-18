@@ -1,0 +1,636 @@
+[
+  {
+    "id": 17,
+    "stage": 3,
+    "role": "road",
+    "title": "鉄門に舞う花",
+    "oldBpm": 127.99,
+    "bpm": 162.89,
+    "seconds": 58.934,
+    "bars": 40,
+    "keys": [
+      "G dorian",
+      "Bb major",
+      "D minor"
+    ],
+    "wave": "gate-pluck",
+    "uniqueLeadBars": 33,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 18,
+    "stage": 3,
+    "role": "boss",
+    "title": "紅蓮の歩法",
+    "oldBpm": 149.32,
+    "bpm": 179.18,
+    "seconds": 58.934,
+    "bars": 44,
+    "keys": [
+      "G minor",
+      "Bb major",
+      "D minor"
+    ],
+    "wave": "gate-pluck",
+    "uniqueLeadBars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "Development",
+        4
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 19,
+    "stage": 4,
+    "role": "road",
+    "title": "六曜の書塵",
+    "oldBpm": 111.99,
+    "bpm": 162.89,
+    "seconds": 58.934,
+    "bars": 40,
+    "keys": [
+      "F# minor",
+      "A major",
+      "C# minor"
+    ],
+    "wave": "library-organ",
+    "uniqueLeadBars": 33,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 20,
+    "stage": 4,
+    "role": "boss",
+    "title": "月の余白",
+    "oldBpm": 149.32,
+    "bpm": 179.18,
+    "seconds": 58.934,
+    "bars": 44,
+    "keys": [
+      "F# minor",
+      "A major",
+      "C# minor"
+    ],
+    "wave": "library-organ",
+    "uniqueLeadBars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "Development",
+        4
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 21,
+    "stage": 5,
+    "role": "road",
+    "title": "秒針の迷廊",
+    "oldBpm": 127.99,
+    "bpm": 179.18,
+    "seconds": 58.934,
+    "bars": 44,
+    "keys": [
+      "B minor",
+      "D minor",
+      "F# minor"
+    ],
+    "wave": "clock-metal",
+    "uniqueLeadBars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "Development",
+        4
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 22,
+    "stage": 5,
+    "role": "boss",
+    "title": "一瞬の銀",
+    "oldBpm": 149.32,
+    "bpm": 199.09,
+    "seconds": 60.274,
+    "bars": 50,
+    "keys": [
+      "B minor",
+      "D minor",
+      "F# minor"
+    ],
+    "wave": "clock-metal",
+    "uniqueLeadBars": 42,
+    "form": [
+      [
+        "Intro",
+        2
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "Development",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        12
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 23,
+    "stage": 6,
+    "role": "road",
+    "title": "胸壁の上の月",
+    "oldBpm": 111.99,
+    "bpm": 162.89,
+    "seconds": 58.934,
+    "bars": 40,
+    "keys": [
+      "E minor",
+      "G minor",
+      "C major"
+    ],
+    "wave": "mansion-brass",
+    "uniqueLeadBars": 33,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 24,
+    "stage": 6,
+    "role": "boss",
+    "title": "夜潮の冠",
+    "oldBpm": 149.32,
+    "bpm": 179.18,
+    "seconds": 58.934,
+    "bars": 44,
+    "keys": [
+      "E minor",
+      "G minor",
+      "C major"
+    ],
+    "wave": "mansion-brass",
+    "uniqueLeadBars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "Development",
+        4
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 25,
+    "stage": 7,
+    "role": "road",
+    "title": "灯らぬ七つの窓",
+    "oldBpm": 127.99,
+    "bpm": 179.18,
+    "seconds": 58.934,
+    "bars": 44,
+    "keys": [
+      "C# minor",
+      "E major",
+      "G minor"
+    ],
+    "wave": "basement-toy",
+    "uniqueLeadBars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "Development",
+        4
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 26,
+    "stage": 7,
+    "role": "boss",
+    "title": "暁の外の遊戯室",
+    "oldBpm": 149.32,
+    "bpm": 199.09,
+    "seconds": 60.274,
+    "bars": 50,
+    "keys": [
+      "C# minor",
+      "E major",
+      "G minor"
+    ],
+    "wave": "basement-toy",
+    "uniqueLeadBars": 42,
+    "form": [
+      [
+        "Intro",
+        2
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "Development",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        12
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 30,
+    "stage": 2,
+    "role": "road",
+    "title": "こおりぼしのさざなみ",
+    "oldBpm": 127.99,
+    "bpm": 162.89,
+    "seconds": 58.934,
+    "bars": 40,
+    "keys": [
+      "A major",
+      "C major",
+      "E major"
+    ],
+    "wave": "ice-glass",
+    "uniqueLeadBars": 33,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 31,
+    "stage": 2,
+    "role": "boss",
+    "title": "あさつゆのこおりあそび",
+    "oldBpm": 149.32,
+    "bpm": 179.18,
+    "seconds": 58.934,
+    "bars": 44,
+    "keys": [
+      "A major",
+      "C major",
+      "E major"
+    ],
+    "wave": "ice-glass",
+    "uniqueLeadBars": 36,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "Development",
+        4
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  },
+  {
+    "id": 32,
+    "stage": 1,
+    "role": "road",
+    "title": "宵闇の散歩道",
+    "oldBpm": 111.99,
+    "bpm": 149.32,
+    "seconds": 57.863,
+    "bars": 36,
+    "keys": [
+      "D minor",
+      "F major",
+      "G minor"
+    ],
+    "wave": "forest-reed",
+    "uniqueLeadBars": 31,
+    "form": [
+      [
+        "Intro",
+        2
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        4
+      ],
+      [
+        "Reprise",
+        12
+      ],
+      [
+        "Turnaround",
+        2
+      ]
+    ]
+  },
+  {
+    "id": 33,
+    "stage": 1,
+    "role": "boss",
+    "title": "月を隠すリボン",
+    "oldBpm": 127.99,
+    "bpm": 162.89,
+    "seconds": 58.934,
+    "bars": 40,
+    "keys": [
+      "C minor",
+      "Eb major",
+      "F minor"
+    ],
+    "wave": "forest-reed",
+    "uniqueLeadBars": 33,
+    "form": [
+      [
+        "Intro",
+        4
+      ],
+      [
+        "A",
+        8
+      ],
+      [
+        "B",
+        8
+      ],
+      [
+        "Bridge",
+        8
+      ],
+      [
+        "Reprise",
+        8
+      ],
+      [
+        "Turnaround",
+        4
+      ]
+    ]
+  }
+]

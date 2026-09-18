@@ -1,0 +1,35 @@
+subject_definitions:
+<Subject 1> is Reimu, top row of <Picture 1>: brown eyes and long chestnut hair, large red-white bow, red shrine dress, detached white sleeves and yellow necktie; she flies and uses talismans.
+<Subject 2> is Marisa, bottom row of <Picture 1>: blonde side braid, black hat with white bow, black-white apron dress, broom and octagonal focus.
+<Subject 3> is Remilia Scarlet, top row of <Picture 2>: short light-blue hair, red eyes, pale pink frilled cap and dress, crimson bows and exactly one pair of purple membranous bat wings.
+<Subject 4> is Flandre Scarlet, bottom row of <Picture 2>: blonde hair with one side ponytail, red eyes, white cap with red bow, red dress and yellow necktie, dark wing spars with hanging rainbow crystals. Her wings never become membranes.
+<Subject 5> is the red Gothic mansion roof and scarlet-moon sky from <Picture 3>.
+<Picture 4> is the clean six-panel visual board for [Shot 1] through [Shot 6], read left-to-right across the top row, then the bottom row. Use it for composition and subject placement. The written shot descriptions supply camera motion, action and timing.
+<Picture 5> is the final-frame composition anchor for [Shot 6]: Reimu close on the right, moon and mansion on the left, clear upper-left space. It contains no title lettering; use it at the end of 00:10.000.
+
+summary:
+[reference generation + keyframe completion] Exactly 10.000 seconds, 16:9, completing the 40-second opening. <Subject 1> and <Subject 2> trade airborne attacks with <Subject 3> and <Subject 4> above <Subject 5>, then face them in a poised four-person standoff. Follow <Picture 4>, converge on <Picture 5>, and leave the resolution to the game. Use the model sheets for each character’s identity and the clean six-panel board for composition. Every shot fills one 16:9 frame with the scene itself. Faces, anatomy and costumes remain consistent; each character appears once within the scene. Reimu and Marisa retain calf-length skirts from the model sheet even in flight. Use fast exchanges in the first half, a sudden deceleration into the standoff, then a final half-second settled composition.
+
+retention_analysis:
+<Subject 1> (all shots): fully_preserved - preserve appearance and talisman hand; title-bridge close-up remains the same character.
+<Subject 2> ([Shot 2] through [Shot 5]): fully_preserved - preserve hat, braid, broom and focus.
+<Subject 3> ([Shot 1], [Shot 3], [Shot 4], [Shot 5]): fully_preserved - light-blue hair, pink costume and purple membrane wings stay distinct.
+<Subject 4> ([Shot 2], [Shot 3], [Shot 4], [Shot 5]): fully_preserved - blonde hair, scarlet costume and rainbow crystal wing structures stay distinct.
+<Subject 5> (all shots): fully_preserved - preserve red masonry, roof silhouettes and scarlet moon.
+<Picture 4> (six-shot planning reference): partially_preserved - Keep panel order and action staging; use the written shot directions for exact camera height, motion and timing, and the model sheets for costume length.
+<Picture 5> ([Shot 6] final frame): fully_preserved - reach the face, talisman and mansion placement while leaving the logo area empty.
+
+detailed_description:
+Hand-drawn 2D anime, crisp cel shadows, painted backgrounds, controlled motion blur, readable flight lanes. Single-screen 16:9.
+[Shot 1] A scarlet cloud wisp clears into a low oblique wide shot above <Subject 5>'s roof. <Subject 3> hovers upper-right against the scarlet moon, light-blue hair and pink frills rim-lit, purple bat wings spread. She sweeps an arm and launches a curved row of crimson spear-shaped light bullets. <Subject 1> enters lower-left, slips upward through a gap and returns a curling talisman stream. Track beside Reimu while the roof falls away below. Layer high wind, a spear rush and snapping paper.
+[Shot 2] At 00:02.000, the camera cuts across the same battle axis to <Subject 2> banking her broom above another roof ridge. <Subject 4> floats opposite, her blonde side ponytail and dangling rainbow crystals unmistakable. Flandre flicks her hand and sends a prismatic fan outward. Marisa rolls a quarter-turn around its edge and answers with one short golden star-lance from the focus. Reimu remains a small red silhouette crossing the deep background. The camera tracks with Marisa; crystalline clicks meet a brief magical hiss.
+[Shot 3] At 00:04.000, the camera cuts to a high, wide view of all four, heroines near, sisters far. <Subject 1> and <Subject 2> cross on vertically separated curves, producing a loose red-and-gold double helix. <Subject 3>'s crimson bullets and <Subject 4>'s prismatic bullets intersect their counterfire at the center, breaking into a compact halo of sparks. Pull out rapidly to reveal the pattern, keeping every body outside the impact. No one is defeated; the roof is untouched.
+[Shot 4] At 00:05.500, the camera cuts behind the heroines, Reimu lower-left and Marisa lower-right on her broom. They slow to a controlled hover, facing Remilia upper-left and Flandre upper-right beneath the moon. The camera arcs 20 degrees in 0.400 seconds, then settles. Preserve four separate silhouettes: cloth and hair move, bat membranes flex, rainbow crystals hang from rigid spars. The remaining bullets drift outward, leaving a clear space between both sides. Wind and fading sparks carry the tension.
+[Shot 5] At 00:07.500, the camera cuts to a closer reverse angle on both heroines, with distant sister wing silhouettes. <Subject 1> holds a talisman beside her cheek and narrows her eyes; <Subject 2> already has her focus raised, flashing a closed-mouth grin. Push in slightly as red and gold reflections pass over their faces. Hold readiness rather than striking another blow. A single paper snap and a small nonmusical magical crackle mark the pose.
+[Shot 6] At 00:08.500, the camera cuts to a close composition converging on <Picture 5>: Reimu occupies the right half, her face unobstructed and her raised talisman angled inward; the moonlit mansion lies on the left. Marisa and the sisters are outside this tighter framing. Settle all camera motion by 00:09.500, retaining gentle hair movement until 00:10.000. Keep the upper-left clear, with no generated title or letters. This quiet final image prepares a direct editorial cut to the existing game title screen.
+
+overall_soundscape:
+High-altitude wind, cloth, paper snaps, short magical bursts, prism clicks and fading sparks. Reduce projectile sounds during the standoff and end on a soft wind tail. No dialogue, shouts, laughter, narration, vocals, music, melody, rhythmic percussion or orchestral impact.
+
+non_diegetic_music:
+None. No background music, score, song or musical accompaniment at any point.

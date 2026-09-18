@@ -1,0 +1,777 @@
+{
+  "status": "passed",
+  "checked_at": "2026-09-18T13:08:22.534Z",
+  "automated_checks": [
+    {
+      "name": "four_clips",
+      "pass": true,
+      "detail": 4
+    },
+    {
+      "name": "sixty_seconds",
+      "pass": true,
+      "detail": 60
+    },
+    {
+      "name": "clip-01_six_cuts",
+      "pass": true,
+      "detail": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        13
+      ]
+    },
+    {
+      "name": "clip-01_picture_1",
+      "pass": true,
+      "detail": "references/characters-01-heroes.png"
+    },
+    {
+      "name": "clip-01_picture_2",
+      "pass": true,
+      "detail": "references/characters-02-rumia-cirno.png"
+    },
+    {
+      "name": "clip-01_picture_3",
+      "pass": true,
+      "detail": "backgrounds/background-01-forest.png"
+    },
+    {
+      "name": "clip-01_picture_4",
+      "pass": true,
+      "detail": "storyboards/storyboard-01-costume-fixed.png"
+    },
+    {
+      "name": "clip-01_en_fields",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-01_en_shots",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-01_en_timing",
+      "pass": true,
+      "detail": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        13
+      ]
+    },
+    {
+      "name": "clip-01_en_references_resolve",
+      "pass": true,
+      "detail": [
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 3>",
+        "<Picture 2>",
+        "<Subject 4>",
+        "<Picture 3>",
+        "<Picture 4>"
+      ]
+    },
+    {
+      "name": "clip-01_en_picture_count",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "clip-01_en_no_vocal_script",
+      "pass": true,
+      "detail": "No dialogue or supplied audio asset"
+    },
+    {
+      "name": "clip-01_en_music_disabled",
+      "pass": true,
+      "detail": "Explicit no music"
+    },
+    {
+      "name": "clip-01_description_words",
+      "pass": true,
+      "detail": 476
+    },
+    {
+      "name": "clip-01_ja_fields",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-01_ja_shots",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-01_ja_timing",
+      "pass": true,
+      "detail": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        13
+      ]
+    },
+    {
+      "name": "clip-01_ja_references_resolve",
+      "pass": true,
+      "detail": [
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 3>",
+        "<Picture 2>",
+        "<Subject 4>",
+        "<Picture 3>",
+        "<Picture 4>"
+      ]
+    },
+    {
+      "name": "clip-01_ja_picture_count",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "clip-01_ja_no_vocal_script",
+      "pass": true,
+      "detail": "No dialogue or supplied audio asset"
+    },
+    {
+      "name": "clip-01_ja_music_disabled",
+      "pass": true,
+      "detail": "Explicit no music"
+    },
+    {
+      "name": "clip-02_six_cuts",
+      "pass": true,
+      "detail": [
+        0,
+        3,
+        6,
+        8,
+        11,
+        13
+      ]
+    },
+    {
+      "name": "clip-02_picture_1",
+      "pass": true,
+      "detail": "references/characters-01-heroes.png"
+    },
+    {
+      "name": "clip-02_picture_2",
+      "pass": true,
+      "detail": "references/characters-02-rumia-cirno.png"
+    },
+    {
+      "name": "clip-02_picture_3",
+      "pass": true,
+      "detail": "references/characters-03-meiling-clean.png"
+    },
+    {
+      "name": "clip-02_picture_4",
+      "pass": true,
+      "detail": "backgrounds/background-02-lake-gate.png"
+    },
+    {
+      "name": "clip-02_picture_5",
+      "pass": true,
+      "detail": "storyboards/storyboard-02.png"
+    },
+    {
+      "name": "clip-02_en_fields",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-02_en_shots",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-02_en_timing",
+      "pass": true,
+      "detail": [
+        0,
+        3,
+        6,
+        8,
+        11,
+        13
+      ]
+    },
+    {
+      "name": "clip-02_en_references_resolve",
+      "pass": true,
+      "detail": [
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 3>",
+        "<Picture 2>",
+        "<Subject 4>",
+        "<Picture 3>",
+        "<Subject 5>",
+        "<Picture 4>",
+        "<Subject 6>",
+        "<Picture 5>"
+      ]
+    },
+    {
+      "name": "clip-02_en_picture_count",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "clip-02_en_no_vocal_script",
+      "pass": true,
+      "detail": "No dialogue or supplied audio asset"
+    },
+    {
+      "name": "clip-02_en_music_disabled",
+      "pass": true,
+      "detail": "Explicit no music"
+    },
+    {
+      "name": "clip-02_description_words",
+      "pass": true,
+      "detail": 495
+    },
+    {
+      "name": "clip-02_ja_fields",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-02_ja_shots",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-02_ja_timing",
+      "pass": true,
+      "detail": [
+        0,
+        3,
+        6,
+        8,
+        11,
+        13
+      ]
+    },
+    {
+      "name": "clip-02_ja_references_resolve",
+      "pass": true,
+      "detail": [
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 3>",
+        "<Picture 2>",
+        "<Subject 4>",
+        "<Picture 3>",
+        "<Subject 5>",
+        "<Picture 4>",
+        "<Subject 6>",
+        "<Picture 5>"
+      ]
+    },
+    {
+      "name": "clip-02_ja_picture_count",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "clip-02_ja_no_vocal_script",
+      "pass": true,
+      "detail": "No dialogue or supplied audio asset"
+    },
+    {
+      "name": "clip-02_ja_music_disabled",
+      "pass": true,
+      "detail": "Explicit no music"
+    },
+    {
+      "name": "clip-03_six_cuts",
+      "pass": true,
+      "detail": [
+        0,
+        3,
+        6,
+        8,
+        11,
+        13
+      ]
+    },
+    {
+      "name": "clip-03_picture_1",
+      "pass": true,
+      "detail": "references/characters-01-heroes.png"
+    },
+    {
+      "name": "clip-03_picture_2",
+      "pass": true,
+      "detail": "references/characters-04-patchouli-sakuya.png"
+    },
+    {
+      "name": "clip-03_picture_3",
+      "pass": true,
+      "detail": "backgrounds/background-03-library-clock.png"
+    },
+    {
+      "name": "clip-03_picture_4",
+      "pass": true,
+      "detail": "storyboards/storyboard-03-costume-fixed.png"
+    },
+    {
+      "name": "clip-03_en_fields",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-03_en_shots",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-03_en_timing",
+      "pass": true,
+      "detail": [
+        0,
+        3,
+        6,
+        8,
+        11,
+        13
+      ]
+    },
+    {
+      "name": "clip-03_en_references_resolve",
+      "pass": true,
+      "detail": [
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 3>",
+        "<Picture 2>",
+        "<Subject 4>",
+        "<Subject 5>",
+        "<Picture 3>",
+        "<Subject 6>",
+        "<Picture 4>"
+      ]
+    },
+    {
+      "name": "clip-03_en_picture_count",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "clip-03_en_no_vocal_script",
+      "pass": true,
+      "detail": "No dialogue or supplied audio asset"
+    },
+    {
+      "name": "clip-03_en_music_disabled",
+      "pass": true,
+      "detail": "Explicit no music"
+    },
+    {
+      "name": "clip-03_description_words",
+      "pass": true,
+      "detail": 500
+    },
+    {
+      "name": "clip-03_ja_fields",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-03_ja_shots",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-03_ja_timing",
+      "pass": true,
+      "detail": [
+        0,
+        3,
+        6,
+        8,
+        11,
+        13
+      ]
+    },
+    {
+      "name": "clip-03_ja_references_resolve",
+      "pass": true,
+      "detail": [
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 3>",
+        "<Picture 2>",
+        "<Subject 4>",
+        "<Subject 5>",
+        "<Picture 3>",
+        "<Subject 6>",
+        "<Picture 4>"
+      ]
+    },
+    {
+      "name": "clip-03_ja_picture_count",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "clip-03_ja_no_vocal_script",
+      "pass": true,
+      "detail": "No dialogue or supplied audio asset"
+    },
+    {
+      "name": "clip-03_ja_music_disabled",
+      "pass": true,
+      "detail": "Explicit no music"
+    },
+    {
+      "name": "clip-04_six_cuts",
+      "pass": true,
+      "detail": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        13.5
+      ]
+    },
+    {
+      "name": "clip-04_picture_1",
+      "pass": true,
+      "detail": "references/characters-01-heroes.png"
+    },
+    {
+      "name": "clip-04_picture_2",
+      "pass": true,
+      "detail": "references/characters-05-scarlet-sisters-corrected.png"
+    },
+    {
+      "name": "clip-04_picture_3",
+      "pass": true,
+      "detail": "backgrounds/background-04-scarlet-roof.png"
+    },
+    {
+      "name": "clip-04_picture_4",
+      "pass": true,
+      "detail": "storyboards/storyboard-04.png"
+    },
+    {
+      "name": "clip-04_picture_5",
+      "pass": true,
+      "detail": "references/title-bridge.png"
+    },
+    {
+      "name": "clip-04_en_fields",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-04_en_shots",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-04_en_timing",
+      "pass": true,
+      "detail": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        13.5
+      ]
+    },
+    {
+      "name": "clip-04_en_references_resolve",
+      "pass": true,
+      "detail": [
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 3>",
+        "<Picture 2>",
+        "<Subject 4>",
+        "<Subject 5>",
+        "<Picture 3>",
+        "<Picture 4>",
+        "<Picture 5>"
+      ]
+    },
+    {
+      "name": "clip-04_en_picture_count",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "clip-04_en_no_vocal_script",
+      "pass": true,
+      "detail": "No dialogue or supplied audio asset"
+    },
+    {
+      "name": "clip-04_en_music_disabled",
+      "pass": true,
+      "detail": "Explicit no music"
+    },
+    {
+      "name": "clip-04_description_words",
+      "pass": true,
+      "detail": 500
+    },
+    {
+      "name": "clip-04_ja_fields",
+      "pass": true,
+      "detail": [
+        "subject_definitions",
+        "summary",
+        "retention_analysis",
+        "detailed_description",
+        "overall_soundscape",
+        "non_diegetic_music"
+      ]
+    },
+    {
+      "name": "clip-04_ja_shots",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "clip-04_ja_timing",
+      "pass": true,
+      "detail": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        13.5
+      ]
+    },
+    {
+      "name": "clip-04_ja_references_resolve",
+      "pass": true,
+      "detail": [
+        "<Subject 1>",
+        "<Picture 1>",
+        "<Subject 2>",
+        "<Subject 3>",
+        "<Picture 2>",
+        "<Subject 4>",
+        "<Subject 5>",
+        "<Picture 3>",
+        "<Picture 4>",
+        "<Picture 5>"
+      ]
+    },
+    {
+      "name": "clip-04_ja_picture_count",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "clip-04_ja_no_vocal_script",
+      "pass": true,
+      "detail": "No dialogue or supplied audio asset"
+    },
+    {
+      "name": "clip-04_ja_music_disabled",
+      "pass": true,
+      "detail": "Explicit no music"
+    },
+    {
+      "name": "all_seven_bosses",
+      "pass": true,
+      "detail": [
+        "Rumia",
+        "Cirno",
+        "Hong Meiling",
+        "Patchouli Knowledge",
+        "Sakuya Izayoi",
+        "Remilia Scarlet",
+        "Flandre Scarlet"
+      ]
+    },
+    {
+      "name": "fourteen_selected_images",
+      "pass": true,
+      "detail": 14
+    }
+  ],
+  "visual_review": "Reviewed all selected generated images for cast, costume, background and storyboard function. Storyboard thumbnails are schematic; the text timeline and character model sheets govern exact details.",
+  "not_performed": [
+    "Video generation",
+    "Motion/identity continuity in a generated video",
+    "Actual SFX sync and absence of music in rendered video",
+    "ROM movie conversion and integration"
+  ]
+}

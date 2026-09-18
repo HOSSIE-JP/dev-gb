@@ -1,0 +1,34 @@
+subject_definitions:
+<Subject 8> is Remilia Scarlet, the top character in <Picture 2>: short light-blue hair, red eyes, pink frilled cap and dress with long bell sleeves, crimson bows and one pair of purple membrane bat wings.
+<Subject 9> is Flandre Scarlet, the bottom character in <Picture 2>: blonde side ponytail, red eyes, white cap with red bow, red dress and yellow necktie, dark wing spars with hanging rainbow crystals.
+<Subject 1> is Reimu Hakurei, the top character in <Picture 1>: long chestnut hair, brown eyes, large red-white bow, red calf-length shrine dress, yellow necktie and detached white sleeves.
+<Subject 2> is Marisa Kirisame, the bottom character in <Picture 1>: blonde hair with a side braid, amber eyes, black witch hat with white bow, black calf-length dress and white apron.
+<Subject 10> is the warm manor garden terrace with rose petals, pale stone and layered foreground flowers, from <Picture 3>.
+<Picture 4> is the clean visual board, read left-to-right and top-to-bottom, mapping [Shot 1] through [Shot 6]. It provides composition and identity cues; the written timeline supplies motion and cuts.
+
+summary:
+[reference generation] Create exactly 10.000 seconds, 16:9. Show <Subject 8>, <Subject 9>, <Subject 1> and <Subject 2> sharing gentle, mischievous play in <Subject 10>. Use <Picture 4> for the six compositions. A petal taken from a cap, a teasing hat-brim nudge and one playful sidestep create an affectionate character passage. Motivate focus changes with each gesture and its smiling reaction; use short arcs, gentle pullbacks and lateral flower parallax. Finish on the sisters leaning together. Use bright polished 2D anime, expressive eyes and a cute, upbeat visual-novel opening mood. Each shot fills one frame as a complete scene; costumes and faces follow the model sheets.
+
+retention_analysis:
+<Subject 8> (appears in [Shot 1], [Shot 2], [Shot 3], [Shot 5], [Shot 6]): fully_preserved - retain Remilia Scarlet's face, hair, headwear and costume across expressions and camera angles.
+<Subject 9> (appears in [Shot 2], [Shot 4], [Shot 5], [Shot 6]): fully_preserved - retain Flandre Scarlet's face, hair, headwear and costume across expressions and camera angles.
+<Subject 1> (appears in [Shot 3], [Shot 5]): fully_preserved - retain Reimu Hakurei's face, hair, headwear and costume across expressions and camera angles.
+<Subject 2> (appears in [Shot 4], [Shot 5]): fully_preserved - retain Marisa Kirisame's face, hair, headwear and costume across expressions and camera angles.
+<Subject 2> and <Subject 9> ([Shot 4] hat interaction): fully_preserved - Marisa lifts the front brim with her anatomical right hand; Flandre nudges the outer brim with her own right index finger. Their other hands stay low, each wrist continuous with its own forearm. Keep their faces recognizable through the focus shift.
+<Subject 10> (appears in [Shot 1], [Shot 2], [Shot 3], [Shot 4], [Shot 5], [Shot 6]): fully_preserved - keep the bright location design while changing framing.
+<Picture 4> (shot composition): partially_preserved - preserve panel order and character placement; follow the written camera movement and exact timing.
+
+detailed_description:
+Crisp cel animation, warm high-key light, expressive character acting, clean silhouettes and bright pastel accents.
+[Shot 1] Begin close to the rose-colored parasol rim in <Subject 10>, its fabric briefly sharp. It sweeps aside to reveal <Subject 8>, blue bob and pink cap glowing in warm light. Smoothly transfer focus from the near rim to her red eyes as she tilts her chin with a confident little smile. Arc a few degrees at eye level and settle on her face. A purple bat-wing edge frames her shoulder; parasol cloth and a tiny handle click accent the reveal.
+[Shot 2] At 00:01.500, Cut closer as <Subject 9> peeks around her sister’s shoulder toward the lens. Her side ponytail bounces once, white cap and red bow clearly separate from Remilia’s pink cap. Ease backward twenty centimeters as she comes nearer, transferring focus from her sister to Flandre’s mischievous eyes. Keep the near cheek crisp and the rose garden softly blurred. Rainbow crystals remain behind her shoulders. A sleeve swish and two small crystal clicks accompany the playful intrusion.
+[Shot 3] At 00:03.000, Cut to <Subject 1> at left and <Subject 8> at right in an intimate garden two-shot. Reimu gently lifts one rose petal from Remilia’s cap and shows it between her fingertips. Start focused on the petal, then shift to Remilia’s eyes as she leans back slightly with an amused, mock-surprised blink. Reimu smiles at her reaction. Make a small sideways arc, preserving both faces and separate hands. A delicate fabric brush and leaves provide the accent.
+[Shot 4] At 00:04.500, Cut to <Subject 2> at left and <Subject 9> at right. Flandre lightly nudges the outer hat brim with her right index finger; Marisa lifts its front edge with her own right hand and reveals an amused grin. Their other hands rest low. Slide gently sideways, first focusing on the fingertip and brim, then on Marisa’s eyes as they appear. Keep wrists connected naturally to their own arms. A soft hat-fabric tap punctuates this friendly tease.
+[Shot 5] At 00:06.000, Widen to a waist-up group: Marisa foreground left, Flandre foreground right, Reimu rear left and Remilia rear right. Marisa takes one playful sidestep as Flandre reaches toward the hat, smiling over her shoulder. Reimu and Remilia exchange delighted looks. Track sideways behind a nearby rose cluster, letting its soft blur briefly skim the frame edge before revealing all four. Settle with every face readable at moderate depth of field. One light footstep, leaves and cloth carry the motion.
+[Shot 6] At 00:07.500, Cut to <Subject 8> and <Subject 9> shoulder to shoulder. Flandre leans affectionately toward Remilia, whose poised expression melts into a smile. Begin on a nearby crystal glint, then transfer focus to both faces on the same plane while slowly pushing in. Their distinct wings frame the warm garden bokeh. Settle the camera as both look toward us; hold the shared smile through 00:10.000. A soft crystal tick and garden breeze finish the moment.
+
+overall_soundscape:
+Quiet garden air, leaves, soft sleeves, parasol and hat fabric, one light footstep and tiny physical crystal clicks. Match each accent to the visible gesture and leave gentle gaps. Smiles and playful reactions are silent. No dialogue, narration, laughter, shouts, vocals or music.
+
+non_diegetic_music:
+None. No BGM, score, song or musical accompaniment.

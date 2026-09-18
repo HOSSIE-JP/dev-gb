@@ -878,7 +878,7 @@ export function validate(value: unknown): Diagnostic[] {
     }
     if (game.startupMovie) {
         const movie=game.startupMovie;
-        integer(movie.frames.length,1,36,"startupMovie");
+        integer(movie.frames.length,1,400,"startupMovie");
         const decode=(s:string,n:number):string|undefined=>{
             if(s.length!==4*Math.ceil(n/3)||!/^[A-Za-z0-9+/]*={0,2}$/.test(s))return;
             try {const b=atob(s);if(b.length===n&&btoa(b)===s)return b;}catch{}

@@ -1,0 +1,23 @@
+{
+  "tool": "image_gen",
+  "date": "2026-09-19",
+  "purpose": "Correct the user's video frame for broom orientation and anatomical handedness.",
+  "id": "marisa-flight-broom-fixed",
+  "dest": "references/marisa-flight-broom-fixed.png",
+  "refs": [
+    "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-pop-v3\\provenance\\inputs\\marisa-flight-user-frame.png"
+  ],
+  "prompt": "Use case: precise-object-edit. Edit this exact user-provided anime flight frame, preserving its character identity, wink, face, hairstyle, hat, clothes, shrine background, camera angle and lighting. Correct the broom geometry and gripping hand. Marisa flies HEAD FIRST toward the camera. The LONG BARE WOODEN HANDLE END points FORWARD toward the camera and the lower-left foreground. A continuous slender wooden shaft runs from that exposed bare front end, through her gripping hand, underneath her body. The tied STRAW BRISTLE BUNDLE is at the REAR END, behind her hips and body, farther from the camera; it may be partly hidden by her skirt or outside the rear edge. Replace the huge straw bundle currently occupying the lower-left foreground with the plain wooden handle and the appropriately revealed shrine background. Make the prop unmistakably one correctly oriented traditional broom. Her own anatomical RIGHT hand, connected continuously to her RIGHT shoulder (the shoulder at image left), grips the wooden shaft in front of her. Reconstruct this gripping hand cleanly with one thumb opposed to four curled fingers, a normal knuckle sequence and a natural wrist continuous with that forearm. Her own anatomical LEFT hand, connected to the left shoulder at image right, lightly holds the hat brim, preserving its pose with correct five-finger anatomy. Keep those body-relative left and right identities fixed; retain the original orientation of the character and scene. Only alter the broom, the gripping hand and tiny adjacent occlusions needed for this correction. Preserve the original image aspect and all other artwork. Clean finished anime frame, no labels or motion annotations.",
+  "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-4505fe89-877f-4897-95f2-0e10fa412dde.png",
+  "status": "selected",
+  "role": "Supplemental corrected frame; not an additional default Picture upload.",
+  "related_storyboard": "storyboards/storyboard-01.png",
+  "related_prompts": [
+    "prompts/clip-01.en.txt",
+    "prompts/clip-01.ja.txt",
+    "prompts/clip-03.en.txt",
+    "prompts/clip-03.ja.txt"
+  ],
+  "output_sha256": "595e8c6e30e4f534dc70423c3b26c3d119aeba6ef3467e262fa0faef98d026e7",
+  "source_sha256": "744b87f9036c167a541ed64710ab950eda10b170b9b5b96ac6164a089e1ca554"
+}

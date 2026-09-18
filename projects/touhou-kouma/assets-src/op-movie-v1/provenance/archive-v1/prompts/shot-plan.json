@@ -1,0 +1,115 @@
+{
+  "title": "SCARLET PILGRIMAGE",
+  "duration_seconds": 60,
+  "aspect_ratio": "16:9",
+  "mode": "Ref2VA",
+  "music": false,
+  "dialogue": false,
+  "clips": [
+    {
+      "id": "clip-01",
+      "title": "紅霧へ飛び込む二人",
+      "global_start_seconds": 0,
+      "duration_seconds": 15,
+      "bosses": [
+        "Rumia"
+      ],
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "references/characters-02-rumia-cirno.png",
+        "backgrounds/background-01-forest.png",
+        "storyboards/storyboard-01-costume-fixed.png"
+      ],
+      "shot_starts_seconds": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        13
+      ],
+      "english_prompt": "clip-01.en.txt",
+      "japanese_prompt": "clip-01.ja.txt"
+    },
+    {
+      "id": "clip-02",
+      "title": "氷の湖から紅魔館の門へ",
+      "global_start_seconds": 15,
+      "duration_seconds": 15,
+      "bosses": [
+        "Cirno",
+        "Hong Meiling"
+      ],
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "references/characters-02-rumia-cirno.png",
+        "references/characters-03-meiling-clean.png",
+        "backgrounds/background-02-lake-gate.png",
+        "storyboards/storyboard-02.png"
+      ],
+      "shot_starts_seconds": [
+        0,
+        3,
+        6,
+        8,
+        11,
+        13
+      ],
+      "english_prompt": "clip-02.en.txt",
+      "japanese_prompt": "clip-02.ja.txt"
+    },
+    {
+      "id": "clip-03",
+      "title": "魔法図書館と止まる時間",
+      "global_start_seconds": 30,
+      "duration_seconds": 15,
+      "bosses": [
+        "Patchouli Knowledge",
+        "Sakuya Izayoi"
+      ],
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "references/characters-04-patchouli-sakuya.png",
+        "backgrounds/background-03-library-clock.png",
+        "storyboards/storyboard-03-costume-fixed.png"
+      ],
+      "shot_starts_seconds": [
+        0,
+        3,
+        6,
+        8,
+        11,
+        13
+      ],
+      "english_prompt": "clip-03.en.txt",
+      "japanese_prompt": "clip-03.ja.txt"
+    },
+    {
+      "id": "clip-04",
+      "title": "紅い月の対峙、そしてタイトルへ",
+      "global_start_seconds": 45,
+      "duration_seconds": 15,
+      "bosses": [
+        "Remilia Scarlet",
+        "Flandre Scarlet"
+      ],
+      "upload_order": [
+        "references/characters-01-heroes.png",
+        "references/characters-05-scarlet-sisters-corrected.png",
+        "backgrounds/background-04-scarlet-roof.png",
+        "storyboards/storyboard-04.png",
+        "references/title-bridge.png"
+      ],
+      "shot_starts_seconds": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        13.5
+      ],
+      "english_prompt": "clip-04.en.txt",
+      "japanese_prompt": "clip-04.ja.txt"
+    }
+  ]
+}

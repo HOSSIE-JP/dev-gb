@@ -3,11 +3,11 @@
 const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process'),crypto=require('node:crypto');
 const {PNG}=require('pngjs');
 const lib=require('../build/library.cjs');
-const [rootArg,name,source,ffmpeg,secondsArg='3.6']=process.argv.slice(2);
-if(!ffmpeg)throw Error('Usage: node import-startup-movie.cjs ROOT PROJECT APPROVED_EXCERPT FFMPEG [SECONDS<=3.6]');
+const [rootArg,name,source,ffmpeg,secondsArg='3.6',outputArg]=process.argv.slice(2);
+if(!ffmpeg)throw Error('Usage: node import-startup-movie.cjs ROOT PROJECT INPUT FFMPEG [SECONDS<=40] [OUTPUT_DIRECTORY]');
 const root=path.resolve(rootArg),seconds=Number(secondsArg),count=Math.round(seconds*10);
-if(!(seconds>0&&seconds<=3.6&&count>=1&&count<=36))throw Error('Movie duration must be 0.1..3.6 seconds');
-const dir=path.join(root,'projects',name,name+'-design','movie-v24');fs.mkdirSync(dir,{recursive:true});
+if(!(seconds>=0.1&&seconds<=40&&count>=1&&count<=400))throw Error('Movie duration must be 0.1..40 seconds');
+const dir=outputArg?path.resolve(outputArg):path.join(root,'projects',name,'generated','startup-movie');fs.mkdirSync(dir,{recursive:true});
 function run(args){cp.execFileSync(ffmpeg,['-hide_banner','-loglevel','error','-y',...args],{stdio:'inherit',windowsHide:true});}
 for(const [mode,w,h]of[['cgb',160,96],['dmg',112,64]])run(['-i',source,'-t',String(seconds),'-an','-vf',`fps=10,scale=${w}:${h}:force_original_aspect_ratio=increase:flags=lanczos,crop=${w}:${h}`,'-frames:v',String(count),'-map_metadata','-1',path.join(dir,mode+'-%03d.png')]);
 run(['-i',source,'-t',String(seconds),'-vn','-ac','1','-ar','8192','-af','highpass=f=100,lowpass=f=3200','-map_metadata','-1','-f','u8',path.join(dir,'audio.u8')]);

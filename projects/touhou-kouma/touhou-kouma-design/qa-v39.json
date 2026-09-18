@@ -1,0 +1,842 @@
+{
+  "version": "0.39-graze-sound",
+  "date": "2026-09-18T14:54:52.397Z",
+  "baseCommit": "b7e4cfec8dc83135f3f62e630f8fcb515605c34d",
+  "engineWorkingTreeChanges": true,
+  "rom": {
+    "path": "build/Release/touhou-kouma-v39.gb",
+    "sha256": "e253097216410e9bdf44b99ab390d1a6f934d9828ac3f2e2ca65a03b89ef29b1",
+    "bytes": 2097152
+  },
+  "projectRevision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+  "builds": {
+    "release": {
+      "ok": true,
+      "revision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "size": 2097152,
+      "ramBytes": 7165,
+      "spriteTiles": 126,
+      "diagnostics": [],
+      "romHash": "e253097216410e9bdf44b99ab390d1a6f934d9828ac3f2e2ca65a03b89ef29b1",
+      "builtAt": "2026-09-18T14:47:51.596Z",
+      "durationMs": 465111
+    },
+    "debug": {
+      "ok": true,
+      "revision": "9e3846650a76ac2b95ce417dc208b15044ea59b7508b15c65eb468a6ac31e0d5",
+      "configuration": "Debug",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "size": 2097152,
+      "ramBytes": 7165,
+      "spriteTiles": 126,
+      "diagnostics": [],
+      "romHash": "e253097216410e9bdf44b99ab390d1a6f934d9828ac3f2e2ca65a03b89ef29b1",
+      "builtAt": "2026-09-18T14:54:37.689Z",
+      "durationMs": 403352
+    }
+  },
+  "checks": [
+    "Quiet CH4 graze tick, approximately 47 ms, volume 4/15, requests limited to once per 12 actual VBlanks",
+    "Independent sound timer allows fresh grazes during a continuous visual flash; dropped low-priority requests are discarded, never queued",
+    "CH1 shots and CH2/CH3 music untouched; impacts/explosions/death, sustained bomb beam and spell cue take priority over grazes",
+    "Boytacean and native BGB DMG/CGB diagnostics: 0/12/24-frame onsets under continuous graze flash, higher-priority preemption in both request orders, no queued cue and unchanged shot/music channels",
+    "Existing collision diagnostic passes 338 coordinate cases per system across BG/OAM shots, plus immunity, saturation, reused slots, birth graze and sustained SFX priority (787 observations per system)",
+    "Unmodified production ROM, Marisa stage 7 boss-select through real joypad input: three actual audible graze events per system on DMG/CGB, isolated CH4 PCM and visual feedback",
+    "Debug/Release identical 2 MiB ROMs, zero diagnostics, 7165 static WRAM/OAM bytes (+2); >=1024-byte stack reserve retained",
+    "doctor zero warnings, hello-gb clean/Debug plus TypeScript/166 standard tests, star-caravan Debug/Release; targeted sound suite and two legacy/new music runtime tests pass",
+    "Native BGB production CGB boss route repeats the v38 5000-frame input movie with identical input hash; update rate is unchanged",
+    "v38 BGM changes retained; game revision, score, visuals, collision, difficulty and save identity unchanged"
+  ],
+  "pending": [
+    "Physical DMG/CGB hardware and human listening evaluation remain unverified",
+    "Emulicious starts and attaches, but DAP evaluate still fails with NullPointerException; not counted as a gameplay pass",
+    "Production graze audio was sampled in stage 7; this is not a new full normal-campaign clear or all-stage sound-coverage claim"
+  ],
+  "sourceHashes": {
+    "editor/src/node/build-workflow.ts": "c8c4fba6e514097e8721c524078570745c2e584670013c05c8924c4db08cd4ba",
+    "editor/src/node/compiler.ts": "625e70b968491779b237adfd6a9cbbb2082f0094cf5053de813bccc84f648b3e",
+    "editor/src/node/library.ts": "6078e70aeb4a2dc6e8abef101c390a48dbb4e9f2624523a215cf036758148db4",
+    "editor/src/node/main.ts": "d871b64bac6a76e4918d954071e7808e246793f917e6f9b8b9e488c107a0f7c0",
+    "editor/src/node/music-data.ts": "b734c91525d4d6bebd7a5caa9e4ca787b78ccf71974813838df96a4c7594e4c0",
+    "editor/src/node/preload.ts": "eac474db2a1d090cf89f289628d41e9574a861bb9e7216d944bdfd6422a6e7da",
+    "editor/src/node/project-store.ts": "f221423e6d8323ac71e0974251671f0cd35a6267e88e05404aff236c2ca63db5",
+    "editor/src/renderer/boss-canvas.tsx": "fc4970d73bed87c5d257f241158b3d5a24c9cd37438fa002250f67c571ecc17b",
+    "editor/src/renderer/canvases.tsx": "4490797d5d5fb9f45661f56cfd9e0d6dbc5d6182a156796420cb59d43e8b7be1",
+    "editor/src/renderer/column-resize.tsx": "4725244c9b1a39fba5084bf0dd078ae81ba1b0e30a5b81d96df76cc3c7b36dc4",
+    "editor/src/renderer/entity-defaults.ts": "769d17b6677de2a3654e1a5ae67b57c72251f9f4eb26b5e570bf7e56524ed132",
+    "editor/src/renderer/env.d.ts": "9be7ea778895c94059af08e9d0386027594def4a9cd488504959de7fa7bd3590",
+    "editor/src/renderer/fields.tsx": "ddc8dd061c3e36aaf32f57854a13387461f34bf19964949fdb49e0bc86d5a57c",
+    "editor/src/renderer/index.html": "d5069520f4b4b4066897395ddd08373275571bb3f1882cf5b17e61e071f80900",
+    "editor/src/renderer/index.tsx": "efecbf80465e8a2449c4d8e5d4e3185dd537a198582de39a321044524aa908bd",
+    "editor/src/renderer/music-field.tsx": "8dd9019964315ecdc48fe1af8ba56d6c4e15d2dda6426651ad65ac11ac4219c5",
+    "editor/src/renderer/player-presentation-canvas.tsx": "f05b86e8356c23d65bf49a7a0d4605ffd6ffeb5b208df6a29ddb970532a44844",
+    "editor/src/renderer/preview.tsx": "d4c2b27b638bd085ea63f97a447c28fcfcc374ba1010d78f183261c39043efa8",
+    "editor/src/renderer/rom-preview.tsx": "e5756008147c239b599125c71fc2331db819d6114d69ac174dc919340b55612e",
+    "editor/src/renderer/shooter-fields.tsx": "ed39135b73226556ee3facc9b08143ba560f700edf52b9094ea6db69bec06eb8",
+    "editor/src/renderer/stage-canvas.tsx": "5105251c1a3a76c9af750e6134c3827f7c5fcd21435cbb8ffd2b51a73e78329e",
+    "editor/src/renderer/startup-preview.tsx": "bb64999294fdbcad8a66ae4b2a5ce9c36dfca1e1bfc9054fad93d2facf6dedea",
+    "editor/src/renderer/style.css": "ca5fe7442b0fce1e9e374300f550133903648b3cf53597ac78b41a440e6709d5",
+    "editor/src/renderer/tile-palette.tsx": "518f5b5745ccef82ee021e82f98de80b2e87c2d607069ba9edc9c5500d5f5f72",
+    "editor/src/renderer/timeline.tsx": "4dd084f981fcc23dfbfbf7d927d5dc1b54bbd929975b11b45e1af42ef7302f53",
+    "editor/src/renderer/victory-dialogue-canvas.tsx": "342b90342f4e69225b8b483c0c21b410b622b999a7469d47e42a107d4f0c7331",
+    "editor/src/renderer/workspace.css": "54ddf04d36bd6e07b90c8492db9092b3faaf5d4749937624ff9e666d7529931b",
+    "editor/src/renderer/workspace.tsx": "c468f4d441c5ab6289fbc20d1365fd2c1e3bf52b57549ebfbc94f63d45e772c1",
+    "editor/src/shared/bridge.ts": "dd4158d81d1718e0be198b68f85c56e27693ed7082ebc268237d93817bb12ce0",
+    "editor/src/shared/color.ts": "0895f2ced1990009d99b729ca33c24f2f0bc8b29e02ce153b68747bb5eb9816e",
+    "editor/src/shared/emulation.ts": "38a858f83421632301d1d771d5a2e6f118636a0a5537eaa1fe16ef07a5915201",
+    "editor/src/shared/model.ts": "66412ded8e6c633526f560ed00b9b70b1f385a77b2fc6bde48b87df0ae078583",
+    "editor/src/shared/music.ts": "3426ce52e5f4f9f17b15033e525d3ce31721e13cb9e927ca9daa1f5a6b60a803",
+    "editor/src/shared/numeric-font.ts": "5bf45b2825fb4d9607f9a50faa800108b57aa5d602999eb7408be231b6a0ed7b",
+    "editor/src/shared/palette.ts": "a887c042f9179ac9bdeff43d7720499426fdb40a4696ad38ac89e2f401428033",
+    "editor/src/shared/pixel-tools.ts": "05d87244f9e05fc4211e056061d2aa82b10c8ffce86bf92a654923bafe28b11b",
+    "editor/src/shared/presentation.ts": "f3605cfed67c2497836ed3f67337e9b3bd0c3e49c9b1658ee969eb26a282bac2",
+    "editor/src/shared/simulation.ts": "802b709e37bfdc8fe124ee4535b44528cbb0ab59deeee8576790dd0c91e10637",
+    "editor/src/shared/stage-space.ts": "1e8ebec2d2abc05c9de706e73c4234bfdae9a49ee84f8909ff23916bfea46d60",
+    "engine/caravan/MUSIC-LICENSE.txt": "3a7a3e0613c1f242be385172ea9575b49e650d41bc9c8cbd6047ec5dccde29b1",
+    "engine/caravan/assets-src/kouma-score.json": "f15ea049b3737c79b75bbceb17fc9ecbc2481ba4d3c6310bb8eef39330dfc450",
+    "engine/caravan/assets-src/side-score.json": "4a2f21edd10c9893af34f050a1e0bb09e0e90fdba4bf62c12c87c3b317c112bf",
+    "engine/caravan/assets-src/side-score.md": "25a95a2a52f3fd054cfde330b5b353723461daeef48baf47a93550e78c23f775",
+    "engine/caravan/bg-bullets.c": "ee2b0f5fc95a7b43aea2e5f6fe84faba5bfe5db6a8628d1af45dea243e5b4680",
+    "engine/caravan/bg-kernels.h": "0991427618c4efe50c5d6e1365329fd4ab6a1231b9bcd5e72a131923a0dd830c",
+    "engine/caravan/bg-query-kernel.h": "441986ed74075d6deeb087e5a4e540c64b95e7ca082f6af1d09a36ac840fc335",
+    "engine/caravan/bg-state-kernels.h": "7296ecbab0ccc8bb8e5ced11fe10c1f7214ffc39eb9eda921c53d573763eafa3",
+    "engine/caravan/bg-update-kernel.h": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b",
+    "engine/caravan/bg-volley.h": "cb3382ba2de572f42c9ffa393f52f2a70035d12cc5728839742432f052165740",
+    "engine/caravan/bomb-road.c": "008d285727f655c09a438e82a0c1c3de84445fc86461ddb2b9c676b19f99e1e3",
+    "engine/caravan/boss-phase.c": "ce35bcc6b2ad037b57f084983cd6feff096eca7e12096982f4db5c778361807c",
+    "engine/caravan/caravan.h": "996b319895eac8b637e5072a7d0bc224f3b16336b4d901f91c21c71b9dbcab71",
+    "engine/caravan/flow.c": "96815d2cc710bf1f37a245c84020cce40100ca02fd8e32b88148d24cb85ef45e",
+    "engine/caravan/giant-render.h": "ca1eb41a7d89a87f78d4b221c8cd96de064fb163831939cefe36b7d6b43cd92f",
+    "engine/caravan/graze.c": "96a7e10e30acf7e68cefbeb439de506657b9811c007faa983b65908fcbb12a48",
+    "engine/caravan/items.c": "69183188a636df6777a449b5af06ea1da26cb06c12a3f4fbea38d0d3736b8344",
+    "engine/caravan/mainloop.c": "b005f6b01d76e2faec561d27047f224c59e46aad0ab91f378b557eea69bd9d2a",
+    "engine/caravan/mainloop.h": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7",
+    "engine/caravan/movie.c": "fadada968ced3bcd895bc175149e6bed74fd1b7c94d035fb042d75bc24e79e2b",
+    "engine/caravan/music.c": "068bd61b25dda9aeaa88a0213915492e3e7b793f7c2a0459a22819ffafd25319",
+    "engine/caravan/music.h": "1fbfa91c85ba4ce4304ca6d8c4b51c2493202d41250502c0deb5b03a669591a7",
+    "engine/caravan/render.c": "dcf82f9da1f99832d3bf0ba6b7f7ec55795427e57bb392e22a865f6a80a97f5f",
+    "engine/caravan/runtime.c": "a8d2cb1526319cfafad2c018f6ff866a4cd2ba4e5213cfa61f2aa6c401b4fff5",
+    "engine/caravan/save.c": "26fbc74c1bfb843eca15edf0b32a98fd9339d2253ea59ee41fb38559d774e025",
+    "engine/caravan/shot-kernels.h": "9872465884ce3f3cef26c5d399e6ffd745d9ef657097bdadce17ef69e57950c0",
+    "engine/caravan/sound.c": "a7285882ae5a77bb8f9335714138ef2524fdbf69883338fb26f95cc378729d4a",
+    "engine/caravan/special.c": "43bcef63c4b1a5ebb56382297affddd2d7fc42353c52b1681eb3721f797eb7b9",
+    "engine/caravan/sprites.c": "09c786b7d3253ae2d41a805617f2a4f20151d8f2bf01b2f02d10060ab2aaec06",
+    "engine/caravan/terrain.c": "90a8378faed2d79daf175280bc0278a354c76689f71769ad9fdc7c5221b3954a",
+    "engine/caravan/assets-src/music-waves.json": "4d3446eb435f12413fc6bc51909713ce2841aa260fee32c98d23f72247e46b99",
+    "projects/touhou-kouma/assets-src/game.json": "dcbee712eb6a7193cbf0d245a3eec3d4c03bf14cc7ea44b5cc79ab5fec6ccc3b",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/compose.cjs": "cbb9d5b569200d62ab7496d339624a4f3eb9e62dad7d62776331deefb74c67d7",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/score.json": "f15ea049b3737c79b75bbceb17fc9ecbc2481ba4d3c6310bb8eef39330dfc450",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/wave-bank.json": "4d3446eb435f12413fc6bc51909713ce2841aa260fee32c98d23f72247e46b99",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/brief.json": "107dd2b7bda323a3214c9f4128ef741cb710f9fc7a873bbde91b477186b46d96",
+    "projects/touhou-kouma/touhou-kouma-design/music-v38/package-audition.cjs": "63f97bd7093c71482dbff6ef3c54e3b0e0edcd934c562362862b4b8d193aa7d7",
+    "editor/tests/kouma-music-v38.test.mjs": "02a754f964d2fe3ddfa56c7e21451d80aa48c00b9e5d056b14108cd6ae98f6aa",
+    "editor/tests/kouma-music-production.acceptance.mjs": "1b6f9cb6ae659685e7c611ed6312536bde52cafd00c82d8e1a1c02f2332aabcd",
+    "editor/tests/arranged-music.acceptance.mjs": "893b9062718bf01a6fd37752c347d0a5c5b27257cf9e01e917b37e8d9023da04",
+    "editor/tests/music-runtime.acceptance.mjs": "16f0bb12b01023c942ef72084ef90fdf37c01373d12fa2d02c233bfd9693fcb1",
+    "editor/tests/fixtures/music_harness.c": "60fc4871596ff50072bb264b2aa570ccdbf655b32226d9cadf07b13646a807bf",
+    "editor/tests/run.mjs": "21893f552965558bc3a95bd4abce01baf463e701d6a6028acdd28bb872a73700",
+    "editor/tests/graze-sound.acceptance.mjs": "0b5393d6d8c48477861f87205dd73934d5cdd46888dd75ceec6274e28abfd5be",
+    "editor/tests/graze-sound-native.acceptance.mjs": "780d642c467fe46b72c445be1875c34c75431ca98a6f6666b3dd85900d0011e8",
+    "editor/tests/graze-production.acceptance.mjs": "5cf25fa9c759c4d14f80a41bd278465f6681ccbfcb090dba0cd810a625d7b7fb",
+    "editor/tests/fixtures/graze_sound_harness.c": "1f77b1a7d62711b693d000432bb90f0ea5a8aa1c1c81d508c72a5b436c4aa9bc",
+    "projects/touhou-kouma/touhou-kouma-design/graze-v39/brief.json": "b25c04d138832400cae641c25e29fd51f558236dc31adbc216217049714092c8"
+  },
+  "performance": {
+    "before": 56.79503068592057,
+    "after": 56.79503068592057,
+    "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+    "route": "CGB stage 7 boss, Marisa, 5000 display frames"
+  },
+  "results": {
+    "sound": {
+      "diagnostic": true,
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v39\\sound\\fixture\\sound.gb",
+      "results": [
+        {
+          "mode": "DMG",
+          "onsets": [
+            0,
+            12,
+            24
+          ],
+          "rawPeak": 4,
+          "shotPreserved": true,
+          "bgmPreserved": true,
+          "higherPriority": true,
+          "noQueuedCue": true,
+          "continuousFlash": true
+        },
+        {
+          "mode": "CGB",
+          "onsets": [
+            0,
+            12,
+            24
+          ],
+          "rawPeak": 4,
+          "shotPreserved": true,
+          "bgmPreserved": true,
+          "higherPriority": true,
+          "noQueuedCue": true,
+          "continuousFlash": true
+        }
+      ]
+    },
+    "nativeSound": {
+      "diagnostic": true,
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v39\\sound\\fixture\\sound.gb",
+      "results": [
+        {
+          "mode": "DMG",
+          "samples": 57,
+          "onsets": [
+            0,
+            12,
+            24
+          ],
+          "higherPriority": true,
+          "shotAndBgmPreserved": true
+        },
+        {
+          "mode": "CGB",
+          "samples": 57,
+          "onsets": [
+            0,
+            12,
+            24
+          ],
+          "higherPriority": true,
+          "shotAndBgmPreserved": true
+        }
+      ]
+    },
+    "graze": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v39\\graze\\fixture\\projects\\graze-test\\build\\Debug\\graze-test.gb",
+      "sha256": "0d802b3bcf977a9c8d2e64935845ac4a579f506812f9c7c9a249f47a6be6bd3e",
+      "diagnostic": true,
+      "results": [
+        {
+          "mode": "DMG",
+          "samples": 787,
+          "gridCases": 338,
+          "immunity": true,
+          "slotReuse": true,
+          "birthGraze": true,
+          "beamPriority": true,
+          "spellPriority": true
+        },
+        {
+          "mode": "CGB",
+          "samples": 787,
+          "gridCases": 338,
+          "immunity": true,
+          "slotReuse": true,
+          "birthGraze": true,
+          "beamPriority": true,
+          "spellPriority": true
+        }
+      ]
+    },
+    "production": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "e253097216410e9bdf44b99ab390d1a6f934d9828ac3f2e2ca65a03b89ef29b1",
+      "results": [
+        {
+          "mode": "CGB",
+          "stage": 7,
+          "character": "Marisa",
+          "normalInput": true,
+          "events": [
+            {
+              "frame": 83,
+              "energy": 2438,
+              "flash": 12,
+              "score": 1,
+              "shotVolume": 34,
+              "noiseVolume": 65
+            },
+            {
+              "frame": 330,
+              "energy": 2538,
+              "flash": 12,
+              "score": 3,
+              "shotVolume": 18,
+              "noiseVolume": 65
+            },
+            {
+              "frame": 363,
+              "energy": 2008,
+              "flash": 12,
+              "score": 5,
+              "shotVolume": 2,
+              "noiseVolume": 49
+            }
+          ],
+          "isolatedGrazePcmEnergy": 12072
+        },
+        {
+          "mode": "DMG",
+          "stage": 7,
+          "character": "Marisa",
+          "normalInput": true,
+          "events": [
+            {
+              "frame": 83,
+              "energy": 3280,
+              "flash": 12,
+              "shotVolume": 2,
+              "noiseVolume": 33
+            },
+            {
+              "frame": 330,
+              "energy": 2802,
+              "flash": 12,
+              "score": 3,
+              "shotVolume": 2,
+              "noiseVolume": 33
+            },
+            {
+              "frame": 336,
+              "energy": 3080,
+              "flash": 12,
+              "score": 4,
+              "shotVolume": 2,
+              "noiseVolume": 49
+            }
+          ],
+          "isolatedGrazePcmEnergy": 9162
+        }
+      ]
+    },
+    "nativeBoss": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "e253097216410e9bdf44b99ab390d1a6f934d9828ac3f2e2ca65a03b89ef29b1",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1317,
+          "updatesPerSecond": 56.79503068592057,
+          "peak": 18,
+          "dmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 55.52791015625
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 55.56046511627907
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 56.43543307086615
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 55.99453125
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 55.99453125
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 1320,
+              "updates": 118,
+              "updatesPerSecond": 55.93527777777778
+            }
+          ]
+        }
+      ]
+    },
+    "emulicious": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "sha256": "e253097216410e9bdf44b99ab390d1a6f934d9828ac3f2e2ca65a03b89ef29b1",
+      "emulator": "Emulicious 2026-03-27",
+      "method": "Unchanged isolated ROM CLI startup; DAP attach, numeric-address reads only",
+      "run": "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v39\\emulicious\\direct-eIR4o4",
+      "steps": [
+        {
+          "command": "initialize",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "supportsSetExpression": false,
+              "supportsDisassembleRequest": false,
+              "supportsRestartFrame": false,
+              "supportsTerminateRequest": false,
+              "supportsConfigurationDoneRequest": false,
+              "supportsRestartRequest": false,
+              "supportsGotoTargetsRequest": false,
+              "supportsConditionalBreakpoints": true,
+              "supportsModulesRequest": false,
+              "supportsCancelRequest": false,
+              "supportsHitConditionalBreakpoints": false,
+              "supportsLogPoints": true,
+              "supportsReadMemoryRequest": false,
+              "exceptionBreakpointFilters": [
+                {
+                  "filter": "Exception-5",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on inconsistent state after interrupt"
+                },
+                {
+                  "filter": "Exception-4",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on read of uninitialized memory"
+                },
+                {
+                  "filter": "Exception-3",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on execution of data"
+                },
+                {
+                  "filter": "Exception-2",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on bank swap at PC"
+                },
+                {
+                  "filter": "Exception-1",
+                  "default": true,
+                  "supportsCondition": false,
+                  "label": "Break on push to ROM"
+                }
+              ],
+              "supportsStepInTargetsRequest": false,
+              "supportsLoadedSourcesRequest": false,
+              "supportsTerminateThreadsRequest": false,
+              "supportsExceptionInfoRequest": false,
+              "supportsValueFormattingOptions": false,
+              "supportsCompletionsRequest": false,
+              "supportTerminateDebuggee": false,
+              "supportsSteppingGranularity": false,
+              "supportsDelayedStackTraceLoading": false,
+              "supportsDataBreakpoints": false,
+              "supportsEvaluateForHovers": true,
+              "supportsFunctionBreakpoints": true,
+              "supportsBreakpointLocationsRequest": false,
+              "supportsInstructionBreakpoints": false,
+              "supportsStepBack": true,
+              "supportsExceptionOptions": false,
+              "supportsSetVariable": false,
+              "supportsClipboardContext": false
+            },
+            "seq": 1,
+            "request_seq": 1,
+            "command": "initialize"
+          }
+        },
+        {
+          "event": {
+            "type": "event",
+            "event": "terminated",
+            "seq": 2
+          }
+        },
+        {
+          "command": "attach",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 3,
+            "request_seq": 2,
+            "command": "attach"
+          }
+        },
+        {
+          "command": "threads",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "threads": [
+                {
+                  "name": "Thread",
+                  "id": 1
+                }
+              ]
+            },
+            "seq": 4,
+            "request_seq": 3,
+            "command": "threads"
+          }
+        },
+        {
+          "command": "pause",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 5,
+            "request_seq": 4,
+            "command": "pause"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 6,
+            "request_seq": 5,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 7,
+            "request_seq": 6,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 8,
+            "request_seq": 7,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 9,
+            "request_seq": 8,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "continue",
+          "response": {
+            "success": true,
+            "type": "response",
+            "body": {
+              "allThreadsContinued": false
+            },
+            "seq": 10,
+            "request_seq": 9,
+            "command": "continue"
+          }
+        },
+        {
+          "command": "pause",
+          "response": {
+            "success": true,
+            "type": "response",
+            "seq": 11,
+            "request_seq": 10,
+            "command": "pause"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 12,
+            "request_seq": 11,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 13,
+            "request_seq": 12,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 14,
+            "request_seq": 13,
+            "command": "evaluate"
+          }
+        },
+        {
+          "command": "evaluate",
+          "response": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 15,
+            "request_seq": 14,
+            "command": "evaluate"
+          }
+        }
+      ],
+      "stderr": "java.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\n",
+      "bootExecutionVerified": false,
+      "gameplayVerified": false,
+      "command": {
+        "executable": "C:\\homebrew\\projects\\dev-gb\\.tools\\emulicious\\java\\bin\\java.exe",
+        "args": [
+          "-Duser.home=C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v39\\emulicious\\direct-eIR4o4",
+          "-Dsun.java2d.d3d=false",
+          "-jar",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v39\\emulicious\\direct-eIR4o4\\Emulicious.jar",
+          "-remotedebug",
+          "55018",
+          "-muted",
+          "C:\\homebrew\\projects\\dev-gb\\.cache\\kouma-v39\\emulicious\\direct-eIR4o4\\side-caravan.gb"
+        ]
+      },
+      "snapshots": [
+        {
+          "pc": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 6,
+            "request_seq": 5,
+            "command": "evaluate"
+          },
+          "frame": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 7,
+            "request_seq": 6,
+            "command": "evaluate"
+          },
+          "scene": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 8,
+            "request_seq": 7,
+            "command": "evaluate"
+          },
+          "cgb": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 9,
+            "request_seq": 8,
+            "command": "evaluate"
+          }
+        },
+        {
+          "pc": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 12,
+            "request_seq": 11,
+            "command": "evaluate"
+          },
+          "frame": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 13,
+            "request_seq": 12,
+            "command": "evaluate"
+          },
+          "scene": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 14,
+            "request_seq": 13,
+            "command": "evaluate"
+          },
+          "cgb": {
+            "success": false,
+            "type": "response",
+            "message": "exception",
+            "body": {
+              "error": {
+                "showUser": true,
+                "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+                "id": 1,
+                "sendTelemetry": false
+              }
+            },
+            "seq": 15,
+            "request_seq": 14,
+            "command": "evaluate"
+          }
+        }
+      ],
+      "limitation": "Connection alone is not execution evidence; inspect response errors."
+    }
+  }
+}

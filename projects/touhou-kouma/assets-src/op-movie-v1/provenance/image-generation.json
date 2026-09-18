@@ -1,0 +1,261 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "date": "2026-09-18",
+  "assets": [
+    {
+      "id": "characters-01-heroes",
+      "dest": "references/characters-01-heroes.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/reimu-sheet-master.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/select-marisa-master.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: immutable animation model sheet for a 60-second Touhou fan-game opening. Use the attached project artwork as authoritative DESIGN references, not edit targets. Preserve the exact character identity, facial traits, hair colors, costume colors and costume construction; reinterpret only the rendering as polished hand-drawn 2D anime cel animation with smooth crisp contours, consistent moderate proportions, two-tone shadow shapes, no pixel grid. Fully clothed, neutral nonsexual technical poses. Plain warm off-white background. Clear widely spaced full-body FRONT, SIDE facing left, and BACK views per character, all feet visible, no perspective distortion, no weapons obscuring clothing. Orthographic production turnaround rather than an action illustration. Black small labels only. Do not mirror asymmetric accessories between views. No scenery, no UI arrows, no duplicate bonus chibi figures, no unrelated accessories. Landscape high-resolution canvas approximately 3072x2048. Create ONE sheet with TWO clearly separated horizontal rows, exactly three full-body views in each row. TOP ROW REIMU: reproduce Image 1: brown eyes, long chestnut hair, huge red white-frilled bow, red sleeveless shrine dress, white detached sleeves with red rectangular edging, yellow necktie, red sash, calf-length skirt with white hem, white tabi and red-strap sandals. Neutral closed-mouth focused expression. BOTTOM ROW MARISA: reproduce Image 2: amber eyes, long golden blonde hair, her visible single side braid with white tie, huge black pointed witch hat with broad brim and large white frilled bow, white short puff-sleeve blouse, black bodice with gold buttons, white neck bow, white apron over black calf-length skirt. Complete unseen lower outfit conservatively with white socks and simple dark shoes. Put a brown wooden broom with straw bristles and a small dark octagonal handheld magic focus in a narrow accessory strip below her row, separate from her hands. No facial redesign. Label only REIMU / MARISA and FRONT / SIDE / BACK.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-97a83e40-74b4-42a5-8448-ec2686eefa12.png",
+      "status": "selected"
+    },
+    {
+      "id": "characters-02-rumia-cirno",
+      "dest": "references/characters-02-rumia-cirno.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/rumia-sheet-master.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/cirno-sheet-master.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: immutable animation model sheet for a 60-second Touhou fan-game opening. Use the attached project artwork as authoritative DESIGN references, not edit targets. Preserve the exact character identity, facial traits, hair colors, costume colors and costume construction; reinterpret only the rendering as polished hand-drawn 2D anime cel animation with smooth crisp contours, consistent moderate proportions, two-tone shadow shapes, no pixel grid. Fully clothed, neutral nonsexual technical poses. Plain warm off-white background. Clear widely spaced full-body FRONT, SIDE facing left, and BACK views per character, all feet visible, no perspective distortion, no weapons obscuring clothing. Orthographic production turnaround rather than an action illustration. Black small labels only. Do not mirror asymmetric accessories between views. No scenery, no UI arrows, no duplicate bonus chibi figures, no unrelated accessories. Landscape high-resolution canvas approximately 3072x2048. Create ONE sheet with TWO horizontal rows, exactly three full-body views each. TOP ROW RUMIA, Image 1: petite proportions, golden blonde bob, red eyes, small red white-edged side hair ribbon, white long-sleeve collared shirt, red necktie, black sleeveless knee-length dress with thin white hem, white socks and dark Mary Jane shoes. BOTTOM ROW CIRNO, Image 2: petite ice fairy, short ice-blue hair, vivid blue eyes, large royal blue hair bow, white puff-sleeve blouse, red neck ribbon, cobalt blue sleeveless dress with large white triangular zigzag hem, blue Mary Jane shoes and white socks. Precisely SIX rigid ice crystal wings, three separate shards each side; show symmetric wing root attachment in back view. Flat relaxed feet, modest neutral poses. Label only RUMIA / CIRNO and FRONT / SIDE / BACK.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-4a9c54c1-c2a2-44ab-bc9d-7614dce748f4.png",
+      "status": "selected"
+    },
+    {
+      "id": "characters-03-meiling",
+      "dest": "references/characters-03-meiling.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/meiling-sheet-master.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: immutable animation model sheet for a 60-second Touhou fan-game opening. Use the attached project artwork as authoritative DESIGN references, not edit targets. Preserve the exact character identity, facial traits, hair colors, costume colors and costume construction; reinterpret only the rendering as polished hand-drawn 2D anime cel animation with smooth crisp contours, consistent moderate proportions, two-tone shadow shapes, no pixel grid. Fully clothed, neutral nonsexual technical poses. Plain warm off-white background. Clear widely spaced full-body FRONT, SIDE facing left, and BACK views per character, all feet visible, no perspective distortion, no weapons obscuring clothing. Orthographic production turnaround rather than an action illustration. Black small labels only. Do not mirror asymmetric accessories between views. No scenery, no UI arrows, no duplicate bonus chibi figures, no unrelated accessories. Landscape high-resolution canvas approximately 3072x2048. ONE character HONG MEILING with three large full-body views FRONT SIDE BACK across the sheet and a small glove and cap detail at lower corner. Match Image 1: red eyes and vivid long red hair, TWO long braids tied with green ribbons, green beret with gold star, fitted long emerald Chinese tunic with gold piping and frog fasteners, white short puff sleeves, loose full-length white trousers underneath the slit tunic, dark green fingerless wrist guards with gold edging, green flat shoes with gold trim. The white trousers are an essential project-specific design, retain them in all views. Athletic upright neutral pose, no exposed midriff, calm confident closed mouth. Label HONG MEILING and FRONT / SIDE / BACK.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-b0c815b8-cd5f-4a8e-a463-87f5ea64c8f4.png",
+      "status": "superseded"
+    },
+    {
+      "id": "characters-04-patchouli-sakuya",
+      "dest": "references/characters-04-patchouli-sakuya.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/patchouli-sheet-master.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/sakuya-sheet-master.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: immutable animation model sheet for a 60-second Touhou fan-game opening. Use the attached project artwork as authoritative DESIGN references, not edit targets. Preserve the exact character identity, facial traits, hair colors, costume colors and costume construction; reinterpret only the rendering as polished hand-drawn 2D anime cel animation with smooth crisp contours, consistent moderate proportions, two-tone shadow shapes, no pixel grid. Fully clothed, neutral nonsexual technical poses. Plain warm off-white background. Clear widely spaced full-body FRONT, SIDE facing left, and BACK views per character, all feet visible, no perspective distortion, no weapons obscuring clothing. Orthographic production turnaround rather than an action illustration. Black small labels only. Do not mirror asymmetric accessories between views. No scenery, no UI arrows, no duplicate bonus chibi figures, no unrelated accessories. Landscape high-resolution canvas approximately 3072x2048. ONE sheet with TWO horizontal rows, exactly three full-body views each. TOP PATCHOULI from Image 1: long purple hair with asymmetrical red and blue ribbons, violet eyes, pale pink frilled mob cap with golden crescent, modest floor-length pink and lavender vertically striped frilled gown with long sleeves, dark purple shoes. Small separate purple gold-embossed closed spellbook accessory near row edge. BOTTOM SAKUYA from Image 2: silver bob with two short side braids tied in green, blue eyes, white frilled maid headband, dark navy short puff-sleeve knee-length maid dress, white apron and large back apron bow, emerald green neck bow, white wrist cuffs, navy strap shoes. Separate three silver throwing knives and a silver pocket watch as tiny accessory studies at lower edge, not in character hands. No redesign. Label PATCHOULI / SAKUYA and FRONT / SIDE / BACK.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-66c718e6-0b25-4a89-b3c3-7a53ebee9044.png",
+      "status": "selected"
+    },
+    {
+      "id": "characters-05-scarlet-sisters",
+      "dest": "references/characters-05-scarlet-sisters.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/remilia-sheet-master.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/flandre-sheet-master.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: immutable animation model sheet for a 60-second Touhou fan-game opening. Use the attached project artwork as authoritative DESIGN references, not edit targets. Preserve the exact character identity, facial traits, hair colors, costume colors and costume construction; reinterpret only the rendering as polished hand-drawn 2D anime cel animation with smooth crisp contours, consistent moderate proportions, two-tone shadow shapes, no pixel grid. Fully clothed, neutral nonsexual technical poses. Plain warm off-white background. Clear widely spaced full-body FRONT, SIDE facing left, and BACK views per character, all feet visible, no perspective distortion, no weapons obscuring clothing. Orthographic production turnaround rather than an action illustration. Black small labels only. Do not mirror asymmetric accessories between views. No scenery, no UI arrows, no duplicate bonus chibi figures, no unrelated accessories. Landscape high-resolution canvas approximately 3072x2048. ONE sheet with TWO horizontal rows, exactly three full-body views each. TOP REMILIA, Image 1: petite vampire, light blue short hair, red eyes, pale pink frilled cap with large crimson bow, pale pink knee-length frilled dress, red neck bow with oval gold-rimmed jewel, crimson waist sash and large back bow, pink frilled socks and red Mary Jane shoes. ONE pair of purple membranous bat wings, consistent attachments. BOTTOM FLANDRE, Image 2: petite vampire, blonde bob and single side ponytail with red ribbon, red eyes, white frilled cap with red trim, white puff-sleeve blouse under scarlet knee-length dress, yellow necktie, white frilled socks and red shoes. ONE pair of dark angular branch-like wing spars with hanging rainbow diamond crystals; no membranes or feathers. Maintain the attached source crystal arrangement consistently across views, do not turn her wings into Remilia's wings. Leave more lateral space for both wing silhouettes; avoid overlaps between figures. Label only REMILIA / FLANDRE and FRONT / SIDE / BACK.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-391a3f9d-413d-4dd4-b65f-a396740dd5de.png",
+      "status": "superseded"
+    },
+    {
+      "id": "background-01-forest",
+      "dest": "backgrounds/background-01-forest.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/stage-forest-master.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/screen-title-master.png"
+      ],
+      "prompt": "Use case: illustration-story. Asset type: environment-only reference for hand-drawn 2D anime action opening. Use attached game artwork as palette, landmark and material references ONLY, rebuild as high-resolution hand-painted anime background with architectural perspective and depth, crisp cel-compatible edges, detailed watercolor/gouache-like scenery, NOT pixel art or a top-down game map. No people, creatures, bullets, text, logo, captions or interface. Leave large readable open flight volume for aerial combat. This is one background image. A single wide 16:9 dusk-to-night panorama from just above a dense dark emerald forest canopy. Old tree branches frame the lower corners; scarlet mist threads between treetops, a navy indigo twilight sky occupies upper half. Through a gap at right, glimpse a dark blue lake and a very distant small Gothic scarlet mansion silhouette with warm amber windows and narrow spires. Blue rim moonlight and subtle magenta mist, no daylight. Strong near-branch / mid-canopy / distant-mansion layers; atmosphere for fast airborne camera travel. Smooth clear center sky, no oversized moon. The mansion shares the Gothic spires of Image 2; do not include the girl or title lettering. Wide composition approximately 3072x1728.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-4d9ce115-f4d3-462b-84f4-21ada34cd265.png",
+      "status": "selected"
+    },
+    {
+      "id": "background-02-lake-gate",
+      "dest": "backgrounds/background-02-lake-gate.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/stage-lake-master.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/stage-1-master.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/screen-title-master.png"
+      ],
+      "prompt": "Use case: illustration-story. Asset type: environment-only reference for hand-drawn 2D anime action opening. Use attached game artwork as palette, landmark and material references ONLY, rebuild as high-resolution hand-painted anime background with architectural perspective and depth, crisp cel-compatible edges, detailed watercolor/gouache-like scenery, NOT pixel art or a top-down game map. No people, creatures, bullets, text, logo, captions or interface. Leave large readable open flight volume for aerial combat. This is one background image. Create a TWO-PANEL environment reference board on a single tall canvas, two equal full-width 16:9 paintings stacked vertically separated by a very thin cream gutter. TOP: low sweeping view across a moonlit dark blue lake, jagged icy shoreline at sides, a few translucent ice crystals near the water, pale cyan low mist, navy night sky, distant forest and tiny scarlet mansion on far bank. BOTTOM: rise above an imposing black wrought-iron gate with gold spear tips, gray square stone gateposts, climbing red roses, dark green hedges, long central approach to scarlet Gothic mansion with warm gold windows; aerial space above gate under indigo sky and crimson cloud wisps. Match visual ingredients in attached images, preserve a consistent night palette. NOT a panorama blending different locations, exactly two distinct wide landscape panels. No labels.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-c08268e8-36f3-4782-afa1-bed9032da380.png",
+      "status": "selected"
+    },
+    {
+      "id": "background-03-library-clock",
+      "dest": "backgrounds/background-03-library-clock.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/stage-2-master.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/stage-3-master.png"
+      ],
+      "prompt": "Use case: illustration-story. Asset type: environment-only reference for hand-drawn 2D anime action opening. Use attached game artwork as palette, landmark and material references ONLY, rebuild as high-resolution hand-painted anime background with architectural perspective and depth, crisp cel-compatible edges, detailed watercolor/gouache-like scenery, NOT pixel art or a top-down game map. No people, creatures, bullets, text, logo, captions or interface. Leave large readable open flight volume for aerial combat. This is one background image. Create a TWO-PANEL environment reference board, two equal full-width 16:9 paintings stacked vertically separated by a thin cream gutter. TOP: impossibly tall Gothic mansion library, carved dark wooden bookcases packed with old jewel-colored books, warm amber candles, broad purple carpet with gold diamond motif far below, soaring vaulted ceiling and broad empty airspace between shelving galleries; perspective from flying height, vanishing point to right. BOTTOM: a large high-ceiling clock gallery, blue-gray stone arches, tall narrow pale blue moonlit windows, huge brass clock faces and exposed gold gears built into walls, red patterned carpet far below, warm small lamps, upper window open to red clouded night. Camera at aerial mid-height, ample open central volume for hovering combatants and time-stopped knives. Maintain internal architectural consistency and readable silhouette layers. No floating books yet; those are animated props. No writing or numerals required.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-2f83ddb1-9e28-46d0-b616-b8dcd006fcef.png",
+      "status": "selected"
+    },
+    {
+      "id": "background-04-scarlet-roof",
+      "dest": "backgrounds/background-04-scarlet-roof.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/v36-mansion/masters/facade.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/screen-title-master.png"
+      ],
+      "prompt": "Use case: illustration-story. Asset type: environment-only reference for hand-drawn 2D anime action opening. Use attached game artwork as palette, landmark and material references ONLY, rebuild as high-resolution hand-painted anime background with architectural perspective and depth, crisp cel-compatible edges, detailed watercolor/gouache-like scenery, NOT pixel art or a top-down game map. No people, creatures, bullets, text, logo, captions or interface. Leave large readable open flight volume for aerial combat. This is one background image. Single very wide 16:9 night aerial view above the Scarlet Devil Mansion's deep maroon roofs. Match red masonry and pointed amber-lit windows from Image 1 and Gothic spires from Image 2. Foreground roof ridge sweeps diagonally from lower left toward central slender clock spire; lower scene filled with red Gothic wings, dark lake reflections far beyond. Enormous scarlet-red full moon in upper center behind wisps of violet cloud, indigo sky around it, drifting low scarlet mist. Upper two thirds provide open air for a four-character standoff. Crimson and violet architecture, gold pinlights and cool rim edges, grand confrontation atmosphere, no people. Moon unobscured enough for wing silhouettes; no blood. Approximately 3072x1728.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-d782649c-9bb3-4355-9765-946786e87764.png",
+      "status": "selected"
+    },
+    {
+      "id": "characters-03-meiling-clean",
+      "dest": "references/characters-03-meiling-clean.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-03-meiling.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/meiling-sheet-master.png"
+      ],
+      "prompt": "Use case: identity-preserve. Edit target: Image 1 is the new three-view Meiling sheet. Supporting design reference: Image 2 is the original project art. Keep Image 1 character faces, green Chinese tunic, gold closures, cap, white trousers, green shoes, three-view composition and accessory studies unchanged. Change ONLY two errors: replace all the blurry multicolor background with uniform warm off-white (#faf8f2), making the small black labels fully legible; correct hair so there are exactly TWO long red braids descending from the temples with green ties near their lower ends, as one continuous braid per side in Image 2. Remove the extra separate short chest braids currently visible in front view. Keep the loose rear red hair. Preserve three consistent FRONT SIDE BACK full-body views. No new objects or scenery.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-bff15a88-96a1-47fc-91ff-bb6ebbe21dfa.png",
+      "status": "selected"
+    },
+    {
+      "id": "characters-05-scarlet-sisters-corrected",
+      "dest": "references/characters-05-scarlet-sisters-corrected.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-05-scarlet-sisters.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/remilia-sheet-master.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/flandre-sheet-master.png"
+      ],
+      "prompt": "Use case: identity-preserve. Edit target Image 1: the new two-row three-view Remilia and Flandre model sheet. Images 2 and 3 are original project costume references. Preserve all layout, faces, hair, hats, proportions, dresses, shoes and warm-white background. Correct ONLY these costume details consistently in FRONT SIDE BACK: for REMILIA restore the pale-pink long flared bell sleeves with red ribbon ties and frilled cuffs present on original Image 2, rather than the newly invented short bare-forearm sleeves. Hands remain visible, retain shoulder puff and crimson neck jewel. For FLANDRE restore a visible orange hanging crystal between each red and yellow crystal, keeping existing remaining crystal colors and wing attachment geometry. Keep two dark branch-like wing spars, never membranes. The side views may occlude the far-side crystals naturally. No extra figures, labels remain unchanged.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-0dba3137-6db2-4e9d-a7d0-441e071346dc.png",
+      "status": "selected"
+    },
+    {
+      "id": "title-bridge",
+      "dest": "references/title-bridge.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/touhou-kouma-design/color-v21/screen-title-master.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/backgrounds/background-04-scarlet-roof.png"
+      ],
+      "prompt": "Use case: illustration-story. Create ONE final-frame anchor for a 16:9 hand-drawn anime opening, matching the visual grammar of the existing game's title screen. Image 1 is the authoritative REIMU character model (top row only); Image 2 provides TITLE COMPOSITION ONLY, not pixel style, not any lettering; Image 3 provides crimson Gothic mansion night palette and architecture. Polished 2D cel animation look, smooth crisp lines. Reimu chest-up occupies the rightmost 48% of frame, slightly turned toward camera, long brown hair flowing right, brown eyes steady and confident, huge red white-edged hair bow fully visible inside frame, red shrine dress and detached white sleeve, yellow tie. One elegant fully visible hand holds a narrow white red-bordered paper talisman beside her cheek without obscuring face; talisman has only abstract red seals, NO readable writing. Left half shows a scarlet Gothic mansion silhouette, amber windows, arched bridge, dark lake and large moon shifting toward warm amber through red haze. Keep the top-left 45% quiet dark indigo sky as a clear title-safe space. No Marisa, no other people, no panel divisions. No title, letters, watermark, caption, UI or menu. This must look like the held final close-up after a battle, not a character sheet. Approximately 3072x1728 landscape.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-2b8b74c8-550f-42bf-9402-5ef4a3870739.png",
+      "status": "selected"
+    },
+    {
+      "id": "storyboard-01",
+      "dest": "storyboards/storyboard-01.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-02-rumia-cirno.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/backgrounds/background-01-forest.png"
+      ],
+      "prompt": "Use case: illustration-story. Asset type: camera-and-action storyboard for a 15-second hand-drawn 2D anime game opening. Create ONE clean professional storyboard sheet with EXACTLY SIX numbered panels in THREE COLUMNS and TWO ROWS, read top-left to top-right then bottom-left to bottom-right. Each panel is a wide 16:9 film composition, separated by ivory gutters and small caption bands below. Smooth anime pencil-and-ink lines, readable full-color cel thumbnails, colored light bullet patterns, detailed but simplified backgrounds. Use attached character sheets ONLY for identity and costumes; do not show the sheets inside panels. Use attached environment painting for place/color. Show dynamic perspective, foreshortening, clear flight lanes and poses in action. Every fighter is airborne, no injury, no blood, no defeat. Add BLUE camera-motion arrows and ORANGE character-path arrows as production overlays, distinct from magic. Small black timing/camera labels ONLY in caption bands; no dialogue balloons. No soundtrack icons, no generated logo. Keep a consistent action axis and no duplicated characters within a panel. This is a planning image, not a film frame. Large landscape sheet with legible panels. Image 1 top Reimu bottom Marisa. Image 2 top Rumia ONLY, omit Cirno entirely. Image 3 forest. Panel 1 '01 | 0-2s | PULL OUT' extreme close-up Reimu brown eye and red bow edge, tiny outward blue arrow. Panel 2 '02 | 2-4s | SIDE TRACK' low tracking Marisa leaning forward on broom rightward, blonde braid, hat secured. Panel 3 '03 | 4-7s | LOW FRONT / BANK' duo Reimu screen-left free flight and Marisa screen-right broom, climbing above forest and banking, frontal camera slightly rolled20deg. Panel 4 '04 | 7-10s | PUSH THROUGH GAP' over shoulders of duo toward black-dressed blonde Rumia high center, Rumia opens arms and emits dark-violet orb ring with lower-right opening; clear blue path arrow aimed through opening. Panel 5 '05 | 10-13s | HIGH TO LOW' high oblique view: Reimu slips between violet orbs returning red-white talismans; Marisa dives through cleared sector with golden stars, Rumia far behind, readable narrow empty lane. Panel 6 '06 | 13-15s | REAR CHASE' backs of duo Reimu left Marisa right racing toward blue lake mist at right, forest falling away; arrow ahead. Add tiny notes below each respectively 'SFX paper', 'SFX wind', 'SFX cloth', 'SFX pulse', 'SFX sparks', 'BLUE MIST CUT'. No title at top needed.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-11010137-44c5-4ddd-bc9c-b62d4b68c51d.png",
+      "status": "superseded"
+    },
+    {
+      "id": "storyboard-03",
+      "dest": "storyboards/storyboard-03.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-04-patchouli-sakuya.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/backgrounds/background-03-library-clock.png"
+      ],
+      "prompt": "Use case: illustration-story. Asset type: camera-and-action storyboard for a 15-second hand-drawn 2D anime game opening. Create ONE clean professional storyboard sheet with EXACTLY SIX numbered panels in THREE COLUMNS and TWO ROWS, read top-left to top-right then bottom-left to bottom-right. Each panel is a wide 16:9 film composition, separated by ivory gutters and small caption bands below. Smooth anime pencil-and-ink lines, readable full-color cel thumbnails, colored light bullet patterns, detailed but simplified backgrounds. Use attached character sheets ONLY for identity and costumes; do not show the sheets inside panels. Use attached environment painting for place/color. Show dynamic perspective, foreshortening, clear flight lanes and poses in action. Every fighter is airborne, no injury, no blood, no defeat. Add BLUE camera-motion arrows and ORANGE character-path arrows as production overlays, distinct from magic. Small black timing/camera labels ONLY in caption bands; no dialogue balloons. No soundtrack icons, no generated logo. Keep a consistent action axis and no duplicated characters within a panel. This is a planning image, not a film frame. Large landscape sheet with legible panels. Image1 heroes, Image2 top Patchouli bottom Sakuya, Image3 top library bottom clock gallery. Panel1 '01 | 0-3s | LOW PUSH' up-looking library shot with Patchouli in pink purple striped gown holding spellbook high center, red and blue spiral danmaku from violet circle, two heroines flying low in foreground above distant carpet. Panel2 '02 | 3-6s | DIAGONAL TRACK' Marisa on broom banks outside helix and fires thin golden ray opening lane, Reimu floats up through it with ofuda; towering books parallax. Panel3 '03 | 6-8s | TIME STOP' Sakuya floating beside huge brass clock closes silver watch, two heroes frozen at distance among stopped dust, crescent of silver knives suspended around flight lane, blue slow arc camera arrow, small '6.6 FREEZE' note. Panel4 '04 | 8-11s | LATERAL SLIDE' time resumes at8.2, oblique down-the-knives view: Reimu tilts to slip between two knives, Marisa ducks on broom under crescent, airborne not standing, sleeves clear. Panel5 '05 | 11-13s | PULL TO EXIT' wide open window shot: short golden beam disperses knife formation before wall, Reimu red talismans curve toward Sakuya who dodges, no impact on bodies. Panel6 '06 | 13-15s | TRACK UP' outside already open upper window, Reimu left and Marisa right rise into scarlet cloud above roof, no broken glass; tiny 'RED CLOUD CUT' note. SFX labels only 'pages / ray / click / knives / burst / wind' in gutters.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-f81812fb-4aeb-4fe7-8089-b8422e722c22.png",
+      "status": "superseded"
+    },
+    {
+      "id": "storyboard-01-costume-fixed",
+      "dest": "storyboards/storyboard-01-costume-fixed.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-01.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png"
+      ],
+      "prompt": "Use case: identity-preserve. Edit target Image1 is a six-panel anime storyboard. Image2 is the authoritative character model sheet. Keep Image1's six-panel grid, action beats, scenery, magic, arrows, labels and times, and all bosses exactly. Correct the two heroines' costume and props in every visible panel to match Image2: Reimu's red skirt and Marisa's black skirt and white apron are CALF LENGTH, extending below the knees, including during flight. Let fabric stream with movement without exposing underwear or changing to mini-skirts. Keep clear action silhouettes, not standing poses. Marisa has a single side braid, not twin braids, rides one wooden broom and when firing holds the small dark octagonal magic focus shown in Image2, with golden light emerging from that focus, not from a finger gun. Preserve all other panel information. Additionally correct panel3's camera only to a genuine LOW FRONTAL view looking slightly upward toward the airborne pair, forest canopy far below at bottom edge, indigo sky behind, Reimu left Marisa right. Its existing caption LOW FRONT / BANK remains. No upskirt angle; long skirts cover knees.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-aea94e1b-a91b-45dd-aeb5-2555f4c3e926.png",
+      "status": "superseded",
+      "superseded_by": "storyboard-01-clean-v2"
+    },
+    {
+      "id": "storyboard-03-costume-fixed",
+      "dest": "storyboards/storyboard-03-costume-fixed.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-03.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png"
+      ],
+      "prompt": "Use case: identity-preserve. Edit target Image1 is a six-panel anime storyboard. Image2 is the authoritative character model sheet. Keep Image1's six-panel grid, action beats, scenery, magic, arrows, labels and times, and all bosses exactly. Correct the two heroines' costume and props in every visible panel to match Image2: Reimu's red skirt and Marisa's black skirt and white apron are CALF LENGTH, extending below the knees, including during flight. Let fabric stream with movement without exposing underwear or changing to mini-skirts. Keep clear action silhouettes, not standing poses. Marisa has a single side braid, not twin braids, rides one wooden broom and when firing holds the small dark octagonal magic focus shown in Image2, with golden light emerging from that focus, not from a finger gun. Preserve all other panel information. Do not add or remove any panel or character. Time-stop panel3 and open-window panel6 remain as drawn.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-1ff3d096-d3e4-4665-bb11-e57c25f31e0f.png",
+      "status": "superseded",
+      "superseded_by": "storyboard-03-clean-v2"
+    },
+    {
+      "id": "storyboard-02",
+      "dest": "storyboards/storyboard-02.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-02-rumia-cirno.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-03-meiling-clean.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/backgrounds/background-02-lake-gate.png"
+      ],
+      "prompt": "Use case: illustration-story. Create ONE professional six-panel camera/action storyboard sheet, THREE columns TWO rows, numbered left-to-right top-to-bottom. Each panel represents one wide 16:9 film shot. Cream gutters, short black labels and SFX captions below each image. Polished 2D hand-drawn anime cel thumbnails, clear dynamic foreshortening, airborne choreography and colored danmaku with gaps. Attached character sheets are authoritative identities, costumes and silhouettes; preserve Reimu and Marisa's CALF-LENGTH skirts even in flight, with wind-swept hems but knees covered, no shortened miniskirts and no underwear view. Keep Reimu unaided flight and Marisa seated on a single wooden broom with small octagonal focus held in one hand. BLUE camera arrows and ORANGE character movement arrows are production overlays, not projectiles. No speaking, no music, no injuries, no kills, no logo. No duplicate characters within a panel. Use varied wide/close/low/overhead compositions while preserving axis. Background images only provide setting; do not reproduce model grids. Six panels exactly. Large landscape high-resolution sheet. Image1 heroes, Image2 bottom Cirno ONLY (do not depict Rumia), Image3 Meiling, Image4 top lake bottom gate. Panel1 '01 | 0-3s | OVERHEAD DESCENT': steep overhead lake shot with blue-haired Cirno central, exactly SIX rigid ice wing shards and distinct rotating snowflake array of separate ice bullets, Reimu and Marisa entering lower-left to dodge. Panel2 '02 | 3-6s | WATER TRACK': Marisa quarter-roll on broom skimming water fires thin gold ray from octagonal focus shattering ice projectiles (NOT wings), Reimu above returning talismans to Cirno. Panel3 '03 | 6-8s | TILT UP': gate gold spear-tips in near foreground, up-tilt blue arrow reveals Hong Meiling floating high above gate, full green tunic and loose WHITE TROUSERS obvious, heroes small arriving bottom. Panel4 '04 | 8-11s | ARC 45 DEG': Meiling airborne palm strike releasing fan of colored orbs; Reimu slips laterally and returns exactly3 cards through gap, Marisa climbing behind. Panel5 '05 | 11-13s | WIDE CROSS': gate far beneath, Reimu climbs left and Marisa dives right around Meiling's curved fan, two separate curves meeting beyond pattern, nobody struck. Panel6 '06 | 13-15s | FORWARD CHASE': backs of reunited Reimu left Marisa right flying through open iron gate toward warm-lit open mansion doorway, no landing. Tiny SFX captions 'ice / ray / leaves / palm / stars / WARM LIGHT CUT'.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-de57efd7-7814-46aa-9458-5f2b272da9e7.png",
+      "status": "superseded",
+      "superseded_by": "storyboard-02-clean-v2"
+    },
+    {
+      "id": "storyboard-04",
+      "dest": "storyboards/storyboard-04.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-05-scarlet-sisters-corrected.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/backgrounds/background-04-scarlet-roof.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/title-bridge.png"
+      ],
+      "prompt": "Use case: illustration-story. Create ONE professional six-panel camera/action storyboard sheet, THREE columns TWO rows, numbered left-to-right top-to-bottom. Each panel represents one wide 16:9 film shot. Cream gutters, short black labels and SFX captions below each image. Polished 2D hand-drawn anime cel thumbnails, clear dynamic foreshortening, airborne choreography and colored danmaku with gaps. Attached character sheets are authoritative identities, costumes and silhouettes; preserve Reimu and Marisa's CALF-LENGTH skirts even in flight, with wind-swept hems but knees covered, no shortened miniskirts and no underwear view. Keep Reimu unaided flight and Marisa seated on a single wooden broom with small octagonal focus held in one hand. BLUE camera arrows and ORANGE character movement arrows are production overlays, not projectiles. No speaking, no music, no injuries, no kills, no logo. No duplicate characters within a panel. Use varied wide/close/low/overhead compositions while preserving axis. Background images only provide setting; do not reproduce model grids. Six panels exactly. Large landscape high-resolution sheet. Image1 heroes, Image2 top Remilia light-blue hair pink long bell-sleeved costume purple bat membranes, bottom Flandre blonde red dress rainbow crystal spars, Image3 rooftop, Image4 EXACT final close-up composition. Panel1 '01 | 0-3s | LOW TRACK': low oblique aerial shot Reimu lower-left dodges Remilia upper-right's crimson spear-shaped light bullets and sends talismans back, red moon behind. Panel2 '02 | 3-6s | SIDE TRACK': Marisa on broom quarter-roll under rainbow bullets from blonde Flandre whose crystal wings must be distinct, thin gold star-lance from handheld octagonal focus, Reimu tiny deep-background silhouette. Panel3 '03 | 6-9s | HIGH PULL OUT': all4 above red Gothic roofs, heroes near and sisters far, Reimu red and Marisa gold curved flight trails with height separation form loose double helix, counterfire sparks at center outside bodies. Panel4 '04 | 9-12s | ARC 60 DEG / SETTLE': IMPORTANT iconic standoff: backs of Reimu lower-left and Marisa on broom lower-right facing Remilia upper-left and Flandre upper-right beneath huge scarlet moon, all4 separately visible, large clear gap center. Blue horizontal camera arc, orange stop/hover motion marks. Panel5 '05 | 12-13.5s | REVERSE PUSH': front close two-shot of Reimu and Marisa ready, Reimu talisman by cheek, Marisa hat and handheld focus, small sister wing edges in distant corners. Closed-mouth determined expressions. Panel6 '06 | 13.5-15s | HOLD TO TITLE': exactly Image4 final composition, Reimu right with talisman, red mansion moon left, clean empty upper-left, no Marisa/sisters visible in this tighter framing, no logo. SFX notes 'spears / prism / sparks / wind / paper / WIND TAIL'.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-d91581ff-9db8-4dbd-8ab6-62eced182d57.png",
+      "status": "superseded",
+      "superseded_by": "storyboard-04-clean-v2"
+    },
+    {
+      "id": "storyboard-01-clean-v2",
+      "dest": "storyboards/storyboard-01-clean-v2.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-01-costume-fixed.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the provided six-panel anime storyboard image into a CLEAN visual reference board for video generation. Image 1 is the sole edit target. Preserve the original 3-column by 2-row panel order, exact shot compositions, framing, all character identities, faces, outfits, skirt lengths, props, backgrounds, palette, illumination and magical combat effects. Surgically remove ALL overlaid camera and motion notation: every cyan/blue and orange curved or straight arrow, arrowhead, dashed path, guide line, and overlay badge. Seamlessly reconstruct the obscured original illustration underneath those overlays, including trees, sky, water, buildings, clothing and hair. Remove all editorial text, shot numbers, times, SFX labels and captions, including any words inside the artwork, leaving the existing gutters and caption strips blank plain off-white. The six panels must each show only the scene artwork. Do not replace removed overlays with other lines, symbols or graphic indicators. Retain the actual in-world spell circles, talisman markings, gold stars, glowing round projectiles, ice crystals, knives and their natural magical trails. Keep this an extremely faithful localized cleanup, not a redesign. Preserve the wide original canvas aspect ratio and high detail.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-e296af10-67ef-47dd-ae70-af76777b466d.png",
+      "status": "selected",
+      "tool": "image_gen.imagegen (built-in)"
+    },
+    {
+      "id": "storyboard-02-clean-v2",
+      "dest": "storyboards/storyboard-02-clean-v2.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-02.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the provided six-panel anime storyboard image into a CLEAN visual reference board for video generation. Image 1 is the sole edit target. Preserve the original 3-column by 2-row panel order, exact shot compositions, framing, all character identities, faces, outfits, skirt lengths, props, backgrounds, palette, illumination and magical combat effects. Surgically remove ALL overlaid camera and motion notation: every cyan/blue and orange curved or straight arrow, arrowhead, dashed path, guide line, and overlay badge. Seamlessly reconstruct the obscured original illustration underneath those overlays, including trees, sky, water, buildings, clothing and hair. Remove all editorial text, shot numbers, times, SFX labels and captions, including any words inside the artwork, leaving the existing gutters and caption strips blank plain off-white. The six panels must each show only the scene artwork. Do not replace removed overlays with other lines, symbols or graphic indicators. Retain the actual in-world spell circles, talisman markings, gold stars, glowing round projectiles, ice crystals, knives and their natural magical trails. Keep this an extremely faithful localized cleanup, not a redesign. Preserve the wide original canvas aspect ratio and high detail.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-d886d662-cc9f-4ee8-a35f-63ec7eeda59c.png",
+      "status": "selected",
+      "tool": "image_gen.imagegen (built-in)"
+    },
+    {
+      "id": "storyboard-03-clean-v2",
+      "dest": "storyboards/storyboard-03-clean-v2.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-03-costume-fixed.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the provided six-panel anime storyboard image into a CLEAN visual reference board for video generation. Image 1 is the sole edit target. Preserve the original 3-column by 2-row panel order, exact shot compositions, framing, all character identities, faces, outfits, skirt lengths, props, backgrounds, palette, illumination and magical combat effects. Surgically remove ALL overlaid camera and motion notation: every cyan/blue and orange curved or straight arrow, arrowhead, dashed path, guide line, and overlay badge. Seamlessly reconstruct the obscured original illustration underneath those overlays, including trees, sky, water, buildings, clothing and hair. Remove all editorial text, shot numbers, times, SFX labels and captions, including any words inside the artwork, leaving the existing gutters and caption strips blank plain off-white. The six panels must each show only the scene artwork. Do not replace removed overlays with other lines, symbols or graphic indicators. Retain the actual in-world spell circles, talisman markings, gold stars, glowing round projectiles, ice crystals, knives and their natural magical trails. Keep this an extremely faithful localized cleanup, not a redesign. Preserve the wide original canvas aspect ratio and high detail.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-3370570b-1c34-475c-b75d-e0c5950bf3b6.png",
+      "status": "selected",
+      "tool": "image_gen.imagegen (built-in)"
+    },
+    {
+      "id": "storyboard-04-clean-v2",
+      "dest": "storyboards/storyboard-04-clean-v2.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/storyboards/storyboard-04.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Edit the provided six-panel anime storyboard image into a CLEAN visual reference board for video generation. Image 1 is the sole edit target. Preserve the original 3-column by 2-row panel order, exact shot compositions, framing, all character identities, faces, outfits, skirt lengths, props, backgrounds, palette, illumination and magical combat effects. Surgically remove ALL overlaid camera and motion notation: every cyan/blue and orange curved or straight arrow, arrowhead, dashed path, guide line, and overlay badge. Seamlessly reconstruct the obscured original illustration underneath those overlays, including trees, sky, water, buildings, clothing and hair. Remove all editorial text, shot numbers, times, SFX labels and captions, including any words inside the artwork, leaving the existing gutters and caption strips blank plain off-white. The six panels must each show only the scene artwork. Do not replace removed overlays with other lines, symbols or graphic indicators. Retain the actual in-world spell circles, talisman markings, gold stars, glowing round projectiles, ice crystals, knives and their natural magical trails. For the crimson spear projectiles, retain their directions and locations but render them as slender tapered light lances, without forked graphic-arrow heads.Keep this an extremely faithful localized cleanup, not a redesign. Preserve the wide original canvas aspect ratio and high detail.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-78b81e99-6818-4f40-8bdc-90b88a07f812.png",
+      "status": "selected",
+      "tool": "image_gen.imagegen (built-in)"
+    }
+  ]
+}

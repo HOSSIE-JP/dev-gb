@@ -23,12 +23,6 @@ static const uint16_t pulse_pitch[]={
     1915, 1923, 1930, 1936, 1943, 1949, 1954, 1959, 1964, 1969, 1974, 1978,
     1982,
 };
-/* Symmetric, softly stepped triangle; DC midpoint is 7.5. */
-static const uint8_t bass_wave[16]={
-    0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef,
-    0xfe,0xdc,0xba,0x98,0x76,0x54,0x32,0x10
-};
-
 static const uint8_t title_lead[]={
     E4, B4, E5, H, FS5, E5, D5, B4,
     C5, H, E5, G5, FS5, E5, D5, H,
@@ -232,6 +226,13 @@ static void load_bar(void) NONBANKED;
 static void mute(void) {
     NR22_REG = 0; NR30_REG = 0;
 }
+static void wave(uint8_t index) {
+    uint8_t i;
+    /* Never write active DMG wave RAM. Only 16 bytes at an instrument change;
+     * no new WRAM buffer, no writes to the two SFX channels or mixer. */
+    NR30_REG = 0;
+    for (i = 0; i != 16u; ++i) AUD3WAVE[i] = ce_music_waves[index][i];
+}
 static void lead(uint8_t note) {
     uint16_t pitch;
     if (!note) { NR22_REG = 0; return; }
@@ -247,8 +248,8 @@ static void bass(uint8_t note) {
     /* Wave has twice the sample cycle of pulse at the same register value. */
     pitch = 1024u + (pulse_pitch[note] >> 1);
     /* Stop before retriggering: active-channel retriggers can corrupt wave
-     * RAM on DMG. The waveform itself is only loaded at track changes. */
-    NR30_REG = 0; NR30_REG = 0x80; NR31_REG = 0; NR32_REG = instrument_level;
+     * RAM on DMG. Packed wave IDs never reach the volume register. */
+    NR30_REG = 0; NR30_REG = 0x80; NR31_REG = 0; NR32_REG = instrument_level & 0x60u;
     NR33_REG = (uint8_t)pitch;
     NR34_REG = 0x80u | (uint8_t)(pitch >> 8);
 }
@@ -256,7 +257,14 @@ static void play_row(void) {
     uint8_t note;
     if (ce_music_track >= 16u) {
         if (!(ce_music_row & 15u)) {
-            load_bar(); instrument_duty = bar[0]; instrument_envelope = bar[1]; instrument_level = bar[2];
+            load_bar();
+            if ((instrument_level ^ bar[2]) & 7u) {
+                wave(bar[2] & 7u);
+                instrument_level = bar[2];
+                /* Preserve a tied note if a score changes wave at the barline. */
+                if (bar[19] == H) bass(bass_note);
+            }
+            instrument_duty = bar[0]; instrument_envelope = bar[1]; instrument_level = bar[2];
         }
         note = bar[3u + (ce_music_row & 15u)];
         if (note != H) { lead_note = note; lead(note); }
@@ -271,15 +279,16 @@ static void play_row(void) {
             if (note != H) { bass_note = note; bass(note); }
         }
     }
-    remaining = song_speed;
+    remaining = song_speed & 0x3fu;
+    if ((song_speed & 0x80u) && (ce_music_row & 1u)) ++remaining;
 }
 void ce_music_play(uint8_t track) BANKED {
-    uint8_t i;
     if (track > CE_MUSIC_MAX) track = CE_MUSIC_OFF;
     if (track == ce_music_track) return;
     mute(); ce_music_track = track;
     ce_music_row = 0; remaining = 0; paused = 0; lead_note = 0; bass_note = 0;
     if (!track) return;
+    instrument_level = 0x60u;
     if (track >= 16u) {
         score = &ce_music_scores[track - 16u];
         song_rows = score->rows; song_speed = score->speed; song_loop = score->loop;
@@ -288,8 +297,7 @@ void ce_music_play(uint8_t track) BANKED {
         song_rows = song->rows; song_speed = song->speed; song_loop = song->loop;
         instrument_duty = song->duty; instrument_envelope = song->envelope; instrument_level = 0x60;
     }
-    /* DMG permits safe wave RAM writes only while the wave DAC is off. */
-    for (i = 0; i != 16u; ++i) AUD3WAVE[i] = bass_wave[i];
+    wave(0);
     play_row();
 }
 void ce_music_pause(uint8_t value) BANKED {

@@ -1,0 +1,160 @@
+{
+  "tool": "image_gen.imagegen (built-in)",
+  "assets": [
+    {
+      "id": "background-01-shrine",
+      "dest": "backgrounds/background-01-shrine.png",
+      "refs": [],
+      "prompt": "Use case: illustration-story. High quality original 2D anime visual-novel opening artwork, crisp cel shading, soft peach highlights, luminous high-key color, clean appealing linework, cheerful cute pop atmosphere, warm character-friendly world. Pure finished scene artwork; omit lettering, labels, symbols indicating movement, diagrams and production annotations. Create a single wide 16:9 empty Japanese shrine courtyard on a fresh sunny morning: vermilion torii at left, wooden veranda at right, pale pink cherry blossoms framing the upper corners, mint-green trees, clear cyan sky and cream-colored stepping stones. Empty center with ample room for two characters. Rich layered parallax, gentle lens-level viewpoint. No people. Approximately 2560x1440.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-998f42e9-9f3f-4271-8c71-c9c7d2e6c085.png",
+      "status": "selected"
+    },
+    {
+      "id": "background-02-garden",
+      "dest": "backgrounds/background-02-garden.png",
+      "refs": [],
+      "prompt": "Use case: illustration-story. High quality original 2D anime visual-novel opening artwork, crisp cel shading, soft peach highlights, luminous high-key color, clean appealing linework, cheerful cute pop atmosphere, warm character-friendly world. Pure finished scene artwork; omit lettering, labels, symbols indicating movement, diagrams and production annotations. Create a single wide 16:9 empty welcoming rose garden terrace outside a small red-brick Gothic manor in bright late-afternoon sun. White wrought-iron tea table placed well toward the left, red and peach roses, a broad low cream stone bench/step extending across the central foreground for a nine-person ensemble pose, low terrace behind it, gentle trees. Sunlit windows and white clouds; pastel mint, cream, peach and rose palette. The mansion is a small supporting backdrop, not ominous. Central two-thirds is spacious and unobstructed. No people. Approximately 2560x1440.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-07e45f2b-7540-4ffc-8251-f20703f51a7d.png",
+      "status": "selected"
+    },
+    {
+      "id": "background-03-sky",
+      "dest": "backgrounds/background-03-sky.png",
+      "refs": [],
+      "prompt": "Use case: illustration-story. High quality original 2D anime visual-novel opening artwork, crisp cel shading, soft peach highlights, luminous high-key color, clean appealing linework, cheerful cute pop atmosphere, warm character-friendly world. Pure finished scene artwork; omit lettering, labels, symbols indicating movement, diagrams and production annotations. Create a single wide 16:9 bright blue aerial environment for a very brief stylish magical sparring montage. Towering soft white summer cumulus clouds, a rose-gold horizon, a tiny charming scarlet-roof manor and green gardens far below along the bottom edge. Lots of clean open cyan sky and luminous cloud banks. Slight diagonal aerial perspective, strong distance scale, joyful energetic mood. No people, projectiles or motion diagrams. Approximately 2560x1440.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-0be0f6f6-1ed7-4dc3-9926-acfac25b4951.png",
+      "status": "selected"
+    },
+    {
+      "id": "final-ensemble",
+      "dest": "references/final-ensemble.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-02-rumia-cirno.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-03-meiling-clean.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-04-patchouli-sakuya.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-05-scarlet-sisters-corrected.png"
+      ],
+      "prompt": "Use case: illustration-story. High quality original 2D anime visual-novel opening artwork, crisp cel shading, soft peach highlights, luminous high-key color, clean appealing linework, cheerful cute pop atmosphere, warm character-friendly world. Pure finished scene artwork; omit lettering, labels, symbols indicating movement, diagrams and production annotations. Inputs 1-5 are locked character model references only, use all NINE different characters, exactly once each. Image1 Reimu and Marisa; image2 Rumia and Cirno; image3 Hong Meiling; image4 Patchouli and Sakuya; image5 Remilia and Flandre. Create one 16:9 full-cast finale illustration for a cheerful cute visual-novel opening. All nine look toward the viewer with warm characterful smiles. Foreground seated row of FOUR, from viewer left to right: Cirno (blue hair/dress, six ice wings), Reimu (red-white bow and calf-length shrine dress), Marisa (black witch hat, white apron, calf-length black skirt), Flandre (blonde side ponytail, red dress and rainbow hanging-crystal wings). Behind them, a shallow raised garden terrace with FIVE, from viewer left to right: Rumia (blonde bob, red side ribbon, black dress); Meiling (red twin braids, green star beret, green tunic and white trousers); Patchouli (long purple hair, crescent pink cap, pink lavender striped gown, closed book held low); Sakuya (silver bob, small braids, navy maid dress, green neck bow, white apron); Remilia (blue bob, pink frilled dress with long bell sleeves, purple bat wings). Keep all nine faces completely unobstructed and large enough to recognize, no duplicate people and no blended costumes. Natural petite proportions for Rumia/Cirno/sisters; rear terrace lets petite Remilia be visible. Rumia waves, Meiling touches her cap, Sakuya rests a tray low, Cirno proudly holds a tiny ice flower, Reimu and Marisa lean slightly toward one another, Flandre gives a small friendly peace sign. One coherent illustration in a sunny manor rose garden, white clouds, mint and peach bokeh; full width ensemble feels like a cast photo, cute and inviting, not a battle lineup. Framing from knee/waist upward, retain modest original clothing. Space around wing silhouettes. Strong clean key visual finish. Approximately 3072x1728.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-49f56f7b-f868-4a67-9bd7-cd23fab9748f.png",
+      "status": "selected"
+    },
+    {
+      "id": "storyboard-04-portraits",
+      "dest": "storyboards/storyboard-04-portraits.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-02-rumia-cirno.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-03-meiling-clean.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-04-patchouli-sakuya.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-05-scarlet-sisters-corrected.png"
+      ],
+      "prompt": "Use case: illustration-story. High quality original 2D anime visual-novel opening artwork, crisp cel shading, soft peach highlights, luminous high-key color, clean appealing linework, cheerful cute pop atmosphere, warm character-friendly world. Pure finished scene artwork; omit lettering, labels, symbols indicating movement, diagrams and production annotations. Inputs1-5 are locked face/costume references. Produce a 3-column by 3-row clean visual reference board with NINE different anime close-up portraits, all panels the same wide approximately16:9 aspect. Tight bust/face framing, big clear appealing eyes looking directly into the lens, headwear visible, each own clean pastel background with soft circles and petal shapes. No numbers or captions. Reading order top-left to bottom-right is EXACTLY: 1 Rumia, blonde bob/red side bow/black dress, delighted closed-mouth smile; 2 Sakuya, silver bob/small braids/maid headband/navy-green, composed gentle smile; 3 Cirno, ice-blue bob/blue bow, proud playful wink; 4 Patchouli, long purple hair/crescent pink cap, shy small smile over book held below chin; 5 Meiling, red twin braids/green star cap, broad warm smile with fingers lightly at cap; 6 Flandre, blonde side ponytail/white cap red ribbon, mischievous sweet closed-mouth smile and rainbow wing crystals near outer edge; 7 Remilia, short blue hair/pink cap large red bow, poised confident smile with a purple bat-wing edge; 8 Marisa, blonde side braid/black witch hat white bow, cheeky wink and slight hat-tip; 9 Reimu, chestnut hair/large red-white bow/yellow necktie, clear warm confident smile. Exact identities and palette of reference model sheets. These are nine successive independent camera close-ups for a fast ending montage. Every panel is solely finished scene art; narrow neutral gutters, no production marks. Large high detail canvas, approximately3072x1728.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-806e6878-f15d-43ed-b4b6-115d25a83376.png",
+      "status": "selected"
+    },
+    {
+      "id": "storyboard-01",
+      "dest": "storyboards/storyboard-01.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-pop-v3/backgrounds/background-01-shrine.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-pop-v3/backgrounds/background-03-sky.png"
+      ],
+      "prompt": "Use case: illustration-story. Create a brand NEW bright cute visual-novel anime OP visual board with SIX cinematic 16:9 frames, THREE columns and TWO rows, read left-to-right then top-to-bottom. A very wide approximately3072x1152 canvas with narrow neutral gutters. Pure finished illustrations inside panels, no arrows, guide lines, text, numbers, labels, typography or production notation. Warm high-key light, appealing expressive eyes, crisp clean cel animation, luminous pastel atmosphere. Preserve model-sheet identities and original modest costumes. Character-introduction charm is dominant; action inserts use radical foreshortening and camera perspective, NOT rings of bullets. Every panel must match its stated shot. Props and scene changes are playful montage images. Image1 heroes costume models, Image2 shrine background, Image3 sky. Only Reimu and Marisa. Panel1: tight three-quarter face shot of Reimu turning warmly toward viewer as white sleeve passes lens, cherry petals. Panel2: Marisa flying toward lens on broom at courtyard level, broom tip huge in perspective foreground, face grinning, black hat white bow. Panel3: sunny waist-up Reimu and Marisa back-to-back glancing over opposite shoulders toward viewer, charming smiles. Panel4: spectacular close near-pass of flying Reimu against blue sky: her hand and talisman dominate near foreground, sleeves and body recede diagonally, focused eyes, strong foreshortening and physically plausible full long dress. Panel5: extreme low frontal view of Marisa sharply banking a broom beneath camera, dynamic diagonal silhouette, enormous white cloud, brief small gold glint from octagonal focus. Her skirt stays calf length. Panel6: both sitting on shrine veranda: Marisa straightens crooked hat, Reimu hides a small amused smile behind sleeve, eye-level intimate duo. No combat enemies.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-e155d243-e221-4257-a76c-3c6b60ed32ce.png",
+      "status": "superseded",
+      "superseded_by": "storyboard-01-modest"
+    },
+    {
+      "id": "storyboard-02",
+      "dest": "storyboards/storyboard-02.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-02-rumia-cirno.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-03-meiling-clean.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-04-patchouli-sakuya.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-pop-v3/backgrounds/background-02-garden.png"
+      ],
+      "prompt": "Use case: illustration-story. Create a brand NEW bright cute visual-novel anime OP visual board with SIX cinematic 16:9 frames, THREE columns and TWO rows, read left-to-right then top-to-bottom. A very wide approximately3072x1152 canvas with narrow neutral gutters. Pure finished illustrations inside panels, no arrows, guide lines, text, numbers, labels, typography or production notation. Warm high-key light, appealing expressive eyes, crisp clean cel animation, luminous pastel atmosphere. Preserve model-sheet identities and original modest costumes. Character-introduction charm is dominant; action inserts use radical foreshortening and camera perspective, NOT rings of bullets. Every panel must match its stated shot. Props and scene changes are playful montage images. Image1 Rumia(top) and Cirno(bottom), Image2 Meiling, Image3 Patchouli(top) and Sakuya(bottom), Image4 garden. Five characters only. Panel1 Sakuya close bust view at tea table setting silver tray with teacup, blue eyes gentle smile, green neck bow. Panel2 Patchouli shy smile peeking over purple book held just below chin beneath rose arch, purple hair and crescent pink cap. Panel3 Meiling waist-up by sunlit hedge, fingertips at green star beret in friendly shy salute, tiny petal on hat, long red twin braids, green gold tunic and white trousers. Panel4 Rumia close-up tilting head while offering small steamed bun wrapped in paper, blonde bob red ribbon black dress. Panel5 Cirno proudly displaying tiny ice flower near cheek, playful wink, blue bow and six ice wing shards. Panel6 wider friendly five-person tea party in same garden: Sakuya standing at RIGHT holding tray, Patchouli seated CENTER with book, Meiling leaning by LEFT chair, Rumia and Cirno in front. Exactly those five, visible separate faces and correct costumes. Playful expressions, soft cream/peach/mint palettes. No battle.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-2cdaaa8f-cc64-446e-840b-ec528d7b5f9d.png",
+      "status": "selected"
+    },
+    {
+      "id": "storyboard-03",
+      "dest": "storyboards/storyboard-03.png",
+      "refs": [
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-05-scarlet-sisters-corrected.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-pop-v3/backgrounds/background-02-garden.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-pop-v3/backgrounds/background-03-sky.png"
+      ],
+      "prompt": "Use case: illustration-story. Create a brand NEW bright cute visual-novel anime OP visual board with SIX cinematic 16:9 frames, THREE columns and TWO rows, read left-to-right then top-to-bottom. A very wide approximately3072x1152 canvas with narrow neutral gutters. Pure finished illustrations inside panels, no arrows, guide lines, text, numbers, labels, typography or production notation. Warm high-key light, appealing expressive eyes, crisp clean cel animation, luminous pastel atmosphere. Preserve model-sheet identities and original modest costumes. Character-introduction charm is dominant; action inserts use radical foreshortening and camera perspective, NOT rings of bullets. Every panel must match its stated shot. Props and scene changes are playful montage images. Image1 Reimu/Marisa, Image2 Remilia/Flandre, Image3 garden, Image4 sky. Panel1 close bust portrait Remilia with a rose parasol swept to side, confident cute smile, blue bob pink cap long bell sleeves purple membrane bat-wing edge. Panel2 Flandre leans playfully into lens from behind Remilia's shoulder, blonde side ponytail red dress crystal wings, mischievous sweet grin. Panel3 in bright sky Reimu and Remilia pass at high speed on opposite diagonals, huge near-foreground Reimu talisman hand and focused face, Remilia smaller deep background with long pink bell sleeves and bat wings, ONE crimson light lance and tiny red-white flash between them. Radical foreshortening like an energetic aerial action anime cut, no dense projectile pattern. Panel4 low OVER-THE-BROOM perspective of Marisa banking hard, hat/focus large at lower left, Flandre crossing high right, ONE gold beam meeting ONE prism stroke at side, tiny impact flash. Panel5 VERY WIDE aerial shot, all four tiny separated silhouettes crossing one vast white cloud with large height difference, near Reimu red and Marisa black, far Remilia pink bat wings and Flandre red crystal wings. A single small sparkle at crossing center, blue sky dominates. Panel6 warm garden medium-close two-shot, Remilia and Flandre shoulder to shoulder, Flandre leans toward sister and both smile at viewer, correct distinct wings behind them, sisterly cute finale.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-4217bca4-41bb-4233-be6b-4554bec2dde5.png",
+      "status": "superseded",
+      "superseded_by": "storyboard-03-playful-garden"
+    },
+    {
+      "id": "storyboard-01-modest",
+      "dest": "storyboards/storyboard-01.png",
+      "refs": [
+        "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-e155d243-e221-4257-a76c-3c6b60ed32ce.png",
+        "C:/homebrew/projects/dev-gb/projects/touhou-kouma/assets-src/op-movie-v1/references/characters-01-heroes.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is the six-panel anime visual board to edit. Image2 is the locked Reimu/Marisa costume reference. Make a narrowly targeted wardrobe correction, keep all six panels, character faces, poses, expressions, camera positions, backgrounds and painterly lighting exactly as shown. In the LOWER MIDDLE panel, Marisa's original calf-length black skirt and white apron should drape naturally over her lap and cover both knees and thighs fully during the steep broom bank. Repaint the currently raised short skirt as the long full-volume skirt from Image2, with opaque black outer cloth and white apron visible; the near boots can remain foreshortened toward the lens. Show only socks and footwear below the long hem; no visible underwear or bare thighs. In the LOWER RIGHT veranda panel, likewise extend Marisa's black skirt and apron as a natural opaque drape over her seated knees, matching the calf-length model. Preserve Reimu's existing skirt. Maintain a cute wholesome visual-novel opening feel and dynamic perspective; do not change any other artwork or add any lettering, annotations or arrows.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-f54f1c57-0cc2-44b6-9ccd-0bfb150b2981.png",
+      "status": "superseded",
+      "superseded_by": "storyboard-01-drawers"
+    },
+    {
+      "id": "storyboard-01-drawers",
+      "dest": "storyboards/storyboard-01.png",
+      "refs": [
+        "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-f54f1c57-0cc2-44b6-9ccd-0bfb150b2981.png",
+        "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-pop-v3\\references\\characters-01-heroes.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image 1 is the exact six-panel anime storyboard edit target. Image 2 is supporting costume and character identity reference only. Correct ONLY the clothing geometry of Marisa in the LOWER MIDDLE panel (the marked area around 47.6% image width, 78.8% height). The current picture mistakenly depicts two separate stacked black skirts with duplicate frilled hemlines. Replace that with ONE physically coherent black skirt attached at her waist, with a single white frilled outer hem, and the separate white apron in front. During the broom bank the single skirt flares naturally with the motion. Under that skirt she wears the user's established costume: loose opaque white cotton knee-length drawers / historical bloomers, with two distinct baggy trouser legs, gathered frilled cuffs at the knees. Show the bloomers naturally where the skirt lifts, consistent with the existing foreshortened legs and footwear; they must read unmistakably as divided trousers, not as another skirt. Maintain opaque fabric coverage and practical costume construction. Keep this an energetic cute action shot, with the same pose and camera position, not a clothing display. Preserve Marisa's head, face, expression, hat, braid, hands, magic focus, broom, footwear positions, sky, lighting and colors. Preserve the entire other FIVE panels unchanged, including the lower-right veranda scene. Keep the exact 3-column 2-row layout, white narrow gutters, current image dimensions and linework. Finished artwork only, with no production annotations. Make this one localized correction, not a reinterpretation of the illustration.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-aedd93fc-c295-49ce-a41c-0290da1a2a56.png",
+      "status": "superseded",
+      "user_correction": "Lower-middle Marisa: one natural skirt, with opaque white drawers underneath; annotation x=47.6%, y=78.8%.",
+      "superseded_by": "storyboard-01-broom-hands-corrected"
+    },
+    {
+      "id": "storyboard-01-broom-hands-draft",
+      "dest": "storyboards/storyboard-01.png",
+      "refs": [
+        "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-aedd93fc-c295-49ce-a41c-0290da1a2a56.png",
+        "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-4505fe89-877f-4897-95f2-0e10fa412dde.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image 1 is the exact six-panel storyboard edit target. Image 2 is a supporting example of corrected broom orientation and right-hand grip ONLY; retain image1's drawing style, character appearance and panel compositions. Edit ONLY the UPPER MIDDLE and LOWER MIDDLE panels where Marisa is riding her broom. In BOTH panels, the front end is a long plain wooden handle pointing in her head-first travel direction toward the foreground. The bound straw bristles trail at the back of the broom, behind her hips/body and farther from the lens, partly occluded if needed. In the UPPER MIDDLE panel, replace the giant straw mass in the lower-left foreground with the plain wooden handle and revealed shrine background; put the straw bundle behind her body. Her own anatomical RIGHT hand (connected to the shoulder on the viewer's left in this frontal view) grips the shaft in front of her body. Rebuild the gripping hand with one correctly placed opposed thumb and four naturally curled fingers, continuous wrist and forearm. Her own anatomical LEFT hand on viewer-right lightly touches the hat brim. Preserve the existing smiling face. In the LOWER MIDDLE panel similarly replace the big straw bundle currently at its upper-left foreground with a plain wooden handle leading forward. The one continuous broom shaft passes beneath her body and the straw end trails behind her hips, small and distant. Her own RIGHT hand controls the shaft and her own LEFT hand holds the octagonal glowing magic focus on viewer-right. Keep thumb placement and shoulder-to-wrist connections anatomically correct. MOST IMPORTANT: preserve the exact corrected single black skirt and the opaque white knee-length two-legged drawers in the lower-middle panel, both boots and their foreshortening. Preserve the other FOUR panels unchanged. Preserve all faces, costumes, warm lighting, shrine/cloud backgrounds, overall six-panel layout and gutters. Retain original image dimensions. Finished artwork only.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-b9f36385-c569-4712-b48f-a93d9a1f0d5a.png",
+      "status": "superseded",
+      "superseded_by": "storyboard-01-broom-hands-corrected",
+      "review": "Superseded due to a duplicate small waist hand and disconnected broom shaft."
+    },
+    {
+      "id": "storyboard-01-broom-hands-corrected",
+      "dest": "storyboards/storyboard-01.png",
+      "refs": [
+        "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-b9f36385-c569-4712-b48f-a93d9a1f0d5a.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Correct two residual drawing artifacts in this otherwise finished six-panel storyboard. Preserve every panel, face, costume, the white knee-length two-legged drawers, boots, backgrounds and lighting. UPPER MIDDLE panel: Marisa already has the correct right hand gripping the foreground handle and left hand touching her hat. There is an erroneous THIRD small flesh-colored hand wrapped around the shaft near her waist, directly below her braid. REMOVE only that duplicate little waist hand, reconstructing the white apron/black bodice and wooden shaft underneath it. She has exactly two arms and two hands: anatomical right hand on broom in foreground, anatomical left hand on hat. LOWER MIDDLE panel: rebuild the broom as ONE continuous straight prop with a clear axis, rather than a horizontal handle plus a separate disconnected diagonal stick under her feet. Its plain wooden front end enters near the panel's upper-left corner, its slender shaft angles DIAGONALLY DOWN-RIGHT through her anatomical right gripping hand, then continues on that same straight axis beneath her pelvis and toward the panel's lower-right rear. A SMALL tied straw bundle sits on that rear end behind her hips toward the lower-right, not in the foreground. Adjust her right wrist/grip minimally to that continuous diagonal axis. Remove all remnants of the other old shaft or handle; reveal the appropriate sky in those locations. Her left hand still holds the glowing octagonal focus at panel right. Keep her existing pose, single black skirt and white drawers exactly. The broom's front is plain wood, rear is straw, physically one straight continuous shaft. Preserve the other FOUR panels pixel-faithfully. No labels or annotations.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-059e6676-7a61-490d-b1c3-0c1a35817a52.png",
+      "status": "selected",
+      "review": "One forward bare handle and rear straw bundle; right hand grips, left hand holds hat or focus; prior drawers correction retained."
+    },
+    {
+      "id": "storyboard-03-playful-garden",
+      "dest": "storyboards/storyboard-03.png",
+      "refs": [
+        "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-4217bca4-41bb-4233-be6b-4554bec2dde5.png",
+        "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-pop-v3\\references\\characters-01-heroes.png",
+        "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-pop-v3\\references\\characters-05-scarlet-sisters-corrected.png",
+        "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\assets-src\\op-movie-pop-v3\\backgrounds\\background-02-garden.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is the six-panel anime OP storyboard to revise. Images2 and3 are fixed character model references. Image4 is the garden environment. Keep the exact THREE-COLUMN TWO-ROW layout, six widescreen panels and narrow white gutters. Preserve the UPPER LEFT elegant Remilia parasol portrait, UPPER MIDDLE playful Flandre leaning from behind Remilia, and LOWER RIGHT affectionate sister portrait. Replace ONLY the former action panels (upper right, lower left, lower middle) with these cheerful, affectionate, everyday playful interactions. All six panels now take place in the same sunny rose garden. Retain crisp polished 2D anime, luminous peach highlights, playful expressions, long original heroine costumes, exact character faces, distinct purple bat wings for Remilia and rainbow crystal spars for Flandre. UPPER RIGHT panel: intimate eye-level two-shot of Reimu at LEFT and Remilia at RIGHT. Reimu has just gently picked one rose petal from Remilia's pink cap and holds the tiny petal near the foreground; Remilia tilts her head away with a cute, mock-surprised smile. Both remain relaxed and friendly. Keep faces identifiable; the petal/hand is nearer the lens, Remilia's eyes in the middle distance, distant roses softly blurred, providing clear near/far focus planes. LOWER LEFT panel: playful waist-up two-shot, Marisa at LEFT, Flandre at RIGHT. Flandre's anatomical right index fingertip gently nudges the outer edge of Marisa's black witch-hat brim down a little. Marisa's anatomical left hand lifts the FRONT edge of her own hat brim, revealing her amused eyes and grin. Their other hands rest low and separate. Natural two arms per person and clear fingers; gentle teasing between friends. Layer their faces at slightly different depths with garden bokeh behind. LOWER MIDDLE panel: friendly medium-wide waist-up group in the garden. Marisa in foreground LEFT leans one playful sidestep away from Flandre in foreground RIGHT, smiling over her shoulder; Flandre reaches lightly toward the hat without touching her body. Reimu in background LEFT and Remilia in background RIGHT share an amused smile. Exactly FOUR girls, all clearly identifiable and anatomically separate. A very soft out-of-focus rose cluster grazes the extreme left foreground edge, suggesting a sideways camera move revealing them; faces remain clear. Use natural depth-of-field, nearby leaves and background parallax to suggest camera movement, rather than drawn motion indicators. These three replacement panels contain everyday girl-to-girl play, relaxed hands and expressive eye contact. Keep the rest of the board unchanged. Pure final scene artwork, no arrows, labels, captions, numbers or production overlays.",
+      "source_output": "C:\\Users\\gameofneutral\\.codex\\generated_images\\01a0b483-b36a-73a2-a3ea-b89e03172cb8\\exec-2c388be8-5a7d-44e2-97b4-6085ff85a1c1.png",
+      "status": "selected",
+      "review": "Three former action panels replaced with friendly garden play. Actual selected frame shows Marisa lifting the brim with her anatomical right hand; EN/JA shot text follows this observed pose. Six-panel layout, distinct four-person group, fixed costumes and sisters' outer portraits checked."
+    }
+  ]
+}

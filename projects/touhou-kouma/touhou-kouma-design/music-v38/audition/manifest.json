@@ -1,0 +1,204 @@
+{
+  "source": "CGB music-only GBDK ROM actual APU capture, amplitude normalized; no SFX. MIDI is not used.",
+  "preview": "v38-stage-boss-preview.mp3",
+  "previewSegments": [
+    {
+      "at": 0,
+      "stage": 1,
+      "role": "road"
+    },
+    {
+      "at": 6,
+      "stage": 1,
+      "role": "boss"
+    },
+    {
+      "at": 12,
+      "stage": 2,
+      "role": "road"
+    },
+    {
+      "at": 18,
+      "stage": 2,
+      "role": "boss"
+    },
+    {
+      "at": 24,
+      "stage": 3,
+      "role": "road"
+    },
+    {
+      "at": 30,
+      "stage": 3,
+      "role": "boss"
+    },
+    {
+      "at": 36,
+      "stage": 4,
+      "role": "road"
+    },
+    {
+      "at": 42,
+      "stage": 4,
+      "role": "boss"
+    },
+    {
+      "at": 48,
+      "stage": 5,
+      "role": "road"
+    },
+    {
+      "at": 54,
+      "stage": 5,
+      "role": "boss"
+    },
+    {
+      "at": 60,
+      "stage": 6,
+      "role": "road"
+    },
+    {
+      "at": 66,
+      "stage": 6,
+      "role": "boss"
+    },
+    {
+      "at": 72,
+      "stage": 7,
+      "role": "road"
+    },
+    {
+      "at": 78,
+      "stage": 7,
+      "role": "boss"
+    }
+  ],
+  "files": [
+    {
+      "stage": 1,
+      "role": "road",
+      "id": 32,
+      "file": "stage-1-road.mp3",
+      "seconds": 57.863,
+      "bpm": 149.32,
+      "sha256": "0bdc3e66e56ec31d22dc73df0696f012a1ebf5b2c446e508970bf498b7771dd7"
+    },
+    {
+      "stage": 1,
+      "role": "boss",
+      "id": 33,
+      "file": "stage-1-boss.mp3",
+      "seconds": 58.934,
+      "bpm": 162.89,
+      "sha256": "7e6d93c70a8a36664bd97eb398592b9ccab0bd6feea9402a68230cc44d0de4f2"
+    },
+    {
+      "stage": 2,
+      "role": "road",
+      "id": 30,
+      "file": "stage-2-road.mp3",
+      "seconds": 58.934,
+      "bpm": 162.89,
+      "sha256": "a18cbad8a32a7e76edfa5674ceafaafe9e7af8c1b4325eb209e2ca590dfbccf2"
+    },
+    {
+      "stage": 2,
+      "role": "boss",
+      "id": 31,
+      "file": "stage-2-boss.mp3",
+      "seconds": 58.934,
+      "bpm": 179.18,
+      "sha256": "ef4966151a99e8df5621b8ab60a8e194cd74985f21800224eeec56cb543797e1"
+    },
+    {
+      "stage": 3,
+      "role": "road",
+      "id": 17,
+      "file": "stage-3-road.mp3",
+      "seconds": 58.934,
+      "bpm": 162.89,
+      "sha256": "bdf23aa7fdc1e5c59af76e27095aa6bd884f41c88923673f7aea7a794c06b763"
+    },
+    {
+      "stage": 3,
+      "role": "boss",
+      "id": 18,
+      "file": "stage-3-boss.mp3",
+      "seconds": 58.934,
+      "bpm": 179.18,
+      "sha256": "750f5b8ebe1f6798ab1cbc10d2d0a6e2486f358fbfa0674575f9a3baef48aa06"
+    },
+    {
+      "stage": 4,
+      "role": "road",
+      "id": 19,
+      "file": "stage-4-road.mp3",
+      "seconds": 58.934,
+      "bpm": 162.89,
+      "sha256": "4a2196c415141ce8503a0b7b438f477b683a4940b03073ae0345ca51c7a9df1b"
+    },
+    {
+      "stage": 4,
+      "role": "boss",
+      "id": 20,
+      "file": "stage-4-boss.mp3",
+      "seconds": 58.934,
+      "bpm": 179.18,
+      "sha256": "ad5bf457970b456b2cde4fa1abc507a10f5d312c7c59e1f983552b0e1b4e3c3d"
+    },
+    {
+      "stage": 5,
+      "role": "road",
+      "id": 21,
+      "file": "stage-5-road.mp3",
+      "seconds": 58.934,
+      "bpm": 179.18,
+      "sha256": "73c49a3743f9d452eb2c2e8ddbea6baaa6318557ce210bd60b7dcb355233ad34"
+    },
+    {
+      "stage": 5,
+      "role": "boss",
+      "id": 22,
+      "file": "stage-5-boss.mp3",
+      "seconds": 60.274,
+      "bpm": 199.09,
+      "sha256": "7387993d00f44269b67199949f02c60713afe8416d2d9049d64e01fe1ba3b5a5"
+    },
+    {
+      "stage": 6,
+      "role": "road",
+      "id": 23,
+      "file": "stage-6-road.mp3",
+      "seconds": 58.934,
+      "bpm": 162.89,
+      "sha256": "430efb2ee476da905f09d281946cbde4ea44c57b21b5f7f134ad7a0128030a9a"
+    },
+    {
+      "stage": 6,
+      "role": "boss",
+      "id": 24,
+      "file": "stage-6-boss.mp3",
+      "seconds": 58.934,
+      "bpm": 179.18,
+      "sha256": "e6073800fb8f9ad541b48692004bb20354755eb35e33d848abf848c83cda6b4f"
+    },
+    {
+      "stage": 7,
+      "role": "road",
+      "id": 25,
+      "file": "stage-7-road.mp3",
+      "seconds": 58.934,
+      "bpm": 179.18,
+      "sha256": "5aee742e728dea07667830137f7d6254b89ca5354670b95a805ff48eb9e94dd6"
+    },
+    {
+      "stage": 7,
+      "role": "boss",
+      "id": 26,
+      "file": "stage-7-boss.mp3",
+      "seconds": 60.274,
+      "bpm": 199.09,
+      "sha256": "5b8595e13ea4fab9472ae5c90c100f1e157e7c3e4a36f76d61e35ddd5d76bf4d"
+    }
+  ]
+}

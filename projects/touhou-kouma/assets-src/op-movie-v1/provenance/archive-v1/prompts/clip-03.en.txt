@@ -1,0 +1,35 @@
+subject_definitions:
+<Subject 1> is Reimu, top row of <Picture 1>: chestnut hair, red bow and shrine dress, yellow tie, detached white sleeves, paper talismans and unaided flight.
+<Subject 2> is Marisa, bottom row of <Picture 1>: blonde side braid, black witch hat with white bow, black-and-white apron dress, brown broom and octagonal magical focus.
+<Subject 3> is Patchouli, top row of <Picture 2>: long purple hair, red and blue ribbons, crescent-adorned pink cap, modest pink-and-lavender striped gown and purple spellbook.
+<Subject 4> is Sakuya, bottom row of <Picture 2>: silver bob and small braids, blue eyes, navy maid dress, white apron, green neck bow, silver knives and pocket watch.
+<Subject 5> is the TOP library panel of <Picture 3>, with towering dark bookcases, candles, purple-and-gold carpet and ample aerial space.
+<Subject 6> is the BOTTOM clock-gallery panel of <Picture 3>, with brass clocks, blue stone arches, pale windows and red carpet.
+<Picture 4> is the six-panel camera/action storyboard, corresponding to [Shot 1] through [Shot 6] in reading order.
+
+summary:
+[reference generation] Exactly 15.000 seconds, 16:9. Follow <Subject 1> and <Subject 2> through an airborne spell exchange with <Subject 3> in <Subject 5>, then a stopped-time knife trap from <Subject 4> in <Subject 6>, staged by <Picture 4>. Escape through an open high window into the scarlet night. Reference sheets define identity only: never reproduce turnaround duplicates, grids, labels, arrows or split screens. Keep faces, anatomy and costumes stable. No extra characters, injury, generated logos, visible lettering, subtitles or lip-sync. Reimu and Marisa retain calf-length skirts from the model sheet even in flight.
+
+retention_analysis:
+<Subject 1> (all shots): fully_preserved - same model and free-flight behavior; her talismans stay visually distinct from knives.
+<Subject 2> (all shots): fully_preserved - same costume, hat, braid, broom and focus.
+<Subject 3> ([Shot 1], [Shot 2]): fully_preserved - striped gown, crescent cap and spellbook remain consistent.
+<Subject 4> ([Shot 3], [Shot 4], [Shot 5]): fully_preserved - navy/white/green costume and silver weapon identity remain fixed.
+<Subject 5> ([Shot 1], [Shot 2]): fully_preserved - preserve library landmarks and scale.
+<Subject 6> ([Shot 3] through [Shot 6]): fully_preserved - preserve clock gallery and open exit window.
+<Picture 4> (six-shot planning reference): partially_preserved - Keep panel order and action staging; use the written shot directions for exact camera height, motion and timing, and the model sheets for costume length. Never reproduce arrows, labels or panel borders.
+
+detailed_description:
+Hand-drawn 2D anime, crisp cel shadows, painted backgrounds, controlled motion blur, readable flight lanes. Single-screen 16:9.
+[Shot 1] Warm candlelight resolves into an upward-looking wide view between <Subject 5>'s towering shelves. <Subject 3> floats in the upper center, her purple hair hanging below the crescent cap and her open spellbook held steady. One large violet spell circle develops behind the book, releasing two interleaved ribbons of blue and red bullets. <Subject 1> and <Subject 2> enter low from the left, clearly flying several meters above the carpet. The camera pushes beneath the spell circle as pages ruffle and elemental energy crackles.
+[Shot 2] At 00:03.000, the camera cuts to a diagonal tracking shot through the library's open air. <Subject 2> rolls her broom around the outside of one bullet helix, then releases a short golden ray from her handheld focus into its leading cluster. <Subject 1> ascends through the newly opened lane and answers with a talisman fan toward <Subject 3>. The book and shelves stay intact. Use a controlled 30-degree camera bank and strong foreground shelf parallax, keeping the heroines' faces readable. Paper, a ray hiss and small spell impacts overlap.
+[Shot 3] At 00:06.000, the camera cuts by matching the violet circle to a brass clock face in <Subject 6>. <Subject 4>, with silver hair, navy dress and green bow, floats beside it and closes her pocket watch with a sharp click. At 00:06.600, the heroines, loose motes and existing projectiles stop completely in midair. Only Sakuya and the slowly drifting camera move as she positions a shallow crescent of silver knives around the frozen flight lane. Drop the wind into dry near-silence.
+[Shot 4] At 00:08.000, the camera cuts to a close oblique view along the knives. At 00:08.200 the watch clicks again: time resumes, knives accelerate forward and both heroines react immediately. <Subject 1> pivots between two blades while her detached sleeve trails safely clear; <Subject 2> ducks lower on her broom beneath the crescent. Track beside them with a fast lateral slide, showing safe gaps rather than bodily impacts. Resume wind abruptly with distinct metallic pass-bys.
+[Shot 5] At 00:11.000, the camera cuts to a wide view looking toward the open high window. <Subject 2> fires one brief concentrated golden beam, dispersing only the remaining knife formation into sparks; it ends before touching the stonework. <Subject 1> sends a final curved talisman volley toward <Subject 4>, who sidesteps in midair without injury. The camera pulls back toward the exit, keeping both heroines and their escape lane visible. A short beam roar ends in metal-like spark ticks.
+[Shot 6] At 00:13.000, the camera cuts outside the already-open window, tracking upward as both heroines fly out without breaking glass. Crimson cloud and indigo sky replace the clock gallery behind them. Reimu rises on the left and Marisa on the right, looking above the roofline. A scarlet cloud wisp brushes across the lens during the last 0.300 seconds. Indoor reverberation falls away into high-altitude wind. End at 00:15.000.
+
+overall_soundscape:
+Candle-room air, pages, cloth, brief elemental crackles, a precise mechanical watch click, a short near-silent time-stop interval, metallic knife whistles and a brief magical beam. Space changes from tall indoor reverberation to dry exterior wind. No voices, dialogue, breathing, score, ticking used as musical rhythm or background music.
+
+non_diegetic_music:
+None. No background music, score, song or musical accompaniment at any point.
