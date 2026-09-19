@@ -1,0 +1,2596 @@
+{
+  "sourceSha256": "bb188ee82c78081c9f42b5593f17b9bb82e65770dd5a787e9600f70e21c025bb",
+  "records": [
+    {
+      "key": "S1-M1",
+      "stage": "宵闇の森・夜の散歩道",
+      "boss": "ルーミア",
+      "bossId": "rumia",
+      "phaseId": "rumia-phase-1",
+      "name": "闇符「宵闇の二灯」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 100,
+      "cap": 12,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": -12,
+            "y": 4
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 8
+          },
+          {
+            "frame": 192,
+            "x": 12,
+            "y": 4
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "rumia-halo",
+          "name": "宵闇・二つの灯",
+          "asset": "shot-orb",
+          "kind": "fan",
+          "speed": 0.75,
+          "angle": 180,
+          "count": 2,
+          "spread": 45,
+          "interval": 88,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":7}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "v37-rumia-night-eye",
+          "name": "闇の追視",
+          "asset": "shot-orb",
+          "kind": "aimed",
+          "speed": 1,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 128,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 72,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 5,
+      "dropped": 0
+    },
+    {
+      "key": "S1-M2",
+      "stage": "宵闇の森・夜の散歩道",
+      "boss": "ルーミア",
+      "bossId": "rumia",
+      "phaseId": "rumia-phase-2",
+      "name": "夜符「月隠れのリボン」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 100,
+      "cap": 12,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": 8,
+            "y": 4
+          },
+          {
+            "frame": 64,
+            "x": 16,
+            "y": 8
+          },
+          {
+            "frame": 96,
+            "x": 8,
+            "y": 12
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 8
+          },
+          {
+            "frame": 160,
+            "x": -8,
+            "y": 4
+          },
+          {
+            "frame": 192,
+            "x": -16,
+            "y": 8
+          },
+          {
+            "frame": 224,
+            "x": -8,
+            "y": 12
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "rumia-ribbon",
+          "name": "夜のリボン・三列",
+          "asset": "shot-orb",
+          "kind": "fan",
+          "speed": 0.75,
+          "angle": 180,
+          "count": 3,
+          "spread": 90,
+          "interval": 96,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 32,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":7}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "v37-rumia-twin-shadow",
+          "name": "双影",
+          "asset": "shot-orb",
+          "kind": "aimed",
+          "speed": 1.125,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 144,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 88,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": -12,
+              "y": 0
+            },
+            {
+              "x": 12,
+              "y": 0
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":-12,\"y\":0},{\"x\":12,\"y\":0}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 8,
+      "dropped": 0
+    },
+    {
+      "key": "S1-M3",
+      "stage": "宵闇の森・夜の散歩道",
+      "boss": "ルーミア",
+      "bossId": "rumia",
+      "phaseId": "rumia-phase-3",
+      "name": "闇夜「三つの月道」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 100,
+      "cap": 12,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": -8,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": -16,
+            "y": 8
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 160,
+            "x": 8,
+            "y": 8
+          },
+          {
+            "frame": 192,
+            "x": 16,
+            "y": 0
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "rumia-moon",
+          "name": "月道・三つの灯",
+          "asset": "shot-orb",
+          "kind": "fan",
+          "speed": 0.75,
+          "angle": 180,
+          "count": 3,
+          "spread": 45,
+          "interval": 72,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":7}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "v37-rumia-night-edge",
+          "name": "夜の横風",
+          "asset": "shot-orb",
+          "kind": "aimed",
+          "speed": 1,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 128,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 104,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "launch": {
+            "kind": "alternate",
+            "x": 60,
+            "y": 24,
+            "step": 16,
+            "lanes": 3
+          },
+          "origin": "左右交互 x=端 / y=24,40,56",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 9,
+      "dropped": 0
+    },
+    {
+      "key": "S2-M1",
+      "stage": "霧の湖・氷の妖精",
+      "boss": "チルノ",
+      "bossId": "cirno",
+      "phaseId": "cirno-p1",
+      "name": "氷符「三列のつらら」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 100,
+      "cap": 18,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": 12,
+            "y": 8
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 192,
+            "x": -12,
+            "y": 8
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "cirno-icicle",
+          "name": "氷柱・三列落とし",
+          "asset": "shot-orb",
+          "kind": "fan",
+          "speed": 0.75,
+          "angle": 180,
+          "count": 3,
+          "spread": 90,
+          "interval": 80,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":10}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "v37-cirno-ice-needle",
+          "name": "氷の狙い針",
+          "asset": "shot-orb",
+          "kind": "aimed",
+          "speed": 1.25,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 112,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 72,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 7,
+      "dropped": 0
+    },
+    {
+      "key": "S2-M2",
+      "stage": "霧の湖・氷の妖精",
+      "boss": "チルノ",
+      "bossId": "cirno",
+      "phaseId": "cirno-p2",
+      "name": "雪符「交互の氷柱」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 100,
+      "cap": 18,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": -16,
+            "y": -4
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 8
+          },
+          {
+            "frame": 192,
+            "x": 16,
+            "y": -4
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "cirno-crystal",
+          "name": "氷壁・左からのつらら",
+          "asset": "shot-orb",
+          "kind": "straight",
+          "speed": 0.75,
+          "angle": 90,
+          "count": 1,
+          "spread": 0,
+          "interval": 80,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 48,
+          "lifetime": 160,
+          "damage": 1,
+          "launch": {
+            "kind": "left",
+            "x": 80,
+            "y": 88,
+            "step": 16,
+            "lanes": 3
+          },
+          "origin": "左端 x=端 / y=88,104,120",
+          "description": "固定直進"
+        },
+        {
+          "id": "cirno-aim",
+          "name": "氷壁・右からのつらら",
+          "asset": "shot-diamond",
+          "kind": "straight",
+          "speed": 0.75,
+          "angle": 90,
+          "count": 1,
+          "spread": 0,
+          "interval": 80,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 84,
+          "lifetime": 160,
+          "damage": 1,
+          "launch": {
+            "kind": "right",
+            "x": 80,
+            "y": 88,
+            "step": 16,
+            "lanes": 3
+          },
+          "origin": "右端 x=端 / y=88,104,120",
+          "description": "固定直進"
+        },
+        {
+          "id": "v37-cirno-ice-v",
+          "name": "氷のＶ字",
+          "asset": "shot-orb",
+          "kind": "aimed-fan",
+          "speed": 1,
+          "angle": 0,
+          "count": 3,
+          "spread": 45,
+          "interval": 128,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 88,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い扇（発射後は直進）"
+        }
+      ],
+      "peak": 7,
+      "dropped": 0
+    },
+    {
+      "key": "S2-M3",
+      "stage": "霧の湖・氷の妖精",
+      "boss": "チルノ",
+      "bossId": "cirno",
+      "phaseId": "cirno-p3",
+      "name": "凍符「氷柱の行進」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 100,
+      "cap": 18,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": 16,
+            "y": 8
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": -4
+          },
+          {
+            "frame": 192,
+            "x": -16,
+            "y": 8
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "cirno-icicle",
+          "name": "氷柱・三列落とし",
+          "asset": "shot-orb",
+          "kind": "fan",
+          "speed": 0.75,
+          "angle": 180,
+          "count": 3,
+          "spread": 90,
+          "interval": 80,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":10}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "cirno-crystal",
+          "name": "氷壁・左からのつらら",
+          "asset": "shot-orb",
+          "kind": "straight",
+          "speed": 0.75,
+          "angle": 90,
+          "count": 1,
+          "spread": 0,
+          "interval": 80,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 48,
+          "lifetime": 160,
+          "damage": 1,
+          "launch": {
+            "kind": "left",
+            "x": 80,
+            "y": 88,
+            "step": 16,
+            "lanes": 3
+          },
+          "origin": "左端 x=端 / y=88,104,120",
+          "description": "固定直進"
+        },
+        {
+          "id": "cirno-aim",
+          "name": "氷壁・右からのつらら",
+          "asset": "shot-diamond",
+          "kind": "straight",
+          "speed": 0.75,
+          "angle": 90,
+          "count": 1,
+          "spread": 0,
+          "interval": 80,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 84,
+          "lifetime": 160,
+          "damage": 1,
+          "launch": {
+            "kind": "right",
+            "x": 80,
+            "y": 88,
+            "step": 16,
+            "lanes": 3
+          },
+          "origin": "右端 x=端 / y=88,104,120",
+          "description": "固定直進"
+        },
+        {
+          "id": "v37-cirno-ice-trident",
+          "name": "氷の三叉",
+          "asset": "shot-orb",
+          "kind": "aimed-fan",
+          "speed": 1.125,
+          "angle": 0,
+          "count": 3,
+          "spread": 90,
+          "interval": 144,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 104,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い扇（発射後は直進）"
+        }
+      ],
+      "peak": 13,
+      "dropped": 0
+    },
+    {
+      "key": "S3-M1",
+      "stage": "紅魔館・花の門",
+      "boss": "紅美鈴",
+      "bossId": "meiling",
+      "phaseId": "meiling-p1",
+      "name": "花符「五枚の花扇」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 120,
+      "cap": 22,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": -16,
+            "y": 8
+          },
+          {
+            "frame": 64,
+            "x": -32,
+            "y": 16
+          },
+          {
+            "frame": 96,
+            "x": -16,
+            "y": 24
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 160,
+            "x": 16,
+            "y": 8
+          },
+          {
+            "frame": 192,
+            "x": 32,
+            "y": 16
+          },
+          {
+            "frame": 224,
+            "x": 16,
+            "y": 24
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "mei-petal",
+          "name": "花扇・五枚の花びら",
+          "asset": "shot-orb",
+          "kind": "fan",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 5,
+          "spread": 90,
+          "interval": 72,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "v37-meiling-lotus-aim",
+          "name": "蓮の迎撃",
+          "asset": "shot-orb",
+          "kind": "aimed-fan",
+          "speed": 1.25,
+          "angle": 0,
+          "count": 3,
+          "spread": 45,
+          "interval": 112,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 72,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い扇（発射後は直進）"
+        }
+      ],
+      "peak": 13,
+      "dropped": 0
+    },
+    {
+      "key": "S3-M2",
+      "stage": "紅魔館・花の門",
+      "boss": "紅美鈴",
+      "bossId": "meiling",
+      "phaseId": "meiling-p2",
+      "name": "華符「門番の構え」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 120,
+      "cap": 22,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": 16,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": 32,
+            "y": 16
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 32
+          },
+          {
+            "frame": 160,
+            "x": -16,
+            "y": 16
+          },
+          {
+            "frame": 192,
+            "x": -32,
+            "y": 0
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "mei-guard",
+          "name": "門番・両脇の拳",
+          "asset": "shot-orb",
+          "kind": "straight",
+          "speed": 0.875,
+          "angle": 90,
+          "count": 1,
+          "spread": 0,
+          "interval": 72,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "launch": {
+            "kind": "both",
+            "x": 80,
+            "y": 88,
+            "step": 16,
+            "lanes": 3
+          },
+          "origin": "左右同時 x=端 / y=88,104,120",
+          "description": "固定直進"
+        },
+        {
+          "id": "mei-needle",
+          "name": "紅拳・三連の追い打ち",
+          "asset": "shot-diamond",
+          "kind": "fan",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 3,
+          "spread": 45,
+          "interval": 72,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 56,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "v37-meiling-cross-fist",
+          "name": "双掌",
+          "asset": "shot-orb",
+          "kind": "aimed",
+          "speed": 1.5,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 128,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 88,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": -12,
+              "y": 0
+            },
+            {
+              "x": 12,
+              "y": 0
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":-12,\"y\":0},{\"x\":12,\"y\":0}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 12,
+      "dropped": 0
+    },
+    {
+      "key": "S3-M3",
+      "stage": "紅魔館・花の門",
+      "boss": "紅美鈴",
+      "bossId": "meiling",
+      "phaseId": "meiling-p3",
+      "name": "彩符「花びらの追撃」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 120,
+      "cap": 22,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": -24,
+            "y": 8
+          },
+          {
+            "frame": 64,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 96,
+            "x": 24,
+            "y": 24
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 32
+          },
+          {
+            "frame": 160,
+            "x": -24,
+            "y": 24
+          },
+          {
+            "frame": 192,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 224,
+            "x": 24,
+            "y": 8
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "mei-petal",
+          "name": "花扇・五枚の花びら",
+          "asset": "shot-orb",
+          "kind": "fan",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 5,
+          "spread": 90,
+          "interval": 72,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "mei-needle",
+          "name": "紅拳・三連の追い打ち",
+          "asset": "shot-diamond",
+          "kind": "fan",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 3,
+          "spread": 45,
+          "interval": 72,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 56,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "v37-meiling-lotus-triad",
+          "name": "三華",
+          "asset": "shot-orb",
+          "kind": "aimed-fan",
+          "speed": 1.25,
+          "angle": 0,
+          "count": 3,
+          "spread": 90,
+          "interval": 128,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 104,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い扇（発射後は直進）"
+        }
+      ],
+      "peak": 17,
+      "dropped": 0
+    },
+    {
+      "key": "S4-M1",
+      "stage": "地下大図書館",
+      "boss": "パチュリー・ノーレッジ",
+      "bossId": "patchouli",
+      "phaseId": "patchouli-p1",
+      "name": "書符「三角の頁」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 160,
+      "cap": 26,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": 32,
+            "y": -8
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 192,
+            "x": -32,
+            "y": -8
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "pat-element",
+          "name": "三角の魔法陣",
+          "asset": "shot-star",
+          "kind": "fan",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 3,
+          "spread": 90,
+          "interval": 64,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "pat-seal",
+          "name": "魔印・追尾する光",
+          "asset": "shot-diamond",
+          "kind": "homing",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 1,
+          "spread": 0,
+          "interval": 96,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 73,
+          "lifetime": 160,
+          "damage": 1,
+          "guidance": {
+            "frames": 48,
+            "period": 16
+          },
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "発射後も短時間追尾"
+        },
+        {
+          "id": "v37-patchouli-fire-point",
+          "name": "火符・点火",
+          "asset": "shot-star",
+          "kind": "aimed",
+          "speed": 1.75,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 112,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 72,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 9,
+      "dropped": 0
+    },
+    {
+      "key": "S4-M2",
+      "stage": "地下大図書館",
+      "boss": "パチュリー・ノーレッジ",
+      "bossId": "patchouli",
+      "phaseId": "patchouli-p2",
+      "name": "月符「交わる星図」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 160,
+      "cap": 26,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": -32,
+            "y": 16
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": -8
+          },
+          {
+            "frame": 192,
+            "x": 32,
+            "y": 16
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "pat-page",
+          "name": "天井の魔法陣",
+          "asset": "shot-star",
+          "kind": "fan",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 4,
+          "spread": 135,
+          "interval": 88,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 48,
+          "lifetime": 160,
+          "damage": 1,
+          "launch": {
+            "kind": "fixed",
+            "x": 60,
+            "y": 16,
+            "step": 0,
+            "lanes": 1
+          },
+          "origin": "固定位置 x=60 / y=16",
+          "description": "固定扇状"
+        },
+        {
+          "id": "pat-element",
+          "name": "三角の魔法陣",
+          "asset": "shot-star",
+          "kind": "fan",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 3,
+          "spread": 90,
+          "interval": 64,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "v37-patchouli-water-v",
+          "name": "水符・二叉",
+          "asset": "shot-star",
+          "kind": "aimed-fan",
+          "speed": 1.125,
+          "angle": 0,
+          "count": 3,
+          "spread": 90,
+          "interval": 128,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 88,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い扇（発射後は直進）"
+        }
+      ],
+      "peak": 16,
+      "dropped": 0
+    },
+    {
+      "key": "S4-M3",
+      "stage": "地下大図書館",
+      "boss": "パチュリー・ノーレッジ",
+      "bossId": "patchouli",
+      "phaseId": "patchouli-p3",
+      "name": "秘符「三重の魔導書」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 160,
+      "cap": 26,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": -24,
+            "y": 8
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 192,
+            "x": 24,
+            "y": 8
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "pat-element",
+          "name": "三角の魔法陣",
+          "asset": "shot-star",
+          "kind": "fan",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 3,
+          "spread": 90,
+          "interval": 64,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "pat-page",
+          "name": "天井の魔法陣",
+          "asset": "shot-star",
+          "kind": "fan",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 4,
+          "spread": 135,
+          "interval": 88,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 48,
+          "lifetime": 160,
+          "damage": 1,
+          "launch": {
+            "kind": "fixed",
+            "x": 60,
+            "y": 16,
+            "step": 0,
+            "lanes": 1
+          },
+          "origin": "固定位置 x=60 / y=16",
+          "description": "固定扇状"
+        },
+        {
+          "id": "pat-seal",
+          "name": "魔印・追尾する光",
+          "asset": "shot-diamond",
+          "kind": "homing",
+          "speed": 0.875,
+          "angle": 180,
+          "count": 1,
+          "spread": 0,
+          "interval": 96,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 73,
+          "lifetime": 160,
+          "damage": 1,
+          "guidance": {
+            "frames": 48,
+            "period": 16
+          },
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "発射後も短時間追尾"
+        },
+        {
+          "id": "v37-patchouli-earth-grid",
+          "name": "土符・三列",
+          "asset": "shot-star",
+          "kind": "aimed",
+          "speed": 1.25,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 144,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 104,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": -16,
+              "y": 8
+            },
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 16,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":-16,\"y\":8},{\"x\":0,\"y\":0},{\"x\":16,\"y\":8}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 16,
+      "dropped": 0
+    },
+    {
+      "key": "S5-M1",
+      "stage": "月時計の回廊",
+      "boss": "十六夜咲夜",
+      "bossId": "sakuya",
+      "phaseId": "sakuya-p1",
+      "name": "銀符「秒針の列」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 210,
+      "cap": 30,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": -16,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": -32,
+            "y": 16
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 32
+          },
+          {
+            "frame": 160,
+            "x": 16,
+            "y": 16
+          },
+          {
+            "frame": 192,
+            "x": 32,
+            "y": 0
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "sak-fan",
+          "name": "銀の三連時計",
+          "asset": "shot-knife",
+          "kind": "fan",
+          "speed": 1,
+          "angle": 180,
+          "count": 3,
+          "spread": 45,
+          "interval": 44,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "sak-line",
+          "name": "秒針・真下への連射",
+          "asset": "shot-knife",
+          "kind": "straight",
+          "speed": 1,
+          "angle": 180,
+          "count": 1,
+          "spread": 0,
+          "interval": 32,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 31,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定直進"
+        },
+        {
+          "id": "v37-sakuya-silver-aim",
+          "name": "銀の狙撃",
+          "asset": "shot-knife",
+          "kind": "aimed",
+          "speed": 2,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 96,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 72,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 13,
+      "dropped": 0
+    },
+    {
+      "key": "S5-M2",
+      "stage": "月時計の回廊",
+      "boss": "十六夜咲夜",
+      "bossId": "sakuya",
+      "phaseId": "sakuya-p2",
+      "name": "時符「時差の銀針」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 210,
+      "cap": 30,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": 24,
+            "y": 8
+          },
+          {
+            "frame": 64,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 96,
+            "x": -24,
+            "y": 24
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 32
+          },
+          {
+            "frame": 160,
+            "x": 24,
+            "y": 24
+          },
+          {
+            "frame": 192,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 224,
+            "x": -24,
+            "y": 8
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "sak-cross",
+          "name": "時空・左右の銀針",
+          "asset": "shot-knife",
+          "kind": "straight",
+          "speed": 1,
+          "angle": 90,
+          "count": 1,
+          "spread": 0,
+          "interval": 44,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 42,
+          "lifetime": 160,
+          "damage": 1,
+          "launch": {
+            "kind": "alternate",
+            "x": 80,
+            "y": 80,
+            "step": 16,
+            "lanes": 4
+          },
+          "origin": "左右交互 x=端 / y=80,96,112,128",
+          "description": "固定直進"
+        },
+        {
+          "id": "sak-line",
+          "name": "秒針・真下への連射",
+          "asset": "shot-knife",
+          "kind": "straight",
+          "speed": 1,
+          "angle": 180,
+          "count": 1,
+          "spread": 0,
+          "interval": 32,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 31,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定直進"
+        },
+        {
+          "id": "v37-sakuya-twin-clock",
+          "name": "双時計",
+          "asset": "shot-knife",
+          "kind": "aimed",
+          "speed": 1.5,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 112,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 88,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": -12,
+              "y": 0
+            },
+            {
+              "x": 12,
+              "y": 0
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":-12,\"y\":0},{\"x\":12,\"y\":0}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 8,
+      "dropped": 0
+    },
+    {
+      "key": "S5-M3",
+      "stage": "月時計の回廊",
+      "boss": "十六夜咲夜",
+      "bossId": "sakuya",
+      "phaseId": "sakuya-p3",
+      "name": "幻符「時計の二重扇」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 210,
+      "cap": 30,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": 24,
+            "y": 16
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 32
+          },
+          {
+            "frame": 192,
+            "x": -24,
+            "y": 16
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "sak-fan",
+          "name": "銀の三連時計",
+          "asset": "shot-knife",
+          "kind": "fan",
+          "speed": 1,
+          "angle": 180,
+          "count": 3,
+          "spread": 45,
+          "interval": 44,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "sak-cross",
+          "name": "時空・左右の銀針",
+          "asset": "shot-knife",
+          "kind": "straight",
+          "speed": 1,
+          "angle": 90,
+          "count": 1,
+          "spread": 0,
+          "interval": 44,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 42,
+          "lifetime": 160,
+          "damage": 1,
+          "launch": {
+            "kind": "alternate",
+            "x": 80,
+            "y": 80,
+            "step": 16,
+            "lanes": 4
+          },
+          "origin": "左右交互 x=端 / y=80,96,112,128",
+          "description": "固定直進"
+        },
+        {
+          "id": "v37-sakuya-knife-triad",
+          "name": "三本ナイフ",
+          "asset": "shot-knife",
+          "kind": "aimed-fan",
+          "speed": 1.75,
+          "angle": 0,
+          "count": 3,
+          "spread": 45,
+          "interval": 128,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 104,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い扇（発射後は直進）"
+        }
+      ],
+      "peak": 14,
+      "dropped": 0
+    },
+    {
+      "key": "S6-M1",
+      "stage": "紅月の屋上",
+      "boss": "レミリア・スカーレット",
+      "bossId": "remilia",
+      "phaseId": "remilia-p1",
+      "name": "夜符「六枚の翼と槍」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 280,
+      "cap": 36,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": 32,
+            "y": 16
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": -8
+          },
+          {
+            "frame": 192,
+            "x": -32,
+            "y": 16
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "rem-ring",
+          "name": "紅い六枚の翼",
+          "asset": "shot-diamond",
+          "kind": "fan",
+          "speed": 1,
+          "angle": 180,
+          "count": 6,
+          "spread": 135,
+          "interval": 60,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "rem-coil",
+          "name": "紅槍・短い追尾",
+          "asset": "shot-diamond",
+          "kind": "homing",
+          "speed": 1,
+          "angle": 180,
+          "count": 1,
+          "spread": 0,
+          "interval": 56,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 27,
+          "lifetime": 160,
+          "damage": 1,
+          "guidance": {
+            "frames": 48,
+            "period": 16
+          },
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "発射後も短時間追尾"
+        },
+        {
+          "id": "v37-remilia-scarlet-spear",
+          "name": "紅の槍",
+          "asset": "shot-diamond",
+          "kind": "aimed",
+          "speed": 2,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 96,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 72,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 14,
+      "dropped": 0
+    },
+    {
+      "key": "S6-M2",
+      "stage": "紅月の屋上",
+      "boss": "レミリア・スカーレット",
+      "bossId": "remilia",
+      "phaseId": "remilia-p2",
+      "name": "紅符「夜潮の槍」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 280,
+      "cap": 36,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": 24,
+            "y": 8
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 192,
+            "x": -24,
+            "y": 8
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "rem-fan",
+          "name": "夜潮・五枚の扇",
+          "asset": "shot-orb",
+          "kind": "fan",
+          "speed": 1,
+          "angle": 180,
+          "count": 5,
+          "spread": 90,
+          "interval": 64,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 26,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "rem-coil",
+          "name": "紅槍・短い追尾",
+          "asset": "shot-diamond",
+          "kind": "homing",
+          "speed": 1,
+          "angle": 180,
+          "count": 1,
+          "spread": 0,
+          "interval": 56,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 27,
+          "lifetime": 160,
+          "damage": 1,
+          "guidance": {
+            "frames": 48,
+            "period": 16
+          },
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "発射後も短時間追尾"
+        },
+        {
+          "id": "v37-remilia-bat-wings",
+          "name": "蝙蝠の翼",
+          "asset": "shot-orb",
+          "kind": "aimed-fan",
+          "speed": 1.5,
+          "angle": 0,
+          "count": 3,
+          "spread": 90,
+          "interval": 128,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 88,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い扇（発射後は直進）"
+        }
+      ],
+      "peak": 15,
+      "dropped": 0
+    },
+    {
+      "key": "S6-M3",
+      "stage": "紅月の屋上",
+      "boss": "レミリア・スカーレット",
+      "bossId": "remilia",
+      "phaseId": "remilia-p3",
+      "name": "月符「紅月の二重冠」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 280,
+      "cap": 36,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": -16,
+            "y": 8
+          },
+          {
+            "frame": 64,
+            "x": -32,
+            "y": 16
+          },
+          {
+            "frame": 96,
+            "x": -16,
+            "y": 24
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 160,
+            "x": 16,
+            "y": 8
+          },
+          {
+            "frame": 192,
+            "x": 32,
+            "y": 16
+          },
+          {
+            "frame": 224,
+            "x": 16,
+            "y": 24
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "rem-ring",
+          "name": "紅い六枚の翼",
+          "asset": "shot-diamond",
+          "kind": "fan",
+          "speed": 1,
+          "angle": 180,
+          "count": 6,
+          "spread": 135,
+          "interval": 60,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "rem-fan",
+          "name": "夜潮・五枚の扇",
+          "asset": "shot-orb",
+          "kind": "fan",
+          "speed": 1,
+          "angle": 180,
+          "count": 5,
+          "spread": 90,
+          "interval": 64,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 26,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "v37-remilia-blood-moon",
+          "name": "血の双月",
+          "asset": "shot-diamond",
+          "kind": "aimed",
+          "speed": 1.75,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 112,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 104,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": -12,
+              "y": 0
+            },
+            {
+              "x": 12,
+              "y": 0
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":-12,\"y\":0},{\"x\":12,\"y\":0}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 22,
+      "dropped": 0
+    },
+    {
+      "key": "S7-M1",
+      "stage": "封印された地下室",
+      "boss": "フランドール・スカーレット",
+      "bossId": "flandre",
+      "phaseId": "flandre-p1",
+      "name": "遊符「七枚の結晶と追奏」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 360,
+      "cap": 40,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 32,
+            "x": -24,
+            "y": 8
+          },
+          {
+            "frame": 64,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 96,
+            "x": 24,
+            "y": 24
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 32
+          },
+          {
+            "frame": 160,
+            "x": -24,
+            "y": 24
+          },
+          {
+            "frame": 192,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 224,
+            "x": 24,
+            "y": 8
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "flan-ring",
+          "name": "七枚の結晶",
+          "asset": "shot-star",
+          "kind": "fan",
+          "speed": 1.125,
+          "angle": 180,
+          "count": 7,
+          "spread": 135,
+          "interval": 56,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "flan-coil",
+          "name": "禁弾・追う結晶",
+          "asset": "shot-star",
+          "kind": "homing",
+          "speed": 1.125,
+          "angle": 180,
+          "count": 1,
+          "spread": 0,
+          "interval": 56,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 29,
+          "lifetime": 160,
+          "damage": 1,
+          "guidance": {
+            "frames": 48,
+            "period": 16
+          },
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "発射後も短時間追尾"
+        },
+        {
+          "id": "v37-flandre-ruby-aim",
+          "name": "紅玉の狙撃",
+          "asset": "shot-star",
+          "kind": "aimed-fan",
+          "speed": 1.75,
+          "angle": 0,
+          "count": 3,
+          "spread": 45,
+          "interval": 112,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 72,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い扇（発射後は直進）"
+        }
+      ],
+      "peak": 18,
+      "dropped": 0
+    },
+    {
+      "key": "S7-M2",
+      "stage": "封印された地下室",
+      "boss": "フランドール・スカーレット",
+      "bossId": "flandre",
+      "phaseId": "flandre-p2",
+      "name": "禁符「五拍のかくれんぼ」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 360,
+      "cap": 40,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": -24,
+            "y": 16
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 32
+          },
+          {
+            "frame": 192,
+            "x": 24,
+            "y": 16
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "flan-final",
+          "name": "真紅・五枚の結晶",
+          "asset": "shot-diamond",
+          "kind": "fan",
+          "speed": 1.125,
+          "angle": 180,
+          "count": 5,
+          "spread": 90,
+          "interval": 64,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 40,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "flan-coil",
+          "name": "禁弾・追う結晶",
+          "asset": "shot-star",
+          "kind": "homing",
+          "speed": 1.125,
+          "angle": 180,
+          "count": 1,
+          "spread": 0,
+          "interval": 56,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 29,
+          "lifetime": 160,
+          "damage": 1,
+          "guidance": {
+            "frames": 48,
+            "period": 16
+          },
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "発射後も短時間追尾"
+        },
+        {
+          "id": "v37-flandre-prism-cross",
+          "name": "プリズム交差",
+          "asset": "shot-diamond",
+          "kind": "aimed",
+          "speed": 2,
+          "angle": 0,
+          "count": 1,
+          "spread": 0,
+          "interval": 112,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 88,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": -12,
+              "y": 0
+            },
+            {
+              "x": 12,
+              "y": 0
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":-12,\"y\":0},{\"x\":12,\"y\":0}]",
+          "description": "発射時の自機狙い（発射後は直進）"
+        }
+      ],
+      "peak": 13,
+      "dropped": 0
+    },
+    {
+      "key": "S7-M3",
+      "stage": "封印された地下室",
+      "boss": "フランドール・スカーレット",
+      "bossId": "flandre",
+      "phaseId": "flandre-p3",
+      "name": "星符「七枚と五枚の交奏」",
+      "hp": 100,
+      "seconds": 60,
+      "score": 360,
+      "cap": 40,
+      "returnX": 60,
+      "returnY": 36,
+      "motion": {
+        "kind": "path",
+        "vx": 0,
+        "vy": 0,
+        "amplitude": 0,
+        "period": 256,
+        "loop": true,
+        "points": [
+          {
+            "frame": 0,
+            "x": 0,
+            "y": 0
+          },
+          {
+            "frame": 64,
+            "x": 32,
+            "y": -8
+          },
+          {
+            "frame": 128,
+            "x": 0,
+            "y": 16
+          },
+          {
+            "frame": 192,
+            "x": -32,
+            "y": -8
+          },
+          {
+            "frame": 256,
+            "x": 0,
+            "y": 0
+          }
+        ]
+      },
+      "patterns": [
+        {
+          "id": "flan-ring",
+          "name": "七枚の結晶",
+          "asset": "shot-star",
+          "kind": "fan",
+          "speed": 1.125,
+          "angle": 180,
+          "count": 7,
+          "spread": 135,
+          "interval": 56,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 24,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "flan-final",
+          "name": "真紅・五枚の結晶",
+          "asset": "shot-diamond",
+          "kind": "fan",
+          "speed": 1.125,
+          "angle": 180,
+          "count": 5,
+          "spread": 90,
+          "interval": 64,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 40,
+          "lifetime": 160,
+          "damage": 1,
+          "origin": "ボス相対 [{\"x\":0,\"y\":17}]",
+          "description": "固定扇状"
+        },
+        {
+          "id": "v37-flandre-four-star",
+          "name": "四つ星",
+          "asset": "shot-star",
+          "kind": "aimed-fan",
+          "speed": 1.5,
+          "angle": 0,
+          "count": 5,
+          "spread": 135,
+          "interval": 144,
+          "rotation": 0,
+          "repeats": 0,
+          "delay": 104,
+          "lifetime": 144,
+          "damage": 1,
+          "emitterOffsets": [
+            {
+              "x": 0,
+              "y": 8
+            }
+          ],
+          "origin": "ボス相対 [{\"x\":0,\"y\":8}]",
+          "description": "発射時の自機狙い扇（発射後は直進）"
+        }
+      ],
+      "peak": 27,
+      "dropped": 0
+    }
+  ]
+}
