@@ -1,0 +1,240 @@
+{
+  "version": "0.42-focus-controls",
+  "recordedAt": "2026-09-19T08:28:41.049Z",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v42.gb",
+    "sha256": "0d670f55f01fb3559efb3de6a0747b170a07f82fe9632150b43d327fd50c2562",
+    "bytes": 4194304,
+    "header": 192
+  },
+  "projectRevision": "75048f3102acab489b193be4f9d366a286e7a2d6bdd9fb979fed64b0f962e9b1",
+  "controls": {
+    "romHash": "0d670f55f01fb3559efb3de6a0747b170a07f82fe9632150b43d327fd50c2562",
+    "production": true,
+    "grazeScore": 10,
+    "results": [
+      {
+        "character": 0,
+        "focusWithoutFire": true,
+        "exactFocusSpeed": true,
+        "bothStaggerOrders": true,
+        "laserStops": false,
+        "freshChordBomb": true,
+        "heldAndPartialReleaseSafe": true
+      },
+      {
+        "character": 1,
+        "focusWithoutFire": true,
+        "exactFocusSpeed": true,
+        "bothStaggerOrders": true,
+        "laserStops": true,
+        "freshChordBomb": true,
+        "heldAndPartialReleaseSafe": true
+      }
+    ],
+    "notes": [
+      "laserStops is not applicable to character 0 (Reimu); its false value is not a failed assertion."
+    ]
+  },
+  "graze": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "0d670f55f01fb3559efb3de6a0747b170a07f82fe9632150b43d327fd50c2562",
+    "results": [
+      {
+        "mode": "CGB",
+        "stage": 7,
+        "character": "Marisa",
+        "normalInput": true,
+        "events": [
+          {
+            "frame": 83,
+            "energy": 1846,
+            "flash": 12,
+            "score": 10,
+            "shotVolume": 34,
+            "noiseVolume": 49
+          },
+          {
+            "frame": 330,
+            "energy": 2912,
+            "flash": 12,
+            "score": 30,
+            "shotVolume": 18,
+            "noiseVolume": 49
+          },
+          {
+            "frame": 362,
+            "energy": 1938,
+            "flash": 12,
+            "score": 50,
+            "shotVolume": 18,
+            "noiseVolume": 49
+          }
+        ],
+        "isolatedGrazePcmEnergy": 10012
+      }
+    ]
+  },
+  "save": {
+    "saveId": "49267a33",
+    "results": [
+      {
+        "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+        "variant": "unchanged",
+        "scores": [
+          54321,
+          12345,
+          4321,
+          999,
+          123
+        ],
+        "saveHash": "c5a8762543adef2c19336b0a8ee43015eebfd5b72351d1bf775b29d0c06ed36b",
+        "unchanged": true
+      },
+      {
+        "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+        "variant": "corrupt-newest",
+        "scores": [
+          54321,
+          12345,
+          4321,
+          999,
+          123
+        ],
+        "saveHash": "54db4ed0d1db940524870f1c87efb7a7b797ac816ca643112626a873fac655c6",
+        "unchanged": true
+      },
+      {
+        "romHash": "0d670f55f01fb3559efb3de6a0747b170a07f82fe9632150b43d327fd50c2562",
+        "variant": "unchanged",
+        "scores": [
+          54321,
+          12345,
+          4321,
+          999,
+          123
+        ],
+        "saveHash": "c5a8762543adef2c19336b0a8ee43015eebfd5b72351d1bf775b29d0c06ed36b",
+        "unchanged": true
+      },
+      {
+        "romHash": "0d670f55f01fb3559efb3de6a0747b170a07f82fe9632150b43d327fd50c2562",
+        "variant": "corrupt-newest",
+        "scores": [
+          54321,
+          12345,
+          4321,
+          999,
+          123
+        ],
+        "saveHash": "54db4ed0d1db940524870f1c87efb7a7b797ac816ca643112626a873fac655c6",
+        "unchanged": true
+      }
+    ]
+  },
+  "bgb": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "0d670f55f01fb3559efb3de6a0747b170a07f82fe9632150b43d327fd50c2562",
+    "results": [
+      {
+        "mode": "CGB",
+        "route": "boss",
+        "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+        "updates": 1317,
+        "updatesPerSecond": 59.01059077269317,
+        "deadlineMisses": 16,
+        "frameGapP95": 1,
+        "frameGapMax": 2,
+        "peak": 18,
+        "dmaSamples": 1499,
+        "dmaEndMax": 151,
+        "roadDmaSamples": 0,
+        "extraVblankWaits": 0,
+        "windows": [
+          {
+            "tick": 120,
+            "updates": 119,
+            "updatesPerSecond": 57.78514227642277
+          },
+          {
+            "tick": 240,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 360,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 480,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 600,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 720,
+            "updates": 120,
+            "updatesPerSecond": 59.23388429752066
+          },
+          {
+            "tick": 840,
+            "updates": 120,
+            "updatesPerSecond": 59.23388429752066
+          },
+          {
+            "tick": 960,
+            "updates": 120,
+            "updatesPerSecond": 58.748360655737706
+          },
+          {
+            "tick": 1080,
+            "updates": 120,
+            "updatesPerSecond": 55.99453125
+          },
+          {
+            "tick": 1200,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 1320,
+            "updates": 118,
+            "updatesPerSecond": 59.7275
+          }
+        ]
+      }
+    ]
+  },
+  "builds": {
+    "touhouDebug": true,
+    "touhouRelease": true,
+    "typecheck": true,
+    "editor": true,
+    "helloDebug": true,
+    "starDebug": true,
+    "starRelease": true
+  },
+  "regression": {
+    "initial": {
+      "total": 170,
+      "passed": 168,
+      "failed": 2,
+      "reason": "Old expected graze score and B-only laser behavior"
+    },
+    "afterExpectationUpdate": {
+      "corePassed": 167,
+      "coreFailed": 0,
+      "romTestsPreviouslyPassed": 3
+    }
+  },
+  "limits": [
+    "Performance goal remains unmet: native boss route has 16 deadline misses; no new forty-bullet acceptance claim.",
+    "Emulicious not rerun in v42.",
+    "Physical hardware and human listening unverified."
+  ]
+}

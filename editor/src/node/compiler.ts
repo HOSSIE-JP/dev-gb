@@ -703,6 +703,7 @@ export function generate(
         if(bomb?.enabled)compileScreen({id:"clear",name:`${p.name}のボム（スプライト領域を保持）`,background:p.bombBackground||bomb.background,palette:0,dock:"top",items:[]},screenRows.length,undefined,"",undefined,128,undefined,game.screens.find(s=>s.id==="hud")?.dock==="right"?bombViewportPixels(game,p.bombBackground||bomb.background,p.bombStyle==="beam"):undefined);
     }
     config.push(`const uint8_t ce_bomb_stock=${bomb?.enabled ? bomb.stock : 0},ce_bomb_damage=${bomb?.damage ?? 30},ce_bomb_frames=${bomb?.frames ?? 48},ce_bomb_period=${bomb?.flashPeriod ?? 2};`,
+        `const uint8_t ce_focus_requires_a=${+!!game.player.focusRequiresA};`,
         `const uint8_t ce_bomb_live=${bomb?.live ? bomb.presentation === "image" ? 2 : 1 : 0},ce_bomb_button=${+(bomb?.button === "b")},ce_bomb_background=${+!!bomb?.destroyBackground},ce_bomb_max=${bomb?.maxStock ?? 9};`,
         `const uint8_t ce_bomb_screens[]={${bombScreens}},ce_bomb_styles[]={${players.map(p=>+(p.bombStyle==="beam"))}};`);
     config.push(`const uint16_t ce_attract_title_frames=${game.attract?.enabled ? game.attract.titleSeconds*60 : 0},ce_attract_boss_frames=${(game.attract?.bossSeconds??15)*60},ce_attract_rank_frames=${(game.attract?.rankingSeconds??8)*60};`);

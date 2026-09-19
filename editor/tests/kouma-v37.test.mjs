@@ -9,7 +9,7 @@ test('continuous ray follows the player, damages the whole column on pulses, and
  for(let i=0;i<7;i++)s.step(16);assert.equal(targets[0].hp,99);s.step(16);assert.equal(targets[0].hp,98);
  const x=s.playerX;s.step(17);assert(s.playerX>x);assert.equal(s.entities.filter(e=>e.kind==='pshot').length,0);
  s.step(0);assert.equal(s.beamPattern,'');const hp=targets[0].hp;for(let i=0;i<20;i++)s.step(0);assert.equal(targets[0].hp,hp);
- s.step(32);assert.equal(s.beamPattern,'marisa-focus');s.invulnerable=0;s.hitPlayer();s.step(16);assert.equal(s.beamPattern,'');
+ s.step(32);assert.equal(s.beamPattern,'');s.step(48);assert.equal(s.beamPattern,'marisa-focus');s.invulnerable=0;s.hitPlayer();s.step(16);assert.equal(s.beamPattern,'');
 });
 test('ray collision stays narrow at the exact two-pixel edge and does not depend on target slot',()=>{
  for(const dx of [-8,-7,-6,0,6,7,8]){

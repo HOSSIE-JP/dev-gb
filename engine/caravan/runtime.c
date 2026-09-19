@@ -491,8 +491,9 @@ static void move_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) {
 }
 static void step_player(uint8_t input) {
     uint8_t top = ce_hud_bottom ? 0u : ce_hud_height;
-    uint8_t mode = !ce_bomb_button && (input & J_B) && ce_player_focus_weapon != CE_NONE;
-    uint8_t pattern = mode ? ce_player_focus_weapon : ce_player_weapon;
+    uint8_t mode = !ce_bomb_button && (input & J_B) && (ce_player_focus_weapon != CE_NONE || ce_focus_requires_a);
+    uint8_t pattern = mode && ce_player_focus_weapon != CE_NONE ? ce_player_focus_weapon : ce_player_weapon;
+    uint8_t fire = input & (ce_bomb_button || ce_focus_requires_a ? J_A : J_A | J_B);
     uint8_t speed = mode ? ce_player_focus_speed : ce_player_speed;
     int16_t limit; const CE_Asset *player = &ce_assets[ce_player_asset];
     const CE_Pattern *weapon = &ce_patterns[pattern];
@@ -515,9 +516,9 @@ static void step_player(uint8_t input) {
     limit = (top + player->oy) * 16; if (ce_state.player_y < limit) ce_state.player_y = limit;
     limit = (top + 144u - ce_hud_height - player->height + player->oy) * 16u; if (ce_state.player_y > limit) ce_state.player_y = limit;
 #if CE_OBJ_16
-    if (weapon->kind==8u && (input & (ce_bomb_button ? J_A : J_A | J_B))) ce_beam_pattern=pattern;
+    if (weapon->kind==8u && fire) ce_beam_pattern=pattern;
 #endif
-    if (!(input & (ce_bomb_button ? J_A : J_A | J_B))) { ce_state.cooldown = weapon->delay; ce_state.player_sequence = 0; }
+    if (!fire) { ce_state.cooldown = weapon->delay; ce_state.player_sequence = 0; }
     else if (ce_state.cooldown) --ce_state.cooldown;
     else if (!weapon->repeats || ce_state.player_sequence < weapon->repeats) {
 #if CE_OBJ_16
@@ -837,6 +838,9 @@ void ce_step(uint8_t input) NONBANKED {
     } else {
         if (!(input & (J_A|J_B))) ce_bomb_latch = 0;
         bomb_pressed = (input & (J_A|J_B)) == (J_A|J_B) && !ce_bomb_latch;
+        /* With independent focus/fire, a staggered press means focused fire.
+         * A bomb needs both buttons newly held after a released update. */
+        if (ce_focus_requires_a) ce_bomb_latch = !!(input & (J_A|J_B));
     }
     if(bomb_pressed && ce_bombs && !ce_respawn && !ce_bomb_left){
         ce_bomb_latch=1;--ce_bombs;

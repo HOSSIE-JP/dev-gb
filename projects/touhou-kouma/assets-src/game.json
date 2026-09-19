@@ -80522,7 +80522,8 @@
     "selectionBackground": "select-reimu",
     "gameoverBackground": "gameover-reimu",
     "selectionHeading": true,
-    "focusHitbox": true
+    "focusHitbox": true,
+    "focusRequiresA": true
   },
   "clearBonus": 50,
   "stageFade": true,
@@ -83050,7 +83051,7 @@
   "graze": {
     "enabled": true,
     "radius": 6,
-    "score": 1,
+    "score": 10,
     "flashFrames": 12
   },
   "legacyScoreDivisor": 10,

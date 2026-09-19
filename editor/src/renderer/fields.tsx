@@ -26,8 +26,9 @@ const labels: Record<string, string> = {
     parallax: "視差タイルアニメーション", firstTile: "開始タイル番号", divisor: "奥行き速度の除数（2〜8）",
     asset: "スプライト",
     weapon: "自機の弾幕",
-    focusWeapon: "Bボタンの集中ショット",
-    focusSpeed: "集中ショット中の速度 px / frame",
+    focusWeapon: "低速時のショット",
+    focusSpeed: "低速移動の速度 px / frame",
+    focusRequiresA: "Bは低速のみ（射撃はA、ボムは離して同時押し）",
     focusHitbox: "低速中に当たり判定の円を表示",
     scrollDown: "背景を上から下へ流す",
     requireBoss: "時間内のボス撃破を必須にする",
@@ -185,7 +186,7 @@ export function Form({
     return (
         <div className="form" data-context={context}>
             {Object.entries(
-                context === "player" ? { name:"PLAYER 1",selectionBackground:"",selectionHeading:false,gameoverBackground:"", focusWeapon: "", focusSpeed: value.speed, focusHitbox:false, respawnDelay: 0, characters:[], barrierMax:3,barrierFrames:45,barrierAsset:"",maxLives:9, atomicVolleys:false, bomb:{enabled:false,stock:2,damage:30,frames:48,flashPeriod:2,background:""}, ...value }
+                context === "player" ? { name:"PLAYER 1",selectionBackground:"",selectionHeading:false,gameoverBackground:"", focusWeapon: "", focusSpeed: value.speed, focusHitbox:false, focusRequiresA:false, respawnDelay: 0, characters:[], barrierMax:3,barrierFrames:45,barrierAsset:"",maxLives:9, atomicVolleys:false, bomb:{enabled:false,stock:2,damage:30,frames:48,flashPeriod:2,background:""}, ...value }
                 : context === "characters" ? {selectionBackground:"",gameoverBackground:"",focusWeapon:"",focusSpeed:value.speed,bombBackground:"",bombStyle:"orb",...value}
                 : context === "pattern" ? {launch:{kind:"actor",x:80,y:32,step:16,lanes:1},guidance:{frames:48,period:16},emitterOffsets:[],...value}
                 : context === "stage" ? { scrollAxis:"vertical", requireBoss: false, scrollDown: false, music: 0, bossMusic: 0, presentation: { enabled: false, dialogueBackground: "", clearBackground: "", rightPalette: 0, dialogue: [], clearEnabled: false, baseBonus: game.clearBonus, lifeBonus: 200, noMissBonus: 1000 }, parallax: { enabled: false, firstTile: 0, width: 4, height: 2, divisor: 2 }, ...value }

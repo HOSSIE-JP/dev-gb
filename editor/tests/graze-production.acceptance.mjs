@@ -1,9 +1,9 @@
 // Real boss-select gameplay and joypad input, no ROM/RAM patches.
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import crypto from 'node:crypto';
-import {boot,frames,memory,symbols,settledTrace,GameBoyMode,PadKey} from './emulator.mjs';
+import {boot,frames,memory,symbols,settledTrace,supportedModes,PadKey} from './emulator.mjs';
 const file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]),rom=fs.readFileSync(file),s=symbols(file.replace(/\.gb$/,'.map')),results=[];
 fs.mkdirSync(out,{recursive:true});
-for(const [mode,label]of [[GameBoyMode.Cgb,'CGB'],[GameBoyMode.Dmg,'DMG']]){
+for(const [mode,label]of supportedModes(rom)){
  const gb=boot(rom,mode),byte=n=>memory(gb).ram[s[n]-0xc000];
  const until=(f,max=6000)=>{for(let i=0;i<max;i++){const t=settledTrace(gb,s._ce_trace);if(t&&f(t))return t;frames(gb,1);}throw Error('menu timeout');};
  const tap=k=>{gb.key_press(k);frames(gb,4);gb.key_lift(k);frames(gb,12);};
@@ -24,6 +24,7 @@ for(const [mode,label]of [[GameBoyMode.Cgb,'CGB'],[GameBoyMode.Dmg,'DMG']]){
   }
   assert(events.length>=1,'actual fresh near miss triggers the CH4 graze sound');assert(total>0,'real gameplay graze has nonzero isolated PCM');
   assert(events.some(e=>e.flash>0),'graze visual feedback remains active');
+  assert.equal(events[0].score,rom[s._ce_graze_score],'first isolated production graze awards the configured points');
   const result={mode:label,stage:7,character:'Marisa',normalInput:true,events,isolatedGrazePcmEnergy:total};results.push(result);console.log(result);
  }finally{gb.free();}
 }

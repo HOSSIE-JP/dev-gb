@@ -694,6 +694,7 @@ export class Simulation {
         if(!(input&bombMask))this.bombLatch=false;
         const bombPressed = (input&bombMask)===bombMask && !this.bombLatch;
         if (p.bomb?.button === "b" && (input & 32)) this.bombLatch=true;
+        if (p.focusRequiresA && p.bomb?.button !== "b") this.bombLatch=!!(input&48);
         if(bombPressed && this.bombs && !this.respawn && !this.bombLeft){
             this.bombLatch=true;--this.bombs;this.bombLeft=p.bomb!.frames;this.invulnerable=Math.max(this.invulnerable,90);
             this.bgShots=[];this.bgNext=0;this.entities=this.entities.filter(e=>e.kind!=="pshot"&&e.kind!=="eshot");
@@ -701,8 +702,9 @@ export class Simulation {
             this.bombHits.clear();this.sweepBomb();
             if (!p.bomb!.live) return;
         }
-        const mode = p.bomb?.button !== "b" && input & 32 && p.focusWeapon ? 1 : 0;
-        const pattern = mode ? p.focusWeapon! : this.currentWeapon;
+        const mode = p.bomb?.button !== "b" && input & 32 && (p.focusWeapon || p.focusRequiresA) ? 1 : 0;
+        const pattern = mode && p.focusWeapon ? p.focusWeapon : this.currentWeapon;
+        const fire = input & (p.bomb?.button === "b" || p.focusRequiresA ? 16 : 48);
         const weapon = g.patterns.find((x) => x.id === pattern)!;
         const speed = q4(mode ? p.focusSpeed ?? this.currentSpeed : this.currentSpeed);
         if (this.respawn) {
@@ -725,8 +727,8 @@ export class Simulation {
             q4(top + a.origin.y),
             q4(top + 144 - hudHeight(g) - a.height + a.origin.y),
         );
-        if (weapon.kind==="beam" && (input & (p.bomb?.button === "b" ? 16 : 48)))this.beamPattern=pattern;
-        if (!(input & (p.bomb?.button === "b" ? 16 : 48))) {
+        if (weapon.kind==="beam" && fire)this.beamPattern=pattern;
+        if (!fire) {
             this.cooldown = weapon.delay;
             this.playerSequence = 0;
         } else if (this.cooldown) this.cooldown--;

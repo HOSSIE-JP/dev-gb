@@ -236,7 +236,7 @@ export function Preview({
                     <option value={0}>{game.player.name??"PLAYER 1"}</option>
                     {(game.player.characters??[]).map((p,i)=><option key={p.id} value={i+1}>{p.name}</option>)}
                 </select>
-                {game.player.bomb?.enabled && <span>ボム {bombs} · {game.player.bomb.button === "b" ? "X" : "Z＋X"}</span>}
+                {game.player.bomb?.enabled && <span>ボム {bombs} · {game.player.bomb.button === "b" ? "X" : game.player.focusRequiresA ? "両方離してZ＋X同時押し" : "Z＋X"}</span>}
                 <select
                     value={scope}
                     onChange={(e) => setScope(e.target.value)}
@@ -359,7 +359,7 @@ export function Preview({
                               ? "STAGE CLEAR"
                               : "画面をクリックして操作"}
                         <br />
-                        方向キー・Z/X
+                        {game.player.focusRequiresA ? "方向キー・Z:射撃・X:低速" : "方向キー・Z/X"}
                         <br />
                         選択弾幕：照準をドラッグ
                     </span>

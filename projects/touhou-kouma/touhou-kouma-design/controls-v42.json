@@ -1,0 +1,15 @@
+{
+  "version": "0.42-focus-controls",
+  "request": "グレイズを10点、Bは低速移動のみ、射撃にはAが必要。ボムの暴発を防ぐ。",
+  "grazePoints": 10,
+  "focusRequiresA": true,
+  "controls": {
+    "A": "通常射撃",
+    "B": "低速移動のみ",
+    "B_then_A": "集中ショット、ボムなし",
+    "A_then_B": "低速で集中ショット、ボムなし",
+    "released_then_simultaneous_AB": "ボム1発",
+    "partial_release": "再発動なし。両方を離して再度同時押しが必要"
+  },
+  "scope": "東方で有効化。未設定のプロジェクトは従来操作。エディターのシミュレーションとROMを同期。"
+}

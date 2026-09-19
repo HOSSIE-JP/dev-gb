@@ -200,6 +200,7 @@ extern const uint8_t ce_title_select;
 extern uint8_t ce_title_choice, ce_title_stage;
 void ce_title_draw(void) BANKED;
 extern const uint8_t ce_bomb_live, ce_barrier_max, ce_barrier_frames, ce_barrier_asset;
+extern const uint8_t ce_focus_requires_a;
 extern uint8_t ce_barrier, ce_weapon_override;
 void ce_smooth_actor(CE_Entity *e, const CE_Motion *m, uint16_t age) BANKED;
 void ce_move_complex(CE_Entity *e, const CE_Motion *m, uint16_t age) BANKED;

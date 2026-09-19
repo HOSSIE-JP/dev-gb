@@ -215,6 +215,7 @@ export type Game = {
         focusWeapon?: string;
         focusSpeed?: number;
         focusHitbox?: boolean;
+        focusRequiresA?: boolean;
         x: number;
         y: number;
     };
@@ -505,6 +506,7 @@ export function validateShape(
             "focusWeapon?": "string",
             "focusSpeed?": "number",
             "focusHitbox?": "boolean",
+            "focusRequiresA?": "boolean",
             x: "number",
             y: "number",
         },

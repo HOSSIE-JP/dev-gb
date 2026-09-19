@@ -12,7 +12,7 @@ function fixture(id){
 }
 test('right HUD source is editable, fits 5x18, and reserves a 120x144 viewport',()=>{
  const g=production();assert.deepEqual(lib.validate(g).filter(d=>d.severity==='error'),[]);
- assert.equal(lib.playWidth(g),120);assert.equal(lib.hudHeight(g),0);assert.equal(g.graze.score,1);
+ assert.equal(lib.playWidth(g),120);assert.equal(lib.hudHeight(g),0);assert.equal(g.graze.score,10);
  const bad=structuredClone(g);bad.screens.find(s=>s.id==='hud').items[0].x=3;assert(lib.validate(bad).some(d=>d.severity==='error'));
  const old=lib.readGame(process.cwd(),'star-caravan');assert.equal(lib.playWidth(old),160);assert.equal(lib.hudHeight(old),16);
  for(const b of g.bosses)for(const p of b.phases.filter(p=>p.until==='hp'))assert.deepEqual([p.hp,p.timeLimitSeconds,p.score],[100,60,b.score]);

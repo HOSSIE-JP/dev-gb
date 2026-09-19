@@ -1,17 +1,57 @@
 {
-  "version": "0.41-gbc-runtime",
-  "updatedAt": "2026-09-19T01:01:24.464Z",
-  "status": "performance-not-met",
+  "version": "0.42-focus-controls",
+  "updatedAt": "2026-09-19T08:28:41.051Z",
+  "status": "awaiting-playtest",
   "approved": false,
-  "projectRevision": "78e11cfa6b542faf7c6ba20d712c2d204c13ec57738ff173b917f3f103ea517f",
-  "engineRevision": "1745705 + uncommitted engine changes",
-  "engineDigest": "fb93c48f903698fb4bdc1c45c6e6ce414a7466347b67585e5d7af5c3a4269a64",
+  "projectRevision": "75048f3102acab489b193be4f9d366a286e7a2d6bdd9fb979fed64b0f962e9b1",
+  "engineRevision": "ed5a5b0 + uncommitted control changes",
   "rom": {
-    "path": "build/Release/touhou-kouma-v41.gb",
-    "sha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
-    "bytes": 4194304
+    "path": "build/Release/touhou-kouma-v42.gb",
+    "sha256": "0d670f55f01fb3559efb3de6a0747b170a07f82fe9632150b43d327fd50c2562",
+    "bytes": 4194304,
+    "header": 192
   },
   "previous": [
+    {
+      "version": "0.41-gbc-runtime",
+      "updatedAt": "2026-09-19T01:01:24.464Z",
+      "status": "performance-not-met",
+      "approved": false,
+      "projectRevision": "78e11cfa6b542faf7c6ba20d712c2d204c13ec57738ff173b917f3f103ea517f",
+      "engineRevision": "1745705 + uncommitted engine changes",
+      "engineDigest": "fb93c48f903698fb4bdc1c45c6e6ce414a7466347b67585e5d7af5c3a4269a64",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v41.gb",
+        "sha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+        "bytes": 4194304
+      },
+      "validation": "touhou-kouma-design/qa-v41.json",
+      "checks": [
+        "GBC-only header and WRAM layout, Debug/Release identical",
+        "28 production state/OAM/VRAM comparisons and 14 forty-bullet fixture comparisons passed",
+        "BGB normal and 40-bullet measurements recorded without hiding deadline misses",
+        "Production movie, HUD, bomb, pause, miss, continue, BOSS MODE, attract regressions passed",
+        "7 bosses x 3 phases x kill/timeout/mixed and old save tests passed"
+      ],
+      "pending": [
+        "Performance gate failed: regular native road 35/2801 and boss 14/1317 deadline misses; all forty-bullet cases have misses",
+        "Moving forty-bullet Reimu regresses from 46.645 to 45.116 updates/s",
+        "Sustained boss bomb stays slower than one update/display; entry/exit asset loads remain long",
+        "Row-level conservative map changes, not minimum per-cell differences; only straight-segment motion gets a cache, complex waves and attack settings still use common logic",
+        "Actors/effects/items share a compact physical pool under independent limits; shot headers share the logical identity table",
+        "Emulicious DAP evaluate throws NullPointerException on intermediate ROM; not an execution pass and not retested on final identical issue",
+        "No physical GBC or human listening confirmation",
+        "Fixed 1200-update routes and deterministic phase fixtures are not a complete human campaign playthrough",
+        "No new exported HTML player distributed in this change",
+        "Full production barrage performance and pixel coverage through all 21 combat modes remains unverified; phase-boundary fixtures do not replace it"
+      ],
+      "evidence": {
+        "report": "../../docs/touhou-kouma-v41.md",
+        "architecture": "../../docs/cgb-runtime.md",
+        "qa": "touhou-kouma-design/qa-v41.json",
+        "raw": ".cache/gbc-runtime-v41/"
+      }
+    },
     {
       "version": "0.40-opening-movie",
       "updatedAt": "2026-09-18T16:34:49.882Z",
@@ -521,15 +561,15 @@
       "projectRevision": "e3df1038693e7e2fbd81a88450ffee0646832913fba689d5ef8138c4f2454162"
     }
   ],
-  "validation": "touhou-kouma-design/qa-v41.json",
+  "validation": "touhou-kouma-design/qa-v42.json",
   "checks": [
-    "GBC-only header and WRAM layout, Debug/Release identical",
-    "28 production state/OAM/VRAM comparisons and 14 forty-bullet fixture comparisons passed",
-    "BGB normal and 40-bullet measurements recorded without hiding deadline misses",
-    "Production movie, HUD, bomb, pause, miss, continue, BOSS MODE, attract regressions passed",
-    "7 bosses x 3 phases x kill/timeout/mixed and old save tests passed"
+    "Graze is 10 points in production ROM with palette flash and PCM sound.",
+    "Both characters: B-only focus, A-required fire, staggered AB focus fire, fresh simultaneous AB bomb, release/rearm protection.",
+    "Debug/Release ROM bytes identical; old save and damaged-slot fallback preserved.",
+    "Core regression 167 passed after updating two old expectations; three ROM regressions passed."
   ],
   "pending": [
+    "Human playtest of the revised simultaneous bomb timing.",
     "Performance gate failed: regular native road 35/2801 and boss 14/1317 deadline misses; all forty-bullet cases have misses",
     "Moving forty-bullet Reimu regresses from 46.645 to 45.116 updates/s",
     "Sustained boss bomb stays slower than one update/display; entry/exit asset loads remain long",
@@ -542,9 +582,8 @@
     "Full production barrage performance and pixel coverage through all 21 combat modes remains unverified; phase-boundary fixtures do not replace it"
   ],
   "evidence": {
-    "report": "../../docs/touhou-kouma-v41.md",
-    "architecture": "../../docs/cgb-runtime.md",
-    "qa": "touhou-kouma-design/qa-v41.json",
-    "raw": ".cache/gbc-runtime-v41/"
+    "report": "../../docs/touhou-kouma-v42.md",
+    "qa": "touhou-kouma-design/qa-v42.json",
+    "brief": "touhou-kouma-design/controls-v42.json"
   }
 }
