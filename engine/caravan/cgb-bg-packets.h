@@ -65,12 +65,35 @@ static void cgb_pack_map(void) __naked {
         ld a, c
         or a
         jr z, 006$
-        .rept 20
+        ; Gameplay rows publish one 16-byte DMA block. Leave the cached HUD
+        ; columns alone unless this physical map has a pending HUD update.
+        .rept 16
+        ld a, (de)
+        inc de
+        ld (hl+), a
+        .endm
+        bit 1, c
+        jr z, 010$
+        .rept 4
         ld a, (de)
         inc de
         ld (hl+), a
         .endm
         jr 007$
+010$:
+        ld a, e
+        add #4
+        ld e, a
+        jr nc, 011$
+        inc d
+011$:
+        ; Finish the 32-byte destination stride after the first block.
+        ld a, l
+        add #16
+        ld l, a
+        jr nc, 002$
+        inc h
+        jr 002$
 006$:
         ld a, e
         add #20

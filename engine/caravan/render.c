@@ -25,6 +25,28 @@ static const CE_ColorScreen *color_screen(uint8_t index) {
 static void palettes(void) {
     uint8_t i, shade, reg = 0, factor = 4u - ce_fade_level;
     uint16_t rgb;
+#if CE_CGB_ONLY
+    /* Full brightness is the original RGB555 data. In particular, the live
+     * boss bomb restores this palette on every flash edge: doing RGB channel
+     * extraction and software multiplication here misses the next VBlank. */
+    if (!ce_fade_level) {
+        BGP_REG = OBP0_REG = OBP1_REG = ce_dmg_palette;
+        set_bkg_palette(0, ce_palette_count, ce_palettes);
+        set_sprite_palette(0, ce_palette_count, ce_palettes);
+        if (ce_color_sprites) {
+            set_sprite_palette(1, 7, ce_color_obj_palettes);
+#if CE_GRAZE_ENABLED
+            ce_graze_palette(0);
+#endif
+        }
+        if ((*color_screen(ce_active_screen)).tile_count || (ce_active_screen == 4u && ce_color_stages[ce_state.stage].attrs)) {
+            ce_copy((uint8_t *)(fade_colors + 4), ce_active_screen == 4u ? &ce_color_stages[ce_state.stage].palettes : &(*color_screen(ce_active_screen)).palettes, 0, 56);
+            set_bkg_palette(1, 7, fade_colors + 4);
+        }
+        if (ce_active_screen == 4u && ce_battle_mode == 2u) ce_bg_palette();
+        return;
+    }
+#endif
     for (i = 0; i != 4u; ++i) {
         shade = ((ce_dmg_palette >> (i * 2u)) & 3u) + ce_fade_level;
         if (shade > 3u) shade = 3u;

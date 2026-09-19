@@ -1,17 +1,57 @@
 {
-  "version": "0.42-focus-controls",
-  "updatedAt": "2026-09-19T08:28:41.051Z",
+  "version": "0.43-render-performance",
+  "updatedAt": "2026-09-19T11:37:18.872Z",
   "status": "awaiting-playtest",
   "approved": false,
   "projectRevision": "75048f3102acab489b193be4f9d366a286e7a2d6bdd9fb979fed64b0f962e9b1",
-  "engineRevision": "ed5a5b0 + uncommitted control changes",
+  "engineRevision": "9270879 + local renderer optimizations",
   "rom": {
-    "path": "build/Release/touhou-kouma-v42.gb",
-    "sha256": "0d670f55f01fb3559efb3de6a0747b170a07f82fe9632150b43d327fd50c2562",
+    "path": "build/Release/touhou-kouma-v43.gb",
+    "sha256": "db94ce52f74bda0dd0c0221378f82d9f0ffd83cddd590fac3a566dca731038c3",
     "bytes": 4194304,
-    "header": 192
+    "header": 192,
+    "debugReleaseIdentical": true
   },
   "previous": [
+    {
+      "version": "0.42-focus-controls",
+      "updatedAt": "2026-09-19T08:28:41.051Z",
+      "status": "awaiting-playtest",
+      "approved": false,
+      "projectRevision": "75048f3102acab489b193be4f9d366a286e7a2d6bdd9fb979fed64b0f962e9b1",
+      "engineRevision": "ed5a5b0 + uncommitted control changes",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v42.gb",
+        "sha256": "0d670f55f01fb3559efb3de6a0747b170a07f82fe9632150b43d327fd50c2562",
+        "bytes": 4194304,
+        "header": 192
+      },
+      "validation": "touhou-kouma-design/qa-v42.json",
+      "checks": [
+        "Graze is 10 points in production ROM with palette flash and PCM sound.",
+        "Both characters: B-only focus, A-required fire, staggered AB focus fire, fresh simultaneous AB bomb, release/rearm protection.",
+        "Debug/Release ROM bytes identical; old save and damaged-slot fallback preserved.",
+        "Core regression 167 passed after updating two old expectations; three ROM regressions passed."
+      ],
+      "pending": [
+        "Human playtest of the revised simultaneous bomb timing.",
+        "Performance gate failed: regular native road 35/2801 and boss 14/1317 deadline misses; all forty-bullet cases have misses",
+        "Moving forty-bullet Reimu regresses from 46.645 to 45.116 updates/s",
+        "Sustained boss bomb stays slower than one update/display; entry/exit asset loads remain long",
+        "Row-level conservative map changes, not minimum per-cell differences; only straight-segment motion gets a cache, complex waves and attack settings still use common logic",
+        "Actors/effects/items share a compact physical pool under independent limits; shot headers share the logical identity table",
+        "Emulicious DAP evaluate throws NullPointerException on intermediate ROM; not an execution pass and not retested on final identical issue",
+        "No physical GBC or human listening confirmation",
+        "Fixed 1200-update routes and deterministic phase fixtures are not a complete human campaign playthrough",
+        "No new exported HTML player distributed in this change",
+        "Full production barrage performance and pixel coverage through all 21 combat modes remains unverified; phase-boundary fixtures do not replace it"
+      ],
+      "evidence": {
+        "report": "../../docs/touhou-kouma-v42.md",
+        "qa": "touhou-kouma-design/qa-v42.json",
+        "brief": "touhou-kouma-design/controls-v42.json"
+      }
+    },
     {
       "version": "0.41-gbc-runtime",
       "updatedAt": "2026-09-19T01:01:24.464Z",
@@ -561,29 +601,24 @@
       "projectRevision": "e3df1038693e7e2fbd81a88450ffee0646832913fba689d5ef8138c4f2454162"
     }
   ],
-  "validation": "touhou-kouma-design/qa-v42.json",
+  "validation": "touhou-kouma-design/qa-v43.json",
   "checks": [
-    "Graze is 10 points in production ROM with palette flash and PCM sound.",
-    "Both characters: B-only focus, A-required fire, staggered AB focus fire, fresh simultaneous AB bomb, release/rearm protection.",
-    "Debug/Release ROM bytes identical; old save and damaged-slot fallback preserved.",
-    "Core regression 167 passed after updating two old expectations; three ROM regressions passed."
+    "170 standard tests and 3 legacy ROM/BGB checks passed; Debug/Release bytes identical.",
+    "28 production routes, 14 forty-bullet fixtures and 4 control routes preserve state/OAM/decoded graphics.",
+    "BGB before/after measurements and isolated optimization comparisons recorded.",
+    "Production focus/fire/bomb, HUD, graze PCM and save compatibility passed."
   ],
   "pending": [
-    "Human playtest of the revised simultaneous bomb timing.",
-    "Performance gate failed: regular native road 35/2801 and boss 14/1317 deadline misses; all forty-bullet cases have misses",
-    "Moving forty-bullet Reimu regresses from 46.645 to 45.116 updates/s",
-    "Sustained boss bomb stays slower than one update/display; entry/exit asset loads remain long",
-    "Row-level conservative map changes, not minimum per-cell differences; only straight-segment motion gets a cache, complex waves and attack settings still use common logic",
-    "Actors/effects/items share a compact physical pool under independent limits; shot headers share the logical identity table",
-    "Emulicious DAP evaluate throws NullPointerException on intermediate ROM; not an execution pass and not retested on final identical issue",
-    "No physical GBC or human listening confirmation",
-    "Fixed 1200-update routes and deterministic phase fixtures are not a complete human campaign playthrough",
-    "No new exported HTML player distributed in this change",
-    "Full production barrage performance and pixel coverage through all 21 combat modes remains unverified; phase-boundary fixtures do not replace it"
+    "Forty-bullet one-update-per-display target is still unmet, especially guided Reimu (459 misses / 599).",
+    "Production stage 7 Marisa road is slightly worse: 35 to 36 deadline misses / 2801. Not an improvement in every scene.",
+    "Bomb sustain improves to 49/47 display frames per 47 updates for Reimu/Marisa; asset entry and restoration still take multiple frames.",
+    "Emulicious final Touhou and STAR CARAVAN DAP attach succeeds, but stackTrace is empty and evaluate throws NullPointerException. No execution pass.",
+    "No physical hardware, human listening, or full human campaign playthrough. First 1200 updates of 28 routes do not cover all 21 combat modes.",
+    "CPU profiles use deterministic PC sampling, not exact function instrumentation. Stress ROMs replace only the mainloop and replenish bullets; they are not production ROMs."
   ],
   "evidence": {
-    "report": "../../docs/touhou-kouma-v42.md",
-    "qa": "touhou-kouma-design/qa-v42.json",
-    "brief": "touhou-kouma-design/controls-v42.json"
+    "report": "../../docs/touhou-kouma-v43.md",
+    "qa": "touhou-kouma-design/qa-v43.json",
+    "raw": ".cache/perf-v43"
   }
 }

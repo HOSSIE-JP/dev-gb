@@ -11,6 +11,20 @@ for(const [mode,label] of supportedModes(rom))for(const character of [0,1]){
  const until=(f,max=6000)=>{for(let i=0;i<max;i++){const t=settledTrace(gb,s._ce_trace);if(t&&f(t))return t;frames(gb,1);}throw Error('timeout '+JSON.stringify(settledTrace(gb,s._ce_trace)));};
  const tap=(k,n=4)=>{gb.key_press(k);frames(gb,n);gb.key_lift(k);frames(gb,12);};
  const age=()=>{const r=memory(gb).ram;for(let i=0;i<39;i++){const p=entityOffset(r,s,i);if(r[p]===2)return r.readUInt16LE(p+8);}return -1;};
+ // Observe every published pose. Polling every two PPU frames can repeatedly
+ // land inside ce_step after a faster palette load changes the CPU/PPU phase.
+ const sampleBomb=boss=>{
+  let samples=0;gb.step_to(s._ce_step);
+  while(byte('_ce_bomb_left')){
+   assert(samples<64,'bomb terminates');
+   assert.equal(settledTrace(gb,s._ce_trace)?.scene,1,'completed gameplay pose');
+   assert(byte('_ce_bomb_image'));hud(boss);
+   if(samples++===4)capture(gb,path.join(out,`${label}-${character}-${boss?'boss':'road'}-bomb.png`));
+   gb.clock();gb.step_to(s._ce_step);
+  }
+  assert(samples>=40,'at least forty live bomb updates inspected');
+  return samples;
+ };
  function hud(boss,values={}){
   const m=memory(gb),v=m.state.subarray(m.state.readUInt32LE(m.core+0xa4)),window=!!(m.io[0x40]&32);
   if(!boss||byte('_ce_bomb_image')){assert(window,'road/bomb Window enabled');assert.equal(m.io[0x4b],127);assert.equal(m.io[0x4a],0);}else assert(!window,'BG boss HUD belongs to the published BG map');
@@ -25,8 +39,8 @@ for(const [mode,label] of supportedModes(rom))for(const character of [0,1]){
   const camera=memory(gb).io[0x42];frames(gb,140);until(t=>t.scene===1);hud(false);assert.notEqual(memory(gb).io[0x42],camera,'road scroll changes while HUD stays fixed');
   gb.key_press(PadKey.Right);frames(gb,100);gb.key_lift(PadKey.Right);const edge=until(t=>t.scene===1);assert.equal(edge.x/16,112);hud(false);
   gb.key_press(PadKey.A);gb.key_press(PadKey.B);until(()=>byte('_ce_bomb_image')>0);gb.key_lift(PadKey.A);gb.key_lift(PadKey.B);
-  let bombSamples=0;while(byte('_ce_bomb_left')){frames(gb,2);const t=settledTrace(gb,s._ce_trace);if(t?.scene===1&&byte('_ce_bomb_image')){hud(false);if(bombSamples++===4)capture(gb,path.join(out,`${label}-${character}-road-bomb.png`));}}
-  frames(gb,4);until(t=>t.scene===1);hud(false);assert(bombSamples>10);
+  const bombSamples=sampleBomb(false);
+  frames(gb,4);until(t=>t.scene===1);hud(false);
   // Reset through the real chord, then select the 40-bullet final boss.
   for(const k of [PadKey.A,PadKey.B,PadKey.Start,PadKey.Select])gb.key_press(k);
   for(let n=0;n<240&&(memory(gb).io[0x26]&128);n++)frames(gb,1);
@@ -36,7 +50,7 @@ for(const [mode,label] of supportedModes(rom))for(const character of [0,1]){
   until(t=>t.scene===1&&t.bossPhase===1&&!byte('_ce_fade_level'));frames(gb,4);until(t=>t.scene===1);hud(true,{boss:100,bossTime:60,bossPhase:'1/3'});
   tap(PadKey.Start);assert(byte('_ce_pause'));const paused=age();frames(gb,90);assert.equal(age(),paused);hud(true);tap(PadKey.Start);assert(!byte('_ce_pause'));assert(age()>paused);
   const before=age();gb.key_press(PadKey.A);gb.key_press(PadKey.B);until(()=>byte('_ce_bomb_image')>0);gb.key_lift(PadKey.A);gb.key_lift(PadKey.B);
-  let liveSamples=0;while(byte('_ce_bomb_left')){frames(gb,2);const t=settledTrace(gb,s._ce_trace);if(t?.scene===1&&byte('_ce_bomb_image')){hud(true);if(liveSamples++===4)capture(gb,path.join(out,`${label}-${character}-boss-bomb.png`));}}
+  const liveSamples=sampleBomb(true);
   frames(gb,4);until(t=>t.scene===1);assert(age()>before+30,'timer continues during live bomb');hud(true);capture(gb,path.join(out,`${label}-${character}-boss-restored.png`));
   let peak=0,miss=false,last=settledTrace(gb,s._ce_trace),lastAge=age();
   for(let n=0;n<1200;n++){frames(gb,1);const t=settledTrace(gb,s._ce_trace);if(t?.scene!==1)continue;peak=Math.max(peak,byte('_ce_bg_count'));const now=age();if(t.lives<last.lives){assert(now>=lastAge,'miss does not refill timer');miss=true;break;}last=t;lastAge=now;}

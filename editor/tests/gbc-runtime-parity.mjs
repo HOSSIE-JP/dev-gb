@@ -6,6 +6,24 @@ import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
 import {boot,frames,memory,symbols,GameBoyMode,PadKey} from './emulator.mjs';
 const [oldFile,newFile,out,route='road',character='1',stage='6',updates='1200']=process.argv.slice(2);
+const controls=process.argv.includes('--controls');
+assert(!controls||route!=='fixture','fixtures own their logical input');
+// Inputs are changed at ce_step entry, for the following joypad poll. Include
+// focus markers, both fire/focus orders, live bombs, clipping and restoration.
+const controlKeys=n=>{
+ const p=n%480;
+ if(p<40)return ['B'];
+ if(p<100)return ['A','B','Left'];
+ if(p<160)return ['A','Right'];
+ if(p<180)return [];
+ if(p<250)return ['A','B'];
+ if(p<300)return ['B','Left'];
+ if(p<320)return [];
+ if(p<390)return ['A','B','Right'];
+ if(p<440)return ['A'];
+ return [];
+};
+const input=Buffer.alloc(+updates,1);
 fs.mkdirSync(out,{recursive:true});
 const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
 function open(file){
@@ -73,6 +91,12 @@ try{
   if(JSON.stringify(a.state)!==JSON.stringify(b.state)){mismatches.push({n,old:a.state,new:b.state});break;}
   if(n&& !a.oam.equals(b.oam))oamMismatches++;
   if(n&& !a.pixels.equals(b.pixels)){pixelMismatches++;if(firstPixelMismatch===undefined){firstPixelMismatch=n;fs.writeFileSync(path.join(out,"old-pixels.bin"),a.pixels);fs.writeFileSync(path.join(out,"new-pixels.bin"),b.pixels);}}
+  if(controls){
+   const keys=controlKeys(n);input[n]=keys.reduce((m,k)=>m|({A:1,B:2,Right:16,Left:32}[k]),0);
+   for(const r of runs)for(const key of ['A','B','Left','Right']){
+    if(keys.includes(key))r.gb.key_press(PadKey[key]);else r.gb.key_lift(PadKey[key]);
+   }
+  }
   for(const [i,v] of [a,b].entries()){runs[i].states.update(JSON.stringify(v.state));runs[i].pixels.update(v.pixels);advance(runs[i]);}
  }
  const summary=runs.map(r=>{
@@ -80,9 +104,8 @@ try{
   const normal=r.rows.filter(x=>x.elapsed<140448*12),costs=normal.map(x=>x.cpu).sort((a,b)=>a-b);
   return {file:r.file,romHash:r.romHash,stateHash:r.states.digest('hex'),pixelHash:r.pixels.digest('hex'),updates:r.rows.length,normal:normal.length,transitions:r.rows.length-normal.length,peak:Math.max(...normal.map(x=>x.bullets)),cpuMean:costs.reduce((a,b)=>a+b,0)/costs.length,cpuP95:costs[Math.floor(costs.length*.95)],cpuMax:costs.at(-1),updatesPerSecond:normal.length*8388608/normal.reduce((n,x)=>n+x.elapsed,0),logicalBoundaryFrameGaps:normal.filter(x=>x.frameGap!==1).length,displayFrames:normal.reduce((n,x)=>n+x.frameGap,0)};
  });
- const input=Buffer.alloc(+updates,1);
  if(route==='fixture'&&fs.readFileSync(path.join(path.dirname(newFile),'mainloop.c'),'utf8').includes('ce_qa_updates==200u')){if(input.length>199)input[199]=0;if(input.length>200)input[200]=3;}
- const report={route,character:+character,stage:+stage,inputHash:hash(input),summary,mismatches,oamMismatches,pixelMismatches,firstPixelMismatch};
+ const report={route,character:+character,stage:+stage,controls,inputHash:hash(input),summary,mismatches,oamMismatches,pixelMismatches,firstPixelMismatch};
  fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
  assert.equal(mismatches.length,0,'canonical logical state parity');
  assert.equal(oamMismatches,0,'published OAM parity');

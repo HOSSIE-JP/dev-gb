@@ -38,6 +38,14 @@ static uint8_t CE_WRAM(0xdc50) animation_left[CE_MAX_ENTITIES + 1u];
 static volatile OAM_item_t *emit_out;
 static uint8_t emit_left, emit_y, emit_tile, emit_prop, emit_columns, emit_rows;
 static uint8_t emit_top, emit_bottom, emit_visible_y;
+#if CE_CGB_ONLY
+/* Resolve the arena's tile half while emitting, without revisiting OAM.
+ * XOR 128 is byte-identical to subtracting 128, including hidden entries. */
+static uint8_t oam_tile_xor;
+#define CE_OAM_TILE(tile) ((uint8_t)(tile) ^ oam_tile_xor)
+#else
+#define CE_OAM_TILE(tile) (tile)
+#endif
 static const uint8_t *emit_colors;
 #if !CE_CGB_ONLY
 static void prepare_sprite_color(void) __naked {
@@ -419,8 +427,15 @@ _ce_shot_sprite_inner::
         ld a, (de)
         inc de
         ld (hl+), a
+#if CE_CGB_ONLY
+        ld a, (_oam_tile_xor)
+        ld c, a
+#endif
         ld a, (de)
         inc de
+#if CE_CGB_ONLY
+        xor c
+#endif
         ld (hl+), a
         ld a, (de)
         ld (hl), a
@@ -447,7 +462,7 @@ static void tall_shot_sprite(uint8_t slot) {
     shot_sprite(slot);
     shadow_OAM[pose_slot].y=(uint8_t)(x-1u)<CE_SPRITE_X_LIMIT && y>=emit_top && y<emit_bottom?y:0;
     shadow_OAM[pose_slot].x=x;
-    shadow_OAM[pose_slot].tile=ce_shot_oam[slot].tile+1u;
+    shadow_OAM[pose_slot].tile=CE_OAM_TILE(ce_shot_oam[slot].tile+1u);
     shadow_OAM[pose_slot].prop=ce_is_cgb&&ce_color_sprites?ce_color_asset_attrs[pose->asset][1]:ce_shot_oam[slot].prop;
     ++pose_slot;
 }
@@ -500,6 +515,9 @@ void ce_hide_sprites(void) BANKED {
 void ce_draw_sprites(void) BANKED {
     uint8_t i;
     pose_slot = 0;
+#if CE_CGB_ONLY
+    oam_tile_xor = ce_battle_mode >= 2u ? 128u : 0u;
+#endif
     emit_top = ce_hud_bottom ? 17u - CE_OBJ_HEIGHT : ce_hud_height + 17u - CE_OBJ_HEIGHT;
     emit_bottom = ce_hud_bottom ? 160u - ce_hud_height : 160u;
     DISABLE_OAM_DMA;
@@ -509,7 +527,7 @@ void ce_draw_sprites(void) BANKED {
          * OAM order; a centered single sprite would be hidden by the player. */
         shadow_OAM[0].x=ce_state.player_x/16+8+ce_focus_offsets[ce_character];
         shadow_OAM[0].y=ce_state.player_y/16+16+hit->y+(hit->h>>1)-3;
-        shadow_OAM[0].tile=ce_focus_tile+ce_character*(2u*CE_OBJ_TILES);shadow_OAM[0].prop=0;
+        shadow_OAM[0].tile=CE_OAM_TILE(ce_focus_tile+ce_character*(2u*CE_OBJ_TILES));shadow_OAM[0].prop=0;
         shadow_OAM[1]=shadow_OAM[0];shadow_OAM[1].x+=8u;shadow_OAM[1].tile+=CE_OBJ_TILES;
         pose_slot=2;
     }
@@ -538,7 +556,7 @@ void ce_draw_sprites(void) BANKED {
     if(ce_beam_pattern!=CE_NONE && !ce_respawn && !ce_transition_state && !ce_state.result){
         int16_t y=ce_state.player_y/16-8;
         uint8_t x=ce_state.player_x/16+4u;
-        uint8_t tile=ce_beam_tile+((ce_state.tick&1u)?2u:0u);
+        uint8_t tile=CE_OAM_TILE(ce_beam_tile+((ce_state.tick&1u)?2u:0u));
         /* Actors were admitted with nine slots reserved. The repeated 8x16
          * strip is clipped by the LCD at the top; its foot ends at the muzzle.
          * A full-length core survives both animation frames. */
@@ -553,5 +571,7 @@ void ce_draw_sprites(void) BANKED {
     i = pose_slot;
     while (pose_slot < previous_slots) shadow_OAM[pose_slot++].y = 0;
     previous_slots = i;
+#if !CE_CGB_ONLY
     if (ce_battle_mode >= 2u) for (i = 0; i != previous_slots; ++i) shadow_OAM[i].tile -= 128u;
+#endif
 }

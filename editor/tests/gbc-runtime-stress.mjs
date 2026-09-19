@@ -5,7 +5,8 @@ import fs from 'node:fs';import path from 'node:path';import {spawnSync} from 'n
 import assert from 'node:assert/strict';import crypto from 'node:crypto';import {boot,memory,symbols,GameBoyMode} from './emulator.mjs';
 const [objects,outArg,scenario='spread',character='0']=process.argv.slice(2),out=path.resolve(outArg);
 fs.mkdirSync(out,{recursive:true});
-const baseline=process.argv.includes('--baseline'),engine=baseline?'.cache/gbc-runtime-v41/baseline/caravan':'engine/caravan';
+const baseline=process.argv.includes('--baseline'),engineArg=process.argv.indexOf('--engine');
+const engine=engineArg>=0?process.argv[engineArg+1]:baseline?'.cache/gbc-runtime-v41/baseline/caravan':'engine/caravan';
 assert(['spread','cluster','moving','guided','graze','burst','bomb'].includes(scenario));
 const patterns=JSON.parse(fs.readFileSync('projects/touhou-kouma/assets-src/game.json')).patterns, guided=patterns.findIndex(p=>p.kind==='homing');
 assert(guided>=0);
@@ -69,7 +70,7 @@ try{
   if(previous!==undefined)rows.push((frame-previous)&65535);previous=frame;gb.clock();
  }
  if(scenario==='bomb')assert(cleared>30,'live bomb clears incoming barrage for its duration');
- if(scenario==='graze')assert.equal(memory(gb).ram.readUInt16LE(s._ce_state-0xc000+6),1,'stationary bullet only grazes once');
+ if(scenario==='graze')assert.equal(memory(gb).ram.readUInt16LE(s._ce_state-0xc000+6),fs.readFileSync(rom)[s._ce_graze_score],'stationary bullet only grazes once at the compiled point value');
  const report={romHash:crypto.createHash('sha256').update(fs.readFileSync(rom)).digest('hex'),fixture:true,baseline,spawns:memory(gb).ram.readUInt16LE(s._ce_qa_spawns-0xc000),cleared,minimumSampledSp:minimumStack,scenario,character:+character,bullets:40,updates:rows.length,framesPerUpdate:rows.reduce((n,x)=>n+x,0)/rows.length,deadlineMisses:rows.filter(x=>x!==1).length,gaps:rows};
  fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({...report,gaps:undefined}));
 }finally{gb.free();}

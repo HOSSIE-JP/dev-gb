@@ -55,8 +55,11 @@ static void cgb_emit_template(void) __naked {
         ld (hl+), a
         ld a, c
         ld (hl+), a
+        ld a, (_oam_tile_xor)
+        ld c, a
         ld a, (de)
         inc de
+        xor c
         ld (hl+), a
         ld a, (de)
         inc de
