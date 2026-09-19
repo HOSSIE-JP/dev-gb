@@ -552,11 +552,14 @@ export function BuildPanel({
                         </strong>
                     </span>
                     <span>
-                        WRAM <strong>{built.ramBytes ?? "—"} / 8192 B</strong>
+                        WRAM <strong>{built.ramBytes ?? "—"} / {built.memory ? 4096 : 8192} B</strong>
                     </span>
                     <span>
                         OBJ <strong>{built.spriteTiles ?? "—"} / 128</strong>
                     </span>
+                    {built.memory?.wram.filter(b=>b.bank>0).map(b=><span key={b.bank} title={b.purpose}>WRAM {b.bank} <strong>{b.reserved} / {b.capacity} B</strong></span>)}
+                    {built.memory && <span>固定スタック <strong>{built.memory.stack.reserved} B</strong></span>}
+                    {built.memory && <span>BG弾幕予約 <strong>{built.memory.vram.barrageTiles} / 255 tiles</strong></span>}
                 </div>
             )}
             <div className="log-toolbar">

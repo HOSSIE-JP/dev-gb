@@ -48,11 +48,19 @@ void ce_collide_beam(void) BANKED {
     int16_t x=ce_state.player_x/16,y=ce_state.player_y/16-8;
     uint8_t top=ce_hud_bottom?0:ce_hud_height;
     for(i=0;i!=ce_used;++i){
-        CE_Entity *e=&ce_entities[i];const CE_Hitbox *h;int16_t left,bottom;
+        CE_Entity *e=&CE_ENTITY(i);
+#if !CE_CGB_ONLY
+        const CE_Hitbox *h;int16_t left,bottom;
+#endif
         if(e->kind!=CE_ENEMY && e->kind!=CE_BOSS)continue;
         if(e->kind==CE_BOSS && ce_boss_invulnerable)continue;
+#if CE_CGB_ONLY
+        {const CE_Box *b=&ce_boxes[i];
+        if((int16_t)b->left>=CE_PLAY_WIDTH+128 || (int16_t)b->right<=128 || (int16_t)b->left>=x+129 || (int16_t)b->right<=x+127 || (int16_t)b->bottom<=top+128 || (int16_t)b->top>=y+128)continue;}
+#else
         h=&ce_hitboxes[e->asset];left=e->x/16+h->x;bottom=e->y/16+h->y+h->h;
         if(left>=CE_PLAY_WIDTH || left+h->w<=0 || left>=x+1 || left+h->w<=x-1 || bottom<=top || bottom-h->h>=y)continue;
+#endif
         ce_damage_actor(i,damage);
         if(ce_beam_pattern==CE_NONE)return;
     }
@@ -100,11 +108,16 @@ void ce_shoot(uint8_t pattern, uint8_t source, int16_t x, int16_t y, uint8_t fri
         for (n = 0; n != p->count; ++n) {
             angle = (base + p->angles[n]) & 15u;
             slot = allocate(friendly ? CE_PSHOT : CE_ESHOT, p->asset); if (slot == CE_NONE) continue;
-            e = &ce_entities[slot]; e->ref = pattern; e->sequence=angle;
+            e = &CE_ENTITY(slot); e->ref = pattern; e->sequence=angle;
             ce_shot_x[slot] = px; ce_shot_y[slot] = py; ce_shot_age[slot] = 0;
             angle <<= 1;
             ce_shot_vx[slot] = p->velocity[angle]; ce_shot_vy[slot] = p->velocity[angle + 1u];
-            e->hp = 1; ce_shot_lifetime[slot] = p->lifetime; e->damage = p->damage;
+            e->hp = 1; ce_shot_lifetime[slot] = p->lifetime;
+#if CE_CGB_ONLY
+            ce_shot_damage[slot] = p->damage;
+#else
+            e->damage = p->damage;
+#endif
             ce_init_shot_visual(slot);
             /* Enemy shots collide against cached center intervals, including
              * newly spawned shots that will not move until the next update. */
@@ -117,7 +130,7 @@ void ce_add_score(uint16_t value) BANKED {
 }
 
 void ce_damage_actor(uint8_t slot, uint8_t damage) BANKED {
-    CE_Entity *target=&ce_entities[slot]; const CE_Actor *actor;
+    CE_Entity *target=&CE_ENTITY(slot); const CE_Actor *actor;
     if(target->kind!=CE_ENEMY && target->kind!=CE_BOSS)return;
     if(target->kind==CE_BOSS && ce_boss_invulnerable)return;
     actor=target->kind==CE_BOSS?&ce_bosses[target->ref]:&ce_enemies[target->ref];
@@ -142,7 +155,7 @@ void ce_damage_actor(uint8_t slot, uint8_t damage) BANKED {
 void ce_bomb_sweep(void) BANKED {
     uint8_t i, bit, n=ce_used; CE_Entity *e; const CE_Asset *a;
     for(i=0;i<n;++i){
-        e=&ce_entities[i];
+        e=&CE_ENTITY(i);
         if(e->kind!=CE_ENEMY && e->kind!=CE_BOSS)continue;
         bit=1u<<(i&7u);
         if(ce_bomb_hits[i>>3]&bit)continue;

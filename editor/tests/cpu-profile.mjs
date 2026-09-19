@@ -14,7 +14,7 @@ import {
     PadKey,
 } from "./emulator.mjs";
 
-const [romPath, out, from = "120", to = "720", input = "fire", modeFilter = "both"] =
+const [romPath, out, from = "120", to = "720", input = "fire", modeFilter = "both", route = "default", character = "0", stage = "0"] =
     process.argv.slice(2);
 assert.ok(["both", "DMG", "CGB"].includes(modeFilter), "mode must be both, DMG or CGB");
 const rom = fs.readFileSync(romPath),
@@ -90,6 +90,17 @@ function bankOf(state) {
     }
     return lo + (hi << 8);
 }
+function category(name){
+    if(/wait_vbl|vsync/.test(name))return 'wait';
+    if(/publish|dma_transfer|set_bkg|set_sprite_data|set_win|copy_hud_maps/.test(name))return 'transfer';
+    if(/ce_bg_flush|compose_dma|pack_map|pack_dma|clear_play_map/.test(name))return 'bgPrepare';
+    if(/draw_shot|draw_xy|update_all|occupied_player|guide|ce_bg_begin|ce_bg_update/.test(name))return 'bgUpdateCollision';
+    if(/draw_sprites|draw_actor|emit_template|animation|sprite|draw_beam/.test(name))return 'oam';
+    if(/collide|box|damage_actor/.test(name))return 'collision';
+    if(/shoot|spawn|allocate|init_shot|prepare_shot/.test(name))return 'shooting';
+    if(/step_actor|move_complex|move_actor|attack|sequence/.test(name))return 'actors';
+    return 'other';
+}
 const results = {
     rom: romPath,
     romSha256: crypto.createHash("sha256").update(rom).digest("hex"),
@@ -98,19 +109,36 @@ const results = {
     fromTick: +from,
     toTick: +to,
     input,
+    route, character: +character, stage: +stage,
     modes: [],
 };
 assert.equal(rom[0x147], 0x1b, "bank decoder here is for the engine MBC5 ROMs");
 for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
+    if (mode === GameBoyMode.Dmg && rom[0x143] === 0xc0) continue;
     if (modeFilter !== "both" && modeFilter !== (mode === GameBoyMode.Dmg ? "DMG" : "CGB")) continue;
     const gb = boot(rom, mode),
         counts = new Map(),
+        tickCosts = new Map(),
         pcs = new Map();
     let seed = 1,
         total = 0,
         samples = 0,
         previousTick = 0;
     try {
+        if (route === "fixture") {
+            gb.step_to(syms._ce_qa_marker);
+        } else if (route !== "default") {
+            const byte = name => memory(gb).ram[syms[name] - 0xc000];
+            const until = predicate => { for (let n=0;n<12000;n++) { if(predicate())return;frames(gb,1); } throw Error("menu timeout"); };
+            const tap = key => { gb.key_press(key);frames(gb,4);gb.key_lift(key);frames(gb,12); };
+            until(()=>byte("_ce_scene")===0 && memory(gb).ram.toString("ascii",syms._ce_trace-0xc000,syms._ce_trace-0xc000+2)==="CE" && !memory(gb).ram[syms._ce_trace-0xc000+22] && !byte("_ce_fade_level"));
+            if(route==="boss")for(let n=0;n<10;n++)tap(PadKey.B);
+            if(+stage){tap(PadKey.Down);for(let n=0;n<+stage;n++)tap(PadKey.Right);}
+            tap(PadKey.A);until(()=>byte("_ce_scene")===10&&!byte("_ce_fade_level")&&!memory(gb).ram[syms._ce_trace-0xc000+22]);
+            if(+character)tap(PadKey.Right);
+            gb.key_press(PadKey.A);
+            gb.step_to(syms._ce_step);
+        } else {
         frames(gb, 240);
         gb.key_press(PadKey.Start);
         frames(gb, 5);
@@ -125,13 +153,22 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             }
             frames(gb, 1);
         }
+        }
+        gb.key_lift(PadKey.A);
         if (input === "fire") gb.key_press(PadKey.A);
         if (input === "focus") gb.key_press(PadKey.B);
+        // Boss select retains the road timeline. Measure relative to combat
+        // entry, otherwise a requested 120..720 interval can be silently empty.
+        const tickBase = route === "boss"
+            ? memory(gb).ram.readUInt16LE(syms._ce_state - 0xc000) : 0;
         for (let i = 0; i < 2000000; i++) {
             const mem = memory(gb),
-                tick = mem.ram.readUInt16LE(syms._ce_state - 0xc000);
+                tick = (mem.ram.readUInt16LE(syms._ce_state - 0xc000) - tickBase) & 65535;
+            if (tick < +from && [7,8].includes(mem.ram[syms._ce_scene - 0xc000])) {
+                frames(gb,1);continue;
+            }
             if (mem.ram[syms._ce_scene - 0xc000] !== 1)
-                throw Error("gameplay ended during profile");
+                throw Error(`gameplay ended during profile at relative tick ${tick} (base ${tickBase}, scene ${mem.ram[syms._ce_scene - 0xc000]})`);
             previousTick = tick;
             if (tick >= +to) break;
             const regs = gb.registers(),
@@ -152,13 +189,20 @@ for (const mode of [GameBoyMode.Dmg, GameBoyMode.Cgb]) {
             total += elapsed;
             samples++;
             counts.set(name, (counts.get(name) ?? 0) + elapsed);
+            const cost=tickCosts.get(tick)??{};const group=category(name);cost[group]=(cost[group]??0)+elapsed;tickCosts.set(tick,cost);
             pcs.set(address, (pcs.get(address) ?? 0) + elapsed);
         }
         assert.ok(previousTick >= +to, "profile did not reach requested end");
+        assert.ok(samples > 0, "profile interval must contain CPU samples");
         results.modes.push({
             mode: mode === GameBoyMode.Dmg ? "DMG" : "CGB",
+            tickBase,
             samples,
             totalTCycles: total,
+            categoryTCycles: Object.fromEntries(['actors','shooting','collision','oam','bgUpdateCollision','bgPrepare','transfer','wait','other'].map(group=>{
+                const values=[...tickCosts.values()].map(c=>c[group]??0).sort((a,b)=>a-b);
+                return [group,{mean:values.reduce((a,b)=>a+b,0)/values.length,p95:values[Math.floor(values.length*.95)],max:values.at(-1)}];
+            })),
             functions: [...counts]
                 .map(([name, cycles]) => ({
                     name,

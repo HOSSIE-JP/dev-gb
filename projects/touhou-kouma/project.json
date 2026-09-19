@@ -3,14 +3,14 @@
   "name": "touhou-kouma",
   "title": "SCARLET PILGRIMAGE",
   "target": "gb",
-  "cgbCompatibility": "dual",
+  "cgbCompatibility": "cgb-only",
   "toolchain": "gbdk",
   "output": "touhou-kouma.gb",
   "sources": [
     "generated/caravan_main.c"
   ],
   "lccFlags": [
-    "-Wm-yc"
+    "-Wm-yC"
   ],
   "editor": {
     "type": "caravan",

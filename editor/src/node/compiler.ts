@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import {cgbMemoryLayout} from "./cgb-layout";
 import {quantizeColorTiles, quantizeSpriteAssets} from "../shared/color";
 import { numericGlyphs } from "../shared/numeric-font";
 import path from "node:path";
@@ -297,6 +298,7 @@ export function generate(
     const spriteColor=quantizeSpriteAssets(game), colorSpriteData=Array(spriteTiles*16).fill(0), colorBossGraphics:string[]=[];
     const spriteData: number[] = Array(spriteTiles * 16).fill(0), bossGraphics: string[] = [],
         assetRows: string[] = [];
+    const oamSources: string[]=[], oamAssets: string[]=[];
     spriteAssets.forEach((a, i) => {
         const first = 128 + layout.offsets.get(a.id)!,
             tileCount = spriteFrameTiles(game,a);
@@ -318,11 +320,23 @@ export function generate(
         const data = a.frames.flatMap(f => pairTiles(a.width,a.height,converted.get(f.image)!));
         const colorData=a.frames.flatMap(f=>pairTiles(a.width,a.height,packTiles(a.width,a.height,spriteColor.frames.get(a.id+"/"+f.id)!.pixels)));
         config.push(`static const uint8_t asset_${i}_color_attrs[]={${a.frames.flatMap(f=>pairTiles(a.width,a.height,spriteColor.frames.get(a.id+"/"+f.id)!.attributes,1))}};`);
+        if(game.hardware === "gbc") {
+            const frames=a.frames.map((f,n)=>{
+                const attrs=pairTiles(a.width,a.height,spriteColor.frames.get(a.id+"/"+f.id)!.attributes,1), data:number[]=[];
+                let tile=0;
+                for(let y=0;y<a.height;y+=objHeight)for(let x=0;x<a.width;x+=8){data.push((y+16-a.origin.y)&255,(x+8-a.origin.x)&255,first+n*tileCount+tile,spriteColor.enabled?attrs[tile]:a.palette);tile+=objStride;}
+                const name=`oam_${i}_${n}`;oamSources.push(`static const uint8_t ${name}[]={${data}};`);return name;
+            });
+            oamSources.push(`static const uint8_t * const oam_${i}[]={${frames}};`);oamAssets.push(`oam_${i}`);
+        }
         if(layout.overlay.has(a.id))colorBossGraphics.push(blob(colorData));
         else {colorSpriteData.splice((first-128)*16,colorData.length,...colorData);colorBossGraphics.push("{0,0,0}");}
-        if (layout.overlay.has(a.id)) bossGraphics.push(blob(data));
+        if (layout.overlay.has(a.id)) bossGraphics.push(blob(game.hardware === "gbc" && spriteColor.enabled ? colorData : data));
         else { spriteData.splice((first - 128) * 16, data.length, ...data); bossGraphics.push("{0,0,0}"); }
     });
+    if(game.hardware === "gbc") {
+        atomicWrite(path.join(target,"caravan_oam.c"),['#pragma bank 3','#include "caravan.h"',...oamSources,`const uint8_t * const * const ce_oam_templates[]={${oamAssets}};`].join('\n')+'\n');sources.push("caravan_oam.c");
+    }
     const focusOffsets=focusPlayers.map((p,index)=>{
         const a=spriteAssets[assetId(p.asset)],left=a.hitbox.x+Math.floor(a.hitbox.w/2)-3,aligned=Math.floor(left/8)*8;
         if(game.player.focusHitbox){const pixels=Array(128).fill(0);focusMarkerPixels.forEach((v,i)=>pixels[Math.floor(i/8)*16+i%8+left-aligned]=v);const marker=pairTiles(16,8,packTiles(16,8,pixels));spriteData.splice((layout.tiles+index*focusStride)*16,marker.length,...marker);colorSpriteData.splice((layout.tiles+index*focusStride)*16,marker.length,...marker);}
@@ -340,7 +354,7 @@ export function generate(
         `const CE_Asset ce_assets[] = {${assetRows}};`,
         `const CE_Hitbox ce_hitboxes[]={${spriteAssets.map((a) => `{${a.hitbox.x - a.origin.x},${a.hitbox.y - a.origin.y},${a.hitbox.w},${a.hitbox.h}}`)}};`,
         `const uint8_t ce_asset_count=${spriteAssets.length}, ce_sprite_tiles=${spriteTiles};`,
-        `const CE_Data ce_sprite_data=${blob(spriteData)};`,
+        `const CE_Data ce_sprite_data=${blob(game.hardware === "gbc" && spriteColor.enabled ? colorSpriteData : spriteData)};`,
         `const uint8_t ce_color_sprites=${+spriteColor.enabled};`,
         `const CE_Data ce_color_sprite_data=${blob(colorSpriteData)};`,
         `const CE_Data ce_color_boss_graphics[]={${colorBossGraphics}};`,
@@ -523,8 +537,9 @@ export function generate(
             `static const uint8_t screen_${index}_digits[]={${digits}};`,
             `static const CE_Binding screen_${index}_bindings[]={${bindings.length ? bindings.join(",") : "{0,0,0,5}"}};`,
         );
+        const colorOnly = game.hardware === "gbc" && s.id !== "hud" && game.assets.find(a=>a.id===s.background)?.frames[0].cgbPixels;
         screenRows.push(
-            `{${blob(tileBytes)},${blob(tileMap)},${blob(attrs)},${count},${s.palette},${bindings.length},screen_${index}_bindings,screen_${index}_digits}`,
+            `{${colorOnly?"{0,0,0}":blob(tileBytes)},${colorOnly?"{0,0,0}":blob(tileMap)},${colorOnly?"{0,0,0}":blob(attrs)},${count},${s.palette},${bindings.length},screen_${index}_bindings,screen_${index}_digits}`,
         );
         const sourceAsset = game.assets.find(a=>a.id===s.background);
         if (s.id !== "hud" && sourceAsset?.frames[0].cgbPixels) {
@@ -645,7 +660,7 @@ export function generate(
                 }
             }
             if(colorMode)colorParallaxRows.push(blob(phases));
-            else parallaxRows.push(`{${par.firstTile},${par.width * par.height},${phaseCount},${par.divisor},${blob(phases)}}`);
+            else parallaxRows.push(`{${par.firstTile},${par.width * par.height},${phaseCount},${par.divisor},${game.hardware==="gbc"&&q?"{0,0,0}":blob(phases)}}`);
             }
         } else {parallaxRows.push("{0,0,1,2,{0,0,0}}");colorParallaxRows.push("{0,0,0}");}
     }
@@ -692,7 +707,7 @@ export function generate(
         `const uint8_t ce_bomb_screens[]={${bombScreens}},ce_bomb_styles[]={${players.map(p=>+(p.bombStyle==="beam"))}};`);
     config.push(`const uint16_t ce_attract_title_frames=${game.attract?.enabled ? game.attract.titleSeconds*60 : 0},ce_attract_boss_frames=${(game.attract?.bossSeconds??15)*60},ce_attract_rank_frames=${(game.attract?.rankingSeconds??8)*60};`);
     const movie=game.startupMovie?.enabled?game.startupMovie:undefined;
-    const movieRows=movie?.frames.map(f=>`{${blob(Buffer.from(f.dmg,'base64'))},${blob(Buffer.from(f.cgb,'base64'))},${blob(Buffer.from(f.attributes,'base64'))},${blob(Buffer.from(f.palettes,'base64'))}}`)??[];
+    const movieRows=movie?.frames.map(f=>`{${game.hardware==="gbc"?"{0,0,0}":blob(Buffer.from(f.dmg,'base64'))},${blob(Buffer.from(f.cgb,'base64'))},${blob(Buffer.from(f.attributes,'base64'))},${blob(Buffer.from(f.palettes,'base64'))}}`)??[];
     const moviePcm = movie ? Buffer.from(movie.pcm,'base64') : Buffer.alloc(0);
     const moviePcmPages: string[] = [];
     for (let offset=0; offset<moviePcm.length; offset+=16384)
@@ -798,7 +813,7 @@ export function generate(
             ids=pages(plane,`stage_${i}_object_ids`);objectData=pages(records,`stage_${i}_objects`);types=`stage_${i}_object_types`;
             config.push(`static const CE_TerrainType ${types}[]={${terrain!.types.map(t=>`{{${t.tiles}},${t.hp},${t.score},${+t.solid},${itemId(t.dropItem)}}`)}};`);
         }
-        return `{${s.height},${s.duration * 60},${events.length},${q4(s.scrollSpeed)},${+s.loopMap},${+s.clearOnBoss},${+(s.walls.some(Boolean)||!!s.destructibles?.types.some(t=>t.solid))},${blob(tiles)},${tileCount},${tileAsset.palette},${map},${walls},${blob(eventData)},${+(s.requireBoss ?? false)},${s.music ?? 0},${+(s.scrollDown ?? false)},${s.bossMusic ?? 0},${s.width},${+horizontal},${objects.length},${ids},${objectData},${types}}`;
+        return `{${s.height},${s.duration * 60},${events.length},${q4(s.scrollSpeed)},${+s.loopMap},${+s.clearOnBoss},${+(s.walls.some(Boolean)||!!s.destructibles?.types.some(t=>t.solid))},${game.hardware==="gbc"&&stageColors[i]?"{0,0,0}":blob(tiles)},${tileCount},${tileAsset.palette},${map},${walls},${blob(eventData)},${+(s.requireBoss ?? false)},${s.music ?? 0},${+(s.scrollDown ?? false)},${s.bossMusic ?? 0},${s.width},${+horizontal},${objects.length},${ids},${objectData},${types}}`;
     });
     config.push(
         `const CE_Stage ce_stages[]={${stageRows}};`,
@@ -871,10 +886,10 @@ export function generate(
     return report;
 }
 
-export function verifyRom(rom: Buffer) {
+export function verifyRom(rom: Buffer, hardware: "dual" | "gbc" = "dual") {
     if (rom.length < 32768 || (rom.length & (rom.length - 1)) !== 0)
         throw new Error("ROM容量が不正です");
-    if (rom[0x143] !== 0x80) throw new Error("DMG/CGB共通ROMではありません");
+    if (rom[0x143] !== (hardware === "gbc" ? 0xc0 : 0x80)) throw new Error("対応ハードとROMヘッダーが一致しません");
     let checksum = 0;
     for (let i = 0x134; i <= 0x14c; i++)
         checksum = (checksum - rom[i] - 1) & 255;
@@ -938,7 +953,9 @@ export function compile(
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
         const args = [
-            "-Wm-yc",
+            game.hardware === "gbc" ? "-Wm-yC" : "-Wm-yc",
+            `-DCE_CGB_ONLY=${+(game.hardware === "gbc")}`,
+            ...(game.hardware === "gbc" ? ["-Wl-g.STACK=0xD000"] : []),
             `-DCE_GRAZE_ENABLED=${+(game.graze?.enabled??false)}`,
             `-DCE_OBJ_16=${+(spriteHeight(game)===16)}`,
             `-DCE_HUD_RIGHT=${+(game.screens.find(s=>s.id==="hud")?.dock==="right")}`,
@@ -963,7 +980,7 @@ export function compile(
         checkpoint();
         const romPath = path.join(work, `${name}.gb`),
             rom = fs.readFileSync(romPath);
-        verifyRom(rom);
+        verifyRom(rom, game.hardware);
         // Battery-backed rankings require MBC5 + RAM even for a 32 KiB ROM.
         run(gbdkExecutable(root, "romusage"), [romPath], work, log);
         const mapText = fs.readFileSync(path.join(work, `${name}.map`), "utf8");
@@ -978,13 +995,15 @@ export function compile(
         // Long debug symbol tables repeat area headers on subsequent map pages.
         const uniqueAreas = [...new Map(areas.map(m => [m[0].replace(/\s+/g, " "), m])).values()];
         const ram = uniqueAreas.reduce((n, m) => n + parseInt(m[2], 16), 0);
-        if (ram + 160 > 7168)
+        if (ram + 160 > (game.hardware === "gbc" ? 3072 : 7168))
             throw new Error(
-                `WRAM予算超過: ${ram + 160} bytes / 7168（スタック用1024 bytesを確保）`,
+                `WRAM予算超過: ${ram + 160} bytes / ${game.hardware === "gbc" ? 3072 : 7168}（スタック用1024 bytesを確保）`,
             );
         log(
-            `[INFO] WRAM static + shadow OAM: ${ram + 160} / 8192 bytes; stack reserve >= 1024 bytes\n`,
+            `[INFO] WRAM static + shadow OAM: ${ram + 160} / ${game.hardware === "gbc" ? 4096 : 8192} bytes; stack reserve >= 1024 bytes\n`,
         );
+        const memory = game.hardware === "gbc" ? cgbMemoryLayout(mapText,ram+160,game.screens.find(s=>s.id==="hud")?.dock==="right",report.hudTileCount,report.spriteTiles) : undefined;
+        if(memory)for(const bank of memory.wram)log(`[INFO] WRAM bank ${bank.bank}: reserved ${bank.reserved} / ${bank.capacity} bytes (${bank.purpose})\n`);
         const out = safePath(dir, "build", configuration);
         fs.mkdirSync(out, { recursive: true });
         const outputs = new Map<string, Buffer>();
@@ -1013,6 +1032,7 @@ export function compile(
             romPath: finalPath,
             size,
             ramBytes: ram + 160,
+            memory,
             spriteTiles: report.spriteTiles,
             diagnostics: report.diagnostics,
             romHash: hash(rom),

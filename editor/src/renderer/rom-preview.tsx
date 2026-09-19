@@ -204,10 +204,11 @@ export function RomPreview({
                 build.revision,
             );
             if (token !== generation.current) return;
-            const boy = new GameBoy(dmg ? GameBoyMode.Dmg : GameBoyMode.Cgb);
+            const useDmg = dmg && bytes[0x143] !== 0xc0;
+            const boy = new GameBoy(useDmg ? GameBoyMode.Dmg : GameBoyMode.Cgb);
             try {
                 boy.set_boot_rom(
-                    dmg ? BootRom.DmgBootix : BootRom.CgbBoytacean,
+                    useDmg ? BootRom.DmgBootix : BootRom.CgbBoytacean,
                 );
                 boy.load_unsafe(true);
                 boy.load_rom_wa(bytes).free();
@@ -227,7 +228,7 @@ export function RomPreview({
             setLoaded(true);
             setPlaying(true);
             setStatus(
-                `${dmg ? "DMG" : "CGB"} · ${build.configuration} · ${build.revision.slice(0, 8)}`,
+                `${useDmg ? "DMG" : "CGB"} · ${build.configuration} · ${build.revision.slice(0, 8)}`,
             );
             paint(false);
             canvas.current?.focus();

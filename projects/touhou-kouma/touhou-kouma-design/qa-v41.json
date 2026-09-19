@@ -1,0 +1,3488 @@
+{
+  "version": "0.41-gbc-runtime",
+  "status": "performance-not-met",
+  "approved": false,
+  "createdAt": "2026-09-19T01:05:48.855Z",
+  "romSha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+  "bytes": 4194304,
+  "header": "0xC0",
+  "debug": {
+    "ok": true,
+    "revision": "78e11cfa6b542faf7c6ba20d712c2d204c13ec57738ff173b917f3f103ea517f",
+    "configuration": "Debug",
+    "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "size": 4194304,
+    "ramBytes": 1478,
+    "memory": {
+      "hardware": "gbc",
+      "wram": [
+        {
+          "bank": 0,
+          "reserved": 1478,
+          "capacity": 3072,
+          "purpose": "shared state, ISR, audio and shadow OAM"
+        },
+        {
+          "bank": 1,
+          "reserved": 3410,
+          "capacity": 4096,
+          "purpose": "actors, bullets, collision, animation and motion cursors"
+        },
+        {
+          "bank": 2,
+          "reserved": 3876,
+          "capacity": 4096,
+          "purpose": "BG bullets, masks, packets and map histories"
+        },
+        {
+          "bank": 3,
+          "reserved": 2080,
+          "capacity": 4096,
+          "purpose": "parallax cache and road transfer packets"
+        },
+        {
+          "bank": 4,
+          "reserved": 779,
+          "capacity": 4096,
+          "purpose": "movie workspace; pinned during its audio ISR"
+        },
+        {
+          "bank": 5,
+          "reserved": 0,
+          "capacity": 4096,
+          "purpose": "available"
+        },
+        {
+          "bank": 6,
+          "reserved": 0,
+          "capacity": 4096,
+          "purpose": "available"
+        },
+        {
+          "bank": 7,
+          "reserved": 0,
+          "capacity": 4096,
+          "purpose": "available"
+        }
+      ],
+      "stack": {
+        "start": 52224,
+        "end": 53248,
+        "reserved": 1024
+      },
+      "vram": {
+        "bytes": 16384,
+        "bankBytes": 8192,
+        "residentObjTiles": 126,
+        "hudTiles": 27,
+        "barrageTiles": 205,
+        "roadTileLimit": 128,
+        "bombExcludedTileRange": [
+          128,
+          255
+        ]
+      }
+    },
+    "spriteTiles": 126,
+    "diagnostics": [],
+    "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+    "builtAt": "2026-09-19T00:46:24.046Z",
+    "durationMs": 304805
+  },
+  "release": {
+    "ok": true,
+    "revision": "78e11cfa6b542faf7c6ba20d712c2d204c13ec57738ff173b917f3f103ea517f",
+    "configuration": "Release",
+    "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+    "size": 4194304,
+    "ramBytes": 1478,
+    "memory": {
+      "hardware": "gbc",
+      "wram": [
+        {
+          "bank": 0,
+          "reserved": 1478,
+          "capacity": 3072,
+          "purpose": "shared state, ISR, audio and shadow OAM"
+        },
+        {
+          "bank": 1,
+          "reserved": 3410,
+          "capacity": 4096,
+          "purpose": "actors, bullets, collision, animation and motion cursors"
+        },
+        {
+          "bank": 2,
+          "reserved": 3876,
+          "capacity": 4096,
+          "purpose": "BG bullets, masks, packets and map histories"
+        },
+        {
+          "bank": 3,
+          "reserved": 2080,
+          "capacity": 4096,
+          "purpose": "parallax cache and road transfer packets"
+        },
+        {
+          "bank": 4,
+          "reserved": 779,
+          "capacity": 4096,
+          "purpose": "movie workspace; pinned during its audio ISR"
+        },
+        {
+          "bank": 5,
+          "reserved": 0,
+          "capacity": 4096,
+          "purpose": "available"
+        },
+        {
+          "bank": 6,
+          "reserved": 0,
+          "capacity": 4096,
+          "purpose": "available"
+        },
+        {
+          "bank": 7,
+          "reserved": 0,
+          "capacity": 4096,
+          "purpose": "available"
+        }
+      ],
+      "stack": {
+        "start": 52224,
+        "end": 53248,
+        "reserved": 1024
+      },
+      "vram": {
+        "bytes": 16384,
+        "bankBytes": 8192,
+        "residentObjTiles": 126,
+        "hudTiles": 27,
+        "barrageTiles": 205,
+        "roadTileLimit": 128,
+        "bombExcludedTileRange": [
+          128,
+          255
+        ]
+      }
+    },
+    "spriteTiles": 126,
+    "diagnostics": [],
+    "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+    "builtAt": "2026-09-19T00:50:41.328Z",
+    "durationMs": 255036
+  },
+  "baseline": {
+    "romSha256": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+    "gitHead": "1745705",
+    "native": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-runtime-v41\\baseline\\touhou-kouma.gb",
+      "sha256": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 2801,
+          "updatesPerSecond": 56.38581985170206,
+          "deadlineMisses": 166,
+          "frameGapP95": 2,
+          "frameGapMax": 2,
+          "peak": 0,
+          "dmaSamples": 0,
+          "roadDmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 59.22977083333333
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 57.3384
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 43.97116564417178
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 43.97116564417178
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 57.80080645161291
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 56.88333333333333
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 56.88333333333333
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 54.71221374045802
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 53.48731343283582
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 2280,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 2400,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2520,
+              "updates": 120,
+              "updatesPerSecond": 57.80080645161291
+            },
+            {
+              "tick": 2640,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2760,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1317,
+          "updatesPerSecond": 56.79503068592057,
+          "deadlineMisses": 68,
+          "frameGapP95": 2,
+          "frameGapMax": 2,
+          "peak": 18,
+          "dmaSamples": 1499,
+          "dmaEndMax": 151,
+          "roadDmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 55.52791015625
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 55.56046511627907
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 56.43543307086615
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 55.99453125
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 55.99453125
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 58.748360655737706
+            },
+            {
+              "tick": 1320,
+              "updates": 118,
+              "updatesPerSecond": 55.93527777777778
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "engineDigest": "fb93c48f903698fb4bdc1c45c6e6ce414a7466347b67585e5d7af5c3a4269a64",
+  "engineSources": [
+    {
+      "path": "engine/caravan/bg-bullets.c",
+      "sha256": "eae16cea1971e8d8faf9ddf47697484ec70280d673aaa364aacf3141ab2b8dcf"
+    },
+    {
+      "path": "engine/caravan/bg-kernels.h",
+      "sha256": "0991427618c4efe50c5d6e1365329fd4ab6a1231b9bcd5e72a131923a0dd830c"
+    },
+    {
+      "path": "engine/caravan/bg-query-kernel.h",
+      "sha256": "441986ed74075d6deeb087e5a4e540c64b95e7ca082f6af1d09a36ac840fc335"
+    },
+    {
+      "path": "engine/caravan/bg-state-kernels.h",
+      "sha256": "50e4da1b00404dcdc0fe3227731be4450e07f1bfc4210283b30f66da09936d96"
+    },
+    {
+      "path": "engine/caravan/bg-update-kernel.h",
+      "sha256": "e82c3f6ae43d4c8a746147040040b86ccdd808795881d32d127f1133e348208b"
+    },
+    {
+      "path": "engine/caravan/bg-volley.h",
+      "sha256": "06e8de70fac7a163859c2b6588a11615037cf2540efa28cfa7922c906f51b251"
+    },
+    {
+      "path": "engine/caravan/bomb-road.c",
+      "sha256": "008d285727f655c09a438e82a0c1c3de84445fc86461ddb2b9c676b19f99e1e3"
+    },
+    {
+      "path": "engine/caravan/boss-phase.c",
+      "sha256": "da124edcda74116e9bb4e3260ae10c0dbc1e1ecb917c6d6633210dd483b1f614"
+    },
+    {
+      "path": "engine/caravan/caravan.h",
+      "sha256": "106a635cd630eb5b9a0b289ba8187a562b42b6cfae4406d4dc231fc2e796ad15"
+    },
+    {
+      "path": "engine/caravan/cgb-bg-packets.h",
+      "sha256": "669e52847958c6c2adc74eb939f2139b335f3f421207729799876c44a27f18a6"
+    },
+    {
+      "path": "engine/caravan/cgb-motion.h",
+      "sha256": "32103228c86eaf63b6f0dc4b9e76bb43c7b382145c19ca5365a16cb6428d7579"
+    },
+    {
+      "path": "engine/caravan/cgb-oam.h",
+      "sha256": "c06cc05617db1f4e80db26d1942c69cfc6dca393b0867efe4b35d27dfa56a95f"
+    },
+    {
+      "path": "engine/caravan/cgb-road.h",
+      "sha256": "2bf3a2d09ae81034d672f6c90db2d8465bb42cf87038e3530c853280af072664"
+    },
+    {
+      "path": "engine/caravan/flow.c",
+      "sha256": "eb9dc104fddd7d5857a66159bbeed3f0352e31b828f384c7c0ab8e3e4f3fe136"
+    },
+    {
+      "path": "engine/caravan/giant-render.h",
+      "sha256": "3bfa9425be8ccf854a7e06f1aed0c5fc59e351dcf124571fd6915ae75fbde2db"
+    },
+    {
+      "path": "engine/caravan/graze.c",
+      "sha256": "96a7e10e30acf7e68cefbeb439de506657b9811c007faa983b65908fcbb12a48"
+    },
+    {
+      "path": "engine/caravan/items.c",
+      "sha256": "2d10c3c61e0d9a4640de7e6b463c1eaf8c162744289e48470758ed5691b1caa1"
+    },
+    {
+      "path": "engine/caravan/mainloop.c",
+      "sha256": "010e1e042b83377f68393d189a6b7dc82dbe36b87207abe5763ffa4e81542ae5"
+    },
+    {
+      "path": "engine/caravan/mainloop.h",
+      "sha256": "f549f90b05e3177f88e3fd68d8b511efe46e34575f785e3bef93c22851a1bbb7"
+    },
+    {
+      "path": "engine/caravan/movie.c",
+      "sha256": "004f10d971c69418ed7776668b5dc11edf1903cc756688fa8c7a5bd94e837425"
+    },
+    {
+      "path": "engine/caravan/music.c",
+      "sha256": "068bd61b25dda9aeaa88a0213915492e3e7b793f7c2a0459a22819ffafd25319"
+    },
+    {
+      "path": "engine/caravan/music.h",
+      "sha256": "1fbfa91c85ba4ce4304ca6d8c4b51c2493202d41250502c0deb5b03a669591a7"
+    },
+    {
+      "path": "engine/caravan/render.c",
+      "sha256": "b01a1b1c1af7359279abe62689c155fe4aafbcebae5413c53180e9553d46e461"
+    },
+    {
+      "path": "engine/caravan/runtime.c",
+      "sha256": "4ab642cfe06b415c0f76ef04cacc95d4bbdd85049feb6beb4bbd02ca7f5f6eed"
+    },
+    {
+      "path": "engine/caravan/save.c",
+      "sha256": "26fbc74c1bfb843eca15edf0b32a98fd9339d2253ea59ee41fb38559d774e025"
+    },
+    {
+      "path": "engine/caravan/shot-kernels.h",
+      "sha256": "9872465884ce3f3cef26c5d399e6ffd745d9ef657097bdadce17ef69e57950c0"
+    },
+    {
+      "path": "engine/caravan/sound.c",
+      "sha256": "a7285882ae5a77bb8f9335714138ef2524fdbf69883338fb26f95cc378729d4a"
+    },
+    {
+      "path": "engine/caravan/special.c",
+      "sha256": "dd65fc74b41d05fd553df6b73828c5572df4bed67c03af47121c7567902cf5da"
+    },
+    {
+      "path": "engine/caravan/sprites.c",
+      "sha256": "f57dc88339fb23e62e01cf1816853b41f5a25531721ff26737e4bbabb4a75391"
+    },
+    {
+      "path": "engine/caravan/terrain.c",
+      "sha256": "90a8378faed2d79daf175280bc0278a354c76689f71769ad9fdc7c5221b3954a"
+    }
+  ],
+  "memory": {
+    "hardware": "gbc",
+    "wram": [
+      {
+        "bank": 0,
+        "reserved": 1478,
+        "capacity": 3072,
+        "purpose": "shared state, ISR, audio and shadow OAM"
+      },
+      {
+        "bank": 1,
+        "reserved": 3410,
+        "capacity": 4096,
+        "purpose": "actors, bullets, collision, animation and motion cursors"
+      },
+      {
+        "bank": 2,
+        "reserved": 3876,
+        "capacity": 4096,
+        "purpose": "BG bullets, masks, packets and map histories"
+      },
+      {
+        "bank": 3,
+        "reserved": 2080,
+        "capacity": 4096,
+        "purpose": "parallax cache and road transfer packets"
+      },
+      {
+        "bank": 4,
+        "reserved": 779,
+        "capacity": 4096,
+        "purpose": "movie workspace; pinned during its audio ISR"
+      },
+      {
+        "bank": 5,
+        "reserved": 0,
+        "capacity": 4096,
+        "purpose": "available"
+      },
+      {
+        "bank": 6,
+        "reserved": 0,
+        "capacity": 4096,
+        "purpose": "available"
+      },
+      {
+        "bank": 7,
+        "reserved": 0,
+        "capacity": 4096,
+        "purpose": "available"
+      }
+    ],
+    "stack": {
+      "start": 52224,
+      "end": 53248,
+      "reserved": 1024
+    },
+    "vram": {
+      "bytes": 16384,
+      "bankBytes": 8192,
+      "residentObjTiles": 126,
+      "hudTiles": 27,
+      "barrageTiles": 205,
+      "roadTileLimit": 128,
+      "bombExcludedTileRange": [
+        128,
+        255
+      ]
+    }
+  },
+  "deterministicInput": {
+    "logical": "A every update, 1200 updates; forty-bullet bomb releases at 199 and A+B at 200",
+    "samplingSeed": 1,
+    "gameplay": "No random source in combat; exhibition-only PRNG is outside the deterministic route"
+  },
+  "comparison": {
+    "routes": 28,
+    "updatesPerRoute": 1200,
+    "stateAndDecodedPixels": true,
+    "physicalFramebufferComparison": false,
+    "results": [
+      {
+        "route": "road",
+        "stage": 0,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "29f7e60bac0bda666ce2953ec666264ab989924f37b82805ab61fbbca44ad4c4",
+            "pixelHash": "3f7be3fd6272c519c35b74f969a536fb972cadb79598388c11f5e80e9a69c32f",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 37918.996666666666,
+            "cpuP95": 68088,
+            "cpuMax": 109992,
+            "updatesPerSecond": 59.16689903187173,
+            "logicalBoundaryFrameGaps": 598,
+            "displayFrames": 1211
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "29f7e60bac0bda666ce2953ec666264ab989924f37b82805ab61fbbca44ad4c4",
+            "pixelHash": "3f7be3fd6272c519c35b74f969a536fb972cadb79598388c11f5e80e9a69c32f",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 38997.253333333334,
+            "cpuP95": 69948,
+            "cpuMax": 111660,
+            "updatesPerSecond": 59.61021101679065,
+            "logicalBoundaryFrameGaps": 26,
+            "displayFrames": 1202
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 0,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "001bd14e629f7d6e85be2fd36c761cbc56931c4a045b16dfb290f3fb6e3e9742",
+            "pixelHash": "4dee04f2b787960889b89011cadfbcbea2e5249d958c3ab382ee8d734af48e04",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 34322.41333333333,
+            "cpuP95": 59780,
+            "cpuMax": 77400,
+            "updatesPerSecond": 59.118168569004254,
+            "logicalBoundaryFrameGaps": 612,
+            "displayFrames": 1212
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "001bd14e629f7d6e85be2fd36c761cbc56931c4a045b16dfb290f3fb6e3e9742",
+            "pixelHash": "4dee04f2b787960889b89011cadfbcbea2e5249d958c3ab382ee8d734af48e04",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 33388.47,
+            "cpuP95": 56752,
+            "cpuMax": 78800,
+            "updatesPerSecond": 59.65982991116251,
+            "logicalBoundaryFrameGaps": 25,
+            "displayFrames": 1201
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 1,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "3c758ad5cd08a74584fe247054ffb3336c0b862dd6a886c3fd517e5369c3e52d",
+            "pixelHash": "543fa080e59bfa700496f70627be53e2909d77ba77ccc600d989fd3bf065df56",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 38074.636666666665,
+            "cpuP95": 67864,
+            "cpuMax": 109992,
+            "updatesPerSecond": 58.875285617083094,
+            "logicalBoundaryFrameGaps": 743,
+            "displayFrames": 1217
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "3c758ad5cd08a74584fe247054ffb3336c0b862dd6a886c3fd517e5369c3e52d",
+            "pixelHash": "543fa080e59bfa700496f70627be53e2909d77ba77ccc600d989fd3bf065df56",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 39198.31333333333,
+            "cpuP95": 69976,
+            "cpuMax": 111660,
+            "updatesPerSecond": 59.560674589590334,
+            "logicalBoundaryFrameGaps": 33,
+            "displayFrames": 1203
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 1,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "8db8719ebe8b92d4375e72831f209d976833575f47313f1ba2bb1b53ae9865b3",
+            "pixelHash": "f2ac5516ac2d2ec692e15e496dbdebe87e99f8de9c4c69d07ad9dd9c133079ef",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 34318.40666666667,
+            "cpuP95": 59832,
+            "cpuMax": 77400,
+            "updatesPerSecond": 58.44328625325149,
+            "logicalBoundaryFrameGaps": 730,
+            "displayFrames": 1226
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "8db8719ebe8b92d4375e72831f209d976833575f47313f1ba2bb1b53ae9865b3",
+            "pixelHash": "f2ac5516ac2d2ec692e15e496dbdebe87e99f8de9c4c69d07ad9dd9c133079ef",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 33501.613333333335,
+            "cpuP95": 56784,
+            "cpuMax": 78800,
+            "updatesPerSecond": 59.65982991116251,
+            "logicalBoundaryFrameGaps": 31,
+            "displayFrames": 1201
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 2,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "0bdb77b8d6a52bccb3ba53554fd4afa010030864add426c3301d0dff23e0935b",
+            "pixelHash": "a9c3d798665d2829b2e56ee0ec73794a60b0c519d085bb9d141c65e11d1ef6aa",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 37218.38,
+            "cpuP95": 65544,
+            "cpuMax": 107524,
+            "updatesPerSecond": 59.26492794972483,
+            "logicalBoundaryFrameGaps": 751,
+            "displayFrames": 1209
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "0bdb77b8d6a52bccb3ba53554fd4afa010030864add426c3301d0dff23e0935b",
+            "pixelHash": "a9c3d798665d2829b2e56ee0ec73794a60b0c519d085bb9d141c65e11d1ef6aa",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 37311.00666666667,
+            "cpuP95": 65596,
+            "cpuMax": 100700,
+            "updatesPerSecond": 59.65983273983641,
+            "logicalBoundaryFrameGaps": 29,
+            "displayFrames": 1201
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 2,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "65b307e09cf29f003f09216112d7dfdc4c4120020a0ff2f090ed1f24f8871d4a",
+            "pixelHash": "3f2b3d75d52c19ef0ff6c787e3845e067783638fcc5ebce689bdc1720f99295f",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 34074.01666666667,
+            "cpuP95": 67036,
+            "cpuMax": 96920,
+            "updatesPerSecond": 57.923796461638254,
+            "logicalBoundaryFrameGaps": 727,
+            "displayFrames": 1237
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "65b307e09cf29f003f09216112d7dfdc4c4120020a0ff2f090ed1f24f8871d4a",
+            "pixelHash": "3f2b3d75d52c19ef0ff6c787e3845e067783638fcc5ebce689bdc1720f99295f",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 31194.036666666667,
+            "cpuP95": 57792,
+            "cpuMax": 82584,
+            "updatesPerSecond": 59.70919855748818,
+            "logicalBoundaryFrameGaps": 28,
+            "displayFrames": 1200
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 3,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "90e05c7ae00dd188963199a3107d4b9d0a4b87099723a4d95cea4a95ed51ac78",
+            "pixelHash": "26de62750e81c11c0bd905359335925731d9c95c80f01dadc28dced66c98e2f6",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 45255.44,
+            "cpuP95": 76016,
+            "cpuMax": 132840,
+            "updatesPerSecond": 57.59752378809703,
+            "logicalBoundaryFrameGaps": 740,
+            "displayFrames": 1244
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "90e05c7ae00dd188963199a3107d4b9d0a4b87099723a4d95cea4a95ed51ac78",
+            "pixelHash": "26de62750e81c11c0bd905359335925731d9c95c80f01dadc28dced66c98e2f6",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 46066.823333333334,
+            "cpuP95": 78412,
+            "cpuMax": 127668,
+            "updatesPerSecond": 58.97259442400683,
+            "logicalBoundaryFrameGaps": 45,
+            "displayFrames": 1215
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 3,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "f64387185b53e33088505c9def989555b6d886fb747baab7cc8471f61d1c6523",
+            "pixelHash": "8b6e19e6988bdfce761e868ce271ec3d149cacec8ce7fdee6ccdd9d262f64ea4",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 38409.88,
+            "cpuP95": 67424,
+            "cpuMax": 139160,
+            "updatesPerSecond": 57.59766088601001,
+            "logicalBoundaryFrameGaps": 735,
+            "displayFrames": 1244
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "f64387185b53e33088505c9def989555b6d886fb747baab7cc8471f61d1c6523",
+            "pixelHash": "8b6e19e6988bdfce761e868ce271ec3d149cacec8ce7fdee6ccdd9d262f64ea4",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 36491.013333333336,
+            "cpuP95": 61048,
+            "cpuMax": 133500,
+            "updatesPerSecond": 59.363348053970874,
+            "logicalBoundaryFrameGaps": 34,
+            "displayFrames": 1207
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 4,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "0556d8a5062369c669e83decbb1c965d542d01ec03183d2a6456a04babe04572",
+            "pixelHash": "0ac1f0940864e1e934938e0abbf875d03c7d373d2f8fa9fa54f6137250982fbe",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 41949.41,
+            "cpuP95": 75608,
+            "cpuMax": 124292,
+            "updatesPerSecond": 57.83018506753788,
+            "logicalBoundaryFrameGaps": 728,
+            "displayFrames": 1239
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "0556d8a5062369c669e83decbb1c965d542d01ec03183d2a6456a04babe04572",
+            "pixelHash": "0ac1f0940864e1e934938e0abbf875d03c7d373d2f8fa9fa54f6137250982fbe",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 41587.88333333333,
+            "cpuP95": 71724,
+            "cpuMax": 110944,
+            "updatesPerSecond": 59.56043636146759,
+            "logicalBoundaryFrameGaps": 33,
+            "displayFrames": 1203
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 4,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "36791b9e95a37b06fda33671e9f107aa7bfd3053085eb1674e5f374eddb6583b",
+            "pixelHash": "0d839c52468b02813cf3fb27c930019c8613b3d1c1b667338ec05ac3d509e567",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 36154.35666666667,
+            "cpuP95": 72796,
+            "cpuMax": 112136,
+            "updatesPerSecond": 57.505632008362255,
+            "logicalBoundaryFrameGaps": 724,
+            "displayFrames": 1246
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "36791b9e95a37b06fda33671e9f107aa7bfd3053085eb1674e5f374eddb6583b",
+            "pixelHash": "0d839c52468b02813cf3fb27c930019c8613b3d1c1b667338ec05ac3d509e567",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 33305.293333333335,
+            "cpuP95": 65612,
+            "cpuMax": 101144,
+            "updatesPerSecond": 59.56043636146759,
+            "logicalBoundaryFrameGaps": 33,
+            "displayFrames": 1203
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 5,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "414bb12e2f83ccb81781db4c7196f8f431e2880437b93422ee52b5cb5c5394b6",
+            "pixelHash": "72be5345c3b760e5bb9f7883bb0bbeafcafc54f557ae1ce896a97aa889b29204",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 37228.443333333336,
+            "cpuP95": 68204,
+            "cpuMax": 106556,
+            "updatesPerSecond": 58.253345725122195,
+            "logicalBoundaryFrameGaps": 738,
+            "displayFrames": 1230
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "414bb12e2f83ccb81781db4c7196f8f431e2880437b93422ee52b5cb5c5394b6",
+            "pixelHash": "72be5345c3b760e5bb9f7883bb0bbeafcafc54f557ae1ce896a97aa889b29204",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 37716.87,
+            "cpuP95": 67544,
+            "cpuMax": 103208,
+            "updatesPerSecond": 59.56066190283753,
+            "logicalBoundaryFrameGaps": 31,
+            "displayFrames": 1203
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 5,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "7b00d304ded30467602330ba62e906aed06d4de8fdce69343bbc4f192da5b77f",
+            "pixelHash": "9c37b475862afcb363e9d145fdafe51271be9e965ba0f90354dd0be1d59666c8",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 34345.113333333335,
+            "cpuP95": 77132,
+            "cpuMax": 112620,
+            "updatesPerSecond": 57.047850346886726,
+            "logicalBoundaryFrameGaps": 726,
+            "displayFrames": 1256
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "7b00d304ded30467602330ba62e906aed06d4de8fdce69343bbc4f192da5b77f",
+            "pixelHash": "9c37b475862afcb363e9d145fdafe51271be9e965ba0f90354dd0be1d59666c8",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 32038.696666666667,
+            "cpuP95": 66584,
+            "cpuMax": 101708,
+            "updatesPerSecond": 59.51120775844665,
+            "logicalBoundaryFrameGaps": 32,
+            "displayFrames": 1204
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 6,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "28ea2548d20c4acb446050dc7a337e78e976e6d07ee3c6dfb6488b254bc4e384",
+            "pixelHash": "f58621572c0a2dab08da204038e1ebc403c1eac3df594db58b346b8aff389ce8",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 40341.85,
+            "cpuP95": 70160,
+            "cpuMax": 104884,
+            "updatesPerSecond": 58.49093721144796,
+            "logicalBoundaryFrameGaps": 727,
+            "displayFrames": 1225
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "28ea2548d20c4acb446050dc7a337e78e976e6d07ee3c6dfb6488b254bc4e384",
+            "pixelHash": "f58621572c0a2dab08da204038e1ebc403c1eac3df594db58b346b8aff389ce8",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 40468.903333333335,
+            "cpuP95": 69220,
+            "cpuMax": 101832,
+            "updatesPerSecond": 59.65982001080598,
+            "logicalBoundaryFrameGaps": 31,
+            "displayFrames": 1201
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "road",
+        "stage": 6,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "09d9e49c34560c2ccdbfefd0fd07cf567d187096a28eaaffd32c06fdcebd1ae9",
+            "pixelHash": "c13a1511bacd5381510d76c70c4eae8abf8cc257efc5b4e229c45f99a7b4dda4",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 41178.54,
+            "cpuP95": 89316,
+            "cpuMax": 164088,
+            "updatesPerSecond": 54.57157565630119,
+            "logicalBoundaryFrameGaps": 728,
+            "displayFrames": 1313
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "09d9e49c34560c2ccdbfefd0fd07cf567d187096a28eaaffd32c06fdcebd1ae9",
+            "pixelHash": "c13a1511bacd5381510d76c70c4eae8abf8cc257efc5b4e229c45f99a7b4dda4",
+            "updates": 1200,
+            "normal": 1200,
+            "transitions": 0,
+            "peak": 0,
+            "cpuMean": 38203.683333333334,
+            "cpuP95": 79816,
+            "cpuMax": 151608,
+            "updatesPerSecond": 58.44362420909485,
+            "logicalBoundaryFrameGaps": 52,
+            "displayFrames": 1226
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 0,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "5ed68ab0e1b4fb7f9c2e0f49138e7a919c3d91eec32888e0c292c5d1dd26413e",
+            "pixelHash": "729d113f9fc63f0b1397ef30c3f2f41715155c3a8b56544d427a06e7ffdaf0a6",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 5,
+            "cpuMean": 56885.10851419032,
+            "cpuP95": 79800,
+            "cpuMax": 92608,
+            "updatesPerSecond": 59.26623775578708,
+            "logicalBoundaryFrameGaps": 15,
+            "displayFrames": 1207
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "5ed68ab0e1b4fb7f9c2e0f49138e7a919c3d91eec32888e0c292c5d1dd26413e",
+            "pixelHash": "729d113f9fc63f0b1397ef30c3f2f41715155c3a8b56544d427a06e7ffdaf0a6",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 5,
+            "cpuMean": 57531.39565943239,
+            "cpuP95": 81200,
+            "cpuMax": 91420,
+            "updatesPerSecond": 59.714342288823744,
+            "logicalBoundaryFrameGaps": 489,
+            "displayFrames": 1197
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 0,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "e741104eb840b9219a8cda93ec75542f6024b8f48a50820993f52d1058ab2072",
+            "pixelHash": "0946054ed035860dc0fee7c76c9d4ed5bbae1db72fcf73b3d6ec97b0f4dc58f7",
+            "updates": 1200,
+            "normal": 1197,
+            "transitions": 3,
+            "peak": 8,
+            "cpuMean": 40620.01670843776,
+            "cpuP95": 49344,
+            "cpuMax": 77008,
+            "updatesPerSecond": 58.98172924913166,
+            "logicalBoundaryFrameGaps": 446,
+            "displayFrames": 1209
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "e741104eb840b9219a8cda93ec75542f6024b8f48a50820993f52d1058ab2072",
+            "pixelHash": "0946054ed035860dc0fee7c76c9d4ed5bbae1db72fcf73b3d6ec97b0f4dc58f7",
+            "updates": 1200,
+            "normal": 1197,
+            "transitions": 3,
+            "peak": 8,
+            "cpuMean": 39190.031746031746,
+            "cpuP95": 46904,
+            "cpuMax": 73028,
+            "updatesPerSecond": 59.71402589832551,
+            "logicalBoundaryFrameGaps": 471,
+            "displayFrames": 1196
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 1,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "b1202af1a66a8ca624a2cf57d3ae499f413a1cf2bf66543fb2f196235baca73b",
+            "pixelHash": "0cbef671f061b2203f6b5feda42a1dbcef3808e3e3b91bb55e1b7b27104e7bcc",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 7,
+            "cpuMean": 51902.948247078464,
+            "cpuP95": 77892,
+            "cpuMax": 93160,
+            "updatesPerSecond": 58.683280438948536,
+            "logicalBoundaryFrameGaps": 133,
+            "displayFrames": 1219
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "b1202af1a66a8ca624a2cf57d3ae499f413a1cf2bf66543fb2f196235baca73b",
+            "pixelHash": "0cbef671f061b2203f6b5feda42a1dbcef3808e3e3b91bb55e1b7b27104e7bcc",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 7,
+            "cpuMean": 51980.41736227045,
+            "cpuP95": 78256,
+            "cpuMax": 92364,
+            "updatesPerSecond": 59.461928907819726,
+            "logicalBoundaryFrameGaps": 316,
+            "displayFrames": 1204
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 1,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "71dd007fc204591c379245f628f086b53f658fafed422b4dcec1961683e1c61e",
+            "pixelHash": "d084bd794fcfcde4d1a336a5bcc7d7a319e2bf5f174c70a80331cda54bd2106d",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 7,
+            "cpuMean": 40050.61101836394,
+            "cpuP95": 49276,
+            "cpuMax": 83160,
+            "updatesPerSecond": 58.87697234632244,
+            "logicalBoundaryFrameGaps": 488,
+            "displayFrames": 1213
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "71dd007fc204591c379245f628f086b53f658fafed422b4dcec1961683e1c61e",
+            "pixelHash": "d084bd794fcfcde4d1a336a5bcc7d7a319e2bf5f174c70a80331cda54bd2106d",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 7,
+            "cpuMean": 38644.59766277129,
+            "cpuP95": 47284,
+            "cpuMax": 78936,
+            "updatesPerSecond": 59.36352510429307,
+            "logicalBoundaryFrameGaps": 305,
+            "displayFrames": 1206
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 2,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "cddc761c89175711d283d141e3f41eb33be4761467729bd63fb7d1d4fe69bf61",
+            "pixelHash": "2260d8a1415806096a2b183c9029c63e79f7ee55f34ea22abf68930991679615",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 13,
+            "cpuMean": 55189.709515859766,
+            "cpuP95": 80808,
+            "cpuMax": 108256,
+            "updatesPerSecond": 57.50416671435052,
+            "logicalBoundaryFrameGaps": 159,
+            "displayFrames": 1244
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "cddc761c89175711d283d141e3f41eb33be4761467729bd63fb7d1d4fe69bf61",
+            "pixelHash": "2260d8a1415806096a2b183c9029c63e79f7ee55f34ea22abf68930991679615",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 13,
+            "cpuMean": 54354.86477462437,
+            "cpuP95": 80904,
+            "cpuMax": 110476,
+            "updatesPerSecond": 58.730138154632066,
+            "logicalBoundaryFrameGaps": 149,
+            "displayFrames": 1217
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 2,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "80102d0a24e8a306eed3a511aa03a9686c640b461d5d8c268f8da3f6478ee3a0",
+            "pixelHash": "411a12e9f6c1caa895fcb230da614c74c12e1ca7757f701b626e6873a6f9ee60",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 13,
+            "cpuMean": 44612.18030050083,
+            "cpuP95": 53512,
+            "cpuMax": 97980,
+            "updatesPerSecond": 58.539931510472066,
+            "logicalBoundaryFrameGaps": 472,
+            "displayFrames": 1220
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "80102d0a24e8a306eed3a511aa03a9686c640b461d5d8c268f8da3f6478ee3a0",
+            "pixelHash": "411a12e9f6c1caa895fcb230da614c74c12e1ca7757f701b626e6873a6f9ee60",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 13,
+            "cpuMean": 42458.273789649415,
+            "cpuP95": 50860,
+            "cpuMax": 93112,
+            "updatesPerSecond": 59.462320143912564,
+            "logicalBoundaryFrameGaps": 136,
+            "displayFrames": 1202
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 3,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "f2d21dfd720e2d1ed110803c18930f8e5f23ea2e2bb2655adb9ed8651a180766",
+            "pixelHash": "ad3cf9953f3340cad90dba09f7680a0f2f4b3903420f3087fc49a3eff378c0b4",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 10,
+            "cpuMean": 59709.52587646077,
+            "cpuP95": 82596,
+            "cpuMax": 111584,
+            "updatesPerSecond": 56.864151613348014,
+            "logicalBoundaryFrameGaps": 139,
+            "displayFrames": 1258
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "f2d21dfd720e2d1ed110803c18930f8e5f23ea2e2bb2655adb9ed8651a180766",
+            "pixelHash": "ad3cf9953f3340cad90dba09f7680a0f2f4b3903420f3087fc49a3eff378c0b4",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 10,
+            "cpuMean": 59807.79298831386,
+            "cpuP95": 83152,
+            "cpuMax": 108408,
+            "updatesPerSecond": 59.06947215543254,
+            "logicalBoundaryFrameGaps": 94,
+            "displayFrames": 1212
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 3,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "b6efbb894ce4fd326e1492f33be25040f985d46781ebe83583d776369791faf6",
+            "pixelHash": "75dd4bee182505d0f16af2db1794f467c7dd0f38a346b1101ddc95c383327946",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 10,
+            "cpuMean": 46389.826377295496,
+            "cpuP95": 55364,
+            "cpuMax": 95604,
+            "updatesPerSecond": 58.53984966996035,
+            "logicalBoundaryFrameGaps": 488,
+            "displayFrames": 1220
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "b6efbb894ce4fd326e1492f33be25040f985d46781ebe83583d776369791faf6",
+            "pixelHash": "75dd4bee182505d0f16af2db1794f467c7dd0f38a346b1101ddc95c383327946",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 10,
+            "cpuMean": 44841.52921535893,
+            "cpuP95": 52692,
+            "cpuMax": 88864,
+            "updatesPerSecond": 59.363547546873185,
+            "logicalBoundaryFrameGaps": 96,
+            "displayFrames": 1206
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 4,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "3909e81f258cb7691429183e1e0fc9843bda4515f7695990b56b6a8f79fec52c",
+            "pixelHash": "98277bf7ba4b96fd3dd5d66f13b0ade399d3e8c25e1b423b942ff4e91f1cb6cc",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 13,
+            "cpuMean": 54682.36060100167,
+            "cpuP95": 81892,
+            "cpuMax": 105116,
+            "updatesPerSecond": 56.63941577351629,
+            "logicalBoundaryFrameGaps": 242,
+            "displayFrames": 1263
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "3909e81f258cb7691429183e1e0fc9843bda4515f7695990b56b6a8f79fec52c",
+            "pixelHash": "98277bf7ba4b96fd3dd5d66f13b0ade399d3e8c25e1b423b942ff4e91f1cb6cc",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 13,
+            "cpuMean": 54021.31552587646,
+            "cpuP95": 81816,
+            "cpuMax": 109736,
+            "updatesPerSecond": 58.874670993099066,
+            "logicalBoundaryFrameGaps": 141,
+            "displayFrames": 1215
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 4,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "54d32ce29c5ef383dacafe90b3e9a420c2fbefa211bd2f7fca03b3d05c18dc68",
+            "pixelHash": "15b825f6362039c5c36f13f03fdc31f1df809535701ae236baef14215a3595aa",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 13,
+            "cpuMean": 45727.789649415696,
+            "cpuP95": 58328,
+            "cpuMax": 86216,
+            "updatesPerSecond": 58.06447331801858,
+            "logicalBoundaryFrameGaps": 548,
+            "displayFrames": 1232
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "54d32ce29c5ef383dacafe90b3e9a420c2fbefa211bd2f7fca03b3d05c18dc68",
+            "pixelHash": "15b825f6362039c5c36f13f03fdc31f1df809535701ae236baef14215a3595aa",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 13,
+            "cpuMean": 43926.84808013355,
+            "cpuP95": 57792,
+            "cpuMax": 83948,
+            "updatesPerSecond": 59.314049644139985,
+            "logicalBoundaryFrameGaps": 148,
+            "displayFrames": 1206
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 5,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "1b329f856c9e0c2d2908cfa9b36cb3139b54c72429aadb9275af2550c40969f7",
+            "pixelHash": "458cde26d4488f5e6daae78734ebb3e865306f6151a30746d8a056c0a7f25023",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 14,
+            "cpuMean": 58789.9632721202,
+            "cpuP95": 85868,
+            "cpuMax": 114428,
+            "updatesPerSecond": 57.228303242926735,
+            "logicalBoundaryFrameGaps": 225,
+            "displayFrames": 1250
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "1b329f856c9e0c2d2908cfa9b36cb3139b54c72429aadb9275af2550c40969f7",
+            "pixelHash": "458cde26d4488f5e6daae78734ebb3e865306f6151a30746d8a056c0a7f25023",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 14,
+            "cpuMean": 58494.75125208681,
+            "cpuP95": 85940,
+            "cpuMax": 114076,
+            "updatesPerSecond": 58.537710985714575,
+            "logicalBoundaryFrameGaps": 87,
+            "displayFrames": 1223
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 5,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "8c8a5765037ad58bb56a221f2646b49837dbc99e3b8c5ded829c456c6f1dfaaf",
+            "pixelHash": "3ac9a930a333d7e8a5a29e611d36fbcb865cc5cb347e4d0c660e04105aedfec4",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 14,
+            "cpuMean": 49213.95993322204,
+            "cpuP95": 61248,
+            "cpuMax": 95240,
+            "updatesPerSecond": 58.3488076850974,
+            "logicalBoundaryFrameGaps": 465,
+            "displayFrames": 1224
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "8c8a5765037ad58bb56a221f2646b49837dbc99e3b8c5ded829c456c6f1dfaaf",
+            "pixelHash": "3ac9a930a333d7e8a5a29e611d36fbcb865cc5cb347e4d0c660e04105aedfec4",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 14,
+            "cpuMean": 47757.37562604341,
+            "cpuP95": 59012,
+            "cpuMax": 92780,
+            "updatesPerSecond": 59.61053465782729,
+            "logicalBoundaryFrameGaps": 67,
+            "displayFrames": 1201
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 6,
+        "character": 0,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "a094918d1e659837345f8b9c3ddee80f77f2846c28b778f1b3ed771561257a5a",
+            "pixelHash": "c947fc3ed79d73759af86aa2197e935c9e4a47d1bbcc687607ffc859b5a2e09b",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 18,
+            "cpuMean": 63422.66444073456,
+            "cpuP95": 89776,
+            "cpuMax": 134584,
+            "updatesPerSecond": 55.71345708562155,
+            "logicalBoundaryFrameGaps": 222,
+            "displayFrames": 1284
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "a094918d1e659837345f8b9c3ddee80f77f2846c28b778f1b3ed771561257a5a",
+            "pixelHash": "c947fc3ed79d73759af86aa2197e935c9e4a47d1bbcc687607ffc859b5a2e09b",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 18,
+            "cpuMean": 62378.183639399,
+            "cpuP95": 89296,
+            "cpuMax": 139096,
+            "updatesPerSecond": 57.5952607522934,
+            "logicalBoundaryFrameGaps": 112,
+            "displayFrames": 1243
+          }
+        ],
+        "mismatches": 0
+      },
+      {
+        "route": "boss",
+        "stage": 6,
+        "character": 1,
+        "inputHash": "64bf4e7fe668627a965187e536da3baef5a3ae007bd0fd657421b3ff7bea9127",
+        "summary": [
+          {
+            "file": ".cache/gbc-runtime-v41/baseline/touhou-kouma.gb",
+            "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+            "stateHash": "066ed4f099b5fa06926bb53c6d3a55dd414c38e0b46b35dd92b2d08935b049f1",
+            "pixelHash": "c6be7eba9810bc0c45b0ac80fa77c6aa17aee6b337e57276301328ea78e61fc3",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 18,
+            "cpuMean": 53330.59432387312,
+            "cpuP95": 67528,
+            "cpuMax": 94924,
+            "updatesPerSecond": 57.2287829614318,
+            "logicalBoundaryFrameGaps": 511,
+            "displayFrames": 1249
+          },
+          {
+            "file": "projects/touhou-kouma/build/Debug/touhou-kouma.gb",
+            "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+            "stateHash": "066ed4f099b5fa06926bb53c6d3a55dd414c38e0b46b35dd92b2d08935b049f1",
+            "pixelHash": "c6be7eba9810bc0c45b0ac80fa77c6aa17aee6b337e57276301328ea78e61fc3",
+            "updates": 1200,
+            "normal": 1198,
+            "transitions": 2,
+            "peak": 18,
+            "cpuMean": 51040.183639399,
+            "cpuP95": 64024,
+            "cpuMax": 94136,
+            "updatesPerSecond": 59.06965964391764,
+            "logicalBoundaryFrameGaps": 84,
+            "displayFrames": 1212
+          }
+        ],
+        "mismatches": 0
+      }
+    ]
+  },
+  "native": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+    "results": [
+      {
+        "mode": "CGB",
+        "route": "road",
+        "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+        "updates": 2801,
+        "updatesPerSecond": 58.99038346262341,
+        "deadlineMisses": 35,
+        "frameGapP95": 1,
+        "frameGapMax": 2,
+        "peak": 0,
+        "dmaSamples": 0,
+        "roadDmaSamples": 1142,
+        "roadDmaEndMax": 149,
+        "extraVblankWaits": 0,
+        "windows": [
+          {
+            "tick": 120,
+            "updates": 119,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 240,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 360,
+            "updates": 120,
+            "updatesPerSecond": 59.23388429752066
+          },
+          {
+            "tick": 480,
+            "updates": 120,
+            "updatesPerSecond": 55.13307692307693
+          },
+          {
+            "tick": 600,
+            "updates": 120,
+            "updatesPerSecond": 51.936956521739134
+          },
+          {
+            "tick": 720,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 840,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 960,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 1080,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 1200,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 1320,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 1440,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 1560,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 1680,
+            "updates": 120,
+            "updatesPerSecond": 59.23388429752066
+          },
+          {
+            "tick": 1800,
+            "updates": 120,
+            "updatesPerSecond": 58.270731707317076
+          },
+          {
+            "tick": 1920,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 2040,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 2160,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 2280,
+            "updates": 120,
+            "updatesPerSecond": 59.23388429752066
+          },
+          {
+            "tick": 2400,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 2520,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 2640,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 2760,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          }
+        ]
+      },
+      {
+        "mode": "CGB",
+        "route": "boss",
+        "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+        "updates": 1317,
+        "updatesPerSecond": 59.09926183320811,
+        "deadlineMisses": 14,
+        "frameGapP95": 1,
+        "frameGapMax": 2,
+        "peak": 18,
+        "dmaSamples": 1499,
+        "dmaEndMax": 151,
+        "roadDmaSamples": 0,
+        "extraVblankWaits": 0,
+        "windows": [
+          {
+            "tick": 120,
+            "updates": 119,
+            "updatesPerSecond": 57.78514227642277
+          },
+          {
+            "tick": 240,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 360,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 480,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 600,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 720,
+            "updates": 120,
+            "updatesPerSecond": 59.23388429752066
+          },
+          {
+            "tick": 840,
+            "updates": 120,
+            "updatesPerSecond": 59.23388429752066
+          },
+          {
+            "tick": 960,
+            "updates": 120,
+            "updatesPerSecond": 58.748360655737706
+          },
+          {
+            "tick": 1080,
+            "updates": 120,
+            "updatesPerSecond": 56.88333333333333
+          },
+          {
+            "tick": 1200,
+            "updates": 120,
+            "updatesPerSecond": 59.7275
+          },
+          {
+            "tick": 1320,
+            "updates": 118,
+            "updatesPerSecond": 59.7275
+          }
+        ]
+      }
+    ]
+  },
+  "loads": [
+    {
+      "scenario": "spread",
+      "character": 0,
+      "baseline": {
+        "fixture": true,
+        "romHash": "db1788306ef2ea34c27849f4b4f8b8ac1370d37c20f0efcb471bc136205830cb",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 709,
+        "updatesPerSecond": 50.46089210155148,
+        "deadlineMisses": 110,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.1836393989983305,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "2624f02bc3ea09dd5cb1015bbeff57cdc76fe636b632e29ae3a01edaec736f4a",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 681,
+        "updatesPerSecond": 52.535642437591775,
+        "deadlineMisses": 82,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.1368948247078463,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "840c67a5e49f2680ef76a482b8bfa8f61660f2b555eb27d02b7726d3223f14a5",
+          "840c67a5e49f2680ef76a482b8bfa8f61660f2b555eb27d02b7726d3223f14a5"
+        ],
+        "pixels": [
+          "230aecdcd246974c86a437f57db6f7d4c43b77422ee754b36bff7c96ff64f567",
+          "230aecdcd246974c86a437f57db6f7d4c43b77422ee754b36bff7c96ff64f567"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "spread",
+      "character": 1,
+      "baseline": {
+        "fixture": true,
+        "romHash": "0701b39bee4c7f72ef78d3ed59bb30fe18f989f661cf8d80921ce7caf0f55a85",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 610,
+        "updatesPerSecond": 58.650446721311475,
+        "deadlineMisses": 11,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.018363939899833,
+          "p95": 1,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "bfcff0a96262949f090aef7601628dfe2490b90e18b3a77a393c3db2323b1b47",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 609,
+        "updatesPerSecond": 58.74675287356322,
+        "deadlineMisses": 10,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.01669449081803,
+          "p95": 1,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "9e48ed9fb21d8c88f05277d0ceb3b89660b9ea861862e736fca2319d296ac206",
+          "9e48ed9fb21d8c88f05277d0ceb3b89660b9ea861862e736fca2319d296ac206"
+        ],
+        "pixels": [
+          "914ea12a06d3d489027609abf03d0d4a14c293a3508aefb933b94302391a2594",
+          "914ea12a06d3d489027609abf03d0d4a14c293a3508aefb933b94302391a2594"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "cluster",
+      "character": 0,
+      "baseline": {
+        "fixture": true,
+        "romHash": "8745fd8cedbc509ef75d4316f3bee186ede2056ccf1d2682ac01beb2c95fae4f",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 1167,
+        "updatesPerSecond": 30.657045844044557,
+        "deadlineMisses": 568,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.9482470784641068,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "8fa2e21828de40f9b5d9ecdc59230d3b314cec393fc6963a4c4bf07c6ef7b302",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 802,
+        "updatesPerSecond": 44.60944201995012,
+        "deadlineMisses": 203,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.33889816360601,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "147839ea1a191f5aba2faa3ddee04261c39eaa573b08c90dcea7d174fec54bcd",
+          "147839ea1a191f5aba2faa3ddee04261c39eaa573b08c90dcea7d174fec54bcd"
+        ],
+        "pixels": [
+          "b801f21e1698437ce62c8009d05dba1ad4c135fb9e6a05ab969dfc0f4b5ea295",
+          "b801f21e1698437ce62c8009d05dba1ad4c135fb9e6a05ab969dfc0f4b5ea295"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "cluster",
+      "character": 1,
+      "baseline": {
+        "fixture": true,
+        "romHash": "1a20995a75673127781aab26a61b4d498b44c2543929d838bc7d75f48e7b328f",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 939,
+        "updatesPerSecond": 38.1009291799787,
+        "deadlineMisses": 340,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.5676126878130217,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "19fd374c323917a4fdde56b96e1eeac8beeec1bf2637daa6582af882600654f2",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 610,
+        "updatesPerSecond": 58.650446721311475,
+        "deadlineMisses": 11,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.018363939899833,
+          "p95": 1,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "01a884ca55c00a6798124c62995321737bd45340b27b819fbe85cc572109535a",
+          "01a884ca55c00a6798124c62995321737bd45340b27b819fbe85cc572109535a"
+        ],
+        "pixels": [
+          "aa9c14d3bf1a2c6a73cb840496d3f0218928aa8ea9dcc357a316f0af756dc0fa",
+          "aa9c14d3bf1a2c6a73cb840496d3f0218928aa8ea9dcc357a316f0af756dc0fa"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "moving",
+      "character": 0,
+      "baseline": {
+        "fixture": true,
+        "romHash": "31d344277f584b11ee8e94dbfe89391676d8728cd27d75e79975884483f8c766",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 767,
+        "updatesPerSecond": 46.64507496740548,
+        "deadlineMisses": 168,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.2804674457429048,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 142,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "69a19c4e67fd5b1bcb5257e3a784000b7abe27a4215c796a001d5595d76a4103",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 793,
+        "updatesPerSecond": 45.11572824716267,
+        "deadlineMisses": 194,
+        "dmaEndMax": 152,
+        "frameGap": {
+          "mean": 1.323873121869783,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 142,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "32e5e702fb0c9866b6dac1b6ae3b9501e8b7ae30f99ca33a54d6c5abcea2047a",
+          "32e5e702fb0c9866b6dac1b6ae3b9501e8b7ae30f99ca33a54d6c5abcea2047a"
+        ],
+        "pixels": [
+          "e8e10ac98debea3147cc8c0b74091d5f1f1e9f979c54e0403457252e5b4988f9",
+          "e8e10ac98debea3147cc8c0b74091d5f1f1e9f979c54e0403457252e5b4988f9"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "moving",
+      "character": 1,
+      "baseline": {
+        "fixture": true,
+        "romHash": "d0b91af6c8e5aaaac5a3e3dc978e68cc6e3d9b8401674bf02f872e7e18e7cf19",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 646,
+        "updatesPerSecond": 55.38200077399381,
+        "deadlineMisses": 47,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.0784641068447411,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 142,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "bd7c15a70d73d491896f1294c3a6c176324c4b7a982456a4bd42ccf11b0a1762",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 647,
+        "updatesPerSecond": 55.29640262751159,
+        "deadlineMisses": 48,
+        "dmaEndMax": 152,
+        "frameGap": {
+          "mean": 1.0801335559265441,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 142,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "24498b4fb8cef5d2d828835c7805147b9e1654d4e69d1855d1f8dc242368b203",
+          "24498b4fb8cef5d2d828835c7805147b9e1654d4e69d1855d1f8dc242368b203"
+        ],
+        "pixels": [
+          "bd94d9a4b32cb85c46d4098c37c619e963b05cee11e0befd062b1fb968a88a36",
+          "bd94d9a4b32cb85c46d4098c37c619e963b05cee11e0befd062b1fb968a88a36"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "guided",
+      "character": 0,
+      "baseline": {
+        "fixture": true,
+        "romHash": "759812451db6f2b77ce601ed6f662674c079f3f579ea0d5c0f56b3ccb4811890",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 1094,
+        "updatesPerSecond": 32.70271709323583,
+        "deadlineMisses": 495,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.8263772954924875,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 170,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "705a36f177e2144e35397758af322bd6d196adb703bb7d1bb7084c7400a6b6fc",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 1095,
+        "updatesPerSecond": 32.672851598173516,
+        "deadlineMisses": 496,
+        "dmaEndMax": 152,
+        "frameGap": {
+          "mean": 1.8280467445742905,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 170,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "a1273c5e8f681dc7f475ffab13a4150a69221be4e2f7051cc1e426fdd04a6631",
+          "a1273c5e8f681dc7f475ffab13a4150a69221be4e2f7051cc1e426fdd04a6631"
+        ],
+        "pixels": [
+          "1fbd74b96633887286ed28d5f209dd8804b9bbc87d3a76cd1572155f337b83e1",
+          "1fbd74b96633887286ed28d5f209dd8804b9bbc87d3a76cd1572155f337b83e1"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "guided",
+      "character": 1,
+      "baseline": {
+        "fixture": true,
+        "romHash": "03e175d0e76e8507e84ef38dacb7699dfc453d155907715da3b85d2a732709dc",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 910,
+        "updatesPerSecond": 39.315134615384615,
+        "deadlineMisses": 311,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.5191986644407345,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 170,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "9d8be69bde6b929bbb7643f2c601c21fde2cbccd4c4900a37ec31eba11df0cf6",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 865,
+        "updatesPerSecond": 41.36043063583815,
+        "deadlineMisses": 266,
+        "dmaEndMax": 152,
+        "frameGap": {
+          "mean": 1.4440734557595993,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 170,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "2dd8c04f28b6535fb2ef6d8091bc55caf82c38676a01ee86585278da80cedb58",
+          "2dd8c04f28b6535fb2ef6d8091bc55caf82c38676a01ee86585278da80cedb58"
+        ],
+        "pixels": [
+          "017c638c2c7a242352df29297cf3b684978b6e0ef31a5e70ce1b7e577d07f325",
+          "017c638c2c7a242352df29297cf3b684978b6e0ef31a5e70ce1b7e577d07f325"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "graze",
+      "character": 0,
+      "baseline": {
+        "fixture": true,
+        "romHash": "37145d85939f2a08f7c8791f7f0c62d46c87b8a83710f6a49dd64527919c6588",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 739,
+        "updatesPerSecond": 48.41241204330176,
+        "deadlineMisses": 140,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.2337228714524207,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "bc885b34690dc498499ef5dc3f1eae998857faa9dcbffbe0d8757194040ea97a",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 722,
+        "updatesPerSecond": 49.55231648199446,
+        "deadlineMisses": 123,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.2053422370617697,
+          "p95": 2,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "7c63013bc6ac76d5ff737375a9e192c8acdf54b31cd59991e7281a9e066386ab",
+          "7c63013bc6ac76d5ff737375a9e192c8acdf54b31cd59991e7281a9e066386ab"
+        ],
+        "pixels": [
+          "00dc08e578e2e0c164a51eaaef20211f4cb93050d2fe2eed6e4275432af1e931",
+          "00dc08e578e2e0c164a51eaaef20211f4cb93050d2fe2eed6e4275432af1e931"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "graze",
+      "character": 1,
+      "baseline": {
+        "fixture": true,
+        "romHash": "a7b6bec7665f142e6148b3b7f7ac7b77297189d522814f91cc9af422ac52d35d",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 626,
+        "updatesPerSecond": 57.15139376996805,
+        "deadlineMisses": 27,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.0450751252086812,
+          "p95": 1,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "49413bd630af4bf0afe783fb04fb0922448cf8c4da137bd36bf4e226da4b1b93",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 612,
+        "updatesPerSecond": 58.45877859477124,
+        "deadlineMisses": 13,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.021702838063439,
+          "p95": 1,
+          "max": 2
+        },
+        "spawns": 40,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "4bb7f15c5f02ebd16cac771c1934f4d454263115a0b4ac8b0deb29077930cbf6",
+          "4bb7f15c5f02ebd16cac771c1934f4d454263115a0b4ac8b0deb29077930cbf6"
+        ],
+        "pixels": [
+          "fe526f1d5924b8fe886a2c52117e837535d22648d450c64fd5d54a1cb549dd0d",
+          "fe526f1d5924b8fe886a2c52117e837535d22648d450c64fd5d54a1cb549dd0d"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "burst",
+      "character": 0,
+      "baseline": {
+        "fixture": true,
+        "romHash": "b6baaf7bb481277d4500d9d3c9b5133c22dc0d75b7269d3d562f91b9c377d8f9",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 763,
+        "updatesPerSecond": 46.889610091743116,
+        "deadlineMisses": 128,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.2737896494156928,
+          "p95": 2,
+          "max": 4
+        },
+        "spawns": 760,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "25f427154dbb24ebd126d84797752d96559c4321576e34c3fe2ca7746b9778de",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 735,
+        "updatesPerSecond": 48.67588095238095,
+        "deadlineMisses": 100,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.2270450751252087,
+          "p95": 2,
+          "max": 4
+        },
+        "spawns": 760,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "657960a5a04e9ed170e30e9859da65416fe8f265837bee6914d990a2b2889d35",
+          "657960a5a04e9ed170e30e9859da65416fe8f265837bee6914d990a2b2889d35"
+        ],
+        "pixels": [
+          "230aecdcd246974c86a437f57db6f7d4c43b77422ee754b36bff7c96ff64f567",
+          "230aecdcd246974c86a437f57db6f7d4c43b77422ee754b36bff7c96ff64f567"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "burst",
+      "character": 1,
+      "baseline": {
+        "fixture": true,
+        "romHash": "53bb516ddd1ac3c6687eb5d3447c6f91aa2c3aa457bd6649a794306772164d58",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 664,
+        "updatesPerSecond": 53.880681475903614,
+        "deadlineMisses": 29,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.1085141903171953,
+          "p95": 1,
+          "max": 4
+        },
+        "spawns": 760,
+        "clearedUpdates": 0
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "9b629d979a72d7a574af3d057debdf9dd0d3ffdc565c8de435900912f16f0cc2",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 663,
+        "updatesPerSecond": 53.96194947209653,
+        "deadlineMisses": 28,
+        "dmaEndMax": 150,
+        "frameGap": {
+          "mean": 1.1068447412353923,
+          "p95": 1,
+          "max": 4
+        },
+        "spawns": 760,
+        "clearedUpdates": 0
+      },
+      "parity": {
+        "inputHash": "14cd7fd4d8cd6e881bf19625926391688f1ebc0e56ec32dfaa292e9413fc523f",
+        "updates": 600,
+        "states": [
+          "f3bbb302fee9e3c4b40c98874948769f069582d8ad0fded16d2b011fa5cbf920",
+          "f3bbb302fee9e3c4b40c98874948769f069582d8ad0fded16d2b011fa5cbf920"
+        ],
+        "pixels": [
+          "914ea12a06d3d489027609abf03d0d4a14c293a3508aefb933b94302391a2594",
+          "914ea12a06d3d489027609abf03d0d4a14c293a3508aefb933b94302391a2594"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "bomb",
+      "character": 0,
+      "baseline": {
+        "fixture": true,
+        "romHash": "c5146040bc98c9c31a5858e32ceab7e8f9360c3482721c3bbe1de0c9d7517380",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 781,
+        "updatesPerSecond": 45.808927656850194,
+        "deadlineMisses": 147,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.3038397328881468,
+          "p95": 2,
+          "max": 20
+        },
+        "bombParts": {
+          "entry": {
+            "updates": 1,
+            "frames": 19,
+            "deadlineMisses": 1,
+            "max": 19
+          },
+          "sustained": {
+            "updates": 47,
+            "frames": 94,
+            "deadlineMisses": 47,
+            "max": 2
+          },
+          "exit": {
+            "updates": 1,
+            "frames": 20,
+            "deadlineMisses": 1,
+            "max": 20
+          },
+          "normal": {
+            "updates": 550,
+            "frames": 648,
+            "deadlineMisses": 98,
+            "max": 2
+          }
+        },
+        "spawns": 80,
+        "clearedUpdates": 48
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "188bb5cab578ccadb440108d56bd4d93991b17746997e3bda7932b289c2f6514",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 765,
+        "updatesPerSecond": 46.76702287581699,
+        "deadlineMisses": 130,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.2771285475792988,
+          "p95": 2,
+          "max": 21
+        },
+        "bombParts": {
+          "entry": {
+            "updates": 1,
+            "frames": 19,
+            "deadlineMisses": 1,
+            "max": 19
+          },
+          "sustained": {
+            "updates": 47,
+            "frames": 94,
+            "deadlineMisses": 47,
+            "max": 2
+          },
+          "exit": {
+            "updates": 1,
+            "frames": 21,
+            "deadlineMisses": 1,
+            "max": 21
+          },
+          "normal": {
+            "updates": 550,
+            "frames": 631,
+            "deadlineMisses": 81,
+            "max": 2
+          }
+        },
+        "spawns": 80,
+        "clearedUpdates": 48
+      },
+      "parity": {
+        "inputHash": "0df83019c50b5475d3dfcaeee67d633708aa7eeb75cd5edf1ad70d839b8ebce0",
+        "updates": 600,
+        "states": [
+          "beda861c4c52bf4a0675adfceaab118df23ddfa32df7d59a9e058a0a228e79a2",
+          "beda861c4c52bf4a0675adfceaab118df23ddfa32df7d59a9e058a0a228e79a2"
+        ],
+        "pixels": [
+          "eb67557cc4f06bbd297bf8b1dd3f03f3f3c19b2602e6b1690e72c8434b8e55b2",
+          "eb67557cc4f06bbd297bf8b1dd3f03f3f3c19b2602e6b1690e72c8434b8e55b2"
+        ],
+        "mismatches": 0
+      }
+    },
+    {
+      "scenario": "bomb",
+      "character": 1,
+      "baseline": {
+        "fixture": true,
+        "romHash": "55551022de322711bdec54ad74b8a61798613f512633441d1e013ae12bab55de",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 694,
+        "updatesPerSecond": 51.55154538904899,
+        "deadlineMisses": 47,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.1585976627712855,
+          "p95": 2,
+          "max": 20
+        },
+        "bombParts": {
+          "entry": {
+            "updates": 1,
+            "frames": 20,
+            "deadlineMisses": 1,
+            "max": 20
+          },
+          "sustained": {
+            "updates": 47,
+            "frames": 93,
+            "deadlineMisses": 34,
+            "max": 3
+          },
+          "exit": {
+            "updates": 1,
+            "frames": 20,
+            "deadlineMisses": 1,
+            "max": 20
+          },
+          "normal": {
+            "updates": 550,
+            "frames": 561,
+            "deadlineMisses": 11,
+            "max": 2
+          }
+        },
+        "spawns": 80,
+        "clearedUpdates": 48
+      },
+      "candidate": {
+        "fixture": true,
+        "romHash": "bf45d742fcd7a0df73c5aac8589facce1b87f3261d18f3e124498e2f61f5771b",
+        "inputHash": "2b63efc11f049529eb9b9876a5396ba3a5af8b73f813836efd844c114bb29834",
+        "updates": 599,
+        "frames": 693,
+        "updatesPerSecond": 51.625934343434345,
+        "deadlineMisses": 45,
+        "dmaEndMax": 151,
+        "frameGap": {
+          "mean": 1.1569282136894825,
+          "p95": 2,
+          "max": 21
+        },
+        "bombParts": {
+          "entry": {
+            "updates": 1,
+            "frames": 20,
+            "deadlineMisses": 1,
+            "max": 20
+          },
+          "sustained": {
+            "updates": 47,
+            "frames": 93,
+            "deadlineMisses": 34,
+            "max": 3
+          },
+          "exit": {
+            "updates": 1,
+            "frames": 21,
+            "deadlineMisses": 1,
+            "max": 21
+          },
+          "normal": {
+            "updates": 550,
+            "frames": 559,
+            "deadlineMisses": 9,
+            "max": 2
+          }
+        },
+        "spawns": 80,
+        "clearedUpdates": 48
+      },
+      "parity": {
+        "inputHash": "0df83019c50b5475d3dfcaeee67d633708aa7eeb75cd5edf1ad70d839b8ebce0",
+        "updates": 600,
+        "states": [
+          "2ab4a1585cc0951b8859d5f5ad3219acded20499a76a0fb4803be0a7b2938531",
+          "2ab4a1585cc0951b8859d5f5ad3219acded20499a76a0fb4803be0a7b2938531"
+        ],
+        "pixels": [
+          "6a95926ddf0f33b9956c9f37683e29961ac43a82dae19f4bdb3fbaebc31d7eb4",
+          "6a95926ddf0f33b9956c9f37683e29961ac43a82dae19f4bdb3fbaebc31d7eb4"
+        ],
+        "mismatches": 0
+      }
+    }
+  ],
+  "profiles": [
+    {
+      "version": "baseline",
+      "route": "road",
+      "romSha256": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+      "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+      "fromTick": 120,
+      "toTick": 720,
+      "input": "fire",
+      "tickBase": 0,
+      "samples": 219895,
+      "categoryTCycles": {
+        "actors": {
+          "mean": 13587.006666666666,
+          "p95": 26788,
+          "max": 29732
+        },
+        "shooting": {
+          "mean": 707.0133333333333,
+          "p95": 2268,
+          "max": 13808
+        },
+        "collision": {
+          "mean": 7807.033333333334,
+          "p95": 15744,
+          "max": 24424
+        },
+        "oam": {
+          "mean": 21386.72,
+          "p95": 32928,
+          "max": 37356
+        },
+        "bgUpdateCollision": {
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "bgPrepare": {
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "transfer": {
+          "mean": 5288.4,
+          "p95": 19288,
+          "max": 19860
+        },
+        "wait": {
+          "mean": 58553.833333333336,
+          "p95": 98464,
+          "max": 138616
+        },
+        "other": {
+          "mean": 34516.22666666667,
+          "p95": 57784,
+          "max": 83592
+        }
+      }
+    },
+    {
+      "version": "final",
+      "route": "road",
+      "romSha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+      "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+      "fromTick": 120,
+      "toTick": 720,
+      "input": "fire",
+      "tickBase": 0,
+      "samples": 218273,
+      "categoryTCycles": {
+        "actors": {
+          "mean": 12884.96,
+          "p95": 25036,
+          "max": 30176
+        },
+        "shooting": {
+          "mean": 759.06,
+          "p95": 2420,
+          "max": 14536
+        },
+        "collision": {
+          "mean": 7830.493333333333,
+          "p95": 14076,
+          "max": 20604
+        },
+        "oam": {
+          "mean": 21890.626666666667,
+          "p95": 37008,
+          "max": 39736
+        },
+        "bgUpdateCollision": {
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "bgPrepare": {
+          "mean": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "transfer": {
+          "mean": 432.04,
+          "p95": 1212,
+          "max": 3068
+        },
+        "wait": {
+          "mean": 69912.65333333334,
+          "p95": 100528,
+          "max": 138100
+        },
+        "other": {
+          "mean": 26975.18,
+          "p95": 47800,
+          "max": 75200
+        }
+      }
+    },
+    {
+      "version": "baseline",
+      "route": "boss",
+      "romSha256": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+      "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+      "fromTick": 120,
+      "toTick": 720,
+      "input": "fire",
+      "tickBase": 0,
+      "samples": 225978,
+      "categoryTCycles": {
+        "actors": {
+          "mean": 12419.006666666666,
+          "p95": 14156,
+          "max": 15500
+        },
+        "shooting": {
+          "mean": 746.7133333333334,
+          "p95": 1668,
+          "max": 25268
+        },
+        "collision": {
+          "mean": 3164.88,
+          "p95": 6256,
+          "max": 9852
+        },
+        "oam": {
+          "mean": 14709.773333333333,
+          "p95": 20544,
+          "max": 21752
+        },
+        "bgUpdateCollision": {
+          "mean": 21668.16,
+          "p95": 28168,
+          "max": 37696
+        },
+        "bgPrepare": {
+          "mean": 11892.78,
+          "p95": 13276,
+          "max": 13940
+        },
+        "transfer": {
+          "mean": 4297.466666666666,
+          "p95": 17644,
+          "max": 20884
+        },
+        "wait": {
+          "mean": 49625.46,
+          "p95": 69464,
+          "max": 137612
+        },
+        "other": {
+          "mean": 27307.22,
+          "p95": 56168,
+          "max": 95304
+        }
+      }
+    },
+    {
+      "version": "final",
+      "route": "boss",
+      "romSha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+      "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+      "fromTick": 120,
+      "toTick": 720,
+      "input": "fire",
+      "tickBase": 0,
+      "samples": 219102,
+      "categoryTCycles": {
+        "actors": {
+          "mean": 9687.013333333334,
+          "p95": 10812,
+          "max": 16560
+        },
+        "shooting": {
+          "mean": 776.0933333333334,
+          "p95": 2320,
+          "max": 25524
+        },
+        "collision": {
+          "mean": 3137.48,
+          "p95": 5608,
+          "max": 9292
+        },
+        "oam": {
+          "mean": 15776.32,
+          "p95": 20664,
+          "max": 21168
+        },
+        "bgUpdateCollision": {
+          "mean": 22627.673333333332,
+          "p95": 28984,
+          "max": 40436
+        },
+        "bgPrepare": {
+          "mean": 13680.393333333333,
+          "p95": 15276,
+          "max": 16328
+        },
+        "transfer": {
+          "mean": 3547.2533333333336,
+          "p95": 4120,
+          "max": 4528
+        },
+        "wait": {
+          "mean": 48489.87333333334,
+          "p95": 69960,
+          "max": 135456
+        },
+        "other": {
+          "mean": 23664.013333333332,
+          "p95": 50996,
+          "max": 90988
+        }
+      }
+    },
+    {
+      "version": "baseline",
+      "route": "guided",
+      "romSha256": "759812451db6f2b77ce601ed6f662674c079f3f579ea0d5c0f56b3ccb4811890",
+      "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+      "fromTick": 120,
+      "toTick": 520,
+      "input": "fire",
+      "tickBase": 0,
+      "samples": 271910,
+      "categoryTCycles": {
+        "actors": {
+          "mean": 12727.93,
+          "p95": 14360,
+          "max": 15388
+        },
+        "shooting": {
+          "mean": 5202.37,
+          "p95": 21284,
+          "max": 31192
+        },
+        "collision": {
+          "mean": 11585.73,
+          "p95": 14072,
+          "max": 14948
+        },
+        "oam": {
+          "mean": 12169.09,
+          "p95": 15880,
+          "max": 17480
+        },
+        "bgUpdateCollision": {
+          "mean": 56106,
+          "p95": 60432,
+          "max": 68052
+        },
+        "bgPrepare": {
+          "mean": 15987.92,
+          "p95": 17972,
+          "max": 19100
+        },
+        "transfer": {
+          "mean": 4133.06,
+          "p95": 4172,
+          "max": 21100
+        },
+        "wait": {
+          "mean": 105940.76,
+          "p95": 136828,
+          "max": 139200
+        },
+        "other": {
+          "mean": 39136.08,
+          "p95": 56984,
+          "max": 97112
+        }
+      }
+    },
+    {
+      "version": "final",
+      "route": "guided",
+      "romSha256": "705a36f177e2144e35397758af322bd6d196adb703bb7d1bb7084c7400a6b6fc",
+      "method": "deterministic jittered PC sampling, 256..511 CPU T-cycles; inclusive of interrupts/waits; not per-call timing",
+      "fromTick": 120,
+      "toTick": 520,
+      "input": "fire",
+      "tickBase": 0,
+      "samples": 275592,
+      "categoryTCycles": {
+        "actors": {
+          "mean": 9692.79,
+          "p95": 10888,
+          "max": 15868
+        },
+        "shooting": {
+          "mean": 5115.63,
+          "p95": 22716,
+          "max": 30340
+        },
+        "collision": {
+          "mean": 12926.9,
+          "p95": 15492,
+          "max": 16380
+        },
+        "oam": {
+          "mean": 13501.31,
+          "p95": 16692,
+          "max": 17292
+        },
+        "bgUpdateCollision": {
+          "mean": 56687.54,
+          "p95": 60728,
+          "max": 71696
+        },
+        "bgPrepare": {
+          "mean": 19852.9,
+          "p95": 21772,
+          "max": 23408
+        },
+        "transfer": {
+          "mean": 4445.7,
+          "p95": 4904,
+          "max": 5092
+        },
+        "wait": {
+          "mean": 110994.3,
+          "p95": 137660,
+          "max": 139196
+        },
+        "other": {
+          "mean": 33280.4,
+          "p95": 47352,
+          "max": 82524
+        }
+      }
+    }
+  ],
+  "flows": {
+    "startup-movie": {
+      "sha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+      "results": [
+        {
+          "mode": "CGB",
+          "displayVBlanks": 2401,
+          "frames": 400,
+          "overruns": 0,
+          "pcmBlocks": 10287,
+          "pixelParity": 400,
+          "titleMusic": true,
+          "normalStart": true,
+          "audioRate": 44100,
+          "audioChannels": 2
+        }
+      ]
+    },
+    "right-hud-play": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+      "results": [
+        {
+          "mode": "CGB",
+          "character": 0,
+          "windowFixed": true,
+          "bgHud": true,
+          "bombSamples": 23,
+          "liveSamples": 23,
+          "pause": true,
+          "cutinClock": true,
+          "bombClock": true,
+          "missClock": true,
+          "noHudSprites": true,
+          "peak": 11
+        },
+        {
+          "mode": "CGB",
+          "character": 1,
+          "windowFixed": true,
+          "bgHud": true,
+          "bombSamples": 23,
+          "liveSamples": 23,
+          "pause": true,
+          "cutinClock": true,
+          "bombClock": true,
+          "missClock": true,
+          "noHudSprites": true,
+          "peak": 11
+        }
+      ]
+    },
+    "boss-mode": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+      "results": [
+        {
+          "mode": "CGB",
+          "stage": 1,
+          "character": 0,
+          "heldB": true,
+          "tenthPress": true,
+          "toggleOff": true,
+          "cutin": true,
+          "beamSamples": 0,
+          "audioSamples": 0,
+          "sfxRms": 0,
+          "reset": true,
+          "normalRoad": true
+        },
+        {
+          "mode": "CGB",
+          "stage": 7,
+          "character": 1,
+          "heldB": true,
+          "tenthPress": true,
+          "toggleOff": true,
+          "cutin": true,
+          "beamSamples": 70,
+          "audioSamples": 161148,
+          "sfxRms": 6.239622904122728,
+          "reset": true,
+          "normalRoad": true
+        }
+      ]
+    },
+    "continue-production": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+      "projectRevision": "78e11cfa6b542faf7c6ba20d712c2d204c13ec57738ff173b917f3f103ea517f",
+      "results": [
+        {
+          "label": "CGB-reimu",
+          "fixture": false,
+          "memoryWrites": false,
+          "lostStage": 0,
+          "lives": [
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "lostScore": 172,
+          "rankingPersistedBeforeChoice": true,
+          "menuPixelMatch": true,
+          "sameCharacter": true,
+          "restartedStage": 0,
+          "restartedScore": 0,
+          "restartedLives": 5,
+          "restartedBombs": 2,
+          "frames": 6805
+        },
+        {
+          "label": "CGB-marisa",
+          "fixture": false,
+          "memoryWrites": false,
+          "lostStage": 0,
+          "lives": [
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "lostScore": 87,
+          "rankingPersistedBeforeChoice": true,
+          "menuPixelMatch": true,
+          "sameCharacter": true,
+          "restartedStage": 0,
+          "restartedScore": 0,
+          "restartedLives": 5,
+          "restartedBombs": 2,
+          "frames": 6808
+        }
+      ]
+    },
+    "attract": {
+      "sha256": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+      "results": [
+        {
+          "label": "CGB",
+          "cycles": 2,
+          "stages": [
+            5,
+            6
+          ],
+          "events": [
+            {
+              "frame": 196,
+              "scene": 12,
+              "demo": 0,
+              "stage": 0
+            },
+            {
+              "frame": 768,
+              "scene": 15,
+              "demo": 0,
+              "stage": 0
+            },
+            {
+              "frame": 3180,
+              "scene": 0,
+              "demo": 0,
+              "stage": 0
+            },
+            {
+              "frame": 3940,
+              "scene": 1,
+              "demo": 1,
+              "stage": 5
+            },
+            {
+              "frame": 7892,
+              "scene": 7,
+              "demo": 1,
+              "stage": 5
+            },
+            {
+              "frame": 7992,
+              "scene": 1,
+              "demo": 1,
+              "stage": 5
+            },
+            {
+              "frame": 8924,
+              "scene": 4,
+              "demo": 0,
+              "stage": 5
+            },
+            {
+              "frame": 9440,
+              "scene": 12,
+              "demo": 0,
+              "stage": 5
+            },
+            {
+              "frame": 10024,
+              "scene": 15,
+              "demo": 0,
+              "stage": 5
+            },
+            {
+              "frame": 12432,
+              "scene": 0,
+              "demo": 0,
+              "stage": 5
+            },
+            {
+              "frame": 13192,
+              "scene": 1,
+              "demo": 1,
+              "stage": 6
+            },
+            {
+              "frame": 17528,
+              "scene": 7,
+              "demo": 1,
+              "stage": 6
+            },
+            {
+              "frame": 17628,
+              "scene": 1,
+              "demo": 1,
+              "stage": 6
+            },
+            {
+              "frame": 18436,
+              "scene": 8,
+              "demo": 1,
+              "stage": 6
+            },
+            {
+              "frame": 18488,
+              "scene": 7,
+              "demo": 1,
+              "stage": 6
+            },
+            {
+              "frame": 18588,
+              "scene": 1,
+              "demo": 1,
+              "stage": 6
+            },
+            {
+              "frame": 18620,
+              "scene": 4,
+              "demo": 0,
+              "stage": 6
+            },
+            {
+              "frame": 19136,
+              "scene": 12,
+              "demo": 0,
+              "stage": 6
+            }
+          ],
+          "rankingsUnchanged": true,
+          "normalStart": true,
+          "demoAndCutinCancel": true,
+          "heldInputConsumed": true,
+          "titleMusicRestarts": true
+        }
+      ]
+    }
+  },
+  "phaseAndSave": {
+    "diagnostic": true,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\gbc-runtime-v41\\final-phase-save\\fixture\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "reports": [
+      {
+        "mode": "CGB",
+        "samples": 191,
+        "bosses": 7,
+        "modes": 21,
+        "routes": 3,
+        "deadlineUpdates": 3600,
+        "scoreMigration": true,
+        "reboot": true,
+        "insertAfterMigration": true,
+        "corruptRecovery": true,
+        "tornRecovery": true
+      }
+    ]
+  },
+  "productionV40Save": {
+    "saveId": "49267a33",
+    "results": [
+      {
+        "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+        "variant": "unchanged",
+        "scores": [
+          54321,
+          12345,
+          4321,
+          999,
+          123
+        ],
+        "saveHash": "c5a8762543adef2c19336b0a8ee43015eebfd5b72351d1bf775b29d0c06ed36b",
+        "unchanged": true
+      },
+      {
+        "romHash": "d368acf51fd3c3f03ac8c47ddb3882991cf46bd54e5de7198e652c8c85017a23",
+        "variant": "corrupt-newest",
+        "scores": [
+          54321,
+          12345,
+          4321,
+          999,
+          123
+        ],
+        "saveHash": "54db4ed0d1db940524870f1c87efb7a7b797ac816ca643112626a873fac655c6",
+        "unchanged": true
+      },
+      {
+        "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+        "variant": "unchanged",
+        "scores": [
+          54321,
+          12345,
+          4321,
+          999,
+          123
+        ],
+        "saveHash": "c5a8762543adef2c19336b0a8ee43015eebfd5b72351d1bf775b29d0c06ed36b",
+        "unchanged": true
+      },
+      {
+        "romHash": "ae4f6ea7240e371b29da508724c26ef72959da05cb1e09400addc1cb37254a91",
+        "variant": "corrupt-newest",
+        "scores": [
+          54321,
+          12345,
+          4321,
+          999,
+          123
+        ],
+        "saveHash": "54db4ed0d1db940524870f1c87efb7a7b797ac816ca643112626a873fac655c6",
+        "unchanged": true
+      }
+    ]
+  },
+  "checks": {
+    "doctor": "pass: zero issues",
+    "standard": "166 passed; hello-gb clean/Debug",
+    "starCaravan": "Debug/Release pass; DMG/CGB ROM regression 4 passed",
+    "editor": "real Electron save/reopen with gbc + existing controls passed",
+    "typecheck": "passed",
+    "hardwareAndPortableTests": "4 passed",
+    "sourceAssets": "No image or music source changed; only hardware field in game.json"
+  },
+  "limits": [
+    "Performance gate failed: regular native road 35/2801 and boss 14/1317 deadline misses; all forty-bullet cases have misses",
+    "Moving forty-bullet Reimu regresses from 46.645 to 45.116 updates/s",
+    "Sustained boss bomb stays slower than one update/display; entry/exit asset loads remain long",
+    "Row-level conservative map changes, not minimum per-cell differences; only straight-segment motion gets a cache, complex waves and attack settings still use common logic",
+    "Actors/effects/items share a compact physical pool under independent limits; shot headers share the logical identity table",
+    "Emulicious DAP evaluate throws NullPointerException on intermediate ROM; not an execution pass and not retested on final identical issue",
+    "No physical GBC or human listening confirmation",
+    "Fixed 1200-update routes and deterministic phase fixtures are not a complete human campaign playthrough",
+    "No new exported HTML player distributed in this change",
+    "Full production barrage performance and pixel coverage through all 21 combat modes remains unverified; phase-boundary fixtures do not replace it"
+  ],
+  "rawEvidence": ".cache/gbc-runtime-v41/"
+}

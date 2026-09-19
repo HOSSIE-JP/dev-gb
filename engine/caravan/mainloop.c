@@ -47,7 +47,7 @@ static void start_demo(void) {
 static uint8_t demo_input(void) {
     uint8_t i, input=J_A;
     int16_t target=(CE_PLAY_WIDTH/2)*16;
-    for(i=0;i<ce_used;++i) if(ce_entities[i].kind==CE_BOSS) {target=ce_entities[i].x;break;}
+    for(i=0;i<ce_used;++i) if(CE_ENTITY(i).kind==CE_BOSS) {target=CE_ENTITY(i).x;break;}
     if(i==ce_used) target=((ce_state.tick/120u)&1u)?(CE_PLAY_WIDTH*13/20)*16:(CE_PLAY_WIDTH*7/20)*16;
     if(ce_state.player_x<target-32) input|=J_RIGHT;
     else if(ce_state.player_x>target+32) input|=J_LEFT;
@@ -63,6 +63,10 @@ void ce_mainloop(void) BANKED {
     uint8_t input, pressed, previous = 0;
     uint16_t now;
     ce_is_cgb = _cpu == CGB_TYPE;
+#if CE_CGB_ONLY
+    if(!ce_is_cgb){DISPLAY_OFF;for(;;){} }
+    SVBK_REG=1;
+#endif
     if (ce_is_cgb) cpu_fast();
     NR52_REG = 0x80; NR50_REG = 0x77; NR51_REG = 0xff;
     add_VBL(ce_count_frame);

@@ -234,6 +234,13 @@ export function saveGame(
                 .join("\n"),
         );
     const files = new Map<string, Buffer>();
+    const manifestPath = safePath(dir, "project.json");
+    if (fs.existsSync(manifestPath)) {
+        const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+        manifest.cgbCompatibility = game.hardware === "gbc" ? "cgb-only" : "dual";
+        manifest.lccFlags = [...(manifest.lccFlags ?? []).filter((f: string) => !["-Wm-yc", "-Wm-yC"].includes(f)), game.hardware === "gbc" ? "-Wm-yC" : "-Wm-yc"];
+        files.set(manifestPath, Buffer.from(JSON.stringify(manifest, null, 2) + "\n"));
+    }
     const clean: Game = structuredClone(game);
     clean.name = name;
     for (const a of clean.assets)
@@ -416,11 +423,11 @@ export function createProject(
                     name,
                     title,
                     target: "gb",
-                    cgbCompatibility: "dual",
+                    cgbCompatibility: copy.hardware === "gbc" ? "cgb-only" : "dual",
                     toolchain: "gbdk",
                     output: `${name}.gb`,
                     sources: ["generated/caravan_main.c"],
-                    lccFlags: ["-Wm-yc"],
+                    lccFlags: [copy.hardware === "gbc" ? "-Wm-yC" : "-Wm-yc"],
                     editor: { type: "caravan", source: "assets-src/game.json" },
                 },
                 null,

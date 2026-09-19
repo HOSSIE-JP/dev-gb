@@ -4,13 +4,14 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import {boot,frames,memory,symbols,GameBoyMode,PadKey} from './emulator.mjs';
+import {supportedModes} from './emulator.mjs';
 import {capture} from './presentation-qa.mjs';
 const file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]);
 const rom=fs.readFileSync(file),s=symbols(file.replace(/\.gb$/,'.map'));
 fs.mkdirSync(out,{recursive:true});
 const results=[];
 const allStages=process.argv.includes('--all-stages');
-for(const [label,mode] of [['DMG',GameBoyMode.Dmg],['CGB',GameBoyMode.Cgb]]) {
+for(const [mode,label] of supportedModes(rom)) {
  const gb=boot(rom,mode),events=[],stages=[];let last=-1,cycle=0,cutin=false,road=false,ranking=false,scores;let titleRows=new Set();
  const read=()=>{const r=memory(gb).ram,b=n=>r[s[n]-0xc000];return {scene:b('_ce_scene'),demo:b('_ce_demo'),musicRow:r.readUInt16LE(s._ce_music_row-0xc000),stage:r[s._ce_state-0xc000+18],intro:r.readUInt16LE(s._ce_intro_left-0xc000),scores:Buffer.from(r.subarray(s._ce_scores-0xc000,s._ce_scores-0xc000+10)),trace:r.subarray(s._ce_trace-0xc000,s._ce_trace-0xc000+24)};};
  try {

@@ -935,13 +935,13 @@ function App() {
                             </button>
                             <select
                                 aria-label="表示モード"
-                                value={dmg ? "dmg" : "cgb"}
+                                value={dmg && game?.hardware !== "gbc" ? "dmg" : "cgb"}
                                 onChange={(e) =>
                                     setDmg(e.target.value === "dmg")
                                 }
                             >
                                 <option value="cgb">CGBカラー</option>
-                                <option value="dmg">DMG 4階調</option>
+                                <option value="dmg" disabled={game?.hardware === "gbc"}>DMG 4階調</option>
                             </select>
                             <label>
                                 <input
@@ -992,7 +992,7 @@ function App() {
                                         asset={asset}
                                         frame={frame}
                                         onChange={replace}
-                                        dmg={dmg}
+                                        dmg={dmg && game.hardware !== "gbc"}
                                         grid={grid}
                                         zoom={zoom}
                                         error={setError}
@@ -1082,13 +1082,13 @@ function App() {
                                     </div>
                                 </>
                             ) : stage ? (
-                                <><VictoryDialogueCanvas game={game} stage={stage} glyphs={glyphs} dmg={dmg} before />
-                                <VictoryDialogueCanvas game={game} stage={stage} glyphs={glyphs} dmg={dmg} />
+                                <><VictoryDialogueCanvas game={game} stage={stage} glyphs={glyphs} dmg={dmg && game.hardware !== "gbc"} before />
+                                <VictoryDialogueCanvas game={game} stage={stage} glyphs={glyphs} dmg={dmg && game.hardware !== "gbc"} />
                                 <MapCanvas
                                     game={game}
                                     stage={stage}
                                     onChange={replace}
-                                    dmg={dmg}
+                                    dmg={dmg && game.hardware !== "gbc"}
                                     grid={grid}
                                     eventId={eventId}
                                     onEvent={setEventId}
@@ -1099,7 +1099,7 @@ function App() {
                                     screen={screen}
                                     onChange={replace}
                                     glyphs={glyphs}
-                                    dmg={dmg}
+                                    dmg={dmg && game.hardware !== "gbc"}
                                     selected={textId}
                                     onSelect={setTextId}
                                 />
@@ -1108,7 +1108,7 @@ function App() {
                               ) && object ? (
                                 selection.kind === "bosses" ? (
                                     <BossCanvas
-                                        game={game} glyphs={glyphs} dmg={dmg}
+                                        game={game} glyphs={glyphs} dmg={dmg && game.hardware !== "gbc"}
                                         boss={object}
                                         onChange={replace}
                                     />
@@ -1122,7 +1122,7 @@ function App() {
                                 )
                             ) : selection.kind === "project" ? (
                                 <div style={{width:"100%",overflowY:"auto"}}>
-                                <StartupPreview game={game} glyphs={glyphs} dmg={dmg}/>
+                                <StartupPreview game={game} glyphs={glyphs} dmg={dmg && game.hardware !== "gbc"}/>
                                 <ProjectOverview
                                     game={game}
                                     diagnostics={diagnostics}
@@ -1140,7 +1140,7 @@ function App() {
                                 />
                                 </div>
                             ) : selection.kind === "player" ? (
-                                <PlayerPresentationCanvas game={game} glyphs={glyphs} dmg={dmg}/>
+                                <PlayerPresentationCanvas game={game} glyphs={glyphs} dmg={dmg && game.hardware !== "gbc"}/>
                             ) : selection.kind === "palettes" ? (
                                 <div className="palette-display">
                                     {object?.colors.map(
@@ -1255,7 +1255,7 @@ function App() {
                                             panelVisible && tab === "preview"
                                         }
                                         game={game}
-                                        dmg={dmg}
+                                        dmg={dmg && game.hardware !== "gbc"}
                                         glyphs={glyphs}
                                         kind={selection.kind}
                                         id={selection.id}
@@ -1276,7 +1276,7 @@ function App() {
                                 autoLoad={romAutoLoad}
                                 name={name}
                                 build={built}
-                                dmg={dmg}
+                                dmg={dmg && game.hardware !== "gbc"}
                                 error={setError}
                             />
                         </div>

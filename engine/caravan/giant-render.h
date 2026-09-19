@@ -6,7 +6,7 @@ void ce_giant_hud(uint8_t x, uint8_t y, uint8_t count, const uint8_t *data) BANK
         set_vram_byte((uint8_t *)(0x9c00u + address++), *data++);
     }
 }
-void ce_giant_setup(void) BANKED {
+void ce_giant_setup(void) CE_BG_ENTRY {
     uint8_t i, row, page; uint16_t address;
     ce_get_giant(&giant); ce_get_screen(&screen, 4);
     hud_tiles = screen.tile_count; giant_first = hud_tiles + giant.count;
@@ -44,14 +44,20 @@ void ce_giant_position(CE_Entity *e) BANKED {
     if (e->y < y - 512) e->y = y - 512;
     if (e->y > y + 512) e->y = y + 512;
 }
-void ce_giant_flush(void) BANKED {
+void ce_giant_flush(void) CE_BG_ENTRY {
     uint8_t back = ce_bg_map_front ^ 1u, count = 0, i, j, x, y, base, tile, row, bits;
     uint16_t address = back ? 0x9c00u : 0x9800u, cell, mask, offset = (uint16_t)back * 32u;
-    for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_BOSS) {
-        giant_frame = (ce_entities[i].age >> giant.frame_shift) % giant.frames;
-        giant_next_x = giant.ox - ce_entities[i].x / 16;
-        giant_next_y = giant.oy - ce_entities[i].y / 16; break;
+#if CE_CGB_ONLY
+    uint8_t saved=SVBK_REG;SVBK_REG=1;
+#endif
+    for (i = 0; i != ce_used; ++i) if (CE_ENTITY(i).kind == CE_BOSS) {
+        giant_frame = (CE_ENTITY(i).age >> giant.frame_shift) % giant.frames;
+        giant_next_x = giant.ox - CE_ENTITY(i).x / 16;
+        giant_next_y = giant.oy - CE_ENTITY(i).y / 16; break;
     }
+#if CE_CGB_ONLY
+    SVBK_REG=saved;
+#endif
     /* Restore the hidden page's previous patches, never the visible page. */
     for (i = 0; i != giant_counts[back]; ++i)
         set_vram_byte((uint8_t *)(address + GIANT_OLD[offset + i]), GIANT_BASE[offset + i]);
@@ -89,7 +95,7 @@ void ce_giant_flush(void) BANKED {
     giant_counts[back] = count;
     if (giant_first + 32u + count > ce_bg_peak_tiles) ce_bg_peak_tiles = giant_first + 32u + count;
 }
-void ce_giant_publish(void) BANKED {
+void ce_giant_publish(void) CE_BG_ENTRY {
     ce_giant_x = giant_next_x; ce_giant_y = giant_next_y; ce_bg_map_front ^= 1u;
     if (ce_bg_map_front) LCDC_REG |= 8u; else LCDC_REG &= ~8u;
     move_bkg(ce_hud_bottom ? ce_giant_x : 0, ce_hud_bottom ? ce_giant_y : 192u);

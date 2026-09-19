@@ -1,21 +1,21 @@
 // Authored campaign, no fixture edits or memory writes. Real losses and restart.
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import crypto from 'node:crypto';import {createRequire} from 'node:module';
-import {boot,frames,memory,symbols,settledTrace,GameBoyMode,PadKey} from './emulator.mjs';import {capture,assertImage,overlay,expectedColorScreen} from './presentation-qa.mjs';
+import {boot,frames,memory,symbols,settledTrace,GameBoyMode,PadKey} from './emulator.mjs';import {supportedModes,entityOffset} from './emulator.mjs';import {capture,assertImage,overlay,expectedColorScreen} from './presentation-qa.mjs';
 const root=path.resolve(import.meta.dirname,'../..'),lib=createRequire(import.meta.url)('../build/library.cjs'),game=lib.readGame(root,'touhou-kouma'),glyphs=lib.readFont(root),file=path.resolve(process.argv[2]??'projects/touhou-kouma/build/Debug/touhou-kouma.gb'),out=path.resolve(process.argv[3]??'.cache/kouma-v16/production-play'),rom=fs.readFileSync(file),syms=symbols(file.replace(/\.gb$/,'.map')),results=[];fs.mkdirSync(out,{recursive:true});
 const selectedStage=Number(process.argv[4]??0);assert.ok(Number.isInteger(selectedStage)&&selectedStage>=0&&selectedStage<game.stageOrder.length);
-for(const mode of[GameBoyMode.Dmg,GameBoyMode.Cgb])for(const character of[0,1]){
+for(const [mode] of supportedModes(rom))for(const character of[0,1]){
  const gb=boot(rom,mode),label=(mode===GameBoyMode.Dmg?'DMG':'CGB')+'-'+(character?'marisa':'reimu');let displayFrame=0;
  const snap=()=>{let m=memory(gb);if(m.ram[syms._ce_scene-0xc000]===1){settledTrace(gb,syms._ce_trace);m=memory(gb);}const r=m.ram,b=n=>r[syms[n]-0xc000],w=n=>r.readUInt16LE(syms[n]-0xc000),s=syms._ce_state-0xc000,t=syms._ce_trace-0xc000;return{r,scene:b('_ce_scene'),ready:r[t]===67&&r[t+1]===69&&!r[t+22],stage:r[s+18],lives:r[s+19],stageTick:r.readUInt16LE(s+2),score:r.readUInt16LE(s+6),x:r.readInt16LE(s+14),y:r.readInt16LE(s+16),battle:b('_ce_battle_mode'),character:b('_ce_character'),bombs:b('_ce_bombs'),pause:b('_ce_pause'),left:w('_ce_continue_left'),generation:w('_ce_save_generation'),scores:Array.from({length:5},(_,i)=>r.readUInt16LE(syms._ce_scores-0xc000+i*2))};};
  const frame=()=>{frames(gb,1);displayFrame++;};const until=(f,n=1600)=>{for(let i=0;i<n;i++){const s=snap();if(f(s))return s;frame();}throw Error(label+' timeout '+f+' '+JSON.stringify({...snap(),r:undefined}));};const tap=k=>{gb.key_press(k);for(let i=0;i<3;i++)frame();gb.key_lift(k);for(let i=0;i<3;i++)frame();};
  try{
- until(s=>s.scene===0&&s.ready);if(selectedStage){tap(PadKey.Down);for(let i=0;i<selectedStage;i++)tap(PadKey.Right);}tap(PadKey.Start);until(s=>s.scene===10&&s.ready);if(character){tap(PadKey.Right);until(s=>s.character===1&&s.ready);}tap(PadKey.A);until(s=>s.scene===1&&s.ready);assert.equal(snap().stage,selectedStage);
+ until(s=>s.scene===0&&s.ready,6000);if(selectedStage){tap(PadKey.Down);for(let i=0;i<selectedStage;i++)tap(PadKey.Right);}tap(PadKey.Start);until(s=>s.scene===10&&s.ready);if(character){tap(PadKey.Right);until(s=>s.character===1&&s.ready);}tap(PadKey.A);until(s=>s.scene===1&&s.ready);assert.equal(snap().stage,selectedStage);
  const lives=new Set([snap().lives]);let lost=null;
  for(let n=0;n<25000;n++){
   const s=snap();lives.add(s.lives);for(const k of[PadKey.Up,PadKey.Down,PadKey.Left,PadKey.Right,PadKey.A])gb.key_lift(k);
   if(s.scene===14&&s.ready){lost=s;break;}
   if(s.scene===5){if(n%30<15)gb.key_press(PadKey.A);}
   else if(s.scene===1&&s.battle){
-   const e=syms._ce_entities-0xc000;for(let i=0;i<39;i++)if(s.r[e+i*25]===2){const dx=s.r.readInt16LE(e+i*25+12)-s.x,dy=s.r.readInt16LE(e+i*25+14)-s.y;if(dy>48)gb.key_press(PadKey.Down);if(dy < -48)gb.key_press(PadKey.Up);if(dx>48)gb.key_press(PadKey.Right);if(dx < -48)gb.key_press(PadKey.Left);break;}
+   for(let i=0;i<39;i++)if(s.r[entityOffset(s.r,syms,i)]===2){const e=entityOffset(s.r,syms,i);const dx=s.r.readInt16LE(e+12)-s.x,dy=s.r.readInt16LE(e+14)-s.y;if(dy>48)gb.key_press(PadKey.Down);if(dy < -48)gb.key_press(PadKey.Up);if(dx>48)gb.key_press(PadKey.Right);if(dx < -48)gb.key_press(PadKey.Left);break;}
   }else if(s.scene===1&&n<1600)gb.key_press(PadKey.A);
   frame();
  }

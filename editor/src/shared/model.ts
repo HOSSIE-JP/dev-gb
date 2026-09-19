@@ -176,6 +176,7 @@ export type PlayerCharacter = { id: string; name: string; asset: string; speed: 
 export type Bomb = { enabled: boolean; stock: number; damage: number; frames: number; flashPeriod: number; background: string; button?: "a+b" | "b"; destroyBackground?: boolean; maxStock?: number; live?: boolean; presentation?: "palette" | "image" };
 export type Game = {
     schemaVersion: 1;
+    hardware?: "dual" | "gbc";
     name: string;
     title: string;
     mode: "caravan" | "campaign";
@@ -251,6 +252,7 @@ export type BuildResult = {
     romPath?: string;
     size?: number;
     ramBytes?: number;
+    memory?: {hardware:"gbc"; wram:{bank:number;reserved:number;capacity:number;purpose:string}[];stack:{start:number;end:number;reserved:number};vram:{bytes:number;bankBytes:number;residentObjTiles:number;hudTiles:number;barrageTiles:number;roadTileLimit:number;bombExcludedTileRange:number[]}};
     spriteTiles?: number;
     romHash?: string;
     builtAt?: string;
@@ -345,6 +347,7 @@ export function validateShape(
     } satisfies Record<string, Shape>;
     const schema: Shape = {
         schemaVersion: "number",
+        "hardware?": "string",
         name: "string",
         title: "string",
         mode: "string",
@@ -661,6 +664,8 @@ export function validate(value: unknown): Diagnostic[] {
     else integer(game.effects.duration, 1, 255, "effects");
     if (!["caravan", "campaign"].includes(game.mode))
         err("mode", "ゲームモードが不正です");
+    if (game.hardware !== undefined && !["dual", "gbc"].includes(game.hardware))
+        err("hardware", "対応ハードはdualまたはgbcです");
     for (const pal of game.palettes)
         if (
             pal.colors.length !== 4 ||

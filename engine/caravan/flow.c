@@ -62,10 +62,10 @@ void ce_wait_gameover(void) BANKED {
         ce_render(); ce_audio_sync();
         CRITICAL { now = sys_time; }
         elapsed = now - start; delta = elapsed - previous; previous = elapsed;
-        for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_FX) {
-            ce_entities[i].age += delta;
-            if (delta >= ce_entities[i].lifetime) release(i);
-            else ce_entities[i].lifetime -= delta;
+        for (i = 0; i != ce_used; ++i) if (CE_ENTITY(i).kind == CE_FX) {
+            CE_ENTITY(i).age += delta;
+            if (delta >= CE_ENTITY(i).lifetime) release(i);
+            else CE_ENTITY(i).lifetime -= delta;
         }
         ce_death_left = elapsed >= ce_death_delay ? 0 : ce_death_delay - elapsed;
         ce_trace_write();
@@ -197,9 +197,9 @@ void ce_stage_complete(void) BANKED {
             ce_render();ce_audio_sync();
             CRITICAL { now=sys_time; }
             elapsed=now-wait_clock;
-            for(i=0;i!=ce_used;++i)if(ce_entities[i].kind==CE_FX){
-                ce_entities[i].age=elapsed;
-                if(elapsed>=ce_entities[i].lifetime)release(i);
+            for(i=0;i!=ce_used;++i)if(CE_ENTITY(i).kind==CE_FX){
+                CE_ENTITY(i).age=elapsed;
+                if(elapsed>=CE_ENTITY(i).lifetime)release(i);
             }
             ce_trace_write();
         } while(elapsed<60u);
@@ -265,7 +265,7 @@ static uint16_t transition_clock(void) {
     uint16_t now; CRITICAL { now = sys_time; } return now;
 }
 static void clear_effects(void) {
-    uint8_t i; for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_FX) release(i);
+    uint8_t i; for (i = 0; i != ce_used; ++i) if (CE_ENTITY(i).kind == CE_FX) release(i);
 }
 static int16_t return_position(int16_t start, int16_t delta, uint8_t elapsed) {
     /* Split the product to stay within signed 16 bits at either screen edge. */
@@ -284,7 +284,7 @@ void ce_change_phase(CE_Entity *boss, uint8_t damage) BANKED {
         ce_transition_state = 1; explode(x, y); ce_sound(1);
         start = transition_clock(); elapsed = 0;
         do {
-            for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_FX) ce_entities[i].age = elapsed;
+            for (i = 0; i != ce_used; ++i) if (CE_ENTITY(i).kind == CE_FX) CE_ENTITY(i).age = elapsed;
             transition_frame(); elapsed = transition_clock() - start;
         } while (elapsed < ce_explosion_duration);
         clear_effects(); }
@@ -306,10 +306,10 @@ void ce_change_phase(CE_Entity *boss, uint8_t damage) BANKED {
 }
 static void victory_effects(void) {
     uint8_t i;
-    for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_FX) {
-        if (++ce_entities[i].age >= ce_entities[i].lifetime) release(i);
+    for (i = 0; i != ce_used; ++i) if (CE_ENTITY(i).kind == CE_FX) {
+        if (++CE_ENTITY(i).age >= CE_ENTITY(i).lifetime) release(i);
     }
-    while (ce_used && !ce_entities[ce_used - 1u].kind) --ce_used;
+    while (ce_used && !CE_ENTITY(ce_used - 1u).kind) --ce_used;
     ce_render(); ce_audio_sync();
 }
 void ce_celebrate_boss(void) BANKED {
@@ -319,7 +319,7 @@ void ce_celebrate_boss(void) BANKED {
     for (i = 0; i != ce_used; ++i) release(i);
     ce_used = 0; ce_bg_clear(); if (ce_battle_mode == 2u) ce_bg_begin();
     wreck = allocate(CE_BOSS, defeated_asset);
-    if (wreck != CE_NONE) { ce_entities[wreck].x = defeated_x; ce_entities[wreck].y = defeated_y; }
+    if (wreck != CE_NONE) { CE_ENTITY(wreck).x = defeated_x; CE_ENTITY(wreck).y = defeated_y; }
     ce_music_play(ce_music_victory); ce_hud();
     for (ce_victory_frame = 1; ce_victory_frame <= 144u; ++ce_victory_frame) {
         if ((ce_victory_frame & 7u) == 1u) {
@@ -361,7 +361,7 @@ static void spawn_actor(uint8_t kind, uint8_t ref, int16_t x, int16_t y) {
     if (kind == CE_BOSS && actor->background) ce_clear_combat(1);
     slot = allocate(kind, actor->asset);
     if (slot == CE_NONE) return;
-    e = &ce_entities[slot]; e->ref = ref; e->hp = actor->hp; e->damage = 1;
+    e = &CE_ENTITY(slot); e->ref = ref; e->hp = actor->hp; e->damage = 1;
     e->x = e->base_x = x * 16; e->y = e->base_y = y * 16;
     /* Actors are updated (and boxed) immediately after stage events. */
     if (kind == CE_BOSS) {

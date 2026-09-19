@@ -3,6 +3,7 @@ import { type Game, clone, uid } from "../shared/model";
 import { MusicField, SoundtrackFields } from "./music-field";
 
 const labels: Record<string, string> = {
+    hardware: "対応ハード",
     debugBossMode:"タイトルでBを10回：ボス連戦デバッグ",graze:"グレイズ",radius:"かすり判定の幅（px）",flashFrames:"グレイズ発光時間（更新数）",
     stageSelect:"START／STAGE SELECTメニュー（下4行）", selectionHeading:"「キャラクター選択」の見出し",
     contactBoxes:"胴体の接触判定（弱点原点から・最大8矩形）", smooth:"滑らかに補間する（Q4）", live:"ボム演出中もゲームを動かす", barrierMax:"バリアの上限", barrierFrames:"バリア被弾後の無敵（更新数）", barrierAsset:"バリア装着時の自機画像", graphic:"巨大BG画像（原点＝弱点）", scrollAxis: "スクロール方向", spacingY: "編隊間隔 Y", oscillationAxis: "波形の振幅方向", emitterOffsets: "発射位置の差替え（自機原点から）", dropItem: "撃破時のアイテム", atomicVolleys: "一斉射撃を全弾まとめて生成", maxLives: "残機の上限", button: "ボム操作", maxStock: "ボム所持上限", destroyBackground: "ボムで背景を破壊して得点", powerUps: "パワーアップ", shotWeapons: "ショット段階（先頭が初期）", speedLevels: "速度段階（先頭が初期）", shotOnMiss: "ミス時のショット", speedOnMiss: "ミス時の速度", amount: "加算量", playerShots: "自機弾の同時上限（6〜24）",
@@ -98,6 +99,7 @@ const labels: Record<string, string> = {
     explosion: "爆発スプライト",
 };
 const names: Record<string, string> = {
+    dual: "GB / GBC両対応", gbc: "GBC専用",
     palette:"背景パレットの点滅",image:"専用画像の点滅（敵弾の発生を抑止）",barrier:"バリア",weapon:"武器を切替","aimed-fan":"自機狙い扇弾",laser:"集中パルスレーザー", horizontal:"横（背景を右から左へ）", vertical:"縦", item:"アイテム", shot:"ショット強化", speed:"速度アップ", bomb:"ボム追加", life:"1UP", shotLevel:"ショット段階", speedLevel:"速度段階", down:"1段階下げる", reset:"初期段階に戻す", keep:"維持する", "a+b":"A＋B同時押し", b:"Bを押す", x:"X方向", y:"Y方向",
     actor:"キャラクター起点",left:"画面左端",right:"画面右端",alternate:"左右交互",both:"左右両端",fixed:"画面内の固定座標",homing:"短時間追尾→直進",bombs:"ボム残数",orb:"中央の大玉",beam:"自機Xに合わせるレーザー",
     caravan: "キャラバン",
@@ -203,7 +205,7 @@ export function Form({
                 : value.id === "hud" ? { rows: 2, columns:5, ...value }
                 : value.id === "title" && "dock" in value && Array.isArray(value.items) ? { stageSelect:false, ...value }
                 : "binding" in value ? { digits: 5, ...value }
-                : value.schemaVersion === 1 ? { debugBossMode:false,graze:{enabled:false,radius:6,score:10,flashFrames:12},attract:{enabled:false,titleSeconds:12,bossSeconds:15,rankingSeconds:8}, performance:{enemies:12,playerShots:6,enemyShots:32,effects:4}, continue: {enabled:false,seconds:10,delaySeconds:0}, startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
+                : value.schemaVersion === 1 ? { hardware: "dual", debugBossMode:false,graze:{enabled:false,radius:6,score:10,flashFrames:12},attract:{enabled:false,titleSeconds:12,bossSeconds:15,rankingSeconds:8}, performance:{enemies:12,playerShots:6,enemyShots:32,effects:4}, continue: {enabled:false,seconds:10,delaySeconds:0}, startup: {enabled:true,fadeSeconds:0.4,slides:[]}, ending: { seconds: 6, slides: [] }, stageFade: true, timeLimit: true, bossCelebration: false, music: { title: 0, boss: 0, clear: 0, gameover: 0 }, dmgPalette: 228, ...value }
                 : value
             )
                 .filter(
@@ -286,6 +288,7 @@ export function Form({
                             name: `${i} · ${p.name}`,
                         }));
                     const enums: Record<string, string[]> = {
+                        hardware: ["dual", "gbc"],
                         mode: ["caravan", "campaign"],
                         until: ["time", "hp"],
                         dock: ["top", "bottom", "right"],

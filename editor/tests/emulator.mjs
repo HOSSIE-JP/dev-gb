@@ -58,6 +58,18 @@ export function symbols(file) {
         result[m[2]] = parseInt(m[1], 16);
     return result;
 }
+// Physical bank 1 occupies BESS WRAM offsets $1000..$1fff. GBC logical
+// slots contain pointers to compact bullet headers or independent actors.
+export function entityOffset(ram, syms, slot) {
+    return (syms._ce_entity_refs
+        ? ram.readUInt16LE(syms._ce_entity_refs - 0xc000 + slot * 2)
+        : syms._ce_entities + slot * 25) - 0xc000;
+}
+export function supportedModes(rom) {
+    return rom[0x143] === 0xc0
+        ? [[GameBoyMode.Cgb, 'CGB']]
+        : [[GameBoyMode.Cgb, 'CGB'], [GameBoyMode.Dmg, 'DMG']];
+}
 export function trace(gb, address) {
     const { ram } = memory(gb),
         p = address - 0xc000;
@@ -100,7 +112,7 @@ export function entityState(gb, symbolsOrAddress, game, capacity = 39) {
         assets = game.assets.filter((a) => a.kind === "sprite"),
         result = [];
     for (let slot = 0; slot < capacity; slot++) {
-        const p = address - 0xc000 + slot * 25,
+        const p = syms ? entityOffset(ram, syms, slot) : address - 0xc000 + slot * 25,
             kind = ram[p];
         if (!kind) continue;
         const shot = (kind === 3 || kind === 4) && syms?._ce_shot_x;

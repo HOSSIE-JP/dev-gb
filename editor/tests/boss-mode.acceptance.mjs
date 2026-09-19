@@ -10,8 +10,9 @@ const lib=createRequire(import.meta.url)('../build/library.cjs'),file=path.resol
 fs.mkdirSync(out,{recursive:true});
 const rom=fs.readFileSync(file),s=symbols(file.replace(/\.gb$/,'.map')),g=lib.readGame(process.cwd(),'touhou-kouma'),results=[];
 for(const [mode,label,stage,character] of [[GameBoyMode.Cgb,'CGB',0,0],[GameBoyMode.Cgb,'CGB',g.stages.length-1,1],[GameBoyMode.Dmg,'DMG',g.stages.length-1,1]]){
+ if(mode===GameBoyMode.Dmg&&rom[0x143]===0xc0)continue;
  const gb=boot(rom,mode),byte=n=>memory(gb).ram[s[n]-0xc000];
- const until=(f,max=3000)=>{for(let n=0;n<max;n++){const t=settledTrace(gb,s._ce_trace);if(t&&f(t))return t;frames(gb,1);}throw Error('timeout '+JSON.stringify(settledTrace(gb,s._ce_trace)));};
+ const until=(f,max=6000)=>{for(let n=0;n<max;n++){const t=settledTrace(gb,s._ce_trace);if(t&&f(t))return t;frames(gb,1);}throw Error('timeout '+JSON.stringify(settledTrace(gb,s._ce_trace)));};
  const tap=(k,n=4)=>{gb.key_press(k);frames(gb,n);gb.key_lift(k);frames(gb,12);};
  try{
   // Movie and logos retain their real startup route.

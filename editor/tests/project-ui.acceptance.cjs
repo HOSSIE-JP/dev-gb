@@ -84,6 +84,25 @@ electron.app.whenReady().then(async () => {
     await new Promise(resolve => setTimeout(resolve, 100));
     assert.equal(opened.at(-1), path.join(temp, 'projects/added'));
     record('folder icon targets current project');
+    // GBC capability is authored through the renderer and persisted by IPC.
+    await js(`document.querySelector('option[value="gbc"]').parentElement.focus()`);
+    win.webContents.sendInputEvent({type:'keyDown',keyCode:'End'});
+    win.webContents.sendInputEvent({type:'keyUp',keyCode:'End'});
+    win.webContents.sendInputEvent({type:'keyDown',keyCode:'Return'});
+    win.webContents.sendInputEvent({type:'keyUp',keyCode:'Return'});
+    await until(`document.querySelector('option[value="gbc"]').parentElement.value === 'gbc' && !!document.querySelector('.status-dot.unsaved')`);
+    await js(`[...document.querySelectorAll('button')].find(b=>b.textContent.trim().startsWith('保存')).click()`);
+    await until(`!document.querySelector('.status-dot.unsaved')`);
+    assert.equal(lib.readGame(temp,'added').hardware,'gbc');
+    assert.equal(JSON.parse(fs.readFileSync(path.join(temp,'projects/added/project.json'))).cgbCompatibility,'cgb-only');
+    selection.filePaths=[path.join(temp,'projects/first')];
+    await js(`document.querySelector('.project-picker button').click()`);
+    await until(`document.querySelector('.project-picker select').value === 'first' && !document.querySelector('.project-picker select').disabled`);
+    selection.filePaths=[path.join(temp,'projects/added')];
+    await js(`document.querySelector('.project-picker button').click()`);
+    await until(`document.querySelector('.project-picker select').value === 'added' && !document.querySelector('.project-picker select').disabled`);
+    assert.equal(await js(`document.querySelector('option[value="gbc"]').parentElement.value`),'gbc');
+    record('GBC hardware saved, manifest synchronized, project reopened');
     // Inspector selects must receive keyboard input and keep the edited value.
     await click('select[aria-label="タイトル・スコア画面"]');
     win.webContents.sendInputEvent({ type: 'keyDown', keyCode: 'Down' });

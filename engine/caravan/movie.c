@@ -23,8 +23,14 @@ typedef struct {
     uint8_t pcm_page;
     uint16_t waited;
 } MovieWork;
+#if CE_CGB_ONLY
+static MovieWork __at(0xD000) movie_work;
+#define MOVIE (&movie_work)
+typedef char MovieFits[(sizeof(MovieWork) <= 4096u) ? 1 : -1];
+#else
 #define MOVIE ((MovieWork *)ce_entities)
 typedef char MovieFits[(sizeof(MovieWork) <= sizeof(ce_entities)) ? 1 : -1];
+#endif
 
 static void movie_pcm(void) NONBANKED {
     uint8_t bank = CURRENT_BANK;
@@ -109,6 +115,9 @@ void ce_play_movie(void) BANKED {
     uint8_t chunk;
     uint16_t frame, now;
     if (!ce_movie_count) return;
+#if CE_CGB_ONLY
+    SVBK_REG=4;
+#endif
     ce_music_play(0);
     ce_scene = 15; ce_used = 0;
     memset(MOVIE, 0, sizeof(MovieWork));
@@ -172,4 +181,7 @@ done:
     set_interrupts(MOVIE->ie);
     CRITICAL { ce_music_time = sys_time; }
     ce_used = 0;
+#if CE_CGB_ONLY
+    SVBK_REG=1;
+#endif
 }

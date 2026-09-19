@@ -7,6 +7,9 @@ static uint8_t buffer[128];
 static uint16_t previous_row;
 static uint16_t hud_values[32];
 static uint8_t hud_valid, parallax_phase, live_flash;
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+#include "cgb-road.h"
+#endif
 
 uint8_t ce_fade_level;
 static palette_color_t fade_colors[32];
@@ -150,6 +153,9 @@ static void map_row(uint16_t row) {
             buffer[i] += ce_screens[4].tile_count;
         }
     } else for (i = 0; i != count; ++i) { buffer[i] = 0; buffer[64u+i] = 0; }
+    #if CE_CGB_ONLY && CE_HUD_RIGHT
+    if(cgb_collect_rows && !s->horizontal && count<=15u){cgb_queue_row(target,count);return;}
+    #endif
     if (s->horizontal) set_tiles(target, 0, 1, count, (uint8_t *)0x9800, buffer);
     else set_tiles(0, target, count, 1, (uint8_t *)0x9800, buffer);
     if (ce_is_cgb) {
@@ -254,6 +260,9 @@ void ce_load_stage(void) BANKED {
     tiles(&ce_screens[4].tiles, 0, ce_screens[4].tile_count, 0);
     tiles(ce_is_cgb && ce_color_stages[ce_state.stage].attrs ? &ce_color_stages[ce_state.stage].tiles : &s->tiles, ce_screens[4].tile_count, s->tile_count, 0);
     tiles(ce_is_cgb && ce_color_sprites ? &ce_color_sprite_data : &ce_sprite_data, 128, ce_sprite_tiles, 1); CE_SET_OBJ_SIZE;
+    #if CE_CGB_ONLY && CE_HUD_RIGHT
+    cgb_collect_rows=0;cgb_prepare_road();
+    #endif
     for (row = 0; row != 32u; ++row) map_row(start + row);
     ce_terrain_clean();
     screen_map(4, 1); move_win(CE_HUD_RIGHT ? 127 : 7, ce_hud_bottom ? 144u - ce_hud_height : 0);
@@ -332,6 +341,9 @@ static void parallax(void) {
     if (!(p->phases & (p->phases - 1u))) phase = ((p->divisor == 2u ? camera >> 1 : camera / p->divisor) - camera) & (p->phases - 1u);
     else phase = (p->phases - (camera - camera / p->divisor) % p->phases) % p->phases;
     if (phase == parallax_phase) return;
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+    if(cgb_parallax_cached){parallax_phase=phase;cgb_parallax_pending=1;return;}
+#endif
     ce_copy(buffer, ce_is_cgb && ce_color_stages[ce_state.stage].attrs ? &ce_color_parallaxes[ce_state.stage] : &p->frames, (uint16_t)phase * p->count * 16u, (uint16_t)p->count * 16u);
     set_tile_data(ce_screens[4].tile_count + p->first, p->count, buffer, 0x90);
     parallax_phase = phase;
@@ -339,12 +351,19 @@ static void parallax(void) {
 void ce_render(void) BANKED {
     uint8_t i; uint16_t row = ce_state.camera >> 7;
     uint16_t length;
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+    cgb_collect_rows=1;
+#endif
     if (!ce_battle_mode && (!ce_bomb_image || ce_bomb_image==2u)) {
     if (row != previous_row) {
     length = ce_stage->horizontal ? ce_stage->width : ce_stage->height;
     if (row + 1u == previous_row || (ce_stage->loop && !(length & 31u) && previous_row == 0u && row + 1u == length)) map_row(row);
     else if (ce_stage->loop && !(length & 31u) && row == 0u && previous_row + 1u == length) map_row(31u);
-    else if (row != previous_row && row != previous_row + 1u) { DISPLAY_OFF; for (i = 0; i != 32u; ++i) map_row(row + i); DISPLAY_ON; }
+    else if (row != previous_row && row != previous_row + 1u) { DISPLAY_OFF;
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+        cgb_collect_rows=0;
+#endif
+        for (i = 0; i != 32u; ++i) map_row(row + i); DISPLAY_ON; }
     else if (row != previous_row) map_row(row + 31u);
     previous_row = row;
     }
@@ -360,17 +379,32 @@ void ce_render(void) BANKED {
         if (ce_battle_mode == 2u) ce_bg_flush();
         else if (ce_battle_mode == 3u) ce_giant_flush();
     }
+    #if CE_CGB_ONLY && CE_HUD_RIGHT
+    cgb_collect_rows=0;
+    if(!ce_battle_mode && (!ce_bomb_image||ce_bomb_image==2u))parallax();
+    #else
     if(ce_bomb_image==2u)parallax();
+    #endif
     ENABLE_OAM_DMA;
     /* Publish every completed pose through VBlank DMA before another update
      * can overwrite it. Repeated display frames under load are intentional. */
-    if(ce_bomb_image==2u)ce_bomb_draw(((ce_bomb_frames-ce_bomb_left)/ce_bomb_period)&1u);
+    if(ce_bomb_image==2u){ce_bomb_draw(((ce_bomb_frames-ce_bomb_left)/ce_bomb_period)&1u);
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+        cgb_publish_road();
+#endif
+    }
     else {
     vsync();
     if (ce_bomb_image) ce_bomb_draw(((ce_bomb_frames-ce_bomb_left)/ce_bomb_period)&1u);
     else if (ce_battle_mode == 2u) ce_bg_publish();
     else if (ce_battle_mode == 3u) ce_giant_publish();
-    else if (!ce_battle_mode) { move_camera(); parallax(); }
+    else if (!ce_battle_mode) { move_camera();
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+        cgb_publish_road();
+#else
+        parallax();
+#endif
+    }
     }
 #if CE_GRAZE_ENABLED
     if (!ce_is_cgb) OBP1_REG = ce_graze_flash && !ce_state.invulnerable ? 0x40u : OBP0_REG;

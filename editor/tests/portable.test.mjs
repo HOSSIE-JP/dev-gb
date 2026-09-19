@@ -16,6 +16,11 @@ test('HTML export preserves ROM bytes and notices without letting a filename esc
  assert.equal(Buffer.from(context.exported.ROM_BYTES,'base64').compare(rom),0);
  assert.equal(context.exported.ROM_FILENAME,'</script><script>alert(1)</script>.gb');
  assert.throws(()=>makePlaytestHtml(Buffer.alloc(12),wasm,'x','',''),/Invalid ROM/);
+ assert.ok(html.includes('<option value="dmg">GB</option>'));
+ rom[0x143]=0xc0;
+ const gbc=makePlaytestHtml(rom,wasm,'gbc.gb','','');
+ assert.ok(gbc.includes('<select id="mode" disabled>'));
+ assert.ok(!gbc.includes('<option value="dmg">'));
 });
 test('first-launch emulator checksum matches the pinned upstream dependency',()=>{
  const lock=JSON.parse(fs.readFileSync(new URL('../../config/tools.lock.json',import.meta.url)));

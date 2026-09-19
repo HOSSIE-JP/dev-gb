@@ -1,6 +1,6 @@
 /* Run the complete BG volley in the allocator's ROM bank. Sprite volleys keep
  * their own loop, and accepted bullets do not cross banks one at a time. */
-void ce_bg_shoot(uint8_t pattern,uint8_t source,int16_t x,int16_t y,uint8_t sequence) BANKED {
+void ce_bg_shoot(uint8_t pattern,uint8_t source,int16_t x,int16_t y,uint8_t sequence) CE_BG_ENTRY {
     const CE_Pattern *p=&ce_patterns[pattern];
     const CE_Asset *a=&ce_assets[source];
     const int8_t *offsets;

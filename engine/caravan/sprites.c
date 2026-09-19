@@ -1,4 +1,9 @@
+#include "caravan.h"
+#if CE_CGB_ONLY
+#pragma bank 3
+#else
 #pragma bank 255
+#endif
 #include "caravan.h"
 #include <stddef.h>
 
@@ -23,10 +28,10 @@ static CE_Entity *pose;
 static uint8_t pose_slot;
 /* Indexed by stable entity slot, never by the changing OAM draw slot. */
 static uint8_t animation_slot;
-static uint16_t animation_age[CE_MAX_ENTITIES + 1u];
-static uint8_t animation_asset[CE_MAX_ENTITIES + 1u];
-static uint8_t animation_frame[CE_MAX_ENTITIES + 1u];
-static uint8_t animation_left[CE_MAX_ENTITIES + 1u];
+static uint16_t CE_WRAM(0xdba0) animation_age[CE_MAX_ENTITIES + 1u];
+static uint8_t CE_WRAM(0xdbf0) animation_asset[CE_MAX_ENTITIES + 1u];
+static uint8_t CE_WRAM(0xdc20) animation_frame[CE_MAX_ENTITIES + 1u];
+static uint8_t CE_WRAM(0xdc50) animation_left[CE_MAX_ENTITIES + 1u];
 
 /* Non-reentrant, bank-local SM83 emitter. The ISR only copies completed OAM.
  * Preserve registers explicitly; no C arguments or return-value ABI assumptions. */
@@ -34,6 +39,7 @@ static volatile OAM_item_t *emit_out;
 static uint8_t emit_left, emit_y, emit_tile, emit_prop, emit_columns, emit_rows;
 static uint8_t emit_top, emit_bottom, emit_visible_y;
 static const uint8_t *emit_colors;
+#if !CE_CGB_ONLY
 static void prepare_sprite_color(void) __naked {
     __asm
         ld a, (_ce_color_sprites)
@@ -164,17 +170,27 @@ static void emit_oam(void) __naked {
 }
 /* Non-reentrant: no interrupt calls the renderer. Static scratch avoids
  * repeated stack-relative loads in the per-tile inner loop on SM83. */
+#endif
 static const CE_Asset *sprite_asset;
+#if CE_CGB_ONLY
+static uint8_t emit_frame;
+#endif
 static uint8_t sprite_tiles;
 /* Only animated assets pay for animation decoding. Keep the general authored
  * duration semantics, including nonuniform frames, in C. */
 static void sprite_animation(void) {
     static uint16_t time; static uint8_t frame;
+#if CE_CGB_ONLY
+    if(sprite_asset->animation_shift==3u && sprite_asset->frames<=32u){emit_frame=((uint8_t)pose->age>>3)&(sprite_asset->frames-1u);return;}
+    if(sprite_asset->animation_shift==4u && sprite_asset->frames<=16u){emit_frame=((uint8_t)pose->age>>4)&(sprite_asset->frames-1u);return;}
+#endif
+    #if !CE_CGB_ONLY
     if (sprite_asset->animation_shift != 255u) {
         frame = (pose->age >> sprite_asset->animation_shift) & (sprite_asset->frames - 1u);
         emit_tile = sprite_asset->first_tile + (sprite_tiles == 1u ? frame : frame * sprite_tiles);
         return;
     }
+    #endif
     if (animation_asset[animation_slot] == pose->asset && animation_age[animation_slot] == pose->age) {
         frame = animation_frame[animation_slot];
     } else if (pose->age && animation_asset[animation_slot] == pose->asset && animation_age[animation_slot] + 1u == pose->age) {
@@ -194,10 +210,17 @@ static void sprite_animation(void) {
     animation_asset[animation_slot] = pose->asset;
     animation_age[animation_slot] = pose->age;
     animation_frame[animation_slot] = frame;
+#if CE_CGB_ONLY
+    emit_frame=frame;
+#else
     emit_tile = sprite_asset->first_tile + (sprite_tiles == 1u ? frame : frame * sprite_tiles);
+#endif
 }
 /* Generic actor and multi-tile bullet setup. Preserve caller registers.
  * No ISR enters these static rendering contexts. */
+#if CE_CGB_ONLY
+#include "cgb-oam.h"
+#else
 static void actor_sprite(void) __naked {
     __asm
         push bc
@@ -365,6 +388,7 @@ _ce_actor_sprite_inner::
         ret
     __endasm;
 }
+#endif
 /* Scatter/gather preserves global entity ordering and only gathers live
  * bullets. Collision removal or slot reuse never publishes an old entry. */
 static void shot_sprite(uint8_t slot) __naked {
@@ -497,12 +521,19 @@ void ce_draw_sprites(void) BANKED {
         if (ce_graze_flash) ce_graze_oam(pose_slot);
 #endif
     }
+#if CE_CGB_ONLY
+    for(i=0;i!=ce_used;++i){
+        animation_slot=i+1u;pose=&CE_ENTITY(i);
+        if(pose->kind && !(pose->kind==CE_BOSS && (ce_transition_state==1u || ce_battle_mode==3u)))sprite();
+    }
+#else
     if (ce_transition_state == 1u) {
         /* A single break burst replaces the boss briefly, so its smaller sprite
          * cannot be occluded by the boss's earlier OAM entries on DMG or CGB. */
         for (i = ce_used, animation_slot = 1, pose = ce_entities; i; --i, ++pose, ++animation_slot)
             if (pose->kind && pose->kind != CE_BOSS) sprite();
     } else for (i = ce_used, animation_slot = 1, pose = ce_entities; i; --i, ++pose, ++animation_slot) if (pose->kind && !(ce_battle_mode == 3u && pose->kind == CE_BOSS)) sprite();
+#endif
 #if CE_OBJ_16
     if(ce_beam_pattern!=CE_NONE && !ce_respawn && !ce_transition_state && !ce_state.result){
         int16_t y=ce_state.player_y/16-8;

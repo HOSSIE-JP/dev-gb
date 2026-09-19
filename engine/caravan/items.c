@@ -42,11 +42,11 @@ void ce_spawn_item(uint8_t ref, int16_t x, int16_t y) BANKED {
     if (ref == CE_NONE || ref >= ce_item_count) return;
     item = &ce_items[ref]; slot = allocate(CE_ITEM, item->asset);
     if (slot == CE_NONE) return;
-    e = &ce_entities[slot]; e->ref = ref; e->lifetime = item->lifetime;
+    e = &CE_ENTITY(slot); e->ref = ref; e->lifetime = item->lifetime;
     e->x = e->base_x = x; e->y = e->base_y = y;
 }
 void ce_collect_item(uint8_t slot) BANKED {
-    const CE_Item *item = &ce_items[ce_entities[slot].ref];
+    const CE_Item *item = &ce_items[CE_ENTITY(slot).ref];
     const CE_ItemEffect *effect = item->effect; uint8_t n, changed = 0;
     /* Release first: an item can never be collected twice in one update. */
     release(slot);
@@ -116,7 +116,7 @@ void ce_hit_player(void) BANKED {
         ce_state.player_x = ce_player_start_x; ce_state.player_y = ce_player_start_y;
         if (ce_respawn) {
             ce_state.cooldown = 0; ce_state.player_sequence = 0;
-            for (i = 0; i != ce_used; ++i) if (ce_entities[i].kind == CE_PSHOT) release(i);
+            for (i = 0; i != ce_used; ++i) if (CE_ENTITY(i).kind == CE_PSHOT) release(i);
         }
     }
 }

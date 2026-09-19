@@ -2,14 +2,15 @@
 // node editor/tests/right-hud-play.acceptance.mjs ROM.gb OUTPUT
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import crypto from 'node:crypto';import {createRequire} from 'node:module';
 import {boot,frames,memory,symbols,settledTrace,GameBoyMode,PadKey} from './emulator.mjs';
+import {entityOffset,supportedModes} from './emulator.mjs';
 import {capture} from './presentation-qa.mjs';
 const lib=createRequire(import.meta.url)('../build/library.cjs'),g=lib.readGame(process.cwd(),'touhou-kouma'),font=lib.readFont(process.cwd()),file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]),rom=fs.readFileSync(file),s=symbols(file.replace(/\.gb$/,'.map'));
 fs.mkdirSync(out,{recursive:true});const results=[];
-for(const [mode,label] of [[GameBoyMode.Cgb,'CGB'],[GameBoyMode.Dmg,'DMG']])for(const character of [0,1]){
+for(const [mode,label] of supportedModes(rom))for(const character of [0,1]){
  const gb=boot(rom,mode),byte=n=>memory(gb).ram[s[n]-0xc000];
  const until=(f,max=6000)=>{for(let i=0;i<max;i++){const t=settledTrace(gb,s._ce_trace);if(t&&f(t))return t;frames(gb,1);}throw Error('timeout '+JSON.stringify(settledTrace(gb,s._ce_trace)));};
  const tap=(k,n=4)=>{gb.key_press(k);frames(gb,n);gb.key_lift(k);frames(gb,12);};
- const age=()=>{const r=memory(gb).ram;for(let i=0;i<39;i++){const p=s._ce_entities-0xc000+i*25;if(r[p]===2)return r.readUInt16LE(p+8);}return -1;};
+ const age=()=>{const r=memory(gb).ram;for(let i=0;i<39;i++){const p=entityOffset(r,s,i);if(r[p]===2)return r.readUInt16LE(p+8);}return -1;};
  function hud(boss,values={}){
   const m=memory(gb),v=m.state.subarray(m.state.readUInt32LE(m.core+0xa4)),window=!!(m.io[0x40]&32);
   if(!boss||byte('_ce_bomb_image')){assert(window,'road/bomb Window enabled');assert.equal(m.io[0x4b],127);assert.equal(m.io[0x4a],0);}else assert(!window,'BG boss HUD belongs to the published BG map');

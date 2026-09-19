@@ -6,22 +6,31 @@
 uint8_t ce_battle_mode, ce_battle_asset, ce_bg_limit, ce_bg_count, ce_bg_hit;
 uint8_t ce_bg_plane, ce_bg_back, ce_bg_map_front;
 uint16_t ce_bg_tile_drops, ce_bg_peak_tiles;
-int16_t ce_bg_x[CE_MAX_BG_SHOTS], ce_bg_y[CE_MAX_BG_SHOTS], ce_bg_vx[CE_MAX_BG_SHOTS], ce_bg_vy[CE_MAX_BG_SHOTS];
-uint16_t ce_bg_life[CE_MAX_BG_SHOTS];
-static uint8_t damage[CE_MAX_BG_SHOTS];
+int16_t CE_WRAM(0xd000) ce_bg_x[CE_MAX_BG_SHOTS];
+int16_t CE_WRAM(0xd080) ce_bg_y[CE_MAX_BG_SHOTS];
+int16_t CE_WRAM(0xd100) ce_bg_vx[CE_MAX_BG_SHOTS];
+int16_t CE_WRAM(0xd180) ce_bg_vy[CE_MAX_BG_SHOTS];
+uint16_t CE_WRAM(0xD200) ce_bg_life[CE_MAX_BG_SHOTS];
+static uint8_t CE_WRAM(0xD280) damage[CE_MAX_BG_SHOTS];
 #if CE_GRAZE_ENABLED
-static uint8_t grazed[CE_MAX_BG_SHOTS/8u];
+static uint8_t CE_WRAM(0xD2C0) grazed[CE_MAX_BG_SHOTS/8u];
 static const uint8_t graze_bits[8]={1,2,4,8,16,32,64,128};
 #endif
-static uint8_t guide_pattern[CE_MAX_BG_SHOTS], guide_angle[CE_MAX_BG_SHOTS], has_guidance;
-static uint16_t cells[360], compound_cells[CE_MAX_BG_SHOTS / 2];
+static uint8_t CE_WRAM(0xD2D0) guide_pattern[CE_MAX_BG_SHOTS];
+static uint8_t CE_WRAM(0xD310) guide_angle[CE_MAX_BG_SHOTS];
+static uint8_t has_guidance;
+static uint16_t CE_WRAM(0xD350) cells[360];
+static uint16_t CE_WRAM(0xD620) compound_cells[CE_MAX_BG_SHOTS / 2];
 /* CGB uploads at most 32 composite tiles plus 18 full map rows in VBlank.
  * cells is dead after composition and doubles as the aligned DMA map source. */
-static uint8_t dma_tile_storage[CE_MAX_BG_SHOTS / 2 * 16 + 15];
+static uint8_t CE_WRAM(0xD660) dma_tile_storage[CE_MAX_BG_SHOTS / 2 * 16 + 15];
 static uint8_t *dma_tiles, *dma_map, *dma_cursor;
 uint8_t ce_bg_dma_end_ly;
 static uint8_t compound_count, flush_left;
-static uint8_t map[360], hud[40], tile_buffer[16], hud_tiles, static_tiles;
+static uint8_t CE_WRAM(0xD880) map[360];
+static uint8_t CE_WRAM(0xD9F0) hud[40];
+static uint8_t CE_WRAM(0xDA20) tile_buffer[16];
+static uint8_t hud_tiles, static_tiles;
 /* Right HUD survives clears in the existing map: no extra 90-byte buffer. */
 #if CE_HUD_RIGHT
 static uint8_t hud_dirty;
@@ -78,14 +87,51 @@ static uint8_t giant_counts[2], giant_next_x, giant_next_y, giant_first;
 #define GIANT_BASE (dma_tile_storage + 128u)
 #define GIANT_CELLS ((uint16_t *)(dma_tile_storage + 192u))
 #define GIANT_MASKS ((uint16_t *)(dma_tile_storage + 256u))
+#if CE_CGB_ONLY
+#define CE_BG_ENTRY
+static void ce_bg_clear_local(void);
+#define ce_bg_clear ce_bg_clear_local
+static void ce_bg_begin_local(void);
+#define ce_bg_begin ce_bg_begin_local
+static void ce_bg_setup_local(void);
+#define ce_bg_setup ce_bg_setup_local
+static void ce_bg_hud_local(uint8_t x,uint8_t y,uint8_t count,const uint8_t *data);
+#define ce_bg_hud ce_bg_hud_local
+static void ce_bg_update_local(void);
+#define ce_bg_update ce_bg_update_local
+static void ce_bg_spawn_local(void);
+#define ce_bg_spawn ce_bg_spawn_local
+static void ce_bg_shoot_local(uint8_t pattern,uint8_t source,int16_t x,int16_t y,uint8_t sequence);
+#define ce_bg_shoot ce_bg_shoot_local
+static void ce_bg_flush_local(void);
+#define ce_bg_flush ce_bg_flush_local
+static void ce_bg_publish_local(void);
+#define ce_bg_publish ce_bg_publish_local
+static void ce_giant_setup_local(void);
+#define ce_giant_setup ce_giant_setup_local
+static void ce_giant_flush_local(void);
+#define ce_giant_flush ce_giant_flush_local
+static void ce_giant_publish_local(void);
+#define ce_giant_publish ce_giant_publish_local
+#else
+#define CE_BG_ENTRY BANKED
+#endif
 #include "bg-kernels.h"
-void ce_bg_clear(void) BANKED {
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+#include "cgb-bg-packets.h"
+#endif
+void ce_bg_clear(void) CE_BG_ENTRY {
 #if CE_GRAZE_ENABLED
 memset(grazed,0,sizeof(grazed));
 #endif
 memset(ce_bg_life,0,sizeof(ce_bg_life));ce_bg_count=0;ce_bg_hit=0;spawn_next=0;has_guidance=0;}
-void ce_bg_begin(void) BANKED {
+void ce_bg_begin(void) CE_BG_ENTRY {
     ce_bg_back=ce_is_cgb?0u:ce_bg_plane^1u;next_tile=hud_tiles+static_tiles;compound_count=0;
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+    memset(cgb_rows,0,sizeof(cgb_rows));
+    cgb_dynamic_first=hud_tiles+static_tiles+((ce_bg_map_front^1u)*(static_tiles==136u?21u:32u));
+    next_tile=cgb_dynamic_first;
+#endif
     /* Singleton masks are reconstructed on their first overlap. Every compound
      * cell is initialized before use, so only the map needs clearing. */
     if (ce_battle_mode != 3u) {
@@ -105,12 +151,22 @@ void ce_bg_palette(void) BANKED {
     BGP_REG=ce_fade_level?255u:(ce_bg_plane?15u:51u);
     if(ce_is_cgb){for(i=0;i!=4u;++i)colors[i]=!ce_fade_level&&(i&(1u<<ce_bg_plane))?RGB(31,31,31):0;set_bkg_palette(0,1,colors);}
 }
-void ce_bg_setup(void) BANKED {
+void ce_bg_setup(void) CE_BG_ENTRY {
     uint8_t t,y,bit;uint16_t word;
     dma_tiles=(uint8_t *)(((uint16_t)dma_tile_storage+15u)&0xfff0u);
     dma_map=(uint8_t *)(((uint16_t)cells+15u)&0xfff0u);
     ce_get_screen(&screen,4);hud_tiles=screen.tile_count;ce_bg_plane=0;ce_bg_map_front=0;ce_bg_tile_drops=0;ce_bg_peak_tiles=0;
-    static_tiles=ce_is_cgb&&hud_tiles<=80u?136u:16u;
+    static_tiles=ce_is_cgb&&hud_tiles<=
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+    77u
+#else
+    80u
+#endif
+    ?136u:16u;
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+    memset(cgb_maps,0,sizeof(cgb_maps));memset(cgb_past_rows,0,sizeof(cgb_past_rows));memset(cgb_hud_rows,1,sizeof(cgb_hud_rows));
+    cgb_full_maps=3;
+#endif
     top=ce_hud_bottom?0u:ce_hud_height;bottom=ce_hud_bottom?144u-ce_hud_height:144u;
     for(t=0;t!=hud_tiles;++t){
         ce_copy(tile_buffer,&screen.tiles,(uint16_t)t*16u,16);
@@ -127,9 +183,12 @@ void ce_bg_setup(void) BANKED {
     ce_bg_map_front=0;HIDE_WIN;move_bkg(0,0);LCDC_REG&=~8u;
     ce_bg_begin();ce_bg_flush();vsync();ce_bg_publish();ce_bg_begin();
 }
-void ce_bg_hud(uint8_t x,uint8_t y,uint8_t count,const uint8_t *data) BANKED {
+void ce_bg_hud(uint8_t x,uint8_t y,uint8_t count,const uint8_t *data) CE_BG_ENTRY {
 #if CE_HUD_RIGHT
     memcpy(map+(uint16_t)y*20u+15u+x,data,count);
+#if CE_CGB_ONLY
+    cgb_hud_rows[y]=cgb_hud_rows[18u+y]=1;
+#endif
     hud_dirty=1;
 #else
     memcpy(hud+y*20u+x,data,count);
@@ -152,7 +211,7 @@ static void guide(void) {
     }
 }
 #include "bg-query-kernel.h"
-void ce_bg_update(void) BANKED {
+void ce_bg_update(void) CE_BG_ENTRY {
     uint8_t n,kept,x0,x1,y0,y1;
     if(has_guidance)guide();ce_bg_begin();direct_collision=ce_battle_mode==3u||hit_width!=4u||hit_height!=4u||right>=CE_PLAY_WIDTH||player_bottom>=144;
     if(direct_collision)update_all();else update_all_local();
@@ -190,9 +249,9 @@ static void spawn_shot(void) {
         guide_pattern[slot]=ce_bg_request.pattern;guide_angle[slot]=ce_bg_request.angle;has_guidance=1;
     }
 }
-void ce_bg_spawn(void) BANKED { spawn_shot(); }
+void ce_bg_spawn(void) CE_BG_ENTRY { spawn_shot(); }
 #include "bg-volley.h"
-void ce_bg_flush(void) BANKED {
+void ce_bg_flush(void) CE_BG_ENTRY {
     static uint16_t i;static uint8_t lo,hi,n;
     dma_cursor=dma_tiles;
     if(ce_is_cgb)compose_dma_tiles();
@@ -210,8 +269,12 @@ void ce_bg_flush(void) BANKED {
     if(next_tile>ce_bg_peak_tiles)ce_bg_peak_tiles=next_tile;
     memcpy(map+(ce_hud_bottom?360u-ce_hud_height/8u*20u:0),hud,ce_hud_height/8u*20u);
 #if CE_HUD_RIGHT
+#if CE_CGB_ONLY
+    dma_map=cgb_maps+(ce_bg_map_front?0:576u);cgb_pack_map();hud_dirty=0;
+#else
     if(hud_dirty){copy_hud_maps();hud_dirty=0;}
     if(ce_is_cgb)pack_dma_map();else copy_play_map();
+#endif
 #else
     if(ce_is_cgb)pack_dma_map();else copy_map();
 #endif
@@ -219,9 +282,15 @@ void ce_bg_flush(void) BANKED {
 static void dma_transfer(uint16_t source,uint16_t dest,uint8_t blocks){
     HDMA1_REG=source>>8;HDMA2_REG=source;HDMA3_REG=dest>>8;HDMA4_REG=dest;HDMA5_REG=blocks-1u;
 }
-void ce_bg_publish(void) BANKED {
+void ce_bg_publish(void) CE_BG_ENTRY {
     if(ce_is_cgb){
-        uint8_t first=hud_tiles+static_tiles,n=compound_count;
+        uint8_t first=
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+        cgb_dynamic_first,
+#else
+        hud_tiles+static_tiles,
+#endif
+        n=compound_count;
         /* OAM DMA has finished when vsync returns. Keep GDMA wholly in VBlank,
          * including the signed-tile discontinuity at tile 128. */
         /* GBDK's OAM DMA + interrupt return + banked call can reach LY 146.
@@ -236,7 +305,14 @@ void ce_bg_publish(void) BANKED {
                 }else dma_transfer((uint16_t)dma_tiles,(first<128u?0x9000u:0x8000u)+(uint16_t)first*16u,n);
             }
 #if CE_HUD_RIGHT
+#if CE_CGB_ONLY
+            if(cgb_full_maps & (ce_bg_map_front?1u:2u)){
+                dma_transfer((uint16_t)dma_map,ce_bg_map_front?0x9800u:0x9c00u,36);
+                cgb_full_maps &= ce_bg_map_front?2u:1u;
+            } else cgb_publish_map();
+#else
             publish_play_rows();
+#endif
 #else
             dma_transfer((uint16_t)dma_map,ce_bg_map_front?0x9800u:0x9c00u,36);
 #endif
@@ -249,3 +325,30 @@ void ce_bg_publish(void) BANKED {
     if(ce_bg_map_front)LCDC_REG|=8u;else LCDC_REG&=~8u;ce_bg_palette();move_bkg(0,0);
 }
 #include "giant-render.h"
+
+#if CE_CGB_ONLY
+#undef ce_bg_clear
+void ce_bg_clear(void) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_bg_clear_local();SVBK_REG=saved; }
+#undef ce_bg_begin
+void ce_bg_begin(void) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_bg_begin_local();SVBK_REG=saved; }
+#undef ce_bg_setup
+void ce_bg_setup(void) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_bg_setup_local();SVBK_REG=saved; }
+#undef ce_bg_hud
+void ce_bg_hud(uint8_t x,uint8_t y,uint8_t count,const uint8_t *data) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_bg_hud_local(x,y,count,data);SVBK_REG=saved; }
+#undef ce_bg_update
+void ce_bg_update(void) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_bg_update_local();SVBK_REG=saved; }
+#undef ce_bg_spawn
+void ce_bg_spawn(void) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_bg_spawn_local();SVBK_REG=saved; }
+#undef ce_bg_shoot
+void ce_bg_shoot(uint8_t pattern,uint8_t source,int16_t x,int16_t y,uint8_t sequence) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_bg_shoot_local(pattern,source,x,y,sequence);SVBK_REG=saved; }
+#undef ce_bg_flush
+void ce_bg_flush(void) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_bg_flush_local();SVBK_REG=saved; }
+#undef ce_bg_publish
+void ce_bg_publish(void) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_bg_publish_local();SVBK_REG=saved; }
+#undef ce_giant_setup
+void ce_giant_setup(void) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_giant_setup_local();SVBK_REG=saved; }
+#undef ce_giant_flush
+void ce_giant_flush(void) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_giant_flush_local();SVBK_REG=saved; }
+#undef ce_giant_publish
+void ce_giant_publish(void) BANKED { uint8_t saved=SVBK_REG;SVBK_REG=2;ce_giant_publish_local();SVBK_REG=saved; }
+#endif

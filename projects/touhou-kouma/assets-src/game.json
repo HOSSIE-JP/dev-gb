@@ -83053,5 +83053,6 @@
     "score": 1,
     "flashFrames": 12
   },
-  "legacyScoreDivisor": 10
+  "legacyScoreDivisor": 10,
+  "hardware": "gbc"
 }

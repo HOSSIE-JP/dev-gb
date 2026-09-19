@@ -178,6 +178,17 @@ _bg_xy_plot:
         call _bg_graze_xy
 #endif
 _bg_xy_render:
+#if CE_CGB_ONLY && CE_HUD_RIGHT
+        ld a, e
+        rrca
+        rrca
+        rrca
+        and #31
+        add #<_cgb_rows
+        ld l, a
+        ld h, #>_cgb_rows
+        ld (hl), #1
+#endif
         ; Compute the sub-tile position once, while D/E still hold X/Y.
         ld a, d
         and #6
@@ -284,7 +295,39 @@ _bg_xy_008:
         pop de
         jr _bg_xy_009
 _bg_xy_existing:
+#if CE_CGB_ONLY
+        ; A compound is already registered and can only gain mask bits.
+        ; Update it directly; no repeated classification or list lookup.
+        ld bc, #_map
+        ld a, l
+        sub c
+        ld l, a
+        ld a, h
+        sbc b
+        ld h, a
+        add hl, hl
+        ld bc, #_cells
+        add hl, bc
+        push hl
+        ld l, e
+        ld h, #0
+        add hl, hl
+        ld bc, #_bg_xy_050
+        add hl, bc
+        ld a, (hl+)
+        ld c, a
+        ld b, (hl)
+        pop hl
+        ld a, (hl)
+        or c
+        ld (hl+), a
+        ld a, (hl)
+        or b
+        ld (hl), a
+        ret
+#else
         call _bg_xy_save_cell
+#endif
 _bg_xy_009:
         ld a, (_cell_index)
         ld l, a

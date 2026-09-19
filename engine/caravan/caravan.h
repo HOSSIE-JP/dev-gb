@@ -3,6 +3,14 @@
 #include <gb/gb.h>
 #include <gb/cgb.h>
 #include <stdint.h>
+#ifndef CE_CGB_ONLY
+#define CE_CGB_ONLY 0
+#endif
+#if CE_CGB_ONLY
+#define CE_WRAM(address) __at(address)
+#else
+#define CE_WRAM(address)
+#endif
 #ifndef CE_GRAZE_ENABLED
 #define CE_GRAZE_ENABLED 0
 #endif
@@ -105,7 +113,25 @@ typedef struct {
     uint8_t kind, ref, asset, hp, phase, sequence; uint16_t age, phase_age, lifetime;
     int16_t x, y, base_x, base_y, vx, vy; uint8_t damage;
 } CE_Entity;
+#if CE_CGB_ONLY
+/* Logical slots keep their old order. Only actors own the large state;
+ * bullets use the shared six-byte prefix and their dedicated SoA planes. */
+typedef struct { uint8_t kind, ref, asset, hp, phase, sequence; } CE_BulletMeta;
+#define CE_MAX_ACTORS 21u
+extern uint8_t ce_boss_slot;
+extern CE_Entity CE_WRAM(0xD000) ce_actors[CE_MAX_ACTORS];
+extern CE_Entity *CE_WRAM(0xD210) ce_entity_refs[CE_MAX_ENTITIES];
+extern CE_BulletMeta CE_WRAM(0xD260) ce_bullet_meta[CE_MAX_ENTITIES];
+extern uint8_t CE_WRAM(0xD350) ce_actor_index[CE_MAX_ENTITIES];
+extern uint8_t CE_WRAM(0xD380) ce_shot_damage[CE_MAX_ENTITIES];
+#define CE_ENTITY(slot) (*ce_entity_refs[(slot)])
+#else
+#define CE_ENTITY(slot) ce_entities[(slot)]
+#endif
 typedef struct { uint16_t left, top, right, bottom; } CE_Box;
+#if CE_CGB_ONLY
+extern CE_Box CE_WRAM(0xD950) ce_boxes[CE_MAX_ENTITIES];
+#endif
 typedef struct { int8_t x, y; uint8_t w, h; } CE_Hitbox;
 typedef struct {
     uint16_t tick, stage_tick, camera, score, invulnerable, cooldown, dropped;
@@ -222,16 +248,22 @@ extern uint8_t ce_fade_level;
 extern const uint8_t ce_explosion_asset, ce_explosion_duration;
 extern const int16_t ce_player_start_x, ce_player_start_y;
 extern const int8_t ce_sin[16], ce_cos[16];
+#if !CE_CGB_ONLY
 extern CE_Entity ce_entities[CE_MAX_ENTITIES];
+#endif
 extern CE_State ce_state;
 /* Bullet motion is canonical in these planes; entity records keep common
  * kind/asset/damage metadata and the stable allocation/draw order. */
-extern int16_t ce_shot_x[CE_MAX_ENTITIES], ce_shot_y[CE_MAX_ENTITIES];
-extern int16_t ce_shot_vx[CE_MAX_ENTITIES], ce_shot_vy[CE_MAX_ENTITIES];
-extern uint16_t ce_shot_age[CE_MAX_ENTITIES], ce_shot_lifetime[CE_MAX_ENTITIES];
-extern int16_t ce_shot_px[CE_MAX_ENTITIES], ce_shot_py[CE_MAX_ENTITIES];
-extern OAM_item_t ce_shot_oam[CE_MAX_ENTITIES];
-extern uint8_t ce_shot_simple[CE_MAX_ENTITIES];
+extern int16_t CE_WRAM(0xD400) ce_shot_x[CE_MAX_ENTITIES];
+extern int16_t CE_WRAM(0xD450) ce_shot_y[CE_MAX_ENTITIES];
+extern int16_t CE_WRAM(0xD4A0) ce_shot_vx[CE_MAX_ENTITIES];
+extern int16_t CE_WRAM(0xD4F0) ce_shot_vy[CE_MAX_ENTITIES];
+extern uint16_t CE_WRAM(0xD540) ce_shot_age[CE_MAX_ENTITIES];
+extern uint16_t CE_WRAM(0xD590) ce_shot_lifetime[CE_MAX_ENTITIES];
+extern int16_t CE_WRAM(0xD5E0) ce_shot_px[CE_MAX_ENTITIES];
+extern int16_t CE_WRAM(0xD630) ce_shot_py[CE_MAX_ENTITIES];
+extern OAM_item_t CE_WRAM(0xD680) ce_shot_oam[CE_MAX_ENTITIES];
+extern uint8_t CE_WRAM(0xD720) ce_shot_simple[CE_MAX_ENTITIES];
 extern uint8_t ce_is_cgb, ce_scene, ce_pause, ce_active_screen;
 extern uint8_t ce_used;
 extern uint16_t ce_scores[5];
@@ -272,7 +304,7 @@ void ce_render(void) BANKED;
 void ce_draw_sprites(void) BANKED;
 void ce_hide_sprites(void) BANKED;
 void ce_prepare_player_ranges(void) BANKED;
-extern uint8_t ce_player_ranges[64u * 4u];
+extern uint8_t CE_WRAM(0xDA90) ce_player_ranges[64u * 4u];
 void ce_fade(uint8_t out) BANKED;
 void ce_audio_sync(void) NONBANKED;
 void ce_hud(void) BANKED;

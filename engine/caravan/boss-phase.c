@@ -11,8 +11,12 @@ extern int16_t defeated_x,defeated_y;
 void ce_finish_boss_modes(void) BANKED {
     uint8_t i, defeated;
     CE_Entity *e; const CE_Actor *actor; const CE_Phase *p;
+    #if CE_CGB_ONLY
+    for(i=ce_boss_slot;i!=CE_NONE;i=CE_NONE) {
+    #else
     for(i=0;i!=ce_used;++i) {
-        e=&ce_entities[i]; if(e->kind!=CE_BOSS)continue;
+    #endif
+        e=&CE_ENTITY(i); if(e->kind!=CE_BOSS)continue;
         actor=&ce_bosses[e->ref];p=&actor->phase[e->phase];
         if(!p->until || (!p->time_limit && p->score==65535u))return;
         defeated=!e->hp;
@@ -37,21 +41,42 @@ uint16_t ce_boss_status(uint8_t kind) BANKED {
     uint8_t i,j,current=0,total=0; CE_Entity *e; const CE_Actor *actor; const CE_Phase *p;
     if(!ce_pool_counts[CE_BOSS])return 65535u;
     for(i=0;i!=ce_used;++i) {
-        e=&ce_entities[i];if(e->kind!=CE_BOSS)continue;
+        e=&CE_ENTITY(i);if(e->kind!=CE_BOSS)continue;
         actor=&ce_bosses[e->ref];p=&actor->phase[e->phase];
         if(!p->until || !p->hp)return 65535u;
         if(kind==4u)return e->hp;
+#if CE_CGB_ONLY
+        {static const CE_Phase *cached_phase;static uint16_t packed,seconds,until,last_age;
+        if(cached_phase!=p){
+            cached_phase=p;until=0;
+            for(j=0;j!=actor->phases;++j)if(actor->phase[j].until && actor->phase[j].hp){++total;if(j<=e->phase)++current;}
+            packed=(uint16_t)current*256u+total;
+        }
+        if(kind!=10u)return packed;
+        if(!p->time_limit)return 65535u;
+        if(e->phase_age>=until || e->phase_age<last_age){
+            seconds=e->phase_age>=p->time_limit?0u:(p->time_limit-e->phase_age+59u)/60u;
+            until=seconds?p->time_limit-(seconds-1u)*60u:65535u;
+        }
+        last_age=e->phase_age;return seconds;}
+#else
         if(kind==10u)return p->time_limit?(e->phase_age>=p->time_limit?0u:(p->time_limit-e->phase_age+59u)/60u):65535u;
         for(j=0;j!=actor->phases;++j)if(actor->phase[j].until && actor->phase[j].hp){++total;if(j<=e->phase)++current;}
         return (uint16_t)current*256u+total;
+#endif
     }
     return 65535u;
 }
 
 void ce_trace_build(void) BANKED {
-    uint8_t i, count = 0, hp = 0, phase = 0; CE_Entity *e = ce_entities;
+    uint8_t i, count = 0, hp = 0, phase = 0; CE_Entity *e;
     ce_trace[22] = 1; /* Diagnostic seqlock: host ignores an incomplete snapshot. */
-    for (i = ce_used; i; --i, ++e) { if (e->kind) ++count; if (e->kind == CE_BOSS) { hp = e->hp; phase = e->phase; } }
+#if CE_CGB_ONLY
+    for(i=1;i!=7u;++i)count+=ce_pool_counts[i];
+    if(ce_pool_counts[CE_BOSS]){e=&CE_ENTITY(ce_boss_slot);hp=e->hp;phase=e->phase;}
+#else
+    for (i = ce_used,e=ce_entities; i; --i,++e) { if (e->kind) ++count; if (e->kind == CE_BOSS) { hp = e->hp; phase = e->phase; } }
+#endif
     ce_trace[0] = 'C'; ce_trace[1] = 'E'; ce_trace[2] = ce_state.tick; ce_trace[3] = ce_state.tick >> 8;
     ce_trace[4] = ce_state.stage; ce_trace[5] = ce_state.score; ce_trace[6] = ce_state.score >> 8;
     ce_trace[7] = ce_state.lives; ce_trace[8] = ce_state.player_x; ce_trace[9] = ce_state.player_x >> 8;
