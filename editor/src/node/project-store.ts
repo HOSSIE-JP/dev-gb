@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { PNG } from "pngjs";
+import {importMidiMusic} from "./midi-music";
 import {
     type Game,
     type Asset,
@@ -234,6 +235,10 @@ export function saveGame(
                 .join("\n"),
         );
     const files = new Map<string, Buffer>();
+    for(const track of game.musicTracks??[])if(track.source){
+        const source=safePath(dir,track.source.file);
+        if(hash(fs.readFileSync(source))!==track.source.sha256)throw Error(`元MIDIが変更されています: ${track.source.name}`);
+    }
     const manifestPath = safePath(dir, "project.json");
     if (fs.existsSync(manifestPath)) {
         const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
@@ -414,6 +419,22 @@ export function createProject(
         );
     fs.mkdirSync(dir);
     try {
+        for(const track of game.musicTracks ?? []) if(track.source){
+            const source=safePath(projectDir(root,game.name),track.source.file);
+            const bytes=fs.readFileSync(source);
+            if(hash(bytes)!==track.source.sha256)throw Error("元MIDIのSHA-256が一致しません");
+            atomicWrite(safePath(dir,track.source.file),bytes);
+        }
+        if (game.musicScore) {
+            const sourceManifest=safePath(projectDir(root,game.name),game.musicScore);
+            importMidiMusic(sourceManifest); // Validate filenames, payloads and hashes before copying.
+            const manifest=JSON.parse(fs.readFileSync(sourceManifest,"utf8"));
+            atomicWrite(safePath(dir,game.musicScore),fs.readFileSync(sourceManifest));
+            for (const entry of manifest.tracks) atomicWrite(
+                safePath(dir,path.dirname(game.musicScore),entry.file),
+                fs.readFileSync(safePath(path.dirname(sourceManifest),entry.file)),
+            );
+        }
         saveGame(root, name, copy);
         atomicWrite(
             safePath(dir, "project.json"),

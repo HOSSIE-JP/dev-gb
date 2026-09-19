@@ -1,0 +1,4958 @@
+{
+  "format": "touhou-gb2-arrangement-audit-v1",
+  "sourceRevision": "867d8aabdb170095198c5c42ec15d433237fa603",
+  "provenance": {
+    "source": "User-supplied Touhou original BGM transcriptions in midi_org",
+    "embeddedMetadata": "Created by RipX DAW - hitnmix.com",
+    "transcriber": "Not specified",
+    "originalComposer": "ZUN / Team Shanghai Alice",
+    "license": "Original composition and supplied transcription retain their own rights; no MIT relicensing."
+  },
+  "settingsSha256": "3c759fe3fe18a4e7810f64de6d8691c8f72c92e7284efd3bddf56fc90997659d",
+  "checks": {
+    "sourceUnchanged": true,
+    "engineBaseline": "input-lock.json records the pre-integration engine; it is not a regeneration dependency",
+    "midiRoundTrip": true,
+    "humanListening": false,
+    "originalRecordingComparison": false,
+    "gbHardwarePlayback": false,
+    "gameIntegration": false
+  },
+  "tracks": [
+    {
+      "file": "th06_01_gb2.mid",
+      "sourceFile": "th06_01.mid",
+      "stepFrames": 6,
+      "duty": 0.5,
+      "rows": 592,
+      "sections": [
+        {
+          "name": "導入・主題",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 128,
+          "sourceStartBeat": 0.0234375,
+          "sourceEndBeat": 32.0234375,
+          "sourceStartSeconds": 0.009932,
+          "sourceEndSeconds": 13.570392,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.85,
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 76,
+            "velocity": 32
+          }
+        },
+        {
+          "name": "主題の展開",
+          "hook": false,
+          "outputRow": 128,
+          "rows": 128,
+          "sourceStartBeat": 32.0234375,
+          "sourceEndBeat": 64.0234375,
+          "sourceStartSeconds": 13.570392,
+          "sourceEndSeconds": 26.918624,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.85,
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 76,
+            "velocity": 32
+          }
+        },
+        {
+          "name": "サビ・高音の応答",
+          "hook": true,
+          "outputRow": 256,
+          "rows": 256,
+          "sourceStartBeat": 64.0234375,
+          "sourceEndBeat": 128.0234375,
+          "sourceStartSeconds": 26.918624,
+          "sourceEndSeconds": 53.247097,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.85,
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 76,
+            "velocity": 32
+          }
+        },
+        {
+          "name": "主題への戻り",
+          "hook": false,
+          "outputRow": 512,
+          "rows": 80,
+          "sourceStartBeat": 128.0234375,
+          "sourceEndBeat": 148.0234375,
+          "sourceStartSeconds": 53.247097,
+          "sourceEndSeconds": 61.659001,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.85,
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 76,
+            "velocity": 32
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 588,
+          "type": "loop-turnaround",
+          "bassPitch": 46,
+          "leadReleaseRow": 590,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 59.470093,
+      "bpm": 149.318751,
+      "bars": 37,
+      "selectedSourceSeconds": 61.649069,
+      "selectedSourceBpm": 144.041105,
+      "tempoChangePercent": 3.663986,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 0.023438,
+          "startSeconds": 0,
+          "endSeconds": 0.009932
+        },
+        {
+          "startBeat": 148.023438,
+          "endBeat": 148.261719,
+          "startSeconds": 61.659001,
+          "endSeconds": 61.760841
+        }
+      ],
+      "sourceSeconds": 61.760841,
+      "sourceSha256": "47de93484341fc888534c6a975f613f94b50e4c19ffba6e89301e4f59bd8aa60",
+      "outputSha256": "697e25af64c08bb346d3c3fe8ab4522c38e6c34b0342450b198daacfbd8b5f13",
+      "editorial": "短い曲なので展開を保持。高音の重複は1本にまとめ、終端の端数だけを整理する。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          87
+        ],
+        "leadNotes": 100,
+        "bassNotes": 287,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・高音の応答",
+            "noteCount": 39,
+            "octave": 0,
+            "sourcePitchSha256": "7c64eeee8dafd38981c023e36528e13d348a02acf973189d850297723e9a4fcc",
+            "outputPitchSha256": "7c64eeee8dafd38981c023e36528e13d348a02acf973189d850297723e9a4fcc",
+            "rowOnsetSha256": "75fd835ef2202e3c49fe3c341d81f1a1de50185f8b1ecdb14970d9cca4a19bc6",
+            "firstNotes": [
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 0,
+                "sourceNoteId": 1752
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 3,
+                "sourceNoteId": 1762
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 36,
+                "sourceNoteId": 1780
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 55,
+                "sourceNoteId": 1799
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 56,
+                "sourceNoteId": 1803
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 59,
+                "sourceNoteId": 1808
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 60,
+                "sourceNoteId": 1810
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 62,
+                "sourceNoteId": 1813
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 64,
+                "sourceNoteId": 1819
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 66,
+                "sourceNoteId": 1825
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 109,
+                "sourceNoteId": 1846
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 112,
+                "sourceNoteId": 1848
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_02_gb2.mid",
+      "sourceFile": "th06_02.mid",
+      "stepFrames": 6,
+      "duty": 0.25,
+      "rows": 784,
+      "sections": [
+        {
+          "name": "主題への導入",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 96,
+          "sourceStartBeat": 8.0234375,
+          "sourceEndBeat": 32.0234375,
+          "sourceStartSeconds": 3.318572,
+          "sourceEndSeconds": 13.245104,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 60,
+            "high": 86,
+            "center": 72,
+            "velocity": 30
+          }
+        },
+        {
+          "name": "サビ・反復主題",
+          "hook": true,
+          "outputRow": 96,
+          "rows": 320,
+          "sourceStartBeat": 32.0234375,
+          "sourceEndBeat": 112.0234375,
+          "sourceStartSeconds": 13.245104,
+          "sourceEndSeconds": 46.356688,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 65,
+            "high": 86,
+            "center": 75,
+            "velocity": 30
+          }
+        },
+        {
+          "name": "対比する展開",
+          "hook": false,
+          "outputRow": 416,
+          "rows": 192,
+          "sourceStartBeat": 112.0234375,
+          "sourceEndBeat": 160.0234375,
+          "sourceStartSeconds": 46.356688,
+          "sourceEndSeconds": 66.209744,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 60,
+            "high": 86,
+            "center": 71,
+            "velocity": 30
+          }
+        },
+        {
+          "name": "主題の再現",
+          "hook": true,
+          "outputRow": 608,
+          "rows": 176,
+          "sourceStartBeat": 160.0234375,
+          "sourceEndBeat": 204.0234375,
+          "sourceStartSeconds": 66.209744,
+          "sourceEndSeconds": 84.414376,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 65,
+            "high": 86,
+            "center": 75,
+            "velocity": 30
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 780,
+          "type": "loop-turnaround",
+          "bassPitch": 45,
+          "leadReleaseRow": 782,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 78.75769,
+      "bpm": 149.318751,
+      "bars": 49,
+      "selectedSourceSeconds": 81.095804,
+      "selectedSourceBpm": 145.013668,
+      "tempoChangePercent": 2.968743,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 8.023438,
+          "startSeconds": 0,
+          "endSeconds": 3.318572
+        },
+        {
+          "startBeat": 204.023438,
+          "endBeat": 205.464844,
+          "startSeconds": 84.414376,
+          "endSeconds": 85.021009
+        }
+      ],
+      "sourceSeconds": 85.021009,
+      "sourceSha256": "0384ce9fce122f8a95bbad17dac5c95c234baa493ab927dca0b113a2545da8f7",
+      "outputSha256": "2e2bf05ae71fc08fef80be1a5575c48e554b9cbce9ad49a4e19afbcc376f11db",
+      "editorial": "冒頭の打楽器だけの区間を省き、旋律が入るところから開始。中盤の対比と最後の主題再現を保持する。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          81
+        ],
+        "leadNotes": 176,
+        "bassNotes": 323,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・反復主題",
+            "noteCount": 66,
+            "octave": 0,
+            "sourcePitchSha256": "eb86c0267510ee89ccef3e9032e4b0c0f508d5914a3343f15bdb5b41e1aaa50b",
+            "outputPitchSha256": "eb86c0267510ee89ccef3e9032e4b0c0f508d5914a3343f15bdb5b41e1aaa50b",
+            "rowOnsetSha256": "3e00b1bb92eebc13ef1bd7d8ee73f348387da84e6e8476ec6acd269a00bfddf8",
+            "firstNotes": [
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 0,
+                "sourceNoteId": 148
+              },
+              {
+                "pitch": 67,
+                "name": "G4",
+                "row": 6,
+                "sourceNoteId": 174
+              },
+              {
+                "pitch": 67,
+                "name": "G4",
+                "row": 10,
+                "sourceNoteId": 182
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 19,
+                "sourceNoteId": 1506
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 32,
+                "sourceNoteId": 1526
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 42,
+                "sourceNoteId": 1528
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 45,
+                "sourceNoteId": 1532
+              },
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 48,
+                "sourceNoteId": 1538
+              },
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 54,
+                "sourceNoteId": 1547
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 58,
+                "sourceNoteId": 1554
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 60,
+                "sourceNoteId": 1558
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 61,
+                "sourceNoteId": 1559
+              }
+            ]
+          },
+          {
+            "name": "主題の再現",
+            "noteCount": 44,
+            "octave": 0,
+            "sourcePitchSha256": "e326bf8eda9883b83cb666b125e84c2a80f402863741ce8febead6d8d65e2f77",
+            "outputPitchSha256": "e326bf8eda9883b83cb666b125e84c2a80f402863741ce8febead6d8d65e2f77",
+            "rowOnsetSha256": "2576df6627140ca7b3f1d8e9861a59dd6d404cad72380c7eec767659806a525e",
+            "firstNotes": [
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 14,
+                "sourceNoteId": 862
+              },
+              {
+                "pitch": 65,
+                "name": "F4",
+                "row": 18,
+                "sourceNoteId": 869
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 25,
+                "sourceNoteId": 879
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 28,
+                "sourceNoteId": 2244
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 32,
+                "sourceNoteId": 2249
+              },
+              {
+                "pitch": 65,
+                "name": "F4",
+                "row": 35,
+                "sourceNoteId": 897
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 39,
+                "sourceNoteId": 2264
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 45,
+                "sourceNoteId": 2281
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 48,
+                "sourceNoteId": 2288
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 49,
+                "sourceNoteId": 2291
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 57,
+                "sourceNoteId": 2302
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 58,
+                "sourceNoteId": 2306
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_03_gb2.mid",
+      "sourceFile": "th06_03.mid",
+      "stepFrames": 6,
+      "duty": 0.25,
+      "rows": 528,
+      "sections": [
+        {
+          "name": "冒頭の主題",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 128,
+          "sourceStartBeat": 0.5625,
+          "sourceEndBeat": 32.5625,
+          "sourceStartSeconds": 0.231837,
+          "sourceEndSeconds": 13.384308,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 65,
+            "high": 86,
+            "center": 76,
+            "velocity": 38
+          }
+        },
+        {
+          "name": "展開",
+          "hook": false,
+          "outputRow": 128,
+          "rows": 128,
+          "sourceStartBeat": 32.5625,
+          "sourceEndBeat": 64.5625,
+          "sourceStartSeconds": 13.384308,
+          "sourceEndSeconds": 26.538412,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 65,
+            "high": 86,
+            "center": 76,
+            "velocity": 38
+          }
+        },
+        {
+          "name": "サビ",
+          "hook": true,
+          "outputRow": 256,
+          "rows": 256,
+          "sourceStartBeat": 64.5625,
+          "sourceEndBeat": 128.5625,
+          "sourceStartSeconds": 26.538412,
+          "sourceEndSeconds": 52.825025,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 65,
+            "high": 86,
+            "center": 76,
+            "velocity": 38
+          }
+        },
+        {
+          "name": "折り返し",
+          "hook": false,
+          "outputRow": 512,
+          "rows": 16,
+          "sourceStartBeat": 128.5625,
+          "sourceEndBeat": 132.5625,
+          "sourceStartSeconds": 52.825025,
+          "sourceEndSeconds": 54.473641,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 65,
+            "high": 86,
+            "center": 76,
+            "velocity": 38
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 524,
+          "type": "loop-turnaround",
+          "bassPitch": 47,
+          "leadReleaseRow": 526,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 53.040894,
+      "bpm": 149.318751,
+      "bars": 33,
+      "selectedSourceSeconds": 54.241804,
+      "selectedSourceBpm": 146.012843,
+      "tempoChangePercent": 2.264121,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 0.5625,
+          "startSeconds": 0,
+          "endSeconds": 0.231837
+        },
+        {
+          "startBeat": 132.5625,
+          "endBeat": 133.609375,
+          "startSeconds": 54.473641,
+          "endSeconds": 54.905114
+        }
+      ],
+      "sourceSeconds": 54.905114,
+      "sourceSha256": "2deb8c4c553c39a6542fab34bd67842ff32e9622d2c4afe7f72b79d9a49ca226",
+      "outputSha256": "7e2796766a2566e706d4a94cce1c2369f40ad08b39d3ff0aaaaf5cd8341ee78c",
+      "editorial": "約55秒の原形をほぼ維持。冒頭の空白と最後の端数を整理する。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          83
+        ],
+        "leadNotes": 124,
+        "bassNotes": 263,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ",
+            "noteCount": 49,
+            "octave": 0,
+            "sourcePitchSha256": "7ed7604d880084ce950806e9c685c7c5c71b3a834825f7bdd004d9d023ca79fc",
+            "outputPitchSha256": "7ed7604d880084ce950806e9c685c7c5c71b3a834825f7bdd004d9d023ca79fc",
+            "rowOnsetSha256": "3a207c3c87c06b1dfc2f54cfadf69ef2b68f018ec137b451130fbaee556b9fc9",
+            "firstNotes": [
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 0,
+                "sourceNoteId": 1220
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 5,
+                "sourceNoteId": 1225
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 8,
+                "sourceNoteId": 1233
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 14,
+                "sourceNoteId": 1237
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 16,
+                "sourceNoteId": 1240
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 21,
+                "sourceNoteId": 1248
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 29,
+                "sourceNoteId": 1258
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 32,
+                "sourceNoteId": 1259
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 33,
+                "sourceNoteId": 1262
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 42,
+                "sourceNoteId": 1265
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 44,
+                "sourceNoteId": 1268
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 45,
+                "sourceNoteId": 1269
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_04_gb2.mid",
+      "sourceFile": "th06_04.mid",
+      "stepFrames": 4.5,
+      "duty": 0.5,
+      "rows": 1024,
+      "sections": [
+        {
+          "name": "導入",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 128,
+          "sourceStartBeat": 0.03515625,
+          "sourceEndBeat": 16.03515625,
+          "sourceStartSeconds": 0.022143,
+          "sourceEndSeconds": 10.041347,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.95,
+              "2": 0.4,
+              "4": 1
+            },
+            "low": 62,
+            "high": 88,
+            "center": 73,
+            "velocity": 40
+          }
+        },
+        {
+          "name": "主題",
+          "hook": false,
+          "outputRow": 128,
+          "rows": 256,
+          "sourceStartBeat": 16.03515625,
+          "sourceEndBeat": 48.03515625,
+          "sourceStartSeconds": 10.041347,
+          "sourceEndSeconds": 30.045339,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.95,
+              "2": 0.4,
+              "4": 1
+            },
+            "low": 62,
+            "high": 88,
+            "center": 73,
+            "velocity": 40
+          }
+        },
+        {
+          "name": "旋律の展開",
+          "hook": false,
+          "outputRow": 384,
+          "rows": 256,
+          "sourceStartBeat": 48.03515625,
+          "sourceEndBeat": 80.03515625,
+          "sourceStartSeconds": 30.045339,
+          "sourceEndSeconds": 50.328587,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.95,
+              "2": 0.4,
+              "4": 1
+            },
+            "low": 62,
+            "high": 88,
+            "center": 73,
+            "velocity": 40
+          }
+        },
+        {
+          "name": "ピアノの応答",
+          "hook": false,
+          "outputRow": 640,
+          "rows": 128,
+          "sourceStartBeat": 80.03515625,
+          "sourceEndBeat": 96.03515625,
+          "sourceStartSeconds": 50.328587,
+          "sourceEndSeconds": 60.510335,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 1.2,
+              "2": 0.3,
+              "4": 0.55
+            },
+            "low": 62,
+            "high": 88,
+            "center": 68,
+            "velocity": 40
+          }
+        },
+        {
+          "name": "サビ・後半主題",
+          "hook": true,
+          "outputRow": 768,
+          "rows": 256,
+          "sourceStartBeat": 96.03515625,
+          "sourceEndBeat": 128.03515625,
+          "sourceStartSeconds": 60.510335,
+          "sourceEndSeconds": 80.641737,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.95,
+              "2": 0.4,
+              "4": 1
+            },
+            "low": 67,
+            "high": 88,
+            "center": 77,
+            "velocity": 40
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 1020,
+          "type": "loop-turnaround",
+          "bassPitch": 36,
+          "leadReleaseRow": 1022,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 77.150391,
+      "bpm": 199.091669,
+      "bars": 64,
+      "selectedSourceSeconds": 80.619594,
+      "selectedSourceBpm": 190.524403,
+      "tempoChangePercent": 4.496676,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 0.035156,
+          "startSeconds": 0,
+          "endSeconds": 0.022143
+        },
+        {
+          "startBeat": 128.035156,
+          "endBeat": 136.589844,
+          "startSeconds": 80.641737,
+          "endSeconds": 86.009761
+        }
+      ],
+      "sourceSeconds": 86.009761,
+      "sourceSha256": "968b6278add333a10e28bdcdf90ed010a196fdeb84037d8f352e80ab905ebb25",
+      "outputSha256": "9fa82a872cf027b39462f90178bfb5db84c9dc6d4dc843d3f0b46caf026e27f5",
+      "editorial": "元の約95 BPMを倍テンポ表記にして速い音型を保持。64小節に収めるため、後半主題を1回完結させたあとの末尾反復を省く。",
+      "beatScale": 2,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          86
+        ],
+        "leadNotes": 119,
+        "bassNotes": 507,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・後半主題",
+            "noteCount": 25,
+            "octave": 0,
+            "sourcePitchSha256": "3fa03796dee550d8a1d478249dc02530a1ce918d24cb75d096cab1a2d3842261",
+            "outputPitchSha256": "3fa03796dee550d8a1d478249dc02530a1ce918d24cb75d096cab1a2d3842261",
+            "rowOnsetSha256": "d542806562316085518e9ebfd896056e12fd47a925f5e0c3fe75494a6ba8d276",
+            "firstNotes": [
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 0,
+                "sourceNoteId": 2374
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 4,
+                "sourceNoteId": 2378
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 13,
+                "sourceNoteId": 2384
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 15,
+                "sourceNoteId": 2385
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 41,
+                "sourceNoteId": 2395
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 52,
+                "sourceNoteId": 2400
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 54,
+                "sourceNoteId": 2402
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 58,
+                "sourceNoteId": 2408
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 62,
+                "sourceNoteId": 2411
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 75,
+                "sourceNoteId": 2415
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 88,
+                "sourceNoteId": 2423
+              },
+              {
+                "pitch": 67,
+                "name": "G4",
+                "row": 96,
+                "sourceNoteId": 2429
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_05_gb2.mid",
+      "sourceFile": "th06_05.mid",
+      "stepFrames": 6,
+      "duty": 0.25,
+      "rows": 864,
+      "sections": [
+        {
+          "name": "特徴的な冒頭主題",
+          "hook": true,
+          "outputRow": 0,
+          "rows": 256,
+          "sourceStartBeat": 8.03125,
+          "sourceEndBeat": 72.03125,
+          "sourceStartSeconds": 3.170248,
+          "sourceEndSeconds": 28.433548,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.1,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 76,
+            "velocity": 38
+          }
+        },
+        {
+          "name": "中間の対比",
+          "hook": false,
+          "outputRow": 256,
+          "rows": 256,
+          "sourceStartBeat": 72.03125,
+          "sourceEndBeat": 136.03125,
+          "sourceStartSeconds": 28.433548,
+          "sourceEndSeconds": 53.699733,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.1,
+              "4": 1
+            },
+            "low": 60,
+            "high": 88,
+            "center": 71,
+            "velocity": 38
+          }
+        },
+        {
+          "name": "サビ・高音域の展開",
+          "hook": true,
+          "outputRow": 512,
+          "rows": 256,
+          "sourceStartBeat": 136.03125,
+          "sourceEndBeat": 200.03125,
+          "sourceStartSeconds": 53.699733,
+          "sourceEndSeconds": 78.948657,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.1,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 80,
+            "velocity": 38
+          }
+        },
+        {
+          "name": "サビの応答",
+          "hook": true,
+          "outputRow": 768,
+          "rows": 96,
+          "sourceStartBeat": 200.03125,
+          "sourceEndBeat": 224.03125,
+          "sourceStartSeconds": 78.948657,
+          "sourceEndSeconds": 88.500576,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.1,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 76,
+            "velocity": 38
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 860,
+          "type": "loop-turnaround",
+          "bassPitch": 43,
+          "leadReleaseRow": 862,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 86.794189,
+      "bpm": 149.318751,
+      "bars": 54,
+      "selectedSourceSeconds": 85.330328,
+      "selectedSourceBpm": 151.880349,
+      "tempoChangePercent": -1.686589,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 8.03125,
+          "startSeconds": 0,
+          "endSeconds": 3.170248
+        },
+        {
+          "startBeat": 224.03125,
+          "endBeat": 224.722656,
+          "startSeconds": 88.500576,
+          "endSeconds": 88.771996
+        }
+      ],
+      "sourceSeconds": 88.771996,
+      "sourceSha256": "44fca9ec87cd47d33b1eb8b956eda2cbb408a278c30ccddabe601ada6836dc95",
+      "outputSha256": "6941b5e9df8f2814ce27982fbabba2f4001fed9cd98e999dc248a5a1046b1f54",
+      "editorial": "冒頭の打楽器導入を省く。冒頭の代表的な旋律と後半の盛り上がりを両方残す。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          87
+        ],
+        "leadNotes": 173,
+        "bassNotes": 331,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "特徴的な冒頭主題",
+            "noteCount": 33,
+            "octave": 0,
+            "sourcePitchSha256": "1380519198dc81e8f9b8e5524661838bc802b110ff748a3b8d34d3e6b0224e3b",
+            "outputPitchSha256": "1380519198dc81e8f9b8e5524661838bc802b110ff748a3b8d34d3e6b0224e3b",
+            "rowOnsetSha256": "c03dc7e1337ab6f1c98a2f0395ef4f49044b18a0237aa7cd50bb702dd77851d0",
+            "firstNotes": [
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 0,
+                "sourceNoteId": 1106
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 6,
+                "sourceNoteId": 1110
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 8,
+                "sourceNoteId": 1112
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 20,
+                "sourceNoteId": 1124
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 22,
+                "sourceNoteId": 1127
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 31,
+                "sourceNoteId": 1138
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 34,
+                "sourceNoteId": 1141
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 38,
+                "sourceNoteId": 1145
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 47,
+                "sourceNoteId": 1158
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 50,
+                "sourceNoteId": 1161
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 52,
+                "sourceNoteId": 1163
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 66,
+                "sourceNoteId": 1178
+              }
+            ]
+          },
+          {
+            "name": "サビ・高音域の展開",
+            "noteCount": 57,
+            "octave": 0,
+            "sourcePitchSha256": "1e2588b9a951f56ed17b80e2edaf6b343c20c79bc2f26e7efa58d361e340e8b5",
+            "outputPitchSha256": "1e2588b9a951f56ed17b80e2edaf6b343c20c79bc2f26e7efa58d361e340e8b5",
+            "rowOnsetSha256": "9f00dbc39b6c6e9978c4f8cf1cbe33ff3fb2c926a240a177ffb1f10707c71416",
+            "firstNotes": [
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 2,
+                "sourceNoteId": 1707
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 6,
+                "sourceNoteId": 1713
+              },
+              {
+                "pitch": 85,
+                "name": "C#6",
+                "row": 10,
+                "sourceNoteId": 1717
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 12,
+                "sourceNoteId": 1721
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 14,
+                "sourceNoteId": 1726
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 18,
+                "sourceNoteId": 1735
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 20,
+                "sourceNoteId": 1737
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 22,
+                "sourceNoteId": 1742
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 26,
+                "sourceNoteId": 1750
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 30,
+                "sourceNoteId": 1759
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 38,
+                "sourceNoteId": 1771
+              },
+              {
+                "pitch": 68,
+                "name": "G#4",
+                "row": 48,
+                "sourceNoteId": 1785
+              }
+            ]
+          },
+          {
+            "name": "サビの応答",
+            "noteCount": 16,
+            "octave": 0,
+            "sourcePitchSha256": "1c3246bfc8a0d015a60c9cd8b5ac34715241a22ddbba12a008f1edc03817422a",
+            "outputPitchSha256": "1c3246bfc8a0d015a60c9cd8b5ac34715241a22ddbba12a008f1edc03817422a",
+            "rowOnsetSha256": "c1cc8bf87961ffe62a237e1697c39312a9f58cc170abe52e2db202493517a62f",
+            "firstNotes": [
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 0,
+                "sourceNoteId": 2067
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 3,
+                "sourceNoteId": 2073
+              },
+              {
+                "pitch": 82,
+                "name": "A#5",
+                "row": 7,
+                "sourceNoteId": 2080
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 9,
+                "sourceNoteId": 2083
+              },
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 10,
+                "sourceNoteId": 2085
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 14,
+                "sourceNoteId": 2088
+              },
+              {
+                "pitch": 82,
+                "name": "A#5",
+                "row": 22,
+                "sourceNoteId": 2100
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 34,
+                "sourceNoteId": 2106
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 40,
+                "sourceNoteId": 2110
+              },
+              {
+                "pitch": 82,
+                "name": "A#5",
+                "row": 54,
+                "sourceNoteId": 2114
+              },
+              {
+                "pitch": 82,
+                "name": "A#5",
+                "row": 68,
+                "sourceNoteId": 2126
+              },
+              {
+                "pitch": 82,
+                "name": "A#5",
+                "row": 73,
+                "sourceNoteId": 2131
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_06_gb2.mid",
+      "sourceFile": "th06_06.mid",
+      "stepFrames": 6.5,
+      "duty": 0.5,
+      "rows": 896,
+      "sections": [
+        {
+          "name": "導入",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 128,
+          "sourceStartBeat": 0.0390625,
+          "sourceEndBeat": 32.0390625,
+          "sourceStartSeconds": 0.018311,
+          "sourceEndSeconds": 13.797593,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.25,
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 77,
+            "velocity": 40
+          }
+        },
+        {
+          "name": "サビ・主題",
+          "hook": true,
+          "outputRow": 128,
+          "rows": 256,
+          "sourceStartBeat": 32.0390625,
+          "sourceEndBeat": 96.0390625,
+          "sourceStartSeconds": 13.797593,
+          "sourceEndSeconds": 40.680032,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.25,
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 40
+          }
+        },
+        {
+          "name": "対比する旋律",
+          "hook": false,
+          "outputRow": 384,
+          "rows": 256,
+          "sourceStartBeat": 96.0390625,
+          "sourceEndBeat": 160.0390625,
+          "sourceStartSeconds": 40.680032,
+          "sourceEndSeconds": 67.511214,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.25,
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 77,
+            "velocity": 40
+          }
+        },
+        {
+          "name": "サビの再現",
+          "hook": true,
+          "outputRow": 640,
+          "rows": 256,
+          "sourceStartBeat": 224.0390625,
+          "sourceEndBeat": 288.0390625,
+          "sourceStartSeconds": 95.631546,
+          "sourceEndSeconds": 124.575036,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.25,
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 40
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 639,
+          "type": "splice-breath",
+          "from": "対比する旋律",
+          "to": "サビの再現"
+        },
+        {
+          "row": 892,
+          "type": "loop-turnaround",
+          "bassPitch": 37,
+          "leadReleaseRow": 894,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 97.509521,
+      "bpm": 137.832694,
+      "bars": 56,
+      "selectedSourceSeconds": 96.436393,
+      "selectedSourceBpm": 139.366473,
+      "tempoChangePercent": -1.100537,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 0.039063,
+          "startSeconds": 0,
+          "endSeconds": 0.018311
+        },
+        {
+          "startBeat": 160.039063,
+          "endBeat": 224.039063,
+          "startSeconds": 67.511214,
+          "endSeconds": 95.631546
+        },
+        {
+          "startBeat": 288.039063,
+          "endBeat": 320,
+          "startSeconds": 124.575036,
+          "endSeconds": 138.91916
+        }
+      ],
+      "sourceSeconds": 138.91916,
+      "sourceSha256": "60f824621a3c8f27b58f80004d71dd990fdf9961419c45ba208e2c9fd0d16949",
+      "outputSha256": "c08298e96be9175938873ede206d0ac02bd3c6c95115f41b6168c9f6c95f6abb",
+      "editorial": "前半の主題と対比旋律を保持し、中間の反復を飛ばして後半の主題再現へつなぐ。終盤の同主題の追加反復を省く。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          37,
+          85
+        ],
+        "leadNotes": 229,
+        "bassNotes": 417,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・主題",
+            "noteCount": 71,
+            "octave": 0,
+            "sourcePitchSha256": "905ddb24c0dc49c67eb3a2922bfba2f3b0ee5820fba47fa6dc23f4ce73a69b65",
+            "outputPitchSha256": "905ddb24c0dc49c67eb3a2922bfba2f3b0ee5820fba47fa6dc23f4ce73a69b65",
+            "rowOnsetSha256": "db245d071e9f0832a054e605ddec2a6d6143a86c98b6a9388c54f9a8a392046d",
+            "firstNotes": [
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 0,
+                "sourceNoteId": 2077
+              },
+              {
+                "pitch": 68,
+                "name": "G#4",
+                "row": 1,
+                "sourceNoteId": 2084
+              },
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 2,
+                "sourceNoteId": 2087
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 4,
+                "sourceNoteId": 2091
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 8,
+                "sourceNoteId": 2096
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 10,
+                "sourceNoteId": 2098
+              },
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 12,
+                "sourceNoteId": 2101
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 14,
+                "sourceNoteId": 2103
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 19,
+                "sourceNoteId": 2110
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 22,
+                "sourceNoteId": 2116
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 24,
+                "sourceNoteId": 2119
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 28,
+                "sourceNoteId": 2124
+              }
+            ]
+          },
+          {
+            "name": "サビの再現",
+            "noteCount": 77,
+            "octave": 0,
+            "sourcePitchSha256": "2a7001a3f2216b0dcbb8486b4c6a62cfb85124e8ff0f5cc68eabb2e6e0d10e94",
+            "outputPitchSha256": "2a7001a3f2216b0dcbb8486b4c6a62cfb85124e8ff0f5cc68eabb2e6e0d10e94",
+            "rowOnsetSha256": "0fd482dc885a7466fc3e4affae164327a9de75bde7ecf4b8681444aaeea797c5",
+            "firstNotes": [
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 0,
+                "sourceNoteId": 2930
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 2,
+                "sourceNoteId": 2933
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 7,
+                "sourceNoteId": 2940
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 9,
+                "sourceNoteId": 2943
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 22,
+                "sourceNoteId": 2967
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 23,
+                "sourceNoteId": 2968
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 30,
+                "sourceNoteId": 2972
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 37,
+                "sourceNoteId": 2979
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 39,
+                "sourceNoteId": 2982
+              },
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 42,
+                "sourceNoteId": 2988
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 43,
+                "sourceNoteId": 2991
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 45,
+                "sourceNoteId": 2995
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_07_gb2.mid",
+      "sourceFile": "th06_07.mid",
+      "stepFrames": 6,
+      "duty": 0.25,
+      "rows": 992,
+      "sections": [
+        {
+          "name": "冒頭主題",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 192,
+          "sourceStartBeat": 2.5234375,
+          "sourceEndBeat": 50.5234375,
+          "sourceStartSeconds": 1.062019,
+          "sourceEndSeconds": 21.049973,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.12,
+              "3": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 74,
+            "velocity": 42
+          }
+        },
+        {
+          "name": "サビ・第1主題",
+          "hook": true,
+          "outputRow": 192,
+          "rows": 320,
+          "sourceStartBeat": 50.5234375,
+          "sourceEndBeat": 130.5234375,
+          "sourceStartSeconds": 21.049973,
+          "sourceEndSeconds": 54.378229,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.12,
+              "3": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 74,
+            "velocity": 42
+          }
+        },
+        {
+          "name": "サビ・転調後の主題",
+          "hook": true,
+          "outputRow": 512,
+          "rows": 256,
+          "sourceStartBeat": 130.5234375,
+          "sourceEndBeat": 194.5234375,
+          "sourceStartSeconds": 54.378229,
+          "sourceEndSeconds": 81.045908,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.12,
+              "3": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 74,
+            "velocity": 42
+          }
+        },
+        {
+          "name": "主題への戻り",
+          "hook": false,
+          "outputRow": 768,
+          "rows": 224,
+          "sourceStartBeat": 194.5234375,
+          "sourceEndBeat": 250.5234375,
+          "sourceStartSeconds": 81.045908,
+          "sourceEndSeconds": 104.380899,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.12,
+              "3": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 74,
+            "velocity": 42
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 988,
+          "type": "loop-turnaround",
+          "bassPitch": 41,
+          "leadReleaseRow": 990,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 99.652588,
+      "bpm": 149.318751,
+      "bars": 62,
+      "selectedSourceSeconds": 103.31888,
+      "selectedSourceBpm": 144.020144,
+      "tempoChangePercent": 3.679074,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 2.523438,
+          "startSeconds": 0,
+          "endSeconds": 1.062019
+        },
+        {
+          "startBeat": 250.523438,
+          "endBeat": 253.375,
+          "startSeconds": 104.380899,
+          "endSeconds": 105.574511
+        }
+      ],
+      "sourceSeconds": 105.574511,
+      "sourceSha256": "4711c1f56d7780212c0c9541c96cdb453f29a1750fc8b82a8297c9a5597fdf85",
+      "outputSha256": "9736042d69404d1ce64634c8b2124c459fcd51be21ca9cd650b6989f9fc60dd9",
+      "editorial": "約106秒の原曲をほぼ保持。冒頭空白と終端の不完全な小節を整理し、一定テンポで約100秒にする。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          84
+        ],
+        "leadNotes": 304,
+        "bassNotes": 495,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・第1主題",
+            "noteCount": 103,
+            "octave": 0,
+            "sourcePitchSha256": "f32e016a882cf188d86010d057ba11ea1cd264cf13fee82c521d1db412b12d03",
+            "outputPitchSha256": "f32e016a882cf188d86010d057ba11ea1cd264cf13fee82c521d1db412b12d03",
+            "rowOnsetSha256": "e383361d54db428b15a6cb297e6d6e6e06d318909fd6384b12bd2ebab601bfa3",
+            "firstNotes": [
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 0,
+                "sourceNoteId": 1694
+              },
+              {
+                "pitch": 82,
+                "name": "A#5",
+                "row": 2,
+                "sourceNoteId": 1698
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 5,
+                "sourceNoteId": 1704
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 9,
+                "sourceNoteId": 1707
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 11,
+                "sourceNoteId": 1710
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 13,
+                "sourceNoteId": 1713
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 16,
+                "sourceNoteId": 1717
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 20,
+                "sourceNoteId": 1722
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 26,
+                "sourceNoteId": 1730
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 30,
+                "sourceNoteId": 1736
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 33,
+                "sourceNoteId": 1743
+              },
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 34,
+                "sourceNoteId": 1748
+              }
+            ]
+          },
+          {
+            "name": "サビ・転調後の主題",
+            "noteCount": 108,
+            "octave": 0,
+            "sourcePitchSha256": "6eba1f637ae4313f45a3e75507ac37b8dfcb7bd10a4a1afa9faebd3072a7d633",
+            "outputPitchSha256": "6eba1f637ae4313f45a3e75507ac37b8dfcb7bd10a4a1afa9faebd3072a7d633",
+            "rowOnsetSha256": "f72b725928f74bb3dabd9490d79b5d2a567a1852e55c7d161fd0a22b069587c3",
+            "firstNotes": [
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 0,
+                "sourceNoteId": 2199
+              },
+              {
+                "pitch": 66,
+                "name": "F#4",
+                "row": 2,
+                "sourceNoteId": 2204
+              },
+              {
+                "pitch": 67,
+                "name": "G4",
+                "row": 4,
+                "sourceNoteId": 2208
+              },
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 6,
+                "sourceNoteId": 2210
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 8,
+                "sourceNoteId": 2214
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 12,
+                "sourceNoteId": 2223
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 16,
+                "sourceNoteId": 2229
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 22,
+                "sourceNoteId": 2238
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 25,
+                "sourceNoteId": 2244
+              },
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 33,
+                "sourceNoteId": 2252
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 34,
+                "sourceNoteId": 2253
+              },
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 36,
+                "sourceNoteId": 2259
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_08_gb2.mid",
+      "sourceFile": "th06_08.mid",
+      "stepFrames": 4.5,
+      "duty": 0.5,
+      "rows": 1024,
+      "sections": [
+        {
+          "name": "低音域の導入リフ",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 128,
+          "sourceStartBeat": 0.0546875,
+          "sourceEndBeat": 16.0546875,
+          "sourceStartSeconds": 0.032857,
+          "sourceEndSeconds": 9.645596,
+          "octave": 12,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.4,
+              "2": 1,
+              "4": 0.18
+            },
+            "low": 58,
+            "high": 83,
+            "center": 68,
+            "velocity": 50
+          }
+        },
+        {
+          "name": "主題とピアノの応答",
+          "hook": false,
+          "outputRow": 128,
+          "rows": 384,
+          "sourceStartBeat": 32.0546875,
+          "sourceEndBeat": 80.0546875,
+          "sourceStartSeconds": 19.2243,
+          "sourceEndSeconds": 48.028342,
+          "octave": 12,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.4,
+              "2": 1,
+              "4": 0.18
+            },
+            "low": 58,
+            "high": 83,
+            "center": 68,
+            "velocity": 50
+          }
+        },
+        {
+          "name": "サビ・後半のリフ",
+          "hook": true,
+          "outputRow": 512,
+          "rows": 256,
+          "sourceStartBeat": 112.0546875,
+          "sourceEndBeat": 144.0546875,
+          "sourceStartSeconds": 67.25574,
+          "sourceEndSeconds": 87.096565,
+          "octave": 12,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.4,
+              "2": 1,
+              "4": 0.18
+            },
+            "low": 58,
+            "high": 83,
+            "center": 68,
+            "velocity": 50
+          }
+        },
+        {
+          "name": "サビの発展",
+          "hook": true,
+          "outputRow": 768,
+          "rows": 256,
+          "sourceStartBeat": 144.0546875,
+          "sourceEndBeat": 176.0546875,
+          "sourceStartSeconds": 87.096565,
+          "sourceEndSeconds": 106.635844,
+          "octave": 12,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.4,
+              "2": 1,
+              "4": 0.18
+            },
+            "low": 58,
+            "high": 83,
+            "center": 68,
+            "velocity": 50
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 127,
+          "type": "splice-breath",
+          "from": "低音域の導入リフ",
+          "to": "主題とピアノの応答"
+        },
+        {
+          "row": 511,
+          "type": "splice-breath",
+          "from": "主題とピアノの応答",
+          "to": "サビ・後半のリフ"
+        },
+        {
+          "row": 1020,
+          "type": "loop-turnaround",
+          "bassPitch": 36,
+          "leadReleaseRow": 1022,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 77.150391,
+      "bpm": 199.091669,
+      "bars": 64,
+      "selectedSourceSeconds": 77.796885,
+      "selectedSourceBpm": 197.437211,
+      "tempoChangePercent": 0.837967,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 0.054688,
+          "startSeconds": 0,
+          "endSeconds": 0.032857
+        },
+        {
+          "startBeat": 16.054688,
+          "endBeat": 32.054688,
+          "startSeconds": 9.645596,
+          "endSeconds": 19.2243
+        },
+        {
+          "startBeat": 80.054688,
+          "endBeat": 112.054688,
+          "startSeconds": 48.028342,
+          "endSeconds": 67.25574
+        },
+        {
+          "startBeat": 176.054688,
+          "endBeat": 197.304688,
+          "startSeconds": 106.635844,
+          "endSeconds": 119.399001
+        }
+      ],
+      "sourceSeconds": 119.399001,
+      "sourceSha256": "fbeb67c60addb37938f235e21081502c441a61b62d62d9a941e8c97eaaab484f",
+      "outputSha256": "8ea8549d769337ab4a936c098b10cb03e44fb513df0bf6a39884390817dffa7d",
+      "editorial": "低いギター系トラックの動きを主旋律として採用し、1オクターブ上げる。倍テンポ表記で細かいリフを残し、疎な中間部と末尾反復を整理する。",
+      "beatScale": 2,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          95
+        ],
+        "leadNotes": 199,
+        "bassNotes": 344,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・後半のリフ",
+            "noteCount": 35,
+            "octave": 12,
+            "sourcePitchSha256": "22d780c3805fa2fc1c403fcf4a94355c95b2f902435a6490a22fbaaa2d2deea1",
+            "outputPitchSha256": "22d780c3805fa2fc1c403fcf4a94355c95b2f902435a6490a22fbaaa2d2deea1",
+            "rowOnsetSha256": "0e964c00ae7cf00c4c957f48d2c4241206cad1ea99ac3619b4e57c33871ec10e",
+            "firstNotes": [
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 0,
+                "sourceNoteId": 1238
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 2,
+                "sourceNoteId": 1246
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 21,
+                "sourceNoteId": 1254
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 33,
+                "sourceNoteId": 1263
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 37,
+                "sourceNoteId": 1267
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 53,
+                "sourceNoteId": 1281
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 61,
+                "sourceNoteId": 1286
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 66,
+                "sourceNoteId": 1292
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 90,
+                "sourceNoteId": 1311
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 93,
+                "sourceNoteId": 1315
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 95,
+                "sourceNoteId": 1317
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 98,
+                "sourceNoteId": 1322
+              }
+            ]
+          },
+          {
+            "name": "サビの発展",
+            "noteCount": 59,
+            "octave": 12,
+            "sourcePitchSha256": "65d7be06bfe4e75a4a5568a4e8c4c64c924ef2e64b8050f0e473b6423fe15904",
+            "outputPitchSha256": "65d7be06bfe4e75a4a5568a4e8c4c64c924ef2e64b8050f0e473b6423fe15904",
+            "rowOnsetSha256": "d16544bc1bec7da160f11c86239ff5cd397ee9c91620def25939ff26943c645d",
+            "firstNotes": [
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 0,
+                "sourceNoteId": 1505
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 5,
+                "sourceNoteId": 1516
+              },
+              {
+                "pitch": 82,
+                "name": "A#5",
+                "row": 7,
+                "sourceNoteId": 1519
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 10,
+                "sourceNoteId": 1521
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 12,
+                "sourceNoteId": 1526
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 19,
+                "sourceNoteId": 1540
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 20,
+                "sourceNoteId": 1542
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 24,
+                "sourceNoteId": 1550
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 26,
+                "sourceNoteId": 1554
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 27,
+                "sourceNoteId": 1556
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 32,
+                "sourceNoteId": 1566
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 37,
+                "sourceNoteId": 1572
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_09_gb2.mid",
+      "sourceFile": "th06_09.mid",
+      "stepFrames": 6,
+      "duty": 0.5,
+      "rows": 960,
+      "sections": [
+        {
+          "name": "導入リフ",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 64,
+          "sourceStartBeat": 0.0546875,
+          "sourceEndBeat": 16.0546875,
+          "sourceStartSeconds": 0.021746,
+          "sourceEndSeconds": 6.500749,
+          "octave": 12,
+          "melodyOptions": {
+            "tracks": {
+              "2": 1,
+              "4": 0.2
+            },
+            "low": 57,
+            "high": 76,
+            "center": 65,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "前半の旋律",
+          "hook": false,
+          "outputRow": 64,
+          "rows": 128,
+          "sourceStartBeat": 32.0546875,
+          "sourceEndBeat": 64.0546875,
+          "sourceStartSeconds": 13.03653,
+          "sourceEndSeconds": 25.74978,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.25,
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 76,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "サビ・短調の主題",
+          "hook": true,
+          "outputRow": 192,
+          "rows": 256,
+          "sourceStartBeat": 96.0546875,
+          "sourceEndBeat": 160.0546875,
+          "sourceStartSeconds": 38.520279,
+          "sourceEndSeconds": 63.795191,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.25,
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 76,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "サビ・高音の応答",
+          "hook": true,
+          "outputRow": 448,
+          "rows": 256,
+          "sourceStartBeat": 160.0546875,
+          "sourceEndBeat": 224.0546875,
+          "sourceStartSeconds": 63.795191,
+          "sourceEndSeconds": 89.046879,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.25,
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 79,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "転調と折り返し",
+          "hook": false,
+          "outputRow": 704,
+          "rows": 256,
+          "sourceStartBeat": 224.0546875,
+          "sourceEndBeat": 288.0546875,
+          "sourceStartSeconds": 89.046879,
+          "sourceEndSeconds": 114.310342,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.25,
+              "2": 0.08,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 76,
+            "velocity": 36
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 63,
+          "type": "splice-breath",
+          "from": "導入リフ",
+          "to": "前半の旋律"
+        },
+        {
+          "row": 191,
+          "type": "splice-breath",
+          "from": "前半の旋律",
+          "to": "サビ・短調の主題"
+        },
+        {
+          "row": 956,
+          "type": "loop-turnaround",
+          "bassPitch": 43,
+          "leadReleaseRow": 958,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 96.437988,
+      "bpm": 149.318751,
+      "bars": 60,
+      "selectedSourceSeconds": 94.982316,
+      "selectedSourceBpm": 151.607169,
+      "tempoChangePercent": -1.509439,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 0.054688,
+          "startSeconds": 0,
+          "endSeconds": 0.021746
+        },
+        {
+          "startBeat": 16.054688,
+          "endBeat": 32.054688,
+          "startSeconds": 6.500749,
+          "endSeconds": 13.03653
+        },
+        {
+          "startBeat": 64.054688,
+          "endBeat": 96.054688,
+          "startSeconds": 25.74978,
+          "endSeconds": 38.520279
+        },
+        {
+          "startBeat": 288.054688,
+          "endBeat": 332.0625,
+          "startSeconds": 114.310342,
+          "endSeconds": 131.611938
+        }
+      ],
+      "sourceSeconds": 131.611938,
+      "sourceSha256": "1be1e8b8508f6327deb47ee7c63c774c6b0babd2c6e88d2850f7b8cf51240f22",
+      "outputSha256": "a6c159ae742c481f43548401397e4c0c7b3e6a0785d99541f207d523534ef12e",
+      "editorial": "音数の少ない前半の引き延ばしと末尾の再導入を省き、連続する中盤主題・高音の展開を優先する。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          88
+        ],
+        "leadNotes": 166,
+        "bassNotes": 256,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・短調の主題",
+            "noteCount": 53,
+            "octave": 0,
+            "sourcePitchSha256": "f0cf91db3592e7c4687b1bd9d2b3a84a52e1d80549107a546489c53927a6b583",
+            "outputPitchSha256": "f0cf91db3592e7c4687b1bd9d2b3a84a52e1d80549107a546489c53927a6b583",
+            "rowOnsetSha256": "33403c55ebd79987eec2df2f774be0b733f93aa05819f120cc6ba4e2470d78ab",
+            "firstNotes": [
+              {
+                "pitch": 65,
+                "name": "F4",
+                "row": 0,
+                "sourceNoteId": 97
+              },
+              {
+                "pitch": 67,
+                "name": "G4",
+                "row": 2,
+                "sourceNoteId": 99
+              },
+              {
+                "pitch": 67,
+                "name": "G4",
+                "row": 4,
+                "sourceNoteId": 101
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 8,
+                "sourceNoteId": 105
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 14,
+                "sourceNoteId": 114
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 17,
+                "sourceNoteId": 2739
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 18,
+                "sourceNoteId": 2742
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 20,
+                "sourceNoteId": 2745
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 26,
+                "sourceNoteId": 2753
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 37,
+                "sourceNoteId": 2765
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 41,
+                "sourceNoteId": 2775
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 43,
+                "sourceNoteId": 2779
+              }
+            ]
+          },
+          {
+            "name": "サビ・高音の応答",
+            "noteCount": 47,
+            "octave": 0,
+            "sourcePitchSha256": "655162e1c2ffa853213467eb124574fb5e8bbc338c7d6090a887f21825969a60",
+            "outputPitchSha256": "655162e1c2ffa853213467eb124574fb5e8bbc338c7d6090a887f21825969a60",
+            "rowOnsetSha256": "721faed097a1221af1d5422b19dc1d632bcf1a1a1622a8337089253caada7855",
+            "firstNotes": [
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 0,
+                "sourceNoteId": 3036
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 4,
+                "sourceNoteId": 3051
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 10,
+                "sourceNoteId": 3058
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 12,
+                "sourceNoteId": 3063
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 18,
+                "sourceNoteId": 3068
+              },
+              {
+                "pitch": 83,
+                "name": "B5",
+                "row": 20,
+                "sourceNoteId": 3070
+              },
+              {
+                "pitch": 84,
+                "name": "C6",
+                "row": 27,
+                "sourceNoteId": 3077
+              },
+              {
+                "pitch": 86,
+                "name": "D6",
+                "row": 36,
+                "sourceNoteId": 3086
+              },
+              {
+                "pitch": 88,
+                "name": "E6",
+                "row": 44,
+                "sourceNoteId": 3094
+              },
+              {
+                "pitch": 88,
+                "name": "E6",
+                "row": 52,
+                "sourceNoteId": 3100
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 67,
+                "sourceNoteId": 3110
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 72,
+                "sourceNoteId": 3118
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_10_gb2.mid",
+      "sourceFile": "th06_10.mid",
+      "stepFrames": 5.5,
+      "duty": 0.25,
+      "rows": 1024,
+      "sections": [
+        {
+          "name": "前半の主題",
+          "hook": true,
+          "outputRow": 0,
+          "rows": 256,
+          "sourceStartBeat": 4.0390625,
+          "sourceEndBeat": 68.0390625,
+          "sourceStartSeconds": 1.371463,
+          "sourceEndSeconds": 23.059077,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.55,
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 77,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "主題の応答",
+          "hook": false,
+          "outputRow": 256,
+          "rows": 128,
+          "sourceStartBeat": 164.0390625,
+          "sourceEndBeat": 196.0390625,
+          "sourceStartSeconds": 56.347886,
+          "sourceEndSeconds": 67.203097,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.55,
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 77,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "中盤のリフ",
+          "hook": false,
+          "outputRow": 384,
+          "rows": 128,
+          "sourceStartBeat": 240.0390625,
+          "sourceEndBeat": 272.0390625,
+          "sourceStartSeconds": 82.241346,
+          "sourceEndSeconds": 93.549928,
+          "octave": 12,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.25,
+              "2": 1,
+              "4": 0.1
+            },
+            "low": 60,
+            "high": 79,
+            "center": 70,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "サビ・終盤への上昇",
+          "hook": true,
+          "outputRow": 512,
+          "rows": 256,
+          "sourceStartBeat": 388.0390625,
+          "sourceEndBeat": 452.0390625,
+          "sourceStartSeconds": 134.416582,
+          "sourceEndSeconds": 157.425342,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.55,
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 77,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "サビ・再現と折り返し",
+          "hook": true,
+          "outputRow": 768,
+          "rows": 256,
+          "sourceStartBeat": 452.0390625,
+          "sourceEndBeat": 516.0390625,
+          "sourceStartSeconds": 157.425342,
+          "sourceEndSeconds": 181.031646,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.55,
+              "2": 0.12,
+              "4": 1
+            },
+            "low": 65,
+            "high": 88,
+            "center": 77,
+            "velocity": 36
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 255,
+          "type": "splice-breath",
+          "from": "前半の主題",
+          "to": "主題の応答"
+        },
+        {
+          "row": 383,
+          "type": "splice-breath",
+          "from": "主題の応答",
+          "to": "中盤のリフ"
+        },
+        {
+          "row": 511,
+          "type": "splice-breath",
+          "from": "中盤のリフ",
+          "to": "サビ・終盤への上昇"
+        },
+        {
+          "row": 1020,
+          "type": "loop-turnaround",
+          "bassPitch": 44,
+          "leadReleaseRow": 1022,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 94.294922,
+      "bpm": 162.893183,
+      "bars": 64,
+      "selectedSourceSeconds": 90.466471,
+      "selectedSourceBpm": 169.786661,
+      "tempoChangePercent": -4.060082,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 4.039063,
+          "startSeconds": 0,
+          "endSeconds": 1.371463
+        },
+        {
+          "startBeat": 68.039063,
+          "endBeat": 164.039063,
+          "startSeconds": 23.059077,
+          "endSeconds": 56.347886
+        },
+        {
+          "startBeat": 196.039063,
+          "endBeat": 240.039063,
+          "startSeconds": 67.203097,
+          "endSeconds": 82.241346
+        },
+        {
+          "startBeat": 272.039063,
+          "endBeat": 388.039063,
+          "startSeconds": 93.549928,
+          "endSeconds": 134.416582
+        },
+        {
+          "startBeat": 516.039063,
+          "endBeat": 517.882813,
+          "startSeconds": 181.031646,
+          "endSeconds": 181.723327
+        }
+      ],
+      "sourceSeconds": 181.723327,
+      "sourceSha256": "5e12d942b56cbb1e498b52402ec2f1e96859602b04d799e7685ab6a975184e2d",
+      "outputSha256": "11a77678f57041f2be54775ca9c5d1730b202f9d2aa099373b435990a27ad881",
+      "editorial": "約3分から64小節へ。前半主題、中盤の低音域リフ、最後の32小節を保持し、類似する伴奏展開と主題の追加反復を省く。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          90
+        ],
+        "leadNotes": 255,
+        "bassNotes": 511,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "前半の主題",
+            "noteCount": 59,
+            "octave": 0,
+            "sourcePitchSha256": "e19f549673b28c02d6ba26220abd70aa1d5baf92c0e346702edb8854f2ce8146",
+            "outputPitchSha256": "e19f549673b28c02d6ba26220abd70aa1d5baf92c0e346702edb8854f2ce8146",
+            "rowOnsetSha256": "c27b048b10d8ba2d6f9880d3193ad6c7702f598b70392457fffb3a9bbd6b8a56",
+            "firstNotes": [
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 3,
+                "sourceNoteId": 5015
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 4,
+                "sourceNoteId": 5017
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 6,
+                "sourceNoteId": 5020
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 12,
+                "sourceNoteId": 14
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 16,
+                "sourceNoteId": 23
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 18,
+                "sourceNoteId": 5038
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 22,
+                "sourceNoteId": 5045
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 24,
+                "sourceNoteId": 39
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 29,
+                "sourceNoteId": 5059
+              },
+              {
+                "pitch": 85,
+                "name": "C#6",
+                "row": 32,
+                "sourceNoteId": 55
+              },
+              {
+                "pitch": 83,
+                "name": "B5",
+                "row": 41,
+                "sourceNoteId": 5072
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 42,
+                "sourceNoteId": 5074
+              }
+            ]
+          },
+          {
+            "name": "サビ・終盤への上昇",
+            "noteCount": 50,
+            "octave": 0,
+            "sourcePitchSha256": "94ac49e9b26266958b4853aa2bce2af9b328580de975d01680838d21af9723dc",
+            "outputPitchSha256": "94ac49e9b26266958b4853aa2bce2af9b328580de975d01680838d21af9723dc",
+            "rowOnsetSha256": "f8e0ff781a5b7ddba35277fbe114eee75de2de2bbb09643fb050396ae9b71195",
+            "firstNotes": [
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 0,
+                "sourceNoteId": 1781
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 4,
+                "sourceNoteId": 1788
+              },
+              {
+                "pitch": 68,
+                "name": "G#4",
+                "row": 15,
+                "sourceNoteId": 3890
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 16,
+                "sourceNoteId": 1794
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 18,
+                "sourceNoteId": 1798
+              },
+              {
+                "pitch": 68,
+                "name": "G#4",
+                "row": 22,
+                "sourceNoteId": 3897
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 30,
+                "sourceNoteId": 1811
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 32,
+                "sourceNoteId": 5917
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 43,
+                "sourceNoteId": 5940
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 47,
+                "sourceNoteId": 3926
+              },
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 50,
+                "sourceNoteId": 5952
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 56,
+                "sourceNoteId": 5959
+              }
+            ]
+          },
+          {
+            "name": "サビ・再現と折り返し",
+            "noteCount": 82,
+            "octave": 0,
+            "sourcePitchSha256": "add682d06f9c617fe4a7159c2ae4ccd6d6fe6bd0fa1dec62bd8280d4a9be9ff0",
+            "outputPitchSha256": "add682d06f9c617fe4a7159c2ae4ccd6d6fe6bd0fa1dec62bd8280d4a9be9ff0",
+            "rowOnsetSha256": "8f5036e036106f4fadca5ba5c1841c6fc3f0993fa5d9006338176182e992f279",
+            "firstNotes": [
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 0,
+                "sourceNoteId": 6228
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 4,
+                "sourceNoteId": 6233
+              },
+              {
+                "pitch": 84,
+                "name": "C6",
+                "row": 6,
+                "sourceNoteId": 6235
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 16,
+                "sourceNoteId": 6249
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 17,
+                "sourceNoteId": 2113
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 21,
+                "sourceNoteId": 2115
+              },
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 22,
+                "sourceNoteId": 6257
+              },
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 28,
+                "sourceNoteId": 6266
+              },
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 35,
+                "sourceNoteId": 4225
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 36,
+                "sourceNoteId": 6275
+              },
+              {
+                "pitch": 83,
+                "name": "B5",
+                "row": 39,
+                "sourceNoteId": 6279
+              },
+              {
+                "pitch": 83,
+                "name": "B5",
+                "row": 43,
+                "sourceNoteId": 2144
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_11_gb2.mid",
+      "sourceFile": "th06_11.mid",
+      "stepFrames": 6,
+      "duty": 0.25,
+      "rows": 880,
+      "sections": [
+        {
+          "name": "導入リフ",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 48,
+          "sourceStartBeat": 0.0546875,
+          "sourceEndBeat": 12.0546875,
+          "sourceStartSeconds": 0.022976,
+          "sourceEndSeconds": 4.997217,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 1,
+              "4": 0.25
+            },
+            "low": 60,
+            "high": 87,
+            "center": 68,
+            "velocity": 32
+          }
+        },
+        {
+          "name": "サビ・冒頭主題",
+          "hook": true,
+          "outputRow": 48,
+          "rows": 144,
+          "sourceStartBeat": 12.0546875,
+          "sourceEndBeat": 48.0546875,
+          "sourceStartSeconds": 4.997217,
+          "sourceEndSeconds": 19.774051,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.15,
+              "2": 0.15,
+              "4": 1
+            },
+            "low": 65,
+            "high": 87,
+            "center": 75,
+            "velocity": 32
+          }
+        },
+        {
+          "name": "第2主題",
+          "hook": true,
+          "outputRow": 192,
+          "rows": 320,
+          "sourceStartBeat": 48.0546875,
+          "sourceEndBeat": 128.0546875,
+          "sourceStartSeconds": 19.774051,
+          "sourceEndSeconds": 52.656173,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.15,
+              "2": 0.15,
+              "4": 1
+            },
+            "low": 65,
+            "high": 87,
+            "center": 75,
+            "velocity": 32
+          }
+        },
+        {
+          "name": "対比と展開",
+          "hook": false,
+          "outputRow": 512,
+          "rows": 256,
+          "sourceStartBeat": 128.0546875,
+          "sourceEndBeat": 192.0546875,
+          "sourceStartSeconds": 52.656173,
+          "sourceEndSeconds": 78.978647,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.15,
+              "2": 0.15,
+              "4": 1
+            },
+            "low": 65,
+            "high": 87,
+            "center": 75,
+            "velocity": 32
+          }
+        },
+        {
+          "name": "主題への戻り",
+          "hook": false,
+          "outputRow": 768,
+          "rows": 112,
+          "sourceStartBeat": 192.0546875,
+          "sourceEndBeat": 220.0546875,
+          "sourceStartSeconds": 78.978647,
+          "sourceEndSeconds": 90.461514,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.2,
+              "2": 0.65,
+              "4": 1
+            },
+            "low": 62,
+            "high": 87,
+            "center": 73,
+            "velocity": 32
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 876,
+          "type": "loop-turnaround",
+          "bassPitch": 43,
+          "leadReleaseRow": 878,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 88.401489,
+      "bpm": 149.318751,
+      "bars": 55,
+      "selectedSourceSeconds": 90.438538,
+      "selectedSourceBpm": 145.955478,
+      "tempoChangePercent": 2.304314,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 0.054688,
+          "startSeconds": 0,
+          "endSeconds": 0.022976
+        },
+        {
+          "startBeat": 220.054688,
+          "endBeat": 222.277344,
+          "startSeconds": 90.461514,
+          "endSeconds": 91.384041
+        }
+      ],
+      "sourceSeconds": 91.384041,
+      "sourceSha256": "8dab56530b31473cc9dc8c619e861785890a099fd27e95f6330c8017da42ddb6",
+      "outputSha256": "a3d51ff5f40b5f9d51d2bf55736c326968dbac8a2704c90cb0ffeb1a8b107844",
+      "editorial": "約91秒の構成を維持し、終端の端数のみを整理。低音リフから主旋律への受け渡しを明確にする。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          82
+        ],
+        "leadNotes": 241,
+        "bassNotes": 363,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・冒頭主題",
+            "noteCount": 49,
+            "octave": 0,
+            "sourcePitchSha256": "eaaee07f8af371cfcaf1143f5e881fca3ec59602d1d2972158f118c460478306",
+            "outputPitchSha256": "eaaee07f8af371cfcaf1143f5e881fca3ec59602d1d2972158f118c460478306",
+            "rowOnsetSha256": "d55ac4a59295a6968a954558eb32ba043f9e328fbd4600c948e1a5cba15335ea",
+            "firstNotes": [
+              {
+                "pitch": 65,
+                "name": "F4",
+                "row": 3,
+                "sourceNoteId": 457
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 6,
+                "sourceNoteId": 1665
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 8,
+                "sourceNoteId": 1667
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 10,
+                "sourceNoteId": 1672
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 12,
+                "sourceNoteId": 1680
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 13,
+                "sourceNoteId": 1685
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 16,
+                "sourceNoteId": 1691
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 19,
+                "sourceNoteId": 1695
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 22,
+                "sourceNoteId": 1703
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 26,
+                "sourceNoteId": 1715
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 28,
+                "sourceNoteId": 1719
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 33,
+                "sourceNoteId": 1732
+              }
+            ]
+          },
+          {
+            "name": "第2主題",
+            "noteCount": 59,
+            "octave": 0,
+            "sourcePitchSha256": "2472f424dd0d20de5b14551a920a6ed5f984a92877417962c7a8ba6e6dc7e073",
+            "outputPitchSha256": "2472f424dd0d20de5b14551a920a6ed5f984a92877417962c7a8ba6e6dc7e073",
+            "rowOnsetSha256": "542030295c14f5295c12bc605a1f0cc2a580bc9e6b2a5700befac207da16a4aa",
+            "firstNotes": [
+              {
+                "pitch": 68,
+                "name": "G#4",
+                "row": 3,
+                "sourceNoteId": 642
+              },
+              {
+                "pitch": 65,
+                "name": "F4",
+                "row": 8,
+                "sourceNoteId": 645
+              },
+              {
+                "pitch": 68,
+                "name": "G#4",
+                "row": 22,
+                "sourceNoteId": 652
+              },
+              {
+                "pitch": 68,
+                "name": "G#4",
+                "row": 28,
+                "sourceNoteId": 659
+              },
+              {
+                "pitch": 66,
+                "name": "F#4",
+                "row": 34,
+                "sourceNoteId": 668
+              },
+              {
+                "pitch": 66,
+                "name": "F#4",
+                "row": 39,
+                "sourceNoteId": 677
+              },
+              {
+                "pitch": 68,
+                "name": "G#4",
+                "row": 40,
+                "sourceNoteId": 1947
+              },
+              {
+                "pitch": 66,
+                "name": "F#4",
+                "row": 42,
+                "sourceNoteId": 1948
+              },
+              {
+                "pitch": 66,
+                "name": "F#4",
+                "row": 44,
+                "sourceNoteId": 1953
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 45,
+                "sourceNoteId": 1955
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 48,
+                "sourceNoteId": 1960
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 58,
+                "sourceNoteId": 1968
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_12_gb2.mid",
+      "sourceFile": "th06_12.mid",
+      "stepFrames": 6.5,
+      "duty": 0.5,
+      "rows": 544,
+      "sections": [
+        {
+          "name": "ピアノの導入音型",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 192,
+          "sourceStartBeat": 2.6875,
+          "sourceEndBeat": 50.6875,
+          "sourceStartSeconds": 1.177869,
+          "sourceEndSeconds": 21.765942,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 1,
+              "2": 0.08,
+              "4": 0.25
+            },
+            "low": 63,
+            "high": 88,
+            "center": 71,
+            "velocity": 45
+          }
+        },
+        {
+          "name": "サビ・ピアノの主題",
+          "hook": true,
+          "outputRow": 192,
+          "rows": 256,
+          "sourceStartBeat": 50.6875,
+          "sourceEndBeat": 114.6875,
+          "sourceStartSeconds": 21.765942,
+          "sourceEndSeconds": 48.815338,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 1,
+              "2": 0.08,
+              "4": 0.25
+            },
+            "low": 65,
+            "high": 88,
+            "center": 74,
+            "velocity": 45
+          }
+        },
+        {
+          "name": "導入への戻り",
+          "hook": false,
+          "outputRow": 448,
+          "rows": 96,
+          "sourceStartBeat": 114.6875,
+          "sourceEndBeat": 138.6875,
+          "sourceStartSeconds": 48.815338,
+          "sourceEndSeconds": 58.964361,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 1,
+              "2": 0.08,
+              "4": 0.25
+            },
+            "low": 63,
+            "high": 88,
+            "center": 71,
+            "velocity": 45
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 540,
+          "type": "loop-turnaround",
+          "bassPitch": 39,
+          "leadReleaseRow": 542,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 59.202209,
+      "bpm": 137.832694,
+      "bars": 34,
+      "selectedSourceSeconds": 57.786492,
+      "selectedSourceBpm": 141.209472,
+      "tempoChangePercent": -2.391325,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 2.6875,
+          "startSeconds": 0,
+          "endSeconds": 1.177869
+        },
+        {
+          "startBeat": 138.6875,
+          "endBeat": 140,
+          "startSeconds": 58.964361,
+          "endSeconds": 59.52436
+        }
+      ],
+      "sourceSeconds": 59.52436,
+      "sourceSha256": "7adb1f4df0e889a4c1e262772b5eca01db810afcd8c041f9b2b17ca47ffb9b2f",
+      "outputSha256": "395ba04ecf57b2e43a7f79e0721ec8e725f1b9b1b4df50590a7e34df33467c16",
+      "editorial": "約60秒の原形を維持。ピアノの反復と中盤の上昇旋律を主役にし、伴奏は低音ペダルを中心にする。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          38,
+          83
+        ],
+        "leadNotes": 142,
+        "bassNotes": 152,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・ピアノの主題",
+            "noteCount": 73,
+            "octave": 0,
+            "sourcePitchSha256": "8eee841afc4fc3464a05c1c647ef4b90b4d4041409792a20b25a4d637bfa1894",
+            "outputPitchSha256": "8eee841afc4fc3464a05c1c647ef4b90b4d4041409792a20b25a4d637bfa1894",
+            "rowOnsetSha256": "dddbde70f22e8e8c8ce5131b43e5fa68c55714f8887ac9a82ab47c7b74e99e08",
+            "firstNotes": [
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 1,
+                "sourceNoteId": 247
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 7,
+                "sourceNoteId": 255
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 9,
+                "sourceNoteId": 257
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 14,
+                "sourceNoteId": 263
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 19,
+                "sourceNoteId": 274
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 23,
+                "sourceNoteId": 282
+              },
+              {
+                "pitch": 71,
+                "name": "B4",
+                "row": 25,
+                "sourceNoteId": 284
+              },
+              {
+                "pitch": 66,
+                "name": "F#4",
+                "row": 28,
+                "sourceNoteId": 287
+              },
+              {
+                "pitch": 66,
+                "name": "F#4",
+                "row": 36,
+                "sourceNoteId": 1068
+              },
+              {
+                "pitch": 66,
+                "name": "F#4",
+                "row": 41,
+                "sourceNoteId": 1076
+              },
+              {
+                "pitch": 66,
+                "name": "F#4",
+                "row": 46,
+                "sourceNoteId": 1083
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 51,
+                "sourceNoteId": 299
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_13_gb2.mid",
+      "sourceFile": "th06_13.mid",
+      "stepFrames": 6,
+      "duty": 0.5,
+      "rows": 896,
+      "sections": [
+        {
+          "name": "導入音型",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 64,
+          "sourceStartBeat": 0.0625,
+          "sourceEndBeat": 16.0625,
+          "sourceStartSeconds": 0.026395,
+          "sourceEndSeconds": 6.683989,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 1
+            },
+            "low": 60,
+            "high": 81,
+            "center": 68,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "前半の主題",
+          "hook": false,
+          "outputRow": 64,
+          "rows": 128,
+          "sourceStartBeat": 32.0625,
+          "sourceEndBeat": 64.0625,
+          "sourceStartSeconds": 13.308751,
+          "sourceEndSeconds": 27.036458,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.06,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "サビへの展開",
+          "hook": false,
+          "outputRow": 192,
+          "rows": 288,
+          "sourceStartBeat": 88.0625,
+          "sourceEndBeat": 160.0625,
+          "sourceStartSeconds": 36.94576,
+          "sourceEndSeconds": 67.03865,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.06,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "サビ・高音域の主題",
+          "hook": true,
+          "outputRow": 480,
+          "rows": 256,
+          "sourceStartBeat": 160.0625,
+          "sourceEndBeat": 224.0625,
+          "sourceStartSeconds": 67.03865,
+          "sourceEndSeconds": 93.573799,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.06,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "サビの応答",
+          "hook": true,
+          "outputRow": 736,
+          "rows": 128,
+          "sourceStartBeat": 224.0625,
+          "sourceEndBeat": 256.0625,
+          "sourceStartSeconds": 93.573799,
+          "sourceEndSeconds": 106.919384,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.06,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 36
+          }
+        },
+        {
+          "name": "折り返し",
+          "hook": false,
+          "outputRow": 864,
+          "rows": 32,
+          "sourceStartBeat": 256.0625,
+          "sourceEndBeat": 264.0625,
+          "sourceStartSeconds": 106.919384,
+          "sourceEndSeconds": 110.274479,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.06,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 36
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 63,
+          "type": "splice-breath",
+          "from": "導入音型",
+          "to": "前半の主題"
+        },
+        {
+          "row": 191,
+          "type": "splice-breath",
+          "from": "前半の主題",
+          "to": "サビへの展開"
+        },
+        {
+          "row": 892,
+          "type": "loop-turnaround",
+          "bassPitch": 38,
+          "leadReleaseRow": 894,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 90.008789,
+      "bpm": 149.318751,
+      "bars": 56,
+      "selectedSourceSeconds": 93.71402,
+      "selectedSourceBpm": 143.415041,
+      "tempoChangePercent": 4.116521,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 0.0625,
+          "startSeconds": 0,
+          "endSeconds": 0.026395
+        },
+        {
+          "startBeat": 16.0625,
+          "endBeat": 32.0625,
+          "startSeconds": 6.683989,
+          "endSeconds": 13.308751
+        },
+        {
+          "startBeat": 64.0625,
+          "endBeat": 88.0625,
+          "startSeconds": 27.036458,
+          "endSeconds": 36.94576
+        },
+        {
+          "startBeat": 264.0625,
+          "endBeat": 389.421875,
+          "startSeconds": 110.274479,
+          "endSeconds": 162.425784
+        }
+      ],
+      "sourceSeconds": 162.425784,
+      "sourceSha256": "52ee102f423dcc17e07a67642304b618a3cf619902fc8bee9cec56cb1c4d2ff9",
+      "outputSha256": "338266d1f1f3fcee445efe02b379b8f006d5a3b9e74cf432c93d74855dde245c",
+      "editorial": "高音域の主題へ上がる一連の展開をまとまって保持。長い導入反復、主題間の空白、終盤の再導入と追加反復を整理する。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          87
+        ],
+        "leadNotes": 198,
+        "bassNotes": 435,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・高音域の主題",
+            "noteCount": 54,
+            "octave": 0,
+            "sourcePitchSha256": "64a9a6943a52afab8f8548dc5a944dd0d6224684c8729fcced1fa97cd54d757d",
+            "outputPitchSha256": "64a9a6943a52afab8f8548dc5a944dd0d6224684c8729fcced1fa97cd54d757d",
+            "rowOnsetSha256": "560f3e2a3b61e4f8e16897edf128dfc20c9fba40fd2f1bb4314108e2bee601e9",
+            "firstNotes": [
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 0,
+                "sourceNoteId": 3295
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 2,
+                "sourceNoteId": 3302
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 14,
+                "sourceNoteId": 3332
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 16,
+                "sourceNoteId": 3335
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 17,
+                "sourceNoteId": 3339
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 21,
+                "sourceNoteId": 3343
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 26,
+                "sourceNoteId": 3348
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 30,
+                "sourceNoteId": 3358
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 35,
+                "sourceNoteId": 3367
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 38,
+                "sourceNoteId": 3371
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 41,
+                "sourceNoteId": 3378
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 45,
+                "sourceNoteId": 3383
+              }
+            ]
+          },
+          {
+            "name": "サビの応答",
+            "noteCount": 28,
+            "octave": 0,
+            "sourcePitchSha256": "716164705683ba85b731c7bec53d34ac10c3af0135edadd87bdc820033b6982d",
+            "outputPitchSha256": "716164705683ba85b731c7bec53d34ac10c3af0135edadd87bdc820033b6982d",
+            "rowOnsetSha256": "6b32cc8f2b623423880bb45529d88783d1065a9bf080cdcdbd37f28387bc193f",
+            "firstNotes": [
+              {
+                "pitch": 86,
+                "name": "D6",
+                "row": 0,
+                "sourceNoteId": 3684
+              },
+              {
+                "pitch": 86,
+                "name": "D6",
+                "row": 4,
+                "sourceNoteId": 3692
+              },
+              {
+                "pitch": 86,
+                "name": "D6",
+                "row": 6,
+                "sourceNoteId": 3696
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 9,
+                "sourceNoteId": 3699
+              },
+              {
+                "pitch": 83,
+                "name": "B5",
+                "row": 11,
+                "sourceNoteId": 3704
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 18,
+                "sourceNoteId": 3711
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 19,
+                "sourceNoteId": 3715
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 25,
+                "sourceNoteId": 3724
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 26,
+                "sourceNoteId": 3727
+              },
+              {
+                "pitch": 86,
+                "name": "D6",
+                "row": 41,
+                "sourceNoteId": 3739
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 42,
+                "sourceNoteId": 3740
+              },
+              {
+                "pitch": 83,
+                "name": "B5",
+                "row": 54,
+                "sourceNoteId": 3756
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_14_gb2.mid",
+      "sourceFile": "th06_14.mid",
+      "stepFrames": 6,
+      "duty": 0.5,
+      "rows": 896,
+      "sections": [
+        {
+          "name": "ピアノの導入",
+          "hook": false,
+          "outputRow": 0,
+          "rows": 64,
+          "sourceStartBeat": 0.046875,
+          "sourceEndBeat": 16.046875,
+          "sourceStartSeconds": 0.018912,
+          "sourceEndSeconds": 6.436702,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 1,
+              "4": 0.4
+            },
+            "low": 67,
+            "high": 88,
+            "center": 81,
+            "velocity": 34
+          }
+        },
+        {
+          "name": "前半の主題",
+          "hook": false,
+          "outputRow": 64,
+          "rows": 128,
+          "sourceStartBeat": 32.046875,
+          "sourceEndBeat": 64.046875,
+          "sourceStartSeconds": 12.903122,
+          "sourceEndSeconds": 25.80451,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.65,
+              "2": 0.06,
+              "4": 1
+            },
+            "low": 67,
+            "high": 88,
+            "center": 78,
+            "velocity": 34
+          }
+        },
+        {
+          "name": "サビ・第1主題",
+          "hook": true,
+          "outputRow": 192,
+          "rows": 256,
+          "sourceStartBeat": 64.046875,
+          "sourceEndBeat": 128.046875,
+          "sourceStartSeconds": 25.80451,
+          "sourceEndSeconds": 51.070653,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.65,
+              "2": 0.06,
+              "4": 1
+            },
+            "low": 67,
+            "high": 88,
+            "center": 78,
+            "velocity": 34
+          }
+        },
+        {
+          "name": "サビ・後半の展開",
+          "hook": true,
+          "outputRow": 448,
+          "rows": 192,
+          "sourceStartBeat": 272.046875,
+          "sourceEndBeat": 320.046875,
+          "sourceStartSeconds": 108.964976,
+          "sourceEndSeconds": 129.244738,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.65,
+              "2": 0.06,
+              "4": 1
+            },
+            "low": 67,
+            "high": 88,
+            "center": 78,
+            "velocity": 34
+          }
+        },
+        {
+          "name": "終盤の盛り上がり",
+          "hook": true,
+          "outputRow": 640,
+          "rows": 256,
+          "sourceStartBeat": 320.046875,
+          "sourceEndBeat": 384.046875,
+          "sourceStartSeconds": 129.244738,
+          "sourceEndSeconds": 156.313164,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "1": 0.65,
+              "2": 0.06,
+              "4": 1
+            },
+            "low": 67,
+            "high": 88,
+            "center": 78,
+            "velocity": 34
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 63,
+          "type": "splice-breath",
+          "from": "ピアノの導入",
+          "to": "前半の主題"
+        },
+        {
+          "row": 447,
+          "type": "splice-breath",
+          "from": "サビ・第1主題",
+          "to": "サビ・後半の展開"
+        },
+        {
+          "row": 892,
+          "type": "loop-turnaround",
+          "bassPitch": 46,
+          "leadReleaseRow": 894,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 90.008789,
+      "bpm": 149.318751,
+      "bars": 56,
+      "selectedSourceSeconds": 91.933509,
+      "selectedSourceBpm": 146.192614,
+      "tempoChangePercent": 2.138369,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 0.046875,
+          "startSeconds": 0,
+          "endSeconds": 0.018912
+        },
+        {
+          "startBeat": 16.046875,
+          "endBeat": 32.046875,
+          "startSeconds": 6.436702,
+          "endSeconds": 12.903122
+        },
+        {
+          "startBeat": 128.046875,
+          "endBeat": 272.046875,
+          "startSeconds": 51.070653,
+          "endSeconds": 108.964976
+        },
+        {
+          "startBeat": 384.046875,
+          "endBeat": 384.066406,
+          "startSeconds": 156.313164,
+          "endSeconds": 156.321356
+        }
+      ],
+      "sourceSeconds": 156.321356,
+      "sourceSha256": "3d21522d019c14fbad5731e0ca77a7d13210ded14c0060a6af9a3409e530bbd3",
+      "outputSha256": "8b90d5014b8356c748ed300fee9d5ecdacc15daa49b57e441a7bffc1e5a2cf43",
+      "editorial": "前半の主題と終盤の展開を残し、中央の長い主題反復を整理。冒頭ピアノは短く残して曲の入口を維持する。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          87
+        ],
+        "leadNotes": 215,
+        "bassNotes": 419,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "サビ・第1主題",
+            "noteCount": 48,
+            "octave": 0,
+            "sourcePitchSha256": "d4f0e5d56f1534a8b6beed003de0148cfdb611eea3876bb0b651c54d0b3193de",
+            "outputPitchSha256": "d4f0e5d56f1534a8b6beed003de0148cfdb611eea3876bb0b651c54d0b3193de",
+            "rowOnsetSha256": "c1da0b39efe697c3db89b79bc5965055764f0027b6bba526f0d2b1b834fe10ea",
+            "firstNotes": [
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 0,
+                "sourceNoteId": 3517
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 11,
+                "sourceNoteId": 3543
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 16,
+                "sourceNoteId": 3547
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 28,
+                "sourceNoteId": 3553
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 32,
+                "sourceNoteId": 3562
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 38,
+                "sourceNoteId": 3569
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 44,
+                "sourceNoteId": 3571
+              },
+              {
+                "pitch": 82,
+                "name": "A#5",
+                "row": 48,
+                "sourceNoteId": 3574
+              },
+              {
+                "pitch": 84,
+                "name": "C6",
+                "row": 49,
+                "sourceNoteId": 3575
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 65,
+                "sourceNoteId": 3590
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 68,
+                "sourceNoteId": 3594
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 73,
+                "sourceNoteId": 3602
+              }
+            ]
+          },
+          {
+            "name": "サビ・後半の展開",
+            "noteCount": 54,
+            "octave": 0,
+            "sourcePitchSha256": "17d2cd01f8a81f51b177ddf77f97e33afeeea92e8ef5d622976e83e9ccb64156",
+            "outputPitchSha256": "17d2cd01f8a81f51b177ddf77f97e33afeeea92e8ef5d622976e83e9ccb64156",
+            "rowOnsetSha256": "076d73eee3a1d23257384171c4fdbc1c0cc2a37a2328105a131fc239707eed90",
+            "firstNotes": [
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 0,
+                "sourceNoteId": 4478
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 5,
+                "sourceNoteId": 4484
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 6,
+                "sourceNoteId": 4489
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 8,
+                "sourceNoteId": 4492
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 12,
+                "sourceNoteId": 4499
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 13,
+                "sourceNoteId": 4500
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 16,
+                "sourceNoteId": 4507
+              },
+              {
+                "pitch": 82,
+                "name": "A#5",
+                "row": 18,
+                "sourceNoteId": 4510
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 22,
+                "sourceNoteId": 4516
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 25,
+                "sourceNoteId": 4523
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 26,
+                "sourceNoteId": 4526
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 30,
+                "sourceNoteId": 4530
+              }
+            ]
+          },
+          {
+            "name": "終盤の盛り上がり",
+            "noteCount": 66,
+            "octave": 0,
+            "sourcePitchSha256": "d17c0d4b257a09656448fd3190afd9d17ebfda3b887ef0e7781d76bb50e5fb7c",
+            "outputPitchSha256": "d17c0d4b257a09656448fd3190afd9d17ebfda3b887ef0e7781d76bb50e5fb7c",
+            "rowOnsetSha256": "e24a06d4f586243fcea872b4438517e4e80fc19bdac238fb66ce92abcb9d5da4",
+            "firstNotes": [
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 0,
+                "sourceNoteId": 4735
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 1,
+                "sourceNoteId": 4738
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 2,
+                "sourceNoteId": 4740
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 8,
+                "sourceNoteId": 4746
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 12,
+                "sourceNoteId": 4751
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 18,
+                "sourceNoteId": 4759
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 21,
+                "sourceNoteId": 4763
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 29,
+                "sourceNoteId": 4772
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 30,
+                "sourceNoteId": 4776
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 33,
+                "sourceNoteId": 4777
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 42,
+                "sourceNoteId": 4787
+              },
+              {
+                "pitch": 84,
+                "name": "C6",
+                "row": 45,
+                "sourceNoteId": 4788
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file": "th06_15_gb2.mid",
+      "sourceFile": "th06_15.mid",
+      "stepFrames": 6,
+      "duty": 0.25,
+      "rows": 928,
+      "sections": [
+        {
+          "name": "冒頭の特徴的な音型",
+          "hook": true,
+          "outputRow": 0,
+          "rows": 128,
+          "sourceStartBeat": 0.046875,
+          "sourceEndBeat": 32.046875,
+          "sourceStartSeconds": 0.018231,
+          "sourceEndSeconds": 12.423763,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.05,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 40
+          }
+        },
+        {
+          "name": "サビ・主題",
+          "hook": true,
+          "outputRow": 128,
+          "rows": 256,
+          "sourceStartBeat": 80.046875,
+          "sourceEndBeat": 144.046875,
+          "sourceStartSeconds": 30.993787,
+          "sourceEndSeconds": 55.885996,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.05,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 40
+          }
+        },
+        {
+          "name": "高音の展開と応答",
+          "hook": false,
+          "outputRow": 384,
+          "rows": 256,
+          "sourceStartBeat": 144.046875,
+          "sourceEndBeat": 208.046875,
+          "sourceStartSeconds": 55.885996,
+          "sourceEndSeconds": 81.009243,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.05,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 40
+          }
+        },
+        {
+          "name": "サビ・終盤の主題",
+          "hook": true,
+          "outputRow": 640,
+          "rows": 288,
+          "sourceStartBeat": 248.046875,
+          "sourceEndBeat": 320.046875,
+          "sourceStartSeconds": 96.514107,
+          "sourceEndSeconds": 124.378215,
+          "octave": 0,
+          "melodyOptions": {
+            "tracks": {
+              "2": 0.05,
+              "4": 1
+            },
+            "low": 68,
+            "high": 88,
+            "center": 78,
+            "velocity": 40
+          }
+        }
+      ],
+      "edits": [
+        {
+          "row": 127,
+          "type": "splice-breath",
+          "from": "冒頭の特徴的な音型",
+          "to": "サビ・主題"
+        },
+        {
+          "row": 639,
+          "type": "splice-breath",
+          "from": "高音の展開と応答",
+          "to": "サビ・終盤の主題"
+        },
+        {
+          "row": 924,
+          "type": "loop-turnaround",
+          "bassPitch": 41,
+          "leadReleaseRow": 926,
+          "reason": "2 rows of rest release all voices before the loop; the bass fifth prepares the first root."
+        }
+      ],
+      "seconds": 93.223389,
+      "bpm": 149.318751,
+      "bars": 58,
+      "selectedSourceSeconds": 90.285096,
+      "selectedSourceBpm": 154.178271,
+      "tempoChangePercent": -3.151884,
+      "omittedSource": [
+        {
+          "startBeat": 0,
+          "endBeat": 0.046875,
+          "startSeconds": 0,
+          "endSeconds": 0.018231
+        },
+        {
+          "startBeat": 32.046875,
+          "endBeat": 80.046875,
+          "startSeconds": 12.423763,
+          "endSeconds": 30.993787
+        },
+        {
+          "startBeat": 208.046875,
+          "endBeat": 248.046875,
+          "startSeconds": 81.009243,
+          "endSeconds": 96.514107
+        },
+        {
+          "startBeat": 320.046875,
+          "endBeat": 324.210938,
+          "startSeconds": 124.378215,
+          "endSeconds": 125.969697
+        }
+      ],
+      "sourceSeconds": 125.969697,
+      "sourceSha256": "a943edfaaa6cf87603cedc575d07638e01ba5ebee7f0014161a59142ae4cad7e",
+      "outputSha256": "d843c2cb1cb452411d27424f2be1f7277c25d9365548ae872a9fef625ee53459",
+      "editorial": "冒頭の音型、中央の主題、終盤の主題をすべて残す。低音伴奏だけになる2区間と端数の再導入を省き、約93秒にまとめる。",
+      "beatScale": 1,
+      "validation": {
+        "format": 1,
+        "ppq": 480,
+        "tracks": 3,
+        "tempoEvents": 1,
+        "maxSimultaneousNotes": 2,
+        "noteRange": [
+          36,
+          88
+        ],
+        "leadNotes": 253,
+        "bassNotes": 381,
+        "allNotesOffBeforeLoop": true,
+        "hookProvenance": [
+          {
+            "name": "冒頭の特徴的な音型",
+            "noteCount": 42,
+            "octave": 0,
+            "sourcePitchSha256": "3070bbe9e0ac7c84d1034a12b7f1acd9524ac6698fbcc1912e5c6f753a4fd793",
+            "outputPitchSha256": "3070bbe9e0ac7c84d1034a12b7f1acd9524ac6698fbcc1912e5c6f753a4fd793",
+            "rowOnsetSha256": "090c37fbacd98d3f975eb1513989122c917b18762233fd2a4cee8242ebad9d20",
+            "firstNotes": [
+              {
+                "pitch": 83,
+                "name": "B5",
+                "row": 1,
+                "sourceNoteId": 1919
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 2,
+                "sourceNoteId": 1921
+              },
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 3,
+                "sourceNoteId": 1925
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 6,
+                "sourceNoteId": 1928
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 9,
+                "sourceNoteId": 1933
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 11,
+                "sourceNoteId": 1935
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 15,
+                "sourceNoteId": 1939
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 18,
+                "sourceNoteId": 1945
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 21,
+                "sourceNoteId": 1950
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 22,
+                "sourceNoteId": 1952
+              },
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 23,
+                "sourceNoteId": 1954
+              },
+              {
+                "pitch": 69,
+                "name": "A4",
+                "row": 25,
+                "sourceNoteId": 1957
+              }
+            ]
+          },
+          {
+            "name": "サビ・主題",
+            "noteCount": 62,
+            "octave": 0,
+            "sourcePitchSha256": "385303c098c0db2cc320fec6ca484c9cf1bc99fb335d1f156075178f5add22b9",
+            "outputPitchSha256": "385303c098c0db2cc320fec6ca484c9cf1bc99fb335d1f156075178f5add22b9",
+            "rowOnsetSha256": "057c1d1b11c7174bd7df13ca3125f41ef005a7a3a7b58f1e7489f11a14ff36a6",
+            "firstNotes": [
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 0,
+                "sourceNoteId": 2280
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 5,
+                "sourceNoteId": 2289
+              },
+              {
+                "pitch": 80,
+                "name": "G#5",
+                "row": 8,
+                "sourceNoteId": 2291
+              },
+              {
+                "pitch": 73,
+                "name": "C#5",
+                "row": 12,
+                "sourceNoteId": 2301
+              },
+              {
+                "pitch": 76,
+                "name": "E5",
+                "row": 15,
+                "sourceNoteId": 2306
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 16,
+                "sourceNoteId": 2309
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 22,
+                "sourceNoteId": 2320
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 24,
+                "sourceNoteId": 2324
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 29,
+                "sourceNoteId": 2327
+              },
+              {
+                "pitch": 70,
+                "name": "A#4",
+                "row": 32,
+                "sourceNoteId": 2333
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 33,
+                "sourceNoteId": 2332
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 37,
+                "sourceNoteId": 2338
+              }
+            ]
+          },
+          {
+            "name": "サビ・終盤の主題",
+            "noteCount": 64,
+            "octave": 0,
+            "sourcePitchSha256": "6601700646fc8052803eb807edd82238150c7f4eb941fee61b682f7551991beb",
+            "outputPitchSha256": "6601700646fc8052803eb807edd82238150c7f4eb941fee61b682f7551991beb",
+            "rowOnsetSha256": "de469e7cc2067db6148152d4d0e3b6bf9fb444d54b530ddcaf137dbcd3729986",
+            "firstNotes": [
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 0,
+                "sourceNoteId": 3193
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 8,
+                "sourceNoteId": 1595
+              },
+              {
+                "pitch": 72,
+                "name": "C5",
+                "row": 11,
+                "sourceNoteId": 3209
+              },
+              {
+                "pitch": 82,
+                "name": "A#5",
+                "row": 13,
+                "sourceNoteId": 3223
+              },
+              {
+                "pitch": 75,
+                "name": "D#5",
+                "row": 14,
+                "sourceNoteId": 3226
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 17,
+                "sourceNoteId": 3233
+              },
+              {
+                "pitch": 77,
+                "name": "F5",
+                "row": 20,
+                "sourceNoteId": 3236
+              },
+              {
+                "pitch": 81,
+                "name": "A5",
+                "row": 24,
+                "sourceNoteId": 3238
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 25,
+                "sourceNoteId": 3242
+              },
+              {
+                "pitch": 74,
+                "name": "D5",
+                "row": 27,
+                "sourceNoteId": 3250
+              },
+              {
+                "pitch": 78,
+                "name": "F#5",
+                "row": 33,
+                "sourceNoteId": 3265
+              },
+              {
+                "pitch": 79,
+                "name": "G5",
+                "row": 35,
+                "sourceNoteId": 3269
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

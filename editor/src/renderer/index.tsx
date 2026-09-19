@@ -21,6 +21,8 @@ import { PlayerPresentationCanvas } from "./player-presentation-canvas";
 import { StartupPreview } from "./startup-preview";
 import { Preview, RomPreview } from "./preview";
 import { Timeline } from "./timeline";
+import { MusicEditor, type MusicCatalog } from "./music-editor";
+import { MusicNamesContext } from "./music-field";
 import { createEntity } from "./entity-defaults";
 import { resizeStage } from "../shared/stage-space";
 import { PowerUpFields, DestructibleFields } from "./shooter-fields";
@@ -64,6 +66,7 @@ class Boundary extends React.Component<
     }
 }
 function App() {
+    const [musicCatalog,setMusicCatalog]=useState<MusicCatalog>({tracks:[],waves:[]});
     const [game, setGame] = useState<Game | null>(null),
         [projects, setProjects] = useState<ProjectInfo[]>([]),
         [name, setName] = useState(""),
@@ -110,7 +113,7 @@ function App() {
         [toolchain, setToolchain] = useState<Awaited<
             ReturnType<typeof window.caravan.toolchain>
         > | null>(null);
-    const columns = useColumns(inspectorVisible);
+    const columns = useColumns(inspectorVisible && selection.kind !== "musicEditor");
     const buildBusy = useRef(false),
         saveBusy = useRef(false),
         openBusy = useRef(false);
@@ -264,6 +267,11 @@ function App() {
         );
         return () => clearTimeout(timer);
     }, [content, saved, name]);
+    useEffect(()=>{
+        let current=true;setMusicCatalog({tracks:[],waves:[]});
+        if(name)window.caravan.music(name).then(data=>{if(current)setMusicCatalog(data);}).catch(e=>{if(current)setError(`音楽の読み込み: ${e.message}`);});
+        return()=>{current=false;};
+    },[name]);
     const save = async () => {
         const g = gameRef.current;
         if (!g || saveBusy.current || buildBusy.current || openBusy.current)
@@ -755,6 +763,7 @@ function App() {
         ]),
     ];
     return (
+        <MusicNamesContext.Provider value={[...musicCatalog.tracks,...(game.musicTracks??[])]}>
         <div className="app">
             <header>
                 <div className="brand">
@@ -869,7 +878,7 @@ function App() {
                 </div>
             </header>
             <div
-                className={`workspace ${inspectorVisible ? "" : "inspector-hidden"}`}
+                className={`workspace ${inspectorVisible && selection.kind !== "musicEditor" ? "" : "inspector-hidden"}`}
                 ref={columns.ref}
                 style={columns.style}
             >
@@ -883,7 +892,7 @@ function App() {
                     duplicate={() => duplicate()}
                     canDuplicate={
                         !!object &&
-                        !["player", "project", "screens"].includes(
+                        !["player", "project", "screens", "musicEditor"].includes(
                             selection.kind,
                         )
                     }
@@ -903,7 +912,7 @@ function App() {
                                 {selection.kind === "project"
                                     ? game.title
                                     : (object?.name ??
-                                      (selection.kind === "player"
+                                      (selection.kind === "musicEditor" ? "音楽" : selection.kind === "player"
                                           ? "自機設定"
                                           : "対象を選択"))}
                             </h1>
@@ -985,7 +994,9 @@ function App() {
                             key={selection.kind + selection.id}
                             resetKey={content}
                         >
-                            {asset ? (
+                            {selection.kind === "musicEditor" ? (
+                                <MusicEditor key={name} game={game} catalog={musicCatalog} change={change} disabled={busy}/>
+                            ) : asset ? (
                                 <>
                                     <AssetCanvas
                                         game={game}
@@ -1272,7 +1283,7 @@ function App() {
                             }}
                         >
                             <RomPreview
-                                active={panelVisible && tab === "rom"}
+                                active={panelVisible && tab === "rom" && selection.kind !== "musicEditor"}
                                 autoLoad={romAutoLoad}
                                 name={name}
                                 build={built}
@@ -1299,10 +1310,10 @@ function App() {
                         </div>
                     </section>
                 </main>
-                {inspectorVisible && columns.separator(1)}
+                {inspectorVisible && selection.kind !== "musicEditor" && columns.separator(1)}
                 <aside
                     className="inspector"
-                    style={{ display: inspectorVisible ? undefined : "none" }}
+                    style={{ display: inspectorVisible && selection.kind !== "musicEditor" ? undefined : "none" }}
                 >
                     <div className="panel-title">
                         インスペクター{" "}
@@ -1338,6 +1349,7 @@ function App() {
                                               "palettes",
                                               "player",
                                               "items",
+                                              "musicTracks", "musicScore",
                                           ]
                                         : asset
                                           ? ["kind"]
@@ -1837,6 +1849,7 @@ function App() {
                 </div>
             )}
         </div>
+        </MusicNamesContext.Provider>
     );
 }
 createRoot(document.getElementById("root")!).render(<App />);

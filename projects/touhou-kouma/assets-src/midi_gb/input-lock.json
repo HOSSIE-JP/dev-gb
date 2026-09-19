@@ -1,0 +1,37 @@
+{
+  "sourceRevision": "867d8aabdb170095198c5c42ec15d433237fa603",
+  "provenance": {
+    "source": "User-supplied Touhou original BGM transcriptions in midi_org",
+    "embeddedMetadata": "Created by RipX DAW - hitnmix.com",
+    "transcriber": "Not specified",
+    "originalComposer": "ZUN / Team Shanghai Alice",
+    "license": "Original composition and supplied transcription retain their own rights; no MIT relicensing."
+  },
+  "sources": {
+    "th06_01.mid": "47de93484341fc888534c6a975f613f94b50e4c19ffba6e89301e4f59bd8aa60",
+    "th06_02.mid": "0384ce9fce122f8a95bbad17dac5c95c234baa493ab927dca0b113a2545da8f7",
+    "th06_03.mid": "2deb8c4c553c39a6542fab34bd67842ff32e9622d2c4afe7f72b79d9a49ca226",
+    "th06_04.mid": "968b6278add333a10e28bdcdf90ed010a196fdeb84037d8f352e80ab905ebb25",
+    "th06_05.mid": "44fca9ec87cd47d33b1eb8b956eda2cbb408a278c30ccddabe601ada6836dc95",
+    "th06_06.mid": "60f824621a3c8f27b58f80004d71dd990fdf9961419c45ba208e2c9fd0d16949",
+    "th06_07.mid": "4711c1f56d7780212c0c9541c96cdb453f29a1750fc8b82a8297c9a5597fdf85",
+    "th06_08.mid": "fbeb67c60addb37938f235e21081502c441a61b62d62d9a941e8c97eaaab484f",
+    "th06_09.mid": "1be1e8b8508f6327deb47ee7c63c774c6b0babd2c6e88d2850f7b8cf51240f22",
+    "th06_10.mid": "5e12d942b56cbb1e498b52402ec2f1e96859602b04d799e7685ab6a975184e2d",
+    "th06_11.mid": "8dab56530b31473cc9dc8c619e861785890a099fd27e95f6330c8017da42ddb6",
+    "th06_12.mid": "7adb1f4df0e889a4c1e262772b5eca01db810afcd8c041f9b2b17ca47ffb9b2f",
+    "th06_13.mid": "52ee102f423dcc17e07a67642304b618a3cf619902fc8bee9cec56cb1c4d2ff9",
+    "th06_14.mid": "3d21522d019c14fbad5731e0ca77a7d13210ded14c0060a6af9a3409e530bbd3",
+    "th06_15.mid": "a943edfaaa6cf87603cedc575d07638e01ba5ebee7f0014161a59142ae4cad7e"
+  },
+  "protectedSources": {
+    "projects/touhou-kouma/project.json": "54c9e961e101002bd5eea41fe9ed99c261ef531c7bc8b17bd84727ff969b41a2",
+    "projects/touhou-kouma/assets-src/game.json": "bb188ee82c78081c9f42b5593f17b9bb82e65770dd5a787e9600f70e21c025bb",
+    "engine/caravan/music.c": "068bd61b25dda9aeaa88a0213915492e3e7b793f7c2a0459a22819ffafd25319",
+    "engine/caravan/music.h": "1fbfa91c85ba4ce4304ca6d8c4b51c2493202d41250502c0deb5b03a669591a7",
+    "engine/caravan/assets-src/kouma-score.json": "f15ea049b3737c79b75bbceb17fc9ecbc2481ba4d3c6310bb8eef39330dfc450",
+    "engine/caravan/assets-src/side-score.json": "4a2f21edd10c9893af34f050a1e0bb09e0e90fdba4bf62c12c87c3b317c112bf",
+    "engine/caravan/assets-src/music-waves.json": "4d3446eb435f12413fc6bc51909713ce2841aa260fee32c98d23f72247e46b99",
+    "editor/src/node/music-data.ts": "b734c91525d4d6bebd7a5caa9e4ca787b78ccf71974813838df96a4c7594e4c0"
+  }
+}

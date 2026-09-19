@@ -1,0 +1,563 @@
+{
+  "format": "gb3-validation-v1",
+  "allPassed": true,
+  "midiCount": 15,
+  "audioFiles": 61,
+  "sourceFilesUnchanged": true,
+  "engineBaselineDifferences": [
+    "projects/touhou-kouma/assets-src/game.json",
+    "engine/caravan/music.c",
+    "engine/caravan/music.h",
+    "editor/src/node/music-data.ts"
+  ],
+  "byteReproducibility": true,
+  "audioClipping": false,
+  "checks": [
+    {
+      "file": "th06_01_gb3.mid",
+      "bars": 37,
+      "seconds": 59.470093,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 100,
+          "largestRestSeconds": 2.210037,
+          "velocityRange": [
+            72,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 129,
+          "largestRestSeconds": 1.406387,
+          "velocityRange": [
+            44,
+            84
+          ]
+        },
+        "bass": {
+          "notes": 129,
+          "largestRestSeconds": 1.406387,
+          "velocityRange": [
+            57,
+            93
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 0,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_02_gb3.mid",
+      "bars": 49,
+      "seconds": 78.75769,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 176,
+          "largestRestSeconds": 1.908669,
+          "velocityRange": [
+            72,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 239,
+          "largestRestSeconds": 0.904106,
+          "velocityRange": [
+            46,
+            88
+          ]
+        },
+        "bass": {
+          "notes": 296,
+          "largestRestSeconds": 0.100456,
+          "velocityRange": [
+            58,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 3,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_03_gb3.mid",
+      "bars": 33,
+      "seconds": 53.040894,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 124,
+          "largestRestSeconds": 0.602737,
+          "velocityRange": [
+            81,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 131,
+          "largestRestSeconds": 1.105019,
+          "velocityRange": [
+            47,
+            87
+          ]
+        },
+        "bass": {
+          "notes": 116,
+          "largestRestSeconds": 0.100456,
+          "velocityRange": [
+            62,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 7,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_04_gb3.mid",
+      "bars": 64,
+      "seconds": 77.150391,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 119,
+          "largestRestSeconds": 0.67808,
+          "velocityRange": [
+            78,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 185,
+          "largestRestSeconds": 0.67808,
+          "velocityRange": [
+            46,
+            80
+          ]
+        },
+        "bass": {
+          "notes": 187,
+          "largestRestSeconds": 0.828764,
+          "velocityRange": [
+            57,
+            97
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 11,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_05_gb3.mid",
+      "bars": 54,
+      "seconds": 86.794189,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 173,
+          "largestRestSeconds": 0.502281,
+          "velocityRange": [
+            74,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 159,
+          "largestRestSeconds": 1.506844,
+          "velocityRange": [
+            48,
+            88
+          ]
+        },
+        "bass": {
+          "notes": 117,
+          "largestRestSeconds": 0.301369,
+          "velocityRange": [
+            60,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 16,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_06_gb3.mid",
+      "bars": 56,
+      "seconds": 97.509521,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 229,
+          "largestRestSeconds": 1.305931,
+          "velocityRange": [
+            75,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 212,
+          "largestRestSeconds": 1.305931,
+          "velocityRange": [
+            45,
+            87
+          ]
+        },
+        "bass": {
+          "notes": 156,
+          "largestRestSeconds": 2.938345,
+          "velocityRange": [
+            57,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 0,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_07_gb3.mid",
+      "bars": 62,
+      "seconds": 99.652588,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 304,
+          "largestRestSeconds": 1.305931,
+          "velocityRange": [
+            77,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 247,
+          "largestRestSeconds": 0.602737,
+          "velocityRange": [
+            47,
+            87
+          ]
+        },
+        "bass": {
+          "notes": 345,
+          "largestRestSeconds": 0.100456,
+          "velocityRange": [
+            57,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 5,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_08_gb3.mid",
+      "bars": 64,
+      "seconds": 77.150391,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 199,
+          "largestRestSeconds": 0.602737,
+          "velocityRange": [
+            79,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 204,
+          "largestRestSeconds": 1.356159,
+          "velocityRange": [
+            44,
+            85
+          ]
+        },
+        "bass": {
+          "notes": 208,
+          "largestRestSeconds": 0.075342,
+          "velocityRange": [
+            57,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 6,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_09_gb3.mid",
+      "bars": 60,
+      "seconds": 96.437988,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 166,
+          "largestRestSeconds": 1.808212,
+          "velocityRange": [
+            80,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 176,
+          "largestRestSeconds": 2.611862,
+          "velocityRange": [
+            44,
+            87
+          ]
+        },
+        "bass": {
+          "notes": 264,
+          "largestRestSeconds": 1.205475,
+          "velocityRange": [
+            64,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 2,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_10_gb3.mid",
+      "bars": 64,
+      "seconds": 94.294922,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 255,
+          "largestRestSeconds": 0.552509,
+          "velocityRange": [
+            74,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 290,
+          "largestRestSeconds": 0.736679,
+          "velocityRange": [
+            44,
+            88
+          ]
+        },
+        "bass": {
+          "notes": 162,
+          "largestRestSeconds": 0.092085,
+          "velocityRange": [
+            59,
+            99
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 1,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_11_gb3.mid",
+      "bars": 55,
+      "seconds": 88.401489,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 241,
+          "largestRestSeconds": 1.305931,
+          "velocityRange": [
+            73,
+            109
+          ]
+        },
+        "counter": {
+          "notes": 212,
+          "largestRestSeconds": 1.305931,
+          "velocityRange": [
+            50,
+            88
+          ]
+        },
+        "bass": {
+          "notes": 188,
+          "largestRestSeconds": 0.401825,
+          "velocityRange": [
+            57,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 7,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_12_gb3.mid",
+      "bars": 34,
+      "seconds": 59.202209,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 142,
+          "largestRestSeconds": 0.544138,
+          "velocityRange": [
+            77,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 147,
+          "largestRestSeconds": 1.088276,
+          "velocityRange": [
+            45,
+            81
+          ]
+        },
+        "bass": {
+          "notes": 226,
+          "largestRestSeconds": 0.652966,
+          "velocityRange": [
+            57,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 1,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_13_gb3.mid",
+      "bars": 56,
+      "seconds": 90.008789,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 198,
+          "largestRestSeconds": 0.80365,
+          "velocityRange": [
+            77,
+            110
+          ]
+        },
+        "counter": {
+          "notes": 255,
+          "largestRestSeconds": 1.105019,
+          "velocityRange": [
+            52,
+            87
+          ]
+        },
+        "bass": {
+          "notes": 195,
+          "largestRestSeconds": 0.100456,
+          "velocityRange": [
+            65,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 6,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_14_gb3.mid",
+      "bars": 56,
+      "seconds": 90.008789,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 215,
+          "largestRestSeconds": 0.100456,
+          "velocityRange": [
+            80,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 226,
+          "largestRestSeconds": 0.703194,
+          "velocityRange": [
+            44,
+            84
+          ]
+        },
+        "bass": {
+          "notes": 232,
+          "largestRestSeconds": 1.506844,
+          "velocityRange": [
+            58,
+            99
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 1,
+      "allNotesOffBeforeLoop": true
+    },
+    {
+      "file": "th06_15_gb3.mid",
+      "bars": 58,
+      "seconds": 93.223389,
+      "sourcePitchAndAttackVerified": true,
+      "melodyMatchesTwoVoice": true,
+      "voices": {
+        "lead": {
+          "notes": 253,
+          "largestRestSeconds": 1.105019,
+          "velocityRange": [
+            75,
+            111
+          ]
+        },
+        "counter": {
+          "notes": 213,
+          "largestRestSeconds": 1.004562,
+          "velocityRange": [
+            48,
+            88
+          ]
+        },
+        "bass": {
+          "notes": 142,
+          "largestRestSeconds": 0.100456,
+          "velocityRange": [
+            60,
+            101
+          ]
+        }
+      },
+      "bassCounterCrossingRows": 0,
+      "unisonPitchClassRows": 4,
+      "allNotesOffBeforeLoop": true
+    }
+  ],
+  "limits": [
+    "Musical fidelity and natural loop transitions require listening; provenance checks do not prove melody selection.",
+    "No original-game recording comparison.",
+    "This MIDI-only check does not test game integration or APU playback; see INTEGRATION.md and the v44 QA report. Physical hardware remains untested.",
+    "Local HTML UI was not opened because the browser tool rejected local file URLs."
+  ]
+}

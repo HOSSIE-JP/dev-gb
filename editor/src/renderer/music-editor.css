@@ -1,0 +1,231 @@
+.music-editor {
+    width: 100%;
+    min-width: 0;
+    padding: 16px 20px;
+    overflow: auto;
+    box-sizing: border-box;
+    color: #dce6f3;
+}
+.music-editor p {
+    line-height: 1.65;
+}
+.music-intro,
+.music-meta,
+.music-editor small {
+    color: #aebfd3;
+}
+.music-editor fieldset {
+    border: 1px solid #34475e;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 14px 0;
+    min-width: 0;
+}
+.music-editor legend {
+    font-weight: 600;
+    color: #bcd8ff;
+    padding: 0 6px;
+}
+.music-toolbar,
+.music-controls,
+.music-bar-controls,
+.music-note-edit,
+.music-assignment {
+    display: flex;
+    align-items: end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.music-toolbar {
+    margin: 10px 0;
+}
+.music-editor label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+}
+.music-editor label:has(input[type="checkbox"]) {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+}
+.music-editor select {
+    max-width: 100%;
+    min-width: 70px;
+}
+.music-editor input[type="number"] {
+    width: 88px;
+}
+.music-editor input:not([type="checkbox"]),
+.music-editor select {
+    padding: 6px 8px;
+}
+.music-editor input[type="checkbox"] {
+    width: auto;
+}
+.music-controls label:has(input[type="text"]),
+.music-controls label:first-child {
+    flex: 1;
+    min-width: 160px;
+}
+.music-song-select {
+    margin-top: 18px;
+}
+.music-song-select select {
+    font-size: 15px;
+    width: 100%;
+}
+.music-bars {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin: 14px 0;
+    max-height: 92px;
+    overflow-y: auto;
+}
+.music-bars button {
+    min-width: 38px;
+    max-width: 88px;
+    padding: 5px 8px;
+}
+.music-bars small {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 9px;
+}
+.music-bars .active {
+    background: #294d73;
+    border-color: #79bbf0;
+}
+.music-pattern {
+    overflow: auto;
+    max-height: 490px;
+    border: 1px solid #34475e;
+    border-radius: 8px;
+}
+.music-edit-area {
+    scroll-margin-top: 90px;
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) 230px;
+    gap: 12px;
+    align-items: start;
+}
+.music-edit-area .music-note-edit {
+    margin: 0;
+    align-items: stretch;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+}
+.music-edit-area .music-note-edit input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+@media (max-width: 1000px) {
+    .music-edit-area {
+        grid-template-columns: 1fr;
+    }
+    .music-edit-area .music-note-edit {
+        position: static;
+        flex-direction: row;
+    }
+}
+.music-pattern table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.music-pattern th:first-child {
+    width: 62px;
+}
+.music-pattern th {
+    font-size: 12px;
+    padding: 6px;
+}
+.music-pattern thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #1e2b3a;
+}
+.music-pattern th small {
+    display: block;
+    font-size: 10px;
+}
+.music-pattern td {
+    padding: 2px 4px;
+    border-bottom: 1px solid #263648;
+}
+.music-pattern button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 4px 10px;
+    font-family: monospace;
+    min-height: 27px;
+    background: #14212f;
+    border-color: transparent;
+}
+.music-pattern button.selected {
+    border-color: #65b6f9;
+    background: #284767;
+}
+.music-pattern .beat td,
+.music-pattern .beat th {
+    border-top: 1px solid #57718d;
+}
+.music-pattern .playing {
+    background: #426b41;
+}
+.music-pattern .playing button {
+    color: #b7fab7;
+}
+.midi-lanes {
+    display: grid;
+    gap: 10px;
+}
+.midi-lanes > div {
+    display: flex;
+    gap: 10px;
+}
+.midi-lanes > div > label:first-child {
+    flex: 1;
+    min-width: 0;
+}
+.music-message {
+    white-space: pre-wrap;
+    padding: 10px 12px;
+    background: #203750;
+    border-left: 3px solid #6cb6f2;
+}
+.music-audition,
+.music-import-result {
+    padding: 8px 12px;
+    background: #182738;
+    border-radius: 8px;
+}
+.music-import-result ul,
+.music-editor details ul {
+    padding-left: 20px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+.music-editor code {
+    font-size: 10px;
+    overflow-wrap: anywhere;
+}
+.music-assignment p {
+    width: 100%;
+    margin: 0;
+    font-size: 12px;
+}
+.music-toolbar > label {
+    min-width: 0;
+}
+.music-toolbar > label > select {
+    max-width: 320px;
+}

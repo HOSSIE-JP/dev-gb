@@ -21,7 +21,7 @@ Game settings:
 - `game.stageFade`: absent defaults true; 24+24 display-frame fades.
 - `game.player.respawnDelay`: NOVA 90 updates; default 0. Respawn invulnerability is separate.
 - `stage.scrollDown`, `stage.requireBoss`, `stage.clearOnBoss`, `stage.events`, `stage.music`, `game.stageOrder` determine progression. Avoid timeout or end events bypassing required bosses.
-- Current built-in music IDs 0–8, victory ID 8. New compositions currently require a deliberate engine music-table extension; there is no arbitrary audio-file BGM import. Do not claim that selecting an ID composes a new soundtrack.
+- Music IDs are 0–37; editable custom tracks replace slots 16–37. The editor's Music view imports SMF 0/1 PPQ MIDI into three monophonic voices, edits the score, auditions without building, and assigns cues. Read `docs/music-editor.md` for conversion settings and limits. Original MIDI and SHA-256 are retained; edited scores live in `game.musicTracks`. Existing manifest scores (`game.musicScore`) remain supported. Selecting or importing a track does not compose or arrange it automatically. Victory cues require a nonlooping score.
 - Each boss can have motion and attack phases; see model.ts and NOVA data for exact fields. Do not guess schema fields from another editor.
 
 ## Limits and traps

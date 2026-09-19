@@ -1,5 +1,6 @@
 #pragma bank 255
 #include "caravan.h"
+#include "music.h"
 
 static uint8_t hit_sound_wait, sustained_effect;
 static uint8_t graze_sound_wait, noise_sound_wait;
@@ -12,8 +13,10 @@ static void sustained_sound(void) {
     uint16_t frequency;
     if (step == ce_spell_sound_step) return;
     ce_spell_sound_step = step;
+    /* Refresh a long lease while sustained SFX owns CH1; release explicitly. */
+    ce_music_ch1_claim(255);
     if (sustained_effect == 7u) {
-        /* CH1 laser sweep over a sustained CH4 roar. BGM owns CH2/3. */
+        /* CH1 laser sweep over CH4 roar; the counterline waits on its lease. */
         frequency = 1500u + (step & 3u) * 110u;
         NR10_REG = 0; NR11_REG = 0x40; NR12_REG = 0xa0;
         NR13_REG = (uint8_t)frequency; NR14_REG = 0x80u | (frequency >> 8);
@@ -27,7 +30,7 @@ static void sustained_sound(void) {
 void ce_sfx(uint8_t effect) BANKED {
     /* Shot, graze and impact requests cannot cancel a bomb or spell cue. */
     if (ce_spell_sound_left && effect != 5u && effect != 7u && effect != 3u) return;
-    if (ce_spell_sound_left) { ce_spell_sound_left = 0; NR12_REG = 0; NR42_REG = 0; }
+    if (ce_spell_sound_left) { ce_spell_sound_left = 0; NR12_REG = 0; NR42_REG = 0; ce_music_ch1_claim(0); }
     if (effect == 7u || effect == 5u) {
         sustained_effect = effect; ce_spell_sound_left = 72; ce_spell_sound_step = 255; sustained_sound();
         if (effect == 5u) { NR41_REG = 0; NR42_REG = 0x23; NR43_REG = 0x15; NR44_REG = 0x80; }
@@ -39,14 +42,24 @@ void ce_sfx(uint8_t effect) BANKED {
         graze_sound_wait = 12;
         NR41_REG = 0x34; NR42_REG = 0x41; NR43_REG = 0x18; NR44_REG = 0xc0;
     } else if (effect == 6u) {
+        ce_music_ch1_claim(20);
         NR10_REG = 0x16; NR11_REG = 0x80; NR12_REG = 0x92; NR13_REG = 0xa0; NR14_REG = 0x87;
     } else if (effect == 4u) {
         if (hit_sound_wait) return;
         hit_sound_wait = 4;
         noise_sound_wait = 4;
         NR41_REG = 0x38; NR42_REG = 0xa1; NR43_REG = 0x19; NR44_REG = 0xc0;
-    } else if (!effect) { NR10_REG = 0; NR11_REG = 0x80; NR12_REG = 0x42; NR13_REG = 0xc0; NR14_REG = 0x87; }
-    else if (effect == 3u) { NR10_REG = 0x16; NR11_REG = 0x40; NR12_REG = 0xf3; NR13_REG = 0x70; NR14_REG = 0x87; }
+    } else if (!effect) {
+        if (ce_music_three) {
+            /* Frequent fire never steals the counterline. All other cues win. */
+            if (noise_sound_wait || graze_sound_wait) return;
+            NR41_REG = 0x38; NR42_REG = 0x31; NR43_REG = 0x28; NR44_REG = 0xc0;
+        } else {
+            ce_music_ch1_claim(9);
+            NR10_REG = 0; NR11_REG = 0x80; NR12_REG = 0x42; NR13_REG = 0xc0; NR14_REG = 0x87;
+        }
+    }
+    else if (effect == 3u) { ce_music_ch1_claim(48); NR10_REG = 0x16; NR11_REG = 0x40; NR12_REG = 0xf3; NR13_REG = 0x70; NR14_REG = 0x87; }
     else {
         /* Envelopes last about 20/56 VBlanks; leave a small tail margin. */
         noise_sound_wait = effect == 1u ? 24u : 60u;
@@ -62,6 +75,6 @@ void ce_sfx_tick(uint8_t elapsed) BANKED {
         ce_spell_sound_left = elapsed >= ce_spell_sound_left ? 72u : ce_spell_sound_left - elapsed;
         sustained_sound();
     } else if (sustained_effect == 7u || elapsed >= ce_spell_sound_left) {
-        ce_spell_sound_left = 0; NR12_REG = 0; NR42_REG = 0;
+        ce_spell_sound_left = 0; NR12_REG = 0; NR42_REG = 0; ce_music_ch1_claim(0);
     } else { ce_spell_sound_left -= elapsed; sustained_sound(); }
 }

@@ -18,6 +18,9 @@ import {
     atomicWrite,
 } from "./project-store";
 import { readFont } from "./compiler";
+import { readMidi, convertMidi } from "./midi-import";
+import { readProjectMusic, importProjectMidi } from "./music-project";
+import type { MidiOptions } from "../shared/music-score";
 import {
     cancellationFile,
     readBuiltRom,
@@ -134,6 +137,22 @@ handle("init", () => {
     return { projects, name, ...data, glyphs };
 });
 handle("open", read);
+const midiInputs = new Map<string,{bytes:Buffer;name:string}>();
+handle("music", (name:string) => readProjectMusic(root,name));
+handle("choose-midi", async () => {
+    const result=await dialog.showOpenDialog(win,{title:"MIDIを取り込む",properties:["openFile"],filters:[{name:"MIDI",extensions:["mid","midi"]}]});
+    if(result.canceled||!result.filePaths[0])return null;
+    const file=result.filePaths[0];if(fs.statSync(file).size>4*1024*1024)throw Error("MIDIは4MiBまでです");
+    const bytes=fs.readFileSync(file),name=path.basename(file),{info}=readMidi(bytes,name),token=crypto.randomUUID();
+    if(midiInputs.size>=8)midiInputs.delete(midiInputs.keys().next().value!);
+    midiInputs.set(token,{bytes,name});return {token,info};
+});
+handle("convert-midi", (name:string,token:string,options:MidiOptions,saveSource:boolean) => {
+    if(!openedRevisions.has(name))throw Error("作品を開いてから取り込んでください");
+    const source=midiInputs.get(token);if(!source)throw Error("元MIDIを選び直してください");
+    if(saveSource===true)return importProjectMidi(root,name,source.bytes,source.name,options);
+    return convertMidi(source.bytes,source.name,options);
+});
 handle("confirm", async (message: string) => {
     if (typeof message !== "string" || message.length > 2000)
         throw new Error("確認メッセージが不正です");

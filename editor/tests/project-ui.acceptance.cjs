@@ -15,6 +15,8 @@ const record = (value) => { checks.push(value); fs.writeFileSync(report, JSON.st
 fs.cpSync(path.join(root, 'editor/build'), path.join(temp, 'editor/build'), { recursive: true });
 fs.mkdirSync(path.join(temp, 'config'));
 fs.copyFileSync(path.join(root, 'config/tools.lock.json'), path.join(temp, 'config/tools.lock.json'));
+fs.mkdirSync(path.join(temp, 'engine/caravan/assets-src'), { recursive: true });
+fs.copyFileSync(path.join(root, 'engine/caravan/assets-src/music-waves.json'), path.join(temp, 'engine/caravan/assets-src/music-waves.json'));
 fs.mkdirSync(path.join(temp, 'projects'));
 lib.createProject(temp, 'first', 'FIRST', lib.readGame(root, 'star-caravan'));
 lib.createProject(temp, 'second', 'SECOND', lib.readGame(root, 'star-caravan'));

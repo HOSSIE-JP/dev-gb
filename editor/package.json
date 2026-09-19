@@ -17,6 +17,8 @@
     "test:core": "node tests/run.mjs core",
     "pretest:ui": "npm run build",
     "test:ui": "node tests/project-ui-run.mjs",
+    "pretest:music-ui": "npm run build",
+    "test:music-ui": "node tests/music-ui-run.mjs",
     "pretest:horizontal-ui": "npm run build",
     "test:horizontal-ui": "node tests/horizontal-ui-run.mjs",
     "pretest:side": "npm run build",

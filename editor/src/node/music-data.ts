@@ -1,31 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
+import {importMidiMusic} from "./midi-music";
 
-export type MusicBar = {
-    section: string;
-    chord: string;
-    duty: number;
-    envelope: number;
-    level: number;
-    /** Optional 32-sample wave instrument, zero preserves the original triangle. */
-    wave?: number;
-    lead: number[];
-    bass: number[];
-};
-export type ArrangedSong = {
-    id: number;
-    key: string;
-    title: string;
-    speed: number;
-    /** Alternate speed and speed + 1 VBlanks for half-frame row tempos. */
-    speedHalf?: boolean;
-    loop: boolean;
-    bars: MusicBar[];
-};
+import { musicErrors, type ArrangedSong, type MusicTrack } from "../shared/music-score";
+export type { ArrangedSong, MusicBar } from "../shared/music-score";
 
 /** Source notation lives with the engine so standalone project copies can build.
  * Only this converter writes generated C; each score can be autobanked separately. */
-export function generateMusic(root: string, target: string): string[] {
+export function generateMusic(root: string, target: string, midiManifest?: string, edited: MusicTrack[] = []): string[] {
     const score = JSON.parse(
         fs.readFileSync(
             path.join(root, "engine/caravan/assets-src/kouma-score.json"),
@@ -44,7 +26,11 @@ export function generateMusic(root: string, target: string): string[] {
         side.tracks.length !== 3
     )
         throw Error("Invalid SIDE CARAVAN soundtrack");
-    const tracks: ArrangedSong[] = [...score.tracks, ...side.tracks];
+    const errors = musicErrors(edited);
+    if (errors.length) throw Error(errors.join("\n"));
+    const imported = midiManifest ? importMidiMusic(midiManifest) : [];
+    const overrides = [...edited, ...imported];
+    const tracks: ArrangedSong[] = [...score.tracks, ...side.tracks].map(t => overrides.find(o=>o.id===t.id) ?? t);
     if (
         score.format !== "caravan-banked-score-v1" ||
         !Array.isArray(tracks) ||
@@ -69,7 +55,9 @@ export function generateMusic(root: string, target: string): string[] {
         )
             throw Error("Invalid song timing or ID");
         const data: number[] = [];
+        const three = t.bars[0].counter !== undefined;
         for (const b of t.bars) {
+            if ((b.counter !== undefined) !== three) throw Error("Mixed two/three voice bars");
             if (
                 ![0, 64, 128, 192].includes(b.duty) ||
                 !Number.isInteger(b.envelope) ||
@@ -81,7 +69,7 @@ export function generateMusic(root: string, target: string): string[] {
                 (b.wave ?? 0) > 7
             )
                 throw Error("Invalid GB instrument");
-            for (const voice of [b.lead, b.bass]) {
+            for (const voice of [b.lead, b.bass, ...(three ? [b.counter!] : [])]) {
                 if (
                     !Array.isArray(voice) ||
                     voice.length !== 16 ||
@@ -100,6 +88,13 @@ export function generateMusic(root: string, target: string): string[] {
                 ...b.lead,
                 ...b.bass,
             );
+            if (three) {
+                if (![0,64,128,192].includes(b.counterDuty!) ||
+                    ![b.leadEnvelope,b.counterEnvelope,b.bassLevel].every(a=>Array.isArray(a)&&a.length===16) ||
+                    [...b.leadEnvelope!,...b.counterEnvelope!].some(n=>!Number.isInteger(n)||n<0||n>255||(n>0&&n<16)) ||
+                    b.bassLevel!.some(n=>![0,32,64,96].includes(n))) throw Error("Invalid three-voice expression");
+                data.push(b.counterDuty!,...b.counter!,...b.leadEnvelope!,...b.counterEnvelope!,...b.bassLevel!);
+            }
         }
         const symbol = `ce_score_${t.id}`,
             file = `caravan_music_${t.id}.c`;
@@ -112,7 +107,7 @@ export function generateMusic(root: string, target: string): string[] {
             `BANKREF_EXTERN(${symbol})\nextern const uint8_t ${symbol}[];`,
         );
         rows.push(
-            `{BANK(${symbol}),${symbol},${t.bars.length * 16},${t.speed | (t.speedHalf ? 128 : 0)},${+t.loop}}`,
+            `{BANK(${symbol}),${symbol},${t.bars.length * 16},${t.speed | (t.speedHalf ? 128 : 0)},${+t.loop},${three?100:35}}`,
         );
     }
     const waves: { samples: number[] }[] = JSON.parse(

@@ -1,3 +1,4 @@
+import { musicErrors, type MusicTrack } from "./music-score";
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Point = { x: number; y: number };
 export type Frame = {
@@ -235,6 +236,10 @@ export type Game = {
     debugBossMode?: boolean;
     graze?: { enabled: boolean; radius: number; score: number; flashFrames: number };
     music?: { title: number; boss: number; clear: number; gameover: number; victory?: number };
+    /** Project-relative MIDI import manifest. Built-in IDs remain stable. */
+    musicScore?: string;
+    /** Editable overrides; part of the normal project revision, undo and recovery. */
+    musicTracks?: MusicTrack[];
     /** Optional admission caps. OAM 40 and the fixed pool remain hard limits. */
     performance?: { enemies: number; playerShots: number; enemyShots: number; effects: number };
     effects: { explosion: string; duration: number };
@@ -514,6 +519,11 @@ export function validateShape(
         "startup?": {enabled:"boolean", fadeSeconds:"number", slides:[{id:"string",background:"string",seconds:"number"}]},
         "attract?": {enabled:"boolean", titleSeconds:"number", bossSeconds:"number", rankingSeconds:"number"},
         "startupMovie?": {enabled:"boolean", pcm:"string", frames:[{dmg:"string",cgb:"string",attributes:"string",palettes:"string"}]},
+        "musicScore?": "string",
+        "musicTracks?": [{id:"number",key:"string",title:"string",speed:"number","speedHalf?":"boolean",loop:"boolean",
+            bars:[{section:"string",chord:"string",duty:"number",envelope:"number",level:"number","wave?":"number",
+                lead:["number"],bass:["number"],"counter?":["number"],"counterDuty?":"number","leadEnvelope?":["number"],"counterEnvelope?":["number"],"bassLevel?":["number"]}],
+            "source?":{file:"string",name:"string",sha256:"string","converter?":"string",warnings:["string"],"options?":{id:"number",title:"string",startBeat:"number",bars:"number",bpm:"number",lanes:["string"],octaves:["number"],overlap:"string"}}}],
         "ending?": { seconds: "number", slides: [{id: "string", background: "string"}], "music?":"number", "scoreAfter?":"boolean",
             "characterSlides?":[{id:"string",character:"string",slides:[{id:"string",background:"string"}]}] },
         clearBonus: "number", "legacyScoreDivisor?": "number",
@@ -933,8 +943,13 @@ export function validate(value: unknown): Diagnostic[] {
         if (game.stages.some(s => !s.events.some(e => e.kind === "boss"))) err("debugBossMode", "ボス連戦には各ステージのボス登場イベントが必要です");
     }
     if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 37, "music");
-    if (game.bossCelebration && game.music?.victory !== undefined && ![0, 6, 7, 8, 14, 15, 29].includes(game.music.victory))
+    if (game.musicTracks) for (const message of musicErrors(game.musicTracks)) err("musicTracks",message);
+    if (game.musicScore !== undefined && (!/^assets-src\/(?:[\w-]+\/)*[\w.-]+\.json$/.test(game.musicScore) || game.musicScore.includes("..")))
+        err("musicScore", "楽譜の指定にはassets-src内のJSONファイルを使用してください");
+    if (game.bossCelebration && game.music?.victory !== undefined && !(game.musicTracks?.find(t=>t.id===game.music!.victory)?.loop === false) && ![0, 6, 7, 8, 14, 15, 29].includes(game.music.victory))
         err("music", "撃破ファンファーレはループしない曲または無音を選択してください");
+    if (game.bossCelebration && game.musicTracks?.find(t=>t.id===game.music?.victory)?.loop === true)
+        err("music", "撃破ファンファーレに指定した編集曲のループを解除してください");
     if (game.performance) {
         integer(game.performance.enemies, 1, 12, "performance");
         integer(game.performance.playerShots, 1, 24, "performance");

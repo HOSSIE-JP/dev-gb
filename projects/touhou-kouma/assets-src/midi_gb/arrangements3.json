@@ -1,0 +1,1395 @@
+{
+  "version": 3,
+  "description": "3声改訂。主旋律CH2、副旋律・和声CH1、元MIDIのベースCH3。2声初稿の定型伴奏を破棄し、全声を元ノートから選ぶ。区間の単位はoriginBeatからの元MIDI四分音符。",
+  "sourceDirectory": "../midi_org",
+  "targetSeconds": [
+    75,
+    105
+  ],
+  "maxBars": 64,
+  "tracks": [
+    {
+      "file": "th06_01.mid",
+      "originBeat": 0.0234375,
+      "beatScale": 1,
+      "stepFrames": 6,
+      "melody": {
+        "tracks": {
+          "1": 0.85,
+          "2": 0.12,
+          "4": 1
+        },
+        "low": 65,
+        "high": 88,
+        "center": 76,
+        "velocity": 32
+      },
+      "duty": 0.5,
+      "sections": [
+        {
+          "name": "導入・主題",
+          "startBeat": 0,
+          "endBeat": 32
+        },
+        {
+          "name": "主題の展開",
+          "startBeat": 32,
+          "endBeat": 64
+        },
+        {
+          "name": "サビ・高音の応答",
+          "startBeat": 64,
+          "endBeat": 128,
+          "hook": true
+        },
+        {
+          "name": "主題への戻り",
+          "startBeat": 128,
+          "endBeat": 148
+        }
+      ],
+      "editorial": "短い曲なので展開を保持。高音の重複は1本にまとめ、終端の端数だけを整理する。",
+      "counter": {
+        "tracks": {
+          "1": 1.2,
+          "2": 0.5,
+          "4": 0.15
+        },
+        "low": 50,
+        "high": 76,
+        "center": 64,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.25
+      },
+      "bass": {
+        "tracks": {
+          "2": 0.35,
+          "3": 1.3
+        },
+        "low": 24,
+        "high": 52,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_02.mid",
+      "originBeat": 8.0234375,
+      "beatScale": 1,
+      "stepFrames": 6,
+      "melody": {
+        "tracks": {
+          "2": 0.12,
+          "4": 1
+        },
+        "low": 65,
+        "high": 86,
+        "center": 75,
+        "velocity": 30
+      },
+      "duty": 0.25,
+      "sections": [
+        {
+          "name": "主題への導入",
+          "startBeat": 0,
+          "endBeat": 24,
+          "melody": {
+            "low": 60,
+            "center": 72
+          }
+        },
+        {
+          "name": "サビ・反復主題",
+          "startBeat": 24,
+          "endBeat": 104,
+          "hook": true
+        },
+        {
+          "name": "対比する展開",
+          "startBeat": 104,
+          "endBeat": 152,
+          "melody": {
+            "low": 60,
+            "center": 71
+          }
+        },
+        {
+          "name": "主題の再現",
+          "startBeat": 152,
+          "endBeat": 196,
+          "hook": true
+        }
+      ],
+      "editorial": "冒頭の打楽器だけの区間を省き、旋律が入るところから開始。中盤の対比と最後の主題再現を保持する。",
+      "counter": {
+        "tracks": {
+          "2": 1.2,
+          "4": 0.2
+        },
+        "low": 50,
+        "high": 76,
+        "center": 63,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.5
+      },
+      "bass": {
+        "tracks": {
+          "2": 0.65,
+          "3": 1.2
+        },
+        "low": 24,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_03.mid",
+      "originBeat": 0.5625,
+      "beatScale": 1,
+      "stepFrames": 6,
+      "melody": {
+        "tracks": {
+          "2": 0.08,
+          "4": 1
+        },
+        "low": 65,
+        "high": 86,
+        "center": 76,
+        "velocity": 38
+      },
+      "duty": 0.25,
+      "sections": [
+        {
+          "name": "冒頭の主題",
+          "startBeat": 0,
+          "endBeat": 32
+        },
+        {
+          "name": "展開",
+          "startBeat": 32,
+          "endBeat": 64
+        },
+        {
+          "name": "サビ",
+          "startBeat": 64,
+          "endBeat": 128,
+          "hook": true
+        },
+        {
+          "name": "折り返し",
+          "startBeat": 128,
+          "endBeat": 132
+        }
+      ],
+      "editorial": "約55秒の原形をほぼ維持。冒頭の空白と最後の端数を整理する。",
+      "counter": {
+        "tracks": {
+          "1": 0.35,
+          "2": 1.2
+        },
+        "low": 50,
+        "high": 76,
+        "center": 64,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.5
+      },
+      "bass": {
+        "tracks": {
+          "2": 1.1,
+          "3": 0.7,
+          "4": 0.2
+        },
+        "low": 28,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_04.mid",
+      "originBeat": 0.03515625,
+      "beatScale": 2,
+      "stepFrames": 4.5,
+      "melody": {
+        "tracks": {
+          "1": 0.95,
+          "2": 0.4,
+          "4": 1
+        },
+        "low": 62,
+        "high": 88,
+        "center": 73,
+        "velocity": 40
+      },
+      "duty": 0.5,
+      "sections": [
+        {
+          "name": "導入",
+          "startBeat": 0,
+          "endBeat": 16
+        },
+        {
+          "name": "主題",
+          "startBeat": 16,
+          "endBeat": 48
+        },
+        {
+          "name": "旋律の展開",
+          "startBeat": 48,
+          "endBeat": 80
+        },
+        {
+          "name": "ピアノの応答",
+          "startBeat": 80,
+          "endBeat": 96,
+          "melody": {
+            "tracks": {
+              "1": 1.2,
+              "2": 0.3,
+              "4": 0.55
+            },
+            "center": 68
+          }
+        },
+        {
+          "name": "サビ・後半主題",
+          "startBeat": 96,
+          "endBeat": 128,
+          "hook": true,
+          "melody": {
+            "low": 67,
+            "center": 77
+          }
+        }
+      ],
+      "editorial": "元の約95 BPMを倍テンポ表記にして速い音型を保持。64小節に収めるため、後半主題を1回完結させたあとの末尾反復を省く。",
+      "counter": {
+        "tracks": {
+          "1": 1.1,
+          "2": 0.8,
+          "4": 0.45
+        },
+        "low": 52,
+        "high": 80,
+        "center": 66,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.25
+      },
+      "bass": {
+        "tracks": {
+          "1": 0.35,
+          "2": 0.75,
+          "3": 1.2
+        },
+        "low": 24,
+        "high": 49,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。 低い主旋律と同音になるベースの上側を避け、低音の候補域を元MIDI番号24〜49に限定する。"
+    },
+    {
+      "file": "th06_05.mid",
+      "originBeat": 8.03125,
+      "beatScale": 1,
+      "stepFrames": 6,
+      "melody": {
+        "tracks": {
+          "2": 0.1,
+          "4": 1
+        },
+        "low": 65,
+        "high": 88,
+        "center": 76,
+        "velocity": 38
+      },
+      "duty": 0.25,
+      "sections": [
+        {
+          "name": "特徴的な冒頭主題",
+          "startBeat": 0,
+          "endBeat": 64,
+          "hook": true
+        },
+        {
+          "name": "中間の対比",
+          "startBeat": 64,
+          "endBeat": 128,
+          "melody": {
+            "low": 60,
+            "center": 71
+          }
+        },
+        {
+          "name": "サビ・高音域の展開",
+          "startBeat": 128,
+          "endBeat": 192,
+          "hook": true,
+          "melody": {
+            "low": 68,
+            "center": 80
+          }
+        },
+        {
+          "name": "サビの応答",
+          "startBeat": 192,
+          "endBeat": 216,
+          "hook": true
+        }
+      ],
+      "editorial": "冒頭の打楽器導入を省く。冒頭の代表的な旋律と後半の盛り上がりを両方残す。",
+      "counter": {
+        "tracks": {
+          "2": 1.2,
+          "4": 0.25
+        },
+        "low": 51,
+        "high": 77,
+        "center": 65,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.5
+      },
+      "bass": {
+        "tracks": {
+          "2": 1.2,
+          "3": 0.65,
+          "4": 0.25
+        },
+        "low": 28,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_06.mid",
+      "originBeat": 0.0390625,
+      "beatScale": 1,
+      "stepFrames": 6.5,
+      "melody": {
+        "tracks": {
+          "1": 0.25,
+          "2": 0.08,
+          "4": 1
+        },
+        "low": 65,
+        "high": 88,
+        "center": 77,
+        "velocity": 40
+      },
+      "duty": 0.5,
+      "sections": [
+        {
+          "name": "導入",
+          "startBeat": 0,
+          "endBeat": 32
+        },
+        {
+          "name": "サビ・主題",
+          "startBeat": 32,
+          "endBeat": 96,
+          "hook": true,
+          "melody": {
+            "low": 68,
+            "center": 78
+          }
+        },
+        {
+          "name": "対比する旋律",
+          "startBeat": 96,
+          "endBeat": 160
+        },
+        {
+          "name": "サビの再現",
+          "startBeat": 224,
+          "endBeat": 288,
+          "hook": true,
+          "melody": {
+            "low": 68,
+            "center": 78
+          }
+        }
+      ],
+      "editorial": "前半の主題と対比旋律を保持し、中間の反復を飛ばして後半の主題再現へつなぐ。終盤の同主題の追加反復を省く。",
+      "counter": {
+        "tracks": {
+          "1": 1,
+          "2": 1,
+          "4": 0.2
+        },
+        "low": 51,
+        "high": 77,
+        "center": 65,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.25
+      },
+      "bass": {
+        "tracks": {
+          "1": 0.3,
+          "2": 1,
+          "3": 1.1
+        },
+        "low": 24,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_07.mid",
+      "originBeat": 2.5234375,
+      "beatScale": 1,
+      "stepFrames": 6,
+      "melody": {
+        "tracks": {
+          "1": 0.12,
+          "3": 1
+        },
+        "low": 65,
+        "high": 88,
+        "center": 74,
+        "velocity": 42
+      },
+      "duty": 0.25,
+      "sections": [
+        {
+          "name": "冒頭主題",
+          "startBeat": 0,
+          "endBeat": 48
+        },
+        {
+          "name": "サビ・第1主題",
+          "startBeat": 48,
+          "endBeat": 128,
+          "hook": true
+        },
+        {
+          "name": "サビ・転調後の主題",
+          "startBeat": 128,
+          "endBeat": 192,
+          "hook": true
+        },
+        {
+          "name": "主題への戻り",
+          "startBeat": 192,
+          "endBeat": 248
+        }
+      ],
+      "editorial": "約106秒の原曲をほぼ保持。冒頭空白と終端の不完全な小節を整理し、一定テンポで約100秒にする。",
+      "counter": {
+        "tracks": {
+          "1": 1.2,
+          "3": 0.3
+        },
+        "low": 49,
+        "high": 75,
+        "center": 63,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.5
+      },
+      "bass": {
+        "tracks": {
+          "1": 0.75,
+          "2": 1.2
+        },
+        "low": 24,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_08.mid",
+      "originBeat": 0.0546875,
+      "beatScale": 2,
+      "stepFrames": 4.5,
+      "melody": {
+        "tracks": {
+          "1": 0.4,
+          "2": 1,
+          "4": 0.18
+        },
+        "low": 58,
+        "high": 83,
+        "center": 68,
+        "velocity": 50
+      },
+      "duty": 0.5,
+      "sections": [
+        {
+          "name": "低音域の導入リフ",
+          "startBeat": 0,
+          "endBeat": 16,
+          "octave": 12
+        },
+        {
+          "name": "主題とピアノの応答",
+          "startBeat": 32,
+          "endBeat": 80,
+          "octave": 12
+        },
+        {
+          "name": "サビ・後半のリフ",
+          "startBeat": 112,
+          "endBeat": 144,
+          "hook": true,
+          "octave": 12
+        },
+        {
+          "name": "サビの発展",
+          "startBeat": 144,
+          "endBeat": 176,
+          "hook": true,
+          "octave": 12
+        }
+      ],
+      "editorial": "低いギター系トラックの動きを主旋律として採用し、1オクターブ上げる。倍テンポ表記で細かいリフを残し、疎な中間部と末尾反復を整理する。",
+      "counter": {
+        "tracks": {
+          "1": 1.1,
+          "2": 0.3,
+          "4": 0.85
+        },
+        "low": 56,
+        "high": 83,
+        "center": 69,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.25
+      },
+      "bass": {
+        "tracks": {
+          "1": 0.25,
+          "2": 1.2,
+          "3": 0.6
+        },
+        "low": 28,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_09.mid",
+      "originBeat": 0.0546875,
+      "beatScale": 1,
+      "stepFrames": 6,
+      "melody": {
+        "tracks": {
+          "1": 0.25,
+          "2": 0.08,
+          "4": 1
+        },
+        "low": 65,
+        "high": 88,
+        "center": 76,
+        "velocity": 36
+      },
+      "duty": 0.5,
+      "sections": [
+        {
+          "name": "導入リフ",
+          "startBeat": 0,
+          "endBeat": 16,
+          "melody": {
+            "tracks": {
+              "2": 1,
+              "4": 0.2
+            },
+            "low": 57,
+            "high": 76,
+            "center": 65
+          },
+          "octave": 12
+        },
+        {
+          "name": "前半の旋律",
+          "startBeat": 32,
+          "endBeat": 64
+        },
+        {
+          "name": "サビ・短調の主題",
+          "startBeat": 96,
+          "endBeat": 160,
+          "hook": true
+        },
+        {
+          "name": "サビ・高音の応答",
+          "startBeat": 160,
+          "endBeat": 224,
+          "hook": true,
+          "melody": {
+            "low": 68,
+            "center": 79
+          }
+        },
+        {
+          "name": "転調と折り返し",
+          "startBeat": 224,
+          "endBeat": 288
+        }
+      ],
+      "editorial": "音数の少ない前半の引き延ばしと末尾の再導入を省き、連続する中盤主題・高音の展開を優先する。",
+      "counter": {
+        "tracks": {
+          "1": 1.15,
+          "2": 0.8,
+          "4": 0.2
+        },
+        "low": 51,
+        "high": 77,
+        "center": 65,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.25
+      },
+      "bass": {
+        "tracks": {
+          "1": 0.25,
+          "2": 0.7,
+          "3": 1.2
+        },
+        "low": 24,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_10.mid",
+      "originBeat": 4.0390625,
+      "beatScale": 1,
+      "stepFrames": 5.5,
+      "melody": {
+        "tracks": {
+          "1": 0.55,
+          "2": 0.12,
+          "4": 1
+        },
+        "low": 65,
+        "high": 88,
+        "center": 77,
+        "velocity": 36
+      },
+      "duty": 0.25,
+      "sections": [
+        {
+          "name": "前半の主題",
+          "startBeat": 0,
+          "endBeat": 64,
+          "hook": true
+        },
+        {
+          "name": "主題の応答",
+          "startBeat": 160,
+          "endBeat": 192
+        },
+        {
+          "name": "中盤のリフ",
+          "startBeat": 236,
+          "endBeat": 268,
+          "melody": {
+            "tracks": {
+              "1": 0.25,
+              "2": 1,
+              "4": 0.1
+            },
+            "low": 60,
+            "high": 79,
+            "center": 70
+          },
+          "octave": 12
+        },
+        {
+          "name": "サビ・終盤への上昇",
+          "startBeat": 384,
+          "endBeat": 448,
+          "hook": true
+        },
+        {
+          "name": "サビ・再現と折り返し",
+          "startBeat": 448,
+          "endBeat": 512,
+          "hook": true
+        }
+      ],
+      "editorial": "約3分から64小節へ。前半主題、中盤の低音域リフ、最後の32小節を保持し、類似する伴奏展開と主題の追加反復を省く。",
+      "counter": {
+        "tracks": {
+          "1": 1.2,
+          "2": 0.8,
+          "4": 0.2
+        },
+        "low": 52,
+        "high": 81,
+        "center": 67,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.5
+      },
+      "bass": {
+        "tracks": {
+          "1": 0.6,
+          "2": 0.8,
+          "3": 1.2
+        },
+        "low": 24,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_11.mid",
+      "originBeat": 0.0546875,
+      "beatScale": 1,
+      "stepFrames": 6,
+      "melody": {
+        "tracks": {
+          "1": 0.15,
+          "2": 0.15,
+          "4": 1
+        },
+        "low": 65,
+        "high": 87,
+        "center": 75,
+        "velocity": 32
+      },
+      "duty": 0.25,
+      "sections": [
+        {
+          "name": "導入リフ",
+          "startBeat": 0,
+          "endBeat": 12,
+          "melody": {
+            "tracks": {
+              "2": 1,
+              "4": 0.25
+            },
+            "low": 60,
+            "center": 68
+          }
+        },
+        {
+          "name": "サビ・冒頭主題",
+          "startBeat": 12,
+          "endBeat": 48,
+          "hook": true
+        },
+        {
+          "name": "第2主題",
+          "startBeat": 48,
+          "endBeat": 128,
+          "hook": true
+        },
+        {
+          "name": "対比と展開",
+          "startBeat": 128,
+          "endBeat": 192
+        },
+        {
+          "name": "主題への戻り",
+          "startBeat": 192,
+          "endBeat": 220,
+          "melody": {
+            "tracks": {
+              "1": 0.2,
+              "2": 0.65,
+              "4": 1
+            },
+            "low": 62,
+            "center": 73
+          }
+        }
+      ],
+      "editorial": "約91秒の構成を維持し、終端の端数のみを整理。低音リフから主旋律への受け渡しを明確にする。",
+      "counter": {
+        "tracks": {
+          "1": 0.5,
+          "2": 1.2,
+          "4": 0.2
+        },
+        "low": 52,
+        "high": 77,
+        "center": 65,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.5
+      },
+      "bass": {
+        "tracks": {
+          "1": 0.45,
+          "2": 1.25,
+          "3": 0.2
+        },
+        "low": 31,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_12.mid",
+      "originBeat": 2.6875,
+      "beatScale": 1,
+      "stepFrames": 6.5,
+      "melody": {
+        "tracks": {
+          "1": 1,
+          "2": 0.08,
+          "4": 0.25
+        },
+        "low": 65,
+        "high": 88,
+        "center": 74,
+        "velocity": 45
+      },
+      "duty": 0.5,
+      "sections": [
+        {
+          "name": "ピアノの導入音型",
+          "startBeat": 0,
+          "endBeat": 48,
+          "melody": {
+            "low": 63,
+            "center": 71
+          }
+        },
+        {
+          "name": "サビ・ピアノの主題",
+          "startBeat": 48,
+          "endBeat": 112,
+          "hook": true
+        },
+        {
+          "name": "導入への戻り",
+          "startBeat": 112,
+          "endBeat": 136,
+          "melody": {
+            "low": 63,
+            "center": 71
+          }
+        }
+      ],
+      "editorial": "約60秒の原形を維持。ピアノの反復と中盤の上昇旋律を主役にし、伴奏は低音ペダルを中心にする。",
+      "counter": {
+        "tracks": {
+          "1": 0.3,
+          "2": 1.1,
+          "4": 0.6
+        },
+        "low": 49,
+        "high": 73,
+        "center": 62,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.25
+      },
+      "bass": {
+        "tracks": {
+          "2": 0.6,
+          "3": 1.3
+        },
+        "low": 24,
+        "high": 50,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_13.mid",
+      "originBeat": 0.0625,
+      "beatScale": 1,
+      "stepFrames": 6,
+      "melody": {
+        "tracks": {
+          "2": 0.06,
+          "4": 1
+        },
+        "low": 68,
+        "high": 88,
+        "center": 78,
+        "velocity": 36
+      },
+      "duty": 0.5,
+      "sections": [
+        {
+          "name": "導入音型",
+          "startBeat": 0,
+          "endBeat": 16,
+          "melody": {
+            "tracks": {
+              "2": 1
+            },
+            "low": 60,
+            "high": 81,
+            "center": 68
+          }
+        },
+        {
+          "name": "前半の主題",
+          "startBeat": 32,
+          "endBeat": 64
+        },
+        {
+          "name": "サビへの展開",
+          "startBeat": 88,
+          "endBeat": 160
+        },
+        {
+          "name": "サビ・高音域の主題",
+          "startBeat": 160,
+          "endBeat": 224,
+          "hook": true
+        },
+        {
+          "name": "サビの応答",
+          "startBeat": 224,
+          "endBeat": 256,
+          "hook": true
+        },
+        {
+          "name": "折り返し",
+          "startBeat": 256,
+          "endBeat": 264
+        }
+      ],
+      "editorial": "高音域の主題へ上がる一連の展開をまとまって保持。長い導入反復、主題間の空白、終盤の再導入と追加反復を整理する。",
+      "counter": {
+        "tracks": {
+          "2": 1.2,
+          "4": 0.25
+        },
+        "low": 52,
+        "high": 78,
+        "center": 65,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.25
+      },
+      "bass": {
+        "tracks": {
+          "2": 1.25,
+          "3": 0.55,
+          "4": 0.2
+        },
+        "low": 28,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_14.mid",
+      "originBeat": 0.046875,
+      "beatScale": 1,
+      "stepFrames": 6,
+      "melody": {
+        "tracks": {
+          "1": 0.65,
+          "2": 0.06,
+          "4": 1
+        },
+        "low": 67,
+        "high": 88,
+        "center": 78,
+        "velocity": 34
+      },
+      "duty": 0.5,
+      "sections": [
+        {
+          "name": "ピアノの導入",
+          "startBeat": 0,
+          "endBeat": 16,
+          "melody": {
+            "tracks": {
+              "1": 1,
+              "4": 0.4
+            },
+            "center": 81
+          }
+        },
+        {
+          "name": "前半の主題",
+          "startBeat": 32,
+          "endBeat": 64
+        },
+        {
+          "name": "サビ・第1主題",
+          "startBeat": 64,
+          "endBeat": 128,
+          "hook": true
+        },
+        {
+          "name": "サビ・後半の展開",
+          "startBeat": 272,
+          "endBeat": 320,
+          "hook": true
+        },
+        {
+          "name": "終盤の盛り上がり",
+          "startBeat": 320,
+          "endBeat": 384,
+          "hook": true
+        }
+      ],
+      "editorial": "前半の主題と終盤の展開を残し、中央の長い主題反復を整理。冒頭ピアノは短く残して曲の入口を維持する。",
+      "counter": {
+        "tracks": {
+          "1": 1.2,
+          "2": 0.65,
+          "4": 0.35
+        },
+        "low": 52,
+        "high": 79,
+        "center": 66,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.25
+      },
+      "bass": {
+        "tracks": {
+          "1": 0.65,
+          "2": 0.85,
+          "3": 1.2
+        },
+        "low": 24,
+        "high": 55,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    },
+    {
+      "file": "th06_15.mid",
+      "originBeat": 0.046875,
+      "beatScale": 1,
+      "stepFrames": 6,
+      "melody": {
+        "tracks": {
+          "2": 0.05,
+          "4": 1
+        },
+        "low": 68,
+        "high": 88,
+        "center": 78,
+        "velocity": 40
+      },
+      "duty": 0.25,
+      "sections": [
+        {
+          "name": "冒頭の特徴的な音型",
+          "startBeat": 0,
+          "endBeat": 32,
+          "hook": true
+        },
+        {
+          "name": "サビ・主題",
+          "startBeat": 80,
+          "endBeat": 144,
+          "hook": true
+        },
+        {
+          "name": "高音の展開と応答",
+          "startBeat": 144,
+          "endBeat": 208
+        },
+        {
+          "name": "サビ・終盤の主題",
+          "startBeat": 248,
+          "endBeat": 320,
+          "hook": true
+        }
+      ],
+      "editorial": "冒頭の音型、中央の主題、終盤の主題をすべて残す。低音伴奏だけになる2区間と端数の再導入を省き、約93秒にまとめる。",
+      "counter": {
+        "tracks": {
+          "1": 0.5,
+          "2": 1.2,
+          "4": 0.25
+        },
+        "low": 53,
+        "high": 79,
+        "center": 66,
+        "velocity": 30,
+        "restMerit": 0.95,
+        "duty": 0.5
+      },
+      "bass": {
+        "tracks": {
+          "1": 0.3,
+          "2": 1.25,
+          "4": 0.5
+        },
+        "low": 30,
+        "high": 57,
+        "center": 40,
+        "velocity": 27,
+        "restMerit": 0.72
+      },
+      "expression": {
+        "lead": [
+          64,
+          111
+        ],
+        "counter": [
+          44,
+          88
+        ],
+        "bass": [
+          57,
+          103
+        ],
+        "hookAccent": 4
+      },
+      "voiceEditorial": "主旋律の採用区間と骨格を保ち、副旋律は指定楽器の中音域から、ベースは低音パートと低いギター音から独立して選定。強弱は元ノートの音量と拍・主題の位置から調整。"
+    }
+  ],
+  "revisionReason": "ユーザーの平坦さへの指摘と3声への変更指示。2声初稿は比較用に保持。ゲーム実装は次工程。",
+  "voices": 3,
+  "phraseRows": 64
+}

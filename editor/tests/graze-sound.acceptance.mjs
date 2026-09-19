@@ -2,7 +2,7 @@
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {spawnSync} from 'node:child_process';
 import {boot,memory,symbols,GameBoyMode} from './emulator.mjs';
 const root=path.resolve(import.meta.dirname,'../..'),out=path.resolve(process.argv[2]??'.cache/kouma-v39/sound'),work=path.join(out,'fixture');
-fs.mkdirSync(work,{recursive:true});for(const n of ['caravan.h','sound.c','graze.c'])fs.copyFileSync(path.join(root,'engine/caravan',n),path.join(work,n));
+fs.mkdirSync(work,{recursive:true});for(const n of ['caravan.h','music.h','sound.c','graze.c'])fs.copyFileSync(path.join(root,'engine/caravan',n),path.join(work,n));
 fs.copyFileSync(path.join(root,'editor/tests/fixtures/graze_sound_harness.c'),path.join(work,'main.c'));
 const r=spawnSync(path.join(root,'.tools/gbdk/bin/lcc.exe'),['-Wm-yc','-Wl-yt0x19','-Wm-yoA','-autobank','-Wb-ext=.rel','-Wl-m','-Wl-j','-debug','-I.','-o','sound.gb','main.c','sound.c','graze.c'],{cwd:work,encoding:'utf8'});
 assert.equal(r.status,0,r.stdout+r.stderr);assert.doesNotMatch(r.stdout+r.stderr,/warning/i);

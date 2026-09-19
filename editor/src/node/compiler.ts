@@ -870,7 +870,7 @@ export function generate(
     );
     sources.push("caravan_data.c", "caravan_main.c");
     if (blobFile) atomicWrite(path.join(target, blobFile), blobSource);
-    sources.push(...generateMusic(root,target));
+    sources.push(...generateMusic(root,target,game.musicScore ? safePath(projectDir(root,game.name),game.musicScore) : undefined,game.musicTracks));
     const report = {
         revision: revision(game),
         spriteTiles,
@@ -956,6 +956,7 @@ export function compile(
         const args = [
             game.hardware === "gbc" ? "-Wm-yC" : "-Wm-yc",
             `-DCE_CGB_ONLY=${+(game.hardware === "gbc")}`,
+            `-DCE_MUSIC_3VOICE=${+(!!game.musicScore || !!game.musicTracks?.some(t=>t.bars[0]?.counter!==undefined))}`,
             ...(game.hardware === "gbc" ? ["-Wl-g.STACK=0xD000"] : []),
             `-DCE_GRAZE_ENABLED=${+(game.graze?.enabled??false)}`,
             `-DCE_OBJ_16=${+(spriteHeight(game)===16)}`,

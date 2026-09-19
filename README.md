@@ -88,6 +88,7 @@ Debugはデバッグ用シンボルを生成します。Releaseは配布用の�
 - [構成と設計](docs/architecture.md)
 - [横スクロール・取得アイテム・破壊BG](docs/horizontal-stg.md)
 - [アセット制作](docs/asset-pipeline.md)
+- [MIDI取り込み・音楽編集・試聴](docs/music-editor.md)
 - [デバッグ](docs/debugging.md)・[自動検証と受入確認](docs/caravan-editor-validation.md)
 - [SRAM仕様](docs/caravan-sram.md)・[性能測定](docs/nova-spear-performance.md)
 - [コントリビューション](CONTRIBUTING.md)・[Game Boy実装規約](docs/gb-programming-rules.md)

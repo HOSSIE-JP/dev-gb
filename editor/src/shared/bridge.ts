@@ -1,4 +1,5 @@
 import type { Asset, BuildResult, Game, ProjectInfo } from "./model";
+import type { MidiInfo, MidiOptions, MusicTrack } from "./music-score";
 export type ImportResult = {
     pixels: number[];
     cgbPixels: number[];
@@ -21,6 +22,9 @@ export type ToolchainStatus = {
     hint: string;
 };
 export interface Bridge {
+    music(name: string): Promise<{tracks: MusicTrack[]; waves: {name:string;samples:number[]}[]}>;
+    chooseMidi(): Promise<{token:string;info:MidiInfo}|null>;
+    convertMidi(name:string,token:string,options:MidiOptions,saveSource:boolean): Promise<MusicTrack>;
     confirm(message: string): Promise<boolean>;
     chooseProject(): Promise<{ name: string; projects: ProjectInfo[] } | null>;
     showProjectFolder(name: string): Promise<void>;

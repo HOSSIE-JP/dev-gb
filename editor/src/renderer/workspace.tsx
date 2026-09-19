@@ -12,6 +12,7 @@ export const categories = [
     ["bosses", "ボス", "⬡"],
     ["assets", "画像・スプライト", "▦"],
     ["screens", "画面・HUD", "▣"],
+    ["musicEditor", "音楽", "♫"],
     ["palettes", "パレット", "◐"],
 ];
 export type Selection = { kind: string; id: string };
@@ -133,7 +134,7 @@ export function LibraryPanel({
                             onClick={() =>
                                 choose(
                                     kind,
-                                    ["project", "player"].includes(kind)
+                                    ["project", "player", "musicEditor"].includes(kind)
                                         ? kind
                                         : (items(game, kind)[0]?.id ?? ""),
                                 )
@@ -181,7 +182,7 @@ export function LibraryPanel({
             </nav>
             <div className="library-footer">
                 <button
-                    disabled={["player", "project", "screens"].includes(
+                    disabled={["player", "project", "screens", "musicEditor"].includes(
                         selection.kind,
                     )}
                     onClick={add}

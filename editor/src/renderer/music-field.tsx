@@ -1,6 +1,7 @@
-import React from "react";
+import React, {createContext,useContext} from "react";
 import { Field } from "./fields";
 import { MUSIC_TRACKS, SILENT_SOUNDTRACK, type Soundtrack } from "../shared/music";
+export const MusicNamesContext=createContext<{id:number;title:string}[]>([]);
 
 export function MusicField({
     label = "ステージBGM",
@@ -11,6 +12,7 @@ export function MusicField({
     value?: number;
     onChange: (track: number) => void;
 }) {
+    const names=useContext(MusicNamesContext);
     return (
         <Field label={label}>
             <select
@@ -19,7 +21,7 @@ export function MusicField({
                 onChange={(event) => onChange(Number(event.target.value))}
             >
                 {MUSIC_TRACKS.map((track) => (
-                    <option key={track.id} value={track.id}>{track.label}</option>
+                    <option key={track.id} value={track.id}>{[...names].reverse().find(t=>t.id===track.id)?.title??track.label}</option>
                 ))}
             </select>
         </Field>

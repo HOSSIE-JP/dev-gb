@@ -1,18 +1,53 @@
 {
-  "version": "0.43-render-performance",
-  "updatedAt": "2026-09-19T11:37:18.872Z",
+  "version": "0.44-three-voice-midi-trial",
+  "updatedAt": "2026-09-19T16:14:45.718Z",
   "status": "awaiting-playtest",
   "approved": false,
-  "projectRevision": "75048f3102acab489b193be4f9d366a286e7a2d6bdd9fb979fed64b0f962e9b1",
-  "engineRevision": "9270879 + local renderer optimizations",
+  "projectRevision": "08de5fbf108095f653603ca77dccdd041c72cc63fe46e3be83c2b0b893ae62bf",
+  "engineRevision": "867d8aabdb170095198c5c42ec15d433237fa603 + local MIDI import / three-voice playback",
   "rom": {
-    "path": "build/Release/touhou-kouma-v43.gb",
-    "sha256": "db94ce52f74bda0dd0c0221378f82d9f0ffd83cddd590fac3a566dca731038c3",
+    "path": "build/Release/touhou-kouma-v44.gb",
+    "sha256": "bdbfc625ed232c8989e2885e9d7cf936479aa72be86d68bce94f23088d8ee3ad",
     "bytes": 4194304,
     "header": 192,
     "debugReleaseIdentical": true
   },
   "previous": [
+    {
+      "version": "0.43-render-performance",
+      "updatedAt": "2026-09-19T11:37:18.872Z",
+      "status": "awaiting-playtest",
+      "approved": false,
+      "projectRevision": "75048f3102acab489b193be4f9d366a286e7a2d6bdd9fb979fed64b0f962e9b1",
+      "engineRevision": "9270879 + local renderer optimizations",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v43.gb",
+        "sha256": "db94ce52f74bda0dd0c0221378f82d9f0ffd83cddd590fac3a566dca731038c3",
+        "bytes": 4194304,
+        "header": 192,
+        "debugReleaseIdentical": true
+      },
+      "validation": "touhou-kouma-design/qa-v43.json",
+      "checks": [
+        "170 standard tests and 3 legacy ROM/BGB checks passed; Debug/Release bytes identical.",
+        "28 production routes, 14 forty-bullet fixtures and 4 control routes preserve state/OAM/decoded graphics.",
+        "BGB before/after measurements and isolated optimization comparisons recorded.",
+        "Production focus/fire/bomb, HUD, graze PCM and save compatibility passed."
+      ],
+      "pending": [
+        "Forty-bullet one-update-per-display target is still unmet, especially guided Reimu (459 misses / 599).",
+        "Production stage 7 Marisa road is slightly worse: 35 to 36 deadline misses / 2801. Not an improvement in every scene.",
+        "Bomb sustain improves to 49/47 display frames per 47 updates for Reimu/Marisa; asset entry and restoration still take multiple frames.",
+        "Emulicious final Touhou and STAR CARAVAN DAP attach succeeds, but stackTrace is empty and evaluate throws NullPointerException. No execution pass.",
+        "No physical hardware, human listening, or full human campaign playthrough. First 1200 updates of 28 routes do not cover all 21 combat modes.",
+        "CPU profiles use deterministic PC sampling, not exact function instrumentation. Stress ROMs replace only the mainloop and replenish bullets; they are not production ROMs."
+      ],
+      "evidence": {
+        "report": "../../docs/touhou-kouma-v43.md",
+        "qa": "touhou-kouma-design/qa-v43.json",
+        "raw": ".cache/perf-v43"
+      }
+    },
     {
       "version": "0.42-focus-controls",
       "updatedAt": "2026-09-19T08:28:41.051Z",
@@ -601,24 +636,30 @@
       "projectRevision": "e3df1038693e7e2fbd81a88450ffee0646832913fba689d5ef8138c4f2454162"
     }
   ],
-  "validation": "touhou-kouma-design/qa-v43.json",
+  "validation": "touhou-kouma-design/qa-v44.json",
+  "feedback": "曲としてはできは悪いですが、いったんゲームへの取り込みをやってみましょう。",
   "checks": [
-    "170 standard tests and 3 legacy ROM/BGB checks passed; Debug/Release bytes identical.",
-    "28 production routes, 14 forty-bullet fixtures and 4 control routes preserve state/OAM/decoded graphics.",
-    "BGB before/after measurements and isolated optimization comparisons recorded.",
-    "Production focus/fire/bomb, HUD, graze PCM and save compatibility passed."
+    "14 requested stage/boss MIDI assignments; track 01 unused.",
+    "Three voices, MIDI expression, SFX ownership, pause/resume and full loops verified in diagnostic ROM on DMG/CGB with Boytacean and BGB.",
+    "14 unchanged production ROM routes verify each voice, continuous fire, pause/resume; first-stage routes verify Marisa bomb sound.",
+    "Doctor, hello clean/Debug, test.cmd, STAR CARAVAN Debug/Release and TOUHOU KOUMA Debug/Release passed.",
+    "Debug/Release bytes identical. Source MIDI and prior v43 ROM preserved."
   ],
   "pending": [
-    "Forty-bullet one-update-per-display target is still unmet, especially guided Reimu (459 misses / 599).",
-    "Production stage 7 Marisa road is slightly worse: 35 to 36 deadline misses / 2801. Not an improvement in every scene.",
-    "Bomb sustain improves to 49/47 display frames per 47 updates for Reimu/Marisa; asset entry and restoration still take multiple frames.",
-    "Emulicious final Touhou and STAR CARAVAN DAP attach succeeds, but stackTrace is empty and evaluate throws NullPointerException. No execution pass.",
-    "No physical hardware, human listening, or full human campaign playthrough. First 1200 updates of 28 routes do not cover all 21 combat modes.",
-    "CPU profiles use deterministic PC sampling, not exact function instrumentation. Stress ROMs replace only the mainloop and replenish bullets; they are not production ROMs."
+    "Human listening and physical hardware unverified; arrangement quality remains unapproved.",
+    "Production 14 route checks are short menu-driven checks, not a complete campaign.",
+    "Native full-loop checks use a diagnostic ROM with the real music/SFX engine, not the complete game.",
+    "Emulicious automatic execution could not be verified; additional DAP launch attempt timed out.",
+    "Performance still misses display deadlines; no claim of zero slowdown.",
+    "No new standalone browser player exported or browser UI validation.",
+    "Previous v43 limitation, not revalidated in this import: Forty-bullet one-update-per-display target is still unmet, especially guided Reimu (459 misses / 599).",
+    "Previous v43 limitation, not revalidated in this import: Production stage 7 Marisa road is slightly worse: 35 to 36 deadline misses / 2801. Not an improvement in every scene.",
+    "Previous v43 limitation, not revalidated in this import: Bomb sustain improves to 49/47 display frames per 47 updates for Reimu/Marisa; asset entry and restoration still take multiple frames.",
+    "Previous v43 limitation, not revalidated in this import: CPU profiles use deterministic PC sampling, not exact function instrumentation. Stress ROMs replace only the mainloop and replenish bullets; they are not production ROMs."
   ],
   "evidence": {
-    "report": "../../docs/touhou-kouma-v43.md",
-    "qa": "touhou-kouma-design/qa-v43.json",
-    "raw": ".cache/perf-v43"
+    "report": "../../docs/touhou-kouma-v44.md",
+    "qa": "touhou-kouma-design/qa-v44.json",
+    "raw": ".cache/midi-import-v44"
   }
 }

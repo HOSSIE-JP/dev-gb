@@ -1,4 +1,8 @@
 #include "caravan.h"
+#include "music.h"
+/* This legacy two-voice fixture does not link the music player. */
+uint8_t ce_music_three;
+void ce_music_ch1_claim(uint8_t frames) BANKED { (void)frames; }
 
 /* Isolate the real sound.c and graze.c without modifying production RAM. */
 CE_State ce_state;

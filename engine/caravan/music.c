@@ -3,7 +3,8 @@
 
 /* Original NOVA SPEAR score, composed for this repository (MIT).
  * Eighth-note phrases use pulse channel 2; wave channel 3 carries an
- * alternating bass. No channel-1/noise, mixer, master-power or ISR writes.
+ * alternating bass. Project MIDI scores may also use CH1 with SFX leasing.
+ * No noise, mixer, master-power or ISR writes.
  * Pitch table: C2 through B6; 2048 - 131072 / frequency, rounded offline. */
 enum {
     REST, C2, CS2, D2, DS2, E2, F2, FS2, G2, GS2, A2, AS2,
@@ -214,17 +215,50 @@ static const CE_Song songs[]={
 };
 
 uint8_t ce_music_track;
+uint8_t ce_music_three;
 uint16_t ce_music_row;
 static uint16_t song_rows;
 static uint8_t remaining, paused, lead_note, bass_note, song_speed, song_loop;
 static uint8_t instrument_duty, instrument_envelope, instrument_level;
+#if CE_MUSIC_3VOICE
+static uint8_t counter_note, counter_duty, counter_envelope, ch1_left;
+#if CE_CGB_ONLY
+static uint8_t bar[100];
+#else
+/* DMG projects keep their 1024-byte stack reserve. Stream five extra bytes/row. */
+static uint8_t bar[35], expression[5];
+static void load_expression(void) NONBANKED;
+#endif
+#else
 static uint8_t bar[35];
+#endif
 static const CE_MusicScore *score;
 
 static void load_bar(void) NONBANKED;
 
 static void mute(void) {
     NR22_REG = 0; NR30_REG = 0;
+#if CE_MUSIC_3VOICE
+    if (ce_music_three && !ch1_left) NR12_REG = 0;
+#endif
+}
+#if CE_MUSIC_3VOICE
+static void counter(uint8_t note) {
+    uint16_t pitch;
+    if (!ce_music_three || ch1_left) return;
+    if (!note) { NR12_REG = 0; return; }
+    pitch = pulse_pitch[note];
+    NR10_REG = 0; NR11_REG = counter_duty; NR12_REG = counter_envelope;
+    NR13_REG = (uint8_t)pitch; NR14_REG = 0x80u | (uint8_t)(pitch >> 8);
+}
+#endif
+void ce_music_ch1_claim(uint8_t frames) BANKED {
+#if CE_MUSIC_3VOICE
+    ch1_left = frames;
+    if (!frames && !paused) counter(counter_note);
+#else
+    (void)frames;
+#endif
 }
 static void wave(uint8_t index) {
     uint8_t i;
@@ -255,6 +289,9 @@ static void bass(uint8_t note) {
 }
 static void play_row(void) {
     uint8_t note;
+#if CE_MUSIC_3VOICE && CE_CGB_ONLY
+    uint8_t row = ce_music_row & 15u;
+#endif
     if (ce_music_track >= 16u) {
         if (!(ce_music_row & 15u)) {
             load_bar();
@@ -265,7 +302,27 @@ static void play_row(void) {
                 if (bar[19] == H) bass(bass_note);
             }
             instrument_duty = bar[0]; instrument_envelope = bar[1]; instrument_level = bar[2];
+#if CE_MUSIC_3VOICE && CE_CGB_ONLY
+            if (ce_music_three) counter_duty = bar[35];
+#endif
         }
+#if CE_MUSIC_3VOICE
+        if (ce_music_three) {
+#if CE_CGB_ONLY
+            if (bar[52u + row]) instrument_envelope = bar[52u + row];
+            if (bar[68u + row]) counter_envelope = bar[68u + row];
+            if (bar[84u + row]) instrument_level = (instrument_level & 7u) | bar[84u + row];
+            note = bar[36u + row];
+#else
+            load_expression(); counter_duty = expression[0];
+            if (expression[2]) instrument_envelope = expression[2];
+            if (expression[3]) counter_envelope = expression[3];
+            if (expression[4]) instrument_level = (instrument_level & 7u) | expression[4];
+            note = expression[1];
+#endif
+            if (note != H) { counter_note = note; counter(note); }
+        }
+#endif
         note = bar[3u + (ce_music_row & 15u)];
         if (note != H) { lead_note = note; lead(note); }
         note = bar[19u + (ce_music_row & 15u)];
@@ -286,12 +343,18 @@ void ce_music_play(uint8_t track) BANKED {
     if (track > CE_MUSIC_MAX) track = CE_MUSIC_OFF;
     if (track == ce_music_track) return;
     mute(); ce_music_track = track;
-    ce_music_row = 0; remaining = 0; paused = 0; lead_note = 0; bass_note = 0;
+    ce_music_row = 0; remaining = 0; paused = 0; lead_note = 0; bass_note = 0; ce_music_three = 0;
+#if CE_MUSIC_3VOICE
+    counter_note = 0;
+#endif
     if (!track) return;
     instrument_level = 0x60u;
     if (track >= 16u) {
         score = &ce_music_scores[track - 16u];
         song_rows = score->rows; song_speed = score->speed; song_loop = score->loop;
+#if CE_MUSIC_3VOICE
+        ce_music_three = score->stride == 100u;
+#endif
     } else {
         const CE_Song *song = &songs[track - 1u];
         song_rows = song->rows; song_speed = song->speed; song_loop = song->loop;
@@ -305,15 +368,26 @@ void ce_music_pause(uint8_t value) BANKED {
     if (value == paused) return;
     paused = value;
     if (paused) mute();
-    else if (ce_music_track) { lead(lead_note); bass(bass_note); }
+    else if (ce_music_track) {
+        lead(lead_note); bass(bass_note);
+#if CE_MUSIC_3VOICE
+        counter(counter_note);
+#endif
+    }
 }
 void ce_music_tick(uint8_t elapsed) BANKED {
     uint8_t advanced = 0;
+#if CE_MUSIC_3VOICE
+    if (ch1_left && ch1_left != 255u) {
+        if (elapsed >= ch1_left) { ch1_left = 0; if (!paused) counter(counter_note); }
+        else ch1_left -= elapsed;
+    }
+#endif
     if (!ce_music_track || paused || !elapsed) return;
     while (elapsed >= remaining) {
         elapsed -= remaining;
         if (++ce_music_row == song_rows) {
-            if (!song_loop) { mute(); ce_music_track = 0; return; }
+            if (!song_loop) { mute(); ce_music_track = 0; ce_music_three = 0; return; }
             ce_music_row = 0;
         }
         play_row();
@@ -326,9 +400,21 @@ void ce_music_tick(uint8_t elapsed) BANKED {
 
 /* Executed in fixed ROM: changing banks must never unmap the copy code. */
 static void load_bar(void) NONBANKED {
-    uint8_t i, previous = CURRENT_BANK, bank = score->bank;
-    const uint8_t *source = score->data + (ce_music_row >> 4) * 35u;
+    uint8_t i, previous = CURRENT_BANK, bank = score->bank, size = sizeof(bar);
+    const uint8_t *source = score->data + (ce_music_row >> 4) * score->stride;
+    if (size > score->stride) size = score->stride;
     SWITCH_ROM(bank);
-    for (i = 0; i != 35u; ++i) bar[i] = source[i];
+    for (i = 0; i != size; ++i) bar[i] = source[i];
     SWITCH_ROM(previous);
 }
+#if CE_MUSIC_3VOICE && !CE_CGB_ONLY
+static void load_expression(void) NONBANKED {
+    uint8_t previous = CURRENT_BANK, row = ce_music_row & 15u, bank = score->bank;
+    const uint8_t *source = score->data + (ce_music_row >> 4) * 100u;
+    SWITCH_ROM(bank);
+    expression[0] = source[35]; expression[1] = source[36u + row];
+    expression[2] = source[52u + row]; expression[3] = source[68u + row];
+    expression[4] = source[84u + row];
+    SWITCH_ROM(previous);
+}
+#endif

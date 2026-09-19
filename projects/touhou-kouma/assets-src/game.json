@@ -83055,5 +83055,6 @@
     "flashFrames": 12
   },
   "legacyScoreDivisor": 10,
-  "hardware": "gbc"
+  "hardware": "gbc",
+  "musicScore": "assets-src/midi_gb/import.json"
 }

@@ -1,0 +1,2280 @@
+{
+  "version": "0.44-three-voice-midi-trial",
+  "createdAt": "2026-09-19T16:14:45.718Z",
+  "baseCommit": "867d8aabdb170095198c5c42ec15d433237fa603",
+  "userFeedback": "曲としてはできは悪いですが、いったんゲームへの取り込みをやってみましょう。",
+  "rom": {
+    "path": "build/Release/touhou-kouma-v44.gb",
+    "sha256": "bdbfc625ed232c8989e2885e9d7cf936479aa72be86d68bce94f23088d8ee3ad",
+    "bytes": 4194304,
+    "header": 192,
+    "debugReleaseIdentical": true
+  },
+  "sourceHashes": [
+    {
+      "file": "engine/caravan/music.c",
+      "sha256": "60514f44f0d903d62a671aaa6b31b1414adb0c290b6a624d8cd9aa3552d5cc75"
+    },
+    {
+      "file": "engine/caravan/music.h",
+      "sha256": "ad78f138140716feb9b74b33adf9b428bdfa8852b003b98c46e17f762fae9bf6"
+    },
+    {
+      "file": "engine/caravan/sound.c",
+      "sha256": "288cdf4fe6f149f6685706e1b245b18274d7ad49afbb1773ad1f283cab921f42"
+    },
+    {
+      "file": "editor/src/node/midi-music.ts",
+      "sha256": "fba731f6eb4a3a50ba780a3772a7d33544746e362f508cceb1a4d795f36ae4c8"
+    },
+    {
+      "file": "editor/src/node/music-data.ts",
+      "sha256": "67958e08e7d56bdc55fb572901de3a7d0bd833f5890e6d70c379388ec88e6bf9"
+    },
+    {
+      "file": "editor/src/node/compiler.ts",
+      "sha256": "ea76cffdb0ce28c0b5f2909d5ca2d6de6c609dd1efdd842ff8dddcfea28aaf3b"
+    },
+    {
+      "file": "editor/src/node/project-store.ts",
+      "sha256": "5839f5844ef4779351b90572cf2c1b8099ce7797ad778b8c27eb813a271cba98"
+    },
+    {
+      "file": "editor/src/shared/model.ts",
+      "sha256": "366031c008165809b7233d65cd581e1f9ca8e489ffe03ead6299b1511bf41dee"
+    },
+    {
+      "file": "projects/touhou-kouma/assets-src/game.json",
+      "sha256": "88375cdf897d70db87c7ffecb6ed8a51bc2707a65fbb5bd2cf7ac5230a455c0d"
+    },
+    {
+      "file": "projects/touhou-kouma/assets-src/midi_gb/import.json",
+      "sha256": "4a0c37da5c4a0ab9f0ce1ef77950a6623d3ff22eac7e6af075b8acc83dd67021"
+    }
+  ],
+  "mapping": [
+    {
+      "id": 32,
+      "stage": 1,
+      "stageId": "stage-forest",
+      "role": "road",
+      "file": "th06_02_gb3.mid",
+      "sha256": "56f2a75877e38338e7c64aaf5e6430302b01501c4bd2b76367da97a2e501debd",
+      "sourceFile": "th06_02.mid",
+      "sourceSha256": "0384ce9fce122f8a95bbad17dac5c95c234baa493ab927dca0b113a2545da8f7",
+      "title": "th06_02 · 1面道中",
+      "duty": 64,
+      "counterDuty": 128,
+      "wave": 0
+    },
+    {
+      "id": 33,
+      "stage": 1,
+      "stageId": "stage-forest",
+      "role": "boss",
+      "file": "th06_03_gb3.mid",
+      "sha256": "e5d35b81819df04f37beef91abb35981ff95b7a1c2c96817ae787a74e748a923",
+      "sourceFile": "th06_03.mid",
+      "sourceSha256": "2deb8c4c553c39a6542fab34bd67842ff32e9622d2c4afe7f72b79d9a49ca226",
+      "title": "th06_03 · 1面ボス",
+      "duty": 64,
+      "counterDuty": 128,
+      "wave": 0
+    },
+    {
+      "id": 30,
+      "stage": 2,
+      "stageId": "stage-lake",
+      "role": "road",
+      "file": "th06_04_gb3.mid",
+      "sha256": "b642dfb158af5d74a1a6f5caac25b2932875ea0184ea42e47fd9c16ed8e0a750",
+      "sourceFile": "th06_04.mid",
+      "sourceSha256": "968b6278add333a10e28bdcdf90ed010a196fdeb84037d8f352e80ab905ebb25",
+      "title": "th06_04 · 2面道中",
+      "duty": 128,
+      "counterDuty": 64,
+      "wave": 0
+    },
+    {
+      "id": 31,
+      "stage": 2,
+      "stageId": "stage-lake",
+      "role": "boss",
+      "file": "th06_05_gb3.mid",
+      "sha256": "e06e411c551795dcfaa764441e8cbcffb0c3bb5d263cb1027bf945e925bb3c07",
+      "sourceFile": "th06_05.mid",
+      "sourceSha256": "44fca9ec87cd47d33b1eb8b956eda2cbb408a278c30ccddabe601ada6836dc95",
+      "title": "th06_05 · 2面ボス",
+      "duty": 64,
+      "counterDuty": 128,
+      "wave": 0
+    },
+    {
+      "id": 17,
+      "stage": 3,
+      "stageId": "stage-1",
+      "role": "road",
+      "file": "th06_06_gb3.mid",
+      "sha256": "09e7049d99a3ef618d894030467428bf98400d2a1aac26cc7ad392f35a6bd813",
+      "sourceFile": "th06_06.mid",
+      "sourceSha256": "60f824621a3c8f27b58f80004d71dd990fdf9961419c45ba208e2c9fd0d16949",
+      "title": "th06_06 · 3面道中",
+      "duty": 128,
+      "counterDuty": 64,
+      "wave": 0
+    },
+    {
+      "id": 18,
+      "stage": 3,
+      "stageId": "stage-1",
+      "role": "boss",
+      "file": "th06_07_gb3.mid",
+      "sha256": "a95b44947cd63d3283cc64fcb106fa8ee1caa1e70c0878a4345e111d1184815e",
+      "sourceFile": "th06_07.mid",
+      "sourceSha256": "4711c1f56d7780212c0c9541c96cdb453f29a1750fc8b82a8297c9a5597fdf85",
+      "title": "th06_07 · 3面ボス",
+      "duty": 64,
+      "counterDuty": 128,
+      "wave": 0
+    },
+    {
+      "id": 19,
+      "stage": 4,
+      "stageId": "stage-2",
+      "role": "road",
+      "file": "th06_08_gb3.mid",
+      "sha256": "5e842360998db7b23d02cfb14c7ffbac3316e64509b982e10640162130dd8c43",
+      "sourceFile": "th06_08.mid",
+      "sourceSha256": "fbeb67c60addb37938f235e21081502c441a61b62d62d9a941e8c97eaaab484f",
+      "title": "th06_08 · 4面道中",
+      "duty": 128,
+      "counterDuty": 64,
+      "wave": 0
+    },
+    {
+      "id": 20,
+      "stage": 4,
+      "stageId": "stage-2",
+      "role": "boss",
+      "file": "th06_09_gb3.mid",
+      "sha256": "b067625491ccd5438cb1a58e4cdf5b18aec5d99d904e0e94ccebff6015e2455d",
+      "sourceFile": "th06_09.mid",
+      "sourceSha256": "1be1e8b8508f6327deb47ee7c63c774c6b0babd2c6e88d2850f7b8cf51240f22",
+      "title": "th06_09 · 4面ボス",
+      "duty": 128,
+      "counterDuty": 64,
+      "wave": 0
+    },
+    {
+      "id": 21,
+      "stage": 5,
+      "stageId": "stage-3",
+      "role": "road",
+      "file": "th06_10_gb3.mid",
+      "sha256": "f2163e602da6f121c19381dec88f83dbd262c4767f2ebd532d89f5ded76824c6",
+      "sourceFile": "th06_10.mid",
+      "sourceSha256": "5e12d942b56cbb1e498b52402ec2f1e96859602b04d799e7685ab6a975184e2d",
+      "title": "th06_10 · 5面道中",
+      "duty": 64,
+      "counterDuty": 128,
+      "wave": 0
+    },
+    {
+      "id": 22,
+      "stage": 5,
+      "stageId": "stage-3",
+      "role": "boss",
+      "file": "th06_11_gb3.mid",
+      "sha256": "167585d4cadb2003e8c2cf23e845ad13f39b177e717f8b134ff4294842f8d9ff",
+      "sourceFile": "th06_11.mid",
+      "sourceSha256": "8dab56530b31473cc9dc8c619e861785890a099fd27e95f6330c8017da42ddb6",
+      "title": "th06_11 · 5面ボス",
+      "duty": 64,
+      "counterDuty": 128,
+      "wave": 0
+    },
+    {
+      "id": 23,
+      "stage": 6,
+      "stageId": "stage-4",
+      "role": "road",
+      "file": "th06_12_gb3.mid",
+      "sha256": "0f687c05118cac3f912643d30df02c85c8d99620b75664f2b988623fa7196ace",
+      "sourceFile": "th06_12.mid",
+      "sourceSha256": "7adb1f4df0e889a4c1e262772b5eca01db810afcd8c041f9b2b17ca47ffb9b2f",
+      "title": "th06_12 · 6面道中",
+      "duty": 128,
+      "counterDuty": 64,
+      "wave": 0
+    },
+    {
+      "id": 24,
+      "stage": 6,
+      "stageId": "stage-4",
+      "role": "boss",
+      "file": "th06_13_gb3.mid",
+      "sha256": "bddc4312d1770402fd7d1d86b2604dd1921a52c6e14a112a7d1bdf70a5f8f4d7",
+      "sourceFile": "th06_13.mid",
+      "sourceSha256": "52ee102f423dcc17e07a67642304b618a3cf619902fc8bee9cec56cb1c4d2ff9",
+      "title": "th06_13 · 6面ボス",
+      "duty": 128,
+      "counterDuty": 64,
+      "wave": 0
+    },
+    {
+      "id": 25,
+      "stage": 7,
+      "stageId": "stage-5",
+      "role": "road",
+      "file": "th06_14_gb3.mid",
+      "sha256": "c45902f81b998b0b813d41fb7105aa068a553e05272cb1aa51e154f18edda065",
+      "sourceFile": "th06_14.mid",
+      "sourceSha256": "3d21522d019c14fbad5731e0ca77a7d13210ded14c0060a6af9a3409e530bbd3",
+      "title": "th06_14 · 7面道中",
+      "duty": 128,
+      "counterDuty": 64,
+      "wave": 0
+    },
+    {
+      "id": 26,
+      "stage": 7,
+      "stageId": "stage-5",
+      "role": "boss",
+      "file": "th06_15_gb3.mid",
+      "sha256": "04244ce8ae93fc9167d4903e8f9e4ce76e3f2ee247e3283b7e630c7fc5806967",
+      "sourceFile": "th06_15.mid",
+      "sourceSha256": "a943edfaaa6cf87603cedc575d07638e01ba5ebee7f0014161a59142ae4cad7e",
+      "title": "th06_15 · 7面ボス",
+      "duty": 64,
+      "counterDuty": 128,
+      "wave": 0
+    }
+  ],
+  "sourceMidiUnchanged": true,
+  "arrangedMidiUnchanged": true,
+  "midiVerification": {
+    "format": "gb3-validation-v1",
+    "allPassed": true,
+    "midiCount": 15,
+    "audioFiles": 61,
+    "sourceFilesUnchanged": true,
+    "engineBaselineDifferences": [
+      "projects/touhou-kouma/assets-src/game.json",
+      "engine/caravan/music.c",
+      "engine/caravan/music.h",
+      "editor/src/node/music-data.ts"
+    ],
+    "byteReproducibility": true,
+    "audioClipping": false,
+    "checks": [
+      {
+        "file": "th06_01_gb3.mid",
+        "bars": 37,
+        "seconds": 59.470093,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 100,
+            "largestRestSeconds": 2.210037,
+            "velocityRange": [
+              72,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 129,
+            "largestRestSeconds": 1.406387,
+            "velocityRange": [
+              44,
+              84
+            ]
+          },
+          "bass": {
+            "notes": 129,
+            "largestRestSeconds": 1.406387,
+            "velocityRange": [
+              57,
+              93
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 0,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_02_gb3.mid",
+        "bars": 49,
+        "seconds": 78.75769,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 176,
+            "largestRestSeconds": 1.908669,
+            "velocityRange": [
+              72,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 239,
+            "largestRestSeconds": 0.904106,
+            "velocityRange": [
+              46,
+              88
+            ]
+          },
+          "bass": {
+            "notes": 296,
+            "largestRestSeconds": 0.100456,
+            "velocityRange": [
+              58,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 3,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_03_gb3.mid",
+        "bars": 33,
+        "seconds": 53.040894,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 124,
+            "largestRestSeconds": 0.602737,
+            "velocityRange": [
+              81,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 131,
+            "largestRestSeconds": 1.105019,
+            "velocityRange": [
+              47,
+              87
+            ]
+          },
+          "bass": {
+            "notes": 116,
+            "largestRestSeconds": 0.100456,
+            "velocityRange": [
+              62,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 7,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_04_gb3.mid",
+        "bars": 64,
+        "seconds": 77.150391,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 119,
+            "largestRestSeconds": 0.67808,
+            "velocityRange": [
+              78,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 185,
+            "largestRestSeconds": 0.67808,
+            "velocityRange": [
+              46,
+              80
+            ]
+          },
+          "bass": {
+            "notes": 187,
+            "largestRestSeconds": 0.828764,
+            "velocityRange": [
+              57,
+              97
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 11,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_05_gb3.mid",
+        "bars": 54,
+        "seconds": 86.794189,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 173,
+            "largestRestSeconds": 0.502281,
+            "velocityRange": [
+              74,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 159,
+            "largestRestSeconds": 1.506844,
+            "velocityRange": [
+              48,
+              88
+            ]
+          },
+          "bass": {
+            "notes": 117,
+            "largestRestSeconds": 0.301369,
+            "velocityRange": [
+              60,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 16,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_06_gb3.mid",
+        "bars": 56,
+        "seconds": 97.509521,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 229,
+            "largestRestSeconds": 1.305931,
+            "velocityRange": [
+              75,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 212,
+            "largestRestSeconds": 1.305931,
+            "velocityRange": [
+              45,
+              87
+            ]
+          },
+          "bass": {
+            "notes": 156,
+            "largestRestSeconds": 2.938345,
+            "velocityRange": [
+              57,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 0,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_07_gb3.mid",
+        "bars": 62,
+        "seconds": 99.652588,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 304,
+            "largestRestSeconds": 1.305931,
+            "velocityRange": [
+              77,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 247,
+            "largestRestSeconds": 0.602737,
+            "velocityRange": [
+              47,
+              87
+            ]
+          },
+          "bass": {
+            "notes": 345,
+            "largestRestSeconds": 0.100456,
+            "velocityRange": [
+              57,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 5,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_08_gb3.mid",
+        "bars": 64,
+        "seconds": 77.150391,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 199,
+            "largestRestSeconds": 0.602737,
+            "velocityRange": [
+              79,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 204,
+            "largestRestSeconds": 1.356159,
+            "velocityRange": [
+              44,
+              85
+            ]
+          },
+          "bass": {
+            "notes": 208,
+            "largestRestSeconds": 0.075342,
+            "velocityRange": [
+              57,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 6,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_09_gb3.mid",
+        "bars": 60,
+        "seconds": 96.437988,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 166,
+            "largestRestSeconds": 1.808212,
+            "velocityRange": [
+              80,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 176,
+            "largestRestSeconds": 2.611862,
+            "velocityRange": [
+              44,
+              87
+            ]
+          },
+          "bass": {
+            "notes": 264,
+            "largestRestSeconds": 1.205475,
+            "velocityRange": [
+              64,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 2,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_10_gb3.mid",
+        "bars": 64,
+        "seconds": 94.294922,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 255,
+            "largestRestSeconds": 0.552509,
+            "velocityRange": [
+              74,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 290,
+            "largestRestSeconds": 0.736679,
+            "velocityRange": [
+              44,
+              88
+            ]
+          },
+          "bass": {
+            "notes": 162,
+            "largestRestSeconds": 0.092085,
+            "velocityRange": [
+              59,
+              99
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 1,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_11_gb3.mid",
+        "bars": 55,
+        "seconds": 88.401489,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 241,
+            "largestRestSeconds": 1.305931,
+            "velocityRange": [
+              73,
+              109
+            ]
+          },
+          "counter": {
+            "notes": 212,
+            "largestRestSeconds": 1.305931,
+            "velocityRange": [
+              50,
+              88
+            ]
+          },
+          "bass": {
+            "notes": 188,
+            "largestRestSeconds": 0.401825,
+            "velocityRange": [
+              57,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 7,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_12_gb3.mid",
+        "bars": 34,
+        "seconds": 59.202209,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 142,
+            "largestRestSeconds": 0.544138,
+            "velocityRange": [
+              77,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 147,
+            "largestRestSeconds": 1.088276,
+            "velocityRange": [
+              45,
+              81
+            ]
+          },
+          "bass": {
+            "notes": 226,
+            "largestRestSeconds": 0.652966,
+            "velocityRange": [
+              57,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 1,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_13_gb3.mid",
+        "bars": 56,
+        "seconds": 90.008789,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 198,
+            "largestRestSeconds": 0.80365,
+            "velocityRange": [
+              77,
+              110
+            ]
+          },
+          "counter": {
+            "notes": 255,
+            "largestRestSeconds": 1.105019,
+            "velocityRange": [
+              52,
+              87
+            ]
+          },
+          "bass": {
+            "notes": 195,
+            "largestRestSeconds": 0.100456,
+            "velocityRange": [
+              65,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 6,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_14_gb3.mid",
+        "bars": 56,
+        "seconds": 90.008789,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 215,
+            "largestRestSeconds": 0.100456,
+            "velocityRange": [
+              80,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 226,
+            "largestRestSeconds": 0.703194,
+            "velocityRange": [
+              44,
+              84
+            ]
+          },
+          "bass": {
+            "notes": 232,
+            "largestRestSeconds": 1.506844,
+            "velocityRange": [
+              58,
+              99
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 1,
+        "allNotesOffBeforeLoop": true
+      },
+      {
+        "file": "th06_15_gb3.mid",
+        "bars": 58,
+        "seconds": 93.223389,
+        "sourcePitchAndAttackVerified": true,
+        "melodyMatchesTwoVoice": true,
+        "voices": {
+          "lead": {
+            "notes": 253,
+            "largestRestSeconds": 1.105019,
+            "velocityRange": [
+              75,
+              111
+            ]
+          },
+          "counter": {
+            "notes": 213,
+            "largestRestSeconds": 1.004562,
+            "velocityRange": [
+              48,
+              88
+            ]
+          },
+          "bass": {
+            "notes": 142,
+            "largestRestSeconds": 0.100456,
+            "velocityRange": [
+              60,
+              101
+            ]
+          }
+        },
+        "bassCounterCrossingRows": 0,
+        "unisonPitchClassRows": 4,
+        "allNotesOffBeforeLoop": true
+      }
+    ],
+    "limits": [
+      "Musical fidelity and natural loop transitions require listening; provenance checks do not prove melody selection.",
+      "No original-game recording comparison.",
+      "This MIDI-only check does not test game integration or APU playback; see INTEGRATION.md and the v44 QA report. Physical hardware remains untested.",
+      "Local HTML UI was not opened because the browser tool rejected local file URLs."
+    ]
+  },
+  "standard": {
+    "Doctor": 0,
+    "HelloClean": 0,
+    "HelloDebug": 0,
+    "Test": 0,
+    "PreservedBuildFiles": 1741,
+    "RestoredMissingFiles": 1703,
+    "RestoredHashesVerified": true,
+    "counts": [
+      "tests 179",
+      "pass 179",
+      "fail 0"
+    ]
+  },
+  "build": {
+    "touhouDebug": {
+      "ok": true,
+      "revision": "08de5fbf108095f653603ca77dccdd041c72cc63fe46e3be83c2b0b893ae62bf",
+      "configuration": "Debug",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "size": 4194304,
+      "ramBytes": 1549,
+      "memory": {
+        "hardware": "gbc",
+        "wram": [
+          {
+            "bank": 0,
+            "reserved": 1549,
+            "capacity": 3072,
+            "purpose": "shared state, ISR, audio and shadow OAM"
+          },
+          {
+            "bank": 1,
+            "reserved": 3410,
+            "capacity": 4096,
+            "purpose": "actors, bullets, collision, animation and motion cursors"
+          },
+          {
+            "bank": 2,
+            "reserved": 3876,
+            "capacity": 4096,
+            "purpose": "BG bullets, masks, packets and map histories"
+          },
+          {
+            "bank": 3,
+            "reserved": 2080,
+            "capacity": 4096,
+            "purpose": "parallax cache and road transfer packets"
+          },
+          {
+            "bank": 4,
+            "reserved": 779,
+            "capacity": 4096,
+            "purpose": "movie workspace; pinned during its audio ISR"
+          },
+          {
+            "bank": 5,
+            "reserved": 0,
+            "capacity": 4096,
+            "purpose": "available"
+          },
+          {
+            "bank": 6,
+            "reserved": 0,
+            "capacity": 4096,
+            "purpose": "available"
+          },
+          {
+            "bank": 7,
+            "reserved": 0,
+            "capacity": 4096,
+            "purpose": "available"
+          }
+        ],
+        "stack": {
+          "start": 52224,
+          "end": 53248,
+          "reserved": 1024
+        },
+        "vram": {
+          "bytes": 16384,
+          "bankBytes": 8192,
+          "residentObjTiles": 126,
+          "hudTiles": 27,
+          "barrageTiles": 205,
+          "roadTileLimit": 128,
+          "bombExcludedTileRange": [
+            128,
+            255
+          ]
+        }
+      },
+      "spriteTiles": 126,
+      "diagnostics": [],
+      "romHash": "bdbfc625ed232c8989e2885e9d7cf936479aa72be86d68bce94f23088d8ee3ad",
+      "builtAt": "2026-09-19T16:03:32.373Z",
+      "durationMs": 281056
+    },
+    "touhouRelease": {
+      "ok": true,
+      "revision": "08de5fbf108095f653603ca77dccdd041c72cc63fe46e3be83c2b0b893ae62bf",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Release\\touhou-kouma.gb",
+      "size": 4194304,
+      "ramBytes": 1549,
+      "memory": {
+        "hardware": "gbc",
+        "wram": [
+          {
+            "bank": 0,
+            "reserved": 1549,
+            "capacity": 3072,
+            "purpose": "shared state, ISR, audio and shadow OAM"
+          },
+          {
+            "bank": 1,
+            "reserved": 3410,
+            "capacity": 4096,
+            "purpose": "actors, bullets, collision, animation and motion cursors"
+          },
+          {
+            "bank": 2,
+            "reserved": 3876,
+            "capacity": 4096,
+            "purpose": "BG bullets, masks, packets and map histories"
+          },
+          {
+            "bank": 3,
+            "reserved": 2080,
+            "capacity": 4096,
+            "purpose": "parallax cache and road transfer packets"
+          },
+          {
+            "bank": 4,
+            "reserved": 779,
+            "capacity": 4096,
+            "purpose": "movie workspace; pinned during its audio ISR"
+          },
+          {
+            "bank": 5,
+            "reserved": 0,
+            "capacity": 4096,
+            "purpose": "available"
+          },
+          {
+            "bank": 6,
+            "reserved": 0,
+            "capacity": 4096,
+            "purpose": "available"
+          },
+          {
+            "bank": 7,
+            "reserved": 0,
+            "capacity": 4096,
+            "purpose": "available"
+          }
+        ],
+        "stack": {
+          "start": 52224,
+          "end": 53248,
+          "reserved": 1024
+        },
+        "vram": {
+          "bytes": 16384,
+          "bankBytes": 8192,
+          "residentObjTiles": 126,
+          "hudTiles": 27,
+          "barrageTiles": 205,
+          "roadTileLimit": 128,
+          "bombExcludedTileRange": [
+            128,
+            255
+          ]
+        }
+      },
+      "spriteTiles": 126,
+      "diagnostics": [],
+      "romHash": "bdbfc625ed232c8989e2885e9d7cf936479aa72be86d68bce94f23088d8ee3ad",
+      "builtAt": "2026-09-19T16:12:27.374Z",
+      "durationMs": 494896
+    },
+    "starRelease": {
+      "ok": true,
+      "revision": "07bd41dc8c3e83c9570d68d4f31d5424ad19e0286f5587d2406bd9531d443309",
+      "configuration": "Release",
+      "romPath": "C:\\homebrew\\projects\\dev-gb\\projects\\star-caravan\\build\\Release\\star-caravan.gb",
+      "size": 131072,
+      "ramBytes": 7154,
+      "spriteTiles": 12,
+      "diagnostics": [],
+      "romHash": "49485d477682cc574d7d415bc13791edddec2aa0c16ac877806f63009ffd082e",
+      "builtAt": "2026-09-19T16:08:50.664Z",
+      "durationMs": 368624
+    }
+  },
+  "diagnostic": {
+    "diagnostic": true,
+    "romSha256": "80553ac981b7a14e9f5e9aedcbd31b5379eca7c342d35b2c4bd453264a06fa6a",
+    "labels": [
+      "three voices start",
+      "shot preserves pulse voices",
+      "pickup owns CH1 for 20 VBlanks",
+      "pickup restores current counter note",
+      "sustained lease survives stalled update",
+      "bomb keeps CH1 and CH4",
+      "bomb restores counter note",
+      "pause silences and freezes all music",
+      "mixer preserved",
+      "legacy transition releases CH1",
+      "legacy shot retains CH1"
+    ],
+    "results": [
+      {
+        "mode": "DMG",
+        "id": 32,
+        "key": "th06_02_gb3",
+        "rows": 784,
+        "expectedFrames": 4704,
+        "elapsedFrames": 4703,
+        "rawPeak": 17,
+        "rawRms": 4.38638260996944,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 33,
+        "key": "th06_03_gb3",
+        "rows": 528,
+        "expectedFrames": 3168,
+        "elapsedFrames": 3168,
+        "rawPeak": 19,
+        "rawRms": 4.520250332031008,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 30,
+        "key": "th06_04_gb3",
+        "rows": 1024,
+        "expectedFrames": 4608,
+        "elapsedFrames": 4608,
+        "rawPeak": 18,
+        "rawRms": 4.931617222659241,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 31,
+        "key": "th06_05_gb3",
+        "rows": 864,
+        "expectedFrames": 5184,
+        "elapsedFrames": 5184,
+        "rawPeak": 16,
+        "rawRms": 4.6766727083627,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 17,
+        "key": "th06_06_gb3",
+        "rows": 896,
+        "expectedFrames": 5824,
+        "elapsedFrames": 5824,
+        "rawPeak": 17,
+        "rawRms": 4.8640655815967015,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 18,
+        "key": "th06_07_gb3",
+        "rows": 992,
+        "expectedFrames": 5952,
+        "elapsedFrames": 5952,
+        "rawPeak": 17,
+        "rawRms": 4.712260409458295,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 19,
+        "key": "th06_08_gb3",
+        "rows": 1024,
+        "expectedFrames": 4608,
+        "elapsedFrames": 4608,
+        "rawPeak": 16,
+        "rawRms": 4.656974345384256,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 20,
+        "key": "th06_09_gb3",
+        "rows": 960,
+        "expectedFrames": 5760,
+        "elapsedFrames": 5760,
+        "rawPeak": 17,
+        "rawRms": 4.9877013058605835,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 21,
+        "key": "th06_10_gb3",
+        "rows": 1024,
+        "expectedFrames": 5632,
+        "elapsedFrames": 5632,
+        "rawPeak": 18,
+        "rawRms": 4.306874964304365,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 22,
+        "key": "th06_11_gb3",
+        "rows": 880,
+        "expectedFrames": 5280,
+        "elapsedFrames": 5280,
+        "rawPeak": 17,
+        "rawRms": 4.383492044099263,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 23,
+        "key": "th06_12_gb3",
+        "rows": 544,
+        "expectedFrames": 3536,
+        "elapsedFrames": 3536,
+        "rawPeak": 16,
+        "rawRms": 4.733106920377269,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 24,
+        "key": "th06_13_gb3",
+        "rows": 896,
+        "expectedFrames": 5376,
+        "elapsedFrames": 5376,
+        "rawPeak": 17,
+        "rawRms": 4.925904775727344,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 25,
+        "key": "th06_14_gb3",
+        "rows": 896,
+        "expectedFrames": 5376,
+        "elapsedFrames": 5376,
+        "rawPeak": 16,
+        "rawRms": 4.925421049581925,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 26,
+        "key": "th06_15_gb3",
+        "rows": 928,
+        "expectedFrames": 5568,
+        "elapsedFrames": 5568,
+        "rawPeak": 17,
+        "rawRms": 4.3109745567089215,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 32,
+        "key": "th06_02_gb3",
+        "rows": 784,
+        "expectedFrames": 4704,
+        "elapsedFrames": 4702,
+        "rawPeak": 17,
+        "rawRms": 4.382310804647073,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 33,
+        "key": "th06_03_gb3",
+        "rows": 528,
+        "expectedFrames": 3168,
+        "elapsedFrames": 3168,
+        "rawPeak": 16,
+        "rawRms": 4.517480224644243,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 30,
+        "key": "th06_04_gb3",
+        "rows": 1024,
+        "expectedFrames": 4608,
+        "elapsedFrames": 4608,
+        "rawPeak": 15,
+        "rawRms": 4.92156490982119,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 31,
+        "key": "th06_05_gb3",
+        "rows": 864,
+        "expectedFrames": 5184,
+        "elapsedFrames": 5184,
+        "rawPeak": 17,
+        "rawRms": 4.684853682658304,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 17,
+        "key": "th06_06_gb3",
+        "rows": 896,
+        "expectedFrames": 5824,
+        "elapsedFrames": 5824,
+        "rawPeak": 17,
+        "rawRms": 4.869068616344432,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 18,
+        "key": "th06_07_gb3",
+        "rows": 992,
+        "expectedFrames": 5952,
+        "elapsedFrames": 5952,
+        "rawPeak": 17,
+        "rawRms": 4.703587877292445,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 19,
+        "key": "th06_08_gb3",
+        "rows": 1024,
+        "expectedFrames": 4608,
+        "elapsedFrames": 4608,
+        "rawPeak": 17,
+        "rawRms": 4.6637342997958875,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 20,
+        "key": "th06_09_gb3",
+        "rows": 960,
+        "expectedFrames": 5760,
+        "elapsedFrames": 5760,
+        "rawPeak": 18,
+        "rawRms": 4.989182649624534,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 21,
+        "key": "th06_10_gb3",
+        "rows": 1024,
+        "expectedFrames": 5632,
+        "elapsedFrames": 5632,
+        "rawPeak": 17,
+        "rawRms": 4.299968719104173,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 22,
+        "key": "th06_11_gb3",
+        "rows": 880,
+        "expectedFrames": 5280,
+        "elapsedFrames": 5280,
+        "rawPeak": 17,
+        "rawRms": 4.405481700627333,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 23,
+        "key": "th06_12_gb3",
+        "rows": 544,
+        "expectedFrames": 3536,
+        "elapsedFrames": 3536,
+        "rawPeak": 14,
+        "rawRms": 4.729579392880997,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 24,
+        "key": "th06_13_gb3",
+        "rows": 896,
+        "expectedFrames": 5376,
+        "elapsedFrames": 5376,
+        "rawPeak": 18,
+        "rawRms": 4.936962345119167,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 25,
+        "key": "th06_14_gb3",
+        "rows": 896,
+        "expectedFrames": 5376,
+        "elapsedFrames": 5376,
+        "rawPeak": 16,
+        "rawRms": 4.930500647485941,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 26,
+        "key": "th06_15_gb3",
+        "rows": 928,
+        "expectedFrames": 5568,
+        "elapsedFrames": 5568,
+        "rawPeak": 19,
+        "rawRms": 4.310901495020176,
+        "expression": true,
+        "loop": true,
+        "sfxContracts": 11
+      }
+    ]
+  },
+  "nativeMusic": {
+    "diagnostic": true,
+    "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\midi-import-v44\\music-final\\fixture\\music.gb",
+    "sha256": "80553ac981b7a14e9f5e9aedcbd31b5379eca7c342d35b2c4bd453264a06fa6a",
+    "results": [
+      {
+        "mode": "DMG",
+        "id": 32,
+        "rows": 784,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 33,
+        "rows": 528,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 30,
+        "rows": 1024,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 31,
+        "rows": 864,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 17,
+        "rows": 896,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 18,
+        "rows": 992,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 19,
+        "rows": 1024,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 20,
+        "rows": 960,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 21,
+        "rows": 1024,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 22,
+        "rows": 880,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 23,
+        "rows": 544,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 24,
+        "rows": 896,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 25,
+        "rows": 896,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "DMG",
+        "id": 26,
+        "rows": 928,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 32,
+        "rows": 784,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 33,
+        "rows": 528,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 30,
+        "rows": 1024,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 31,
+        "rows": 864,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 17,
+        "rows": 896,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 18,
+        "rows": 992,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 19,
+        "rows": 1024,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 20,
+        "rows": 960,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 21,
+        "rows": 1024,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 22,
+        "rows": 880,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 23,
+        "rows": 544,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 24,
+        "rows": 896,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 25,
+        "rows": 896,
+        "loops": 1,
+        "sfxContracts": 11
+      },
+      {
+        "mode": "CGB",
+        "id": 26,
+        "rows": 928,
+        "loops": 1,
+        "sfxContracts": 11
+      }
+    ]
+  },
+  "production": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma-v44.gb",
+    "sha256": "bdbfc625ed232c8989e2885e9d7cf936479aa72be86d68bce94f23088d8ee3ad",
+    "results": [
+      {
+        "mode": "CGB",
+        "stage": 1,
+        "route": "road",
+        "track": 32,
+        "firstRow": 10,
+        "lastRow": 30,
+        "musicEnergy": 929558,
+        "voiceEnergy": [
+          32790,
+          128230,
+          53122
+        ],
+        "continuousFire": true,
+        "pause": true,
+        "bombEnergy": 2982464
+      },
+      {
+        "mode": "CGB",
+        "stage": 1,
+        "route": "boss",
+        "track": 33,
+        "firstRow": 30,
+        "lastRow": 50,
+        "musicEnergy": 1601872,
+        "voiceEnergy": [
+          48414,
+          168102,
+          12152
+        ],
+        "continuousFire": true,
+        "pause": true,
+        "bombEnergy": 2973678
+      },
+      {
+        "mode": "CGB",
+        "stage": 2,
+        "route": "road",
+        "track": 30,
+        "firstRow": 13,
+        "lastRow": 39,
+        "musicEnergy": 2130482,
+        "voiceEnergy": [
+          67128,
+          364382,
+          45438
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 2,
+        "route": "boss",
+        "track": 31,
+        "firstRow": 30,
+        "lastRow": 50,
+        "musicEnergy": 1824410,
+        "voiceEnergy": [
+          5144,
+          271848,
+          61268
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 3,
+        "route": "road",
+        "track": 17,
+        "firstRow": 10,
+        "lastRow": 28,
+        "musicEnergy": 1542100,
+        "voiceEnergy": [
+          36286,
+          288748,
+          9744
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 3,
+        "route": "boss",
+        "track": 18,
+        "firstRow": 30,
+        "lastRow": 50,
+        "musicEnergy": 1567620,
+        "voiceEnergy": [
+          32822,
+          269634,
+          8722
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 4,
+        "route": "road",
+        "track": 19,
+        "firstRow": 13,
+        "lastRow": 39,
+        "musicEnergy": 1620594,
+        "voiceEnergy": [
+          30600,
+          287610,
+          58248
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 4,
+        "route": "boss",
+        "track": 20,
+        "firstRow": 29,
+        "lastRow": 49,
+        "musicEnergy": 1821020,
+        "voiceEnergy": [
+          10456,
+          289476,
+          55910
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 5,
+        "route": "road",
+        "track": 21,
+        "firstRow": 11,
+        "lastRow": 33,
+        "musicEnergy": 1405590,
+        "voiceEnergy": [
+          47180,
+          213360,
+          8970
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 5,
+        "route": "boss",
+        "track": 22,
+        "firstRow": 30,
+        "lastRow": 50,
+        "musicEnergy": 2006064,
+        "voiceEnergy": [
+          104568,
+          108902,
+          62146
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 6,
+        "route": "road",
+        "track": 23,
+        "firstRow": 10,
+        "lastRow": 28,
+        "musicEnergy": 2067770,
+        "voiceEnergy": [
+          58912,
+          291056,
+          62384
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 6,
+        "route": "boss",
+        "track": 24,
+        "firstRow": 30,
+        "lastRow": 50,
+        "musicEnergy": 1279456,
+        "voiceEnergy": [
+          57028,
+          288586,
+          60752
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 7,
+        "route": "road",
+        "track": 25,
+        "firstRow": 10,
+        "lastRow": 30,
+        "musicEnergy": 1644570,
+        "voiceEnergy": [
+          24868,
+          263506,
+          62410
+        ],
+        "continuousFire": true,
+        "pause": true
+      },
+      {
+        "mode": "CGB",
+        "stage": 7,
+        "route": "boss",
+        "track": 26,
+        "firstRow": 30,
+        "lastRow": 50,
+        "musicEnergy": 1242012,
+        "voiceEnergy": [
+          83174,
+          106032,
+          39368
+        ],
+        "continuousFire": true,
+        "pause": true
+      }
+    ]
+  },
+  "performance": {
+    "before": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\midi-import-v44\\builds-before-checks\\touhou-kouma\\Release\\touhou-kouma-v43.gb",
+      "sha256": "db94ce52f74bda0dd0c0221378f82d9f0ffd83cddd590fac3a566dca731038c3",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 2801,
+          "updatesPerSecond": 58.96959023616497,
+          "deadlineMisses": 36,
+          "frameGapP95": 1,
+          "frameGapMax": 2,
+          "peak": 0,
+          "dmaSamples": 0,
+          "roadDmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 51.56330935251799
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2280,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 2400,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2520,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2640,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2760,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1317,
+          "updatesPerSecond": 59.32210972850678,
+          "deadlineMisses": 9,
+          "frameGapP95": 1,
+          "frameGapMax": 2,
+          "peak": 18,
+          "dmaSamples": 0,
+          "roadDmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 57.78514227642277
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 57.3384
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1320,
+              "updates": 118,
+              "updatesPerSecond": 59.7275
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma-v44.gb",
+      "sha256": "bdbfc625ed232c8989e2885e9d7cf936479aa72be86d68bce94f23088d8ee3ad",
+      "results": [
+        {
+          "mode": "CGB",
+          "route": "road",
+          "inputSha256": "e3c1c18e1ba015c3b160d075d23edf7ed7620157d4a9d9fc4486c51105a96830",
+          "updates": 2801,
+          "updatesPerSecond": 58.96959023616497,
+          "deadlineMisses": 36,
+          "frameGapP95": 1,
+          "frameGapMax": 2,
+          "peak": 0,
+          "dmaSamples": 0,
+          "roadDmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 55.13307692307693
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 51.56330935251799
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1320,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1440,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1560,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1680,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 1800,
+              "updates": 120,
+              "updatesPerSecond": 58.270731707317076
+            },
+            {
+              "tick": 1920,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2040,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2160,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2280,
+              "updates": 120,
+              "updatesPerSecond": 59.23388429752066
+            },
+            {
+              "tick": 2400,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2520,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2640,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 2760,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            }
+          ]
+        },
+        {
+          "mode": "CGB",
+          "route": "boss",
+          "inputSha256": "3399a34ccc0147084bdf92e207ea9fc13d67c593d5d431f79c20644bb6f62585",
+          "updates": 1317,
+          "updatesPerSecond": 59.32210972850678,
+          "deadlineMisses": 9,
+          "frameGapP95": 1,
+          "frameGapMax": 2,
+          "peak": 18,
+          "dmaSamples": 0,
+          "roadDmaSamples": 0,
+          "extraVblankWaits": 0,
+          "windows": [
+            {
+              "tick": 120,
+              "updates": 119,
+              "updatesPerSecond": 57.78514227642277
+            },
+            {
+              "tick": 240,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 360,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 480,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 600,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 720,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 840,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 960,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1080,
+              "updates": 120,
+              "updatesPerSecond": 57.3384
+            },
+            {
+              "tick": 1200,
+              "updates": 120,
+              "updatesPerSecond": 59.7275
+            },
+            {
+              "tick": 1320,
+              "updates": 118,
+              "updatesPerSecond": 59.7275
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "legacy": {
+    "musicRuntime": "DMG/CGB: 2 passed",
+    "grazeSound": "DMG/CGB passed"
+  },
+  "emulicious": [
+    {
+      "target": "product",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma-v44.gb",
+      "sha256": "bdbfc625ed232c8989e2885e9d7cf936479aa72be86d68bce94f23088d8ee3ad",
+      "bootExecutionVerified": false,
+      "gameplayVerified": false,
+      "error": "DAP attach succeeded; evaluate NullPointerException; no execution evidence"
+    },
+    {
+      "target": "star",
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\star-caravan\\build\\Debug\\star-caravan.gb",
+      "sha256": "49485d477682cc574d7d415bc13791edddec2aa0c16ac877806f63009ffd082e",
+      "bootExecutionVerified": false,
+      "gameplayVerified": false,
+      "error": "DAP attach succeeded; evaluate NullPointerException; no execution evidence"
+    }
+  ],
+  "limitations": [
+    "Human listening and physical hardware unverified; arrangement quality remains unapproved.",
+    "Production 14 route checks are short menu-driven checks, not a complete campaign.",
+    "Native full-loop checks use a diagnostic ROM with the real music/SFX engine, not the complete game.",
+    "Emulicious automatic execution could not be verified; additional DAP launch attempt timed out.",
+    "Performance still misses display deadlines; no claim of zero slowdown.",
+    "No new standalone browser player exported or browser UI validation."
+  ],
+  "evidence": ".cache/midi-import-v44"
+}

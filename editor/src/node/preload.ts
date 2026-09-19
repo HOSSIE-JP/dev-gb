@@ -1,6 +1,9 @@
 import type { Bridge } from "../shared/bridge";
 const { contextBridge, ipcRenderer } = require("electron");
 const api: Bridge = {
+    music: (name) => ipcRenderer.invoke("ce:music",name),
+    chooseMidi: () => ipcRenderer.invoke("ce:choose-midi"),
+    convertMidi: (name,token,options,saveSource) => ipcRenderer.invoke("ce:convert-midi",name,token,options,saveSource),
     confirm: (message) => ipcRenderer.invoke("ce:confirm", message),
     chooseProject: () => ipcRenderer.invoke("ce:choose-project"),
     showProjectFolder: (name) => ipcRenderer.invoke("ce:show-project-folder", name),
