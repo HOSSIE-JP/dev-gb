@@ -10,12 +10,14 @@ game.startup={enabled:true,fadeSeconds:.4,slides:[{id:'first',background:'test-l
 if(!fs.existsSync(path.join(fixture,'projects/startup-test')))lib.createProject(fixture,'startup-test',game.title,game);else lib.saveGame(fixture,'startup-test',game);
 const romPath=process.argv.includes('--reuse')?path.join(fixture,'projects/startup-test/build/Debug/startup-test.gb'):lib.compile(fixture,'startup-test','Debug',()=>{}).romPath,rom=fs.readFileSync(romPath),syms=symbols(romPath.replace(/\.gb$/,'.map')),results=[];
 for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb])for(const scenario of [{key:null,phase:2},...['A','B','Start','Select','Up','Down','Left','Right'].map(key=>({key,phase:2})),...[0,1,3].map(phase=>({key:'A',phase})),{key:'Start',phase:-1},{key:'A',phase:0,pulse:true}]){
- const gb=boot(rom,mode),label=(mode===GameBoyMode.Dmg?'DMG':'CGB')+'-'+(scenario.key??'auto')+'-'+scenario.phase+(scenario.pulse?'-tap':''),seen=new Map();let title=false,sent=-1;
+ const gb=boot(rom,mode),label=(mode===GameBoyMode.Dmg?'DMG':'CGB')+'-'+(scenario.key??'auto')+'-'+scenario.phase+(scenario.pulse?'-tap':''),seen=new Map(),heldPages=new Set();let title=false,sent=-1,advanced=false;
  const snap=()=>{const m=memory(gb),r=m.ram,b=n=>r[syms[n]-0xc000];return {b,scene:b('_ce_scene'),page:b('_ce_logo_page'),phase:b('_ce_logo_phase'),left:r.readUInt16LE(syms._ce_logo_left-0xc000),fade:b('_ce_fade_level'),bgp:m.io[0x47],ready:!r[syms._ce_trace-0xc000+22]};};
- if(scenario.phase===-1)gb.key_press(PadKey[scenario.key]);
+ if(scenario.phase===-1){gb.key_press(PadKey[scenario.key]);sent=0;}
  try{for(let f=0;f<1500;f++){
   const s=snap();if(scenario.pulse&&sent>=0&&f-sent===1)gb.key_lift(PadKey[scenario.key]);
   if(s.scene===12){
+   if(s.phase===2)heldPages.add(s.page);
+   if(scenario.key&&sent>=0&&s.page===1&&!advanced){if(scenario.phase>=0)assert.ok(f-sent<60,'skip reaches next logo promptly');advanced=true;}
    if(scenario.key&&sent<0&&s.phase===scenario.phase){gb.key_press(PadKey[scenario.key]);sent=f;}
    if(!scenario.key&&s.ready&&s.page<game.startup.slides.length&&s.left>0&&s.phase>0&&s.phase<4){
     if(!seen.has(s.page))seen.set(s.page,{fadesIn:new Set(),fadesOut:new Set(),brightness:new Map(),hold:0,firstHold:-1,lastHold:-1});const v=seen.get(s.page);
@@ -25,11 +27,11 @@ for(const mode of [GameBoyMode.Dmg,GameBoyMode.Cgb])for(const scenario of [{key:
     if(s.phase===2&&s.left>0){v.hold++;v.lastHold=f;if(v.firstHold<0)v.firstHold=f;if(s.left===Math.round(game.startup.slides[s.page].seconds*60)-3){assert.equal(s.fade,0);assertImage(gb,game.assets.find(a=>a.id===game.startup.slides[s.page].background).frames[0].pixels,label+' page '+s.page);capture(gb,path.join(out,label+'-'+s.page+'.png'));v.pixels=true;}}
    }
   }
-  if(s.scene===0&&s.phase===4&&s.ready&&s.b('_ce_music_track')===(game.music?.title??0)){title=true;if(scenario.key&&scenario.phase>=0)assert.ok(f-sent<60,'skip reaches title promptly');break;}
+  if(s.scene===0&&s.phase===4&&s.ready&&s.b('_ce_music_track')===(game.music?.title??0)){title=true;break;}
   frames(gb,1);
  }
  assert.ok(title,label+' reaches title');
- if(scenario.key){frames(gb,60);assert.equal(snap().scene,0,'held skip key must not leave title');gb.key_lift(PadKey[scenario.key]);frames(gb,2);}
+ if(scenario.key){assert.ok(advanced,'skip advances only the current logo');assert.ok(heldPages.has(1)&&heldPages.has(2),'subsequent logos remain visible despite held input');frames(gb,60);assert.equal(snap().scene,0,'held skip key must not leave title');gb.key_lift(PadKey[scenario.key]);frames(gb,2);}
  else {assert.equal(seen.size,3);for(const [i,v]of seen){assert.deepEqual([...v.fadesIn].sort(),[0,1,2,3]);assert.deepEqual([...v.fadesOut].sort(),[1,2,3,4]);assert.ok(v.pixels);for(let level=0;level<3;level++)assert.ok(v.brightness.get(level)>v.brightness.get(level+1),'visible framebuffer darkens at each shade');assert.ok(v.brightness.get(3)>=v.brightness.get(4));assert.ok(Math.abs(v.hold-Math.round(game.startup.slides[i].seconds*60))<=2,'authored hold time');}}
  // Score screen round-trip returns directly to title, without startup replay.
  gb.key_press(PadKey.Select);frames(gb,30);gb.key_lift(PadKey.Select);frames(gb,2);assert.equal(snap().scene,4);gb.key_press(PadKey.A);frames(gb,30);gb.key_lift(PadKey.A);assert.equal(snap().scene,0);

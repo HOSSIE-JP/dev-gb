@@ -289,6 +289,7 @@ extern const CE_Logo ce_logos[];
 extern const uint8_t ce_logo_count, ce_logo_fade_step;
 extern uint8_t ce_logo_page, ce_logo_phase, ce_logo_skip;
 extern uint16_t ce_logo_left;
+void ce_logo_input(void) BANKED;
 void ce_play_logos(void) BANKED;
 void ce_load_logo(uint8_t screen) BANKED;
 void ce_set_fade(uint8_t level) BANKED;

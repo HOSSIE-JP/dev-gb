@@ -116,7 +116,7 @@ static void tiles(const CE_Data *data, uint8_t first, uint8_t count, uint8_t spr
         n = count > 8u ? 8u : count; ce_copy(buffer, data, offset, (uint16_t)n * 16u);
         if (sprite) set_sprite_data(first, n, buffer); else set_bkg_data(first, n, buffer);
         first += n; count -= n; offset += (uint16_t)n * 16u;
-        if (ce_scene == 12u) ce_logo_skip |= joypad();
+        if (ce_scene == 12u) ce_logo_input();
     }
 }
 static void hide_all(void) { hud_valid=0;ce_hide_sprites(); }
@@ -132,7 +132,7 @@ static void screen_tiles(uint8_t index) {
         ce_copy(buffer, &c->tiles, tile * 16u, (uint16_t)n * 16u);
         VBK_REG = tile >= 256u; set_bkg_data((uint8_t)tile, n, buffer); VBK_REG = 0;
         tile += n;
-        if (ce_scene == 12u) ce_logo_skip |= joypad();
+        if (ce_scene == 12u) ce_logo_input();
     }
 }
 static void screen_map(uint8_t index, uint8_t window) {
@@ -143,7 +143,7 @@ static void screen_map(uint8_t index, uint8_t window) {
     uint8_t height=window?ce_hud_height>>3:18u;
 #endif
     for (row = 0; row != height; ++row) {
-        if (ce_scene == 12u) ce_logo_skip |= joypad();
+        if (ce_scene == 12u) ce_logo_input();
         ce_copy(buffer, ce_is_cgb && (*color_screen(index)).tile_count ? &(*color_screen(index)).map : &s->map, (uint16_t)row * 20u, 20u);
         if (window) set_win_tiles(0, row, 20, 1, buffer); else set_bkg_tiles(0, row, 20, 1, buffer);
         if (ce_is_cgb) {

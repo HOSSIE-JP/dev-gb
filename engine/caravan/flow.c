@@ -92,16 +92,22 @@ uint8_t ce_offer_continue(void) BANKED {
 /* Only startup uses this scene. Input is also latched during black VRAM loads. */
 uint8_t ce_logo_page, ce_logo_phase, ce_logo_skip;
 uint16_t ce_logo_left;
+static uint8_t logo_previous;
+void ce_logo_input(void) BANKED {
+    uint8_t input = joypad();
+    ce_logo_skip |= input & ~logo_previous;
+    logo_previous = input;
+}
 static uint8_t logo_wait(uint16_t duration) {
     uint16_t start, now, elapsed;
     CRITICAL { start = sys_time; }
     ce_logo_left = duration;
-    if (!duration) { ce_logo_skip |= joypad(); return ce_logo_skip; }
+    if (!duration) { ce_logo_input(); return ce_logo_skip; }
     do {
-        ce_logo_skip |= joypad();
+        ce_logo_input();
         if (ce_logo_skip) return 1;
         vsync(); ce_audio_sync();
-        ce_logo_skip |= joypad();
+        ce_logo_input();
         CRITICAL { now = sys_time; }
         elapsed = now - start;
         ce_logo_left = elapsed >= duration ? 0 : duration - elapsed;
@@ -111,9 +117,12 @@ static uint8_t logo_wait(uint16_t duration) {
 }
 void ce_play_logos(void) BANKED {
     uint8_t step;
+    logo_previous = 0; ce_logo_skip = 0;
     if (!ce_logo_count) return;
-    ce_scene = 12; ce_logo_skip = joypad();
-    for (ce_logo_page = 0; ce_logo_page < ce_logo_count && !ce_logo_skip; ++ce_logo_page) {
+    ce_scene = 12;
+    for (ce_logo_page = 0; ce_logo_page < ce_logo_count; ++ce_logo_page) {
+        /* A press advances one page. Retain held keys across page loads. */
+        ce_logo_skip = 0;
         ce_logo_phase = 0; ce_logo_left = 0;
         ce_load_logo(ce_logos[ce_logo_page].screen);
         ce_logo_phase = 1;
@@ -121,8 +130,9 @@ void ce_play_logos(void) BANKED {
             vsync(); ce_set_fade(3u - step);
             logo_wait(ce_logo_fade_step - 1u);
         }
-        if (ce_logo_skip) break;
-        ce_logo_phase = 2; logo_wait(ce_logos[ce_logo_page].frames);
+        if (!ce_logo_skip) {
+            ce_logo_phase = 2; logo_wait(ce_logos[ce_logo_page].frames);
+        }
         ce_logo_phase = 3;
         for (step = 0; step != 4u && !ce_logo_skip; ++step) {
             vsync(); ce_set_fade(step + 1u);

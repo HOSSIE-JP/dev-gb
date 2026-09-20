@@ -20,7 +20,7 @@ export function cgbMemoryLayout(map: string, fixedBytes: number, rightHud: boole
             {bank:1,reserved:0xd52,capacity:4096,purpose:'actors, bullets, collision, animation and motion cursors'},
             {bank:2,reserved:rightHud?0xf24:0xa30,capacity:4096,purpose:'BG bullets, masks, packets and map histories'},
             {bank:3,reserved:rightHud?2080:0,capacity:4096,purpose:'parallax cache and road transfer packets'},
-            {bank:4,reserved:779,capacity:4096,purpose:'movie workspace; pinned during its audio ISR'},
+            {bank:4,reserved:780,capacity:4096,purpose:'movie workspace; pinned during its audio ISR'},
             ...[5,6,7].map(bank=>({bank,reserved:0,capacity:4096,purpose:'available'})),
         ],
         stack:{start:0xcc00,end:0xd000,reserved:1024},

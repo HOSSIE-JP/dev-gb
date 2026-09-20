@@ -1,0 +1,3801 @@
+{
+  "version": "0.45-startup-step",
+  "createdAt": "2026-09-20T02:51:32.949Z",
+  "baseCommit": "eeb2e4b83c133071182e3442e9fc0446caa95723",
+  "rom": {
+    "path": "projects/touhou-kouma/build/Release/touhou-kouma-v45.gb",
+    "sha256": "f78e29a20b67c418228cbfb9495767c21514af0e94297bb32fdce43537f8c13e",
+    "bytes": 4194304,
+    "hardware": "gbc",
+    "debugReleaseIdentical": true
+  },
+  "projectRevision": "08de5fbf108095f653603ca77dccdd041c72cc63fe46e3be83c2b0b893ae62bf",
+  "checks": [
+    "Current logo only advances; held keys do not skip subsequent logos or the movie. Initial startup and ranking replay share this behavior.",
+    "Boytacean: 28 logo-only DMG/CGB cases, 38 movie fixture DMG/CGB cases, 16 unchanged production CGB cases passed.",
+    "BGB: 2 logo fixture cases, 6 movie fixture DMG/CGB cases and 3 production CGB cases passed using native first-logo checkpoints.",
+    "Production movie: 400/400 frame pixel parity, zero overruns, 10287 PCM blocks; skip boundaries, title music and character selection passed.",
+    "Doctor zero warnings; hello-gb clean/Debug; test.cmd star-caravan 186 passed, zero failed/skipped; STAR CARAVAN and TOUHOU KOUMA Debug/Release passed.",
+    "Editor build and typecheck passed. SDCC movie workspace size 780 bytes matches corrected memory report.",
+    "Production Debug/Release identical. Game revision, source artwork, movie, music and save identity unchanged."
+  ],
+  "pending": [
+    "Current ROM Emulicious DAP evaluate fails with NullPointerException; no execution or input pass claimed.",
+    "Physical hardware, human input/audio evaluation and a new complete campaign playthrough were not performed.",
+    "Human listening and physical hardware unverified; arrangement quality remains unapproved.",
+    "Production 14 route checks are short menu-driven checks, not a complete campaign.",
+    "Native full-loop checks use a diagnostic ROM with the real music/SFX engine, not the complete game.",
+    "Performance still misses display deadlines; no claim of zero slowdown.",
+    "No new standalone browser player exported or browser UI validation.",
+    "Previous v43 limitation, not revalidated in this import: Forty-bullet one-update-per-display target is still unmet, especially guided Reimu (459 misses / 599).",
+    "Previous v43 limitation, not revalidated in this import: Production stage 7 Marisa road is slightly worse: 35 to 36 deadline misses / 2801. Not an improvement in every scene.",
+    "Previous v43 limitation, not revalidated in this import: Bomb sustain improves to 49/47 display frames per 47 updates for Reimu/Marisa; asset entry and restoration still take multiple frames.",
+    "Previous v43 limitation, not revalidated in this import: CPU profiles use deterministic PC sampling, not exact function instrumentation. Stress ROMs replace only the mainloop and replenish bullets; they are not production ROMs."
+  ],
+  "standardTests": {
+    "command": "test.cmd star-caravan",
+    "passed": 186,
+    "failed": 0,
+    "skipped": 0
+  },
+  "acceptance": {
+    "logos": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\startup-step\\logos\\fixture\\projects\\startup-test\\build\\Debug\\startup-test.gb",
+      "sha256": "8c33cc2f57d73de49c28798b4adf30758c5aa2ab08f11628c634ca962e320b92",
+      "fixture": "Star Caravan with two deterministic test images in three slots; stageFade=false demonstrates independent logo fades. Real joypad input; no RAM writes.",
+      "results": [
+        {
+          "label": "DMG-auto-2",
+          "skip": null,
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": [
+            {
+              "index": 0,
+              "fadesIn": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "fadesOut": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "brightness": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  2,
+                  24
+                ],
+                [
+                  1,
+                  72.53333333333333
+                ],
+                [
+                  0,
+                  136.81666666666666
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              "hold": 30,
+              "firstHold": 135,
+              "lastHold": 164,
+              "pixels": true
+            },
+            {
+              "index": 1,
+              "fadesIn": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "fadesOut": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "brightness": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  2,
+                  23.466666666666665
+                ],
+                [
+                  1,
+                  71.46666666666667
+                ],
+                [
+                  0,
+                  135.93333333333334
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              "hold": 45,
+              "firstHold": 216,
+              "lastHold": 260,
+              "pixels": true
+            },
+            {
+              "index": 2,
+              "fadesIn": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "fadesOut": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "brightness": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  2,
+                  24
+                ],
+                [
+                  1,
+                  72.53333333333333
+                ],
+                [
+                  0,
+                  136.81666666666666
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              "hold": 60,
+              "firstHold": 312,
+              "lastHold": 371,
+              "pixels": true
+            }
+          ]
+        },
+        {
+          "label": "DMG-A-2",
+          "skip": "A",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-B-2",
+          "skip": "B",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-Start-2",
+          "skip": "Start",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-Select-2",
+          "skip": "Select",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-Up-2",
+          "skip": "Up",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-Down-2",
+          "skip": "Down",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-Left-2",
+          "skip": "Left",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-Right-2",
+          "skip": "Right",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-A-0",
+          "skip": "A",
+          "phase": 0,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-A-1",
+          "skip": "A",
+          "phase": 1,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-A-3",
+          "skip": "A",
+          "phase": 3,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-Start--1",
+          "skip": "Start",
+          "phase": -1,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "DMG-A-0-tap",
+          "skip": "A",
+          "phase": 0,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-auto-2",
+          "skip": null,
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": [
+            {
+              "index": 0,
+              "fadesIn": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "fadesOut": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "brightness": [
+                [
+                  3,
+                  28.488888888888887
+                ],
+                [
+                  2,
+                  62.977777777777774
+                ],
+                [
+                  1,
+                  95.43703703703704
+                ],
+                [
+                  0,
+                  129.92592592592592
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              "hold": 30,
+              "firstHold": 216,
+              "lastHold": 245,
+              "pixels": true
+            },
+            {
+              "index": 1,
+              "fadesIn": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "fadesOut": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "brightness": [
+                [
+                  3,
+                  28.68148148148148
+                ],
+                [
+                  2,
+                  63.407407407407405
+                ],
+                [
+                  1,
+                  96.08888888888889
+                ],
+                [
+                  0,
+                  130.8148148148148
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              "hold": 45,
+              "firstHold": 297,
+              "lastHold": 341,
+              "pixels": true
+            },
+            {
+              "index": 2,
+              "fadesIn": [
+                3,
+                2,
+                1,
+                0
+              ],
+              "fadesOut": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "brightness": [
+                [
+                  3,
+                  28.488888888888887
+                ],
+                [
+                  2,
+                  62.977777777777774
+                ],
+                [
+                  1,
+                  95.43703703703704
+                ],
+                [
+                  0,
+                  129.92592592592592
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              "hold": 60,
+              "firstHold": 393,
+              "lastHold": 452,
+              "pixels": true
+            }
+          ]
+        },
+        {
+          "label": "CGB-A-2",
+          "skip": "A",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-B-2",
+          "skip": "B",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-Start-2",
+          "skip": "Start",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-Select-2",
+          "skip": "Select",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-Up-2",
+          "skip": "Up",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-Down-2",
+          "skip": "Down",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-Left-2",
+          "skip": "Left",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-Right-2",
+          "skip": "Right",
+          "phase": 2,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-A-0",
+          "skip": "A",
+          "phase": 0,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-A-1",
+          "skip": "A",
+          "phase": 1,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-A-3",
+          "skip": "A",
+          "phase": 3,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-Start--1",
+          "skip": "Start",
+          "phase": -1,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        },
+        {
+          "label": "CGB-A-0-tap",
+          "skip": "A",
+          "phase": 0,
+          "title": true,
+          "heldInputGuard": true,
+          "noReplay": true,
+          "gameplay": true,
+          "pages": []
+        }
+      ]
+    },
+    "dual-sequence": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\startup-step\\logos\\fixture\\projects\\startup-movie-test\\build\\Debug\\startup-movie-test.gb",
+      "sha256": "eb66edc51d2027bb5ae2b7ec84b2ddbb1e64dd99cdf5146ea0eadc91cdf33e1d",
+      "count": 3,
+      "movieCount": 36,
+      "results": [
+        {
+          "name": "CGB-A-0-2",
+          "key": "A",
+          "page": 0,
+          "phase": 2,
+          "frames": 420,
+          "events": [
+            {
+              "frame": 216,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 274,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 334,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 378,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 416,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 420,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-B-0-2",
+          "key": "B",
+          "page": 0,
+          "phase": 2,
+          "frames": 420,
+          "events": [
+            {
+              "frame": 216,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 274,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 334,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 378,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 416,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 420,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Select-0-2",
+          "key": "Select",
+          "page": 0,
+          "phase": 2,
+          "frames": 420,
+          "events": [
+            {
+              "frame": 216,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 274,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 334,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 378,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 416,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 420,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Start-0-2",
+          "key": "Start",
+          "page": 0,
+          "phase": 2,
+          "frames": 420,
+          "events": [
+            {
+              "frame": 216,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 274,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 334,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 378,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 416,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 420,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Right-0-2",
+          "key": "Right",
+          "page": 0,
+          "phase": 2,
+          "frames": 420,
+          "events": [
+            {
+              "frame": 216,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 274,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 334,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 378,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 416,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 420,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Left-0-2",
+          "key": "Left",
+          "page": 0,
+          "phase": 2,
+          "frames": 420,
+          "events": [
+            {
+              "frame": 216,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 274,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 334,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 378,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 416,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 420,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Up-0-2",
+          "key": "Up",
+          "page": 0,
+          "phase": 2,
+          "frames": 420,
+          "events": [
+            {
+              "frame": 216,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 274,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 334,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 378,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 416,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 420,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Down-0-2",
+          "key": "Down",
+          "page": 0,
+          "phase": 2,
+          "frames": 420,
+          "events": [
+            {
+              "frame": 216,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 274,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 334,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 378,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 416,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 420,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-0-0",
+          "key": "A",
+          "page": 0,
+          "phase": 0,
+          "frames": 396,
+          "events": [
+            {
+              "frame": 190,
+              "scene": 12,
+              "page": 0,
+              "phase": 0,
+              "movieFrame": 0
+            },
+            {
+              "frame": 250,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 310,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 354,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 392,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 396,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-0-1",
+          "key": "A",
+          "page": 0,
+          "phase": 1,
+          "frames": 397,
+          "events": [
+            {
+              "frame": 193,
+              "scene": 12,
+              "page": 0,
+              "phase": 1,
+              "movieFrame": 0
+            },
+            {
+              "frame": 251,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 311,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 355,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 393,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 397,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-0-3",
+          "key": "A",
+          "page": 0,
+          "phase": 3,
+          "frames": 451,
+          "events": [
+            {
+              "frame": 246,
+              "scene": 12,
+              "page": 0,
+              "phase": 3,
+              "movieFrame": 0
+            },
+            {
+              "frame": 305,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 365,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 409,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 447,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 451,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-1-0",
+          "key": "A",
+          "page": 1,
+          "phase": 0,
+          "frames": 417,
+          "events": [
+            {
+              "frame": 270,
+              "scene": 12,
+              "page": 1,
+              "phase": 0,
+              "movieFrame": 0
+            },
+            {
+              "frame": 331,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 375,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 413,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 417,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-1-1",
+          "key": "A",
+          "page": 1,
+          "phase": 1,
+          "frames": 418,
+          "events": [
+            {
+              "frame": 274,
+              "scene": 12,
+              "page": 1,
+              "phase": 1,
+              "movieFrame": 0
+            },
+            {
+              "frame": 332,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 376,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 414,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 418,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-1-3",
+          "key": "A",
+          "page": 1,
+          "phase": 3,
+          "frames": 487,
+          "events": [
+            {
+              "frame": 342,
+              "scene": 12,
+              "page": 1,
+              "phase": 3,
+              "movieFrame": 0
+            },
+            {
+              "frame": 401,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 445,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 483,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 487,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-2-0",
+          "key": "A",
+          "page": 2,
+          "phase": 0,
+          "frames": 452,
+          "events": [
+            {
+              "frame": 366,
+              "scene": 12,
+              "page": 2,
+              "phase": 0,
+              "movieFrame": 0
+            },
+            {
+              "frame": 410,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 448,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 452,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-2-1",
+          "key": "A",
+          "page": 2,
+          "phase": 1,
+          "frames": 453,
+          "events": [
+            {
+              "frame": 370,
+              "scene": 12,
+              "page": 2,
+              "phase": 1,
+              "movieFrame": 0
+            },
+            {
+              "frame": 411,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 449,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 453,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-2-3",
+          "key": "A",
+          "page": 2,
+          "phase": 3,
+          "frames": 537,
+          "events": [
+            {
+              "frame": 453,
+              "scene": 12,
+              "page": 2,
+              "phase": 3,
+              "movieFrame": 0
+            },
+            {
+              "frame": 495,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 533,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 537,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Start-0-2-natural",
+          "key": "Start",
+          "page": 0,
+          "phase": 2,
+          "naturalMovie": true,
+          "frames": 603,
+          "events": [
+            {
+              "frame": 216,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 274,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 334,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 378,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 599,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 35
+            },
+            {
+              "frame": 603,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-0-2-replay",
+          "key": "A",
+          "page": 0,
+          "phase": 2,
+          "replay": true,
+          "frames": 1126,
+          "events": [
+            {
+              "frame": 922,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 35
+            },
+            {
+              "frame": 980,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 35
+            },
+            {
+              "frame": 1040,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 35
+            },
+            {
+              "frame": 1084,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 1122,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 1126,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-0-2",
+          "key": "A",
+          "page": 0,
+          "phase": 2,
+          "frames": 339,
+          "events": [
+            {
+              "frame": 135,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 193,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 253,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 298,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 335,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 339,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-B-0-2",
+          "key": "B",
+          "page": 0,
+          "phase": 2,
+          "frames": 339,
+          "events": [
+            {
+              "frame": 135,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 193,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 253,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 298,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 335,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 339,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-Select-0-2",
+          "key": "Select",
+          "page": 0,
+          "phase": 2,
+          "frames": 339,
+          "events": [
+            {
+              "frame": 135,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 193,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 253,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 298,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 335,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 339,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-Start-0-2",
+          "key": "Start",
+          "page": 0,
+          "phase": 2,
+          "frames": 339,
+          "events": [
+            {
+              "frame": 135,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 193,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 253,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 298,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 335,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 339,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-Right-0-2",
+          "key": "Right",
+          "page": 0,
+          "phase": 2,
+          "frames": 339,
+          "events": [
+            {
+              "frame": 135,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 193,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 253,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 298,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 335,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 339,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-Left-0-2",
+          "key": "Left",
+          "page": 0,
+          "phase": 2,
+          "frames": 339,
+          "events": [
+            {
+              "frame": 135,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 193,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 253,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 298,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 335,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 339,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-Up-0-2",
+          "key": "Up",
+          "page": 0,
+          "phase": 2,
+          "frames": 339,
+          "events": [
+            {
+              "frame": 135,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 193,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 253,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 298,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 335,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 339,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-Down-0-2",
+          "key": "Down",
+          "page": 0,
+          "phase": 2,
+          "frames": 339,
+          "events": [
+            {
+              "frame": 135,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 193,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 253,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 298,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 335,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 339,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-0-0",
+          "key": "A",
+          "page": 0,
+          "phase": 0,
+          "frames": 314,
+          "events": [
+            {
+              "frame": 108,
+              "scene": 12,
+              "page": 0,
+              "phase": 0,
+              "movieFrame": 0
+            },
+            {
+              "frame": 168,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 228,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 273,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 310,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 314,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-0-1",
+          "key": "A",
+          "page": 0,
+          "phase": 1,
+          "frames": 315,
+          "events": [
+            {
+              "frame": 111,
+              "scene": 12,
+              "page": 0,
+              "phase": 1,
+              "movieFrame": 0
+            },
+            {
+              "frame": 169,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 229,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 274,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 311,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 315,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-0-3",
+          "key": "A",
+          "page": 0,
+          "phase": 3,
+          "frames": 369,
+          "events": [
+            {
+              "frame": 165,
+              "scene": 12,
+              "page": 0,
+              "phase": 3,
+              "movieFrame": 0
+            },
+            {
+              "frame": 223,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 283,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 328,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 365,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 369,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-1-0",
+          "key": "A",
+          "page": 1,
+          "phase": 0,
+          "frames": 335,
+          "events": [
+            {
+              "frame": 189,
+              "scene": 12,
+              "page": 1,
+              "phase": 0,
+              "movieFrame": 0
+            },
+            {
+              "frame": 249,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 294,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 331,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 335,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-1-1",
+          "key": "A",
+          "page": 1,
+          "phase": 1,
+          "frames": 336,
+          "events": [
+            {
+              "frame": 192,
+              "scene": 12,
+              "page": 1,
+              "phase": 1,
+              "movieFrame": 0
+            },
+            {
+              "frame": 250,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 295,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 332,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 336,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-1-3",
+          "key": "A",
+          "page": 1,
+          "phase": 3,
+          "frames": 405,
+          "events": [
+            {
+              "frame": 261,
+              "scene": 12,
+              "page": 1,
+              "phase": 3,
+              "movieFrame": 0
+            },
+            {
+              "frame": 319,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 364,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 401,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 405,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-2-0",
+          "key": "A",
+          "page": 2,
+          "phase": 0,
+          "frames": 371,
+          "events": [
+            {
+              "frame": 285,
+              "scene": 12,
+              "page": 2,
+              "phase": 0,
+              "movieFrame": 0
+            },
+            {
+              "frame": 330,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 367,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 371,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-2-1",
+          "key": "A",
+          "page": 2,
+          "phase": 1,
+          "frames": 372,
+          "events": [
+            {
+              "frame": 288,
+              "scene": 12,
+              "page": 2,
+              "phase": 1,
+              "movieFrame": 0
+            },
+            {
+              "frame": 331,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 368,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 372,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-2-3",
+          "key": "A",
+          "page": 2,
+          "phase": 3,
+          "frames": 456,
+          "events": [
+            {
+              "frame": 372,
+              "scene": 12,
+              "page": 2,
+              "phase": 3,
+              "movieFrame": 0
+            },
+            {
+              "frame": 415,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 452,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 456,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-Start-0-2-natural",
+          "key": "Start",
+          "page": 0,
+          "phase": 2,
+          "naturalMovie": true,
+          "frames": 522,
+          "events": [
+            {
+              "frame": 135,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 193,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 253,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 298,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 518,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 35
+            },
+            {
+              "frame": 522,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "DMG-A-0-2-replay",
+          "key": "A",
+          "page": 0,
+          "phase": 2,
+          "replay": true,
+          "frames": 1045,
+          "events": [
+            {
+              "frame": 842,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 35
+            },
+            {
+              "frame": 899,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 35
+            },
+            {
+              "frame": 959,
+              "scene": 12,
+              "page": 2,
+              "phase": 2,
+              "movieFrame": 35
+            },
+            {
+              "frame": 1004,
+              "scene": 15,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 1041,
+              "scene": 0,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 1045,
+              "scene": 1,
+              "page": 3,
+              "phase": 4,
+              "movieFrame": 0
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    "production": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "f78e29a20b67c418228cbfb9495767c21514af0e94297bb32fdce43537f8c13e",
+      "count": 2,
+      "movieCount": 400,
+      "results": [
+        {
+          "name": "CGB-A-0-2",
+          "key": "A",
+          "page": 0,
+          "phase": 2,
+          "frames": 383,
+          "events": [
+            {
+              "frame": 223,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 292,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 337,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 380,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 383,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-B-0-2",
+          "key": "B",
+          "page": 0,
+          "phase": 2,
+          "frames": 383,
+          "events": [
+            {
+              "frame": 223,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 292,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 337,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 380,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 383,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Select-0-2",
+          "key": "Select",
+          "page": 0,
+          "phase": 2,
+          "frames": 383,
+          "events": [
+            {
+              "frame": 223,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 292,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 337,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 380,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 383,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Start-0-2",
+          "key": "Start",
+          "page": 0,
+          "phase": 2,
+          "frames": 383,
+          "events": [
+            {
+              "frame": 223,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 292,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 337,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 380,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 383,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Right-0-2",
+          "key": "Right",
+          "page": 0,
+          "phase": 2,
+          "frames": 383,
+          "events": [
+            {
+              "frame": 223,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 292,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 337,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 380,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 383,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Left-0-2",
+          "key": "Left",
+          "page": 0,
+          "phase": 2,
+          "frames": 383,
+          "events": [
+            {
+              "frame": 223,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 292,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 337,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 380,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 383,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Up-0-2",
+          "key": "Up",
+          "page": 0,
+          "phase": 2,
+          "frames": 383,
+          "events": [
+            {
+              "frame": 223,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 292,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 337,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 380,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 383,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Down-0-2",
+          "key": "Down",
+          "page": 0,
+          "phase": 2,
+          "frames": 383,
+          "events": [
+            {
+              "frame": 223,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 292,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 337,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 380,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 383,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-0-0",
+          "key": "A",
+          "page": 0,
+          "phase": 0,
+          "frames": 356,
+          "events": [
+            {
+              "frame": 187,
+              "scene": 12,
+              "page": 0,
+              "phase": 0,
+              "movieFrame": 0
+            },
+            {
+              "frame": 265,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 310,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 353,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 356,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-0-1",
+          "key": "A",
+          "page": 0,
+          "phase": 1,
+          "frames": 358,
+          "events": [
+            {
+              "frame": 197,
+              "scene": 12,
+              "page": 0,
+              "phase": 1,
+              "movieFrame": 0
+            },
+            {
+              "frame": 267,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 312,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 355,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 358,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-0-3",
+          "key": "A",
+          "page": 0,
+          "phase": 3,
+          "frames": 535,
+          "events": [
+            {
+              "frame": 373,
+              "scene": 12,
+              "page": 0,
+              "phase": 3,
+              "movieFrame": 0
+            },
+            {
+              "frame": 444,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 489,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 532,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 535,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-1-0",
+          "key": "A",
+          "page": 1,
+          "phase": 0,
+          "frames": 500,
+          "events": [
+            {
+              "frame": 401,
+              "scene": 12,
+              "page": 1,
+              "phase": 0,
+              "movieFrame": 0
+            },
+            {
+              "frame": 454,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 497,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 500,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-1-1",
+          "key": "A",
+          "page": 1,
+          "phase": 1,
+          "frames": 502,
+          "events": [
+            {
+              "frame": 413,
+              "scene": 12,
+              "page": 1,
+              "phase": 1,
+              "movieFrame": 0
+            },
+            {
+              "frame": 456,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 499,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 502,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-1-3",
+          "key": "A",
+          "page": 1,
+          "phase": 3,
+          "frames": 829,
+          "events": [
+            {
+              "frame": 739,
+              "scene": 12,
+              "page": 1,
+              "phase": 3,
+              "movieFrame": 0
+            },
+            {
+              "frame": 783,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 826,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 829,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-Start-0-2-natural",
+          "key": "Start",
+          "page": 0,
+          "phase": 2,
+          "naturalMovie": true,
+          "frames": 2750,
+          "events": [
+            {
+              "frame": 223,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 292,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 0
+            },
+            {
+              "frame": 337,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 2747,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 399
+            },
+            {
+              "frame": 2750,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 399
+            }
+          ],
+          "passed": true
+        },
+        {
+          "name": "CGB-A-0-2-replay",
+          "key": "A",
+          "page": 0,
+          "phase": 2,
+          "replay": true,
+          "frames": 3900,
+          "events": [
+            {
+              "frame": 3741,
+              "scene": 12,
+              "page": 0,
+              "phase": 2,
+              "movieFrame": 399
+            },
+            {
+              "frame": 3810,
+              "scene": 12,
+              "page": 1,
+              "phase": 2,
+              "movieFrame": 399
+            },
+            {
+              "frame": 3855,
+              "scene": 15,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 3897,
+              "scene": 0,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            },
+            {
+              "frame": 3900,
+              "scene": 10,
+              "page": 2,
+              "phase": 4,
+              "movieFrame": 5
+            }
+          ],
+          "passed": true
+        }
+      ]
+    },
+    "logos-bgb": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\startup-step\\logos\\fixture\\projects\\startup-test\\build\\Debug\\startup-test.gb",
+      "sha256": "8c33cc2f57d73de49c28798b4adf30758c5aa2ab08f11628c634ca962e320b92",
+      "emulator": "BGB 1.6.6",
+      "fixture": true,
+      "results": [
+        {
+          "skip": false,
+          "cgb": true,
+          "logoSamples": 255,
+          "titleSamples": 306,
+          "heldInputGuard": true
+        },
+        {
+          "skip": true,
+          "cgb": true,
+          "logoSamples": 249,
+          "titleSamples": 313,
+          "heldInputGuard": true
+        }
+      ]
+    },
+    "dual-bgb": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\.cache\\startup-step\\logos\\fixture\\projects\\startup-movie-test\\build\\Debug\\startup-movie-test.gb",
+      "sha256": "eb66edc51d2027bb5ae2b7ec84b2ddbb1e64dd99cdf5146ea0eadc91cdf33e1d",
+      "results": [
+        {
+          "name": "CGB-A-0-2",
+          "nativeCheckpoint": "initial logos",
+          "movieFramesObserved": 7,
+          "titleSamples": 35,
+          "passed": true
+        },
+        {
+          "name": "CGB-Start-0-2-natural",
+          "nativeCheckpoint": "initial logos",
+          "movieFramesObserved": 36,
+          "titleSamples": 43,
+          "passed": true
+        },
+        {
+          "name": "CGB-A-0-2-replay",
+          "nativeCheckpoint": "logos after ranking",
+          "movieFramesObserved": 7,
+          "titleSamples": 37,
+          "passed": true
+        },
+        {
+          "name": "DMG-A-0-2",
+          "nativeCheckpoint": "initial logos",
+          "movieFramesObserved": 7,
+          "titleSamples": 34,
+          "passed": true
+        },
+        {
+          "name": "DMG-Start-0-2-natural",
+          "nativeCheckpoint": "initial logos",
+          "movieFramesObserved": 36,
+          "titleSamples": 43,
+          "passed": true
+        },
+        {
+          "name": "DMG-A-0-2-replay",
+          "nativeCheckpoint": "logos after ranking",
+          "movieFramesObserved": 7,
+          "titleSamples": 36,
+          "passed": true
+        }
+      ]
+    },
+    "production-bgb": {
+      "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+      "sha256": "f78e29a20b67c418228cbfb9495767c21514af0e94297bb32fdce43537f8c13e",
+      "results": [
+        {
+          "name": "CGB-A-0-2",
+          "nativeCheckpoint": "initial logos",
+          "movieFramesObserved": 7,
+          "titleSamples": 40,
+          "passed": true
+        },
+        {
+          "name": "CGB-Start-0-2-natural",
+          "nativeCheckpoint": "initial logos",
+          "movieFramesObserved": 400,
+          "titleSamples": 46,
+          "passed": true
+        },
+        {
+          "name": "CGB-A-0-2-replay",
+          "nativeCheckpoint": "logos after ranking",
+          "movieFramesObserved": 7,
+          "titleSamples": 41,
+          "passed": true
+        }
+      ]
+    },
+    "movie": {
+      "sha256": "f78e29a20b67c418228cbfb9495767c21514af0e94297bb32fdce43537f8c13e",
+      "results": [
+        {
+          "mode": "CGB",
+          "displayVBlanks": 2401,
+          "frames": 400,
+          "overruns": 0,
+          "pcmBlocks": 10287,
+          "pixelParity": 400,
+          "titleMusic": true,
+          "normalStart": true,
+          "audioRate": 44100,
+          "audioChannels": 2
+        }
+      ]
+    }
+  },
+  "sourceHashes": {
+    "engine/caravan/flow.c": "a3a3f02e85547202e47d52cca7841bb956d717162f8713463e5d2815e7a8fb49",
+    "engine/caravan/caravan.h": "a9cc1fdc498d3d4b016146fc3dd4ad797744577f9f518013506a5fc4cb64a890",
+    "engine/caravan/mainloop.c": "0aefb4a8f85cc457cc2d86d26cd1341f7416617c1cd7feee645bf649eba57041",
+    "engine/caravan/movie.c": "83524e2431b47ed4e5c6a5261f884be65d45b0c4349e34425dc37ddb44ca65dc",
+    "engine/caravan/render.c": "50be0f688d002d3a131c523ecce6b468bb280f4427da92006bd9f352c816bde6",
+    "editor/src/node/cgb-layout.ts": "7c6e1fee0d36a1ee3fbba3f02e921fd165b041e22e620e47eb93c7877b8fe0f0",
+    "editor/tests/startup.acceptance.mjs": "4ec90d9452b470296e044100ef1ef3aa0cdbe96d5754ba77603200fbbb0ad901",
+    "editor/tests/startup-native.acceptance.mjs": "6515f245b494446f6abb3427e72947ada175df9297320edb72b23d9435d64a18",
+    "editor/tests/startup-movie.acceptance.mjs": "023e8293837d2d3f1200fdfcc59d95b1ded46c87aa963b14c7bc864e41a96e82",
+    "editor/tests/startup-sequence.acceptance.mjs": "099ce06bcc60db06ff5331e9c0c7eda9b7cdb279fa3c58ff4d29121f8682acc1",
+    "editor/tests/startup-sequence-native.acceptance.mjs": "8c6f3cca076c0807a6fb5f8985a0fb3fa269816893bddcb74ebe7a502d157baf"
+  },
+  "memory": {
+    "hardware": "gbc",
+    "wram": [
+      {
+        "bank": 0,
+        "reserved": 1550,
+        "capacity": 3072,
+        "purpose": "shared state, ISR, audio and shadow OAM"
+      },
+      {
+        "bank": 1,
+        "reserved": 3410,
+        "capacity": 4096,
+        "purpose": "actors, bullets, collision, animation and motion cursors"
+      },
+      {
+        "bank": 2,
+        "reserved": 3876,
+        "capacity": 4096,
+        "purpose": "BG bullets, masks, packets and map histories"
+      },
+      {
+        "bank": 3,
+        "reserved": 2080,
+        "capacity": 4096,
+        "purpose": "parallax cache and road transfer packets"
+      },
+      {
+        "bank": 4,
+        "reserved": 780,
+        "capacity": 4096,
+        "purpose": "movie workspace; pinned during its audio ISR"
+      },
+      {
+        "bank": 5,
+        "reserved": 0,
+        "capacity": 4096,
+        "purpose": "available"
+      },
+      {
+        "bank": 6,
+        "reserved": 0,
+        "capacity": 4096,
+        "purpose": "available"
+      },
+      {
+        "bank": 7,
+        "reserved": 0,
+        "capacity": 4096,
+        "purpose": "available"
+      }
+    ],
+    "stack": {
+      "start": 52224,
+      "end": 53248,
+      "reserved": 1024
+    },
+    "vram": {
+      "bytes": 16384,
+      "bankBytes": 8192,
+      "residentObjTiles": 126,
+      "hudTiles": 27,
+      "barrageTiles": 205,
+      "roadTileLimit": 128,
+      "bombExcludedTileRange": [
+        128,
+        255
+      ]
+    }
+  },
+  "emulicious": {
+    "rom": "C:\\homebrew\\projects\\dev-gb\\projects\\touhou-kouma\\build\\Debug\\touhou-kouma.gb",
+    "sha256": "f78e29a20b67c418228cbfb9495767c21514af0e94297bb32fdce43537f8c13e",
+    "emulator": "Emulicious 2026-03-27",
+    "method": "Unchanged isolated ROM CLI startup; DAP attach, numeric-address reads only",
+    "run": "C:\\homebrew\\projects\\dev-gb\\.cache\\startup-step\\emulicious-current\\direct-9UwX0H",
+    "steps": [
+      {
+        "command": "initialize",
+        "response": {
+          "success": true,
+          "type": "response",
+          "body": {
+            "supportsSetExpression": false,
+            "supportsDisassembleRequest": false,
+            "supportsRestartFrame": false,
+            "supportsTerminateRequest": false,
+            "supportsConfigurationDoneRequest": false,
+            "supportsRestartRequest": false,
+            "supportsGotoTargetsRequest": false,
+            "supportsConditionalBreakpoints": true,
+            "supportsModulesRequest": false,
+            "supportsCancelRequest": false,
+            "supportsHitConditionalBreakpoints": false,
+            "supportsLogPoints": true,
+            "supportsReadMemoryRequest": false,
+            "exceptionBreakpointFilters": [
+              {
+                "filter": "Exception-5",
+                "default": true,
+                "supportsCondition": false,
+                "label": "Break on inconsistent state after interrupt"
+              },
+              {
+                "filter": "Exception-4",
+                "default": true,
+                "supportsCondition": false,
+                "label": "Break on read of uninitialized memory"
+              },
+              {
+                "filter": "Exception-3",
+                "default": true,
+                "supportsCondition": false,
+                "label": "Break on execution of data"
+              },
+              {
+                "filter": "Exception-2",
+                "default": true,
+                "supportsCondition": false,
+                "label": "Break on bank swap at PC"
+              },
+              {
+                "filter": "Exception-1",
+                "default": true,
+                "supportsCondition": false,
+                "label": "Break on push to ROM"
+              }
+            ],
+            "supportsStepInTargetsRequest": false,
+            "supportsLoadedSourcesRequest": false,
+            "supportsTerminateThreadsRequest": false,
+            "supportsExceptionInfoRequest": false,
+            "supportsValueFormattingOptions": false,
+            "supportsCompletionsRequest": false,
+            "supportTerminateDebuggee": false,
+            "supportsSteppingGranularity": false,
+            "supportsDelayedStackTraceLoading": false,
+            "supportsDataBreakpoints": false,
+            "supportsEvaluateForHovers": true,
+            "supportsFunctionBreakpoints": true,
+            "supportsBreakpointLocationsRequest": false,
+            "supportsInstructionBreakpoints": false,
+            "supportsStepBack": true,
+            "supportsExceptionOptions": false,
+            "supportsSetVariable": false,
+            "supportsClipboardContext": false
+          },
+          "seq": 1,
+          "request_seq": 1,
+          "command": "initialize"
+        }
+      },
+      {
+        "event": {
+          "type": "event",
+          "event": "terminated",
+          "seq": 2
+        }
+      },
+      {
+        "command": "attach",
+        "response": {
+          "success": true,
+          "type": "response",
+          "seq": 3,
+          "request_seq": 2,
+          "command": "attach"
+        }
+      },
+      {
+        "command": "threads",
+        "response": {
+          "success": true,
+          "type": "response",
+          "body": {
+            "threads": [
+              {
+                "name": "Thread",
+                "id": 1
+              }
+            ]
+          },
+          "seq": 4,
+          "request_seq": 3,
+          "command": "threads"
+        }
+      },
+      {
+        "command": "pause",
+        "response": {
+          "success": true,
+          "type": "response",
+          "seq": 5,
+          "request_seq": 4,
+          "command": "pause"
+        }
+      },
+      {
+        "command": "evaluate",
+        "response": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 6,
+          "request_seq": 5,
+          "command": "evaluate"
+        }
+      },
+      {
+        "command": "evaluate",
+        "response": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 7,
+          "request_seq": 6,
+          "command": "evaluate"
+        }
+      },
+      {
+        "command": "evaluate",
+        "response": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 8,
+          "request_seq": 7,
+          "command": "evaluate"
+        }
+      },
+      {
+        "command": "evaluate",
+        "response": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 9,
+          "request_seq": 8,
+          "command": "evaluate"
+        }
+      },
+      {
+        "command": "continue",
+        "response": {
+          "success": true,
+          "type": "response",
+          "body": {
+            "allThreadsContinued": false
+          },
+          "seq": 10,
+          "request_seq": 9,
+          "command": "continue"
+        }
+      },
+      {
+        "command": "pause",
+        "response": {
+          "success": true,
+          "type": "response",
+          "seq": 11,
+          "request_seq": 10,
+          "command": "pause"
+        }
+      },
+      {
+        "command": "evaluate",
+        "response": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 12,
+          "request_seq": 11,
+          "command": "evaluate"
+        }
+      },
+      {
+        "command": "evaluate",
+        "response": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 13,
+          "request_seq": 12,
+          "command": "evaluate"
+        }
+      },
+      {
+        "command": "evaluate",
+        "response": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 14,
+          "request_seq": 13,
+          "command": "evaluate"
+        }
+      },
+      {
+        "command": "evaluate",
+        "response": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 15,
+          "request_seq": 14,
+          "command": "evaluate"
+        }
+      }
+    ],
+    "stderr": "java.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\njava.lang.NullPointerException\r\n\tat platform.debugger.DAPDebugger.evaluate(Unknown Source)\r\n\tat dap.DebugAdapterProtocol$1.handleMessage(Unknown Source)\r\n\tat dap.base.DebugAdapterBaseProtocol.run(Unknown Source)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\n",
+    "bootExecutionVerified": false,
+    "gameplayVerified": false,
+    "command": {
+      "executable": "C:\\homebrew\\projects\\dev-gb\\.tools\\emulicious\\java\\bin\\java.exe",
+      "args": [
+        "-Duser.home=C:\\homebrew\\projects\\dev-gb\\.cache\\startup-step\\emulicious-current\\direct-9UwX0H",
+        "-Dsun.java2d.d3d=false",
+        "-jar",
+        "C:\\homebrew\\projects\\dev-gb\\.cache\\startup-step\\emulicious-current\\direct-9UwX0H\\Emulicious.jar",
+        "-remotedebug",
+        "55276",
+        "-muted",
+        "C:\\homebrew\\projects\\dev-gb\\.cache\\startup-step\\emulicious-current\\direct-9UwX0H\\side-caravan.gb"
+      ]
+    },
+    "snapshots": [
+      {
+        "pc": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 6,
+          "request_seq": 5,
+          "command": "evaluate"
+        },
+        "frame": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 7,
+          "request_seq": 6,
+          "command": "evaluate"
+        },
+        "scene": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 8,
+          "request_seq": 7,
+          "command": "evaluate"
+        },
+        "cgb": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 9,
+          "request_seq": 8,
+          "command": "evaluate"
+        }
+      },
+      {
+        "pc": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 12,
+          "request_seq": 11,
+          "command": "evaluate"
+        },
+        "frame": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 13,
+          "request_seq": 12,
+          "command": "evaluate"
+        },
+        "scene": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 14,
+          "request_seq": 13,
+          "command": "evaluate"
+        },
+        "cgb": {
+          "success": false,
+          "type": "response",
+          "message": "exception",
+          "body": {
+            "error": {
+              "showUser": true,
+              "format": "Error handling request EvaluateRequest: NullPointerException\nplatform.debugger.DAPDebugger.evaluate(Unknown Source)",
+              "id": 1,
+              "sendTelemetry": false
+            }
+          },
+          "seq": 15,
+          "request_seq": 14,
+          "command": "evaluate"
+        }
+      }
+    ],
+    "limitation": "Connection alone is not execution evidence; inspect response errors."
+  }
+}

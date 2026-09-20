@@ -1,18 +1,59 @@
 {
-  "version": "0.44-three-voice-midi-trial",
-  "updatedAt": "2026-09-19T16:14:45.718Z",
+  "version": "0.45-startup-step",
+  "updatedAt": "2026-09-20T02:51:32.949Z",
   "status": "awaiting-playtest",
   "approved": false,
   "projectRevision": "08de5fbf108095f653603ca77dccdd041c72cc63fe46e3be83c2b0b893ae62bf",
-  "engineRevision": "867d8aabdb170095198c5c42ec15d433237fa603 + local MIDI import / three-voice playback",
+  "engineRevision": "eeb2e4b83c133071182e3442e9fc0446caa95723 + local startup page input fix",
   "rom": {
-    "path": "build/Release/touhou-kouma-v44.gb",
-    "sha256": "bdbfc625ed232c8989e2885e9d7cf936479aa72be86d68bce94f23088d8ee3ad",
+    "path": "build/Release/touhou-kouma-v45.gb",
+    "sha256": "f78e29a20b67c418228cbfb9495767c21514af0e94297bb32fdce43537f8c13e",
     "bytes": 4194304,
     "header": 192,
     "debugReleaseIdentical": true
   },
   "previous": [
+    {
+      "version": "0.44-three-voice-midi-trial",
+      "updatedAt": "2026-09-19T16:14:45.718Z",
+      "status": "awaiting-playtest",
+      "approved": false,
+      "projectRevision": "08de5fbf108095f653603ca77dccdd041c72cc63fe46e3be83c2b0b893ae62bf",
+      "engineRevision": "867d8aabdb170095198c5c42ec15d433237fa603 + local MIDI import / three-voice playback",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v44.gb",
+        "sha256": "bdbfc625ed232c8989e2885e9d7cf936479aa72be86d68bce94f23088d8ee3ad",
+        "bytes": 4194304,
+        "header": 192,
+        "debugReleaseIdentical": true
+      },
+      "validation": "touhou-kouma-design/qa-v44.json",
+      "feedback": "曲としてはできは悪いですが、いったんゲームへの取り込みをやってみましょう。",
+      "checks": [
+        "14 requested stage/boss MIDI assignments; track 01 unused.",
+        "Three voices, MIDI expression, SFX ownership, pause/resume and full loops verified in diagnostic ROM on DMG/CGB with Boytacean and BGB.",
+        "14 unchanged production ROM routes verify each voice, continuous fire, pause/resume; first-stage routes verify Marisa bomb sound.",
+        "Doctor, hello clean/Debug, test.cmd, STAR CARAVAN Debug/Release and TOUHOU KOUMA Debug/Release passed.",
+        "Debug/Release bytes identical. Source MIDI and prior v43 ROM preserved."
+      ],
+      "pending": [
+        "Human listening and physical hardware unverified; arrangement quality remains unapproved.",
+        "Production 14 route checks are short menu-driven checks, not a complete campaign.",
+        "Native full-loop checks use a diagnostic ROM with the real music/SFX engine, not the complete game.",
+        "Emulicious automatic execution could not be verified; additional DAP launch attempt timed out.",
+        "Performance still misses display deadlines; no claim of zero slowdown.",
+        "No new standalone browser player exported or browser UI validation.",
+        "Previous v43 limitation, not revalidated in this import: Forty-bullet one-update-per-display target is still unmet, especially guided Reimu (459 misses / 599).",
+        "Previous v43 limitation, not revalidated in this import: Production stage 7 Marisa road is slightly worse: 35 to 36 deadline misses / 2801. Not an improvement in every scene.",
+        "Previous v43 limitation, not revalidated in this import: Bomb sustain improves to 49/47 display frames per 47 updates for Reimu/Marisa; asset entry and restoration still take multiple frames.",
+        "Previous v43 limitation, not revalidated in this import: CPU profiles use deterministic PC sampling, not exact function instrumentation. Stress ROMs replace only the mainloop and replenish bullets; they are not production ROMs."
+      ],
+      "evidence": {
+        "report": "../../docs/touhou-kouma-v44.md",
+        "qa": "touhou-kouma-design/qa-v44.json",
+        "raw": ".cache/midi-import-v44"
+      }
+    },
     {
       "version": "0.43-render-performance",
       "updatedAt": "2026-09-19T11:37:18.872Z",
@@ -636,20 +677,23 @@
       "projectRevision": "e3df1038693e7e2fbd81a88450ffee0646832913fba689d5ef8138c4f2454162"
     }
   ],
-  "validation": "touhou-kouma-design/qa-v44.json",
-  "feedback": "曲としてはできは悪いですが、いったんゲームへの取り込みをやってみましょう。",
+  "validation": "touhou-kouma-design/qa-v45.json",
+  "feedback": "ロゴ画面の入力では次のロゴ、あるいはムービーへ進み、途中のロゴやムービーをまとめて飛ばさない。",
   "checks": [
-    "14 requested stage/boss MIDI assignments; track 01 unused.",
-    "Three voices, MIDI expression, SFX ownership, pause/resume and full loops verified in diagnostic ROM on DMG/CGB with Boytacean and BGB.",
-    "14 unchanged production ROM routes verify each voice, continuous fire, pause/resume; first-stage routes verify Marisa bomb sound.",
-    "Doctor, hello clean/Debug, test.cmd, STAR CARAVAN Debug/Release and TOUHOU KOUMA Debug/Release passed.",
-    "Debug/Release bytes identical. Source MIDI and prior v43 ROM preserved."
+    "Current logo only advances; held keys do not skip subsequent logos or the movie. Initial startup and ranking replay share this behavior.",
+    "Boytacean: 28 logo-only DMG/CGB cases, 38 movie fixture DMG/CGB cases, 16 unchanged production CGB cases passed.",
+    "BGB: 2 logo fixture cases, 6 movie fixture DMG/CGB cases and 3 production CGB cases passed using native first-logo checkpoints.",
+    "Production movie: 400/400 frame pixel parity, zero overruns, 10287 PCM blocks; skip boundaries, title music and character selection passed.",
+    "Doctor zero warnings; hello-gb clean/Debug; test.cmd star-caravan 186 passed, zero failed/skipped; STAR CARAVAN and TOUHOU KOUMA Debug/Release passed.",
+    "Editor build and typecheck passed. SDCC movie workspace size 780 bytes matches corrected memory report.",
+    "Production Debug/Release identical. Game revision, source artwork, movie, music and save identity unchanged."
   ],
   "pending": [
+    "Current ROM Emulicious DAP evaluate fails with NullPointerException; no execution or input pass claimed.",
+    "Physical hardware, human input/audio evaluation and a new complete campaign playthrough were not performed.",
     "Human listening and physical hardware unverified; arrangement quality remains unapproved.",
     "Production 14 route checks are short menu-driven checks, not a complete campaign.",
     "Native full-loop checks use a diagnostic ROM with the real music/SFX engine, not the complete game.",
-    "Emulicious automatic execution could not be verified; additional DAP launch attempt timed out.",
     "Performance still misses display deadlines; no claim of zero slowdown.",
     "No new standalone browser player exported or browser UI validation.",
     "Previous v43 limitation, not revalidated in this import: Forty-bullet one-update-per-display target is still unmet, especially guided Reimu (459 misses / 599).",
@@ -658,8 +702,8 @@
     "Previous v43 limitation, not revalidated in this import: CPU profiles use deterministic PC sampling, not exact function instrumentation. Stress ROMs replace only the mainloop and replenish bullets; they are not production ROMs."
   ],
   "evidence": {
-    "report": "../../docs/touhou-kouma-v44.md",
-    "qa": "touhou-kouma-design/qa-v44.json",
-    "raw": ".cache/midi-import-v44"
+    "report": "../../docs/touhou-kouma-v45.md",
+    "qa": "touhou-kouma-design/qa-v45.json",
+    "raw": ".cache/startup-step"
   }
 }

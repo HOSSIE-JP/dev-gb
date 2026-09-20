@@ -22,6 +22,7 @@ typedef struct {
     uint8_t lcdc;
     uint8_t pcm_page;
     uint16_t waited;
+    uint8_t previous;
 } MovieWork;
 #if CE_CGB_ONLY
 static MovieWork __at(0xD000) movie_work;
@@ -66,13 +67,15 @@ ISR_VECTOR(VECTOR_TIMER, movie_timer)
 
 static uint8_t movie_wait(void) {
     uint16_t now;
+    uint8_t input, pressed;
     /* VRAM copies may themselves cross VBlank. Do not wait a second time
      * when that chunk has already consumed its display interval. */
     CRITICAL { now = sys_time; }
     if (now == MOVIE->waited) vsync();
     CRITICAL { MOVIE->waited = sys_time; }
     ce_trace_write();
-    if (joypad()) { MOVIE->skipped = 1; return 1; }
+    input = joypad(); pressed = input & ~MOVIE->previous; MOVIE->previous = input;
+    if (pressed) { MOVIE->skipped = 1; return 1; }
     return 0;
 }
 
@@ -121,6 +124,8 @@ void ce_play_movie(void) BANKED {
     ce_music_play(0);
     ce_scene = 15; ce_used = 0;
     memset(MOVIE, 0, sizeof(MovieWork));
+    /* The press that left the last logo must not skip the movie as well. */
+    MOVIE->previous = joypad();
     MOVIE->ie = IE_REG; MOVIE->tac = TAC_REG; MOVIE->tma = TMA_REG; MOVIE->tima = TIMA_REG;
     MOVIE->lcdc = LCDC_REG;
     set_interrupts(VBL_IFLAG);
