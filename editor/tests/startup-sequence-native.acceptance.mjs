@@ -8,7 +8,7 @@ import {symbols, supportedModes} from './emulator.mjs';
 
 const root = path.resolve(import.meta.dirname, '../..');
 const file = path.resolve(process.argv[2]), inputDir = path.resolve(process.argv[3]), out = path.resolve(process.argv[4]);
-const rom = fs.readFileSync(file), s = symbols(file.replace(/\.gb$/, '.map'));
+const rom = fs.readFileSync(file), s = symbols(file.replace(/\.(?:gb|gbc)$/, '.map'));
 const hash = crypto.createHash('sha256').update(rom).digest('hex');
 const routes = JSON.parse(fs.readFileSync(path.join(inputDir, 'results.json')));
 assert.equal(routes.sha256, hash, 'input replay belongs to this exact ROM');

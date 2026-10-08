@@ -158,6 +158,22 @@ function artifact(temp, revision = "snapshot-a", fill = 1) {
     return { out, outputs, rom, result };
 }
 
+test("configured GBC output is promoted and opened instead of a stale GB artifact", () =>
+    fixture((temp) => {
+        const file = path.join(temp, "projects/fixture/project.json"), definition = JSON.parse(fs.readFileSync(file));
+        definition.output = "fixture.gbc";
+        fs.writeFileSync(file, JSON.stringify(definition));
+        const built = artifact(temp), original = path.join(built.out, "fixture.gb"), configured = path.join(built.out, "fixture.gbc");
+        built.outputs.delete(original);built.outputs.set(configured, built.rom);
+        lib.promoteBuild(temp, "fixture", "Debug", built.outputs);
+        fs.writeFileSync(original, Buffer.alloc(32768, 99));
+        const opened = lib.readBuiltRom(temp, "fixture", "Debug", "snapshot-a");
+        assert.equal(opened.result.romPath, configured);assert.deepEqual(opened.bytes, built.rom);
+        definition.output = "../outside.gbc";fs.writeFileSync(file, JSON.stringify(definition));
+        assert.throws(() => lib.readBuiltRom(temp, "fixture", "Debug"), /不正なROM出力名/);
+        assert.deepEqual(fs.readFileSync(configured), built.rom);
+    }));
+
 test("save detects external PNG changes and keeps both disk and recovery drafts", () =>
     fixture((temp, game) => {
         const opened = lib.revision(game),

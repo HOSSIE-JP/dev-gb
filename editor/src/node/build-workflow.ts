@@ -71,6 +71,14 @@ function buildDirectory(root: string, name: string, config: string) {
     return safePath(projectDir(root, name), "build", config);
 }
 
+export function romOutputName(root: string, name: string) {
+    const definition = JSON.parse(fs.readFileSync(safePath(projectDir(root, name), "project.json"), "utf8"));
+    const output = definition.output ?? `${name}.gb`;
+    if (typeof output !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]*\.(?:gb|gbc)$/.test(output))
+        throw new Error("不正なROM出力名です");
+    return output;
+}
+
 type BuildJournal = { version: 1; files: [string, string | null][] };
 
 // The journal survives a process crash during multi-file ROM/symbol promotion.
@@ -172,7 +180,7 @@ export function readBuiltRom(
         throw new Error(
             "旧形式のビルドです。再ビルドしてROMの整合性を確認してください",
         );
-    const file = safePath(out, `${name}.gb`),
+    const file = safePath(out, romOutputName(root, name)),
         bytes = fs.readFileSync(file);
     if (bytes.length !== result.size || hash(bytes) !== result.romHash)
         throw new Error("ROMの整合性検査に失敗しました。再ビルドしてください");

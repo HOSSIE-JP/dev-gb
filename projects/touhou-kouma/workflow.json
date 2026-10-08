@@ -1,18 +1,62 @@
 {
-  "version": "0.45-startup-step",
-  "updatedAt": "2026-09-20T02:51:32.949Z",
+  "version": "0.46-uge-gbc",
+  "updatedAt": "2026-10-08T13:01:31.748Z",
   "status": "awaiting-playtest",
   "approved": false,
-  "projectRevision": "08de5fbf108095f653603ca77dccdd041c72cc63fe46e3be83c2b0b893ae62bf",
-  "engineRevision": "eeb2e4b83c133071182e3442e9fc0446caa95723 + local startup page input fix",
+  "projectRevision": "ce5436b405fe24c5e681ffef11d818105c1945ae157ca77efec74258a6061711",
+  "engineRevision": "612ca93461311865c3df635be93af53af1758f04 + configured GBC output contract",
   "rom": {
-    "path": "build/Release/touhou-kouma-v45.gb",
-    "sha256": "f78e29a20b67c418228cbfb9495767c21514af0e94297bb32fdce43537f8c13e",
+    "path": "build/Release/touhou-kouma-v46.gbc",
+    "sha256": "4bf64e8aa3e85f6401fd98d3b977adc3d7167dbfcccb1dbe4fa7af93e05b99bb",
     "bytes": 4194304,
     "header": 192,
     "debugReleaseIdentical": true
   },
   "previous": [
+    {
+      "version": "0.45-startup-step",
+      "updatedAt": "2026-09-20T02:51:32.949Z",
+      "status": "awaiting-playtest",
+      "approved": false,
+      "projectRevision": "08de5fbf108095f653603ca77dccdd041c72cc63fe46e3be83c2b0b893ae62bf",
+      "engineRevision": "eeb2e4b83c133071182e3442e9fc0446caa95723 + local startup page input fix",
+      "rom": {
+        "path": "build/Release/touhou-kouma-v45.gb",
+        "sha256": "f78e29a20b67c418228cbfb9495767c21514af0e94297bb32fdce43537f8c13e",
+        "bytes": 4194304,
+        "header": 192,
+        "debugReleaseIdentical": true
+      },
+      "validation": "touhou-kouma-design/qa-v45.json",
+      "feedback": "ロゴ画面の入力では次のロゴ、あるいはムービーへ進み、途中のロゴやムービーをまとめて飛ばさない。",
+      "checks": [
+        "Current logo only advances; held keys do not skip subsequent logos or the movie. Initial startup and ranking replay share this behavior.",
+        "Boytacean: 28 logo-only DMG/CGB cases, 38 movie fixture DMG/CGB cases, 16 unchanged production CGB cases passed.",
+        "BGB: 2 logo fixture cases, 6 movie fixture DMG/CGB cases and 3 production CGB cases passed using native first-logo checkpoints.",
+        "Production movie: 400/400 frame pixel parity, zero overruns, 10287 PCM blocks; skip boundaries, title music and character selection passed.",
+        "Doctor zero warnings; hello-gb clean/Debug; test.cmd star-caravan 186 passed, zero failed/skipped; STAR CARAVAN and TOUHOU KOUMA Debug/Release passed.",
+        "Editor build and typecheck passed. SDCC movie workspace size 780 bytes matches corrected memory report.",
+        "Production Debug/Release identical. Game revision, source artwork, movie, music and save identity unchanged."
+      ],
+      "pending": [
+        "Current ROM Emulicious DAP evaluate fails with NullPointerException; no execution or input pass claimed.",
+        "Physical hardware, human input/audio evaluation and a new complete campaign playthrough were not performed.",
+        "Human listening and physical hardware unverified; arrangement quality remains unapproved.",
+        "Production 14 route checks are short menu-driven checks, not a complete campaign.",
+        "Native full-loop checks use a diagnostic ROM with the real music/SFX engine, not the complete game.",
+        "Performance still misses display deadlines; no claim of zero slowdown.",
+        "No new standalone browser player exported or browser UI validation.",
+        "Previous v43 limitation, not revalidated in this import: Forty-bullet one-update-per-display target is still unmet, especially guided Reimu (459 misses / 599).",
+        "Previous v43 limitation, not revalidated in this import: Production stage 7 Marisa road is slightly worse: 35 to 36 deadline misses / 2801. Not an improvement in every scene.",
+        "Previous v43 limitation, not revalidated in this import: Bomb sustain improves to 49/47 display frames per 47 updates for Reimu/Marisa; asset entry and restoration still take multiple frames.",
+        "Previous v43 limitation, not revalidated in this import: CPU profiles use deterministic PC sampling, not exact function instrumentation. Stress ROMs replace only the mainloop and replenish bullets; they are not production ROMs."
+      ],
+      "evidence": {
+        "report": "../../docs/touhou-kouma-v45.md",
+        "qa": "touhou-kouma-design/qa-v45.json",
+        "raw": ".cache/startup-step"
+      }
+    },
     {
       "version": "0.44-three-voice-midi-trial",
       "updatedAt": "2026-09-19T16:14:45.718Z",
@@ -677,33 +721,26 @@
       "projectRevision": "e3df1038693e7e2fbd81a88450ffee0646832913fba689d5ef8138c4f2454162"
     }
   ],
-  "validation": "touhou-kouma-design/qa-v45.json",
-  "feedback": "ロゴ画面の入力では次のロゴ、あるいはムービーへ進み、途中のロゴやムービーをまとめて飛ばさない。",
+  "validation": "touhou-kouma-design/qa-v46.json",
+  "feedback": "GBC専用の最新ゲーム内容を保持し、通常出力を.gbcにする。",
   "checks": [
-    "Current logo only advances; held keys do not skip subsequent logos or the movie. Initial startup and ranking replay share this behavior.",
-    "Boytacean: 28 logo-only DMG/CGB cases, 38 movie fixture DMG/CGB cases, 16 unchanged production CGB cases passed.",
-    "BGB: 2 logo fixture cases, 6 movie fixture DMG/CGB cases and 3 production CGB cases passed using native first-logo checkpoints.",
-    "Production movie: 400/400 frame pixel parity, zero overruns, 10287 PCM blocks; skip boundaries, title music and character selection passed.",
-    "Doctor zero warnings; hello-gb clean/Debug; test.cmd star-caravan 186 passed, zero failed/skipped; STAR CARAVAN and TOUHOU KOUMA Debug/Release passed.",
-    "Editor build and typecheck passed. SDCC movie workspace size 780 bytes matches corrected memory report.",
-    "Production Debug/Release identical. Game revision, source artwork, movie, music and save identity unchanged."
+    "Non-music game settings, all 204 source images and ten gameplay engine files match v45 baseline 0160bd7.",
+    "Seven stages, two logos and 400 movie frames retained; sixteen UGE tracks integrated.",
+    "Doctor, clean hello/Debug, test.cmd 191 tests, STAR Debug/Release and TOUHOU Debug/Release passed.",
+    "Actual editor music save/reopen/undo and Debug/Release .gbc builds passed.",
+    "CGB startup 16 cases, 400/400 movie pixel parity and BGB 3 startup/replay cases passed.",
+    "Production music QA inherited only after exact ROM hash identity verification."
   ],
   "pending": [
-    "Current ROM Emulicious DAP evaluate fails with NullPointerException; no execution or input pass claimed.",
-    "Physical hardware, human input/audio evaluation and a new complete campaign playthrough were not performed.",
-    "Human listening and physical hardware unverified; arrangement quality remains unapproved.",
-    "Production 14 route checks are short menu-driven checks, not a complete campaign.",
-    "Native full-loop checks use a diagnostic ROM with the real music/SFX engine, not the complete game.",
-    "Performance still misses display deadlines; no claim of zero slowdown.",
-    "No new standalone browser player exported or browser UI validation.",
-    "Previous v43 limitation, not revalidated in this import: Forty-bullet one-update-per-display target is still unmet, especially guided Reimu (459 misses / 599).",
-    "Previous v43 limitation, not revalidated in this import: Production stage 7 Marisa road is slightly worse: 35 to 36 deadline misses / 2801. Not an improvement in every scene.",
-    "Previous v43 limitation, not revalidated in this import: Bomb sustain improves to 49/47 display frames per 47 updates for Reimu/Marisa; asset entry and restoration still take multiple frames.",
-    "Previous v43 limitation, not revalidated in this import: CPU profiles use deterministic PC sampling, not exact function instrumentation. Stress ROMs replace only the mainloop and replenish bullets; they are not production ROMs."
+    "Full seven-stage human playthrough and human listening are unverified.",
+    "GBC physical hardware is unverified.",
+    "Emulicious EvaluateRequest failed with NullPointerException; execution is unverified.",
+    "Previous performance deadline misses are not resolved or remeasured by this output-name change.",
+    "All sixteen long-loop checks use a separate diagnostic ROM; production checks cover fourteen selected stage/boss routes and state transitions."
   ],
   "evidence": {
-    "report": "../../docs/touhou-kouma-v45.md",
-    "qa": "touhou-kouma-design/qa-v45.json",
-    "raw": ".cache/startup-step"
+    "report": "../../docs/touhou-kouma-v46.md",
+    "qa": "touhou-kouma-design/qa-v46.json",
+    "raw": ".cache/gbc-v46"
   }
 }

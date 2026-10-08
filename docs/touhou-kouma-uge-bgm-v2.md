@@ -1,5 +1,7 @@
 # 東方STG 新BGM16曲の統合・検証記録
 
+最新のv46では通常出力を `.gbc` に統一した。ゲーム内容のv45照合と最新版ROMの記録は [touhou-kouma-v46.md](touhou-kouma-v46.md) を参照。本書の `.gb` は統合時点の検証記録で、ROM自体もGBC専用ヘッダー `0xC0` を持つ。
+
 対象は `C:\homebrew\projects\dev-gb` の `projects/touhou-kouma`。2026-10-08に、中断時の未コミット変更から継続した。開始時のHEADは `0160bd7bc220702dbdbc9090ea95fc5e9b1e0f23`。検証完了後、ユーザーの追加指示により統合ソース・元アセット・テスト・文書をコミット・pushする。ROM、元ZIP、キャッシュはコミット対象外とする。
 
 ## 保全と曲の割当

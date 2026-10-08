@@ -1,0 +1,83 @@
+{
+  "version": "0.46-uge-gbc",
+  "date": "2026-10-08",
+  "rom": {
+    "sha256": "4bf64e8aa3e85f6401fd98d3b977adc3d7167dbfcccb1dbe4fa7af93e05b99bb",
+    "bytes": 4194304,
+    "header": 192,
+    "debugReleaseIdentical": true
+  },
+  "v45Audit": {
+    "baseline": "0160bd7",
+    "hardware": "gbc",
+    "cgbCompatibility": "cgb-only",
+    "nonMusicSettingsExactlyMatch": true,
+    "originalImagesChecked": 204,
+    "gameplayEngineFilesUnchanged": [
+      "flow.c",
+      "movie.c",
+      "render.c",
+      "sprites.c",
+      "special.c",
+      "boss-phase.c",
+      "bg-bullets.c",
+      "terrain.c",
+      "items.c",
+      "save.c"
+    ],
+    "stageOrder": [
+      "stage-forest",
+      "stage-lake",
+      "stage-1",
+      "stage-2",
+      "stage-3",
+      "stage-4",
+      "stage-5"
+    ],
+    "movieFrames": 400,
+    "logoPages": 2,
+    "gameSha256": "7307f21bda61c1acab81f209b1914a20f1afbcd2f3ab5b5e80811e135a6658eb",
+    "currentMusicChanges": [
+      "16 UGE title/road/boss/ending tracks",
+      "3 preserved result cues",
+      "music-only assignment and import metadata changes"
+    ]
+  },
+  "checks": {
+    "doctor": "passed, zero warnings",
+    "standardTest": {
+      "passed": 191,
+      "failed": 0
+    },
+    "helloDebug": "passed via test.cmd after clean",
+    "starDebugRelease": "passed",
+    "touhouDebugRelease": "passed",
+    "nativeEditorDebugRelease": "passed; configured .gbc output, all sixteen music selectors, save/reopen/undo",
+    "startupCgbCases": 16,
+    "movie": {
+      "pixelParity": 400,
+      "frames": 400,
+      "overruns": 0,
+      "pcmBlocks": 10287
+    },
+    "bgbStartupCases": 3,
+    "cgbOnlyNegativeHeader": "passed rejection",
+    "productionMusicEvidence": {
+      "source": ".cache/uge-integration-20261008/final-results.json",
+      "reason": "Exact ROM SHA-256 matches prior music integration acceptance",
+      "scope": "fourteen stage/boss routes, title looping, SFX, pause, natural boss/game-over, death/respawn/continue"
+    },
+    "emulicious": "unverified: EvaluateRequest NullPointerException"
+  },
+  "pending": [
+    "Full seven-stage human playthrough and human listening are unverified.",
+    "GBC physical hardware is unverified.",
+    "Emulicious EvaluateRequest failed with NullPointerException; execution is unverified.",
+    "Previous performance deadline misses are not resolved or remeasured by this output-name change.",
+    "All sixteen long-loop checks use a separate diagnostic ROM; production checks cover fourteen selected stage/boss routes and state transitions."
+  ],
+  "evidence": {
+    "raw": ".cache/gbc-v46",
+    "report": "../../docs/touhou-kouma-v46.md"
+  }
+}

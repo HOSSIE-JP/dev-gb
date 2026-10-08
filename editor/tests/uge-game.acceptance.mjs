@@ -2,7 +2,7 @@
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import crypto from 'node:crypto';import {createRequire} from 'node:module';
 import {boot,frames,memory,symbols,settledTrace,entityOffset,GameBoyMode,PadKey} from './emulator.mjs';
 const root=path.resolve(import.meta.dirname,'../..'),lib=createRequire(import.meta.url)('../build/library.cjs'),g=lib.readGame(root,'touhou-kouma');
-const file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]),rom=fs.readFileSync(file),s=symbols(file.replace(/\.gb$/,'.map')),results=[];
+const file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]),rom=fs.readFileSync(file),s=symbols(file.replace(/\.(?:gb|gbc)$/,'.map')),results=[];
 fs.mkdirSync(out,{recursive:true});
 const save=()=>fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({kind:'unmodified production ROM',rom:file,sha256:crypto.createHash('sha256').update(rom).digest('hex'),results},null,2));
 for(let stage=0;stage<7;stage++)for(const boss of [false,true]){

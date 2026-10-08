@@ -2,7 +2,7 @@
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import crypto from 'node:crypto';import {spawnSync} from 'node:child_process';import {createRequire} from 'node:module';
 import {symbols} from './emulator.mjs';
 const root=path.resolve(import.meta.dirname,'../..'),lib=createRequire(import.meta.url)('../build/library.cjs'),g=lib.readGame(root,'touhou-kouma');
-const file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]),rom=fs.readFileSync(file),s=symbols(file.replace(/\.gb$/,'.map')),t=s._ce_trace,results=[];fs.mkdirSync(out,{recursive:true});
+const file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]),rom=fs.readFileSync(file),s=symbols(file.replace(/\.(?:gb|gbc)$/,'.map')),t=s._ce_trace,results=[];fs.mkdirSync(out,{recursive:true});
 const sig=Buffer.from([0x21,(t+22)&255,(t+22)>>8,0x36,0]),found=rom.indexOf(sig,s._ce_trace_write),published=found+sig.length;assert(found>=s._ce_trace_write&&found<s._ce_trace_write+40);
 const exe=path.join(out,'bgb64.exe');fs.copyFileSync(path.join(root,'.tools/bgb/bgb64.exe'),exe);
 const hex=n=>n.toString(16),fields=[s._ce_scene,s._ce_music_track,s._ce_music_three,s._ce_pause,s._ce_music_row,s._ce_music_row+1,s._ce_spell_sound_left,0xff12,0xff17,0xff1c,0xff21];

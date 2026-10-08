@@ -3,7 +3,7 @@ import {boot,frames,memory,symbols,GameBoyMode,PadKey} from './emulator.mjs';
 import {supportedModes} from './emulator.mjs';
 import {capture,backgroundColors,backgroundPixels} from './presentation-qa.mjs';
 const l=createRequire(import.meta.url)('../build/library.cjs'),file=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]);fs.mkdirSync(out,{recursive:true});
-const rom=fs.readFileSync(file),s=symbols(file.replace(/\.gb$/,'.map')),movie=l.readGame(process.cwd(),'touhou-kouma').startupMovie,results=[],count=movie.frames.length,expectedBlocks=Buffer.from(movie.pcm,"base64").length/16;
+const rom=fs.readFileSync(file),s=symbols(file.replace(/\.(?:gb|gbc)$/,'.map')),movie=l.readGame(process.cwd(),'touhou-kouma').startupMovie,results=[],count=movie.frames.length,expectedBlocks=Buffer.from(movie.pcm,"base64").length/16;
 const pcmPages=[];for(let p=s._ce_movie_pcm;;p+=5){const bank=rom[p],address=rom.readUInt16LE(p+1),length=rom.readUInt16LE(p+3);if(!length)break;assert.ok(length<=16384&&length%16===0);pcmPages.push(rom.subarray(bank*16384+(address&16383),bank*16384+(address&16383)+length));}assert.deepEqual(Buffer.concat(pcmPages),Buffer.from(movie.pcm,'base64'),'All linked PCM banks match imported BGM');
 function expected(frame,color){const f=movie.frames[frame],w=color?160:112,h=color?96:64,t=Buffer.from(color?f.cgb:f.dmg,'base64'),a=Buffer.from(f.attributes,'base64'),p=Buffer.from(f.palettes,'base64'),r=Array(23040).fill(color?0:3);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const tile=(y>>3)*(w>>3)+(x>>3),off=tile*16+(y%8)*2,n=((t[off]>>(7-x%8))&1)|(((t[off+1]>>(7-x%8))&1)<<1);r[(y+(color?24:40))*160+x+(color?0:24)]=color?p.readUInt16LE((a[tile]-1)*8+n*2):n;}return r;}
 for(const [mode,label] of supportedModes(rom)){

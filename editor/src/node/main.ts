@@ -338,14 +338,15 @@ handle(
     "export-rom",
     async (name: string, config: string, expectedRevision?: string) => {
         const artifact = readBuiltRom(root, name, config, expectedRevision);
+        const extension = path.extname(artifact.result.romPath).slice(1);
         const result = await dialog.showSaveDialog(win, {
             title: "検証済みROMを書き出す",
             defaultPath: safePath(
                 root,
                 ".cache/editor",
-                `${name}-${config}.gb`,
+                `${name}-${config}.${extension}`,
             ),
-            filters: [{ name: "Game Boy ROM", extensions: ["gb"] }],
+            filters: [{ name: "Game Boy ROM", extensions: [extension] }],
         });
         if (result.canceled || !result.filePath) return false;
         atomicWrite(result.filePath, artifact.bytes);

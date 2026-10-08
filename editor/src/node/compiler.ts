@@ -31,6 +31,7 @@ import {
     gbdkExecutable,
     promoteBuild,
     recoverBuild,
+    romOutputName,
 } from "./build-workflow";
 
 const bytes = (data: number[] | Uint8Array) => Array.from(data).join(",");
@@ -919,6 +920,7 @@ export function compile(
     checkpoint();
     const dir = projectDir(root, name),
         game = readGame(root, name),
+        outputName = romOutputName(root, name),
         lockfile = safePath(dir, "build/.caravan-build.lock");
     if (options.expectedRevision && revision(game) !== options.expectedRevision)
         throw new Error(
@@ -1020,7 +1022,7 @@ export function compile(
                 fs.statSync(path.join(work, f)).isFile()
             )
                 outputs.set(
-                    path.join(out, f),
+                    path.join(out, f === `${name}.gb` ? outputName : f),
                     fs.readFileSync(path.join(work, f)),
                 );
         const sourceOut = safePath(dir, "generated");
@@ -1030,7 +1032,7 @@ export function compile(
                 path.join(sourceOut, f),
                 fs.readFileSync(path.join(generated, f)),
             );
-        const finalPath = path.join(out, `${name}.gb`),
+        const finalPath = path.join(out, outputName),
             size = rom.length;
         const result = {
             ok: true,

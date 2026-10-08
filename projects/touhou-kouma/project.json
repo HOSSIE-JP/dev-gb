@@ -5,7 +5,7 @@
   "target": "gb",
   "cgbCompatibility": "cgb-only",
   "toolchain": "gbdk",
-  "output": "touhou-kouma.gb",
+  "output": "touhou-kouma.gbc",
   "sources": [
     "generated/caravan_main.c"
   ],

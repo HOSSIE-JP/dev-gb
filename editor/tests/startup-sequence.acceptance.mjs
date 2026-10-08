@@ -7,7 +7,7 @@ import {boot, frames, memory, symbols, supportedModes, PadKey} from './emulator.
 import {capture} from './presentation-qa.mjs';
 
 const file = path.resolve(process.argv[2]), out = path.resolve(process.argv[3]);
-const rom = fs.readFileSync(file), s = symbols(file.replace(/\.gb$/, '.map'));
+const rom = fs.readFileSync(file), s = symbols(file.replace(/\.(?:gb|gbc)$/, '.map'));
 const count = rom[s._ce_logo_count], movieCount = rom.readUInt16LE(s._ce_movie_count);
 assert.ok(count >= 2 && movieCount >= 36, 'requires multiple logos and a movie');
 fs.mkdirSync(out, {recursive: true});

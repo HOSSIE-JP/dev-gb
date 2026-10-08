@@ -34,7 +34,7 @@ for (const name of [
 const rom = fs.readFileSync(file),
     romPath = path.join(run, "side-caravan.gb");
 fs.writeFileSync(romPath, rom);
-const map = fs.readFileSync(file.replace(/\.gb$/, ".map"), "utf8"),
+const map = fs.readFileSync(file.replace(/\.(?:gb|gbc)$/, ".map"), "utf8"),
     symbols = Object.fromEntries(
         [...map.matchAll(/\b([\da-fA-F]{8})\s+(_ce_\w+|_sys_time)\b/g)].map(
             (m) => [m[2], parseInt(m[1], 16)],
