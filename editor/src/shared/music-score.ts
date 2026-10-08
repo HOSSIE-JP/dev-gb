@@ -111,7 +111,7 @@ export function newMusicTrack(id: number): MusicTrack {
         bars: Array.from({ length: 4 }, emptyMusicBar),
     };
 }
-/** Expand two-voice defaults for editing without changing sounding notes or instruments. */
+/** Expand two-voice defaults into the editor's quantized volume format. */
 export function editableMusicTrack(input: MusicTrack): MusicTrack {
     const song = structuredClone(input);
     let lead = 0,
@@ -121,7 +121,7 @@ export function editableMusicTrack(input: MusicTrack): MusicTrack {
         b.counterDuty ??= 64;
         b.leadEnvelope ??= b.lead.map((n) => {
             if (n !== 255) lead = n;
-            return lead ? b.envelope : 0;
+            return lead ? b.envelope & 0xf0 : 0;
         });
         b.counterEnvelope ??= Array(16).fill(0);
         b.bassLevel ??= b.bass.map((n) => {

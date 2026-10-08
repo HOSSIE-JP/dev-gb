@@ -98,7 +98,10 @@ void ce_mainloop(void) BANKED {
             ce_trace_write();continue;
         }
         if (ce_scene == 1u) {
-            if (pressed & J_START) { ce_pause = !ce_pause; ce_music_pause(ce_pause); }
+            if (pressed & J_START) {
+                ce_pause = !ce_pause; ce_music_pause(ce_pause);
+                if (!ce_pause) ce_spell_sound_step = 255;
+            }
             if (!ce_pause) {
                 /* Drop overdue work instead of a four-update catch-up spiral.
                  * Under load the game slows gracefully while every update is drawn. */

@@ -913,7 +913,7 @@ void ce_audio_sync(void) NONBANKED {
     if (ce_demo && input) ce_demo_abort = 1;
     CRITICAL { now = sys_time; }
     elapsed = now - ce_music_time; ce_music_time = now;
-    ce_sfx_tick(elapsed > 255u ? 255u : (uint8_t)elapsed);
+    if (!ce_pause) ce_sfx_tick(elapsed > 255u ? 255u : (uint8_t)elapsed);
     ce_music_tick(elapsed > 255u ? 255u : (uint8_t)elapsed);
 }
 void ce_run(void) NONBANKED {

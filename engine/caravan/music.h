@@ -5,6 +5,9 @@
 #ifndef CE_MUSIC_3VOICE
 #define CE_MUSIC_3VOICE 0
 #endif
+#ifndef CE_MUSIC_UGE
+#define CE_MUSIC_UGE 0
+#endif
 
 /* Stable authoring IDs. Three-voice songs share CH1 with important SFX. */
 #define CE_MUSIC_OFF 0u
@@ -47,26 +50,32 @@
 #define CE_MUSIC_SIDE_BOSS 37u
 #define CE_MUSIC_MAX 37u
 
-/* A legacy streamed bar is 3 instrument bytes + 16 lead + 16 accompaniment steps.
- * Level byte: bits 5-6 = NR32 volume, bits 0-2 = wave ID (default zero).
- * Speed: low six bits = VBlanks per row; bit 7 adds one on odd rows.
- * A 100-byte bar appends CH1 duty, 16 CH1 notes, 16 CH2 envelopes,
- * 16 CH1 envelopes and 16 CH3 levels. CH1 is shared with important SFX;
- * frequent shots use CH4 during three-voice tracks. Bank once per bar. */
-/* stride 35: legacy two voices; stride 100: three voices and row expression. */
+/* Legacy three-voice streamed bars use a compact, banked score table. */
 typedef struct { uint8_t bank; const uint8_t *data; uint16_t rows; uint8_t speed, loop, stride; } CE_MusicScore;
 extern const CE_MusicScore ce_music_scores[];
-/* Same ROM bank as music.c. Wave zero is the legacy triangle. */
 extern const uint8_t ce_music_waves[8][16];
 
+#if CE_MUSIC_UGE
+struct hUGESong_t;
+/* One tempo-selection bit per row keeps a complete song inside a 16 KiB bank. */
+typedef struct { uint8_t bank; const struct hUGESong_t *song; const uint8_t *row_ticks; uint16_t rows, loop_row; uint8_t speed, alternate_speed; } CE_UgeSongRef;
+extern const CE_UgeSongRef ce_uge_scores[22];
+void ce_uge_start(uint8_t track) NONBANKED;
+void ce_uge_tick(void) NONBANKED;
+void ce_uge_mute(uint8_t channel, uint8_t mute) NONBANKED;
+#else
+#define ce_uge_mute(channel, mute) ((void)0)
+#endif
 extern uint8_t ce_music_track;
 extern uint16_t ce_music_row;
 extern uint8_t ce_music_three;
-/* SFX owns CH1 for these VBlanks; 255 holds until explicitly released by zero. */
 void ce_music_ch1_claim(uint8_t frames) BANKED;
+#if CE_MUSIC_UGE
+void ce_music_ch4_claim(uint8_t frames) BANKED;
+#else
+#define ce_music_ch4_claim(frames) ((void)0)
+#endif
 void ce_music_play(uint8_t track) BANKED;
 void ce_music_pause(uint8_t paused) BANKED;
-/* Call from the main loop with elapsed VBlanks, never from an interrupt.
- * At most three note boundaries are processed after a stalled frame. */
 void ce_music_tick(uint8_t elapsed) BANKED;
 #endif

@@ -85,11 +85,11 @@ function smf(events, ppq = 96) {
 }
 
 test("all fourteen registered MIDI files convert reproducibly through the editor without changing compiled note grids", () => {
-    const imported = lib.readProjectMusic(root, "touhou-kouma");
+    const imported = { tracks: lib.importMidiMusic(path.join(base, "import.json")), waves: lib.readProjectMusic(root, "touhou-kouma").waves };
     assert.equal(imported.tracks.length, 14);
     assert.equal(imported.waves.length, 8);
     for (const original of imported.tracks) {
-        const file = original.source.name,
+        const file = JSON.parse(fs.readFileSync(path.join(base,"import.json"))).tracks.find(t=>t.id===original.id).file,
             data = fs.readFileSync(path.join(base, file)),
             o = { ...settings(data), id: original.id, title: original.title };
         const a = lib.convertMidi(data, file, o),
@@ -223,7 +223,7 @@ test("imported source, edits, recovery, normal project save, cloning and externa
 test("editing an imported song changes only its generated bank; untouched editor overrides equal the previous build", () => {
     const work = temp();
     try {
-        const catalog = lib.readProjectMusic(root, "touhou-kouma"),
+        const catalog = { tracks: lib.importMidiMusic(path.join(base, "import.json")) },
             manifest = path.join(base, "import.json");
         lib.generateMusic(root, path.join(work, "before"), manifest);
         lib.generateMusic(

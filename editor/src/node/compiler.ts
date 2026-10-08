@@ -870,7 +870,7 @@ export function generate(
     );
     sources.push("caravan_data.c", "caravan_main.c");
     if (blobFile) atomicWrite(path.join(target, blobFile), blobSource);
-    sources.push(...generateMusic(root,target,game.musicScore ? safePath(projectDir(root,game.name),game.musicScore) : undefined,game.musicTracks));
+    sources.push(...generateMusic(projectDir(root,game.name),target,game.musicScore ? safePath(projectDir(root,game.name),game.musicScore) : undefined,game.musicTracks,game.musicUgeTracks));
     const report = {
         revision: revision(game),
         spriteTiles,
@@ -950,13 +950,18 @@ export function compile(
             lcc = gbdkExecutable(root, "lcc");
         const relative = (p: string) =>
             path.relative(work, p).replaceAll("\\", "/");
-        const inputs = ["runtime.c", "mainloop.c", "flow.c", "movie.c", "special.c", "bomb-road.c", "terrain.c", "items.c", "bg-bullets.c", "render.c", "sprites.c", "music.c", "sound.c", "graze.c", "boss-phase.c", "save.c"]
+        const inputs = ["runtime.c", "mainloop.c", "flow.c", "movie.c", "special.c", "bomb-road.c", "terrain.c", "items.c", "bg-bullets.c", "render.c", "sprites.c", "music.c", "sound.c", "graze.c", "boss-phase.c", "save.c", ...(game.musicUgeTracks?.length ? ["uge-player.c"] : [])]
             .map((f) => path.join(engine, f))
             .concat(report.sourceFiles.map((f) => path.join(generated, f)));
+        if (game.musicUgeTracks?.length) {
+            run(gbdkExecutable(root, "sdar"), ["x", path.join(engine, "hUGEDriver.lib")], work, log);
+            inputs.push(path.join(work, "hUGEDriver.o"));
+        }
         const args = [
             game.hardware === "gbc" ? "-Wm-yC" : "-Wm-yc",
             `-DCE_CGB_ONLY=${+(game.hardware === "gbc")}`,
-            `-DCE_MUSIC_3VOICE=${+(!!game.musicScore || !!game.musicTracks?.some(t=>t.bars[0]?.counter!==undefined))}`,
+            `-DCE_MUSIC_3VOICE=${+(!!game.musicScore || !!game.musicTracks?.some(t=>t.bars[0]?.counter!==undefined) || !!game.musicUgeTracks?.length)}`,
+            `-DCE_MUSIC_UGE=${+(!!game.musicUgeTracks?.length)}`,
             ...(game.hardware === "gbc" ? ["-Wl-g.STACK=0xD000"] : []),
             `-DCE_GRAZE_ENABLED=${+(game.graze?.enabled??false)}`,
             `-DCE_OBJ_16=${+(spriteHeight(game)===16)}`,

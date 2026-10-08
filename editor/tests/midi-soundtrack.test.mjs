@@ -7,15 +7,15 @@ const root=path.resolve(import.meta.dirname,'../..'),require=createRequire(impor
 const base=path.join(root,'projects/touhou-kouma/assets-src/midi_gb'),file=path.join(base,'import.json'),manifest=JSON.parse(fs.readFileSync(file));
 const mapping=[[32,33],[30,31],[17,18],[19,20],[21,22],[23,24],[25,26]];
 
-test('project MIDI manifest maps exactly the requested fourteen road/boss tracks; title is retained',()=>{
+test('retained MIDI manifest maps exactly the original fourteen road/boss tracks',()=>{
     const game=lib.readGame(root,'touhou-kouma'),tracks=lib.importMidiMusic(file);
-    assert.equal(tracks.length,14);assert.equal(game.musicScore,'assets-src/midi_gb/import.json');
+    assert.equal(tracks.length,14);
     for(let stage=0;stage<7;stage++)for(let role=0;role<2;role++){
         const s=game.stages.find(s=>s.id===game.stageOrder[stage]),entry=manifest.tracks.find(t=>t.stage===stage+1&&t.role===(role?'boss':'road'));
-        assert.equal(s[role?'bossMusic':'music'],mapping[stage][role]);assert.equal(entry.id,mapping[stage][role]);
+        assert.equal(entry.id,mapping[stage][role]);
         assert.equal(entry.file,`th06_${String(stage*2+role+2).padStart(2,'0')}_gb3.mid`);
     }
-    assert.deepEqual(game.music,{title:16,boss:18,clear:27,gameover:28,victory:29});
+    assert.equal(game.stageOrder.length,7);
     assert(!tracks.some(t=>t.key==='th06_01_gb3'));
 });
 test('MIDI import preserves all three note grids and velocities through GB expression quantization',()=>{
@@ -60,7 +60,7 @@ test('a copied editor project retains its MIDI manifest and exact MIDI payloads'
     fs.mkdirSync(source,{recursive:true});
     try{
         for(const f of ['import.json',...manifest.tracks.map(t=>t.file)])fs.copyFileSync(path.join(base,f),path.join(source,f));
-        const game=lib.readGame(root,'touhou-kouma');lib.createProject(work,'midi-copy','MIDI COPY',game);
+        const game=lib.readGame(root,'touhou-kouma');game.musicScore='assets-src/midi_gb/import.json';game.music.victory=29;delete game.musicUgeTracks;delete game.musicTracks;lib.createProject(work,'midi-copy','MIDI COPY',game);
         const reopened=lib.readGame(work,'midi-copy'),copied=path.join(work,'projects/midi-copy',reopened.musicScore);
         assert.equal(lib.importMidiMusic(copied).length,14);
         for(const t of manifest.tracks)assert.deepEqual(fs.readFileSync(path.join(path.dirname(copied),t.file)),fs.readFileSync(path.join(base,t.file)));

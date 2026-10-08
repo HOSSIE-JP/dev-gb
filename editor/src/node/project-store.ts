@@ -239,6 +239,8 @@ export function saveGame(
         const source=safePath(dir,track.source.file);
         if(hash(fs.readFileSync(source))!==track.source.sha256)throw Error(`元MIDIが変更されています: ${track.source.name}`);
     }
+    for (const track of game.musicUgeTracks ?? []) for (const [file, expected] of [[track.eventFile,track.eventSha256],[track.ugeFile,track.ugeSha256],[track.scoreFile,track.scoreSha256]] as const)
+        if (hash(fs.readFileSync(safePath(dir,file))) !== expected) throw Error(`UGE source SHA-256 mismatch: ${file}`);
     const manifestPath = safePath(dir, "project.json");
     if (fs.existsSync(manifestPath)) {
         const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
@@ -424,6 +426,11 @@ export function createProject(
             const bytes=fs.readFileSync(source);
             if(hash(bytes)!==track.source.sha256)throw Error("元MIDIのSHA-256が一致しません");
             atomicWrite(safePath(dir,track.source.file),bytes);
+        }
+        for(const track of game.musicUgeTracks ?? []) for(const [file,expected] of [[track.eventFile,track.eventSha256],[track.ugeFile,track.ugeSha256],[track.scoreFile,track.scoreSha256]] as const){
+            const source=safePath(projectDir(root,game.name),file), bytes=fs.readFileSync(source);
+            if(hash(bytes)!==expected)throw Error(`UGE source SHA-256 mismatch: ${file}`);
+            atomicWrite(safePath(dir,file),bytes);
         }
         if (game.musicScore) {
             const sourceManifest=safePath(projectDir(root,game.name),game.musicScore);

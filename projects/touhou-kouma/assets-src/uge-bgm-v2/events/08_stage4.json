@@ -1,0 +1,8265 @@
+{
+  "id": "stage4",
+  "title": "灯影のない回廊 / A Corridor Without Shadows",
+  "artist": "Original GB STG soundtrack",
+  "comment": "Original composition; real GB VBlank. SE coexistence not yet integrated.",
+  "ticks_per_row": 7,
+  "bars": 68,
+  "musical_bars": 68,
+  "end_mode": "loop",
+  "terminal_order": null,
+  "loop_start_order": 1,
+  "instruments": {
+    "duty": [
+      {
+        "name": "Brilliant lead 50%",
+        "volume": 11,
+        "duty": 2
+      },
+      {
+        "name": "Silver counter 25%",
+        "volume": 7,
+        "duty": 1
+      },
+      {
+        "name": "Echo 50%",
+        "volume": 5,
+        "duty": 2
+      },
+      {
+        "name": "Lead soft 50%",
+        "volume": 11,
+        "duty": 2
+      }
+    ],
+    "wave": [
+      {
+        "name": "Triangle bass",
+        "wave_volume": 2,
+        "wave_index": 0
+      }
+    ],
+    "noise": [
+      {
+        "name": "Kick low noise",
+        "volume": 13,
+        "envelope_period": 1,
+        "bits": 15
+      },
+      {
+        "name": "Snare bright noise",
+        "volume": 10,
+        "envelope_period": 1,
+        "bits": 15
+      },
+      {
+        "name": "Hat short noise",
+        "volume": 6,
+        "envelope_period": 1,
+        "bits": 15
+      }
+    ]
+  },
+  "events": [
+    {
+      "row": 0,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 0,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 0,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 4,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 5,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 6,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 11,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 11,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 11,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 12,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 14,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 15,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 15,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 16,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 16,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 16,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 16,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 18,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 22,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 26,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 28,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 28,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 28,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 29,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 31,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 31,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 32,
+      "ch": 0,
+      "note": "B4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 32,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 32,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 36,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 38,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 39,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 40,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 41,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 42,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 42,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 46,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 46,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 47,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 48,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 48,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 48,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 51,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 53,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 55,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 57,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 58,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 58,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 59,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 60,
+      "ch": 0,
+      "note": "G#4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 62,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 62,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 63,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 63,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 64,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 64,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 64,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 68,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 71,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 71,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 73,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 74,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 74,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 74,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 77,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 78,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 78,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 78,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 79,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 80,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 80,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 80,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 82,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 86,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 88,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 89,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 92,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 92,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 92,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 93,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 94,
+      "ch": 0,
+      "note": "B4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 95,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 96,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 96,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 96,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 98,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 102,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 103,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 103,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 104,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 104,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 106,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 106,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 109,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 110,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 110,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 110,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 110,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 111,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 112,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 112,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 112,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 114,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 117,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 119,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 120,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 121,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 122,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 122,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 122,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 124,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 125,
+      "ch": 0,
+      "note": "B4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 126,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 126,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 128,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 128,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 128,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 130,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 133,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 135,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 135,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 136,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 136,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 138,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 138,
+      "ch": 1,
+      "note": "G#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 139,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 141,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 141,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 141,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 141,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 142,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 143,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 143,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 144,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 144,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 144,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 146,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 150,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 151,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 152,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 153,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 153,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 154,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 156,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 156,
+      "ch": 1,
+      "note": "A4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 158,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 158,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 159,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 160,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 160,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 160,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 163,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 166,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 168,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 168,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 168,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 168,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 171,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 172,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 174,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 175,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 175,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 176,
+      "ch": 1,
+      "note": "G#3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 176,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 176,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 178,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 181,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 184,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 184,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 184,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 186,
+      "ch": 0,
+      "note": "C5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 186,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 187,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 189,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 189,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 190,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 190,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 191,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 192,
+      "ch": 0,
+      "note": "C#6",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 192,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 192,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 194,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 199,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 200,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 200,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 200,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 201,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 202,
+      "ch": 0,
+      "note": "B5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 202,
+      "ch": 1,
+      "note": "G#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 204,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 204,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 204,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 205,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 206,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 206,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 208,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 208,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 208,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 210,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 215,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 215,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 216,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 217,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 217,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 218,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 219,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 219,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 220,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 220,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 223,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 223,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 224,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 224,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 224,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 226,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 230,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 231,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 232,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 232,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 232,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 233,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 234,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 235,
+      "ch": 1,
+      "note": "G#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 236,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 236,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 236,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 238,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 239,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 240,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 240,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 240,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 240,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 242,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 245,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 246,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 248,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 248,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 248,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 248,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 250,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 251,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 253,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 253,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 254,
+      "ch": 0,
+      "note": "B4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 254,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 254,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 256,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 256,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 256,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 258,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 263,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 264,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 264,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 264,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 266,
+      "ch": 0,
+      "note": "C#6",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 266,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 267,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 268,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 270,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 270,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 271,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 272,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 272,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 272,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 274,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 277,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 279,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 279,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 280,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 281,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 281,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 282,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 285,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 286,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 286,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 287,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 288,
+      "ch": 1,
+      "note": "G#3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 288,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 288,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 290,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 294,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 295,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 296,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 296,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 297,
+      "ch": 0,
+      "note": "C5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 297,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 299,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 300,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 301,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 301,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 302,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 303,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 303,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 304,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 304,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 304,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 306,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 312,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 314,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 315,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 316,
+      "ch": 1,
+      "note": "G#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 316,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 317,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 319,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 319,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 320,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 320,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 320,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 323,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 324,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 325,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 328,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 328,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 329,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 329,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 332,
+      "ch": 0,
+      "note": "A4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 332,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 333,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 335,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 336,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 336,
+      "ch": 2,
+      "note": "D3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 336,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 338,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 341,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 342,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 346,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 346,
+      "ch": 1,
+      "note": "D4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 346,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 346,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 349,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 350,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 350,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 351,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 352,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 352,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 352,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 355,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 356,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 359,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 363,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 363,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 363,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 363,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 366,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 366,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 367,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 368,
+      "ch": 0,
+      "note": "B4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 368,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 368,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 370,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 373,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 374,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 375,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 377,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 377,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 378,
+      "ch": 0,
+      "note": "G#4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 380,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 382,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 382,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 383,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 383,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 384,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 384,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 384,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 388,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 389,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 390,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 392,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 393,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 394,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 394,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 395,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 396,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 398,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 399,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 400,
+      "ch": 1,
+      "note": "D4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 400,
+      "ch": 2,
+      "note": "D3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 400,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 402,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 405,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 406,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 408,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 408,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 410,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 410,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 411,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 413,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 413,
+      "ch": 2,
+      "note": "D3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 414,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 415,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 415,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 416,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 416,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 416,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 419,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 420,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 424,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 426,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 427,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 428,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 428,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 430,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 430,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 431,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 432,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 432,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 432,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 434,
+      "ch": 1,
+      "note": "G#3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 438,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 438,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 439,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 441,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 441,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 442,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 442,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 446,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 446,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 446,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 446,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 448,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 448,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 448,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 450,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 455,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 455,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 455,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 458,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 458,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 458,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 458,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 462,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 462,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 462,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 462,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 464,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 464,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 464,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 466,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 470,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 470,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 473,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 473,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 473,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 475,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 476,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 477,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 478,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 479,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 479,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 480,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 480,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 480,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 482,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 488,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 489,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 490,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 491,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 492,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 492,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 493,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 495,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 495,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 496,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 496,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 496,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 496,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 498,
+      "ch": 0,
+      "note": "B4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 502,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 506,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 507,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 509,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 509,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 509,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 511,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 511,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 512,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 512,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 512,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 512,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 516,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 518,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 518,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 519,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 519,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 521,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 522,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 522,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 524,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 524,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 526,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 527,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 528,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 528,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 528,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 530,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 534,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 536,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 536,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 537,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 537,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 539,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 539,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 540,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 541,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 541,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 543,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 543,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 543,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 544,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 544,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 544,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 544,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 548,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 550,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 550,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 550,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 551,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 553,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 554,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 554,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 556,
+      "ch": 0,
+      "note": "C#6",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 556,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 558,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 559,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 560,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 560,
+      "ch": 2,
+      "note": "D3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 560,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 562,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 566,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 568,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 568,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 568,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 569,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 570,
+      "ch": 1,
+      "note": "D4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 571,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 572,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 573,
+      "ch": 2,
+      "note": "D3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 573,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 575,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 575,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 575,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 576,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 576,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 576,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 576,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 580,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 581,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 582,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 582,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 583,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 583,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 586,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 586,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 587,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 588,
+      "ch": 0,
+      "note": "C#6",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 588,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 589,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 591,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 592,
+      "ch": 0,
+      "note": "B5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 592,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 592,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 594,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 598,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 600,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 600,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 601,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 601,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 602,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 603,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 606,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 606,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 606,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 607,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 608,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 608,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 608,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 608,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 612,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 613,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 614,
+      "ch": 0,
+      "note": "C#6",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 614,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 614,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 615,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 617,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 618,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 619,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 620,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 620,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 621,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 623,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 624,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 624,
+      "ch": 2,
+      "note": "D3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 624,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 626,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 631,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 632,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 632,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 632,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 634,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 634,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 634,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 636,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 637,
+      "ch": 0,
+      "note": "D5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 637,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 638,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 639,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 640,
+      "ch": 0,
+      "note": "C#6",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 640,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 640,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 642,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 646,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 647,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 647,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 648,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 648,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 650,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 650,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 653,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 654,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 654,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 654,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 655,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 655,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 656,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 656,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 656,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 658,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 663,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 664,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 664,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 666,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 666,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 666,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 667,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 670,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 671,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 671,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 672,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 672,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 672,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 674,
+      "ch": 1,
+      "note": "G#3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 679,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 680,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 680,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 682,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 682,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 682,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 683,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 686,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 687,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 687,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 688,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 688,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 688,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 690,
+      "ch": 0,
+      "note": "C5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 694,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 698,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 698,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 699,
+      "ch": 1,
+      "note": "G#3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 701,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 701,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 701,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 703,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 703,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 703,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 704,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 704,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 704,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 706,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 710,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 711,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 712,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 713,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 713,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 714,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 715,
+      "ch": 1,
+      "note": "G#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 716,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 717,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 717,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 718,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 718,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 718,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 719,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 720,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 720,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 720,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 722,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 725,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 727,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 728,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 728,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 729,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 732,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 733,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 733,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 734,
+      "ch": 0,
+      "note": "B4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 734,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 734,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 736,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 736,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 736,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 738,
+      "ch": 1,
+      "note": "G#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 742,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 742,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 743,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 744,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 744,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 745,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 746,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 748,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 749,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 749,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 750,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 750,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 751,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 751,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 752,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 752,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 752,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 754,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 757,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 757,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 760,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 760,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 760,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 761,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 762,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 764,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 765,
+      "ch": 0,
+      "note": "B4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 765,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 766,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 766,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 766,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 768,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 768,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 768,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 770,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 775,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 775,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 775,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 776,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 778,
+      "ch": 0,
+      "note": "B5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 778,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 778,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 780,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 781,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 781,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 782,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 782,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 783,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 783,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 784,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 784,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 784,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 786,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 790,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 790,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 792,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 792,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 793,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 793,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 794,
+      "ch": 0,
+      "note": "C#6",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 798,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 798,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 798,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 799,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 800,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 800,
+      "ch": 2,
+      "note": "D3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 800,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 802,
+      "ch": 1,
+      "note": "D4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 806,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 807,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 807,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 808,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 808,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 810,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 810,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 812,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 813,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 814,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 814,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 815,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 816,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 816,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 816,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 818,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 822,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 822,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 824,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 825,
+      "ch": 1,
+      "note": "G#3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 825,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 825,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 826,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 829,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 830,
+      "ch": 0,
+      "note": "C5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 830,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 830,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 830,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 832,
+      "ch": 0,
+      "note": "E6",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 832,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 832,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 834,
+      "ch": 1,
+      "note": "G#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 839,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 840,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 840,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 840,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 842,
+      "ch": 0,
+      "note": "C#6",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 842,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 843,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 844,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 846,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 846,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 847,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 848,
+      "ch": 0,
+      "note": "B5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 848,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 848,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 850,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 853,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 854,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 856,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 856,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 856,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 856,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 858,
+      "ch": 1,
+      "note": "B3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 860,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 861,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 861,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 862,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 863,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 864,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 864,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 864,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 866,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 870,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 871,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 872,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 872,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 872,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 874,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 874,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 876,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 878,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 878,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 879,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 880,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 880,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 880,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 882,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 885,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 887,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 887,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 888,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 888,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 889,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 890,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 892,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 893,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 893,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 894,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 895,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 896,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 896,
+      "ch": 2,
+      "note": "D3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 896,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 898,
+      "ch": 1,
+      "note": "D4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 903,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 904,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 904,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 904,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 906,
+      "ch": 0,
+      "note": "A5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 906,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 906,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 908,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 910,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 910,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 911,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 912,
+      "ch": 0,
+      "note": "G#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 912,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 912,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 914,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 918,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 919,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 920,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 921,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 921,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 922,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 923,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 926,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 926,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 927,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 928,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 928,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 928,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 930,
+      "ch": 1,
+      "note": "G#3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 934,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 935,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 935,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 936,
+      "ch": 0,
+      "note": "C5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 936,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 937,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 938,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 939,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 941,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 941,
+      "ch": 3,
+      "note": 45,
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 942,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 942,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 943,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 944,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 944,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 944,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 946,
+      "ch": 1,
+      "note": "G#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 951,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 951,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 954,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 954,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 954,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 956,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 957,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 958,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 959,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 959,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 960,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 960,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 960,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 962,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 966,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 968,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 971,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 972,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 972,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 972,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 975,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 975,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 976,
+      "ch": 1,
+      "note": "G#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 976,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 976,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 979,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 980,
+      "ch": 0,
+      "note": "B4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 984,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 986,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 988,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 988,
+      "ch": 2,
+      "note": "B2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 988,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 990,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 991,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 992,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 992,
+      "ch": 2,
+      "note": "F#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 992,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 994,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 998,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1000,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1003,
+      "ch": 1,
+      "note": "F#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1004,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1004,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1004,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1007,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1007,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1008,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1008,
+      "ch": 2,
+      "note": "C#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1008,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1011,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1012,
+      "ch": 0,
+      "note": "G#4",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1016,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1018,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1020,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1020,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1020,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1022,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1023,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1024,
+      "ch": 0,
+      "note": "F#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1024,
+      "ch": 2,
+      "note": "D3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1024,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1026,
+      "ch": 1,
+      "note": "A3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1031,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1031,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1032,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1034,
+      "ch": 1,
+      "note": "D4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1035,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1035,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1036,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1038,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1038,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1038,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1040,
+      "ch": 1,
+      "note": "C#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1040,
+      "ch": 2,
+      "note": "A2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1040,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1042,
+      "ch": 0,
+      "note": "E5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1046,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1047,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1050,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1051,
+      "ch": 1,
+      "note": "E4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1051,
+      "ch": 2,
+      "note": "E3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1051,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1053,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1054,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1054,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1055,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1056,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1056,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1056,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1058,
+      "ch": 1,
+      "note": "G#3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1063,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1063,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1063,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1066,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1067,
+      "ch": 0,
+      "note": "C#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1067,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1067,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1070,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1070,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1070,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1072,
+      "ch": 1,
+      "note": "G#3",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1072,
+      "ch": 2,
+      "note": "G#2",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1072,
+      "ch": 3,
+      "note": 24,
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1074,
+      "ch": 0,
+      "note": "C5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1077,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1079,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1080,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1080,
+      "ch": 1,
+      "note": "D#4",
+      "instrument": 2,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1082,
+      "ch": 0,
+      "note": "D#5",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1082,
+      "ch": 2,
+      "note": "D#3",
+      "instrument": 1,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1082,
+      "ch": 3,
+      "note": 61,
+      "instrument": 3,
+      "effect": null,
+      "param": 0
+    },
+    {
+      "row": 1084,
+      "ch": 0,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1084,
+      "ch": 1,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1084,
+      "ch": 2,
+      "note": null,
+      "instrument": 0,
+      "effect": 14,
+      "param": 0
+    },
+    {
+      "row": 1087,
+      "ch": 3,
+      "note": null,
+      "instrument": 0,
+      "effect": 11,
+      "param": 2
+    }
+  ]
+}

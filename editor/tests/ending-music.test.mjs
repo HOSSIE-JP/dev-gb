@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import {createRequire} from 'node:module';
 const lib=createRequire(import.meta.url)('../build/library.cjs'),root=path.resolve(import.meta.dirname,'../..'),game=()=>lib.readGame(root,'touhou-kouma'),errors=g=>lib.validate(g).filter(d=>d.severity==='error');
 test('ending routes preserve shared epilogues and select the correct final heroine',()=>{
- const g=game();assert.deepEqual(errors(g),[]);assert.equal(g.ending.seconds,10);assert.equal(g.ending.music,34);assert.equal(g.ending.scoreAfter,true);
+ const g=game();assert.deepEqual(errors(g),[]);assert.equal(g.ending.seconds,10);assert.equal(g.ending.music,31);assert.equal(g.musicUgeTracks.find(t=>t.id===g.ending.music).key,'ending');assert.equal(g.ending.scoreAfter,true);
  const a=lib.resolveEnding(g),b=lib.resolveEnding(g,1);assert.equal(a.length,6);assert.equal(b.length,6);assert.deepEqual(a.slice(0,5).map(s=>s.background),b.slice(0,5).map(s=>s.background));assert.equal(a.at(-1).background,'screen-clear');assert.equal(b.at(-1).background,'ending-marisa');
  const original=g.player.characters[0];g.player.characters.unshift({...original,id:'other'});assert.equal(lib.resolveEnding(g,1),g.ending.slides);assert.equal(lib.resolveEnding(g,2),b);
  g.ending.characterSlides[0].slides=[];assert.deepEqual(lib.resolveEnding(g,2),[],'explicit empty route overrides fallback');delete g.ending.characterSlides;assert.equal(lib.resolveEnding(g,2),a);

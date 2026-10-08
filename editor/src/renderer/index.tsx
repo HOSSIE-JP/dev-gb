@@ -763,7 +763,7 @@ function App() {
         ]),
     ];
     return (
-        <MusicNamesContext.Provider value={[...musicCatalog.tracks,...(game.musicTracks??[])]}>
+        <MusicNamesContext.Provider value={[...musicCatalog.tracks,...(game.musicTracks??[]),...(musicCatalog.ugeTracks??[])]}>
         <div className="app">
             <header>
                 <div className="brand">

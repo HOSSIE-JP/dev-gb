@@ -46,8 +46,17 @@ export function readProjectMusic(root: string, name: string) {
             "utf8",
         ),
     ).waves as { name?: string; samples: number[] }[];
+    const ugeTracks = (game.musicUgeTracks ?? []).map(t => {
+        const eventPath = safePath(dir, t.eventFile), ugePath = safePath(dir, t.ugeFile), scorePath = safePath(dir, t.scoreFile);
+        if (hash(fs.readFileSync(eventPath)) !== t.eventSha256 || hash(fs.readFileSync(ugePath)) !== t.ugeSha256 || hash(fs.readFileSync(scorePath)) !== t.scoreSha256)
+            throw new Error(`UGE source SHA-256 mismatch for track ${t.id}: ${t.title}`);
+        const events = JSON.parse(fs.readFileSync(eventPath, "utf8"));
+        const tempos: number[] = [...new Set<number>([t.ticksPerRow, ...events.events.filter((e: any) => e.effect === 15).map((e: any) => e.param)])].sort((a,b)=>a-b);
+        return {id:t.id,title:t.title,rows:t.rows,endMode:t.endMode,ticksPerRow:t.ticksPerRow,tempos,loopStartRow:t.loopStartRow===65535?null:t.loopStartRow,eventCount:events.events.length,sha256:t.ugeSha256};
+    });
     return {
         tracks: tracks.sort((a, b) => a.id - b.id),
+        ugeTracks,
         waves: waves.map((w, i) => ({
             name: w.name ?? `波形 ${i}`,
             samples: w.samples,

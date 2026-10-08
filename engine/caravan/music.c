@@ -233,6 +233,9 @@ static void load_expression(void) NONBANKED;
 static uint8_t bar[35];
 #endif
 static const CE_MusicScore *score;
+#if CE_MUSIC_UGE
+static uint8_t uge_ch1_left, uge_ch4_left;
+#endif
 
 static void load_bar(void) NONBANKED;
 
@@ -253,6 +256,9 @@ static void counter(uint8_t note) {
 }
 #endif
 void ce_music_ch1_claim(uint8_t frames) BANKED {
+#if CE_MUSIC_UGE
+    if(ce_music_three==2u){uge_ch1_left=frames;ce_uge_mute(0u,paused || frames!=0u);return;}
+#endif
 #if CE_MUSIC_3VOICE
     ch1_left = frames;
     if (!frames && !paused) counter(counter_note);
@@ -339,9 +345,16 @@ static void play_row(void) {
     remaining = song_speed & 0x3fu;
     if ((song_speed & 0x80u) && (ce_music_row & 1u)) ++remaining;
 }
+#if CE_MUSIC_UGE
+void ce_music_ch4_claim(uint8_t frames) BANKED {
+    if (ce_music_three != 2u) return;
+    uge_ch4_left=frames;ce_uge_mute(3u,paused || frames!=0u);
+}
+#endif
 void ce_music_play(uint8_t track) BANKED {
     if (track > CE_MUSIC_MAX) track = CE_MUSIC_OFF;
     if (track == ce_music_track) return;
+    if(ce_music_three==2u){ce_uge_mute(0,1);ce_uge_mute(1,1);ce_uge_mute(2,1);ce_uge_mute(3,1);NR12_REG=0;NR42_REG=0;}
     mute(); ce_music_track = track;
     ce_music_row = 0; remaining = 0; paused = 0; lead_note = 0; bass_note = 0; ce_music_three = 0;
 #if CE_MUSIC_3VOICE
@@ -350,6 +363,9 @@ void ce_music_play(uint8_t track) BANKED {
     if (!track) return;
     instrument_level = 0x60u;
     if (track >= 16u) {
+#if CE_MUSIC_UGE
+        if(ce_uge_scores[track-16u].song){ce_music_three=2u;uge_ch1_left=0;uge_ch4_left=0;ce_uge_start(track);return;}
+#endif
         score = &ce_music_scores[track - 16u];
         song_rows = score->rows; song_speed = score->speed; song_loop = score->loop;
 #if CE_MUSIC_3VOICE
@@ -367,8 +383,16 @@ void ce_music_pause(uint8_t value) BANKED {
     value = !!value;
     if (value == paused) return;
     paused = value;
-    if (paused) mute();
+    if (paused) {
+#if CE_MUSIC_UGE
+        if(ce_music_three==2u){ce_uge_mute(0,1);ce_uge_mute(1,1);ce_uge_mute(2,1);ce_uge_mute(3,1);NR12_REG=0;NR42_REG=0;return;}else
+#endif
+        mute();
+    }
     else if (ce_music_track) {
+#if CE_MUSIC_UGE
+        if(ce_music_three==2u){ce_uge_mute(0,uge_ch1_left!=0u);ce_uge_mute(1,0);ce_uge_mute(2,0);ce_uge_mute(3,uge_ch4_left!=0u);return;}
+#endif
         lead(lead_note); bass(bass_note);
 #if CE_MUSIC_3VOICE
         counter(counter_note);
@@ -384,6 +408,15 @@ void ce_music_tick(uint8_t elapsed) BANKED {
     }
 #endif
     if (!ce_music_track || paused || !elapsed) return;
+#if CE_MUSIC_UGE
+    if(ce_music_three==2u){
+        uint8_t steps=elapsed;
+        if(uge_ch1_left && uge_ch1_left!=255u){if(steps>=uge_ch1_left){uge_ch1_left=0;if(!paused)ce_uge_mute(0u,0);}else uge_ch1_left-=steps;}
+        if(uge_ch4_left && uge_ch4_left!=255u){if(steps>=uge_ch4_left){uge_ch4_left=0;if(!paused)ce_uge_mute(3u,0);}else uge_ch4_left-=steps;}
+        while(steps-- && ce_music_track)ce_uge_tick();
+        return;
+    }
+#endif
     while (elapsed >= remaining) {
         elapsed -= remaining;
         if (++ce_music_row == song_rows) {

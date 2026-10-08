@@ -1,22 +1,29 @@
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import {importMidiMusic} from "./midi-music";
 
 import { musicErrors, type ArrangedSong, type MusicTrack } from "../shared/music-score";
+import type { UgeMusicTrack } from "../shared/model";
+import { exportUgeSongs } from "./uge-export";
 export type { ArrangedSong, MusicBar } from "../shared/music-score";
 
 /** Source notation lives with the engine so standalone project copies can build.
  * Only this converter writes generated C; each score can be autobanked separately. */
-export function generateMusic(root: string, target: string, midiManifest?: string, edited: MusicTrack[] = []): string[] {
+export function generateMusic(root: string, target: string, midiManifest?: string, edited: MusicTrack[] = [], uge: UgeMusicTrack[] = []): string[] {
+    const projectAssets=path.resolve(root,"assets-src");
+    let repoRoot=root;
+    while(!fs.existsSync(path.join(repoRoot,"engine/caravan/assets-src/kouma-score.json")) && path.dirname(repoRoot)!==repoRoot) repoRoot=path.dirname(repoRoot);
+    if(!fs.existsSync(path.join(repoRoot,"engine/caravan/assets-src/kouma-score.json")))throw Error("Repository engine music source was not found");
     const score = JSON.parse(
         fs.readFileSync(
-            path.join(root, "engine/caravan/assets-src/kouma-score.json"),
+            path.join(repoRoot, "engine/caravan/assets-src/kouma-score.json"),
             "utf8",
         ),
     );
     const side = JSON.parse(
         fs.readFileSync(
-            path.join(root, "engine/caravan/assets-src/side-score.json"),
+            path.join(repoRoot, "engine/caravan/assets-src/side-score.json"),
             "utf8",
         ),
     );
@@ -30,20 +37,23 @@ export function generateMusic(root: string, target: string, midiManifest?: strin
     if (errors.length) throw Error(errors.join("\n"));
     const imported = midiManifest ? importMidiMusic(midiManifest) : [];
     const overrides = [...edited, ...imported];
-    const tracks: ArrangedSong[] = [...score.tracks, ...side.tracks].map(t => overrides.find(o=>o.id===t.id) ?? t);
+    const ugeIds = new Set(uge.map(t=>t.id));
+    const tracks: ArrangedSong[] = [...score.tracks, ...side.tracks]
+        .map(t => overrides.find(o => o.id === t.id) ?? t)
+        .filter(t => !ugeIds.has(t.id));
     if (
         score.format !== "caravan-banked-score-v1" ||
         !Array.isArray(tracks) ||
-        tracks.length !== 22
+        tracks.length !== 22 - ugeIds.size
     )
         throw Error("Invalid banked soundtrack");
     const sources: string[] = [],
         decls: string[] = [],
         rows: string[] = [];
     fs.mkdirSync(target, { recursive: true });
-    for (const [index, t] of tracks.entries()) {
+    for (const t of tracks) {
         if (
-            t.id !== 16 + index ||
+            t.id<16 || t.id>37 ||
             !Number.isInteger(t.speed) ||
             t.speed < 1 ||
             t.speed > 60 ||
@@ -110,9 +120,27 @@ export function generateMusic(root: string, target: string, midiManifest?: strin
             `{BANK(${symbol}),${symbol},${t.bars.length * 16},${t.speed | (t.speedHalf ? 128 : 0)},${+t.loop},${three?100:35}}`,
         );
     }
+    if (uge.length) {
+        const seen = new Set<number>();
+        for (const t of uge) {
+            if (seen.has(t.id) || t.id < 16 || t.id > 37) throw Error("Invalid or duplicate UGE track ID");
+            seen.add(t.id);
+            for (const [file,expected] of [[t.eventFile,t.eventSha256],[t.ugeFile,t.ugeSha256],[t.scoreFile,t.scoreSha256]] as const) {
+                const full = path.resolve(projectAssets,path.relative("assets-src",file));
+                if (fs.realpathSync(full) !== full || !full.startsWith(projectAssets+path.sep)) throw Error(`Unsafe UGE path ${file}`);
+                const bytes=fs.readFileSync(full), actual=cryptoSha256(bytes);
+                if (actual !== expected) throw Error(`UGE SHA-256 mismatch: ${file}`);
+            }
+            const eventPath=path.resolve(projectAssets,path.relative("assets-src",t.eventFile)), event=JSON.parse(fs.readFileSync(eventPath,"utf8"));
+            if (event.bars*16!==t.rows || event.ticks_per_row!==t.ticksPerRow || (event.end_mode ?? (event.loop_start_order === null ? "stop" : "loop"))!==t.endMode ||
+                (event.loop_start_order === null ? 65535 : event.loop_start_order * 64) !== (t.loopStartRow ?? 65535))
+                throw Error(`Invalid UGE event metadata: ${t.title}`);
+        }
+        sources.push(...exportUgeSongs(projectAssets,target,uge));
+    }
     const waves: { samples: number[] }[] = JSON.parse(
         fs.readFileSync(
-            path.join(root, "engine/caravan/assets-src/music-waves.json"),
+            path.join(repoRoot, "engine/caravan/assets-src/music-waves.json"),
             "utf8",
         ),
     ).waves;
@@ -135,8 +163,9 @@ export function generateMusic(root: string, target: string, midiManifest?: strin
         .join(",");
     fs.writeFileSync(
         path.join(target, "caravan_music_index.c"),
-        `#pragma bank 2\n#include "music.h"\n${decls.join("\n")}\nconst CE_MusicScore ce_music_scores[]={${rows.join(",")}};\nconst uint8_t ce_music_waves[8][16]={${waveData}};\n`,
+        `#pragma bank 2\n#include "music.h"\n${decls.join("\n")}\nconst CE_MusicScore ce_music_scores[22]={${Array.from({length:22},(_,i)=>{const id=16+i,at=tracks.findIndex(t=>t.id===id);return at<0?"{0,0,0,0,0,0}":rows[at]}).join(",")}};\nconst uint8_t ce_music_waves[8][16]={${waveData}};\n`,
     );
     sources.push("caravan_music_index.c");
     return sources;
 }
+function cryptoSha256(data:Buffer){return createHash("sha256").update(data).digest("hex");}

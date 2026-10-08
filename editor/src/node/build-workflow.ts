@@ -6,7 +6,7 @@ import { atomicWrite, hash, projectDir, safePath } from "./project-store";
 
 export function gbdkExecutable(
     root: string,
-    name: "lcc" | "png2asset" | "romusage",
+    name: "lcc" | "png2asset" | "romusage" | "sdar",
 ) {
     return safePath(
         root,

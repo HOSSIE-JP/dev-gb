@@ -1,0 +1,5737 @@
+{
+  "id": "stage3",
+  "title": "雲海に残る灯 / Lanterns Above the Cloud Sea",
+  "originality": "Original hand-authored melodies and four-lane arrangement; no quotation, MIDI, or imported score.",
+  "nominal_bpm": 137.83269,
+  "ticks_pattern": [
+    6,
+    7
+  ],
+  "loop_start_bar_zero_based": 4,
+  "end_mode": "loop",
+  "arrangement_profile": "broad_singing_cloudscape",
+  "meter": "4/4",
+  "rows_per_bar": 16,
+  "form": [
+    {
+      "section": "intro_clouds",
+      "start_bar": 1,
+      "bars": 4
+    },
+    {
+      "section": "horizon_question_answer",
+      "start_bar": 5,
+      "bars": 8
+    },
+    {
+      "section": "sunbreak_early_payoff",
+      "start_bar": 13,
+      "bars": 8
+    },
+    {
+      "section": "river_of_remembrance",
+      "start_bar": 21,
+      "bars": 12
+    },
+    {
+      "section": "stairs_through_light",
+      "start_bar": 33,
+      "bars": 8
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "start_bar": 41,
+      "bars": 12
+    },
+    {
+      "section": "crest_resolved_in_brightness",
+      "start_bar": 53,
+      "bars": 8
+    },
+    {
+      "section": "far_lantern_answer",
+      "start_bar": 61,
+      "bars": 8
+    },
+    {
+      "section": "horizon_loop_hinge",
+      "start_bar": 69,
+      "bars": 4
+    }
+  ],
+  "bars": [
+    {
+      "section": "intro_clouds",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 4,
+          "n": "Bb4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "G4",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "Bb4",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 10
+        },
+        {
+          "r": 12,
+          "n": "Bb2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "intro_clouds",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 4,
+          "n": "F4",
+          "d": 8
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "intro_clouds",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "Eb5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "D5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "G4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "intro_clouds",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "A4",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "C5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "F4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "C4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "C3",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "F2",
+          "d": 2
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_question_answer",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "F5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Bb5",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "A5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "F4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "D4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_question_answer",
+      "chord": "Gm",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "Bb3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "D3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "hat"
+        },
+        {
+          "r": 10,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_question_answer",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Eb5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Bb5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 8
+        },
+        {
+          "r": 10,
+          "n": "Eb4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "G2",
+          "d": 2
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_question_answer",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "F5",
+          "d": 10
+        },
+        {
+          "r": 10,
+          "n": "Eb5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "C5",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "A4",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "A3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_question_answer",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "F5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Bb5",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "A5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "F4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "D3",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_question_answer",
+      "chord": "Dm",
+      "bass": "D3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "A5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "E5",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "D5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "A3",
+          "d": 10
+        },
+        {
+          "r": 12,
+          "n": "F4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "D3",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "A2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "hat"
+        },
+        {
+          "r": 10,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_question_answer",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "Eb5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "G5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "Bb3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Bb2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_question_answer",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "A5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "A3",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C3",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C3",
+          "d": 2
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        },
+        {
+          "r": 15,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "sunbreak_early_payoff",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Bb5",
+          "d": 10
+        },
+        {
+          "r": 10,
+          "n": "F5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "D5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "F4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "D4",
+          "d": 8
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "F3",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "D3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "F3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "sunbreak_early_payoff",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "A5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C6",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "A5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "F5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "A3",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "F3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 11,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "sunbreak_early_payoff",
+      "chord": "Gm",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Bb5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "A5",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "D5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 8
+        },
+        {
+          "r": 10,
+          "n": "G4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "D3",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "sunbreak_early_payoff",
+      "chord": "Dm",
+      "bass": "D3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "F5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "A5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "D6",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C6",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "A5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "A3",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "F4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "D3",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "A2",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "D3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "sunbreak_early_payoff",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Bb5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "G5",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "F5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "Bb3",
+          "d": 8
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Bb2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "sunbreak_early_payoff",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "F5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "D5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Bb5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "F4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "D3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "F3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "hat"
+        },
+        {
+          "r": 10,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "sunbreak_early_payoff",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "C6",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "Bb5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "G5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Eb5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "Eb4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "Eb3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 11,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "sunbreak_early_payoff",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "A5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "F5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "A3",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "C4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "F2",
+          "d": 2
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 12
+        },
+        {
+          "r": 12,
+          "n": "F5",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "Eb5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 8
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 10
+        },
+        {
+          "r": 12,
+          "n": "Bb2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Eb5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "D5",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "C5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "G4",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G3",
+          "d": 6
+        },
+        {
+          "r": 12,
+          "n": "Eb4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 8
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Ab",
+      "bass": "Ab2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "C5",
+          "d": 10
+        },
+        {
+          "r": 10,
+          "n": "Eb5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "Ab5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "C4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Ab2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "Eb3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "F5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "D5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "F4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 12,
+          "kind": "hat"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 10
+        },
+        {
+          "r": 10,
+          "n": "Bb5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "G5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 8
+        },
+        {
+          "r": 10,
+          "n": "Bb3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "Bb2",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 8
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Gm",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "G5",
+          "d": 6
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "D4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 10
+        },
+        {
+          "r": 12,
+          "n": "D3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Eb5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "C6",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "Bb5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G4",
+          "d": 8
+        },
+        {
+          "r": 10,
+          "n": "Eb4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "Eb3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Ab",
+      "bass": "Ab2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Ab5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "Eb5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "C5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "Ab3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Ab2",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "Eb3",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "C3",
+          "d": 2
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 12,
+          "kind": "hat"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Fm",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Ab5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C6",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Ab5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "F5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "Ab3",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "F3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 10
+        },
+        {
+          "r": 10,
+          "n": "Eb5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "C5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "G3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G2",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "C3",
+          "d": 8
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "Bb5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 8
+        },
+        {
+          "r": 10,
+          "n": "Eb4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 12,
+          "kind": "hat"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "river_of_remembrance",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "A5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "A3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C3",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        },
+        {
+          "r": 15,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "stairs_through_light",
+      "chord": "Gm",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D5",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "G5",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "A5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "Bb5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "D4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "D3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "stairs_through_light",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "F5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Eb5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Bb4",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "Bb3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "hat"
+        },
+        {
+          "r": 10,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "stairs_through_light",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "F5",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "Bb5",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "C6",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "D6",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "F4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "F3",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "D3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "F3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "stairs_through_light",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "C6",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "A5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 6
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "A3",
+          "d": 8
+        },
+        {
+          "r": 10,
+          "n": "C4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "A2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "stairs_through_light",
+      "chord": "Gm",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Bb5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "A5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "G5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "Bb3",
+          "d": 8
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "D3",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 11,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "stairs_through_light",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C6",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Eb6",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "D6",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "G4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "Eb3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "stairs_through_light",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Bb5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "G5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Eb5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "Bb3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "Bb2",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Eb3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "hat"
+        },
+        {
+          "r": 10,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "stairs_through_light",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "C6",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "A5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "G5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "F5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 10
+        },
+        {
+          "r": 12,
+          "n": "A3",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "A2",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "F3",
+          "d": 2
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        },
+        {
+          "r": 15,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "F5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Bb5",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "A5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "D4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "D3",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "Bb2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "Gm",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "G4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Eb5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Bb5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "G5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "Eb4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "hat"
+        },
+        {
+          "r": 10,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "F5",
+          "d": 10
+        },
+        {
+          "r": 10,
+          "n": "Eb5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "C5",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "A4",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "A3",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "C4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "C3",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "A2",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "F2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "Gm",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Bb5",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "A5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 8
+        },
+        {
+          "r": 10,
+          "n": "D4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "D3",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Bb2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "Bb5",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "Eb6",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "D6",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "G4",
+          "d": 8
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Eb3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 11,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "C6",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "Bb5",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "Eb5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "Eb4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G2",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Eb3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "A5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C6",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F6",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Eb6",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "C6",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 8
+        },
+        {
+          "r": 10,
+          "n": "A3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "A2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D6",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "C6",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "Bb5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "F5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "F4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "D4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "D3",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "Gm",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Bb5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "A5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "G5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "F5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "Bb3",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D3",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "G2",
+          "d": 2
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "hat"
+        },
+        {
+          "r": 10,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "Bb5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Eb6",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "D6",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "G4",
+          "d": 8
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "Eb3",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "G2",
+          "d": 2
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 11,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_return_new_answer",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "C6",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "A5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "A3",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "C4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "A2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        },
+        {
+          "r": 15,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "crest_resolved_in_brightness",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D6",
+          "d": 10
+        },
+        {
+          "r": 10,
+          "n": "Bb5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "F5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "F4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "F3",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "D3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "crest_resolved_in_brightness",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "C6",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "A5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "A5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "A3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C3",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 11,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "crest_resolved_in_brightness",
+      "chord": "Gm7",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Bb5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "D6",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F6",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D6",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "Bb5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "D4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "D3",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "crest_resolved_in_brightness",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Eb6",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "D6",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "Bb5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "G5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "Eb4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "Bb2",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "Eb3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "crest_resolved_in_brightness",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Eb6",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C6",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Eb6",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C6",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "G4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 4,
+          "n": "Eb3",
+          "d": 4
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 11,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "crest_resolved_in_brightness",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "F6",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "Eb6",
+          "d": 2
+        },
+        {
+          "r": 10,
+          "n": "C6",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "A5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "A3",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "C4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "A2",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "C3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "F3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 2,
+          "kind": "hat"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 10,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "crest_resolved_in_brightness",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D6",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C6",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Bb5",
+          "d": 8
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "F4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "D4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Bb2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "hat"
+        },
+        {
+          "r": 10,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "crest_resolved_in_brightness",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "F5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "D5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Bb4",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "F4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 10
+        },
+        {
+          "r": 12,
+          "n": "D3",
+          "d": 2
+        },
+        {
+          "r": 14,
+          "n": "F3",
+          "d": 2
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "far_lantern_answer",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 10
+        },
+        {
+          "r": 10,
+          "n": "F5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "Eb5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "Eb4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "Bb2",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "far_lantern_answer",
+      "chord": "Bb",
+      "bass": "Bb2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "F5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "D5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Bb4",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "F4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Bb2",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "F3",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "D3",
+          "d": 8
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "far_lantern_answer",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Eb5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "C6",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Bb5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G3",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "Eb4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 10
+        },
+        {
+          "r": 12,
+          "n": "G2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "far_lantern_answer",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "A5",
+          "d": 10
+        },
+        {
+          "r": 10,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 12,
+          "n": "F5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "A3",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C3",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 12,
+          "kind": "hat"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "far_lantern_answer",
+      "chord": "Gm",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "D5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Bb4",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "D4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "Bb3",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "D3",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "far_lantern_answer",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Eb5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "Bb5",
+          "d": 6
+        },
+        {
+          "r": 14,
+          "n": "G5",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G4",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "Eb4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 10
+        },
+        {
+          "r": 12,
+          "n": "Bb2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "far_lantern_answer",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "Eb5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "G3",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "far_lantern_answer",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "F5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "C5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "A4",
+          "d": 2
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "A3",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "C4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "A2",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "C3",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "snare"
+        },
+        {
+          "r": 12,
+          "kind": "hat"
+        },
+        {
+          "r": 14,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_loop_hinge",
+      "chord": "Eb",
+      "bass": "Eb3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "G5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "Bb5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "G5",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Eb5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Eb4",
+          "d": 10
+        },
+        {
+          "r": 12,
+          "n": "Bb3",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "Eb3",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "Bb2",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        }
+      ]
+    },
+    {
+      "section": "horizon_loop_hinge",
+      "chord": "Gm",
+      "bass": "G2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "D5",
+          "d": 8
+        },
+        {
+          "r": 8,
+          "n": "Bb4",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "D5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "Bb3",
+          "d": 6
+        },
+        {
+          "r": 10,
+          "n": "D4",
+          "d": 6
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "G2",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "D3",
+          "d": 4
+        },
+        {
+          "r": 12,
+          "n": "Bb2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "hat"
+        },
+        {
+          "r": 10,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_loop_hinge",
+      "chord": "Cm",
+      "bass": "C3",
+      "melody": [
+        {
+          "r": 0,
+          "n": "Eb5",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "G5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "C5",
+          "d": 6
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "G3",
+          "d": 8
+        },
+        {
+          "r": 12,
+          "n": "Eb4",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "C3",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "Eb3",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "G2",
+          "d": 6
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 6,
+          "kind": "hat"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        }
+      ]
+    },
+    {
+      "section": "horizon_loop_hinge",
+      "chord": "F",
+      "bass": "F2",
+      "melody": [
+        {
+          "r": 0,
+          "n": "A4",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C5",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F5",
+          "d": 4
+        }
+      ],
+      "counter": [
+        {
+          "r": 0,
+          "n": "C4",
+          "d": 6
+        },
+        {
+          "r": 8,
+          "n": "A3",
+          "d": 4
+        }
+      ],
+      "bass_notes": [
+        {
+          "r": 0,
+          "n": "F2",
+          "d": 6
+        },
+        {
+          "r": 6,
+          "n": "C3",
+          "d": 2
+        },
+        {
+          "r": 8,
+          "n": "F2",
+          "d": 4
+        }
+      ],
+      "drums": [
+        {
+          "r": 0,
+          "kind": "kick"
+        },
+        {
+          "r": 4,
+          "kind": "snare"
+        },
+        {
+          "r": 8,
+          "kind": "kick"
+        },
+        {
+          "r": 12,
+          "kind": "snare"
+        },
+        {
+          "r": 14,
+          "kind": "hat"
+        },
+        {
+          "r": 15,
+          "kind": "snare"
+        }
+      ]
+    }
+  ]
+}

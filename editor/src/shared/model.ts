@@ -1,4 +1,5 @@
 import { musicErrors, type MusicTrack } from "./music-score";
+export type UgeMusicTrack = { id:number; key:string; title:string; eventFile:string; eventSha256:string; ugeFile:string; ugeSha256:string; scoreFile:string; scoreSha256:string; rows:number; loopStartRow:number; ticksPerRow:number; endMode:"loop"|"stop" };
 export type Rect = { x: number; y: number; w: number; h: number };
 export type Point = { x: number; y: number };
 export type Frame = {
@@ -240,6 +241,8 @@ export type Game = {
     musicScore?: string;
     /** Editable overrides; part of the normal project revision, undo and recovery. */
     musicTracks?: MusicTrack[];
+    /** Hash-checked four-channel UGE songs, preserved by ordinary project saves. */
+    musicUgeTracks?: UgeMusicTrack[];
     /** Optional admission caps. OAM 40 and the fixed pool remain hard limits. */
     performance?: { enemies: number; playerShots: number; enemyShots: number; effects: number };
     effects: { explosion: string; duration: number };
@@ -523,7 +526,8 @@ export function validateShape(
         "musicTracks?": [{id:"number",key:"string",title:"string",speed:"number","speedHalf?":"boolean",loop:"boolean",
             bars:[{section:"string",chord:"string",duty:"number",envelope:"number",level:"number","wave?":"number",
                 lead:["number"],bass:["number"],"counter?":["number"],"counterDuty?":"number","leadEnvelope?":["number"],"counterEnvelope?":["number"],"bassLevel?":["number"]}],
-            "source?":{file:"string",name:"string",sha256:"string","converter?":"string",warnings:["string"],"options?":{id:"number",title:"string",startBeat:"number",bars:"number",bpm:"number",lanes:["string"],octaves:["number"],overlap:"string"}}}],
+                "source?":{file:"string",name:"string",sha256:"string","converter?":"string",warnings:["string"],"options?":{id:"number",title:"string",startBeat:"number",bars:"number",bpm:"number",lanes:["string"],octaves:["number"],overlap:"string"}}}],
+        "musicUgeTracks?": [{id:"number",key:"string",title:"string",eventFile:"string",eventSha256:"string",ugeFile:"string",ugeSha256:"string",scoreFile:"string",scoreSha256:"string",rows:"number",loopStartRow:"number",endMode:"string",ticksPerRow:"number"}],
         "ending?": { seconds: "number", slides: [{id: "string", background: "string"}], "music?":"number", "scoreAfter?":"boolean",
             "characterSlides?":[{id:"string",character:"string",slides:[{id:"string",background:"string"}]}] },
         clearBonus: "number", "legacyScoreDivisor?": "number",
@@ -944,9 +948,32 @@ export function validate(value: unknown): Diagnostic[] {
     }
     if (game.music) for (const track of Object.values(game.music)) integer(track, 0, 37, "music");
     if (game.musicTracks) for (const message of musicErrors(game.musicTracks)) err("musicTracks",message);
+    if (game.musicUgeTracks) {
+        const ids = new Set<number>();
+        if (game.musicUgeTracks.length > 16) err("musicUgeTracks", "Maximum 16 UGE tracks");
+        for (const track of game.musicUgeTracks) {
+            if (!Number.isInteger(track.id) || track.id < 16 || track.id > 37 || ids.has(track.id)) err("musicUgeTracks", "Track IDs must be unique and in range 16..37");
+            ids.add(track.id);
+            if (!track.key || track.key.length > 128 || !track.title?.trim() || track.title.length > 120) err("musicUgeTracks", `Invalid title or key for track ${track.id}`);
+            for (const field of ["eventFile", "ugeFile", "scoreFile"] as const)
+                if (!/^assets-src\/(?:[\w-]+\/)*[\w.-]+\.(?:json|uge)$/.test(track[field]) || track[field].includes("..")) err("musicUgeTracks", `Invalid ${field} path for track ${track.id}`);
+            for (const field of ["eventSha256", "ugeSha256", "scoreSha256"] as const)
+                if (!/^[a-f0-9]{64}$/.test(track[field])) err("musicUgeTracks", `Invalid ${field} for track ${track.id}`);
+            integer(track.rows, 1, 2000, "musicUgeTracks"); integer(track.ticksPerRow, 1, 255, "musicUgeTracks");
+            if (track.endMode === "loop") integer(track.loopStartRow ?? -1, 0, Math.max(0, track.rows - 1), "musicUgeTracks");
+            else if (track.loopStartRow !== null && track.loopStartRow !== 65535) err("musicUgeTracks", "Stopped songs must not specify a loop row");
+            if (!["loop", "stop"].includes(track.endMode)) err("musicUgeTracks", `Invalid end mode for track ${track.id}`);
+        }
+        if (game.musicUgeTracks.some(t => game.musicTracks?.some(m => m.id === t.id))) err("musicUgeTracks", "A track ID cannot be both UGE and editable-score format");
+    }
     if (game.musicScore !== undefined && (!/^assets-src\/(?:[\w-]+\/)*[\w.-]+\.json$/.test(game.musicScore) || game.musicScore.includes("..")))
         err("musicScore", "楽譜の指定にはassets-src内のJSONファイルを使用してください");
-    if (game.bossCelebration && game.music?.victory !== undefined && !(game.musicTracks?.find(t=>t.id===game.music!.victory)?.loop === false) && ![0, 6, 7, 8, 14, 15, 29].includes(game.music.victory))
+    if (game.bossCelebration && game.music?.victory !== undefined &&
+        !(game.musicUgeTracks?.some(t => t.id === game.music!.victory)
+            ? game.musicUgeTracks.find(t => t.id === game.music!.victory)!.endMode === "stop"
+            : game.musicTracks?.some(t => t.id === game.music!.victory)
+                ? game.musicTracks.find(t => t.id === game.music!.victory)!.loop === false
+                : [0, 6, 7, 8, 14, 15, 29].includes(game.music.victory)))
         err("music", "撃破ファンファーレはループしない曲または無音を選択してください");
     if (game.bossCelebration && game.musicTracks?.find(t=>t.id===game.music?.victory)?.loop === true)
         err("music", "撃破ファンファーレに指定した編集曲のループを解除してください");

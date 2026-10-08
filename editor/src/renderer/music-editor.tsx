@@ -27,6 +27,7 @@ import "./music-editor.css";
 export type MusicCatalog = {
     tracks: MusicTrack[];
     waves: { name: string; samples: number[] }[];
+    ugeTracks?: {id:number;title:string;rows:number;endMode:string;ticksPerRow:number;tempos:number[];loopStartRow:number|null;eventCount:number;sha256:string}[];
 };
 const voiceNames = ["主旋律 · CH2", "副旋律 · CH1", "ベース · CH3"];
 const noteChoices = [0, ...Array.from({ length: 60 }, (_, i) => i + 1)];
@@ -59,6 +60,7 @@ export function MusicEditor({
         }
         return list.sort((a, b) => a.id - b.id);
     }, [catalog.tracks, game.musicTracks]);
+    const importedUge = catalog.ugeTracks ?? [];
     const [id, setId] = useState(0),
         [barIndex, setBar] = useState(0),
         [voice, setVoice] = useState(0),
@@ -69,6 +71,8 @@ export function MusicEditor({
         [bpm, setBpm] = useState("120"),
         [message, setMessage] = useState(""),
         [busy, setBusy] = useState(false);
+    const selectedId = id || importedUge[0]?.id || tracks[0]?.id || 0;
+    const importedTrack = importedUge.find(t=>t.id===selectedId);
     const [chosen, setChosen] = useState<{
             token: string;
             info: MidiInfo;
@@ -85,7 +89,7 @@ export function MusicEditor({
         audio = useRef(new MusicAudition()),
         generation = useRef(0),
         mounted = useRef(true);
-    const song = tracks.find((t) => t.id === id) ?? tracks[0],
+    const song = tracks.find((t) => t.id === selectedId),
         bar = song?.bars[Math.min(barIndex, song.bars.length - 1)],
         selectedBar = Math.min(barIndex, (song?.bars.length ?? 1) - 1);
     const stop = () => {
@@ -109,7 +113,7 @@ export function MusicEditor({
     useEffect(() => {
         stop();
         setBpm(song ? musicBpm(song).toFixed(2) : "120");
-    }, [song]);
+    }, [song, selectedId]);
     useEffect(() => {
         stop();
     }, [mask, repeat]);
@@ -125,6 +129,10 @@ export function MusicEditor({
         }
     };
     const put = (track: MusicTrack) => {
+        if (importedUge.some(t => t.id === track.id)) {
+            setMessage("この曲番号はUGE楽曲が使用しています。別の番号を選んでください。");
+            return;
+        }
         const errors = musicErrors([track]);
         if (errors.length) {
             setMessage(errors.join("\n"));
@@ -190,7 +198,7 @@ export function MusicEditor({
             stop();
             const result = await window.caravan.chooseMidi();
             if (!result || !mounted.current) return;
-            const occupied = new Set(tracks.map((t) => t.id)),
+            const occupied = new Set([...tracks, ...importedUge].map((t) => t.id)),
                 used = new Set([
                     game.music?.title,
                     game.music?.boss,
@@ -273,14 +281,14 @@ export function MusicEditor({
             setBar(0);
         });
     const assign = () => {
-        if (!song) return;
+        if (!selectedId) return;
         change((g) => {
             if (assignment.includes(":")) {
                 const [kind, stageId] = assignment.split(":");
                 const stage = g.stages.find((s) => s.id === stageId)!;
-                stage[kind === "road" ? "music" : "bossMusic"] = song.id;
+                stage[kind === "road" ? "music" : "bossMusic"] = selectedId;
             } else if (assignment === "ending") {
-                if (g.ending) g.ending.music = song.id;
+                if (g.ending) g.ending.music = selectedId;
             } else {
                 g.music ??= {
                     title: 0,
@@ -290,7 +298,7 @@ export function MusicEditor({
                     victory: 0,
                 };
                 g.music[assignment as keyof NonNullable<Game["music"]>] =
-                    song.id;
+                    selectedId;
             }
         });
         setMessage("指定した場面に割り当てました。上部の保存で確定します。");
@@ -344,15 +352,15 @@ export function MusicEditor({
                         value={slot}
                         onChange={(e) => setSlot(+e.target.value)}
                     >
-                        {MUSIC_TRACKS.filter((t) => t.id >= 16).map((t) => (
-                            <option key={t.id} value={t.id}>
+                        {MUSIC_TRACKS.filter((t) => t.id >= 16 && !importedUge.some(u => u.id === t.id)).map((t) => (
+                        <option key={t.id} value={t.id}>
                                 {t.id} ·{" "}
                                 {tracks.find((s) => s.id === t.id)?.title ??
                                     t.label}
-                            </option>
-                        ))}
-                    </select>
-                </label>
+                        </option>
+                    ))}
+                </select>
+            </label>
                 <button disabled={locked} onClick={add}>
                     空の曲を作る
                 </button>
@@ -581,7 +589,7 @@ export function MusicEditor({
                     )}
                 </fieldset>
             )}
-            {!song ? (
+            {!song && !importedTrack ? (
                 <p className="empty-state">
                     まだ編集曲がありません。MIDIを取り込むか、空の曲を作ってください。
                 </p>
@@ -591,7 +599,7 @@ export function MusicEditor({
                         編集する曲
                         <select
                             aria-label="編集する曲"
-                            value={song.id}
+                            value={selectedId}
                             disabled={locked}
                             onChange={(e) => {
                                 stop();
@@ -600,7 +608,7 @@ export function MusicEditor({
                                 setMessage("");
                             }}
                         >
-                            {tracks.map((t) => (
+                        {tracks.map((t) => (
                                 <option key={t.id} value={t.id}>
                                     {t.id} · {t.title}
                                     {game.musicTracks?.some(
@@ -608,11 +616,12 @@ export function MusicEditor({
                                     )
                                         ? "（編集データ）"
                                         : "（取り込み済み）"}
-                                </option>
-                            ))}
+                            </option>
+                        ))}
+                        {importedUge.map(t=><option key={t.id} value={t.id}>{t.id} ・ {t.title} (UGE)</option>)}
                         </select>
                     </label>
-                    <fieldset disabled={locked} className="music-controls">
+                    {importedTrack ? <div className="midi-import"><h3>{importedTrack.title}</h3><p>UGE 4チャンネル · {importedTrack.rows/16}小節 · {importedTrack.tempos.join(" / ")}フレーム/行 · {importedTrack.endMode === "stop" ? "曲末で停止" : `${(importedTrack.loopStartRow ?? 0) + 1}行目へループ`}</p><p>場面への割り当ては下で設定し、上部の保存で確定してください。音符・音色の編集は保管したUGEファイルをhUGETrackerで行います。元データの変更後はハッシュの再登録が必要です。再生確認はビルド後の実ROMプレイヤーで行ってください。</p></div> : song && <><fieldset disabled={locked} className="music-controls">
                         <label>
                             曲名
                             <input
@@ -1131,6 +1140,7 @@ export function MusicEditor({
                             </div>
                         </>
                     )}
+                    </>}
                     <fieldset className="music-assignment" disabled={locked}>
                         <legend>ゲームへの割り当て</legend>
                         <select
@@ -1142,7 +1152,7 @@ export function MusicEditor({
                             <option value="boss">共通ボス</option>
                             <option value="clear">クリア</option>
                             <option value="gameover">ゲームオーバー</option>
-                            <option value="victory" disabled={song.loop}>
+                            <option value="victory" disabled={importedTrack ? importedTrack.endMode === "loop" : song?.loop}>
                                 撃破ファンファーレ（非ループのみ）
                             </option>
                             {game.ending && (
@@ -1164,7 +1174,7 @@ export function MusicEditor({
                             ])}
                         </select>
                         <button
-                            disabled={assignment === "victory" && song.loop}
+                            disabled={assignment === "victory" && (importedTrack ? importedTrack.endMode === "loop" : song?.loop)}
                             onClick={assign}
                         >
                             この曲を割り当てる
@@ -1172,17 +1182,17 @@ export function MusicEditor({
                         <p>
                             {game.stages
                                 .flatMap((s, i) => [
-                                    ...(s.music === song.id
+                                    ...(s.music === selectedId
                                         ? [`${i + 1}面 道中`]
                                         : []),
-                                    ...(s.bossMusic === song.id
+                                    ...(s.bossMusic === selectedId
                                         ? [`${i + 1}面 ボス`]
                                         : []),
                                 ])
                                 .join(" / ") || "ステージへの割り当てなし"}
                         </p>
                     </fieldset>
-                    {song.source && (
+                    {!importedTrack && song?.source && (
                         <details>
                             <summary>元MIDI・変換設定</summary>
                             <p>{song.source.name}</p>

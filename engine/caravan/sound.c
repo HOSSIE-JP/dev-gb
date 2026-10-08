@@ -11,6 +11,7 @@ static void sustained_sound(void) {
     static const uint8_t volume[12] = {2,3,5,7,9,10,8,6,4,3,2,1};
     uint8_t step = (72u - ce_spell_sound_left) / 6u;
     uint16_t frequency;
+    if (ce_music_three == 2u) ce_music_ch4_claim(255);
     if (step == ce_spell_sound_step) return;
     ce_spell_sound_step = step;
     /* Refresh a long lease while sustained SFX owns CH1; release explicitly. */
@@ -28,10 +29,12 @@ static void sustained_sound(void) {
     }
 }
 void ce_sfx(uint8_t effect) BANKED {
+    uint8_t ugeMusic=(ce_music_three==2u);
     /* Shot, graze and impact requests cannot cancel a bomb or spell cue. */
     if (ce_spell_sound_left && effect != 5u && effect != 7u && effect != 3u) return;
     if (ce_spell_sound_left) { ce_spell_sound_left = 0; NR12_REG = 0; NR42_REG = 0; ce_music_ch1_claim(0); }
     if (effect == 7u || effect == 5u) {
+        if(ugeMusic)ce_music_ch4_claim(72);
         sustained_effect = effect; ce_spell_sound_left = 72; ce_spell_sound_step = 255; sustained_sound();
         if (effect == 5u) { NR41_REG = 0; NR42_REG = 0x23; NR43_REG = 0x15; NR44_REG = 0x80; }
     } else if (effect == 8u) {
@@ -40,6 +43,7 @@ void ce_sfx(uint8_t effect) BANKED {
          * Dropped requests are never queued for playback after the event. */
         if (graze_sound_wait || noise_sound_wait) return;
         graze_sound_wait = 12;
+        if(ugeMusic)ce_music_ch4_claim(12);
         NR41_REG = 0x34; NR42_REG = 0x41; NR43_REG = 0x18; NR44_REG = 0xc0;
     } else if (effect == 6u) {
         ce_music_ch1_claim(20);
@@ -48,11 +52,13 @@ void ce_sfx(uint8_t effect) BANKED {
         if (hit_sound_wait) return;
         hit_sound_wait = 4;
         noise_sound_wait = 4;
+        if(ugeMusic)ce_music_ch4_claim(4);
         NR41_REG = 0x38; NR42_REG = 0xa1; NR43_REG = 0x19; NR44_REG = 0xc0;
     } else if (!effect) {
         if (ce_music_three) {
             /* Frequent fire never steals the counterline. All other cues win. */
             if (noise_sound_wait || graze_sound_wait) return;
+            if(ugeMusic){noise_sound_wait=9;ce_music_ch4_claim(9);}
             NR41_REG = 0x38; NR42_REG = 0x31; NR43_REG = 0x28; NR44_REG = 0xc0;
         } else {
             ce_music_ch1_claim(9);
@@ -63,6 +69,7 @@ void ce_sfx(uint8_t effect) BANKED {
     else {
         /* Envelopes last about 20/56 VBlanks; leave a small tail margin. */
         noise_sound_wait = effect == 1u ? 24u : 60u;
+        if(ugeMusic)ce_music_ch4_claim(noise_sound_wait);
         NR41_REG = effect == 1u ? 0x08 : 0x00; NR42_REG = effect == 1u ? 0x73 : 0xf4; NR43_REG = effect == 1u ? 0x35 : 0x65; NR44_REG = 0x80;
     }
 }
@@ -70,11 +77,17 @@ void ce_sfx_tick(uint8_t elapsed) BANKED {
     hit_sound_wait = elapsed >= hit_sound_wait ? 0 : hit_sound_wait - elapsed;
     graze_sound_wait = elapsed >= graze_sound_wait ? 0 : graze_sound_wait - elapsed;
     noise_sound_wait = elapsed >= noise_sound_wait ? 0 : noise_sound_wait - elapsed;
-    if (!ce_spell_sound_left) return;
+    if (!ce_spell_sound_left) {
+#if CE_MUSIC_UGE
+        if(ce_music_three==2u && !noise_sound_wait && !graze_sound_wait)ce_music_ch4_claim(0);
+#endif
+        return;
+    }
     if (sustained_effect == 7u && ce_bomb_left) {
         ce_spell_sound_left = elapsed >= ce_spell_sound_left ? 72u : ce_spell_sound_left - elapsed;
         sustained_sound();
     } else if (sustained_effect == 7u || elapsed >= ce_spell_sound_left) {
         ce_spell_sound_left = 0; NR12_REG = 0; NR42_REG = 0; ce_music_ch1_claim(0);
+        ce_music_ch4_claim(0);
     } else { ce_spell_sound_left -= elapsed; sustained_sound(); }
 }
