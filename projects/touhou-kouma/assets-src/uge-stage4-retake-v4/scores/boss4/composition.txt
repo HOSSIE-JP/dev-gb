@@ -1,0 +1,42 @@
+BOSS 4 RETAKE 3 / 斜軸の氷冠
+
+新規旋律を中心に全面改作。G短調とDorianの冷たい色を継承し、G-D-Bb-A-Gの跳躍と回帰を核にする。冒頭4小節を除き76小節のループ。一度だけの導入、約112秒のループ。
+旧版の長音中心の問いを、3行音価・短い落下・上方跳躍による明瞭なフックに置き換えた。第13小節約17.68秒で高音域の歌うサビ。鏡のようなハーフタイム応答とDorianの3+3+2系ベースを挟み、再現ではAb/Fmへ逸脱してから拡大したサビへ進む。最後に短い空白を置き、主題へ戻る。
+
+旋律は全80小節を明記。伴奏はセクション別の応答譜型と和声配置。意図的な主題再現はあるが8小節全声部コピーで尺を稼がない。音量だけの改変ではない。独立譜面レビューを受け、サビ20小節のベースを個別に書き直し、長短・転回・空白・和声的経過音で機械的な根音/5度交互運動から解放した。実機確認と主観的聴取判定は別途。
+
+01–04 intro_ice_ratchet
+05–08 A1_hook_question
+09–12 A2_hook_answer
+13–16 P1_crown_bloom
+17–20 P2_crown_resolution
+21–24 B1_glass_answer
+25–28 B2_splinter_reply
+29–32 B3_turning_key
+33–36 C1_dorian_lens
+37–40 C2_rotating_lens
+41–44 C3_geometry_collapses
+45–48 A3_recognition_with_teeth
+49–52 A4_wrong_door
+53–56 P3_crown_reclaimed
+57–60 P4_luminous_collision
+61–64 P5_final_answer
+65–68 E1_frozen_breath
+69–72 E2_answering_blades
+73–76 E3_hook_in_reflection
+77–80 seam_unfinished_question
+
+{
+  "bars": 80,
+  "loop_bars": 76,
+  "first_seconds": 117.86865234375,
+  "loop_seconds": 111.9752197265625,
+  "monophonic": true,
+  "register_conflicts": 0,
+  "note_counts": {
+    "melody": 378,
+    "counter": 309,
+    "bass_notes": 545,
+    "drums": 628
+  }
+}

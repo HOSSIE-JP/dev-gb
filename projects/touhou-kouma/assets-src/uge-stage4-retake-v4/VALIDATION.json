@@ -1,0 +1,2218 @@
+{
+  "stage4": {
+    "uge_sha256": "829c3b4519d35678d171df181ca2b945869e077a886dcb64bce1ebe8bfbf3ede",
+    "events_exact_match": true,
+    "rows_executed_in_order": true,
+    "ticks_verified": true,
+    "loop_target_verified": true,
+    "duplicate_full_8bar_blocks": [],
+    "first_seconds": 123.226318359375,
+    "loop_seconds": 117.86865234375,
+    "peak_dbfs": -3.5882137917734864,
+    "clipped_samples": 0,
+    "lead_notes_pitch_tested": 225,
+    "max_lead_pitch_error_cents": 11.14,
+    "pitch_checks": [
+      {
+        "bar": 1,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 2,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 2,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 3,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 3,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 5,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 5,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 6,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 6,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 7,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 7,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 8,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 8,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 8,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 9,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 9,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 10,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 10,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 10,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 11,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 12,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 12,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 13,
+        "note": "F#6",
+        "observed_hz": 1472.53,
+        "cents": -8.73
+      },
+      {
+        "bar": 13,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 13,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 14,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 14,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 15,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 15,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 15,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 16,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 16,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 16,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 17,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 17,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 18,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 18,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 18,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 19,
+        "note": "F6",
+        "observed_hz": 1394.53,
+        "cents": -2.95
+      },
+      {
+        "bar": 19,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 20,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 20,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 23,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 23,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 24,
+        "note": "C#5",
+        "observed_hz": 555.54,
+        "cents": 3.67
+      },
+      {
+        "bar": 25,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 25,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 26,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 26,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 26,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 27,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 27,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 28,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 28,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 29,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 30,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 31,
+        "note": "F#6",
+        "observed_hz": 1472.9,
+        "cents": -8.3
+      },
+      {
+        "bar": 31,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 32,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 32,
+        "note": "F6",
+        "observed_hz": 1394.53,
+        "cents": -2.95
+      },
+      {
+        "bar": 33,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 33,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 34,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 34,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 34,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 35,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 35,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 36,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 36,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 36,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 37,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 37,
+        "note": "E6",
+        "observed_hz": 1324.22,
+        "cents": 7.48
+      },
+      {
+        "bar": 37,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 37,
+        "note": "A5",
+        "observed_hz": 880.0,
+        "cents": 0.01
+      },
+      {
+        "bar": 38,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 38,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 38,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 38,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 39,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 39,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 39,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 40,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 40,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 40,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 41,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 41,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 41,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 42,
+        "note": "F#6",
+        "observed_hz": 1472.53,
+        "cents": -8.73
+      },
+      {
+        "bar": 42,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 43,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 43,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 43,
+        "note": "F#6",
+        "observed_hz": 1472.53,
+        "cents": -8.73
+      },
+      {
+        "bar": 43,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 44,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 44,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 44,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 45,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 46,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 47,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 48,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 49,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 49,
+        "note": "F#6",
+        "observed_hz": 1472.53,
+        "cents": -8.73
+      },
+      {
+        "bar": 49,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 50,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 50,
+        "note": "G6",
+        "observed_hz": 1560.42,
+        "cents": -8.36
+      },
+      {
+        "bar": 50,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 51,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 51,
+        "note": "F#6",
+        "observed_hz": 1472.53,
+        "cents": -8.73
+      },
+      {
+        "bar": 51,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 52,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 52,
+        "note": "F6",
+        "observed_hz": 1394.53,
+        "cents": -2.95
+      },
+      {
+        "bar": 53,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 53,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 54,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 54,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 54,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 55,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 55,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 56,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 56,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 56,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 57,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 57,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 57,
+        "note": "F#6",
+        "observed_hz": 1472.9,
+        "cents": -8.3
+      },
+      {
+        "bar": 58,
+        "note": "G6",
+        "observed_hz": 1560.42,
+        "cents": -8.36
+      },
+      {
+        "bar": 58,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 58,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 59,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 59,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 60,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 60,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 60,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 61,
+        "note": "F#6",
+        "observed_hz": 1472.53,
+        "cents": -8.73
+      },
+      {
+        "bar": 61,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 61,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 62,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 62,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 63,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 63,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 63,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 64,
+        "note": "F6",
+        "observed_hz": 1394.53,
+        "cents": -2.95
+      },
+      {
+        "bar": 64,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 64,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 65,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 65,
+        "note": "F#6",
+        "observed_hz": 1472.9,
+        "cents": -8.3
+      },
+      {
+        "bar": 65,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 65,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 66,
+        "note": "F#6",
+        "observed_hz": 1472.9,
+        "cents": -8.3
+      },
+      {
+        "bar": 66,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 67,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 67,
+        "note": "G#6",
+        "observed_hz": 1659.3,
+        "cents": -2.0
+      },
+      {
+        "bar": 67,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 67,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 68,
+        "note": "F6",
+        "observed_hz": 1394.53,
+        "cents": -2.95
+      },
+      {
+        "bar": 68,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 69,
+        "note": "F#6",
+        "observed_hz": 1472.9,
+        "cents": -8.3
+      },
+      {
+        "bar": 69,
+        "note": "F#6",
+        "observed_hz": 1472.53,
+        "cents": -8.73
+      },
+      {
+        "bar": 70,
+        "note": "A6",
+        "observed_hz": 1771.36,
+        "cents": 11.14
+      },
+      {
+        "bar": 70,
+        "note": "G#6",
+        "observed_hz": 1659.67,
+        "cents": -1.62
+      },
+      {
+        "bar": 70,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 71,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 71,
+        "note": "F#6",
+        "observed_hz": 1472.53,
+        "cents": -8.73
+      },
+      {
+        "bar": 71,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 71,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 72,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 72,
+        "note": "F6",
+        "observed_hz": 1394.53,
+        "cents": -2.95
+      },
+      {
+        "bar": 73,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 73,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 73,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 74,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 74,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 74,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 75,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 75,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 75,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 76,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 76,
+        "note": "F5",
+        "observed_hz": 697.27,
+        "cents": -2.95
+      },
+      {
+        "bar": 76,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 77,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 77,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 77,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 78,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 78,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 78,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 79,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 79,
+        "note": "F#6",
+        "observed_hz": 1472.9,
+        "cents": -8.3
+      },
+      {
+        "bar": 79,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 80,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 80,
+        "note": "F6",
+        "observed_hz": 1394.53,
+        "cents": -2.95
+      },
+      {
+        "bar": 80,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 81,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 81,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 81,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 82,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 82,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 82,
+        "note": "F#5",
+        "observed_hz": 740.84,
+        "cents": 2.0
+      },
+      {
+        "bar": 83,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 83,
+        "note": "F#6",
+        "observed_hz": 1472.9,
+        "cents": -8.3
+      },
+      {
+        "bar": 83,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 84,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 84,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 84,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 85,
+        "note": "F#6",
+        "observed_hz": 1472.9,
+        "cents": -8.3
+      },
+      {
+        "bar": 85,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 85,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 86,
+        "note": "E6",
+        "observed_hz": 1324.58,
+        "cents": 7.96
+      },
+      {
+        "bar": 86,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 86,
+        "note": "E5",
+        "observed_hz": 658.81,
+        "cents": -1.16
+      },
+      {
+        "bar": 87,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 87,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 87,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 88,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 88,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 88,
+        "note": "E5",
+        "observed_hz": 658.81,
+        "cents": -1.16
+      },
+      {
+        "bar": 89,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 89,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 89,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 90,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 90,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 90,
+        "note": "B5",
+        "observed_hz": 985.47,
+        "cents": -4.02
+      },
+      {
+        "bar": 91,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 91,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 91,
+        "note": "C#6",
+        "observed_hz": 1110.72,
+        "cents": 3.1
+      },
+      {
+        "bar": 92,
+        "note": "G#5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 92,
+        "note": "F5",
+        "observed_hz": 697.27,
+        "cents": -2.95
+      }
+    ],
+    "listening_performed": false,
+    "physical_hardware_tested": false,
+    "game_SE_coexistence_tested": false
+  },
+  "boss4": {
+    "uge_sha256": "cf132e4f3970eb23e1477e109943e74c1b92bc5c1a4bb1a831a008fc074d9a58",
+    "events_exact_match": true,
+    "rows_executed_in_order": true,
+    "ticks_verified": true,
+    "loop_target_verified": true,
+    "duplicate_full_8bar_blocks": [],
+    "first_seconds": 117.86865234375,
+    "loop_seconds": 111.9752197265625,
+    "peak_dbfs": -2.8876414537596333,
+    "clipped_samples": 0,
+    "lead_notes_pitch_tested": 138,
+    "max_lead_pitch_error_cents": 8.36,
+    "pitch_checks": [
+      {
+        "bar": 1,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 2,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 2,
+        "note": "Eb5",
+        "observed_hz": 621.09,
+        "cents": -3.23
+      },
+      {
+        "bar": 3,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 4,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 5,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 5,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 5,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 6,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 7,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 7,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 8,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 9,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 9,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 9,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 10,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 10,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 11,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 11,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 12,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 13,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 14,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 14,
+        "note": "F5",
+        "observed_hz": 697.27,
+        "cents": -2.95
+      },
+      {
+        "bar": 15,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 15,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 16,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 17,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 17,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 18,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 18,
+        "note": "Bb5",
+        "observed_hz": 929.81,
+        "cents": -4.68
+      },
+      {
+        "bar": 18,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 19,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 19,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 20,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 20,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 21,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 21,
+        "note": "C5",
+        "observed_hz": 524.41,
+        "cents": 3.84
+      },
+      {
+        "bar": 22,
+        "note": "Eb5",
+        "observed_hz": 621.09,
+        "cents": -3.23
+      },
+      {
+        "bar": 22,
+        "note": "Ab5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 23,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 23,
+        "note": "Eb5",
+        "observed_hz": 621.09,
+        "cents": -3.23
+      },
+      {
+        "bar": 24,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 24,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 25,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 25,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 26,
+        "note": "Ab5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 26,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 27,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 27,
+        "note": "F5",
+        "observed_hz": 697.27,
+        "cents": -2.95
+      },
+      {
+        "bar": 28,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 29,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 30,
+        "note": "F6",
+        "observed_hz": 1394.53,
+        "cents": -2.95
+      },
+      {
+        "bar": 30,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 31,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 31,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 33,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 34,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 34,
+        "note": "C6",
+        "observed_hz": 1048.83,
+        "cents": 3.84
+      },
+      {
+        "bar": 35,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 35,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 36,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 37,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 37,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 38,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 38,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 39,
+        "note": "F5",
+        "observed_hz": 697.27,
+        "cents": -2.95
+      },
+      {
+        "bar": 39,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 40,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 40,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 41,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 41,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 42,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 42,
+        "note": "Ab5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 43,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 44,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 44,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 45,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 45,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 45,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 46,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 47,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 47,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 48,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 49,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 49,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 49,
+        "note": "G6",
+        "observed_hz": 1560.42,
+        "cents": -8.36
+      },
+      {
+        "bar": 50,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 50,
+        "note": "Ab5",
+        "observed_hz": 829.47,
+        "cents": -2.38
+      },
+      {
+        "bar": 51,
+        "note": "F6",
+        "observed_hz": 1394.53,
+        "cents": -2.95
+      },
+      {
+        "bar": 51,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 52,
+        "note": "F#5",
+        "observed_hz": 740.48,
+        "cents": 1.15
+      },
+      {
+        "bar": 52,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 53,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 54,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 54,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 55,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 55,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 56,
+        "note": "F#6",
+        "observed_hz": 1472.9,
+        "cents": -8.3
+      },
+      {
+        "bar": 57,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 57,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 58,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 58,
+        "note": "Ab6",
+        "observed_hz": 1659.3,
+        "cents": -2.0
+      },
+      {
+        "bar": 59,
+        "note": "G6",
+        "observed_hz": 1560.42,
+        "cents": -8.36
+      },
+      {
+        "bar": 59,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 60,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 61,
+        "note": "E6",
+        "observed_hz": 1323.85,
+        "cents": 7.0
+      },
+      {
+        "bar": 61,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 62,
+        "note": "C6",
+        "observed_hz": 1048.83,
+        "cents": 3.84
+      },
+      {
+        "bar": 62,
+        "note": "G6",
+        "observed_hz": 1560.42,
+        "cents": -8.36
+      },
+      {
+        "bar": 63,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 64,
+        "note": "Bb5",
+        "observed_hz": 929.81,
+        "cents": -4.68
+      },
+      {
+        "bar": 64,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 65,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 66,
+        "note": "F5",
+        "observed_hz": 697.27,
+        "cents": -2.95
+      },
+      {
+        "bar": 67,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 68,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 69,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 69,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 70,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 70,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 71,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 71,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 72,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 73,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      },
+      {
+        "bar": 73,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 73,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 74,
+        "note": "Eb5",
+        "observed_hz": 621.09,
+        "cents": -3.23
+      },
+      {
+        "bar": 74,
+        "note": "Bb5",
+        "observed_hz": 929.44,
+        "cents": -5.36
+      },
+      {
+        "bar": 75,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 75,
+        "note": "C6",
+        "observed_hz": 1048.46,
+        "cents": 3.24
+      },
+      {
+        "bar": 76,
+        "note": "A5",
+        "observed_hz": 879.64,
+        "cents": -0.71
+      },
+      {
+        "bar": 76,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 77,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 77,
+        "note": "Eb6",
+        "observed_hz": 1248.41,
+        "cents": 5.42
+      },
+      {
+        "bar": 78,
+        "note": "G5",
+        "observed_hz": 784.79,
+        "cents": 1.76
+      },
+      {
+        "bar": 78,
+        "note": "C5",
+        "observed_hz": 524.41,
+        "cents": 3.84
+      },
+      {
+        "bar": 79,
+        "note": "D5",
+        "observed_hz": 587.77,
+        "cents": 1.29
+      },
+      {
+        "bar": 80,
+        "note": "D6",
+        "observed_hz": 1170.41,
+        "cents": -6.27
+      }
+    ],
+    "listening_performed": false,
+    "physical_hardware_tested": false,
+    "game_SE_coexistence_tested": false
+  }
+}

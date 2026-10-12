@@ -1,0 +1,151 @@
+{
+  "version": "0.47-stage4-retake",
+  "date": "2026-10-13",
+  "baseline": "ad55e04",
+  "rom": {
+    "sha256": "5c7f0fb0cfbe03ac89a029377c0ff08ca2b1697d9d57f965b2936ef98089dede",
+    "bytes": 4194304,
+    "header": 192,
+    "debugReleaseIdentical": true
+  },
+  "source": {
+    "baseline": "ad55e04",
+    "zipSha256": "523e85f5d45cbe3ca14e2020216dc835b439256cc0e165bae50946d62135316f",
+    "previousRevision": "ce5436b405fe24c5e681ffef11d818105c1945ae157ca77efec74258a6061711",
+    "revision": "d69948c9341e148ead9bea977617a257a98be61d88cbc219124062058b4df340",
+    "stageId": "stage-2",
+    "trackIds": [
+      23,
+      24
+    ],
+    "changed": [
+      {
+        "id": 23,
+        "key": "stage4",
+        "title": "夜界を駆ける閃光 / Night-Sky Sprint — retake v4",
+        "eventFile": "assets-src/uge-stage4-retake-v4/uge/stage4_events.json",
+        "eventSha256": "126593b05d9037d455e7ce27bf5589974dd1c522f966a18c54116ee5a4da8c29",
+        "ugeFile": "assets-src/uge-stage4-retake-v4/uge/stage4.uge",
+        "ugeSha256": "829c3b4519d35678d171df181ca2b945869e077a886dcb64bce1ebe8bfbf3ede",
+        "scoreFile": "assets-src/uge-stage4-retake-v4/scores/stage4/score.json",
+        "scoreSha256": "052308272d4737878ed925e85587c3405d07a1bdccda4fa8d3af6752a3e87ed2",
+        "rows": 1472,
+        "loopStartRow": 64,
+        "ticksPerRow": 5,
+        "endMode": "loop"
+      },
+      {
+        "id": 24,
+        "key": "boss4",
+        "title": "斜軸の氷冠 — Refracted Crown / retake 3",
+        "eventFile": "assets-src/uge-stage4-retake-v4/uge/boss4_events.json",
+        "eventSha256": "ba9d796a9300e052da77240f526ccad5084d3b850ea606bfa52db667b9104931",
+        "ugeFile": "assets-src/uge-stage4-retake-v4/uge/boss4.uge",
+        "ugeSha256": "cf132e4f3970eb23e1477e109943e74c1b92bc5c1a4bb1a831a008fc074d9a58",
+        "scoreFile": "assets-src/uge-stage4-retake-v4/scores/boss4/score.json",
+        "scoreSha256": "74227c7f825ac9ccbe068394d69a82aecf5c1542721d208bd82d719b5b53c6e0",
+        "rows": 1280,
+        "loopStartRow": 64,
+        "ticksPerRow": 5,
+        "endMode": "loop"
+      }
+    ],
+    "otherTracksUnchanged": 14,
+    "nonMusicGameUnchanged": true,
+    "sourceImagesUnchanged": 204,
+    "originalSourcesRetained": true
+  },
+  "cells": [
+    {
+      "key": "stage4",
+      "rows": 1472,
+      "cells": 5888,
+      "exactMatch": true
+    },
+    {
+      "key": "boss4",
+      "rows": 1280,
+      "cells": 5120,
+      "exactMatch": true
+    }
+  ],
+  "checks": {
+    "doctor": "passed, zero warnings",
+    "test": {
+      "passed": 191,
+      "failed": 0,
+      "skipped": 0
+    },
+    "helloCleanDebug": "passed via test.cmd",
+    "starDebugRelease": "passed",
+    "touhouDebugRelease": "passed",
+    "nativeEditor": "music selections, setting save/reopen/restore, result undo and Debug/Release builds passed",
+    "productionGame": [
+      {
+        "stage": 4,
+        "route": "road",
+        "track": 23,
+        "firstRow": 14,
+        "lastRow": 38,
+        "musicEnergy": 468444,
+        "pause": true,
+        "sfxEnergy": 3046214
+      },
+      {
+        "stage": 4,
+        "route": "boss",
+        "track": 24,
+        "firstRow": 31,
+        "lastRow": 54,
+        "musicEnergy": 485310,
+        "pause": true,
+        "sfxEnergy": 3502114
+      }
+    ],
+    "deathContinue": {
+      "route": "death, respawn, gameover and continue",
+      "roadTrack": 23,
+      "gameoverTrack": 33,
+      "heard": [
+        23,
+        33
+      ],
+      "continueRestartsRoad": true
+    },
+    "bgb": [
+      {
+        "stage": 4,
+        "route": "road",
+        "track": 23,
+        "pauseSamples": 218,
+        "passed": true
+      },
+      {
+        "stage": 4,
+        "route": "boss",
+        "track": 24,
+        "pauseSamples": 218,
+        "passed": true
+      }
+    ],
+    "beamSfx": "CH1/CH4 ownership sampled while CH2/CH3 remained unmuted and music rows advanced",
+    "diagnostic": "DMG/CGB each passed 23 native checks, all sixteen PCM outputs and loop/stop boundaries"
+  },
+  "pending": [
+    "Human listening and music-quality approval are unverified.",
+    "Physical GBC hardware and a continuous seven-stage clear are unverified.",
+    "Natural stage-four road-to-boss transition and both full songs in production gameplay are unverified; actual game checks use menu-selected practice routes.",
+    "Full-loop evidence comes from a separate diagnostic ROM, not the complete STG.",
+    "Emulicious EvaluateRequest failed with NullPointerException; execution unverified.",
+    "Previous performance deadline misses were not remeasured or resolved."
+  ],
+  "evidence": {
+    "raw": ".cache/stage4-retake-20261013",
+    "report": "../../docs/touhou-kouma-v47.md"
+  },
+  "testHistory": {
+    "initial": "test.cmd: six Debug builds passed, 190/191 tests passed; fixed source-folder assumption in UGE copy fixture",
+    "focused": "UGE tests 4/4 passed",
+    "final": "test.cmd star-caravan: 191/191 passed"
+  }
+}

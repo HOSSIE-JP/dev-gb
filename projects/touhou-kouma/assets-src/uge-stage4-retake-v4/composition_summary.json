@@ -1,0 +1,16 @@
+{
+  "bpm": 179.18250170881748,
+  "bars": 92,
+  "intro_bars": 4,
+  "loop_bars": 88,
+  "first_seconds": 123.226318359375,
+  "loop_seconds": 117.86865234375,
+  "first_chorus_seconds": 16.072998046875,
+  "notes": {
+    "melody": 546,
+    "counter": 256,
+    "bass_notes": 565,
+    "drums": 754
+  },
+  "duplicate_8bar_full_textures": []
+}

@@ -49,7 +49,11 @@ test('ordinary save/reopen and project-copy retain all UGE sources without a cat
     const g=load(),out=fs.mkdtempSync(path.join(root,'.cache/uge-copy-'));
     try{
         fs.mkdirSync(path.join(out,'projects',g.name,'assets-src'),{recursive:true});
-        fs.cpSync(path.join(root,'projects',g.name,'assets-src/uge-bgm-v2'),path.join(out,'projects',g.name,'assets-src/uge-bgm-v2'),{recursive:true});
+        for(const track of g.musicUgeTracks)for(const file of [track.ugeFile,track.eventFile,track.scoreFile]){
+            const target=path.join(out,'projects',g.name,file);
+            fs.mkdirSync(path.dirname(target),{recursive:true});
+            fs.copyFileSync(path.join(root,'projects',g.name,file),target);
+        }
         lib.createProject(out,'copied','UGE COPY',g);
         const copy=lib.readGame(out,'copied');copy.stages[0].music=19;
         const before=lib.revision(lib.readGame(out,'copied'));

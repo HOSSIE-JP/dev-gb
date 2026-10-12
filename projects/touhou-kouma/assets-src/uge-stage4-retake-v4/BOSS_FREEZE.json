@@ -1,0 +1,10 @@
+{
+  "byte_identical_accepted_boss": [
+    "audio/09_boss4_v3.mp3",
+    "audio/09_boss4_v3.wav",
+    "uge/boss4.uge",
+    "uge/boss4_events.json",
+    "scores/boss4/score.json",
+    "scores/boss4/compose.py"
+  ]
+}

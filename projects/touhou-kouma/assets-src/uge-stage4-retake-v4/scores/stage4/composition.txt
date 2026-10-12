@@ -1,0 +1,52 @@
+第4面 v4 / 夜界を駆ける閃光
+
+約179BPM。静かな異界探索から、高速で夜空を駆け抜ける疾走ステージへコンセプトを変更。旋律・リズム・ベース・打楽器を新作し、旧版の単なる倍速ではない。
+
+主題は F#–G#–A の助走から C#6 に跳び、B–A–G# と滑る上昇下降。3行+3行のシンコペーションを八分の走りに混ぜる。初回約16秒で F#6 の長い歌い出しへ到達し、覚えやすさと疾走感を両立。
+
+中盤はA major側へ広がり、メロディーを長く歌わせたまま基礎テンポを維持。二声の呼応後、主題を再現し、G majorへの意外な逸脱とA6の一度だけの最高音へ進む。最後は短い呼吸を残して主題へ戻る。
+
+低音は根音/5度だけの一律反復を避け、3度・転回・シンコペーション・サビの持続音を使い分けた。ドラムは明確なバックビート。対旋律は控えめな音量と2–3個の応答で主旋律を塞がない。音符ごとの117msの切れ目は復活させず、8分の走句は連続した音の切り替えを中心にした。
+
+{
+  "bpm": 179.18250170881748,
+  "bars": 92,
+  "intro_bars": 4,
+  "loop_bars": 88,
+  "first_seconds": 123.226318359375,
+  "loop_seconds": 117.86865234375,
+  "first_chorus_seconds": 16.072998046875,
+  "notes": {
+    "melody": 546,
+    "counter": 256,
+    "bass_notes": 565,
+    "drums": 754
+  },
+  "duplicate_8bar_full_textures": []
+}
+
+01–04: intro_ignite
+05–08: A_hook_first_flight
+09–12: A_hook_question_open
+13–16: P_first_skyline
+17–20: P_first_reply
+21–24: B_running_shadows
+25–28: B_shadow_answers
+29–32: B_springboard
+33–36: C_wide_open_air
+37–40: C_horizon_answer
+41–44: C_starlight_rise
+45–48: D_racing_echoes
+49–52: D_echoes_join
+53–56: Aprime_flight_recognized
+57–60: Aprime_new_turn
+61–64: P2_skyline_returns
+65–68: P2_answer_climbs
+69–72: P2_true_peak
+73–76: E_second_wind
+77–80: E_second_wind_answer
+81–84: Coda_gather_the_hook
+85–88: Coda_glint_in_motion
+89–92: Seam_launch_again
+
+音声の主観聴取合格・物理実機検証は主張しない。公式ドライバー音源検証は別途。
